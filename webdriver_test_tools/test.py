@@ -2,7 +2,7 @@
 
 # Imports
 # ----------------------------------------------------------------
-from webdriver_test_tools.util.webdriver.support import expected_conditions as customEC
+from webdriver_test_tools.webdriver.support import expected_conditions as customEC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC

@@ -1,6 +1,6 @@
 # Functions for test modules
 import argparse
-from webdriver_test_tools.util.classes.webdriver_test_case import *
+from webdriver_test_tools.classes.webdriver_test_case import *
 
 
 def main(tests, test_runner):
