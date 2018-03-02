@@ -8,5 +8,7 @@ setup(
         packages=find_packages(),
         install_requires=[
             'selenium>=3.9',
-            'colour-runner>=0.0.5'
-            ])
+            'colour-runner>=0.0.5',
+            'randomuser>=0.1.1'
+            ]
+        )
