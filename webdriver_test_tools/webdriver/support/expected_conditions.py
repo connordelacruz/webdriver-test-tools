@@ -2,7 +2,7 @@
 
 # Imports
 # ----------------------------------------------------------------
-from selenium_aem_nationals import util
+from webdriver_test_tools import test
 
 
 class element_is_in_view(object):
@@ -13,5 +13,5 @@ class element_is_in_view(object):
 
     def __call__(self, driver):
         element = driver.find_element(*self.locator)
-        return util.test.is_scrolled_into_view(driver, element, self.fully_in_view)
+        return test.is_scrolled_into_view(driver, element, self.fully_in_view)
 
