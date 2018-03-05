@@ -5,6 +5,7 @@ from setuptools import setup, find_packages
 setup(
         name='webdriver_test_tools',
         version='0.1.0',
+        url='https://github.com/connordelacruz/webdriver-test-tools.git',
         packages=find_packages(),
         install_requires=[
             'selenium>=3.9',
