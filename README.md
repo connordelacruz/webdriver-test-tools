@@ -3,6 +3,7 @@
 ## TODO:
 
 * Update instructions now that utilities are a separate package
+* Add detailed documentation
 * Info on page object model
 * Add setup instructions using the BitBucket url instead of a local directory?
 
