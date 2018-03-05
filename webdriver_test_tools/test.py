@@ -108,3 +108,14 @@ def visibility_change_test(driver, target_locator, test_visible=True, wait_timeo
     # Determine what EC to use based on test_visible
     visibility_checker = EC.visibility_of_element_located(target_locator) if test_visible else EC.invisibility_of_element_located(target_locator)
     return expected_condition_test(driver, visibility_checker, wait_timeout)
+
+
+def url_change_test(driver, expected_url, wait_timeout=10):
+    """Expected condition test for URL change
+
+    :param driver: Selenium webdriver object
+    :param expected_url: The expected URL
+    :param wait_timeout: (Default = 10) Number of seconds to wait expected conditions to occur before timing out
+    """
+    url_checker = EC.url_to_be(expected_url)
+    return expected_condition_test(driver, url_checker, wait_timeout)

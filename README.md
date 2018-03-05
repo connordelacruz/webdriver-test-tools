@@ -83,12 +83,7 @@ test_package
 ├── pages
 ├── tests
 ├── templates
-├── log
-└── util
-    ├── classes
-    └── webdriver
-        ├── actions
-        └── support
+└── log
 ```
 
 ### config/
