@@ -115,13 +115,6 @@ Template files to use as a starting point when writing new test modules or page 
 
 Log output of the web drivers. 
 
-### util/
-
-Subpackage with tools for testing with Selenium web driver.
-
-*Note:* The hope is to make this into a separate package for easy reuse.
-
-
 
 
 
