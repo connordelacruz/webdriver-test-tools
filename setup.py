@@ -6,6 +6,9 @@ setup(
         name='webdriver_test_tools',
         version='0.1.0',
         url='https://github.com/connordelacruz/webdriver-test-tools.git',
+        author='Connor de la Cruz',
+        author_email='connor.c.delacruz@gmail.com',
+        license='MIT',
         packages=find_packages(),
         install_requires=[
             'selenium>=3.9',
