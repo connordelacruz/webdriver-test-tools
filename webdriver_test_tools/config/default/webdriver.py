@@ -1,16 +1,14 @@
 # Configurations for webdriver
 
-# TODO: make independent from Nationals package
-
 from selenium import webdriver
-import selenium_aem_nationals
+import webdriver_test_tools
 import os.path
 
 # Variables
 # ----------------------------------------------------------------
 
 # Root directory of package
-_PACKAGE_ROOT = os.path.dirname(os.path.abspath(selenium_aem_nationals.__file__))
+_PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
 # Path to the log directory
 _LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
 
