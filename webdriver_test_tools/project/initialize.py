@@ -9,6 +9,10 @@ import webdriver_test_tools.templates
 
 
 def create_directories(target_path):
+    """Creates base directories of test package
+
+    :param target_path: The path to the test package directory
+    """
     target_path = os.path.abspath(target_path)
     project_dirs = [
             'config',
@@ -24,6 +28,10 @@ def create_directories(target_path):
 
 
 def create_config_files(target_path):
+    """Creates test package config files
+
+    :param target_path: The path to the config/ directory in the test package
+    """
     target_path = os.path.abspath(target_path)
     config_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.config.__file__))
     # Get only .py files
@@ -37,6 +45,11 @@ def create_config_files(target_path):
 
 
 def create_template_files(target_path, context):
+    """Creates test package template files
+
+    :param target_path: The path to the templates/ directory in the test package
+    :param context: Jinja context used to render template
+    """
     target_path = os.path.abspath(target_path)
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.__file__))
     # Copy over page_object.py since it doesn't really need any changes
@@ -54,6 +67,13 @@ def create_template_files(target_path, context):
 
 
 def render_template(template_path, context):
+    """Returns the rendered contents of a jinja template
+
+    :param template_path: The path to the jinja template
+    :param context: Jinja context used to render template
+
+    :return: Results of rendering jinja template
+    """
     path, filename = os.path.split(template_path)
     return jinja2.Environment(
         loader=jinja2.FileSystemLoader(path or './')
@@ -62,12 +82,18 @@ def render_template(template_path, context):
 
 # TODO: update as more templates are created
 def generate_context(test_package):
+    """Returns a jinja context to use for rendering templates
+
+    :param test_package: Name of the python test package
+    """
     context = {
             'test_package': test_package
             }
     return context
 
 
-# TODO: create README?
+# TODO: create __init__.py and __main__.py as necessary
 
-# TODO: add main
+# TODO: create setup.py (and README?)
+
+# TODO: add main that takes a package name and generates files appropriately
