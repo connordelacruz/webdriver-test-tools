@@ -1,5 +1,5 @@
 # Functions for test modules
-import argparse
+import argparse, unittest
 from webdriver_test_tools.classes.webdriver_test_case import *
 
 
@@ -13,6 +13,7 @@ def main(tests, test_runner):
     args = parser.parse_args()
     browser_class = None if args.browser is None else BROWSER_TEST_CLASSES[args.browser]
     test_name = args.test
+    unittest.installHandler()
     test_runner.run(generate_browser_test_suite(tests, browser_class, test_name))
 
 
