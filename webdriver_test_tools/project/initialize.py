@@ -1,6 +1,7 @@
 # Used to create a new test package
 
-import os
+import webdriver_test_tools
+import os, shutil
 
 
 def create_directories(target_path):
@@ -22,7 +23,7 @@ def create_directories(target_path):
 # TODO: copy default configs
 def create_config_files(target_path):
     target_path = os.path.abspath(target_path)
-    defaults_path = os.path.dirname(os.path.abspath(webdriver_test_tools.config.default))
+    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.config.templates.__file__))
     # TODO: iterate files and copy over if they don't exist in new config path
 
 # TODO: create README?

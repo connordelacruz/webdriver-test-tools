@@ -6,6 +6,7 @@
 # ----------------------------------------------------------------
 
 import unittest
+# TODO: make generic
 from selenium_aem_nationals import config
 
 
@@ -19,6 +20,7 @@ class WebDriverTestCase(unittest.TestCase):
     """
 
     # Base URL for these tests. Overwrite for cases that need to start on a different page
+    # TODO: pass during construction?
     SITE_URL = config.site.SITE_URL
 
     def setUp(self):

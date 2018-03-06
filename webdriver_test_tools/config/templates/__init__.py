@@ -1,5 +1,3 @@
-from . import templates
-# TODO: remove default?
-from . import default
+from .site import SiteConfig
 from .test import TestSuiteConfig
 from .webdriver import WebDriverConfig
