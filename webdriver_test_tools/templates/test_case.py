@@ -7,8 +7,7 @@
 
 import webdriver_test_tools
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase
-# TODO: fix config import location
-from webdriver_test_tools import config
+from {{ test_package }} import config
 from selenium import webdriver
 
 
@@ -35,5 +34,5 @@ tests = [
         ]
 
 if __name__ == '__main__':
-    # TODO: pass TestSuiteConfig class instead
+    # TODO: pass TestSuiteConfig class instead?
     webdriver_test_tools.test_module.main(tests, config.test.get_runner())
