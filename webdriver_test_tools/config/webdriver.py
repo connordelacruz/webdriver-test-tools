@@ -16,15 +16,21 @@ class WebDriverConfig(object):
     # Implicit wait time for webdriver to poll DOM
     IMPLICIT_WAIT = 10
 
+    # Firefox webdriver initialization arguments
+    FIREFOX_KWARGS = {}
+    # Chrome webdriver initialization arguments
+    CHROME_KWARGS = {}
+    # Safari webdriver initialization arguments
+    SAFARI_KWARGS = {}
+
     # Runtime Configurations
     # ----------------------------------------------------------------
     def __init__(self):
-        # Firefox webdriver initialization arguments
-        self.FIREFOX_KWARGS = {'log_path': os.path.join(self.LOG_PATH, 'geckodriver.log')}
-        # Chrome webdriver initialization arguments
-        self.CHROME_KWARGS = {'service_log_path': os.path.join(self.LOG_PATH, 'chromedriver.log')}
-        # Safari webdriver initialization arguments
-        self.SAFARI_KWARGS = {}
+        # Add log path at initialization so subclasses only need to override LOG_PATH
+        self.FIREFOX_KWARGS['log_path'] = os.path.join(self.LOG_PATH, 'geckodriver.log')
+        self.CHROME_KWARGS['service_log_path'] = os.path.join(self.LOG_PATH, 'chromedriver.log')
+        # NOTE: Safari driver doesn't have logging options at this time
+        # self.SAFARI_KWARGS[] = os.path.join(self.LOG_PATH, 'safaridriver.log')
 
     # Functions
     # ----------------------------------------------------------------
