@@ -1,7 +1,7 @@
 # Used to create a new test package
 
-import webdriver_test_tools
-import os, shutil
+import webdriver_test_tools.templates
+import os, glob, shutil
 
 
 def create_directories(target_path):
@@ -11,7 +11,7 @@ def create_directories(target_path):
             'data',
             'pages',
             'tests',
-            'log',
+            # 'log', # TODO: no longer using log/
             'templates',
             ]
     for project_dir in project_dirs:
@@ -20,11 +20,17 @@ def create_directories(target_path):
             os.makedirs(path)
 
 
-# TODO: copy default configs
 def create_config_files(target_path):
     target_path = os.path.abspath(target_path)
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.config.templates.__file__))
-    # TODO: iterate files and copy over if they don't exist in new config path
+    config_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.config.__file__))
+    # Get only .py files
+    config_files = [os.path.basename(file) for file in glob.glob(os.path.join(config_path, '*.py'))]
+    for config_file in config_files:
+        source_file = os.path.join(config_path, config_file)
+        # Precautionary check that this is a file
+        if os.path.isfile(source_file):
+            target_file = os.path.join(target_path, config_file)
+            shutil.copy(source_file, target_file)
 
 # TODO: create README?
 
