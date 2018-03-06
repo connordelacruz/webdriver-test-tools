@@ -8,6 +8,7 @@
 import webdriver_test_tools
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase
 # TODO: fix config import location
+# TODO: update to use classes
 from webdriver_test_tools import config
 from selenium import webdriver
 

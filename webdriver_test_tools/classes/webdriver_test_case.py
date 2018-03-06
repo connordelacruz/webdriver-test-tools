@@ -22,6 +22,7 @@ class WebDriverTestCase(unittest.TestCase):
     SITE_URL = config.site.SITE_URL
 
     def setUp(self):
+        # TODO: move implicity_wait() to config
         self.driver.implicitly_wait(config.webdriver.IMPLICIT_WAIT)
         self.driver.get(self.SITE_URL)
 
