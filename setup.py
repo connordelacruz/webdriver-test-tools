@@ -15,6 +15,6 @@ setup(
         install_requires=[
             'selenium>=3.9',
             'colour-runner>=0.0.5',
-            'randomuser>=0.1.1'
+            'randomuser>=0.3.0'
             ]
         )
