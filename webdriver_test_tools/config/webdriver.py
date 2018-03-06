@@ -40,14 +40,19 @@ class WebDriverConfig(object):
 
     def get_firefox_driver(self):
         """Returns webdriver.Firefox object using FIREFOX_KWARGS to initialize"""
-        return webdriver.Firefox(**self.FIREFOX_KWARGS)
+        return self.set_driver_implicit_wait(webdriver.Firefox(**self.FIREFOX_KWARGS))
 
     def get_chrome_driver(self):
         """Returns webdriver.Chrome object using CHROME_KWARGS to initialize"""
-        return webdriver.Chrome(**self.CHROME_KWARGS)
+        return self.set_driver_implicit_wait(webdriver.Chrome(**self.CHROME_KWARGS))
 
     def get_safari_driver(self):
         """Returns webdriver.Safari object using SAFARI_KWARGS to initialize"""
-        return webdriver.Safari(**self.SAFARI_KWARGS)
+        return self.set_driver_implicit_wait(webdriver.Safari(**self.SAFARI_KWARGS))
+
+    def set_driver_implicit_wait(self, driver):
+        """Returns driver with implicit wait time set"""
+        driver.implicitly_wait(self.IMPLICIT_WAIT)
+        return driver
 
 
