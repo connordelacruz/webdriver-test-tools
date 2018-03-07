@@ -93,7 +93,19 @@ def create_setup_file(target_path, context):
     render_template_to_file(setup_template, context, setup_target)
 
 
-# TODO: create README?
+def create_readme(target_path, context):
+    """Create README.md for test project
+
+    :param target_path: The path to the outer directory where the package directory is contained
+    :param context: Jinja context used to render template
+    """
+    target_path = os.path.abspath(target_path)
+    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.__file__))
+    readme_file = 'README.md'
+    readme_template = os.path.join(template_path, readme_file)
+    readme_target = os.path.join(target_path, readme_file)
+    render_template_to_file(readme_template, context, readme_target)
+
 
 
 # Helper functions
@@ -127,6 +139,7 @@ def validate_package_name(package_name):
     # Remove non-alphanumeric or _ characters
     package_name = re.sub(r'[^\w\s]', '', package_name)
     # Remove leading characters until we hit a letter or underscore
+    # TODO: remove leading underscore too?
     package_name = re.sub(r'^[^a-zA-Z_]+', '', package_name)
     return package_name
 
@@ -183,6 +196,7 @@ def initialize(target_path, package_name):
     context = generate_context(package_name)
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
+    create_readme(outer_path, context)
     package_path = create_package_directory(outer_path, package_name)
     # Initialize package files
     create_test_directories(package_path)
@@ -190,7 +204,7 @@ def initialize(target_path, package_name):
     create_template_files(package_path, context)
 
 
-# TODO: main() that takes user input for package name and calls initialize()
+# TODO: optional param for package_name that skips input dialog if not None (can be used to add an example test project in the future)
 def main():
     # TODO: document
     print('Enter a name for the test package')
