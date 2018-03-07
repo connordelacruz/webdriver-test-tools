@@ -74,6 +74,7 @@ def create_package_directory(target_path, package_name):
     return create_directory(target_path, package_directory)
 
 
+# TODO: might want to rename template file so python doesn't treat it as the main module for the subpackage
 def create_main_module(target_path, context):
     """Creates __main__.py module for test package
 
@@ -105,6 +106,17 @@ def create_readme(target_path, context):
     target_path = os.path.abspath(target_path)
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.__file__))
     create_file_from_template(template_path, target_path, 'README.md', context)
+
+
+def create_gitignore(target_path):
+    """Create .gitignore file at the root of the test project
+
+    :param target_path: The path to the outer directory where the package directory is contained
+    """
+    target_path = os.path.abspath(target_path)
+    source_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.__file__))
+    filename = '.gitignore'
+    shutil.copy(os.path.join(source_path, filename), os.path.join(target_path, filename))
 
 
 # Helper functions
@@ -210,6 +222,7 @@ def initialize(target_path, package_name):
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
     create_readme(outer_path, context)
+    create_gitignore(outer_path)
     package_path = create_package_directory(outer_path, package_name)
     # Initialize package files
     create_main_module(package_path, context)
