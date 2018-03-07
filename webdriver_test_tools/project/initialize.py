@@ -12,7 +12,7 @@ import webdriver_test_tools.templates
 # Project creation functions
 # ----------------------------------------------------------------
 
-def create_directories(target_path):
+def create_subdirectories(target_path):
     """Creates base directories of test package
 
     :param target_path: The path to the test package directory
@@ -171,4 +171,23 @@ def generate_context(test_package):
     return context
 
 # TODO: add main that takes a package name and generates files appropriately
+def initialize(target_path, package_name):
+    # TODO: document
+    outer_path = os.path.abspath(target_path)
+    package_name = validate_package_name(package_name)
+    context = generate_context(package_name)
+    # Initialize files in the outer directory
+    create_setup_file(outer_path, context)
+    package_path = create_package_directory(outer_path, package_name)
+    # Initialize package files
+    create_subdirectories(package_path)
+    config_path = os.path.join(package_path, 'config')
+    create_config_files(config_path)
+    templates_path = os.path.join(package_path, 'templates')
+    create_template_files(template_path, context)
+
+
+
+
+
 
