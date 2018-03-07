@@ -6,7 +6,7 @@
 # ----------------------------------------------------------------
 
 import unittest
-from selenium_aem_nationals import config
+from webdriver_test_tools.config import WebDriverConfig
 
 
 # Test Case Classes
@@ -18,11 +18,12 @@ class WebDriverTestCase(unittest.TestCase):
     This defines the common setUp() and tearDown() tasks. It does not initialize self.driver so will not work on its own. Tests should be written with this as their parent class and have subclasses for each implementation in order to do multi-browser tests
     """
 
-    # Base URL for these tests. Overwrite for cases that need to start on a different page
-    SITE_URL = config.site.SITE_URL
+    # Base URL for these tests. Must be set in test case implementations
+    SITE_URL = None
+    # WebDriver object. Browser-specific subclasses need to initialize this in setUp() before calling super().setUp()
+    driver = None
 
     def setUp(self):
-        self.driver.implicitly_wait(config.webdriver.IMPLICIT_WAIT)
         self.driver.get(self.SITE_URL)
 
     def tearDown(self):
@@ -36,7 +37,7 @@ class FirefoxTestCase(WebDriverTestCase):
     DRIVER_NAME = 'Firefox'
 
     def setUp(self):
-        self.driver = config.webdriver.get_firefox_driver()
+        self.driver = WebDriverConfig.get_firefox_driver()
         super().setUp()
 
 
@@ -45,7 +46,7 @@ class ChromeTestCase(WebDriverTestCase):
     DRIVER_NAME = 'Chrome'
 
     def setUp(self):
-        self.driver = config.webdriver.get_chrome_driver()
+        self.driver = WebDriverConfig.get_chrome_driver()
         super().setUp()
 
 
@@ -64,7 +65,7 @@ class SafariTestCase(WebDriverTestCase):
     DRIVER_NAME = 'Safari'
 
     def setUp(self):
-        self.driver = config.webdriver.get_safari_driver()
+        self.driver = WebDriverConfig.get_safari_driver()
         super().setUp()
 
 
@@ -84,8 +85,11 @@ def generate_browser_test_suite(test_case_list, browser_test_class=None, test_na
     """Generates test cases for multiple browsers and returns a TestSuite with all of the new tests
 
     :param test_case_list: A list of WebDriverTestCase subclasses to generate a test suite for
-    :param browser_test_class: (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class
-    :param test_name: (Optional) Run only the specified test in each generated browser test case. This can be the name of the class (e.g. 'PrimaryNavTestCase') or the name of a single test method in a class (e.g. 'PrimaryNavTestCase.test_modal_links')
+    :param browser_test_class: (Optional) If specified, only generate tests using this browser class. If not specified,
+    tests will be generated for each available browser test case class.
+    :param test_name: (Optional) Run only the specified test in each generated browser test case. This can be the name
+    of the class (e.g. 'PrimaryNavTestCase') or the name of a single test method in a class
+    (e.g. 'PrimaryNavTestCase.test_modal_links')
 
     :return: unittest.TestSuite object with generated tests for each browser
     """
