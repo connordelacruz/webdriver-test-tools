@@ -13,7 +13,8 @@ class TestSuiteConfig(object):
     # Functions
     # ----------------------------------------------------------------
 
-    def get_runner(self):
+    @classmethod
+    def get_runner(cls):
         """Returns RUNNER_CLASS object using RUNNER_KWARGS to initialize"""
-        return self.RUNNER_CLASS(**self.RUNNER_KWARGS)
+        return cls.RUNNER_CLASS(**cls.RUNNER_KWARGS)
 
