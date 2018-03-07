@@ -58,10 +58,7 @@ def create_template_files(target_path, context):
     page_object_target = os.path.join(target_path, page_object_file)
     shutil.copy(page_object_source, page_object_target)
     # Render a template for test_case.py and copy that over
-    test_case_file = 'test_case.py'
-    test_case_template = os.path.join(template_path, test_case_file)
-    test_case_target = os.path.join(target_path, test_case_file)
-    render_template_to_file(test_case_template, context, test_case_target)
+    create_file_from_template(template_path, target_path, 'test_case.py', context)
 
 
 def create_package_directory(target_path, package_name):
@@ -77,7 +74,16 @@ def create_package_directory(target_path, package_name):
     return create_directory(target_path, package_directory)
 
 
-# TODO: create __init__.py and __main__.py as necessary
+def create_main_module(target_path, context):
+    """Creates __main__.py module for test package
+
+    :param target_path: The path to the test package directory
+    :param context: Jinja context used to render template
+    """
+    target_path = os.path.abspath(target_path)
+    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.__file__))
+    create_file_from_template(template_path, target_path, '__main__.py', context)
+
 
 def create_setup_file(target_path, context):
     """Creates setup.py for test project
@@ -87,10 +93,7 @@ def create_setup_file(target_path, context):
     """
     target_path = os.path.abspath(target_path)
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.__file__))
-    setup_file = 'setup.py'
-    setup_template = os.path.join(template_path, setup_file)
-    setup_target = os.path.join(target_path, setup_file)
-    render_template_to_file(setup_template, context, setup_target)
+    create_file_from_template(template_path, target_path, 'setup.py', context)
 
 
 def create_readme(target_path, context):
@@ -101,11 +104,7 @@ def create_readme(target_path, context):
     """
     target_path = os.path.abspath(target_path)
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.__file__))
-    readme_file = 'README.md'
-    readme_template = os.path.join(template_path, readme_file)
-    readme_target = os.path.join(target_path, readme_file)
-    render_template_to_file(readme_template, context, readme_target)
-
+    create_file_from_template(template_path, target_path, 'README.md', context)
 
 
 # Helper functions
@@ -181,6 +180,21 @@ def generate_context(test_package):
     return context
 
 
+def create_file_from_template(template_path, target_path, filename, context):
+    """Short hand function that renders a template with the specified filename from the
+    template path to a file with the same name in the target path
+
+    :param template_path: Path to template directory
+    :param target_path: Path to target directory
+    :param filename: Name of the template file. Will be used as the filename for the
+    rendered file written to the target directory
+    :param context: Jinja context used to render template
+    """
+    file_template = os.path.join(template_path, filename)
+    file_target = os.path.join(target_path, filename)
+    render_template_to_file(file_template, context, file_target)
+
+
 # Main methods
 # ----------------------------------------------------------------
 
@@ -198,6 +212,7 @@ def initialize(target_path, package_name):
     create_readme(outer_path, context)
     package_path = create_package_directory(outer_path, package_name)
     # Initialize package files
+    create_main_module(package_path, context)
     create_test_directories(package_path)
     create_config_files(package_path)
     create_template_files(package_path, context)
