@@ -29,25 +29,25 @@ class WebDriverConfig(object):
     # Web Drivers
     # --------------------------------
 
-    @staticmethod
-    def get_firefox_driver():
+    @classmethod
+    def get_firefox_driver(cls):
         """Returns webdriver.Firefox object using FIREFOX_KWARGS to initialize"""
-        return WebDriverConfig.set_driver_implicit_wait(webdriver.Firefox(**WebDriverConfig.FIREFOX_KWARGS))
+        return cls.set_driver_implicit_wait(webdriver.Firefox(**cls.FIREFOX_KWARGS))
 
-    @staticmethod
-    def get_chrome_driver():
+    @classmethod
+    def get_chrome_driver(cls):
         """Returns webdriver.Chrome object using CHROME_KWARGS to initialize"""
-        return WebDriverConfig.set_driver_implicit_wait(webdriver.Chrome(**WebDriverConfig.CHROME_KWARGS))
+        return cls.set_driver_implicit_wait(webdriver.Chrome(**cls.CHROME_KWARGS))
 
-    @staticmethod
-    def get_safari_driver():
+    @classmethod
+    def get_safari_driver(cls):
         """Returns webdriver.Safari object using SAFARI_KWARGS to initialize"""
-        return WebDriverConfig.set_driver_implicit_wait(webdriver.Safari(**WebDriverConfig.SAFARI_KWARGS))
+        return cls.set_driver_implicit_wait(webdriver.Safari(**cls.SAFARI_KWARGS))
 
-    @staticmethod
-    def set_driver_implicit_wait(driver):
+    @classmethod
+    def set_driver_implicit_wait(cls, driver):
         """Returns driver with implicit wait time set"""
-        driver.implicitly_wait(WebDriverConfig.IMPLICIT_WAIT)
+        driver.implicitly_wait(cls.IMPLICIT_WAIT)
         return driver
 
 
