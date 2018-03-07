@@ -12,34 +12,32 @@ import webdriver_test_tools.templates
 # Project creation functions
 # ----------------------------------------------------------------
 
-def create_subdirectories(target_path):
-    """Creates base directories of test package
+def create_test_directories(target_path):
+    """Creates base directories for test writing (data, pages, and tests)
 
     :param target_path: The path to the test package directory
     """
     target_path = os.path.abspath(target_path)
     project_dirs = [
-            'config',
             'data',
             'pages',
             'tests',
-            'templates',
             ]
     for project_dir in project_dirs:
         create_directory(target_path, project_dir)
 
 
 def create_config_files(target_path):
-    """Creates test package config files
+    """Creates test package config directory and config files
 
-    :param target_path: The path to the config/ directory in the test package
+    :param target_path: The path to the test package directory
     """
-    target_path = os.path.abspath(target_path)
-    config_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.config.__file__))
+    target_path = create_directory(os.path.abspath(target_path), 'config')
+    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.config.__file__))
     # Get only .py files
-    config_files = [os.path.basename(file) for file in glob.glob(os.path.join(config_path, '*.py'))]
+    config_files = [os.path.basename(file) for file in glob.glob(os.path.join(template_path, '*.py'))]
     for config_file in config_files:
-        source_file = os.path.join(config_path, config_file)
+        source_file = os.path.join(template_path, config_file)
         # Precautionary check that this is a file
         if os.path.isfile(source_file):
             target_file = os.path.join(target_path, config_file)
@@ -47,12 +45,12 @@ def create_config_files(target_path):
 
 
 def create_template_files(target_path, context):
-    """Creates test package template files
+    """Creates test package template directory and template files
 
-    :param target_path: The path to the templates/ directory in the test package
+    :param target_path: The path to the test package directory
     :param context: Jinja context used to render template
     """
-    target_path = os.path.abspath(target_path)
+    target_path = create_directory(os.path.abspath(target_path), 'templates')
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.__file__))
     # Copy over page_object.py since it doesn't really need any changes
     page_object_file = 'page_object.py'
@@ -170,7 +168,10 @@ def generate_context(test_package):
             }
     return context
 
-# TODO: add main that takes a package name and generates files appropriately
+
+# Main methods
+# ----------------------------------------------------------------
+
 def initialize(target_path, package_name):
     # TODO: document
     outer_path = os.path.abspath(target_path)
@@ -180,13 +181,12 @@ def initialize(target_path, package_name):
     create_setup_file(outer_path, context)
     package_path = create_package_directory(outer_path, package_name)
     # Initialize package files
-    create_subdirectories(package_path)
-    config_path = os.path.join(package_path, 'config')
-    create_config_files(config_path)
-    templates_path = os.path.join(package_path, 'templates')
-    create_template_files(template_path, context)
+    create_test_directories(package_path)
+    create_config_files(package_path)
+    create_template_files(package_path, context)
 
 
+# TODO: main() that takes user input for package name and calls initialize()
 
 
 
