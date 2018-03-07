@@ -173,7 +173,11 @@ def generate_context(test_package):
 # ----------------------------------------------------------------
 
 def initialize(target_path, package_name):
-    # TODO: document
+    """Initializes new project package
+
+    :param target_path: Path to directory that will contain test package
+    :param package_name: Name of the test package to create (will be validated)
+    """
     outer_path = os.path.abspath(target_path)
     package_name = validate_package_name(package_name)
     context = generate_context(package_name)
@@ -187,6 +191,26 @@ def initialize(target_path, package_name):
 
 
 # TODO: main() that takes user input for package name and calls initialize()
+def main():
+    # TODO: document
+    print('Enter a name for the test package')
+    print('(use only alphanumeric characters and underscores. Cannot start with a number)')
+    # TODO: add more robust input validation
+    package_name = input('Package name: ')
+    validated_package_name = validate_package_name(package_name)
+    # Alert user of any changes made in validation
+    if package_name != validated_package_name:
+        message_format = 'Name was changed to {} in order to be a valid python package'
+        print(message_format.format(validated_package_name))
+    # Create project package
+    print('Creating test project...')
+    initialize(os.getcwd(), validated_package_name)
+    # TODO: catch errors? More robust output?
+    print('Project initialized.')
+
+
+if __name__ == '__main__':
+    main()
 
 
 
