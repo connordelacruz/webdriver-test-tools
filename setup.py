@@ -2,12 +2,16 @@
 
 from setuptools import setup, find_packages
 
+# Get __version__
+with open('./webdriver_test_tools/version.py') as f:
+    exec(f.read())
+
 setup(
         name='webdriver_test_tools',
-        version='0.3.0',
+        version=__version__,
         description='Tools for using Selenium WebDriver with Python unit testing',
         url='https://github.com/connordelacruz/webdriver-test-tools',
-        download_url='https://github.com/connordelacruz/webdriver-test-tools/archive/0.3.0.tar.gz',
+        download_url='https://github.com/connordelacruz/webdriver-test-tools/archive/{}.tar.gz'.format(__version__),
         author='Connor de la Cruz',
         author_email='connor.c.delacruz@gmail.com',
         license='MIT',

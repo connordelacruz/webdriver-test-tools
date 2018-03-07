@@ -7,6 +7,7 @@ import re
 import jinja2
 
 import webdriver_test_tools.templates
+from webdriver_test_tools.version import __version__
 
 
 # Project creation functions
@@ -180,13 +181,16 @@ def render_template(template_path, context):
     ).get_template(filename).render(context)
 
 
-def generate_context(test_package):
+def generate_context(test_package, test_tools_version):
     """Returns a jinja context to use for rendering templates
 
     :param test_package: Name of the python test package
+    :param test_tools_version: Version of webdriver_test_tools to use as install
+    dependency
     """
     context = {
-            'test_package': test_package
+            'test_package': test_package,
+            'test_tools_version': test_tools_version,
             }
     return context
 
@@ -217,7 +221,7 @@ def initialize(target_path, package_name):
     """
     outer_path = os.path.abspath(target_path)
     package_name = validate_package_name(package_name)
-    context = generate_context(package_name)
+    context = generate_context(package_name, __version__)
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
     create_readme(outer_path, context)

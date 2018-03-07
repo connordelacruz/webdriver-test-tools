@@ -7,5 +7,5 @@ setup(
         version='0.1.0',
         packages=find_packages(),
         install_requires=[
-            'webdriver-test-tools>=0.2.0', # TODO: package version
+            'webdriver-test-tools>={{ test_tools_version }}',
             ])
