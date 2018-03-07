@@ -21,7 +21,6 @@ class WebDriverTestCase(unittest.TestCase):
     # Base URL for these tests. Must be set in test case implementations
     SITE_URL = None
     # WebDriver object. Browser-specific subclasses need to initialize this in setUp() before calling super().setUp()
-    # TODO: test
     driver = None
 
     def setUp(self):
