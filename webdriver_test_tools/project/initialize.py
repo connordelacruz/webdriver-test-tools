@@ -139,7 +139,6 @@ def validate_package_name(package_name):
     # Remove non-alphanumeric or _ characters
     package_name = re.sub(r'[^\w\s]', '', package_name)
     # Remove leading characters until we hit a letter or underscore
-    # TODO: remove leading underscore too?
     package_name = re.sub(r'^[^a-zA-Z_]+', '', package_name)
     return package_name
 
@@ -204,13 +203,19 @@ def initialize(target_path, package_name):
     create_template_files(package_path, context)
 
 
-# TODO: optional param for package_name that skips input dialog if not None (can be used to add an example test project in the future)
-def main():
-    # TODO: document
-    print('Enter a name for the test package')
-    print('(use only alphanumeric characters and underscores. Cannot start with a number)')
-    # TODO: add more robust input validation
-    package_name = input('Package name: ')
+def main(package_name=None):
+    """Command line dialogs for initializing a test project
+
+    :param package_name: (Optional) If specified, the prompt asking the user to enter a
+    package name will be skipped and function will continue using this as the package
+    name
+    """
+    # Prompt for input if no package name is passed as a parameter
+    if package_name is None:
+        print('Enter a name for the test package')
+        print('(use only alphanumeric characters and underscores. Cannot start with a number)')
+        # TODO: add more robust input validation?
+        package_name = input('Package name: ')
     validated_package_name = validate_package_name(package_name)
     # Alert user of any changes made in validation
     if package_name != validated_package_name:
