@@ -180,7 +180,6 @@ def render_template(template_path, context):
     ).get_template(filename).render(context)
 
 
-# TODO: update as more templates are created
 def generate_context(test_package):
     """Returns a jinja context to use for rendering templates
 
