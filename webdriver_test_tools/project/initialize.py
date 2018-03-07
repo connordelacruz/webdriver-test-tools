@@ -3,10 +3,14 @@
 import glob
 import os
 import shutil
+import re
 import jinja2
 
 import webdriver_test_tools.templates
 
+
+# Project creation functions
+# ----------------------------------------------------------------
 
 def create_directories(target_path):
     """Creates base directories of test package
@@ -22,9 +26,7 @@ def create_directories(target_path):
             'templates',
             ]
     for project_dir in project_dirs:
-        path = os.path.join(target_path, project_dir)
-        if not os.path.exists(path):
-            os.makedirs(path)
+        create_directory(target_path, project_dir)
 
 
 def create_config_files(target_path):
@@ -61,8 +63,85 @@ def create_template_files(target_path, context):
     test_case_file = 'test_case.py'
     test_case_template = os.path.join(template_path, test_case_file)
     test_case_target = os.path.join(target_path, test_case_file)
-    with open(test_case_target, 'w') as f:
-        file_contents = render_template(test_case_template, context)
+    render_template_to_file(test_case_template, context, test_case_target)
+
+
+def create_package_directory(target_path, package_name):
+    """Creates package directory for test project
+
+    :param target_path: The path to the outer directory where initialize was called
+    :param package_name: The desired name of the package (will be validated)
+
+    :return: Path to created package directory
+    """
+    target_path = os.path.abspath(target_path)
+    package_directory = validate_package_name(package_name)
+    return create_directory(target_path, package_directory)
+
+
+# TODO: create __init__.py and __main__.py as necessary
+
+def create_setup_file(target_path, context):
+    """Creates setup.py for test project
+
+    :param target_path: The path to the outer directory where the package directory is contained
+    :param context: Jinja context used to render template
+    """
+    target_path = os.path.abspath(target_path)
+    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.__file__))
+    setup_file = 'setup.py'
+    setup_template = os.path.join(template_path, setup_file)
+    setup_target = os.path.join(target_path, setup_file)
+    render_template_to_file(setup_template, context, setup_target)
+
+
+# TODO: create README?
+
+
+# Helper functions
+# ----------------------------------------------------------------
+
+def create_directory(target_path, directory_name):
+    """Creates a directory in the target path if it doesn't already exist
+
+    :param target_path: The path to the directory that will contain the new one
+    :param directory_name: The name of the directory to create in the target path
+
+    :return: The path to the newly created (or already existing) directory
+    """
+    path = os.path.join(target_path, directory_name)
+    if not os.path.exists(path):
+        os.makedirs(path)
+    return path
+
+
+def validate_package_name(package_name):
+    """Removes and replaces characters to ensure a string is a valid python package
+    name
+
+    :param package_name: The desired package name
+
+    :return: Modified package_name with whitespaces and hyphens replaced with
+    underscores and all invalid characters removed
+    """
+    # Trim outer whitespace and replace inner whitespace and hyphens with underscore
+    package_name = re.sub(r'\s+|-+', '_', package_name.strip())
+    # Remove non-alphanumeric or _ characters
+    package_name = re.sub(r'[^\w\s]', '', package_name)
+    # Remove leading characters until we hit a letter or underscore
+    package_name = re.sub(r'^[^a-zA-Z_]+', '', package_name)
+    return package_name
+
+
+def render_template_to_file(template_path, context, target_path):
+    """Writes rendered jinja template to a file
+
+    :param template_path: The path to the jinja template
+    :param context: Jinja context used to render template
+    :param target_path: File path to write the rendered template to
+    """
+    with open(target_path, 'w') as f:
+        file_contents = render_template(template_path, context)
         f.write(file_contents)
 
 
@@ -91,9 +170,5 @@ def generate_context(test_package):
             }
     return context
 
-
-# TODO: create __init__.py and __main__.py as necessary
-
-# TODO: create setup.py (and README?)
-
 # TODO: add main that takes a package name and generates files appropriately
+
