@@ -1,19 +1,23 @@
 # Functions for test modules
 import argparse, unittest
 from webdriver_test_tools.classes.webdriver_test_case import *
+from webdriver_test_tools import config
 
 
-def main(tests, test_runner):
+def main(tests, test_runner=None):
     """Function to call in test modules if __name__ == '__main__' at run time
 
     :param tests: List of test case classes to generate tests for
-    :param test_runner: unittest test runner to use
+    :param test_runner: (Optional) unittest test runner to use. Will use runner from
+    webdriver_test_tools.config.TestSuiteConfig if not specified
     """
     parser = get_parser()
     args = parser.parse_args()
     browser_class = None if args.browser is None else BROWSER_TEST_CLASSES[args.browser]
     test_name = args.test
     unittest.installHandler()
+    if test_runner is None:
+        test_runner = config.TestSuiteConfig.get_runner()
     test_runner.run(generate_browser_test_suite(tests, browser_class, test_name))
 
 
