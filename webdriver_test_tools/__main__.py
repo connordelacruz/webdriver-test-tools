@@ -25,6 +25,9 @@ def main():
         return
     if args.init:
         initialize.main()
+    # If no arguments were specified, print help
+    else:
+        parser.print_help()
 
 
 if __name__ == '__main__':
