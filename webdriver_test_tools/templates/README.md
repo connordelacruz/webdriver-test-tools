@@ -29,20 +29,32 @@ python -m {{ test_package }}
 To run all test cases in a file:
 
 ```
-python -m {{ test_package }}.tests.<module_name>
+python -m {{ test_package }} --module <module_name>
 ```
 
 To run a single TestCase class in a file:
 
 ```
-python -m {{ test_package }}.tests.<module_name> --test <TestCaseClassName>
+python -m {{ test_package }} --module <module_name> --test <TestCaseClassName>
 ```
 
 To run just one test function in a TestCase class:
 
 ```
-python -m {{ test_package }}.tests.<module_name> --test <TestCaseClassName>.<test_function_name>
+python -m {{ test_package }} --module <module_name> --test <TestCaseClassName>.<test_function_name>
 ```
+
+The `--module` argument can be omitted when using the `--test` argument:
+
+```
+python -m {{ test_package }} --module <module_name> --test <TestCaseClassName>
+```
+
+```
+python -m {{ test_package }} --module <module_name> --test <TestCaseClassName>.<test_function_name>
+```
+
+*Note:* This can be less efficient as each module will be searched for the specified test, but the difference in performance will likely be unnoticeable.  
 
 To do any of the above in a specific browser rather than running in all available browsers, use the `--browser <browser>` command line argument. For a list of options you can specify with `--browser`, run `python -m {{ test_package }} --help`.
 

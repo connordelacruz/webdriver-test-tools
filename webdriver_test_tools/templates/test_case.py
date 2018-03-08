@@ -25,14 +25,3 @@ class TemplateTestCase(WebDriverTestCase):
 
     """TEST FUNCTIONS HERE"""
 
-
-# Test Suite
-# ----------------------------------------------------------------
-"""LIST OF TEST CASE CLASSES HERE"""
-tests = [
-        TemplateTestCase,
-        ]
-
-if __name__ == '__main__':
-    # TODO: pass TestSuiteConfig class instead?
-    webdriver_test_tools.test_module.main(tests, config.TestSuiteConfig.get_runner())
