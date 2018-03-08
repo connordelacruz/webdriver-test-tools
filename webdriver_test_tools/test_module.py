@@ -4,6 +4,7 @@ from webdriver_test_tools.classes.webdriver_test_case import *
 from webdriver_test_tools import config
 
 
+# TODO: take tests module and TestSuiteConfig and handle all the logic here
 def main(tests, test_runner=None):
     """Function to call in test modules if __name__ == '__main__' at run time
 
