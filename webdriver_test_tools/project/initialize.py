@@ -75,7 +75,6 @@ def create_package_directory(target_path, package_name):
     return create_directory(target_path, package_directory)
 
 
-# TODO: might want to rename template file so python doesn't treat it as the main module for the subpackage
 def create_main_module(target_path, context):
     """Creates __main__.py module for test package
 

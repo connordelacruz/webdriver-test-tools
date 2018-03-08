@@ -17,12 +17,12 @@ def main(tests_module, test_suite_config=None):
     args = parser.parse_args()
     browser_class = None if args.browser is None else BROWSER_TEST_CLASSES[args.browser]
     test_name = args.test
-    # TODO: module_name = args.module
+    test_module_name = args.module
     unittest.installHandler()
     if test_suite_config is None:
         test_suite_config = config.TestSuiteConfig
     test_runner = test_suite_config.get_runner()
-    tests = loader.load_project_tests(tests_module)
+    tests = loader.load_project_tests(tests_module, test_module_name)
     test_runner.run(generate_browser_test_suite(tests, browser_class, test_name))
 
 
@@ -34,5 +34,6 @@ def get_parser():
     parser.add_argument('-b', '--browser', choices=browser_choices, help='Run tests only in the specified browser')
     # Arguments for specifying what test to run
     parser.add_argument('-t', '--test', help='Run a specific test case class or function', metavar='TestCase[.test_method]')
-    # TODO: Arguments for specifying test module to run
+    # Arguments for specifying test module to run
+    parser.add_argument('-m', '--module', help='Run only tests in a specific test module', metavar='test_module')
     return parser
