@@ -1,24 +1,28 @@
 # Functions for test modules
-import argparse, unittest
-from webdriver_test_tools.classes.webdriver_test_case import *
+import argparse
+
 from webdriver_test_tools import config
+from webdriver_test_tools.classes.webdriver_test_case import *
+from webdriver_test_tools.project import loader
 
 
-# TODO: take tests module and TestSuiteConfig and handle all the logic here
-def main(tests, test_runner=None):
+def main(tests_module, test_suite_config=None):
     """Function to call in test modules if __name__ == '__main__' at run time
 
-    :param tests: List of test case classes to generate tests for
-    :param test_runner: (Optional) unittest test runner to use. Will use runner from
+    :param tests_module: The module object for <test_project>.tests
+    :param test_suite_config: (Optional) TestSuiteConfig class for the project. Will use
     webdriver_test_tools.config.TestSuiteConfig if not specified
     """
     parser = get_parser()
     args = parser.parse_args()
     browser_class = None if args.browser is None else BROWSER_TEST_CLASSES[args.browser]
     test_name = args.test
+    # TODO: module_name = args.module
     unittest.installHandler()
-    if test_runner is None:
-        test_runner = config.TestSuiteConfig.get_runner()
+    if test_suite_config is None:
+        test_suite_config = config.TestSuiteConfig
+    test_runner = test_suite_config.get_runner()
+    tests = loader.load_project_tests(tests_module)
     test_runner.run(generate_browser_test_suite(tests, browser_class, test_name))
 
 
@@ -30,4 +34,5 @@ def get_parser():
     parser.add_argument('-b', '--browser', choices=browser_choices, help='Run tests only in the specified browser')
     # Arguments for specifying what test to run
     parser.add_argument('-t', '--test', help='Run a specific test case class or function', metavar='TestCase[.test_method]')
+    # TODO: Arguments for specifying test module to run
     return parser

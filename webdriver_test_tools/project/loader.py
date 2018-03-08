@@ -4,6 +4,7 @@ import types
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase
 
 
+# TODO: load specific test module
 def load_project_tests(tests_module):
     """Returns a list of WebDriverTestCase subclasses from all submodules in a test
     project's tests/ directory
