@@ -194,10 +194,13 @@ def generate_context(test_package, test_tools_version):
     return context
 
 
-# TODO: append .j2 extension to template files for clarity
 def create_file_from_template(template_path, target_path, filename, context):
-    """Short hand function that renders a template with the specified filename from the
-    template path to a file with the same name in the target path
+    """Short hand function that renders a template with the specified filename followed
+    by a '.j2' extension from the template path to a file with the specified name in the
+    target path
+
+    The use of '.j2' as a file extension is to distinguish templates from package
+    modules.
 
     :param template_path: Path to template directory
     :param target_path: Path to target directory
@@ -205,7 +208,7 @@ def create_file_from_template(template_path, target_path, filename, context):
     rendered file written to the target directory
     :param context: Jinja context used to render template
     """
-    file_template = os.path.join(template_path, filename)
+    file_template = os.path.join(template_path, filename + '.j2')
     file_target = os.path.join(target_path, filename)
     render_template_to_file(file_template, context, file_target)
 
