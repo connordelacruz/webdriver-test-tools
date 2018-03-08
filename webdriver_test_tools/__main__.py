@@ -9,7 +9,6 @@ def get_parser():
     """Returns ArgumentParser object for use with main()"""
     parser = argparse.ArgumentParser()
     # Argument for initializing
-    # TODO: optional filepath
     parser.add_argument('-i', '--init', action='store_true', help='Initialize a new test project in the current directory')
     # Print version number
     parser.add_argument('-V', '--version', action='store_true', help='Print version number and exit')
