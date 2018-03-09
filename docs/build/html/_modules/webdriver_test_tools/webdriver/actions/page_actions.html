@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>webdriver_test_tools.webdriver.actions.page_actions &mdash; WebDriver Test Tools 0.4.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.4.1 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Module code" href="../../../index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">webdriver_test_tools</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.webdriver.actions.page_actions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for webdriver_test_tools.webdriver.actions.page_actions</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Functions for commonly repeated driver actions</span>
+
+<span class="c1"># Imports</span>
+<span class="c1"># ----------------------------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="k">import</span> <span class="n">WebDriverWait</span><span class="p">,</span> <span class="n">Select</span>
+<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="k">import</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">NoSuchElementException</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="k">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+
+
+<span class="c1"># Driver Actions</span>
+<span class="c1"># ----------------------------------------------------------------</span>
+
+<span class="c1"># Scrolling</span>
+<span class="c1"># --------------------------------</span>
+
+<div class="viewcode-block" id="scroll_into_view"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.scroll_into_view">[docs]</a><span class="k">def</span> <span class="nf">scroll_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">align_to_top</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Scroll to an element</span>
+
+<span class="sd">    :param driver: Selenium webdriver object</span>
+<span class="sd">    :param element: Element to scroll to</span>
+<span class="sd">    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;arguments[0].scrollIntoView(</span><span class="si">{}</span><span class="s1">);&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">align_to_top</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span></div>
+    <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
+
+<div class="viewcode-block" id="scroll_to_position"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.scroll_to_position">[docs]</a><span class="k">def</span> <span class="nf">scroll_to_position</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Scroll window to the specified x,y coordinates</span>
+
+<span class="sd">    Executes JavaScript window.scroll(x,y)</span>
+
+<span class="sd">    :param driver: Selenium WebDriver object</span>
+<span class="sd">    :param x: Horizontal scroll coordinate</span>
+<span class="sd">    :param y: Vertical scroll coordinate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;window.scroll(</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">);&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span></div>
+    <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">)</span>
+
+<div class="viewcode-block" id="scroll_to_element"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.scroll_to_element">[docs]</a><span class="k">def</span> <span class="nf">scroll_to_element</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">align_to_top</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Vertically scroll to an element with an optional offset</span>
+
+<span class="sd">    When align_to_top=True, the scroll y coordinate is calculated:</span>
+<span class="sd">        element.offsetTop - offset</span>
+<span class="sd">    When align_to_top=False, the scroll y coordinate is calculated:</span>
+<span class="sd">        element.offsetTop + element.offsetHeight - window.innerHeight + offset</span>
+
+<span class="sd">    :param driver: Selenium WebDriver object</span>
+<span class="sd">    :param element: WebElement object for the target element</span>
+<span class="sd">    :param offset: (Default = 0) Scroll offset</span>
+<span class="sd">    :param align_to_top: (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the bottom if False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">scroll_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;offsetTop&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">align_to_top</span><span class="p">:</span>
+        <span class="n">scroll_y</span> <span class="o">-=</span> <span class="n">offset</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;return window.innerHeight;&#39;</span>
+        <span class="n">viewport_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">))</span>
+        <span class="n">scroll_y</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="n">viewport_height</span> <span class="o">+</span> <span class="n">offset</span></div>
+    <span class="n">scroll_to_position</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scroll_y</span><span class="p">)</span>
+
+<div class="viewcode-block" id="scroll_into_view_fixed_nav"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.scroll_into_view_fixed_nav">[docs]</a><span class="k">def</span> <span class="nf">scroll_into_view_fixed_nav</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_element</span><span class="p">,</span> <span class="n">fixed_element</span><span class="p">,</span> <span class="n">additional_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">align_to_top</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Scroll an element into view offset by the height of a fixed element so it&#39;s not obstructed</span>
+
+<span class="sd">    :param driver: Selenium WebDriver object</span>
+<span class="sd">    :param target_element: WebElement object for the target element</span>
+<span class="sd">    :param fixed_element: WebElement object for the fixed nav</span>
+<span class="sd">    :param additional_offset: (Default = 0) Additional offset from the top</span>
+<span class="sd">    :param align_to_top: (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the bottom if False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fixed_element</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="n">additional_offset</span></div>
+    <span class="n">scroll_to_element</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_element</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">align_to_top</span><span class="p">)</span>
+
+
+<span class="c1"># Forms/Inputs</span>
+<span class="c1"># --------------------------------</span>
+
+<div class="viewcode-block" id="fill_form_inputs"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.fill_form_inputs">[docs]</a><span class="k">def</span> <span class="nf">fill_form_inputs</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">input_name_map</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Takes a dictionary mapping input names to the desired values and fill out the form accordingly</span>
+
+<span class="sd">    Iterates through input_name_map and calls fill_form_input() to handle filling in the input based on its type</span>
+
+<span class="sd">    :param driver: Selenium webdriver object (largely for scrolling into view)</span>
+<span class="sd">    :param form_element: The Selenium WebElement for the form or container with the desired inputs. Used for locating the input elements by name in case there are other elements on the page with the same name attribute</span>
+<span class="sd">    :param input_name_map: A dictionary mapping the name of the input to the value to set it to. See the documentation for fill_form_input() for value types for the different inputs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Iterate through input_name_map</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">input_name_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></div>
+        <span class="n">fill_form_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="fill_form_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.fill_form_input">[docs]</a><span class="k">def</span> <span class="nf">fill_form_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Takes the name and value of a form input and determines what type it is to fill it appropriately.</span>
+
+<span class="sd">    :param driver: Selenium webdriver object (largely for scrolling clickable inputs into view)</span>
+<span class="sd">    :param form_element: The Selenium WebElement for the form or container with the desired inputs. Used for locating the input elements by name in case there are other elements on the page with the same name attribute</span>
+<span class="sd">    :param name: The name attribute of the input</span>
+<span class="sd">    :param value: The desired value to set the input to.</span>
+<span class="sd">        For checkbox elements, this value should be a boolean (True=checked, False=unchecked).</span>
+<span class="sd">        For radio elements, this should be the value attribute of the radio to select.</span>
+<span class="sd">        For single select elements, this value should be the value of the option to select.</span>
+<span class="sd">        For multiple select elements, this value should be a list of values of the options to select.</span>
+<span class="sd">        For file inputs, this value should be a filepath to the desired file.</span>
+<span class="sd">        For other input types (text, number, etc) this should be a string representation of the values to enter into it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">input_element</span> <span class="o">=</span> <span class="n">form_element</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="c1"># If element tag isn&#39;t input, use tag name as input_type (e.g. select)</span>
+    <span class="n">input_type</span> <span class="o">=</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="o">!=</span> <span class="s1">&#39;input&#39;</span> <span class="k">else</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
+    <span class="c1"># figure out the input type, handle appropriately</span>
+    <span class="c1"># Radio Buttons</span>
+    <span class="k">if</span> <span class="n">input_type</span> <span class="o">==</span> <span class="s1">&#39;radio&#39;</span><span class="p">:</span>
+        <span class="c1"># Radio groups often have the same name and are identified by value,</span>
+        <span class="c1"># so don&#39;t pass input_element in case it&#39;s not the right one</span>
+        <span class="n">select_radio_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="c1"># Checkboxes</span>
+    <span class="k">elif</span> <span class="n">input_type</span> <span class="o">==</span> <span class="s1">&#39;checkbox&#39;</span><span class="p">:</span>
+        <span class="n">toggle_checkbox_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">input_element</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="c1"># Selects</span>
+    <span class="k">elif</span> <span class="n">input_type</span> <span class="o">==</span> <span class="s1">&#39;select&#39;</span><span class="p">:</span>
+        <span class="c1"># Use select_option() for single selects or selecting single option in multi selects</span>
+        <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;multiple&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">select_option</span><span class="p">(</span><span class="n">input_element</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="c1"># Use select_multiple_options() for multiple selects</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">select_multiple_options</span><span class="p">(</span><span class="n">input_element</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="c1"># Other input types (text, file, etc)</span>
+    <span class="k">else</span><span class="p">:</span></div>
+        <span class="n">fill_field_input</span><span class="p">(</span><span class="n">input_element</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="select_radio_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.select_radio_input">[docs]</a><span class="k">def</span> <span class="nf">select_radio_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Selects a radio input with the specified name and value attributes</span>
+
+<span class="sd">    :param driver: Selenium webdriver object. Used for scrolling the element into view before clicking element</span>
+<span class="sd">    :param form_element: The Selenium WebElement for the form or container with the desired inputs. Used for locating the input elements by name in case there are other elements on the page with the same name attribute</span>
+<span class="sd">    :param name: Name attribute of the radio input(s)</span>
+<span class="sd">    :param value: Value attribute of the radio input to select</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">radio_selector</span> <span class="o">=</span> <span class="s1">&#39;input[type=radio][name=</span><span class="si">{}</span><span class="s1">][value=</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">radio_element</span> <span class="o">=</span> <span class="n">form_element</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="n">radio_selector</span><span class="p">)</span>
+    <span class="c1"># Selenium throws an error when trying to click something out of view</span>
+    <span class="n">scroll_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">radio_element</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+    <span class="n">radio_element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+
+<div class="viewcode-block" id="toggle_checkbox_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.toggle_checkbox_input">[docs]</a><span class="k">def</span> <span class="nf">toggle_checkbox_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">checkbox_element</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set the checked state of a checkbox input</span>
+
+<span class="sd">    First checks if the checkbox value doesn&#39;t match the desired value. If not, it then checks if element is visible. If it is, scroll to it and click it. If it isn&#39;t, it tries to find a label for the element by getting the element id and selecting a label with that id as the for attribute. If it finds one, it scrolls to that and clicks it.</span>
+
+<span class="sd">    :param driver: Selenium webdriver object. Used for scrolling the element into view before clicking element</span>
+<span class="sd">    :param checkbox_element: WebElement for the checkbox to toggle</span>
+<span class="sd">    :param value: True to ensure box is checked, False to ensure it&#39;s unchecked</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">checkbox_element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span> <span class="o">!=</span> <span class="n">value</span><span class="p">:</span>
+        <span class="c1"># If checkbox is visible, scroll it into view and click</span>
+        <span class="k">if</span> <span class="n">checkbox_element</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">():</span>
+            <span class="c1"># Selenium throws an error when trying to click something out of view</span>
+            <span class="n">scroll_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">checkbox_element</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">checkbox_element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="c1"># Element might be invisible for styling. Try to find its label and click that</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">checkbox_id</span> <span class="o">=</span> <span class="n">checkbox_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+            <span class="n">label_css</span> <span class="o">=</span> <span class="s1">&#39;label[for=&quot;</span><span class="si">{}</span><span class="s1">&quot;]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">checkbox_id</span><span class="p">)</span>
+            <span class="n">element_label</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="n">label_css</span><span class="p">)</span>
+            <span class="c1"># Selenium throws an error when trying to click something out of view</span>
+            <span class="n">scroll_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_label</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+            <span class="n">element_label</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+
+<div class="viewcode-block" id="fill_field_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.fill_field_input">[docs]</a><span class="k">def</span> <span class="nf">fill_field_input</span><span class="p">(</span><span class="n">input_element</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">clear_current_value</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fill an input that is normally typed into (e.g. inputs of type text, password, number, etc)</span>
+
+<span class="sd">    :param input_element: WebElement for the input</span>
+<span class="sd">    :param value: String of key presses to simulate using the send_keys() function</span>
+<span class="sd">    :param clear_current_value: (Default = False) If True, clear out any existing value in the input before entering the new one</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">clear_current_value</span><span class="p">:</span>
+        <span class="n">input_element</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+    <span class="n">input_element</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="select_option"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.select_option">[docs]</a><span class="k">def</span> <span class="nf">select_option</span><span class="p">(</span><span class="n">select_element</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Select an option in a select element</span>
+
+<span class="sd">    :param select_element: WebElement for the select input</span>
+<span class="sd">    :param value: Value of the option to select</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">select_element</span><span class="p">)</span></div>
+    <span class="n">select</span><span class="o">.</span><span class="n">select_by_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="select_multiple_options"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.html#webdriver_test_tools.webdriver.actions.page_actions.select_multiple_options">[docs]</a><span class="k">def</span> <span class="nf">select_multiple_options</span><span class="p">(</span><span class="n">select_element</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">clear_current_selection</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Select options in a multiple select element</span>
+
+<span class="sd">    :param select_element: WebElement for the select input</span>
+<span class="sd">    :param values: List of values of the options to select</span>
+<span class="sd">    :param clear_current_selection: (Default = False) If True, deselect all currently selected options before selection the new ones</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">select_element</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">clear_current_selection</span><span class="p">:</span>
+        <span class="n">select</span><span class="o">.</span><span class="n">deselect_all</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span></div>
+        <span class="n">select</span><span class="o">.</span><span class="n">select_by_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'0.4.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
