@@ -4,14 +4,9 @@ webdriver\_test\_tools.webdriver.actions package
 Submodules
 ----------
 
-webdriver\_test\_tools.webdriver.actions.page\_actions module
--------------------------------------------------------------
+.. toctree::
 
-.. automodule:: webdriver_test_tools.webdriver.actions.page_actions
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
+   webdriver_test_tools.webdriver.actions.page_actions
 
 Module contents
 ---------------

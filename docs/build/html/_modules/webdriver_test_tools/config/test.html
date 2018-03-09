@@ -92,11 +92,6 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
 </ul>
 
             
@@ -166,7 +161,7 @@
 <span class="kn">from</span> <span class="nn">colour_runner.runner</span> <span class="k">import</span> <span class="n">ColourTextTestRunner</span>
 
 
-<div class="viewcode-block" id="TestSuiteConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.html#webdriver_test_tools.config.test.TestSuiteConfig">[docs]</a><span class="k">class</span> <span class="nc">TestSuiteConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="TestSuiteConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.test.html#webdriver_test_tools.config.test.TestSuiteConfig">[docs]</a><span class="k">class</span> <span class="nc">TestSuiteConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="c1"># Configurations</span>
     <span class="c1"># ----------------------------------------------------------------</span>
     <span class="c1"># Configure test runner</span>
@@ -176,7 +171,7 @@
     <span class="c1"># Functions</span>
     <span class="c1"># ----------------------------------------------------------------</span>
 
-<div class="viewcode-block" id="TestSuiteConfig.get_runner"><a class="viewcode-back" href="../../../webdriver_test_tools.config.html#webdriver_test_tools.config.test.TestSuiteConfig.get_runner">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="TestSuiteConfig.get_runner"><a class="viewcode-back" href="../../../webdriver_test_tools.config.test.html#webdriver_test_tools.config.test.TestSuiteConfig.get_runner">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_runner</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns RUNNER_CLASS object using RUNNER_KWARGS to initialize&quot;&quot;&quot;</span></div></div>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">RUNNER_CLASS</span><span class="p">(</span><span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">RUNNER_KWARGS</span><span class="p">)</span>

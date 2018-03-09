@@ -8,6 +8,9 @@ Utilities for writing front-end test suites using Selenium WebDriver and python 
 * Add detailed documentation
 * Info on page object model
 
+## Overview
+
+This project aims to reduce the amount of time and additional code required to automate front-end testing by providing utilities and conventions for building test suites.
 
 ## Prerequisites
 

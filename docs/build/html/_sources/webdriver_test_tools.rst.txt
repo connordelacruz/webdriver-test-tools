@@ -6,37 +6,21 @@ Subpackages
 
 .. toctree::
 
+    webdriver_test_tools.classes
     webdriver_test_tools.config
     webdriver_test_tools.data
+    webdriver_test_tools.project
     webdriver_test_tools.templates
+    webdriver_test_tools.webdriver
 
 Submodules
 ----------
 
-webdriver\_test\_tools.test module
-----------------------------------
+.. toctree::
 
-.. automodule:: webdriver_test_tools.test
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-webdriver\_test\_tools.test\_module module
-------------------------------------------
-
-.. automodule:: webdriver_test_tools.test_module
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-webdriver\_test\_tools.version module
--------------------------------------
-
-.. automodule:: webdriver_test_tools.version
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
+   webdriver_test_tools.test
+   webdriver_test_tools.test_module
+   webdriver_test_tools.version
 
 Module contents
 ---------------
