@@ -92,11 +92,6 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../webdriver_test_tools.html">webdriver_test_tools package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
 </ul>
 
             
@@ -178,7 +173,7 @@
 <span class="c1"># --------------------------------</span>
 
 
-<div class="viewcode-block" id="element_exists"><a class="viewcode-back" href="../../webdriver_test_tools.html#webdriver_test_tools.test.element_exists">[docs]</a><span class="k">def</span> <span class="nf">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
+<div class="viewcode-block" id="element_exists"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.element_exists">[docs]</a><span class="k">def</span> <span class="nf">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns True if the element exists, False if not</span>
 
 <span class="sd">    This function is just a wrapper that catches the NoSuchElementException thrown by</span>
@@ -196,7 +191,7 @@
     <span class="k">return</span> <span class="n">exists</span>
 
 
-<div class="viewcode-block" id="is_scrolled_into_view"><a class="viewcode-back" href="../../webdriver_test_tools.html#webdriver_test_tools.test.is_scrolled_into_view">[docs]</a><span class="k">def</span> <span class="nf">is_scrolled_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">fully_in_view</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="is_scrolled_into_view"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.is_scrolled_into_view">[docs]</a><span class="k">def</span> <span class="nf">is_scrolled_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">fully_in_view</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns True if the element is scrolled into view, False otherwise</span>
 
 <span class="sd">    Currently, Selenium doesn&#39;t offer a means of getting an element&#39;s location relative</span>
@@ -227,7 +222,7 @@
 <span class="c1"># Expected Condition Tests</span>
 <span class="c1"># --------------------------------</span>
 
-<div class="viewcode-block" id="expected_condition_test"><a class="viewcode-back" href="../../webdriver_test_tools.html#webdriver_test_tools.test.expected_condition_test">[docs]</a><span class="k">def</span> <span class="nf">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">ec_object</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="expected_condition_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.expected_condition_test">[docs]</a><span class="k">def</span> <span class="nf">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">ec_object</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test for an expected condition until wait timeout is reached</span>
 
 <span class="sd">    :param driver: Selenium webdriver object</span>
@@ -245,7 +240,7 @@
     <span class="k">return</span> <span class="n">result</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">(</span><span class="n">ec_object</span><span class="p">(</span><span class="n">driver</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="in_view_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.html#webdriver_test_tools.test.in_view_change_test">[docs]</a><span class="k">def</span> <span class="nf">in_view_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="in_view_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.in_view_change_test">[docs]</a><span class="k">def</span> <span class="nf">in_view_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Expected condition test for an element to scroll into view (e.g. same-page link with scroll animation)</span>
 
 <span class="sd">    :param driver: Selenium webdriver object</span>
@@ -258,7 +253,7 @@
     <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">in_view_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="visibility_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.html#webdriver_test_tools.test.visibility_change_test">[docs]</a><span class="k">def</span> <span class="nf">visibility_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">test_visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="visibility_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.visibility_change_test">[docs]</a><span class="k">def</span> <span class="nf">visibility_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">test_visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Expected condition test for visibility changes (e.g. modals)</span>
 
 <span class="sd">    :param driver: Selenium webdriver object</span>
@@ -273,7 +268,7 @@
     <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">visibility_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="url_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.html#webdriver_test_tools.test.url_change_test">[docs]</a><span class="k">def</span> <span class="nf">url_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="url_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.url_change_test">[docs]</a><span class="k">def</span> <span class="nf">url_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Expected condition test for URL change</span>
 
 <span class="sd">    :param driver: Selenium webdriver object</span>

@@ -35,7 +35,10 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.4.1 documentation" href="index.html"/> 
+    <link rel="top" title="WebDriver Test Tools 0.4.1 documentation" href="index.html"/>
+        <link rel="up" title="webdriver_test_tools package" href="webdriver_test_tools.html"/>
+        <link rel="next" title="webdriver_test_tools.project.initialize module" href="webdriver_test_tools.project.initialize.html"/>
+        <link rel="prev" title="webdriver_test_tools.data package" href="webdriver_test_tools.data.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -89,8 +92,25 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">webdriver_test_tools</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">webdriver_test_tools.project package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-webdriver_test_tools.project">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.templates.html">webdriver_test_tools.templates package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#module-webdriver_test_tools">Module contents</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -135,6 +155,8 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
+          <li><a href="webdriver_test_tools.html">webdriver_test_tools package</a> &raquo;</li>
+        
       <li>webdriver_test_tools.project package</li>
     
     
@@ -158,342 +180,12 @@
 <h1>webdriver_test_tools.project package<a class="headerlink" href="#webdriver-test-tools-project-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.project.initialize.html">webdriver_test_tools.project.initialize module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.project.loader.html">webdriver_test_tools.project.loader module</a></li>
+</ul>
 </div>
-<div class="section" id="module-webdriver_test_tools.project.initialize">
-<span id="webdriver-test-tools-project-initialize-module"></span><h2>webdriver_test_tools.project.initialize module<a class="headerlink" href="#module-webdriver_test_tools.project.initialize" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_config_files">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_config_files</code><span class="sig-paren">(</span><em>target_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_config_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_config_files" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates test package config directory and config files</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target_path</strong> – The path to the test package directory</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_directory">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_directory</code><span class="sig-paren">(</span><em>target_path</em>, <em>directory_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a directory in the target path if it doesn’t already exist</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>target_path</strong> – The path to the directory that will contain the new one</li>
-<li><strong>directory_name</strong> – The name of the directory to create in the target path</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The path to the newly created (or already existing) directory</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_file_from_template">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_file_from_template</code><span class="sig-paren">(</span><em>template_path</em>, <em>target_path</em>, <em>filename</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_file_from_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_file_from_template" title="Permalink to this definition">¶</a></dt>
-<dd><p>Short hand function that renders a template with the specified filename followed
-by a ‘.j2’ extension from the template path to a file with the specified name in the
-target path</p>
-<p>The use of ‘.j2’ as a file extension is to distinguish templates from package
-modules.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>template_path</strong> – Path to template directory</li>
-<li><strong>target_path</strong> – Path to target directory</li>
-<li><strong>filename</strong> – Name of the template file. Will be used as the filename for the</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p>rendered file written to the target directory
-:param context: Jinja context used to render template</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_gitignore">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_gitignore</code><span class="sig-paren">(</span><em>target_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_gitignore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_gitignore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create .gitignore file at the root of the test project</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target_path</strong> – The path to the outer directory where the package directory is contained</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_main_module">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_main_module</code><span class="sig-paren">(</span><em>target_path</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_main_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_main_module" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates __main__.py module for test package</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target_path</strong> – The path to the test package directory</li>
-<li><strong>context</strong> – Jinja context used to render template</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_package_directory">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_package_directory</code><span class="sig-paren">(</span><em>target_path</em>, <em>package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_package_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_package_directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates package directory for test project</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>target_path</strong> – The path to the outer directory where initialize was called</li>
-<li><strong>package_name</strong> – The desired name of the package (will be validated)</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Path to created package directory</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_readme">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_readme</code><span class="sig-paren">(</span><em>target_path</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_readme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_readme" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create README.md for test project</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target_path</strong> – The path to the outer directory where the package directory is contained</li>
-<li><strong>context</strong> – Jinja context used to render template</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_setup_file">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_setup_file</code><span class="sig-paren">(</span><em>target_path</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_setup_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_setup_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates setup.py for test project</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target_path</strong> – The path to the outer directory where the package directory is contained</li>
-<li><strong>context</strong> – Jinja context used to render template</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_template_files">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_template_files</code><span class="sig-paren">(</span><em>target_path</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_template_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_template_files" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates test package template directory and template files</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target_path</strong> – The path to the test package directory</li>
-<li><strong>context</strong> – Jinja context used to render template</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_test_directories">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_test_directories</code><span class="sig-paren">(</span><em>target_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_test_directories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_test_directories" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates base directories for test writing (data, pages, and tests)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target_path</strong> – The path to the test package directory</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.generate_context">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">generate_context</code><span class="sig-paren">(</span><em>test_package</em>, <em>test_tools_version</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#generate_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.generate_context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a jinja context to use for rendering templates</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>test_package</strong> – Name of the python test package</li>
-<li><strong>test_tools_version</strong> – Version of webdriver_test_tools to use as install</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p>dependency</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.initialize">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">initialize</code><span class="sig-paren">(</span><em>target_path</em>, <em>package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.initialize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initializes new project package</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target_path</strong> – Path to directory that will contain test package</li>
-<li><strong>package_name</strong> – Name of the test package to create (will be validated)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.main">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">main</code><span class="sig-paren">(</span><em>package_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>Command line dialogs for initializing a test project</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package_name</strong> – (Optional) If specified, the prompt asking the user to enter a</td>
-</tr>
-</tbody>
-</table>
-<p>package name will be skipped and function will continue using this as the package
-name</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.render_template">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">render_template</code><span class="sig-paren">(</span><em>template_path</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#render_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.render_template" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the rendered contents of a jinja template</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>template_path</strong> – The path to the jinja template</li>
-<li><strong>context</strong> – Jinja context used to render template</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Results of rendering jinja template</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.render_template_to_file">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">render_template_to_file</code><span class="sig-paren">(</span><em>template_path</em>, <em>context</em>, <em>target_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#render_template_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.render_template_to_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes rendered jinja template to a file</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>template_path</strong> – The path to the jinja template</li>
-<li><strong>context</strong> – Jinja context used to render template</li>
-<li><strong>target_path</strong> – File path to write the rendered template to</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.initialize.validate_package_name">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">validate_package_name</code><span class="sig-paren">(</span><em>package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#validate_package_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.validate_package_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes and replaces characters to ensure a string is a valid python package
-name</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package_name</strong> – The desired package name</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified package_name with whitespaces and hyphens replaced with</td>
-</tr>
-</tbody>
-</table>
-<p>underscores and all invalid characters removed</p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-webdriver_test_tools.project.loader">
-<span id="webdriver-test-tools-project-loader-module"></span><h2>webdriver_test_tools.project.loader module<a class="headerlink" href="#module-webdriver_test_tools.project.loader" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="webdriver_test_tools.project.loader.load_project_tests">
-<code class="descclassname">webdriver_test_tools.project.loader.</code><code class="descname">load_project_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of WebDriverTestCase subclasses from all submodules in a test
-project’s tests/ directory</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
-<li><strong>test_module_name</strong> – (Optional) Only load test cases from a submodule of tests_module with the given name</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of test classes from all test modules</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.loader.load_webdriver_test_cases">
-<code class="descclassname">webdriver_test_tools.project.loader.</code><code class="descname">load_webdriver_test_cases</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/loader.html#load_webdriver_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.loader.load_webdriver_test_cases" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of WebDriverTestCase subclasses from a module</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> – The module to load tests from</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of test classes loaded from the module</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </div>
 <div class="section" id="module-webdriver_test_tools.project">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-webdriver_test_tools.project" title="Permalink to this headline">¶</a></h2>
@@ -507,6 +199,15 @@ project’s tests/ directory</p>
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="webdriver_test_tools.project.initialize.html" class="btn btn-neutral float-right" title="webdriver_test_tools.project.initialize module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="webdriver_test_tools.data.html" class="btn btn-neutral" title="webdriver_test_tools.data package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

@@ -7,15 +7,10 @@ WebDriver Test Tools
 ====================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    webdriver_test_tools
-   webdriver_test_tools.classes
-   webdriver_test_tools.webdriver
-   webdriver_test_tools.project
-   webdriver_test_tools.config
-   webdriver_test_tools.data
 
 
 

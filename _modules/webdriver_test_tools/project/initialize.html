@@ -92,11 +92,6 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
 </ul>
 
             
@@ -176,7 +171,7 @@
 <span class="c1"># Project creation functions</span>
 <span class="c1"># ----------------------------------------------------------------</span>
 
-<div class="viewcode-block" id="create_test_directories"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.create_test_directories">[docs]</a><span class="k">def</span> <span class="nf">create_test_directories</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
+<div class="viewcode-block" id="create_test_directories"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_test_directories">[docs]</a><span class="k">def</span> <span class="nf">create_test_directories</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates base directories for test writing (data, pages, and tests)</span>
 
 <span class="sd">    :param target_path: The path to the test package directory</span>
@@ -191,7 +186,7 @@
         <span class="n">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">project_dir</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="create_config_files"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.create_config_files">[docs]</a><span class="k">def</span> <span class="nf">create_config_files</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
+<div class="viewcode-block" id="create_config_files"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_config_files">[docs]</a><span class="k">def</span> <span class="nf">create_config_files</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates test package config directory and config files</span>
 
 <span class="sd">    :param target_path: The path to the test package directory</span>
@@ -208,7 +203,7 @@
             <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="n">target_file</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="create_template_files"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.create_template_files">[docs]</a><span class="k">def</span> <span class="nf">create_template_files</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="viewcode-block" id="create_template_files"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_template_files">[docs]</a><span class="k">def</span> <span class="nf">create_template_files</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates test package template directory and template files</span>
 
 <span class="sd">    :param target_path: The path to the test package directory</span>
@@ -225,7 +220,7 @@
     <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;test_case.py&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="create_package_directory"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.create_package_directory">[docs]</a><span class="k">def</span> <span class="nf">create_package_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
+<div class="viewcode-block" id="create_package_directory"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_package_directory">[docs]</a><span class="k">def</span> <span class="nf">create_package_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates package directory for test project</span>
 
 <span class="sd">    :param target_path: The path to the outer directory where initialize was called</span>
@@ -238,7 +233,7 @@
     <span class="k">return</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_directory</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="create_main_module"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.create_main_module">[docs]</a><span class="k">def</span> <span class="nf">create_main_module</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="viewcode-block" id="create_main_module"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_main_module">[docs]</a><span class="k">def</span> <span class="nf">create_main_module</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates __main__.py module for test package</span>
 
 <span class="sd">    :param target_path: The path to the test package directory</span>
@@ -249,7 +244,7 @@
     <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;__main__.py&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="create_setup_file"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.create_setup_file">[docs]</a><span class="k">def</span> <span class="nf">create_setup_file</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="viewcode-block" id="create_setup_file"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_setup_file">[docs]</a><span class="k">def</span> <span class="nf">create_setup_file</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates setup.py for test project</span>
 
 <span class="sd">    :param target_path: The path to the outer directory where the package directory is contained</span>
@@ -260,7 +255,7 @@
     <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="create_readme"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.create_readme">[docs]</a><span class="k">def</span> <span class="nf">create_readme</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="viewcode-block" id="create_readme"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_readme">[docs]</a><span class="k">def</span> <span class="nf">create_readme</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create README.md for test project</span>
 
 <span class="sd">    :param target_path: The path to the outer directory where the package directory is contained</span>
@@ -271,7 +266,7 @@
     <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;README.md&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="create_gitignore"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.create_gitignore">[docs]</a><span class="k">def</span> <span class="nf">create_gitignore</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
+<div class="viewcode-block" id="create_gitignore"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_gitignore">[docs]</a><span class="k">def</span> <span class="nf">create_gitignore</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create .gitignore file at the root of the test project</span>
 
 <span class="sd">    :param target_path: The path to the outer directory where the package directory is contained</span>
@@ -285,7 +280,7 @@
 <span class="c1"># Helper functions</span>
 <span class="c1"># ----------------------------------------------------------------</span>
 
-<div class="viewcode-block" id="create_directory"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.create_directory">[docs]</a><span class="k">def</span> <span class="nf">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">directory_name</span><span class="p">):</span>
+<div class="viewcode-block" id="create_directory"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_directory">[docs]</a><span class="k">def</span> <span class="nf">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">directory_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates a directory in the target path if it doesn&#39;t already exist</span>
 
 <span class="sd">    :param target_path: The path to the directory that will contain the new one</span>
@@ -299,7 +294,7 @@
     <span class="k">return</span> <span class="n">path</span>
 
 
-<div class="viewcode-block" id="validate_package_name"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.validate_package_name">[docs]</a><span class="k">def</span> <span class="nf">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">):</span>
+<div class="viewcode-block" id="validate_package_name"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.validate_package_name">[docs]</a><span class="k">def</span> <span class="nf">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python package</span>
 <span class="sd">    name</span>
 
@@ -317,7 +312,7 @@
     <span class="k">return</span> <span class="n">package_name</span>
 
 
-<div class="viewcode-block" id="render_template_to_file"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.render_template_to_file">[docs]</a><span class="k">def</span> <span class="nf">render_template_to_file</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">target_path</span><span class="p">):</span>
+<div class="viewcode-block" id="render_template_to_file"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.render_template_to_file">[docs]</a><span class="k">def</span> <span class="nf">render_template_to_file</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">target_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Writes rendered jinja template to a file</span>
 
 <span class="sd">    :param template_path: The path to the jinja template</span>
@@ -329,7 +324,7 @@
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_contents</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="render_template"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.render_template">[docs]</a><span class="k">def</span> <span class="nf">render_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="viewcode-block" id="render_template"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.render_template">[docs]</a><span class="k">def</span> <span class="nf">render_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the rendered contents of a jinja template</span>
 
 <span class="sd">    :param template_path: The path to the jinja template</span>
@@ -343,7 +338,7 @@
     <span class="p">)</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="generate_context"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.generate_context">[docs]</a><span class="k">def</span> <span class="nf">generate_context</span><span class="p">(</span><span class="n">test_package</span><span class="p">,</span> <span class="n">test_tools_version</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_context"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.generate_context">[docs]</a><span class="k">def</span> <span class="nf">generate_context</span><span class="p">(</span><span class="n">test_package</span><span class="p">,</span> <span class="n">test_tools_version</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a jinja context to use for rendering templates</span>
 
 <span class="sd">    :param test_package: Name of the python test package</span>
@@ -357,7 +352,7 @@
     <span class="k">return</span> <span class="n">context</span>
 
 
-<div class="viewcode-block" id="create_file_from_template"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.create_file_from_template">[docs]</a><span class="k">def</span> <span class="nf">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="viewcode-block" id="create_file_from_template"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_file_from_template">[docs]</a><span class="k">def</span> <span class="nf">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Short hand function that renders a template with the specified filename followed</span>
 <span class="sd">    by a &#39;.j2&#39; extension from the template path to a file with the specified name in the</span>
 <span class="sd">    target path</span>
@@ -379,7 +374,7 @@
 <span class="c1"># Main methods</span>
 <span class="c1"># ----------------------------------------------------------------</span>
 
-<div class="viewcode-block" id="initialize"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.initialize">[docs]</a><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
+<div class="viewcode-block" id="initialize"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.initialize">[docs]</a><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Initializes new project package</span>
 
 <span class="sd">    :param target_path: Path to directory that will contain test package</span>
@@ -400,7 +395,7 @@
     <span class="n">create_template_files</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.html#webdriver_test_tools.project.initialize.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Command line dialogs for initializing a test project</span>
 
 <span class="sd">    :param package_name: (Optional) If specified, the prompt asking the user to enter a</span>

@@ -92,11 +92,6 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
 </ul>
 
             
@@ -168,7 +163,7 @@
 <span class="kn">import</span> <span class="nn">os.path</span>
 
 
-<div class="viewcode-block" id="WebDriverConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.html#webdriver_test_tools.config.webdriver.WebDriverConfig">[docs]</a><span class="k">class</span> <span class="nc">WebDriverConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig">[docs]</a><span class="k">class</span> <span class="nc">WebDriverConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="c1"># Root directory of webdriver_test_tools package</span>
     <span class="n">_PACKAGE_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
 
@@ -192,22 +187,22 @@
     <span class="c1"># Web Drivers</span>
     <span class="c1"># --------------------------------</span>
 
-<div class="viewcode-block" id="WebDriverConfig.get_firefox_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="WebDriverConfig.get_firefox_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_firefox_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns webdriver.Firefox object using FIREFOX_KWARGS to initialize&quot;&quot;&quot;</span></div>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">(</span><span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">FIREFOX_KWARGS</span><span class="p">))</span>
 
-<div class="viewcode-block" id="WebDriverConfig.get_chrome_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="WebDriverConfig.get_chrome_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_chrome_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns webdriver.Chrome object using CHROME_KWARGS to initialize&quot;&quot;&quot;</span></div>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span>
 
-<div class="viewcode-block" id="WebDriverConfig.get_safari_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_safari_driver">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="WebDriverConfig.get_safari_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_safari_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_safari_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns webdriver.Safari object using SAFARI_KWARGS to initialize&quot;&quot;&quot;</span></div>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Safari</span><span class="p">(</span><span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">SAFARI_KWARGS</span><span class="p">))</span>
 
-<div class="viewcode-block" id="WebDriverConfig.set_driver_implicit_wait"><a class="viewcode-back" href="../../../webdriver_test_tools.config.html#webdriver_test_tools.config.webdriver.WebDriverConfig.set_driver_implicit_wait">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="WebDriverConfig.set_driver_implicit_wait"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.set_driver_implicit_wait">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">set_driver_implicit_wait</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns driver with implicit wait time set&quot;&quot;&quot;</span>
         <span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">IMPLICIT_WAIT</span><span class="p">)</span></div></div>

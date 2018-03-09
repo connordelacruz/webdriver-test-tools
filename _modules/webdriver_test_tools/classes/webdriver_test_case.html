@@ -92,11 +92,6 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
 </ul>
 
             
@@ -175,7 +170,7 @@
 <span class="c1"># Test Case Classes</span>
 <span class="c1"># ----------------------------------------------------------------</span>
 
-<div class="viewcode-block" id="WebDriverTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase">[docs]</a><span class="k">class</span> <span class="nc">WebDriverTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase">[docs]</a><span class="k">class</span> <span class="nc">WebDriverTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for web driver test cases</span>
 
 <span class="sd">    This defines the common setUp() and tearDown() tasks. It does not initialize self.driver so will not work on its own. Tests should be written with this as their parent class and have subclasses for each implementation in order to do multi-browser tests</span>
@@ -186,34 +181,34 @@
     <span class="c1"># WebDriver object. Browser-specific subclasses need to initialize this in setUp() before calling super().setUp()</span>
     <span class="n">driver</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="WebDriverTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
+<div class="viewcode-block" id="WebDriverTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SITE_URL</span><span class="p">)</span>
 
-<div class="viewcode-block" id="WebDriverTestCase.tearDown"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
+<div class="viewcode-block" id="WebDriverTestCase.tearDown"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 
 
 <span class="c1"># Browser driver implementations</span>
 
-<div class="viewcode-block" id="FirefoxTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase">[docs]</a><span class="k">class</span> <span class="nc">FirefoxTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="FirefoxTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase">[docs]</a><span class="k">class</span> <span class="nc">FirefoxTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Firefox webdriver&quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Firefox&#39;</span>
 
-<div class="viewcode-block" id="FirefoxTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FirefoxTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_firefox_driver</span><span class="p">()</span></div></div>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="ChromeTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="ChromeTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Chrome webdriver&quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Chrome&#39;</span>
 
-<div class="viewcode-block" id="ChromeTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ChromeTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_driver</span><span class="p">()</span></div></div>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="SafariTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase">[docs]</a><span class="k">class</span> <span class="nc">SafariTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="SafariTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase">[docs]</a><span class="k">class</span> <span class="nc">SafariTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Safari webdriver</span>
 
 <span class="sd">    .. warning::</span>
@@ -227,7 +222,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Safari&#39;</span>
 
-<div class="viewcode-block" id="SafariTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SafariTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_safari_driver</span><span class="p">()</span></div></div>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
 
@@ -244,7 +239,7 @@
 <span class="c1"># ----------------------------------------------------------------</span>
 
 
-<div class="viewcode-block" id="generate_browser_test_suite"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_suite">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_suite</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_browser_test_suite"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_suite">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_suite</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generates test cases for multiple browsers and returns a TestSuite with all of the new tests</span>
 
 <span class="sd">    :param test_case_list: A list of WebDriverTestCase subclasses to generate a test suite for</span>
@@ -273,7 +268,7 @@
     <span class="k">return</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestSuite</span><span class="p">(</span><span class="n">browser_tests</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="load_browser_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.load_browser_tests">[docs]</a><span class="k">def</span> <span class="nf">load_browser_tests</span><span class="p">(</span><span class="n">browser_test_cases</span><span class="p">,</span> <span class="n">test_method</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_browser_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.load_browser_tests">[docs]</a><span class="k">def</span> <span class="nf">load_browser_tests</span><span class="p">(</span><span class="n">browser_test_cases</span><span class="p">,</span> <span class="n">test_method</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load tests from browser test case classes</span>
 
 <span class="sd">    :param browser_test_cases: List of generated browser test case classes</span>
@@ -289,7 +284,7 @@
     <span class="k">return</span> <span class="n">browser_tests</span>
 
 
-<div class="viewcode-block" id="generate_browser_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_cases">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_cases</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_browser_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_cases">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_cases</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generate test cases for each browser from a WebDriverTestCase subclass</span>
 
 <span class="sd">    :param base_class: The WebDriverTestCase subclass to generate test classes for</span>
@@ -306,7 +301,7 @@
     <span class="k">return</span> <span class="n">browser_test_cases</span>
 
 
-<div class="viewcode-block" id="generate_browser_test_case"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.html#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_case">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_browser_test_case"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_case">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generates a browser-specific test case class from a generic WebDriverTestCase</span>
 
 <span class="sd">    :param base_class: WebDriverTestCase containing test functions</span>
