@@ -13,6 +13,8 @@ WebDriver Test Tools
    webdriver_test_tools
 
 
+.. include:: ./README.rst
+
 
 Indices and tables
 ==================

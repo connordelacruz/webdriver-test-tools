@@ -10,7 +10,7 @@ Utilities for writing front-end test suites using Selenium WebDriver and python 
 
 ## Overview
 
-This project aims to reduce the amount of time and additional code required to automate front-end testing by providing utilities and conventions for building test suites.
+This project aims to reduce the amount of time and additional code required to automate front-end functional testing by providing utilities and conventions for building test suites.
 
 ## Prerequisites
 
@@ -29,6 +29,8 @@ On MacOS, both drivers can be installed using [Homebrew](https://brew.sh/):
 ```
 brew install geckodriver chromedriver
 ```
+
+Support for more browser drivers will be added in future updates.
 
 ## Installation
 
