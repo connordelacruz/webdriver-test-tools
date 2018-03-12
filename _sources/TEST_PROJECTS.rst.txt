@@ -60,11 +60,11 @@ argument:
 
 ::
 
-    python -m <test_package> --module <module_name> --test <TestCaseClassName>
+    python -m <test_package> --test <TestCaseClassName>
 
 ::
 
-    python -m <test_package> --module <module_name> --test <TestCaseClassName>.<test_function_name>
+    python -m <test_package> --test <TestCaseClassName>.<test_function_name>
 
 **Note:** This can be less efficient as each module will be searched for
 the specified test, but the difference in performance will likely be
@@ -82,7 +82,7 @@ Project Structure
 -----------------
 
 ``python -m webdriver_test_tools --init`` will create the following
-files and directories:
+files and directories inside the project directory:
 
 ::
 
@@ -102,32 +102,45 @@ files and directories:
         │   └── test_case.py
         └── tests/
 
+Test Project Root Contents
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``README.md`` is a template readme file with similar content to this
+documentation. ``setup.py`` is a python package setup file that allows
+the new test suite to be installed as a pip package.
+
+Test Package Contents
+~~~~~~~~~~~~~~~~~~~~~
+
 config/
-~~~~~~~
+^^^^^^^
 
 Configurations used by test scripts for site URLs, web driver options,
 and the python unittest framework.
 
 data/
-~~~~~
+^^^^^
 
 Static data for tests that must use specific values (e.g. emails,
 check-in codes).
 
 pages/
-~~~~~~
+^^^^^^
 
 Page object classes for pages and components. These classes should
 handle locating and interacting with elements on the page.
 
 tests/
-~~~~~~
+^^^^^^
 
 Test case modules. These use page objects to interact with elements and
 assert that the expected behavior occurs.
 
+When adding new test files, be sure to update ``tests/__init__.py`` to
+include the new module so the framework can detect the new test cases.
+
 templates/
-~~~~~~~~~~
+^^^^^^^^^^
 
 Template files to use as a starting point when writing new test modules
 or page objects.

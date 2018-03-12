@@ -96,11 +96,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basic-command-line-usage">Basic Command Line Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#project-structure">Project Structure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#config">config/</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data">data/</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pages">pages/</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tests">tests/</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#templates">templates/</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-project-root-contents">Test Project Root Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-package-contents">Test Package Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#config">config/</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data">data/</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pages">pages/</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests">tests/</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#templates">templates/</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -210,10 +214,10 @@ system</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">--module</span></code> argument can be omitted when using the <code class="docutils literal notranslate"><span class="pre">--test</span></code>
 argument:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">module_name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestCaseClassName</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestCaseClassName</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">module_name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestCaseClassName</span><span class="o">&gt;.&lt;</span><span class="n">test_function_name</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestCaseClassName</span><span class="o">&gt;.&lt;</span><span class="n">test_function_name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><strong>Note:</strong> This can be less efficient as each module will be searched for
@@ -229,7 +233,7 @@ the system</p>
 <div class="section" id="project-structure">
 <h2>Project Structure<a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">webdriver_test_tools</span> <span class="pre">--init</span></code> will create the following
-files and directories:</p>
+files and directories inside the project directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;project-directory&gt;/
 ├── README.md
 ├── setup.py
@@ -247,30 +251,41 @@ files and directories:</p>
     └── tests/
 </pre></div>
 </div>
+<div class="section" id="test-project-root-contents">
+<h3>Test Project Root Contents<a class="headerlink" href="#test-project-root-contents" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">README.md</span></code> is a template readme file with similar content to this
+documentation. <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> is a python package setup file that allows
+the new test suite to be installed as a pip package.</p>
+</div>
+<div class="section" id="test-package-contents">
+<h3>Test Package Contents<a class="headerlink" href="#test-package-contents" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="config">
-<h3>config/<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h3>
+<h4>config/<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h4>
 <p>Configurations used by test scripts for site URLs, web driver options,
 and the python unittest framework.</p>
 </div>
 <div class="section" id="data">
-<h3>data/<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<h4>data/<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
 <p>Static data for tests that must use specific values (e.g.&nbsp;emails,
 check-in codes).</p>
 </div>
 <div class="section" id="pages">
-<h3>pages/<a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h3>
+<h4>pages/<a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h4>
 <p>Page object classes for pages and components. These classes should
 handle locating and interacting with elements on the page.</p>
 </div>
 <div class="section" id="tests">
-<h3>tests/<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
+<h4>tests/<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
 <p>Test case modules. These use page objects to interact with elements and
 assert that the expected behavior occurs.</p>
+<p>When adding new test files, be sure to update <code class="docutils literal notranslate"><span class="pre">tests/__init__.py</span></code> to
+include the new module so the framework can detect the new test cases.</p>
 </div>
 <div class="section" id="templates">
-<h3>templates/<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h3>
+<h4>templates/<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h4>
 <p>Template files to use as a starting point when writing new test modules
 or page objects.</p>
+</div>
 </div>
 </div>
 </div>

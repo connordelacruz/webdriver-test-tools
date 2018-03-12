@@ -7,7 +7,6 @@ python unit tests.
 TODO:
 -----
 
--  Info on test project setup and usage
 -  Add detailed documentation
 -  Info on page object model
 
