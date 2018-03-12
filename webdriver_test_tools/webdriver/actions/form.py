@@ -1,78 +1,13 @@
-# Functions for commonly repeated driver actions
+# Functions for interacting with forms
 
 # Imports
 # ----------------------------------------------------------------
+from webdriver_test_tools.webdriver import actions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
-
-# Driver Actions
-# ----------------------------------------------------------------
-
-# Scrolling
-# --------------------------------
-
-def scroll_into_view(driver, element, align_to_top=True):
-    """Scroll to an element
-
-    :param driver: Selenium webdriver object
-    :param element: Element to scroll to
-    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if False
-    """
-    script_string = 'arguments[0].scrollIntoView({});'.format(str(align_to_top).lower())
-    driver.execute_script(script_string, element)
-
-def scroll_to_position(driver, x, y):
-    """Scroll window to the specified x,y coordinates
-
-    Executes JavaScript window.scroll(x,y)
-
-    :param driver: Selenium WebDriver object
-    :param x: Horizontal scroll coordinate
-    :param y: Vertical scroll coordinate
-    """
-    script_string = 'window.scroll({},{});'.format(x,y)
-    driver.execute_script(script_string)
-
-def scroll_to_element(driver, element, offset=0, align_to_top=True):
-    """Vertically scroll to an element with an optional offset
-
-    When align_to_top=True, the scroll y coordinate is calculated:
-        element.offsetTop - offset
-    When align_to_top=False, the scroll y coordinate is calculated:
-        element.offsetTop + element.offsetHeight - window.innerHeight + offset
-
-    :param driver: Selenium WebDriver object
-    :param element: WebElement object for the target element
-    :param offset: (Default = 0) Scroll offset
-    :param align_to_top: (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the bottom if False
-    """
-    scroll_y = int(element.get_property('offsetTop'))
-    if align_to_top:
-        scroll_y -= offset
-    else:
-        script_string = 'return window.innerHeight;'
-        viewport_height = int(driver.execute_script(script_string))
-        scroll_y += int(element.get_property('offsetHeight')) - viewport_height + offset
-    scroll_to_position(driver, 0, scroll_y)
-
-def scroll_into_view_fixed_nav(driver, target_element, fixed_element, additional_offset=0, align_to_top=True):
-    """Scroll an element into view offset by the height of a fixed element so it's not obstructed
-
-    :param driver: Selenium WebDriver object
-    :param target_element: WebElement object for the target element
-    :param fixed_element: WebElement object for the fixed nav
-    :param additional_offset: (Default = 0) Additional offset from the top
-    :param align_to_top: (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the bottom if False
-    """
-    offset = int(fixed_element.get_property('offsetHeight')) + additional_offset
-    scroll_to_element(driver, target_element, offset, align_to_top)
-
-
-# Forms/Inputs
-# --------------------------------
 
 def fill_form_inputs(driver, form_element, input_name_map):
     """Takes a dictionary mapping input names to the desired values and fill out the form accordingly
@@ -137,7 +72,7 @@ def select_radio_input(driver, form_element, name, value):
     radio_selector = 'input[type=radio][name={}][value={}]'.format(name,value)
     radio_element = form_element.find_element_by_css_selector(radio_selector)
     # Selenium throws an error when trying to click something out of view
-    scroll_into_view(driver, radio_element, False)
+    actions.scroll_into_view(driver, radio_element, False)
     radio_element.click()
 
 def toggle_checkbox_input(driver, checkbox_element, value):
@@ -153,7 +88,7 @@ def toggle_checkbox_input(driver, checkbox_element, value):
         # If checkbox is visible, scroll it into view and click
         if checkbox_element.is_displayed():
             # Selenium throws an error when trying to click something out of view
-            scroll_into_view(driver, checkbox_element, False)
+            actions.scroll_into_view(driver, checkbox_element, False)
             checkbox_element.click()
         # Element might be invisible for styling. Try to find its label and click that
         else:
@@ -161,7 +96,7 @@ def toggle_checkbox_input(driver, checkbox_element, value):
             label_css = 'label[for="{}"]'.format(checkbox_id)
             element_label = driver.find_element_by_css_selector(label_css)
             # Selenium throws an error when trying to click something out of view
-            scroll_into_view(driver, element_label, False)
+            actions.scroll_into_view(driver, element_label, False)
             element_label.click()
 
 def fill_field_input(input_element, value, clear_current_value=False):
