@@ -104,6 +104,8 @@ Page object classes for pages and components. These classes should handle locati
 
 Test case modules. These use page objects to interact with elements and assert that the expected behavior occurs.
 
+When adding new test files, be sure to update `tests/__init__.py` to include the new module so the framework can detect the new test cases.
+
 ### templates/
 
 Template files to use as a starting point when writing new test modules or page objects.
