@@ -16,4 +16,3 @@ Module contents
     :undoc-members:
 
     .. automethod:: __init__
-    
