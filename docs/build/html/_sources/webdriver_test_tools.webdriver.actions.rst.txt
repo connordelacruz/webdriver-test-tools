@@ -6,7 +6,8 @@ Submodules
 
 .. toctree::
 
-   webdriver_test_tools.webdriver.actions.page_actions
+   webdriver_test_tools.webdriver.actions.form
+   webdriver_test_tools.webdriver.actions.scroll
 
 Module contents
 ---------------

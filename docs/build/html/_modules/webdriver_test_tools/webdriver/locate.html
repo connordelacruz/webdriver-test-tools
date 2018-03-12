@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.test &mdash; WebDriver Test Tools 0.4.5 documentation</title>
+  <title>webdriver_test_tools.webdriver.locate &mdash; WebDriver Test Tools 0.4.5 documentation</title>
   
 
   
@@ -139,7 +139,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>webdriver_test_tools.config.test</li>
+      <li>webdriver_test_tools.webdriver.locate</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,26 +156,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for webdriver_test_tools.config.test</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Configurations for test suite</span>
+  <h1>Source code for webdriver_test_tools.webdriver.locate</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Utility functions for locating elements</span>
 
-<span class="kn">from</span> <span class="nn">colour_runner.runner</span> <span class="k">import</span> <span class="n">ColourTextTestRunner</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
 
 
-<div class="viewcode-block" id="TestSuiteConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.test.html#webdriver_test_tools.config.test.TestSuiteConfig">[docs]</a><span class="k">class</span> <span class="nc">TestSuiteConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="c1"># Configurations</span>
-    <span class="c1"># ----------------------------------------------------------------</span>
-    <span class="c1"># Configure test runner</span>
-    <span class="n">RUNNER_CLASS</span> <span class="o">=</span> <span class="n">ColourTextTestRunner</span>
-    <span class="n">RUNNER_KWARGS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;verbosity&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<div class="viewcode-block" id="by_element_text"><a class="viewcode-back" href="../../../webdriver_test_tools.webdriver.locate.html#webdriver_test_tools.webdriver.locate.by_element_text">[docs]</a><span class="k">def</span> <span class="nf">by_element_text</span><span class="p">(</span><span class="n">element_text</span><span class="p">,</span> <span class="n">element_type</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">exact_match</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a locator that selects an element with the specified text</span>
 
-    <span class="c1"># Functions</span>
-    <span class="c1"># ----------------------------------------------------------------</span>
+<span class="sd">    :param element_text: The text of the element to locate.</span>
+<span class="sd">    :param element_type: (Optional) The tag type of the element. If unspecified, will search all tag types for the specified text.</span>
+<span class="sd">    :param exact_match: (Default = False) If True, will only match elements with the exact string as its text. If False, match elements whose text contains the specified string but may also contain other text.</span>
 
-<div class="viewcode-block" id="TestSuiteConfig.get_runner"><a class="viewcode-back" href="../../../webdriver_test_tools.config.test.html#webdriver_test_tools.config.test.TestSuiteConfig.get_runner">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_runner</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns RUNNER_CLASS object using RUNNER_KWARGS to initialize&quot;&quot;&quot;</span></div></div>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">RUNNER_CLASS</span><span class="p">(</span><span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">RUNNER_KWARGS</span><span class="p">)</span>
+<span class="sd">    :return: Locator selecting elements by the specified text</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">select_expression_format</span> <span class="o">=</span> <span class="s1">&#39;text()=</span><span class="si">{text}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="n">exact_match</span> <span class="k">else</span> <span class="s1">&#39;contains(text(), &quot;</span><span class="si">{text}</span><span class="s1">&quot;)&#39;</span>
+    <span class="n">xpath_format</span> <span class="o">=</span> <span class="s1">&#39;//</span><span class="si">{tag_type}</span><span class="s1">[</span><span class="si">{select_expr}</span><span class="s1">]&#39;</span>
+    <span class="n">select_expression</span> <span class="o">=</span> <span class="n">select_expression_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">element_text</span><span class="p">)</span>
+    <span class="n">element_xpath</span> <span class="o">=</span> <span class="n">xpath_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag_type</span><span class="o">=</span><span class="n">element_type</span><span class="p">,</span> <span class="n">select_expr</span><span class="o">=</span><span class="n">select_expression</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">element_xpath</span><span class="p">)</span>
 
 </pre></div>
 
