@@ -251,7 +251,6 @@ def main(package_name=None):
     if package_name is None:
         print('Enter a name for the test package')
         print('(use only alphanumeric characters and underscores. Cannot start with a number)')
-        # TODO: add more robust input validation?
         package_name = input('Package name: ')
     validated_package_name = validate_package_name(package_name)
     # Alert user of any changes made in validation
@@ -261,7 +260,6 @@ def main(package_name=None):
     # Create project package
     print('Creating test project...')
     initialize(os.getcwd(), validated_package_name)
-    # TODO: catch errors? More robust output?
     print('Project initialized.')
     print('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name))
 
