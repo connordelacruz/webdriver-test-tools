@@ -263,6 +263,7 @@ def main(package_name=None):
     initialize(os.getcwd(), validated_package_name)
     # TODO: catch errors? More robust output?
     print('Project initialized.')
+    print('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name))
 
 
 if __name__ == '__main__':
