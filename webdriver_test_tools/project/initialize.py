@@ -14,7 +14,7 @@ from webdriver_test_tools.version import __version__
 # ----------------------------------------------------------------
 
 def create_test_directories(target_path):
-    """Creates base directories for test writing (data, pages, and tests)
+    """Creates base directories for test writing that are initially empty (data/ and pages/)
 
     :param target_path: The path to the test package directory
     """
@@ -22,10 +22,21 @@ def create_test_directories(target_path):
     project_dirs = [
             'data',
             'pages',
-            'tests',
             ]
     for project_dir in project_dirs:
         create_directory(target_path, project_dir)
+
+
+def create_tests_init(target_path, context):
+    """Creates test package tests/ subdirectory and tests/__init__.py
+
+    :param target_path: The path to the test package directory
+    :param context: Jinja context used to render template
+    :return:
+    """
+    target_path = create_directory(os.path.abspath(target_path), 'tests')
+    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.tests.__file__))
+    create_file_from_template(template_path, target_path, '__init__.py', context)
 
 
 def create_config_files(target_path):
@@ -226,6 +237,7 @@ def initialize(target_path, package_name):
     # Initialize package files
     create_main_module(package_path, context)
     create_test_directories(package_path)
+    create_tests_init(package_path, context)
     create_config_files(package_path)
     create_template_files(package_path, context)
 
