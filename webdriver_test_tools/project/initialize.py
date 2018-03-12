@@ -63,7 +63,7 @@ def create_template_files(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = create_directory(os.path.abspath(target_path), 'templates')
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.__file__))
+    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.templates.templates.__file__))
     # Copy over page_object.py since it doesn't really need any changes
     page_object_file = 'page_object.py'
     page_object_source = os.path.join(template_path, page_object_file)
