@@ -47,11 +47,11 @@ python -m {{ test_package }} --module <module_name> --test <TestCaseClassName>.<
 The `--module` argument can be omitted when using the `--test` argument:
 
 ```
-python -m {{ test_package }} --module <module_name> --test <TestCaseClassName>
+python -m {{ test_package }} --test <TestCaseClassName>
 ```
 
 ```
-python -m {{ test_package }} --module <module_name> --test <TestCaseClassName>.<test_function_name>
+python -m {{ test_package }} --test <TestCaseClassName>.<test_function_name>
 ```
 
 *Note:* This can be less efficient as each module will be searched for the specified test, but the difference in performance will likely be unnoticeable.  
@@ -86,6 +86,8 @@ Page object classes for pages and components. These classes should handle locati
 ### tests/
 
 Test case modules. These use page objects to interact with elements and assert that the expected behavior occurs.
+
+When adding new test files, be sure to update `tests/__init__.py` to include the new module so the framework can detect the new test cases.
 
 ### templates/
 
