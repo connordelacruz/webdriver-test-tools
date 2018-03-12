@@ -86,6 +86,7 @@ To do any of the above in a specific browser rather than running in all availabl
     │   ├── page_object.py
     │   └── test_case.py
     └── tests/
+        └── __init__.py
 ```
 
 ### Test Project Root Contents

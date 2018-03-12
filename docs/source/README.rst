@@ -7,7 +7,6 @@ python unit tests.
 TODO:
 -----
 
--  Add detailed documentation
 -  Info on page object model
 
 Overview
