@@ -101,6 +101,7 @@ files and directories inside the project directory:
         │   ├── page_object.py
         │   └── test_case.py
         └── tests/
+            └── __init__.py
 
 Test Project Root Contents
 ~~~~~~~~~~~~~~~~~~~~~~~~~~

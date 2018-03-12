@@ -10,7 +10,6 @@ Subpackages
     webdriver_test_tools.config
     webdriver_test_tools.data
     webdriver_test_tools.project
-    webdriver_test_tools.templates
     webdriver_test_tools.webdriver
 
 Submodules

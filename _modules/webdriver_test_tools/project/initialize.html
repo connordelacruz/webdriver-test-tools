@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 0.4.2 documentation</title>
+  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 0.4.3 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.4.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.4.3 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -173,7 +173,7 @@
 <span class="c1"># ----------------------------------------------------------------</span>
 
 <div class="viewcode-block" id="create_test_directories"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_test_directories">[docs]</a><span class="k">def</span> <span class="nf">create_test_directories</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates base directories for test writing (data, pages, and tests)</span>
+    <span class="sd">&quot;&quot;&quot;Creates base directories for test writing that are initially empty (data/ and pages/)</span>
 
 <span class="sd">    :param target_path: The path to the test package directory</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -181,10 +181,21 @@
     <span class="n">project_dirs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;data&#39;</span><span class="p">,</span>
             <span class="s1">&#39;pages&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;tests&#39;</span><span class="p">,</span>
             <span class="p">]</span>
     <span class="k">for</span> <span class="n">project_dir</span> <span class="ow">in</span> <span class="n">project_dirs</span><span class="p">:</span></div>
         <span class="n">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">project_dir</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_tests_init"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_tests_init">[docs]</a><span class="k">def</span> <span class="nf">create_tests_init</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates test package tests/ subdirectory and tests/__init__.py</span>
+
+<span class="sd">    :param target_path: The path to the test package directory</span>
+<span class="sd">    :param context: Jinja context used to render template</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">target_path</span> <span class="o">=</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">),</span> <span class="s1">&#39;tests&#39;</span><span class="p">)</span>
+    <span class="n">template_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span></div>
+    <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;__init__.py&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="create_config_files"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_config_files">[docs]</a><span class="k">def</span> <span class="nf">create_config_files</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
@@ -211,7 +222,7 @@
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">),</span> <span class="s1">&#39;templates&#39;</span><span class="p">)</span>
-    <span class="n">template_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="n">template_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
     <span class="c1"># Copy over page_object.py since it doesn&#39;t really need any changes</span>
     <span class="n">page_object_file</span> <span class="o">=</span> <span class="s1">&#39;page_object.py&#39;</span>
     <span class="n">page_object_source</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">page_object_file</span><span class="p">)</span>
@@ -385,6 +396,7 @@
     <span class="c1"># Initialize package files</span>
     <span class="n">create_main_module</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
     <span class="n">create_test_directories</span><span class="p">(</span><span class="n">package_path</span><span class="p">)</span>
+    <span class="n">create_tests_init</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
     <span class="n">create_config_files</span><span class="p">(</span><span class="n">package_path</span><span class="p">)</span></div>
     <span class="n">create_template_files</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 
@@ -454,7 +466,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.2',
+            VERSION:'0.4.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
