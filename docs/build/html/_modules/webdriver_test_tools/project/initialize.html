@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 0.4.1 documentation</title>
+  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 0.4.2 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.4.1 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.4.2 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -296,13 +296,11 @@
 
 
 <div class="viewcode-block" id="validate_package_name"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.validate_package_name">[docs]</a><span class="k">def</span> <span class="nf">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python package</span>
-<span class="sd">    name</span>
+    <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python package name</span>
 
 <span class="sd">    :param package_name: The desired package name</span>
 
-<span class="sd">    :return: Modified package_name with whitespaces and hyphens replaced with</span>
-<span class="sd">    underscores and all invalid characters removed</span>
+<span class="sd">    :return: Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Trim outer whitespace and replace inner whitespace and hyphens with underscore</span>
     <span class="n">package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+|-+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
@@ -343,8 +341,7 @@
     <span class="sd">&quot;&quot;&quot;Returns a jinja context to use for rendering templates</span>
 
 <span class="sd">    :param test_package: Name of the python test package</span>
-<span class="sd">    :param test_tools_version: Version of webdriver_test_tools to use as install</span>
-<span class="sd">    dependency</span>
+<span class="sd">    :param test_tools_version: Version of webdriver_test_tools to use as install dependency</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;test_package&#39;</span><span class="p">:</span> <span class="n">test_package</span><span class="p">,</span>
@@ -354,17 +351,13 @@
 
 
 <div class="viewcode-block" id="create_file_from_template"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_file_from_template">[docs]</a><span class="k">def</span> <span class="nf">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Short hand function that renders a template with the specified filename followed</span>
-<span class="sd">    by a &#39;.j2&#39; extension from the template path to a file with the specified name in the</span>
-<span class="sd">    target path</span>
+    <span class="sd">&quot;&quot;&quot;Short hand function that renders a template with the specified filename followed by a &#39;.j2&#39; extension from the template path to a file with the specified name in the target path</span>
 
-<span class="sd">    The use of &#39;.j2&#39; as a file extension is to distinguish templates from package</span>
-<span class="sd">    modules.</span>
+<span class="sd">    The use of &#39;.j2&#39; as a file extension is to distinguish templates from package modules.</span>
 
 <span class="sd">    :param template_path: Path to template directory</span>
 <span class="sd">    :param target_path: Path to target directory</span>
-<span class="sd">    :param filename: Name of the template file. Will be used as the filename for the</span>
-<span class="sd">    rendered file written to the target directory</span>
+<span class="sd">    :param filename: Name of the template file. Will be used as the filename for the rendered file written to the target directory</span>
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">file_template</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;.j2&#39;</span><span class="p">)</span>
@@ -399,9 +392,7 @@
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Command line dialogs for initializing a test project</span>
 
-<span class="sd">    :param package_name: (Optional) If specified, the prompt asking the user to enter a</span>
-<span class="sd">    package name will be skipped and function will continue using this as the package</span>
-<span class="sd">    name</span>
+<span class="sd">    :param package_name: (Optional) If specified, the prompt asking the user to enter a package name will be skipped and function will continue using this as the package name</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Prompt for input if no package name is passed as a parameter</span>
     <span class="k">if</span> <span class="n">package_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -463,7 +454,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.1',
+            VERSION:'0.4.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

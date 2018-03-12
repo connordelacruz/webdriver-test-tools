@@ -85,11 +85,8 @@ def generate_browser_test_suite(test_case_list, browser_test_class=None, test_na
     """Generates test cases for multiple browsers and returns a TestSuite with all of the new tests
 
     :param test_case_list: A list of WebDriverTestCase subclasses to generate a test suite for
-    :param browser_test_class: (Optional) If specified, only generate tests using this browser class. If not specified,
-    tests will be generated for each available browser test case class.
-    :param test_name: (Optional) Run only the specified test in each generated browser test case. This can be the name
-    of the class (e.g. 'PrimaryNavTestCase') or the name of a single test method in a class
-    (e.g. 'PrimaryNavTestCase.test_modal_links')
+    :param browser_test_class: (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class.
+    :param test_name: (Optional) Run only the specified test in each generated browser test case. This can be the name of the class (e.g. 'PrimaryNavTestCase') or the name of a single test method in a class (e.g. 'PrimaryNavTestCase.test_modal_links')
 
     :return: unittest.TestSuite object with generated tests for each browser
     """

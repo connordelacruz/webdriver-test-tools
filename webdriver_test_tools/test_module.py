@@ -10,8 +10,7 @@ def main(tests_module, test_suite_config=None):
     """Function to call in test modules if __name__ == '__main__' at run time
 
     :param tests_module: The module object for <test_project>.tests
-    :param test_suite_config: (Optional) TestSuiteConfig class for the project. Will use
-    webdriver_test_tools.config.TestSuiteConfig if not specified
+    :param test_suite_config: (Optional) TestSuiteConfig class for the project. Will use webdriver_test_tools.config.TestSuiteConfig if not specified
     """
     parser = get_parser()
     args = parser.parse_args()

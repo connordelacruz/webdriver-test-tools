@@ -137,13 +137,11 @@ def create_directory(target_path, directory_name):
 
 
 def validate_package_name(package_name):
-    """Removes and replaces characters to ensure a string is a valid python package
-    name
+    """Removes and replaces characters to ensure a string is a valid python package name
 
     :param package_name: The desired package name
 
-    :return: Modified package_name with whitespaces and hyphens replaced with
-    underscores and all invalid characters removed
+    :return: Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed
     """
     # Trim outer whitespace and replace inner whitespace and hyphens with underscore
     package_name = re.sub(r'\s+|-+', '_', package_name.strip())
@@ -184,8 +182,7 @@ def generate_context(test_package, test_tools_version):
     """Returns a jinja context to use for rendering templates
 
     :param test_package: Name of the python test package
-    :param test_tools_version: Version of webdriver_test_tools to use as install
-    dependency
+    :param test_tools_version: Version of webdriver_test_tools to use as install dependency
     """
     context = {
             'test_package': test_package,
@@ -195,17 +192,13 @@ def generate_context(test_package, test_tools_version):
 
 
 def create_file_from_template(template_path, target_path, filename, context):
-    """Short hand function that renders a template with the specified filename followed
-    by a '.j2' extension from the template path to a file with the specified name in the
-    target path
+    """Short hand function that renders a template with the specified filename followed by a '.j2' extension from the template path to a file with the specified name in the target path
 
-    The use of '.j2' as a file extension is to distinguish templates from package
-    modules.
+    The use of '.j2' as a file extension is to distinguish templates from package modules.
 
     :param template_path: Path to template directory
     :param target_path: Path to target directory
-    :param filename: Name of the template file. Will be used as the filename for the
-    rendered file written to the target directory
+    :param filename: Name of the template file. Will be used as the filename for the rendered file written to the target directory
     :param context: Jinja context used to render template
     """
     file_template = os.path.join(template_path, filename + '.j2')
@@ -240,9 +233,7 @@ def initialize(target_path, package_name):
 def main(package_name=None):
     """Command line dialogs for initializing a test project
 
-    :param package_name: (Optional) If specified, the prompt asking the user to enter a
-    package name will be skipped and function will continue using this as the package
-    name
+    :param package_name: (Optional) If specified, the prompt asking the user to enter a package name will be skipped and function will continue using this as the package name
     """
     # Prompt for input if no package name is passed as a parameter
     if package_name is None:
