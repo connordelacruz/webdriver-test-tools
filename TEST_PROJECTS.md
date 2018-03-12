@@ -53,11 +53,11 @@ python -m <test_package> --module <module_name> --test <TestCaseClassName>.<test
 The `--module` argument can be omitted when using the `--test` argument:
 
 ```
-python -m <test_package> --module <module_name> --test <TestCaseClassName>
+python -m <test_package> --test <TestCaseClassName>
 ```
 
 ```
-python -m <test_package> --module <module_name> --test <TestCaseClassName>.<test_function_name>
+python -m <test_package> --test <TestCaseClassName>.<test_function_name>
 ```
 
 **Note:** This can be less efficient as each module will be searched for the specified test, but the difference in performance will likely be unnoticeable.  
@@ -68,7 +68,7 @@ To do any of the above in a specific browser rather than running in all availabl
 
 ## Project Structure
 
-`python -m webdriver_test_tools --init` will create the following files and directories:
+`python -m webdriver_test_tools --init` will create the following files and directories inside the project directory:
 
 ```
 <project-directory>/
@@ -88,25 +88,31 @@ To do any of the above in a specific browser rather than running in all availabl
     └── tests/
 ```
 
-### config/
+### Test Project Root Contents
+
+`README.md` is a template readme file with similar content to this documentation. `setup.py` is a python package setup file that allows the new test suite to be installed as a pip package.
+
+### Test Package Contents
+
+#### config/
 
 Configurations used by test scripts for site URLs, web driver options, and the python unittest framework.
 
-### data/
+#### data/
 
 Static data for tests that must use specific values (e.g. emails, check-in codes). 
 
-### pages/
+#### pages/
 
 Page object classes for pages and components. These classes should handle locating and interacting with elements on the page.
 
-### tests/
+#### tests/
 
 Test case modules. These use page objects to interact with elements and assert that the expected behavior occurs.
 
 When adding new test files, be sure to update `tests/__init__.py` to include the new module so the framework can detect the new test cases.
 
-### templates/
+#### templates/
 
 Template files to use as a starting point when writing new test modules or page objects.
 

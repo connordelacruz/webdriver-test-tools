@@ -4,7 +4,6 @@ Utilities for writing front-end test suites using Selenium WebDriver and python 
 
 ## TODO:
 
-* Info on test project setup and usage
 * Add detailed documentation
 * Info on page object model
 
