@@ -14,7 +14,12 @@ class WebDriverConfig(object):
     # Path to the log directory
     LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
     # Implicit wait time for webdriver to poll DOM
-    IMPLICIT_WAIT = 10
+    # NOTE: Documentation says not to mix this with explicit waits and some instability
+    # was noticed when it was set to 10. Leaving this value in for compatibility and for
+    # a possible update where projects can override these configs, but it's essentially
+    # not used currently.
+    # https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits
+    IMPLICIT_WAIT = 0
 
     # Firefox webdriver initialization arguments
     FIREFOX_KWARGS = {'log_path': os.path.join(LOG_PATH, 'geckodriver.log')}
@@ -47,7 +52,8 @@ class WebDriverConfig(object):
     @classmethod
     def set_driver_implicit_wait(cls, driver):
         """Returns driver with implicit wait time set"""
-        driver.implicitly_wait(cls.IMPLICIT_WAIT)
+        if cls.IMPLICIT_WAIT > 0:
+            driver.implicitly_wait(cls.IMPLICIT_WAIT)
         return driver
 
 
