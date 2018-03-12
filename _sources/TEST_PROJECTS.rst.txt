@@ -4,8 +4,13 @@ Test Projects
 Installation
 ------------
 
-After initializing the test project, change to the root directory of the
-project and run:
+To initialize a test project, change into the desired directory and run:
+
+::
+
+    python -m webdriver_test_tools --init
+
+After initializing the test project, run:
 
 ::
 
@@ -14,11 +19,11 @@ project and run:
 Installing with the ``-e`` flag will update the package automatically
 when changes are made to the source code.
 
-*Note:* Command may be ``pip3`` instead of ``pip`` depending on the
+**Note:** Command may be ``pip3`` instead of ``pip`` depending on the
 system
 
-Basic Usage
------------
+Basic Command Line Usage
+------------------------
 
 For info on command line arguments:
 
@@ -61,7 +66,7 @@ argument:
 
     python -m <test_package> --module <module_name> --test <TestCaseClassName>.<test_function_name>
 
-*Note:* This can be less efficient as each module will be searched for
+**Note:** This can be less efficient as each module will be searched for
 the specified test, but the difference in performance will likely be
 unnoticeable.
 
@@ -70,20 +75,32 @@ available browsers, use the ``--browser <browser>`` command line
 argument. For a list of options you can specify with ``--browser``, run
 ``python -m <test_package> --help``.
 
-*Note:* Command may be ``python3`` instead of ``python`` depending on
+**Note:** Command may be ``python3`` instead of ``python`` depending on
 the system
 
 Project Structure
 -----------------
 
+``python -m webdriver_test_tools --init`` will create the following
+files and directories:
+
 ::
 
-    <test_package>
-    ├── config
-    ├── data
-    ├── pages
-    ├── tests
-    └── templates
+    <project-directory>/
+    ├── README.md
+    ├── setup.py
+    └── <test_package>/
+        ├── __main__.py
+        ├── config/
+        │   ├── __init__.py
+        │   ├── site.py
+        │   └── test.py
+        ├── data/
+        ├── pages/
+        ├── templates/
+        │   ├── page_object.py
+        │   └── test_case.py
+        └── tests/
 
 config/
 ~~~~~~~
