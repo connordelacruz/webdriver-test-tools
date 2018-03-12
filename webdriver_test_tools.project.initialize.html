@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.initialize module &mdash; WebDriver Test Tools 0.4.1 documentation</title>
+  <title>webdriver_test_tools.project.initialize module &mdash; WebDriver Test Tools 0.4.2 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.4.1 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.4.2 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.project package" href="webdriver_test_tools.project.html"/>
         <link rel="next" title="webdriver_test_tools.project.loader module" href="webdriver_test_tools.project.loader.html"/>
         <link rel="prev" title="webdriver_test_tools.project package" href="webdriver_test_tools.project.html"/> 
@@ -219,11 +219,8 @@
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.create_file_from_template">
 <code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_file_from_template</code><span class="sig-paren">(</span><em>template_path</em>, <em>target_path</em>, <em>filename</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_file_from_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_file_from_template" title="Permalink to this definition">¶</a></dt>
-<dd><p>Short hand function that renders a template with the specified filename followed
-by a ‘.j2’ extension from the template path to a file with the specified name in the
-target path</p>
-<p>The use of ‘.j2’ as a file extension is to distinguish templates from package
-modules.</p>
+<dd><p>Short hand function that renders a template with the specified filename followed by a ‘.j2’ extension from the template path to a file with the specified name in the target path</p>
+<p>The use of ‘.j2’ as a file extension is to distinguish templates from package modules.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -231,14 +228,13 @@ modules.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>template_path</strong> – Path to template directory</li>
 <li><strong>target_path</strong> – Path to target directory</li>
-<li><strong>filename</strong> – Name of the template file. Will be used as the filename for the</li>
+<li><strong>filename</strong> – Name of the template file. Will be used as the filename for the rendered file written to the target directory</li>
+<li><strong>context</strong> – Jinja context used to render template</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>rendered file written to the target directory
-:param context: Jinja context used to render template</p>
 </dd></dl>
 
 <dl class="function">
@@ -372,13 +368,12 @@ modules.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>test_package</strong> – Name of the python test package</li>
-<li><strong>test_tools_version</strong> – Version of webdriver_test_tools to use as install</li>
+<li><strong>test_tools_version</strong> – Version of webdriver_test_tools to use as install dependency</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>dependency</p>
 </dd></dl>
 
 <dl class="function">
@@ -407,12 +402,10 @@ modules.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package_name</strong> – (Optional) If specified, the prompt asking the user to enter a</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package_name</strong> – (Optional) If specified, the prompt asking the user to enter a package name will be skipped and function will continue using this as the package name</td>
 </tr>
 </tbody>
 </table>
-<p>package name will be skipped and function will continue using this as the package
-name</p>
 </dd></dl>
 
 <dl class="function">
@@ -458,19 +451,17 @@ name</p>
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.validate_package_name">
 <code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">validate_package_name</code><span class="sig-paren">(</span><em>package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#validate_package_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.validate_package_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes and replaces characters to ensure a string is a valid python package
-name</p>
+<dd><p>Removes and replaces characters to ensure a string is a valid python package name</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package_name</strong> – The desired package name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified package_name with whitespaces and hyphens replaced with</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed</td>
 </tr>
 </tbody>
 </table>
-<p>underscores and all invalid characters removed</p>
 </dd></dl>
 
 </div>
@@ -519,7 +510,7 @@ name</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.4.1',
+            VERSION:'0.4.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

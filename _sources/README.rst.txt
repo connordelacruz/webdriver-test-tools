@@ -4,6 +4,13 @@ Selenium WebDriver Test Framework
 Utilities for writing front-end test suites using Selenium WebDriver and
 python unit tests.
 
+TODO:
+-----
+
+-  Info on test project setup and usage
+-  Add detailed documentation
+-  Info on page object model
+
 Overview
 --------
 
@@ -40,17 +47,13 @@ Support for more browser drivers will be added in future updates.
 Installation
 ------------
 
-After installing the above prerequisites, change to the root directory
-of the project and run:
+After installing the above prerequisites, run:
 
 ::
 
-    pip install -e .
+    pip install webdriver-test-tools
 
-Installing with the ``-e`` flag will update the package automatically
-when changes are made to the source code.
-
-*Note:* Command may be ``pip3`` instead of ``pip`` depending on the
+**Note:** Command may be ``pip3`` instead of ``pip`` depending on the
 system
 
 Command Line Usage
@@ -71,5 +74,5 @@ To initialize a new test project in the current directory:
 This will generate a new test package with template files and project
 directories.
 
-*Note:* Command may be ``python3`` instead of ``python`` depending on
+**Note:** Command may be ``python3`` instead of ``python`` depending on
 the system
