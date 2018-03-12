@@ -1,6 +1,8 @@
 # Test Projects
 
-## Installation
+## Setup
+
+### Initialization
 
 To initialize a test project, change into the desired directory and run:
 
@@ -17,6 +19,10 @@ pip install -e .
 Installing with the `-e` flag will update the package automatically when changes are made to the source code.
 
 **Note:** Command may be `pip3` instead of `pip` depending on the system
+
+### Configuration
+
+After initializing a project, the URL of the site to be tested will need to be configured. In `<test_package>/config/site.py`, set the `SITE_URL` and `BASE_URL` of the `SiteConfig` class. You can add any other URLs you'll need as class variables as well. 
 
 ## Basic Command Line Usage
 
@@ -89,6 +95,8 @@ To do any of the above in a specific browser rather than running in all availabl
         └── __init__.py
 ```
 
+This test structure is best used with the [Page Object Model](https://martinfowler.com/bliki/PageObject.html). Interaction with the page should be handled by page objects to minimize the need to alter tests whenever the HTML is changed.
+
 ### Test Project Root Contents
 
 `README.md` is a template readme file with similar content to this documentation. `setup.py` is a python package setup file that allows the new test suite to be installed as a pip package.
@@ -105,11 +113,11 @@ Static data for tests that must use specific values (e.g. emails, check-in codes
 
 #### pages/
 
-Page object classes for pages and components. These classes should handle locating and interacting with elements on the page.
+Page object classes for pages and components. These classes should handle locating and interacting with elements on the page. A template page object can be found in `templates/page_object.py`.
 
 #### tests/
 
-Test case modules. These use page objects to interact with elements and assert that the expected behavior occurs.
+Test case modules. These use page objects to interact with elements and assert that the expected behavior occurs. A template test file can be found in `templates/test_case.py`.
 
 When adding new test files, be sure to update `tests/__init__.py` to include the new module so the framework can detect the new test cases.
 
