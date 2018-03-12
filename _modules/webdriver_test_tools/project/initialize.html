@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 0.4.3 documentation</title>
+  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 0.4.4 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.4.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.4.4 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -410,7 +410,6 @@
     <span class="k">if</span> <span class="n">package_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Enter a name for the test package&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(use only alphanumeric characters and underscores. Cannot start with a number)&#39;</span><span class="p">)</span>
-        <span class="c1"># TODO: add more robust input validation?</span>
         <span class="n">package_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Package name: &#39;</span><span class="p">)</span>
     <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
     <span class="c1"># Alert user of any changes made in validation</span>
@@ -420,8 +419,8 @@
     <span class="c1"># Create project package</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Creating test project...&#39;</span><span class="p">)</span>
     <span class="n">initialize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">validated_package_name</span><span class="p">)</span>
-    <span class="c1"># TODO: catch errors? More robust output?</span></div>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Project initialized.&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Project initialized.&#39;</span><span class="p">)</span></div>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To get started, set the SITE_URL for the project in </span><span class="si">{}</span><span class="s1">/config/site.py&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -466,7 +465,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.4.3',
+            VERSION:'0.4.4',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
