@@ -27,6 +27,10 @@ class WebDriverConfig(object):
     CHROME_KWARGS = {'service_log_path': os.path.join(LOG_PATH, 'chromedriver.log')}
     # Safari webdriver initialization arguments
     SAFARI_KWARGS = {}
+    # Internet Explorer webdriver initialization arguments
+    IE_KWARGS = {}
+    # Edge webdriver initialization arguments
+    EDGE_KWARGS = {}
 
     # Functions
     # ----------------------------------------------------------------
@@ -48,6 +52,16 @@ class WebDriverConfig(object):
     def get_safari_driver(cls):
         """Returns webdriver.Safari object using SAFARI_KWARGS to initialize"""
         return cls.set_driver_implicit_wait(webdriver.Safari(**cls.SAFARI_KWARGS))
+
+    @classmethod
+    def get_ie_driver(cls):
+        """Returns webdriver.Ie object using IE_KWARGS to initialize"""
+        return cls.set_driver_implicit_wait(webdriver.Ie(**cls.IE_KWARGS))
+
+    @classmethod
+    def get_edge_driver(cls):
+        """Returns webdriver.Edge object using EDGE_KWARGS to initialize"""
+        return cls.set_driver_implicit_wait(webdriver.Edge(**cls.EDGE_KWARGS))
 
     @classmethod
     def set_driver_implicit_wait(cls, driver):

@@ -31,10 +31,12 @@ class WebDriverTestCase(unittest.TestCase):
 
 
 # Browser driver implementations
+# TODO: link driver downloads when applicable in docstring
 
 class FirefoxTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Firefox webdriver"""
     DRIVER_NAME = 'Firefox'
+    SHORT_NAME = DRIVER_NAME.lower()
 
     def setUp(self):
         self.driver = WebDriverConfig.get_firefox_driver()
@@ -44,11 +46,14 @@ class FirefoxTestCase(WebDriverTestCase):
 class ChromeTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Chrome webdriver"""
     DRIVER_NAME = 'Chrome'
+    SHORT_NAME = DRIVER_NAME.lower()
 
     def setUp(self):
         self.driver = WebDriverConfig.get_chrome_driver()
         super().setUp()
 
+
+# Experimental/Platform-specific
 
 class SafariTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Safari webdriver
@@ -63,17 +68,43 @@ class SafariTestCase(WebDriverTestCase):
         since its test results are not accurate.
     """
     DRIVER_NAME = 'Safari'
+    SHORT_NAME = DRIVER_NAME.lower()
 
     def setUp(self):
         self.driver = WebDriverConfig.get_safari_driver()
         super().setUp()
 
 
+class IETestCase(WebDriverTestCase):
+    """Implementation of WebDriverTestCase using Internet Explorer webdriver"""
+    DRIVER_NAME = 'Internet Explorer'
+    SHORT_NAME = 'ie'
+
+    def setUp(self):
+        self.driver = WebDriverConfig.get_ie_driver()
+        super().setUp()
+
+
+class EdgeTestCase(WebDriverTestCase):
+    """Implementation of WebDriverTestCase using Edge webdriver
+
+    `Driver download <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>`_
+    """
+    DRIVER_NAME = 'Edge'
+    SHORT_NAME = DRIVER_NAME.lower()
+
+    def setUp(self):
+        self.driver = WebDriverConfig.get_edge_driver()
+        super().setUp()
+
+
 # Dictionary of usable test case classes indexed by the short name for that class (i.e. its command line argument)
 BROWSER_TEST_CLASSES = {
-    'firefox': FirefoxTestCase,
-    'chrome': ChromeTestCase,
-    # 'safari': SafariTestCase,
+    FirefoxTestCase.SHORT_NAME: FirefoxTestCase,
+    ChromeTestCase.SHORT_NAME: ChromeTestCase,
+    # SafariTestCase.SHORT_NAME: SafariTestCase,
+    # IETestCase.SHORT_NAME: IETestCase,
+    # EdgeTestCase.SHORT_NAME: EdgeTestCase,
 }
 
 
