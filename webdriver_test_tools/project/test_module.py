@@ -1,9 +1,10 @@
 # Functions for test modules
 import argparse
+import unittest
 
 from webdriver_test_tools import config
-from webdriver_test_tools.classes.webdriver_test_case import *
-from webdriver_test_tools.project import loader
+from webdriver_test_tools.classes.webdriver_test_case import BROWSER_TEST_CLASSES
+from webdriver_test_tools.project import test_loader, test_factory
 
 
 def main(tests_module, config_module=None):
@@ -20,9 +21,12 @@ def main(tests_module, config_module=None):
     unittest.installHandler()
     if config_module is None:
         config_module = config
+    # Load WebDriverTestCase subclasses from project tests
+    tests = test_loader.load_project_tests(tests_module, test_module_name)
+    # Generate browser test cases from the loaded WebDriverTestCase classes
+    browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_class, test_name)
     test_runner = config_module.TestSuiteConfig.get_runner()
-    tests = loader.load_project_tests(tests_module, test_module_name)
-    test_runner.run(generate_browser_test_suite(tests, browser_class, test_name))
+    test_runner.run(browser_test_suite)
 
 
 def get_parser():
