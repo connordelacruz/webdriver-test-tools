@@ -183,42 +183,28 @@
 <dl class="class">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.config.webdriver.</code><code class="descname">WebDriverConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="attribute">
-<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS">
-<code class="descname">CHROME_KWARGS</code><em class="property"> = {'service_log_path': '/Users/cdelacruz/test/selenium/webdriver-test-tools/webdriver_test_tools/log/chromedriver.log'}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS">
-<code class="descname">FIREFOX_KWARGS</code><em class="property"> = {'log_path': '/Users/cdelacruz/test/selenium/webdriver-test-tools/webdriver_test_tools/log/geckodriver.log'}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.IMPLICIT_WAIT">
-<code class="descname">IMPLICIT_WAIT</code><em class="property"> = 10</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IMPLICIT_WAIT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.LOG_PATH">
-<code class="descname">LOG_PATH</code><em class="property"> = '/Users/cdelacruz/test/selenium/webdriver-test-tools/webdriver_test_tools/log'</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.LOG_PATH" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS">
-<code class="descname">SAFARI_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="classmethod">
+<dd><dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver">
 <em class="property">classmethod </em><code class="descname">get_chrome_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns webdriver.Chrome object using CHROME_KWARGS to initialize</p>
 </dd></dl>
 
 <dl class="classmethod">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_edge_driver">
+<em class="property">classmethod </em><code class="descname">get_edge_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_edge_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_edge_driver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns webdriver.Edge object using EDGE_KWARGS to initialize</p>
+</dd></dl>
+
+<dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver">
 <em class="property">classmethod </em><code class="descname">get_firefox_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_firefox_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns webdriver.Firefox object using FIREFOX_KWARGS to initialize</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_ie_driver">
+<em class="property">classmethod </em><code class="descname">get_ie_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_ie_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_ie_driver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns webdriver.Ie object using IE_KWARGS to initialize</p>
 </dd></dl>
 
 <dl class="classmethod">

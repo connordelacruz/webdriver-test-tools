@@ -185,9 +185,15 @@
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">ChromeTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#ChromeTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
 <p>Implementation of WebDriverTestCase using Chrome webdriver</p>
+<p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Driver download</a></p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.DRIVER_NAME">
 <code class="descname">DRIVER_NAME</code><em class="property"> = 'Chrome'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.SHORT_NAME">
+<code class="descname">SHORT_NAME</code><em class="property"> = 'chrome'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -199,13 +205,48 @@
 </dd></dl>
 
 <dl class="class">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">EdgeTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#EdgeTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
+<p>Implementation of WebDriverTestCase using Edge webdriver</p>
+<p><a class="reference external" href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/">Driver download</a></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This class has not been tested yet and isn’t implemented. It may be enabled in
+a future update.</p>
+</div>
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.DRIVER_NAME">
+<code class="descname">DRIVER_NAME</code><em class="property"> = 'Edge'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.SHORT_NAME">
+<code class="descname">SHORT_NAME</code><em class="property"> = 'edge'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#EdgeTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">FirefoxTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#FirefoxTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
 <p>Implementation of WebDriverTestCase using Firefox webdriver</p>
+<p><a class="reference external" href="https://github.com/mozilla/geckodriver/releases">Driver download</a></p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.DRIVER_NAME">
 <code class="descname">DRIVER_NAME</code><em class="property"> = 'Firefox'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.SHORT_NAME">
+<code class="descname">SHORT_NAME</code><em class="property"> = 'firefox'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -217,22 +258,55 @@
 </dd></dl>
 
 <dl class="class">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">IETestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#IETestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
+<p>Implementation of WebDriverTestCase using Internet Explorer webdriver</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This class has not been tested yet and isn’t implemented. It may be enabled in
+a future update.</p>
+</div>
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase.DRIVER_NAME">
+<code class="descname">DRIVER_NAME</code><em class="property"> = 'Internet Explorer'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase.SHORT_NAME">
+<code class="descname">SHORT_NAME</code><em class="property"> = 'ie'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#IETestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">SafariTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#SafariTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
 <p>Implementation of WebDriverTestCase using Safari webdriver</p>
+<p><a class="reference external" href="https://webkit.org/blog/6900/webdriver-support-in-safari-10/">Driver info</a></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Safari’s webdriver is currently (selenium 3.9.0) unreliable and buggy.
-Apart from starting up a new Safari instance each time it’s initialized
-and leaving the process running even when driver.quit() is called, it
-also leads to several inaccurate test failures due to its poor
-implementation. This class is provided for completeness, but is not used
-since its test results are not accurate.</p>
+<p class="last">Safari’s webdriver can be unreliable and buggy. Apart from starting up a new
+Safari instance each time it’s initialized and leaving the process running even
+when driver.quit() is called, it also seems to lack certain features of the
+webdriver API, leading to several inaccurate test failures. As such, the class
+currently isn’t implemented. It may be enabled in a future update.</p>
 </div>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.DRIVER_NAME">
 <code class="descname">DRIVER_NAME</code><em class="property"> = 'Safari'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.SHORT_NAME">
+<code class="descname">SHORT_NAME</code><em class="property"> = 'safari'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
