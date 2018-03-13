@@ -190,10 +190,15 @@
 
 
 <span class="c1"># Browser driver implementations</span>
+<span class="c1"># --------------------------------</span>
 
 <div class="viewcode-block" id="FirefoxTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase">[docs]</a><span class="k">class</span> <span class="nc">FirefoxTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Firefox webdriver&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Firefox webdriver</span>
+
+<span class="sd">    `Driver download &lt;https://github.com/mozilla/geckodriver/releases&gt;`_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Firefox&#39;</span>
+    <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
 <div class="viewcode-block" id="FirefoxTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_firefox_driver</span><span class="p">()</span></div></div>
@@ -201,38 +206,82 @@
 
 
 <div class="viewcode-block" id="ChromeTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Chrome webdriver&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Chrome webdriver</span>
+
+<span class="sd">    `Driver download &lt;https://sites.google.com/a/chromium.org/chromedriver/downloads&gt;`_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Chrome&#39;</span>
+    <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
 <div class="viewcode-block" id="ChromeTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_driver</span><span class="p">()</span></div></div>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
 
 
+<span class="c1"># Experimental/Platform-specific</span>
+
 <div class="viewcode-block" id="SafariTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase">[docs]</a><span class="k">class</span> <span class="nc">SafariTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Safari webdriver</span>
 
+<span class="sd">    `Driver info &lt;https://webkit.org/blog/6900/webdriver-support-in-safari-10/&gt;`_</span>
+
 <span class="sd">    .. warning::</span>
 
-<span class="sd">        Safari&#39;s webdriver is currently (selenium 3.9.0) unreliable and buggy.</span>
-<span class="sd">        Apart from starting up a new Safari instance each time it&#39;s initialized</span>
-<span class="sd">        and leaving the process running even when driver.quit() is called, it</span>
-<span class="sd">        also leads to several inaccurate test failures due to its poor</span>
-<span class="sd">        implementation. This class is provided for completeness, but is not used</span>
-<span class="sd">        since its test results are not accurate.</span>
+<span class="sd">        Safari&#39;s webdriver can be unreliable and buggy. Apart from starting up a new</span>
+<span class="sd">        Safari instance each time it&#39;s initialized and leaving the process running even</span>
+<span class="sd">        when driver.quit() is called, it also seems to lack certain features of the</span>
+<span class="sd">        webdriver API, leading to several inaccurate test failures. As such, the class</span>
+<span class="sd">        currently isn&#39;t implemented. It may be enabled in a future update.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Safari&#39;</span>
+    <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
 <div class="viewcode-block" id="SafariTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_safari_driver</span><span class="p">()</span></div></div>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
 
 
+<div class="viewcode-block" id="IETestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.IETestCase">[docs]</a><span class="k">class</span> <span class="nc">IETestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Internet Explorer webdriver</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        This class has not been tested yet and isn&#39;t implemented. It may be enabled in</span>
+<span class="sd">        a future update.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Internet Explorer&#39;</span>
+    <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="s1">&#39;ie&#39;</span>
+
+<div class="viewcode-block" id="IETestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.IETestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_ie_driver</span><span class="p">()</span></div></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="EdgeTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase">[docs]</a><span class="k">class</span> <span class="nc">EdgeTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Edge webdriver</span>
+
+<span class="sd">    `Driver download &lt;https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/&gt;`_</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        This class has not been tested yet and isn&#39;t implemented. It may be enabled in</span>
+<span class="sd">        a future update.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Edge&#39;</span>
+    <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+<div class="viewcode-block" id="EdgeTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_edge_driver</span><span class="p">()</span></div></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+
+
 <span class="c1"># Dictionary of usable test case classes indexed by the short name for that class (i.e. its command line argument)</span>
 <span class="n">BROWSER_TEST_CLASSES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;firefox&#39;</span><span class="p">:</span> <span class="n">FirefoxTestCase</span><span class="p">,</span>
-    <span class="s1">&#39;chrome&#39;</span><span class="p">:</span> <span class="n">ChromeTestCase</span><span class="p">,</span>
-    <span class="c1"># &#39;safari&#39;: SafariTestCase,</span>
+    <span class="n">FirefoxTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span><span class="p">:</span> <span class="n">FirefoxTestCase</span><span class="p">,</span>
+    <span class="n">ChromeTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span><span class="p">:</span> <span class="n">ChromeTestCase</span><span class="p">,</span>
+    <span class="c1"># SafariTestCase.SHORT_NAME: SafariTestCase,</span>
+    <span class="c1"># IETestCase.SHORT_NAME: IETestCase,</span>
+    <span class="c1"># EdgeTestCase.SHORT_NAME: EdgeTestCase,</span>
 <span class="p">}</span>
 
 

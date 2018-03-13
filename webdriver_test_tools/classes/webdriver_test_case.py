@@ -31,10 +31,13 @@ class WebDriverTestCase(unittest.TestCase):
 
 
 # Browser driver implementations
-# TODO: link driver downloads when applicable in docstring
+# --------------------------------
 
 class FirefoxTestCase(WebDriverTestCase):
-    """Implementation of WebDriverTestCase using Firefox webdriver"""
+    """Implementation of WebDriverTestCase using Firefox webdriver
+
+    `Driver download <https://github.com/mozilla/geckodriver/releases>`_
+    """
     DRIVER_NAME = 'Firefox'
     SHORT_NAME = DRIVER_NAME.lower()
 
@@ -44,7 +47,10 @@ class FirefoxTestCase(WebDriverTestCase):
 
 
 class ChromeTestCase(WebDriverTestCase):
-    """Implementation of WebDriverTestCase using Chrome webdriver"""
+    """Implementation of WebDriverTestCase using Chrome webdriver
+
+    `Driver download <https://sites.google.com/a/chromium.org/chromedriver/downloads>`_
+    """
     DRIVER_NAME = 'Chrome'
     SHORT_NAME = DRIVER_NAME.lower()
 
@@ -58,14 +64,15 @@ class ChromeTestCase(WebDriverTestCase):
 class SafariTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Safari webdriver
 
+    `Driver info <https://webkit.org/blog/6900/webdriver-support-in-safari-10/>`_
+
     .. warning::
 
-        Safari's webdriver is currently (selenium 3.9.0) unreliable and buggy.
-        Apart from starting up a new Safari instance each time it's initialized
-        and leaving the process running even when driver.quit() is called, it
-        also leads to several inaccurate test failures due to its poor
-        implementation. This class is provided for completeness, but is not used
-        since its test results are not accurate.
+        Safari's webdriver can be unreliable and buggy. Apart from starting up a new
+        Safari instance each time it's initialized and leaving the process running even
+        when driver.quit() is called, it also seems to lack certain features of the
+        webdriver API, leading to several inaccurate test failures. As such, the class
+        currently isn't implemented. It may be enabled in a future update.
     """
     DRIVER_NAME = 'Safari'
     SHORT_NAME = DRIVER_NAME.lower()
@@ -76,7 +83,13 @@ class SafariTestCase(WebDriverTestCase):
 
 
 class IETestCase(WebDriverTestCase):
-    """Implementation of WebDriverTestCase using Internet Explorer webdriver"""
+    """Implementation of WebDriverTestCase using Internet Explorer webdriver
+
+    .. warning::
+
+        This class has not been tested yet and isn't implemented. It may be enabled in
+        a future update.
+    """
     DRIVER_NAME = 'Internet Explorer'
     SHORT_NAME = 'ie'
 
@@ -89,6 +102,11 @@ class EdgeTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Edge webdriver
 
     `Driver download <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>`_
+
+    .. warning::
+
+        This class has not been tested yet and isn't implemented. It may be enabled in
+        a future update.
     """
     DRIVER_NAME = 'Edge'
     SHORT_NAME = DRIVER_NAME.lower()
