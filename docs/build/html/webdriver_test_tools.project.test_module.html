@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.test_module module &mdash; WebDriver Test Tools 0.5.0 documentation</title>
+  <title>webdriver_test_tools.project.test_module module &mdash; WebDriver Test Tools 0.6.0 documentation</title>
   
 
   
@@ -35,10 +35,10 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.5.0 documentation" href="index.html"/>
-        <link rel="up" title="webdriver_test_tools package" href="webdriver_test_tools.html"/>
-        <link rel="next" title="webdriver_test_tools.version module" href="webdriver_test_tools.version.html"/>
-        <link rel="prev" title="webdriver_test_tools.test module" href="webdriver_test_tools.test.html"/> 
+    <link rel="top" title="WebDriver Test Tools 0.6.0 documentation" href="index.html"/>
+        <link rel="up" title="webdriver_test_tools.project package" href="webdriver_test_tools.project.html"/>
+        <link rel="next" title="webdriver_test_tools.webdriver package" href="webdriver_test_tools.webdriver.html"/>
+        <link rel="prev" title="webdriver_test_tools.project.test_loader module" href="webdriver_test_tools.project.test_loader.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.5
+                0.6
               </div>
             
           
@@ -95,13 +95,19 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="TEST_PROJECTS.html">Test Projects</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools package</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.test.html">webdriver_test_tools.test module</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">webdriver_test_tools.test_module module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.version.html">webdriver_test_tools.version module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.project.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.project.html#module-webdriver_test_tools.project">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#module-webdriver_test_tools">Module contents</a></li>
 </ul>
 </li>
@@ -151,13 +157,15 @@
         
           <li><a href="webdriver_test_tools.html">webdriver_test_tools package</a> &raquo;</li>
         
-      <li>webdriver_test_tools.test_module module</li>
+          <li><a href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.project.test_module module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/webdriver_test_tools.test_module.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/webdriver_test_tools.project.test_module.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -170,17 +178,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-webdriver_test_tools.test_module">
-<span id="webdriver-test-tools-test-module-module"></span><h1>webdriver_test_tools.test_module module<a class="headerlink" href="#module-webdriver_test_tools.test_module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-webdriver_test_tools.project.test_module">
+<span id="webdriver-test-tools-project-test-module-module"></span><h1>webdriver_test_tools.project.test_module module<a class="headerlink" href="#module-webdriver_test_tools.project.test_module" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="webdriver_test_tools.test_module.get_parser">
-<code class="descclassname">webdriver_test_tools.test_module.</code><code class="descname">get_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/test_module.html#get_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.test_module.get_parser" title="Permalink to this definition">¶</a></dt>
+<dt id="webdriver_test_tools.project.test_module.get_parser">
+<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">get_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#get_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.get_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the ArgumentParser object for use with main()</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="webdriver_test_tools.test_module.main">
-<code class="descclassname">webdriver_test_tools.test_module.</code><code class="descname">main</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/test_module.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.test_module.main" title="Permalink to this definition">¶</a></dt>
+<dt id="webdriver_test_tools.project.test_module.main">
+<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">main</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to call in test modules if __name__ == ‘__main__’ at run time</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -208,10 +216,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.version.html" class="btn btn-neutral float-right" title="webdriver_test_tools.version module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.webdriver.html" class="btn btn-neutral float-right" title="webdriver_test_tools.webdriver package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.test.html" class="btn btn-neutral" title="webdriver_test_tools.test module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.project.test_loader.html" class="btn btn-neutral" title="webdriver_test_tools.project.test_loader module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -242,7 +250,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.5.0',
+            VERSION:'0.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

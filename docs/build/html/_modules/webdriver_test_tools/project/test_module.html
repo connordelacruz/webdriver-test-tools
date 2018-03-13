@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.test_module &mdash; WebDriver Test Tools 0.5.0 documentation</title>
+  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 0.6.0 documentation</title>
   
 
   
@@ -26,20 +26,20 @@
 
   
   
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   
 
   
 
   
         <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.5.0 documentation" href="../../index.html"/>
-        <link rel="up" title="Module code" href="../index.html"/> 
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.6.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
 
   
-  <script src="../../_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -55,7 +55,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> WebDriver Test Tools
+            <a href="../../../index.html" class="icon icon-home"> WebDriver Test Tools
           
 
           
@@ -65,14 +65,14 @@
             
             
               <div class="version">
-                0.5
+                0.6
               </div>
             
           
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -91,8 +91,8 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../TEST_PROJECTS.html">Test Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../webdriver_test_tools.html">webdriver_test_tools package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../TEST_PROJECTS.html">Test Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools package</a></li>
 </ul>
 
             
@@ -107,7 +107,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">WebDriver Test Tools</a>
+          <a href="../../../index.html">WebDriver Test Tools</a>
         
       </nav>
 
@@ -135,11 +135,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>webdriver_test_tools.test_module</li>
+      <li>webdriver_test_tools.project.test_module</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,16 +156,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for webdriver_test_tools.test_module</h1><div class="highlight"><pre>
+  <h1>Source code for webdriver_test_tools.project.test_module</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Functions for test modules</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">config</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.webdriver_test_case</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">loader</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.webdriver_test_case</span> <span class="k">import</span> <span class="n">BROWSER_TEST_CLASSES</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">test_factory</span>
 
 
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../webdriver_test_tools.test_module.html#webdriver_test_tools.test_module.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function to call in test modules if __name__ == &#39;__main__&#39; at run time</span>
 
 <span class="sd">    :param tests_module: The module object for &lt;test_project&gt;.tests</span>
@@ -179,12 +180,15 @@
     <span class="n">unittest</span><span class="o">.</span><span class="n">installHandler</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">config_module</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">config_module</span> <span class="o">=</span> <span class="n">config</span>
-    <span class="n">test_runner</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">TestSuiteConfig</span><span class="o">.</span><span class="n">get_runner</span><span class="p">()</span>
-    <span class="n">tests</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_name</span><span class="p">)</span></div>
-    <span class="n">test_runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">generate_browser_test_suite</span><span class="p">(</span><span class="n">tests</span><span class="p">,</span> <span class="n">browser_class</span><span class="p">,</span> <span class="n">test_name</span><span class="p">))</span>
+    <span class="c1"># Load WebDriverTestCase subclasses from project tests</span>
+    <span class="n">tests</span> <span class="o">=</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_name</span><span class="p">)</span>
+    <span class="c1"># Generate browser test cases from the loaded WebDriverTestCase classes</span>
+    <span class="n">browser_test_suite</span> <span class="o">=</span> <span class="n">test_factory</span><span class="o">.</span><span class="n">generate_browser_test_suite</span><span class="p">(</span><span class="n">tests</span><span class="p">,</span> <span class="n">browser_class</span><span class="p">,</span> <span class="n">test_name</span><span class="p">)</span>
+    <span class="n">test_runner</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">TestSuiteConfig</span><span class="o">.</span><span class="n">get_runner</span><span class="p">()</span></div>
+    <span class="n">test_runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">browser_test_suite</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="get_parser"><a class="viewcode-back" href="../../webdriver_test_tools.test_module.html#webdriver_test_tools.test_module.get_parser">[docs]</a><span class="k">def</span> <span class="nf">get_parser</span><span class="p">():</span>
+<div class="viewcode-block" id="get_parser"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.get_parser">[docs]</a><span class="k">def</span> <span class="nf">get_parser</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Returns the ArgumentParser object for use with main()&quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
     <span class="c1"># Arguments for specifying browser to use</span>
@@ -230,23 +234,23 @@
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.5.0',
+            URL_ROOT:'../../../',
+            VERSION:'0.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
             SOURCELINK_SUFFIX: '.txt'
         };
     </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
 
   
 
   
   
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
   
 
   

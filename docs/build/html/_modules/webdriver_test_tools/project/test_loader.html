@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.loader &mdash; WebDriver Test Tools 0.5.0 documentation</title>
+  <title>webdriver_test_tools.project.test_loader &mdash; WebDriver Test Tools 0.6.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.5.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.6.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.5
+                0.6
               </div>
             
           
@@ -139,7 +139,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>webdriver_test_tools.project.loader</li>
+      <li>webdriver_test_tools.project.test_loader</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,14 +156,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for webdriver_test_tools.project.loader</h1><div class="highlight"><pre>
+  <h1>Source code for webdriver_test_tools.project.test_loader</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Load test cases from a project</span>
 
 <span class="kn">import</span> <span class="nn">types</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.webdriver_test_case</span> <span class="k">import</span> <span class="n">WebDriverTestCase</span>
 
 
-<div class="viewcode-block" id="load_project_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.loader.html#webdriver_test_tools.project.loader.load_project_tests">[docs]</a><span class="k">def</span> <span class="nf">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_project_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_project_tests">[docs]</a><span class="k">def</span> <span class="nf">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a list of WebDriverTestCase subclasses from all submodules in a test</span>
 <span class="sd">    project&#39;s tests/ directory</span>
 
@@ -183,7 +183,7 @@
     <span class="k">return</span> <span class="n">test_list</span>
 
 
-<div class="viewcode-block" id="load_webdriver_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.loader.html#webdriver_test_tools.project.loader.load_webdriver_test_cases">[docs]</a><span class="k">def</span> <span class="nf">load_webdriver_test_cases</span><span class="p">(</span><span class="n">module</span><span class="p">):</span>
+<div class="viewcode-block" id="load_webdriver_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_webdriver_test_cases">[docs]</a><span class="k">def</span> <span class="nf">load_webdriver_test_cases</span><span class="p">(</span><span class="n">module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a list of WebDriverTestCase subclasses from a module</span>
 
 <span class="sd">    :param module: The module to load tests from</span>
@@ -235,7 +235,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.5.0',
+            VERSION:'0.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
