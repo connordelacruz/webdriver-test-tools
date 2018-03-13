@@ -18,7 +18,6 @@ Submodules
 .. toctree::
 
    webdriver_test_tools.test
-   webdriver_test_tools.test_module
    webdriver_test_tools.version
 
 Module contents

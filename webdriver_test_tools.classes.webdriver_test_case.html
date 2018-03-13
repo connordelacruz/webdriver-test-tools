@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.webdriver_test_case module &mdash; WebDriver Test Tools 0.5.0 documentation</title>
+  <title>webdriver_test_tools.classes.webdriver_test_case module &mdash; WebDriver Test Tools 0.6.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.5.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.6.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.classes package" href="webdriver_test_tools.classes.html"/>
         <link rel="next" title="webdriver_test_tools.config package" href="webdriver_test_tools.config.html"/>
         <link rel="prev" title="webdriver_test_tools.classes.base_page module" href="webdriver_test_tools.classes.base_page.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.5
+                0.6
               </div>
             
           
@@ -347,88 +347,6 @@ currently isn’t implemented. It may be enabled in a future update.</p>
 
 </dd></dl>
 
-<dl class="function">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_case">
-<code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">generate_browser_test_case</code><span class="sig-paren">(</span><em>base_class</em>, <em>browser_test_class</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#generate_browser_test_case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_case" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates a browser-specific test case class from a generic WebDriverTestCase</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>base_class</strong> – WebDriverTestCase containing test functions</li>
-<li><strong>browser_test_class</strong> – The driver-specific implementation of WebDriverTestCase to generate a test for</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_cases">
-<code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">generate_browser_test_cases</code><span class="sig-paren">(</span><em>base_class</em>, <em>browser_test_class=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#generate_browser_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_cases" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate test cases for each browser from a WebDriverTestCase subclass</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>base_class</strong> – The WebDriverTestCase subclass to generate test classes for</li>
-<li><strong>browser_test_class</strong> – (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">List of generated test case classes for each browser</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_suite">
-<code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">generate_browser_test_suite</code><span class="sig-paren">(</span><em>test_case_list</em>, <em>browser_test_class=None</em>, <em>test_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#generate_browser_test_suite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_suite" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates test cases for multiple browsers and returns a TestSuite with all of the new tests</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>test_case_list</strong> – A list of WebDriverTestCase subclasses to generate a test suite for</li>
-<li><strong>browser_test_class</strong> – (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class.</li>
-<li><strong>test_name</strong> – (Optional) Run only the specified test in each generated browser test case. This can be the name of the class (e.g. ‘PrimaryNavTestCase’) or the name of a single test method in a class (e.g. ‘PrimaryNavTestCase.test_modal_links’)</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">unittest.TestSuite object with generated tests for each browser</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.load_browser_tests">
-<code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">load_browser_tests</code><span class="sig-paren">(</span><em>browser_test_cases</em>, <em>test_method=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#load_browser_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.load_browser_tests" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load tests from browser test case classes</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>browser_test_cases</strong> – List of generated browser test case classes</li>
-<li><strong>test_method</strong> – (Optional) If specified, load only this test method from each browser test case</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of loaded tests from the browser test cases</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </div>
 
 
@@ -475,7 +393,7 @@ currently isn’t implemented. It may be enabled in a future update.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.5.0',
+            VERSION:'0.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

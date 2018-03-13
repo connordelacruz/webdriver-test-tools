@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.webdriver_test_case &mdash; WebDriver Test Tools 0.5.0 documentation</title>
+  <title>webdriver_test_tools.classes.webdriver_test_case &mdash; WebDriver Test Tools 0.6.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.5.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.6.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.5
+                0.6
               </div>
             
           
@@ -285,82 +285,6 @@
 <span class="p">}</span>
 
 
-<span class="c1"># Functions for generating test cases</span>
-<span class="c1"># ----------------------------------------------------------------</span>
-
-
-<div class="viewcode-block" id="generate_browser_test_suite"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_suite">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_suite</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates test cases for multiple browsers and returns a TestSuite with all of the new tests</span>
-
-<span class="sd">    :param test_case_list: A list of WebDriverTestCase subclasses to generate a test suite for</span>
-<span class="sd">    :param browser_test_class: (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class.</span>
-<span class="sd">    :param test_name: (Optional) Run only the specified test in each generated browser test case. This can be the name of the class (e.g. &#39;PrimaryNavTestCase&#39;) or the name of a single test method in a class (e.g. &#39;PrimaryNavTestCase.test_modal_links&#39;)</span>
-
-<span class="sd">    :return: unittest.TestSuite object with generated tests for each browser</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># if set, test_name could be &#39;TestCase&#39; or &#39;TestCase.test_method&#39;</span>
-    <span class="n">test_name_parts</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">test_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">test_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-    <span class="c1"># If test_name is specified, reduce test_case_list to just that test case</span>
-    <span class="k">if</span> <span class="n">test_name_parts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># test_name needs to have a test case name regardless of whether a function is specified</span>
-        <span class="n">test_case_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_case</span> <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_case_list</span> <span class="k">if</span> <span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">test_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-    <span class="n">browser_test_cases</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c1"># Generate test classes for each test case in the list</span>
-    <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_case_list</span><span class="p">:</span>
-        <span class="n">browser_test_cases</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">generate_browser_test_cases</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">))</span>
-    <span class="c1"># if test_name is set, it could contain a specific test method to run</span>
-    <span class="n">test_method</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">test_name_parts</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">test_name_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="c1"># load tests from the generated classes and return a suite of them</span>
-    <span class="n">browser_tests</span> <span class="o">=</span> <span class="n">load_browser_tests</span><span class="p">(</span><span class="n">browser_test_cases</span><span class="p">,</span> <span class="n">test_method</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestSuite</span><span class="p">(</span><span class="n">browser_tests</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="load_browser_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.load_browser_tests">[docs]</a><span class="k">def</span> <span class="nf">load_browser_tests</span><span class="p">(</span><span class="n">browser_test_cases</span><span class="p">,</span> <span class="n">test_method</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Load tests from browser test case classes</span>
-
-<span class="sd">    :param browser_test_cases: List of generated browser test case classes</span>
-<span class="sd">    :param test_method: (Optional) If specified, load only this test method from each browser test case</span>
-
-<span class="sd">    :return: A list of loaded tests from the browser test cases</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">test_method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">browser_tests</span> <span class="o">=</span> <span class="p">[</span><span class="n">browser_test_case</span><span class="p">(</span><span class="n">test_method</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_test_case</span> <span class="ow">in</span> <span class="n">browser_test_cases</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">loader</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span>
-        <span class="n">browser_tests</span> <span class="o">=</span> <span class="p">[</span><span class="n">loader</span><span class="o">.</span><span class="n">loadTestsFromTestCase</span><span class="p">(</span><span class="n">browser_test_case</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_test_case</span> <span class="ow">in</span> <span class="n">browser_test_cases</span><span class="p">]</span></div>
-    <span class="k">return</span> <span class="n">browser_tests</span>
-
-
-<div class="viewcode-block" id="generate_browser_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_cases">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_cases</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generate test cases for each browser from a WebDriverTestCase subclass</span>
-
-<span class="sd">    :param base_class: The WebDriverTestCase subclass to generate test classes for</span>
-<span class="sd">    :param browser_test_class: (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class</span>
-
-<span class="sd">    :return: List of generated test case classes for each browser</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># generate class only for browser_test_class if specified</span>
-    <span class="n">browser_classes</span> <span class="o">=</span> <span class="n">BROWSER_TEST_CLASSES</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">browser_test_class</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="n">browser_test_class</span><span class="p">,</span> <span class="p">]</span>
-    <span class="c1"># iterate through a list of browser classes and generate test case</span>
-    <span class="n">browser_test_cases</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_class</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_classes</span>
-    <span class="p">]</span></div>
-    <span class="k">return</span> <span class="n">browser_test_cases</span>
-
-
-<div class="viewcode-block" id="generate_browser_test_case"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.generate_browser_test_case">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates a browser-specific test case class from a generic WebDriverTestCase</span>
-
-<span class="sd">    :param base_class: WebDriverTestCase containing test functions</span>
-<span class="sd">    :param browser_test_class: The driver-specific implementation of WebDriverTestCase to generate a test for</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Get base class name and docstring</span>
-    <span class="n">base_class_name</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__name__</span>
-    <span class="n">base_class_doc</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__doc__</span>
-    <span class="c1"># generate new class with driver name appended to the class name and in parentheses at the start of the docstring</span>
-    <span class="n">new_class</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">base_class_name</span> <span class="o">+</span> <span class="n">browser_test_class</span><span class="o">.</span><span class="n">DRIVER_NAME</span><span class="p">,</span> <span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">),</span>
-                     <span class="p">{</span><span class="s1">&#39;__doc__&#39;</span><span class="p">:</span> <span class="s1">&#39;(</span><span class="si">{}</span><span class="s1">) &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">browser_test_class</span><span class="o">.</span><span class="n">DRIVER_NAME</span><span class="p">)</span> <span class="o">+</span> <span class="n">base_class_doc</span><span class="p">})</span></div>
-    <span class="k">return</span> <span class="n">new_class</span>
 </pre></div>
 
            </div>
@@ -397,7 +321,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.5.0',
+            VERSION:'0.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
