@@ -6,11 +6,11 @@ from webdriver_test_tools.classes.webdriver_test_case import *
 from webdriver_test_tools.project import loader
 
 
-def main(tests_module, test_suite_config=None):
+def main(tests_module, config_module=None):
     """Function to call in test modules if __name__ == '__main__' at run time
 
     :param tests_module: The module object for <test_project>.tests
-    :param test_suite_config: (Optional) TestSuiteConfig class for the project. Will use webdriver_test_tools.config.TestSuiteConfig if not specified
+    :param config_module: (Optional) The module object for <test_project>.config. Will use webdriver_test_tools.config if not specified
     """
     parser = get_parser()
     args = parser.parse_args()
@@ -18,9 +18,9 @@ def main(tests_module, test_suite_config=None):
     test_name = args.test
     test_module_name = args.module
     unittest.installHandler()
-    if test_suite_config is None:
-        test_suite_config = config.TestSuiteConfig
-    test_runner = test_suite_config.get_runner()
+    if config_module is None:
+        config_module = config
+    test_runner = config_module.TestSuiteConfig.get_runner()
     tests = loader.load_project_tests(tests_module, test_module_name)
     test_runner.run(generate_browser_test_suite(tests, browser_class, test_name))
 
