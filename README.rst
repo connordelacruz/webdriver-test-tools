@@ -72,4 +72,4 @@ To initialize a new test project in the current directory:
 
 This will generate a new test package with template files and project
 directories. For information and examples, see the `test project
-documentation <http://connordelacruz.com/webdriver-test-tools/TEST_PROJECTS.html>`__.
+documentation <http://connordelacruz.com/webdriver-test-tools/test_projects.html>`__.

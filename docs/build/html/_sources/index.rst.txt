@@ -10,7 +10,7 @@ WebDriver Test Tools
    :maxdepth: 2
    :caption: Contents:
 
-   TEST_PROJECTS
+   test_projects
    webdriver_test_tools
 
 
