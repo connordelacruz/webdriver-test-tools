@@ -16,6 +16,9 @@ setup(
         author_email='connor.c.delacruz@gmail.com',
         license='MIT',
         packages=find_packages(),
+        entry_points={
+            'console_scripts': ['webdriver_test_tools = webdriver_test_tools.__main__:main']
+        },
         install_requires=[
             'selenium>=3.9',
             'colour-runner>=0.0.5',
