@@ -49,9 +49,25 @@ Installing with the `-e` flag will update the package automatically when changes
 
 ## Configure site URLs
 
-After initializing a project, the URL of the site to be tested will need to be configured. In `example_package/config/site.py`, set the `SITE_URL` and `BASE_URL` of the `SiteConfig` class. You can add any other URLs you'll need as class variables as well. 
+After initializing a project, the URL of the site to be tested will need to be configured. In `example_package/config/site.py`, set the `SITE_URL` and `BASE_URL` of the `SiteConfig` class. You can add any other URLs you'll need as class variables as well. We'll use [example.com](https://www.example.com/).
 
-**TODO:** add example code
+`config/site.py`:
+
+```python
+# URL configurations for a site
+
+from webdriver_test_tools.config import site
+
+
+class SiteConfig(site.SiteConfig):
+    # URL of the home page
+    SITE_URL = 'https://www.example.com'
+    # Base URL for site pages (followed by a '/')
+    BASE_URL = SITE_URL + '/'
+    # DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE
+```
+
+**TODO:** add additional URL here for testing 'More information...' link (https://www.iana.org/domains/reserved)
 
 
 ## Add a page object
