@@ -7,7 +7,8 @@ python unit tests.
 TODO:
 -----
 
--  Info on page object model
+-  Link to relevant documentation for Selenium WebDriver, python
+   unittest library
 
 Overview
 --------
@@ -61,13 +62,13 @@ For info on command line arguments:
 
 ::
 
-    python -m webdriver_test_tools --help
+    webdriver_test_tools --help
 
 To initialize a new test project in the current directory:
 
 ::
 
-    python -m webdriver_test_tools --init
+    webdriver_test_tools --init
 
 This will generate a new test package with template files and project
 directories.
