@@ -5,7 +5,6 @@ Utilities for writing front-end test suites using Selenium WebDriver and python 
 ## TODO:
 
 * Link to relevant documentation for Selenium WebDriver, python unittest library
-* Link to other .md docs in README.md
 
 ## Overview
 
@@ -46,13 +45,13 @@ pip install webdriver-test-tools
 For info on command line arguments:
 
 ```
-python -m webdriver_test_tools --help
+webdriver_test_tools --help
 ```
 
 To initialize a new test project in the current directory:
 
 ```
-python -m webdriver_test_tools --init
+webdriver_test_tools --init
 ```
 
 This will generate a new test package with template files and project directories.
