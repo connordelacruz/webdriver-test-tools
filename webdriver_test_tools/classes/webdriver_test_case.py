@@ -36,7 +36,7 @@ class WebDriverTestCase(unittest.TestCase):
 class FirefoxTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Firefox webdriver
 
-    `Driver download <https://github.com/mozilla/geckodriver/releases>`_
+    `Driver download <https://github.com/mozilla/geckodriver/releases>`__
     """
     DRIVER_NAME = 'Firefox'
     SHORT_NAME = DRIVER_NAME.lower()
@@ -49,7 +49,7 @@ class FirefoxTestCase(WebDriverTestCase):
 class ChromeTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Chrome webdriver
 
-    `Driver download <https://sites.google.com/a/chromium.org/chromedriver/downloads>`_
+    `Driver download <https://sites.google.com/a/chromium.org/chromedriver/downloads>`__
     """
     DRIVER_NAME = 'Chrome'
     SHORT_NAME = DRIVER_NAME.lower()
