@@ -11,6 +11,7 @@ WebDriver Test Tools
    :caption: Contents:
 
    TEST_PROJECTS
+   EXAMPLE_TEST_PROJECT
    webdriver_test_tools
 
 

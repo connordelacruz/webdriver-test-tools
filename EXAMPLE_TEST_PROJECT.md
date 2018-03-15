@@ -1,14 +1,7 @@
 # Test Project Example
 
-A quick example test project using the `webdriver_test_tools` framework. Source code for the examples can be found [here](docs/example/example-project/).
+A quick example test project using `webdriver_test_tools`. Source code for the example project can be found [here](docs/example/example-project/).
 
-## WORK IN PROGRESS
-
-This documentation is currently a work in progress and is missing some sections.  
-
-**TODO:** link to example project to see full source code
-
----
 
 ## Initialize the project
 
@@ -58,8 +51,6 @@ Installing with the `-e` flag will update the package automatically when changes
 ## Configure site URLs
 
 After initializing a project, the URL of the site to be tested will need to be configured. In `example_package/config/site.py`, set the `SITE_URL` and `BASE_URL` of the `SiteConfig` class.  
-
-**TODO:** Briefly explain motiviation for declaring URLs in a single location
 
 For this example, we'll use [example.com](https://www.example.com/).
 
@@ -138,7 +129,7 @@ this page object."""
     ...
 ```
 
-**TODO:** brief explanation of `locate.by_element_text()`
+The utility function `locate.by_element_text()` returns an XPATH locator for elements with the specified text.
 
 
 ### Interacting with page elements
