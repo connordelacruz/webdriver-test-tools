@@ -4,7 +4,8 @@ Utilities for writing front-end test suites using Selenium WebDriver and python 
 
 ## TODO:
 
-* Info on page object model
+* Link to relevant documentation for Selenium WebDriver, python unittest library
+* Link to other .md docs in README.md
 
 ## Overview
 
