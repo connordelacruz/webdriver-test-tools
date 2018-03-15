@@ -1,5 +1,7 @@
 # Test Project Example
 
+A quick example test project using the `webdriver_test_tools` framework. Source code for the examples can be found [here](docs/example/example-project/).
+
 ## WORK IN PROGRESS
 
 This documentation is currently a work in progress and is missing some sections.  
