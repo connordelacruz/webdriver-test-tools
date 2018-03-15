@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__
+.idea
+# Packaging stuff
+*.pyc
+/dist/
+/*.egg-info
