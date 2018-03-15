@@ -1,14 +1,10 @@
-Selenium WebDriver Test Framework
-=================================
+Selenium WebDriver Test Tools
+=============================
 
 Utilities for writing front-end test suites using Selenium WebDriver and
 python unit tests.
 
-TODO:
------
-
--  Link to relevant documentation for Selenium WebDriver, python
-   unittest library
+.. contents::
 
 Overview
 --------

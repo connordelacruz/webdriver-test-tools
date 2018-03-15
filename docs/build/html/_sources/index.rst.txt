@@ -3,18 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-WebDriver Test Tools
-====================
-
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-
+   :caption: Docs:
+    
+   README
    test_projects
+   example_project
    webdriver_test_tools
-
-
-.. include:: ./README.rst
 
 
 Indices and tables
