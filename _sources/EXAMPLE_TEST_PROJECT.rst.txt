@@ -3,7 +3,7 @@ Test Project Example
 
 A quick example test project using ``webdriver_test_tools``. Source code
 for the example project can be found
-`here <../example/example-project/>`__.
+`here <https://github.com/connordelacruz/webdriver-test-tools/tree/master/docs/example/example-project>`__.
 
 Initialize the project
 ----------------------
