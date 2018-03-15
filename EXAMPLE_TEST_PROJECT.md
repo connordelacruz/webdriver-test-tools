@@ -4,6 +4,8 @@
 
 This documentation is currently a work in progress and is missing some sections.  
 
+**TODO:** link to example project to see full source code
+
 ---
 
 ## Initialize the project
@@ -50,8 +52,6 @@ pip install -e .
 
 Installing with the `-e` flag will update the package automatically when changes are made to the source code.
 
-**Note:** Command may be `pip3` instead of `pip` depending on the system.
-
 
 ## Configure site URLs
 
@@ -95,7 +95,7 @@ class SiteConfig(site.SiteConfig):
 
 ### Creating a new page object module
 
-**TODO:** Briefly explain POM and link to more info on the model
+This test framework is best used with the [Page Object Model](https://martinfowler.com/bliki/PageObject.html). Interaction with the page should be handled by page objects to minimize the need to alter tests whenever the HTML is changed.
 
 After configuring URLs, we'll want to add a page object for the home page of example.com. Copy the template file `templates/page_object.py` to the `pages/` directory and name the copied file `home.py`:
 
@@ -138,9 +138,23 @@ this page object."""
 
 **TODO:** brief explanation of `locate.by_element_text()`
 
+
 ### Interacting with page elements
 
-**TODO:** continue from here
+For our example tests, we'll want to look at the heading text and click on the 'More information...' link. Add the following functions to the `HomePage` class:
+
+```python
+...
+class HomePage(BasePage):
+    ...
+    def get_heading_text(self):
+        heading_element = self.driver.find_element(*self.Locator.HEADING)
+        return heading_element.text()
+
+    def click_more_information_link(self):
+        link_element = self.driver.find_element(*self.Locator.INFO_LINK)
+        link_element.click()
+```
 
 ## Add a test
 
