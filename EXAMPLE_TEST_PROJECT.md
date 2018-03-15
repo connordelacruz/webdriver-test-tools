@@ -221,5 +221,69 @@ We should now have everything we need to run our test suite.
 
 ## Run the test
 
-**TODO:** document and example test output for successful and failed test
+### Running the test suite
+
+To run our test suite:
+
+```
+python -m example_package
+```
+
+This will generate new test case classes for Chrome and Firefox based on the test case classes we wrote and run them. If all tests pass, the output should look like this:
+
+```
+(Firefox) Really contrived example test case
+    Test that the 'More information...' link goes to the correct URL ... ok
+    Ensure that the page heading text is correct ... ok
+(Chrome) Really contrived example test case
+    Test that the 'More information...' link goes to the correct URL ... ok
+    Ensure that the page heading text is correct ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 15.436s
+
+OK
+```
+
+### Optional command line arguments
+
+Test packages can be run with various optional arguments to run a limited set of test cases instead of running the entire suite. To see a list of command line arguments, run:
+
+```
+python -m example_package --help
+```
+
+#### Running in a specific browser
+
+If we just wanted to run the tests in a specific browser, we can use the `--browser` command line argument. For example, if we only wanted to run Firefox test cases:
+
+```
+python -m example_package --browser firefox
+```
+
+#### Running specific test modules
+
+If we only want to run a specific test module, we can use the `--module` command line argument. For example, if we just wanted to run `tests/homepage.py`:
+
+```
+python -m example_package --module homepage
+```
+
+Since we only have one test module in this example, this doesn't do anything different than normal, but this can be useful in test projects with multiple test modules. 
+
+#### Running specific test cases or functions
+
+If we only want to run a specific test case or function within a test case, we can use the `--test` command line argument. For example, if we just wanted to run HomePageTestCase:
+
+```
+python -m example_package --test HomePageTestCase
+```
+
+Since we only have one test case class in this example, this doesn't do anything different than normal, but this can be useful in test projects with multiple cases. 
+
+If we just wanted to run the `test_more_information_link` function:
+
+```
+python -m example_package --test HomePageTestCase.test_more_information_link
+```
 
