@@ -103,7 +103,7 @@ After configuring URLs, we'll want to add a page object for the home page of exa
 cp example_package/templates/page_object.py example_package/pages/home.py
 ```
 
-In `page/home.py`, rename the `TemplatePage` class to `HomePage`. You can also remove the `Input` subclass. It's sometimes useful to keep track of input name attributes, but since there's no inputs on example.com it can be omitted.
+In `pages/home.py`, rename the `TemplatePage` class to `HomePage`. You can also remove the `Input` subclass. It's sometimes useful to keep track of input name attributes, but since there's no inputs on example.com it can be omitted.
 
 ### Locating page elements
 
@@ -149,7 +149,7 @@ class HomePage(BasePage):
     ...
     def get_heading_text(self):
         heading_element = self.driver.find_element(*self.Locator.HEADING)
-        return heading_element.text()
+        return heading_element.text
 
     def click_more_information_link(self):
         link_element = self.driver.find_element(*self.Locator.INFO_LINK)
@@ -158,8 +158,66 @@ class HomePage(BasePage):
 
 ## Add a test
 
-**TODO:** add example code
+### Creating a new test module
 
+Now that we have a page object for interacting with example.com, we can write a test case. Copy the file `templates/test_case.py` to the `tests/` directory and name the copied file `homepage.py`:
+
+```
+cp example_package/templates/test_case.py example_package/tests/homepage.py
+```
+
+Whenever a new test module is created, it needs to be imported in `tests/__init__.py` so the framework can detect it when loading tests.
+
+`tests/__init__.py`:
+
+```python
+from . import homepage
+```
+
+In `tests/homepage.py`, rename the `TemplateTestCase` class to `HomePageTestCase`. Then import the `HomePage` class created in the previous step.
+
+`tests/homepage.py`:
+
+```python
+# Imports
+# ----------------------------------------------------------------
+from example_package.pages.home import HomePage
+...
+class HomePageTestCase(WebDriverTestCase):
+    """Really contrived example test case"""
+    ...
+```
+
+### Adding test functions
+
+We're going to add 2 test functions: 
+
+1. Retrieve the heading text and assert that it says 'Example Domain'
+2. Click the 'More information...' link and assert that the URL matches SiteConfig.INFO_URL
+
+`tests/homepage.py`:
+
+```python
+...
+class HomePageTestCase(WebDriverTestCase):
+    ...
+    def test_page_heading(self):
+        """Ensure that the page heading text is correct"""
+        page_object = HomePage(self.driver)
+        heading_text = page_object.get_heading_text()
+        self.assertEqual('Example Domain', heading_text)
+
+    def test_more_information_link(self):
+        """Test that the 'More information...' link goes to the correct URL"""
+        page_object = HomePage(self.driver)
+        expected_url = config.SiteConfig.INFO_URL
+        page_object.click_more_information_link()
+        self.assertTrue(webdriver_test_tools.test.url_change_test(self.driver, expected_url))
+```
+
+**Note:** Test functions need to begin with the prefix `test_` in order for the python `unittest` library to recognize them as tests.
+
+We should now have everything we need to run our test suite.
 
 ## Run the test
 
