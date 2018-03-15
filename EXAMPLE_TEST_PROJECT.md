@@ -1,5 +1,11 @@
 # Test Project Example
 
+## WORK IN PROGRESS
+
+This documentation is currently a work in progress and is missing some sections.  
+
+---
+
 ## Initialize the project
 
 First, create a directory for the test project:
