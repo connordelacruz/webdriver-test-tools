@@ -71,7 +71,5 @@ To initialize a new test project in the current directory:
     webdriver_test_tools --init
 
 This will generate a new test package with template files and project
-directories.
-
-**Note:** Command may be ``python3`` instead of ``python`` depending on
-the system
+directories. For information and examples, see the `test project
+documentation <http://connordelacruz.com/webdriver-test-tools/TEST_PROJECTS.html>`__.
