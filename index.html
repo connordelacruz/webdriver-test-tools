@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>WebDriver Test Tools &mdash; WebDriver Test Tools 0.6.1 documentation</title>
+  <title>WebDriver Test Tools &mdash; WebDriver Test Tools 0.6.2 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.6.1 documentation" href="#"/>
-        <link rel="next" title="Test Projects" href="TEST_PROJECTS.html"/> 
+    <link rel="top" title="WebDriver Test Tools 0.6.2 documentation" href="#"/>
+        <link rel="next" title="Test Project Overview" href="TEST_PROJECTS.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -91,8 +91,8 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="TEST_PROJECTS.html">Test Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="EXAMPLE_TEST_PROJECT.html">Test Project Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TEST_PROJECTS.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TEST_PROJECTS.html#example-project">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools package</a></li>
 </ul>
 
@@ -162,18 +162,17 @@
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="TEST_PROJECTS.html">Test Projects</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="TEST_PROJECTS.html#setup">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TEST_PROJECTS.html">Test Project Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="TEST_PROJECTS.html#basic-command-line-usage">Basic Command Line Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="TEST_PROJECTS.html#project-structure">Project Structure</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="EXAMPLE_TEST_PROJECT.html">Test Project Example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="EXAMPLE_TEST_PROJECT.html#initialize-the-project">Initialize the project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EXAMPLE_TEST_PROJECT.html#configure-site-urls">Configure site URLs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EXAMPLE_TEST_PROJECT.html#add-a-page-object">Add a page object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EXAMPLE_TEST_PROJECT.html#add-a-test">Add a test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EXAMPLE_TEST_PROJECT.html#run-the-test">Run the test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TEST_PROJECTS.html#example-project">Example Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TEST_PROJECTS.html#initialize-the-project">Initialize the project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TEST_PROJECTS.html#configure-site-urls">Configure site URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TEST_PROJECTS.html#add-a-page-object">Add a page object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TEST_PROJECTS.html#add-a-test">Add a test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TEST_PROJECTS.html#run-the-test">Run the test</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools package</a><ul>
@@ -192,7 +191,8 @@ python unit tests.</p>
 <div class="section" id="todo">
 <h2>TODO:<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Info on page object model</li>
+<li>Link to relevant documentation for Selenium WebDriver, python
+unittest library</li>
 </ul>
 </div>
 <div class="section" id="overview">
@@ -238,11 +238,11 @@ system</p>
 <div class="section" id="command-line-usage">
 <h2>Command Line Usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
 <p>For info on command line arguments:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">webdriver_test_tools</span> <span class="o">--</span><span class="n">help</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">webdriver_test_tools</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 </div>
 <p>To initialize a new test project in the current directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">webdriver_test_tools</span> <span class="o">--</span><span class="n">init</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">webdriver_test_tools</span> <span class="o">--</span><span class="n">init</span>
 </pre></div>
 </div>
 <p>This will generate a new test package with template files and project
@@ -270,7 +270,7 @@ the system</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="TEST_PROJECTS.html" class="btn btn-neutral float-right" title="Test Projects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="TEST_PROJECTS.html" class="btn btn-neutral float-right" title="Test Project Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -302,7 +302,7 @@ the system</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.6.1',
+            VERSION:'0.6.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
