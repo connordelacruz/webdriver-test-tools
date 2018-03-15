@@ -55,7 +55,11 @@ Installing with the `-e` flag will update the package automatically when changes
 
 ## Configure site URLs
 
-After initializing a project, the URL of the site to be tested will need to be configured. In `example_package/config/site.py`, set the `SITE_URL` and `BASE_URL` of the `SiteConfig` class. You can add any other URLs you'll need as class variables as well. We'll use [example.com](https://www.example.com/).
+After initializing a project, the URL of the site to be tested will need to be configured. In `example_package/config/site.py`, set the `SITE_URL` and `BASE_URL` of the `SiteConfig` class.  
+
+**TODO:** Briefly explain motiviation for declaring URLs in a single location
+
+For this example, we'll use [example.com](https://www.example.com/).
 
 `config/site.py`:
 
@@ -73,7 +77,18 @@ class SiteConfig(site.SiteConfig):
     # DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE
 ```
 
-**TODO:** add additional URL here for testing 'More information...' link (https://www.iana.org/domains/reserved)
+We'll be testing that clicking a link takes us to an external page, so we'll add another variable `INFO_URL` to `SiteConfig`:
+
+`config/site.py`:
+
+```python
+...
+class SiteConfig(site.SiteConfig):
+    ...
+    # DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE
+    # URL linked to by the 'More Information' link on example.com
+    INFO_URL = 'https://www.iana.org/domains/reserved'
+```
 
 
 ## Add a page object
