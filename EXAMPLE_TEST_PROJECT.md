@@ -93,10 +93,54 @@ class SiteConfig(site.SiteConfig):
 
 ## Add a page object
 
+### Creating a new page object module
+
+**TODO:** Briefly explain POM and link to more info on the model
+
+After configuring URLs, we'll want to add a page object for the home page of example.com. Copy the template file `templates/page_object.py` to the `pages/` directory and name the copied file `home.py`:
+
+```
+cp example_package/templates/page_object.py example_package/pages/home.py
+```
+
+In `page/home.py`, rename the `TemplatePage` class to `HomePage`. You can also remove the `Input` subclass. It's sometimes useful to keep track of input name attributes, but since there's no inputs on example.com it can be omitted.
+
+### Locating page elements
+
+For any element we need to locate, we'll want to keep track of how to target it in the `Locator` subclass. Selenium WebDriver locators are tuples in the format `(By.<selection type>, <selection string>)`, where `<selection type>` is one of the constants declared in `selenium.webdriver.common.by.By` and `<selection string>` is the string used to find the element.
+
+Example.com is a pretty bare bones website, so these examples will be pretty contrived. We'll add locators for the site heading and the 'More information...' link.
+
+To locate the 'More information...' link, we're going to select it by its link text. Update the `import` statement from the `webdriver_test_tools.webdriver` package to import the `locate` module:
+
+```python
+# Page object
+
+# Imports
+# ----------------------------------------------------------------
+...
+from webdriver_test_tools.webdriver import actions, locate 
+...
+```
+
+Then we'll add `HEADING` and `INFO_LINK` variables to the `Locator` subclass:
+
+```python
+...
+class HomePage(BasePage):
+    class Locator(object):
+        """WebDriver locator tuples for any elements that will need to be accessed by
+this page object."""
+        HEADING = (By.TAG_NAME, 'h1')
+        INFO_LINK = locate.by_element_text('More information', 'a')
+    ...
+```
+
+**TODO:** brief explanation of `locate.by_element_text()`
+
+### Interacting with page elements
+
 **TODO:** continue from here
-
-**TODO:** add example code
-
 
 ## Add a test
 
