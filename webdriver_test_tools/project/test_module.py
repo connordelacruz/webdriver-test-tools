@@ -15,7 +15,10 @@ def main(tests_module, config_module=None):
     """
     parser = get_parser()
     args = parser.parse_args()
-    browser_class = None if args.browser is None else BROWSER_TEST_CLASSES[args.browser]
+    if args.browser is None:
+        browser_classes = None
+    else:
+        browser_classes = [browser_class for browser_name, browser_class in BROWSER_TEST_CLASSES.items() if browser_name in args.browser]
     test_name = args.test
     test_module_name = args.module
     unittest.installHandler()
@@ -24,7 +27,7 @@ def main(tests_module, config_module=None):
     # Load WebDriverTestCase subclasses from project tests
     tests = test_loader.load_project_tests(tests_module, test_module_name)
     # Generate browser test cases from the loaded WebDriverTestCase classes
-    browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_class, test_name)
+    browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes, test_name)
     test_runner = config_module.TestSuiteConfig.get_runner()
     test_runner.run(browser_test_suite)
 
@@ -34,7 +37,8 @@ def get_parser():
     parser = argparse.ArgumentParser()
     # Arguments for specifying browser to use
     browser_choices = [k for k in BROWSER_TEST_CLASSES]
-    parser.add_argument('-b', '--browser', choices=browser_choices, help='Run tests only in the specified browser')
+    # TODO: update help string
+    parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, help='Run tests only in the specified browser')
     # Arguments for specifying what test to run
     parser.add_argument('-t', '--test', help='Run a specific test case class or function', metavar='TestCase[.test_method]')
     # Arguments for specifying test module to run

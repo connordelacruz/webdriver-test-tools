@@ -4,11 +4,12 @@ import unittest
 from webdriver_test_tools.classes.webdriver_test_case import BROWSER_TEST_CLASSES
 
 
-def generate_browser_test_suite(test_case_list, browser_test_class=None, test_name=None):
+# TODO: update docstring
+def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_name=None):
     """Generates test cases for multiple browsers and returns a TestSuite with all of the new tests
 
     :param test_case_list: A list of WebDriverTestCase subclasses to generate a test suite for
-    :param browser_test_class: (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class.
+    :param browser_test_classes: (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class.
     :param test_name: (Optional) Run only the specified test in each generated browser test case. This can be the name of the class (e.g. 'PrimaryNavTestCase') or the name of a single test method in a class (e.g. 'PrimaryNavTestCase.test_modal_links')
 
     :return: unittest.TestSuite object with generated tests for each browser
@@ -22,7 +23,7 @@ def generate_browser_test_suite(test_case_list, browser_test_class=None, test_na
     browser_test_cases = []
     # Generate test classes for each test case in the list
     for test_case in test_case_list:
-        browser_test_cases.extend(generate_browser_test_cases(test_case, browser_test_class))
+        browser_test_cases.extend(generate_browser_test_cases(test_case, browser_test_classes))
     # if test_name is set, it could contain a specific test method to run
     test_method = None if test_name_parts is None or len(test_name_parts) < 2 else test_name_parts[1]
     # load tests from the generated classes and return a suite of them
@@ -46,16 +47,17 @@ def load_browser_tests(browser_test_cases, test_method=None):
     return browser_tests
 
 
-def generate_browser_test_cases(base_class, browser_test_class=None):
+# TODO: update docstring
+def generate_browser_test_cases(base_class, browser_test_classes=None):
     """Generate test cases for each browser from a WebDriverTestCase subclass
 
     :param base_class: The WebDriverTestCase subclass to generate test classes for
-    :param browser_test_class: (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class
+    :param browser_test_classes: (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class
 
     :return: List of generated test case classes for each browser
     """
     # generate class only for browser_test_class if specified
-    browser_classes = BROWSER_TEST_CLASSES.values() if browser_test_class is None else [browser_test_class, ]
+    browser_classes = BROWSER_TEST_CLASSES.values() if browser_test_classes is None else browser_test_classes
     # iterate through a list of browser classes and generate test case
     browser_test_cases = [
         generate_browser_test_case(base_class, browser_class) for browser_class in browser_classes
