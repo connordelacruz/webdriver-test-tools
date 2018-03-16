@@ -37,8 +37,7 @@ def get_parser():
     parser = argparse.ArgumentParser()
     # Arguments for specifying browser to use
     browser_choices = [k for k in BROWSER_TEST_CLASSES]
-    # TODO: update help string
-    parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, help='Run tests only in the specified browser')
+    parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, help='Run tests only in the specified browsers')
     # Arguments for specifying what test to run
     parser.add_argument('-t', '--test', help='Run a specific test case class or function', metavar='TestCase[.test_method]')
     # Arguments for specifying test module to run

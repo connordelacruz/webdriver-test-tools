@@ -4,12 +4,11 @@ import unittest
 from webdriver_test_tools.classes.webdriver_test_case import BROWSER_TEST_CLASSES
 
 
-# TODO: update docstring
 def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_name=None):
     """Generates test cases for multiple browsers and returns a TestSuite with all of the new tests
 
     :param test_case_list: A list of WebDriverTestCase subclasses to generate a test suite for
-    :param browser_test_classes: (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class.
+    :param browser_test_classes: (Optional) If specified, only generate tests using the browser classes specified in this list. If not specified, tests will be generated for each available browser test case class.
     :param test_name: (Optional) Run only the specified test in each generated browser test case. This can be the name of the class (e.g. 'PrimaryNavTestCase') or the name of a single test method in a class (e.g. 'PrimaryNavTestCase.test_modal_links')
 
     :return: unittest.TestSuite object with generated tests for each browser
@@ -47,12 +46,11 @@ def load_browser_tests(browser_test_cases, test_method=None):
     return browser_tests
 
 
-# TODO: update docstring
 def generate_browser_test_cases(base_class, browser_test_classes=None):
     """Generate test cases for each browser from a WebDriverTestCase subclass
 
     :param base_class: The WebDriverTestCase subclass to generate test classes for
-    :param browser_test_classes: (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class
+    :param browser_test_classes: (Optional) If specified, only generate tests using the browser classes specified in this list. If not specified, tests will be generated for each available browser test case class
 
     :return: List of generated test case classes for each browser
     """
