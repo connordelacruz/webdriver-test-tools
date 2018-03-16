@@ -1,5 +1,5 @@
-webdriver\_test\_tools package
-==============================
+webdriver\_test\_tools API
+==========================
 
 Subpackages
 -----------

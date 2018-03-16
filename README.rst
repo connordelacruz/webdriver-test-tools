@@ -1,8 +1,7 @@
 Selenium WebDriver Test Tools
 =============================
 
-Utilities for writing front-end test suites using Selenium WebDriver and
-python unit tests.
+Utilities for writing front-end test suites using `Selenium WebDriver <https://www.seleniumhq.org/docs/03_webdriver.jsp>`__ and python unit tests.
 
 .. contents::
 
@@ -12,6 +11,8 @@ Overview
 This project aims to reduce the amount of time and additional code
 required to automate front-end functional testing by providing utilities
 and conventions for building test suites.
+
+This project uses Selenium WebDriver for automated browser actions and the python unittest library for the test framework. 
 
 Prerequisites
 -------------
@@ -38,6 +39,14 @@ On MacOS, both drivers can be installed using
     brew install geckodriver chromedriver
 
 Support for more browser drivers will be added in future updates.
+
+Libraries
+~~~~~~~~~
+
+The framework uses Selenium WebDriver and python unittest libraries, documentation for which can be found below:
+
+- `Selenium with Python <http://selenium-python.readthedocs.io/>`__
+- `Python unit testing framework <https://docs.python.org/3/library/unittest.html>`__
 
 Installation
 ------------
