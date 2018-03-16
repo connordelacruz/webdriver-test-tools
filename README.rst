@@ -45,7 +45,7 @@ Libraries
 
 The framework uses Selenium WebDriver and python unittest libraries, documentation for which can be found below:
 
-- `Selenium with Python <http://selenium-python.readthedocs.io/>`__
+- `Selenium with Python <https://seleniumhq.github.io/selenium/docs/api/py/api.html>`__
 - `Python unit testing framework <https://docs.python.org/3/library/unittest.html>`__
 
 Installation
