@@ -116,6 +116,7 @@ class EdgeTestCase(WebDriverTestCase):
         super().setUp()
 
 
+# TODO: move to config?
 # Dictionary of usable test case classes indexed by the short name for that class (i.e. its command line argument)
 BROWSER_TEST_CLASSES = {
     FirefoxTestCase.SHORT_NAME: FirefoxTestCase,
