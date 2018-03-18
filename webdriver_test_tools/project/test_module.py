@@ -3,6 +3,7 @@ import argparse
 import unittest
 
 from webdriver_test_tools import config
+# TODO: remove import once config is implemented
 from webdriver_test_tools.classes.webdriver_test_case import BROWSER_TEST_CLASSES
 from webdriver_test_tools.project import test_loader, test_factory
 
@@ -13,8 +14,9 @@ def main(tests_module, config_module=None):
     :param tests_module: The module object for <test_project>.tests
     :param config_module: (Optional) The module object for <test_project>.config. Will use webdriver_test_tools.config if not specified
     """
-    parser = get_parser()
+    parser = get_parser(config_module)
     args = parser.parse_args()
+    # TODO: update to use config_module
     if args.browser is None:
         browser_classes = None
     else:
@@ -32,11 +34,14 @@ def main(tests_module, config_module=None):
     test_runner.run(browser_test_suite)
 
 
-def get_parser():
+def get_parser(config_module=None):
     """Returns the ArgumentParser object for use with main()"""
     parser = argparse.ArgumentParser()
+    # Use default config if module is None or doesn't contain BrowserConfig class
+    if config_module is None or not 'BrowserConfig' in dir(config_module):
+        config_module = config
     # Arguments for specifying browser to use
-    browser_choices = [k for k in BROWSER_TEST_CLASSES]
+    browser_choices = [k for k in config_module.BrowserConfig.BROWSER_TEST_CLASSES]
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, help='Run tests only in the specified browsers')
     # Arguments for specifying what test to run
     parser.add_argument('-t', '--test', help='Run a specific test case class or function', metavar='TestCase[.test_method]')
