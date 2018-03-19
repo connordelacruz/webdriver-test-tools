@@ -227,15 +227,20 @@
 <div class="viewcode-block" id="SafariTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase">[docs]</a><span class="k">class</span> <span class="nc">SafariTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Safari webdriver</span>
 
-<span class="sd">    `Driver info &lt;https://webkit.org/blog/6900/webdriver-support-in-safari-10/&gt;`_</span>
+<span class="sd">    `Driver info &lt;https://webkit.org/blog/6900/webdriver-support-in-safari-10/&gt;`__</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        This class is experimental and has not been fully tested. It is disabled by</span>
+<span class="sd">        default but can be enabled in ``&lt;test_package&gt;/config/browser.py`` by</span>
+<span class="sd">        uncommenting the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.</span>
 
 <span class="sd">    .. warning::</span>
 
 <span class="sd">        Safari&#39;s webdriver can be unreliable and buggy. Apart from starting up a new</span>
 <span class="sd">        Safari instance each time it&#39;s initialized and leaving the process running even</span>
 <span class="sd">        when driver.quit() is called, it also seems to lack certain features of the</span>
-<span class="sd">        webdriver API, leading to several inaccurate test failures. As such, the class</span>
-<span class="sd">        currently isn&#39;t implemented. It may be enabled in a future update.</span>
+<span class="sd">        webdriver API, leading to several inaccurate test failures.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Safari&#39;</span>
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
@@ -248,10 +253,13 @@
 <div class="viewcode-block" id="IETestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.IETestCase">[docs]</a><span class="k">class</span> <span class="nc">IETestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Internet Explorer webdriver</span>
 
+<span class="sd">    `Driver info &lt;https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver&gt;`__</span>
+
 <span class="sd">    .. warning::</span>
 
-<span class="sd">        This class has not been tested yet and isn&#39;t implemented. It may be enabled in</span>
-<span class="sd">        a future update.</span>
+<span class="sd">        This class is experimental and has not been fully tested. It is disabled by</span>
+<span class="sd">        default but can be enabled in ``&lt;test_package&gt;/config/browser.py`` by</span>
+<span class="sd">        uncommenting the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Internet Explorer&#39;</span>
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="s1">&#39;ie&#39;</span>
@@ -268,8 +276,9 @@
 
 <span class="sd">    .. warning::</span>
 
-<span class="sd">        This class has not been tested yet and isn&#39;t implemented. It may be enabled in</span>
-<span class="sd">        a future update.</span>
+<span class="sd">        This class is experimental and has not been fully tested. It is disabled by</span>
+<span class="sd">        default but can be enabled in ``&lt;test_package&gt;/config/browser.py`` by</span>
+<span class="sd">        uncommenting the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Edge&#39;</span>
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>

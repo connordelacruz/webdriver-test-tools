@@ -18,14 +18,19 @@ This project uses Selenium WebDriver for automated browser actions and the pytho
 Prerequisites
 =============
 
-python
+Python
 ------
 
 -  python 3+
 -  pip
 
-drivers
+Drivers
 -------
+
+Required
+~~~~~~~~
+
+The following web drivers are required:
 
 -  `geckodriver <https://github.com/mozilla/geckodriver/releases>`__
    (FireFox)
@@ -39,7 +44,25 @@ On MacOS, both drivers can be installed using
 
     brew install geckodriver chromedriver
 
-Support for more browser drivers will be added in future updates.
+Platform-Specific (Optional)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The project currently supports the following platform-specific drivers as well. These are not required, but can be useful for adding tests for platform-specific drivers:
+
+-  `Safari <https://webkit.org/blog/6900/webdriver-support-in-safari-10/>`__ 
+-  `Internet Explorer <https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver>`__
+-  `Edge <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>`__
+
+.. note::
+
+    These need to be enabled in ``<test_package>/config/browser.py`` by uncommenting 
+    the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
+
+.. warning::
+
+    Support of these web drivers is experimental and may not work as expected. Some
+    drivers are not fully compatible with Selenium's WebDriver API, so unexpected 
+    behavior may occur, resulting in false positives in test results.
 
 Libraries
 ---------

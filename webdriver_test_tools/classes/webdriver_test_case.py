@@ -64,15 +64,20 @@ class ChromeTestCase(WebDriverTestCase):
 class SafariTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Safari webdriver
 
-    `Driver info <https://webkit.org/blog/6900/webdriver-support-in-safari-10/>`_
+    `Driver info <https://webkit.org/blog/6900/webdriver-support-in-safari-10/>`__
+
+    .. warning::
+
+        This class is experimental and has not been fully tested. It is disabled by
+        default but can be enabled in ``<test_package>/config/browser.py`` by
+        uncommenting the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
 
     .. warning::
 
         Safari's webdriver can be unreliable and buggy. Apart from starting up a new
         Safari instance each time it's initialized and leaving the process running even
         when driver.quit() is called, it also seems to lack certain features of the
-        webdriver API, leading to several inaccurate test failures. As such, the class
-        currently isn't implemented. It may be enabled in a future update.
+        webdriver API, leading to several inaccurate test failures.
     """
     DRIVER_NAME = 'Safari'
     SHORT_NAME = DRIVER_NAME.lower()
@@ -85,10 +90,13 @@ class SafariTestCase(WebDriverTestCase):
 class IETestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Internet Explorer webdriver
 
+    `Driver info <https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver>`__
+
     .. warning::
 
-        This class has not been tested yet and isn't implemented. It may be enabled in
-        a future update.
+        This class is experimental and has not been fully tested. It is disabled by
+        default but can be enabled in ``<test_package>/config/browser.py`` by
+        uncommenting the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
     """
     DRIVER_NAME = 'Internet Explorer'
     SHORT_NAME = 'ie'
@@ -105,8 +113,9 @@ class EdgeTestCase(WebDriverTestCase):
 
     .. warning::
 
-        This class has not been tested yet and isn't implemented. It may be enabled in
-        a future update.
+        This class is experimental and has not been fully tested. It is disabled by
+        default but can be enabled in ``<test_package>/config/browser.py`` by
+        uncommenting the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
     """
     DRIVER_NAME = 'Edge'
     SHORT_NAME = DRIVER_NAME.lower()
