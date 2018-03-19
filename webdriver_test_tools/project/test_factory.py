@@ -1,7 +1,7 @@
 # Functions for generating test cases
 
 import unittest
-from webdriver_test_tools.classes.webdriver_test_case import BROWSER_TEST_CLASSES
+from webdriver_test_tools.config import BrowserConfig
 
 
 def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_name=None):
@@ -55,7 +55,7 @@ def generate_browser_test_cases(base_class, browser_test_classes=None):
     :return: List of generated test case classes for each browser
     """
     # generate class only for browser_test_class if specified
-    browser_classes = BROWSER_TEST_CLASSES.values() if browser_test_classes is None else browser_test_classes
+    browser_classes = BrowserConfig.BROWSER_TEST_CLASSES.values() if browser_test_classes is None else browser_test_classes
     # iterate through a list of browser classes and generate test case
     browser_test_cases = [
         generate_browser_test_case(base_class, browser_class) for browser_class in browser_classes

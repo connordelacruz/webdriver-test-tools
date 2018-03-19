@@ -115,15 +115,3 @@ class EdgeTestCase(WebDriverTestCase):
         self.driver = WebDriverConfig.get_edge_driver()
         super().setUp()
 
-
-# TODO: move to config?
-# Dictionary of usable test case classes indexed by the short name for that class (i.e. its command line argument)
-BROWSER_TEST_CLASSES = {
-    FirefoxTestCase.SHORT_NAME: FirefoxTestCase,
-    ChromeTestCase.SHORT_NAME: ChromeTestCase,
-    # SafariTestCase.SHORT_NAME: SafariTestCase,
-    # IETestCase.SHORT_NAME: IETestCase,
-    # EdgeTestCase.SHORT_NAME: EdgeTestCase,
-}
-
-
