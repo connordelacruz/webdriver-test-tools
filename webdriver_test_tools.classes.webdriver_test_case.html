@@ -216,8 +216,9 @@
 <p><a class="reference external" href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/">Driver download</a></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This class has not been tested yet and isn’t implemented. It may be enabled in
-a future update.</p>
+<p class="last">This class is experimental and has not been fully tested. It is disabled by
+default but can be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by
+uncommenting the corresponding line in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.BROWSER_TEST_CLASSES</span></code>.</p>
 </div>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.DRIVER_NAME">
@@ -266,10 +267,12 @@ a future update.</p>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">IETestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#IETestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
 <p>Implementation of WebDriverTestCase using Internet Explorer webdriver</p>
+<p><a class="reference external" href="https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver">Driver info</a></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This class has not been tested yet and isn’t implemented. It may be enabled in
-a future update.</p>
+<p class="last">This class is experimental and has not been fully tested. It is disabled by
+default but can be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by
+uncommenting the corresponding line in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.BROWSER_TEST_CLASSES</span></code>.</p>
 </div>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase.DRIVER_NAME">
@@ -297,11 +300,16 @@ a future update.</p>
 <p><a class="reference external" href="https://webkit.org/blog/6900/webdriver-support-in-safari-10/">Driver info</a></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
+<p class="last">This class is experimental and has not been fully tested. It is disabled by
+default but can be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by
+uncommenting the corresponding line in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.BROWSER_TEST_CLASSES</span></code>.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
 <p class="last">Safari’s webdriver can be unreliable and buggy. Apart from starting up a new
 Safari instance each time it’s initialized and leaving the process running even
 when driver.quit() is called, it also seems to lack certain features of the
-webdriver API, leading to several inaccurate test failures. As such, the class
-currently isn’t implemented. It may be enabled in a future update.</p>
+webdriver API, leading to several inaccurate test failures.</p>
 </div>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.DRIVER_NAME">
