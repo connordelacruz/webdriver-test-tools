@@ -204,7 +204,7 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_factory.generate_browser_test_cases">
-<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_cases</code><span class="sig-paren">(</span><em>base_class</em>, <em>browser_test_class=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_cases" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_cases</code><span class="sig-paren">(</span><em>base_class</em>, <em>browser_test_classes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_cases" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate test cases for each browser from a WebDriverTestCase subclass</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -212,7 +212,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>base_class</strong> – The WebDriverTestCase subclass to generate test classes for</li>
-<li><strong>browser_test_class</strong> – (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class</li>
+<li><strong>browser_test_classes</strong> – (Optional) If specified, only generate tests using the browser classes specified in this list. If not specified, tests will be generated for each available browser test case class</li>
 </ul>
 </td>
 </tr>
@@ -225,7 +225,7 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_factory.generate_browser_test_suite">
-<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_suite</code><span class="sig-paren">(</span><em>test_case_list</em>, <em>browser_test_class=None</em>, <em>test_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_suite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_suite" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_suite</code><span class="sig-paren">(</span><em>test_case_list</em>, <em>browser_test_classes=None</em>, <em>test_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_suite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_suite" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates test cases for multiple browsers and returns a TestSuite with all of the new tests</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -233,7 +233,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>test_case_list</strong> – A list of WebDriverTestCase subclasses to generate a test suite for</li>
-<li><strong>browser_test_class</strong> – (Optional) If specified, only generate tests using this browser class. If not specified, tests will be generated for each available browser test case class.</li>
+<li><strong>browser_test_classes</strong> – (Optional) If specified, only generate tests using the browser classes specified in this list. If not specified, tests will be generated for each available browser test case class.</li>
 <li><strong>test_name</strong> – (Optional) Run only the specified test in each generated browser test case. This can be the name of the class (e.g. ‘PrimaryNavTestCase’) or the name of a single test method in a class (e.g. ‘PrimaryNavTestCase.test_modal_links’)</li>
 </ul>
 </td>
