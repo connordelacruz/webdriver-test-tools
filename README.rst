@@ -1,3 +1,4 @@
+=============================
 Selenium WebDriver Test Tools
 =============================
 
@@ -6,7 +7,7 @@ Utilities for writing front-end test suites using `Selenium WebDriver <https://w
 .. contents::
 
 Overview
---------
+========
 
 This project aims to reduce the amount of time and additional code
 required to automate front-end functional testing by providing utilities
@@ -15,16 +16,16 @@ and conventions for building test suites.
 This project uses Selenium WebDriver for automated browser actions and the python unittest library for the test framework. 
 
 Prerequisites
--------------
+=============
 
 python
-~~~~~~
+------
 
 -  python 3+
 -  pip
 
 drivers
-~~~~~~~
+-------
 
 -  `geckodriver <https://github.com/mozilla/geckodriver/releases>`__
    (FireFox)
@@ -41,7 +42,7 @@ On MacOS, both drivers can be installed using
 Support for more browser drivers will be added in future updates.
 
 Libraries
-~~~~~~~~~
+---------
 
 The framework uses Selenium WebDriver and python unittest libraries, documentation for which can be found below:
 
@@ -49,7 +50,7 @@ The framework uses Selenium WebDriver and python unittest libraries, documentati
 - `Python unit testing framework <https://docs.python.org/3/library/unittest.html>`__
 
 Installation
-------------
+============
 
 After installing the above prerequisites, run:
 
@@ -61,7 +62,7 @@ After installing the above prerequisites, run:
 system
 
 Command Line Usage
-------------------
+==================
 
 For info on command line arguments:
 
