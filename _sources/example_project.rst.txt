@@ -36,6 +36,7 @@ should create the following files and directories:
     ├── example_package/
     │   ├── config/
     │   │   ├── __init__.py
+    │   │   ├── browser.py
     │   │   ├── site.py
     │   │   └── test.py
     │   ├── data/
