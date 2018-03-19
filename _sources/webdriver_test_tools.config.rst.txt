@@ -6,6 +6,7 @@ Submodules
 
 .. toctree::
 
+   webdriver_test_tools.config.browser
    webdriver_test_tools.config.site
    webdriver_test_tools.config.test
    webdriver_test_tools.config.webdriver

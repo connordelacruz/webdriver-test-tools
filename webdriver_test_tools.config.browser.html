@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config package &mdash; WebDriver Test Tools 0.6.2 documentation</title>
+  <title>webdriver_test_tools.config.browser module &mdash; WebDriver Test Tools 0.6.2 documentation</title>
   
 
   
@@ -38,9 +38,9 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="WebDriver Test Tools 0.6.2 documentation" href="index.html"/>
-        <link rel="up" title="webdriver_test_tools API" href="webdriver_test_tools.html"/>
-        <link rel="next" title="webdriver_test_tools.config.browser module" href="webdriver_test_tools.config.browser.html"/>
-        <link rel="prev" title="webdriver_test_tools.classes.webdriver_test_case module" href="webdriver_test_tools.classes.webdriver_test_case.html"/> 
+        <link rel="up" title="webdriver_test_tools.config package" href="webdriver_test_tools.config.html"/>
+        <link rel="next" title="webdriver_test_tools.config.site module" href="webdriver_test_tools.config.site.html"/>
+        <link rel="prev" title="webdriver_test_tools.config package" href="webdriver_test_tools.config.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -101,9 +101,9 @@
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">webdriver_test_tools.config package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-webdriver_test_tools.config">Module contents</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.config.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.html#module-webdriver_test_tools.config">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
@@ -161,13 +161,15 @@
         
           <li><a href="webdriver_test_tools.html">webdriver_test_tools API</a> &raquo;</li>
         
-      <li>webdriver_test_tools.config package</li>
+          <li><a href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.config.browser module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/webdriver_test_tools.config.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/webdriver_test_tools.config.browser.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -180,22 +182,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="webdriver-test-tools-config-package">
-<h1>webdriver_test_tools.config package<a class="headerlink" href="#webdriver-test-tools-config-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.config.browser.html">webdriver_test_tools.config.browser module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.config.site.html">webdriver_test_tools.config.site module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.config.test.html">webdriver_test_tools.config.test module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.config.webdriver.html">webdriver_test_tools.config.webdriver module</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="module-webdriver_test_tools.config">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-webdriver_test_tools.config" title="Permalink to this headline">¶</a></h2>
-</div>
+  <div class="section" id="module-webdriver_test_tools.config.browser">
+<span id="webdriver-test-tools-config-browser-module"></span><h1>webdriver_test_tools.config.browser module<a class="headerlink" href="#module-webdriver_test_tools.config.browser" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="webdriver_test_tools.config.browser.BrowserConfig">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.config.browser.</code><code class="descname">BrowserConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.browser.BrowserConfig.BROWSER_TEST_CLASSES">
+<code class="descname">BROWSER_TEST_CLASSES</code><em class="property"> = {'chrome': &lt;class 'webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase'&gt;, 'firefox': &lt;class 'webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase'&gt;}</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserConfig.BROWSER_TEST_CLASSES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="webdriver_test_tools.config.browser.Browsers">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.config.browser.</code><code class="descname">Browsers</code><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#Browsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.browser.Browsers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Constants for browser short names. Used for mapping to classes in BROWSER_TEST_CLASSES</p>
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.browser.Browsers.CHROME">
+<code class="descname">CHROME</code><em class="property"> = 'chrome'</em><a class="headerlink" href="#webdriver_test_tools.config.browser.Browsers.CHROME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.browser.Browsers.EDGE">
+<code class="descname">EDGE</code><em class="property"> = 'edge'</em><a class="headerlink" href="#webdriver_test_tools.config.browser.Browsers.EDGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.browser.Browsers.FIREFOX">
+<code class="descname">FIREFOX</code><em class="property"> = 'firefox'</em><a class="headerlink" href="#webdriver_test_tools.config.browser.Browsers.FIREFOX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.browser.Browsers.IE">
+<code class="descname">IE</code><em class="property"> = 'ie'</em><a class="headerlink" href="#webdriver_test_tools.config.browser.Browsers.IE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.browser.Browsers.SAFARI">
+<code class="descname">SAFARI</code><em class="property"> = 'safari'</em><a class="headerlink" href="#webdriver_test_tools.config.browser.Browsers.SAFARI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -208,10 +239,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.config.browser.html" class="btn btn-neutral float-right" title="webdriver_test_tools.config.browser module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.config.site.html" class="btn btn-neutral float-right" title="webdriver_test_tools.config.site module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.classes.webdriver_test_case.html" class="btn btn-neutral" title="webdriver_test_tools.classes.webdriver_test_case module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.config.html" class="btn btn-neutral" title="webdriver_test_tools.config package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
