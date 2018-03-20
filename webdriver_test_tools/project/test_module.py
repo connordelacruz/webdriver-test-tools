@@ -41,21 +41,19 @@ def get_parser(browser_config=None):
 
     :param browser_config: (Optional) BrowserConfig class for the project. Defaults to webdriver_test_tools.config.BrowserConfig if unspecified
     """
-    # TODO: custom usage string
     parser = argparse.ArgumentParser()
     # Use default config if module is None or doesn't contain BrowserConfig class
     if browser_config is None:
         browser_config = config.BrowserConfig
-    # TODO: set metavar to ''? The generated output is very cluttered by default
     # Arguments for specifying browser to use
     browser_choices = [k for k in browser_config.BROWSER_TEST_CLASSES]
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
                         help='Run tests only in the specified browsers. Options: {{{}}}'.format(','.join(browser_choices)))
     # Arguments for specifying what test to run
-    parser.add_argument('-t', '--test', nargs='+', metavar='<TestCase>[.<test_method>]',
-                        help='Run specific test case classes or functions')
+    parser.add_argument('-t', '--test', nargs='+', metavar='<test>',
+                        help='Run specific test case classes or test methods. Arguments should be in the format <TestCase>[.<method>]')
     # Arguments for specifying test module to run
-    parser.add_argument('-m', '--module', nargs='+', metavar='<test_module>',
+    parser.add_argument('-m', '--module', nargs='+', metavar='<module>',
                         help='Run only tests in specific test modules')
     return parser
 
