@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_loader module &mdash; WebDriver Test Tools 0.7.0 documentation</title>
+  <title>webdriver_test_tools.project.test_loader module &mdash; WebDriver Test Tools 0.8.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.7.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.8.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.project package" href="webdriver_test_tools.project.html"/>
         <link rel="next" title="webdriver_test_tools.project.test_module module" href="webdriver_test_tools.project.test_module.html"/>
         <link rel="prev" title="webdriver_test_tools.project.test_factory module" href="webdriver_test_tools.project.test_factory.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.7
+                0.8
               </div>
             
           
@@ -185,8 +185,29 @@
   <div class="section" id="module-webdriver_test_tools.project.test_loader">
 <span id="webdriver-test-tools-project-test-loader-module"></span><h1>webdriver_test_tools.project.test_loader module<a class="headerlink" href="#module-webdriver_test_tools.project.test_loader" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
+<dt id="webdriver_test_tools.project.test_loader.load_browser_tests">
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_browser_tests</code><span class="sig-paren">(</span><em>generated_test_cases</em>, <em>test_methods=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_browser_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_browser_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load tests from browser test case classes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>generated_test_cases</strong> – List of generated browser test case classes for a single subclass of WebDriverTestCase</li>
+<li><strong>test_methods</strong> – (Optional) List of test method names. If specified, load only these test methods from each browser test case</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of loaded tests from the browser test cases</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_project_tests">
-<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_project_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_project_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_class_names=None</em>, <em>test_module_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of WebDriverTestCase subclasses from all submodules in a test
 project’s tests/ directory</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -195,7 +216,8 @@ project’s tests/ directory</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
-<li><strong>test_module_name</strong> – (Optional) Only load test cases from a submodule of tests_module with the given name</li>
+<li><strong>test_class_names</strong> – (Optional) List of test class names. Only load test cases with these names</li>
+<li><strong>test_module_names</strong> – (Optional) List of test module names. Only load test cases from a submodule of tests_module with the given names</li>
 </ul>
 </td>
 </tr>
@@ -208,15 +230,20 @@ project’s tests/ directory</p>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_webdriver_test_cases">
-<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_webdriver_test_cases</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_webdriver_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_webdriver_test_cases" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_webdriver_test_cases</code><span class="sig-paren">(</span><em>module</em>, <em>test_class_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_webdriver_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_webdriver_test_cases" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of WebDriverTestCase subclasses from a module</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module</strong> – The module to load tests from</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>module</strong> – The module to load tests from</li>
+<li><strong>test_class_names</strong> – (Optional) List of test case class names to load. Will load all if unspecified</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of test classes loaded from the module</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of test classes loaded from the module</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -268,7 +295,7 @@ project’s tests/ directory</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.7.0',
+            VERSION:'0.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
