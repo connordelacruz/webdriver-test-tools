@@ -14,20 +14,23 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
 
     :return: unittest.TestSuite object with generated tests for each browser
     """
-    # if set, test_name could be 'TestCase' or 'TestCase.test_method'
-    test_name_parts = None if test_name is None else test_name.split('.')
-    # If test_name is specified, reduce test_case_list to just that test case
-    if test_name_parts is not None:
-        # test_name needs to have a test case name regardless of whether a function is specified
-        test_case_list = [test_case for test_case in test_case_list if test_case.__name__ == test_name_parts[0]]
+    # TODO: remove
+    # # if set, test_name could be 'TestCase' or 'TestCase.test_method'
+    # test_name_parts = None if test_name is None else test_name.split('.')
+    # # If test_name is specified, reduce test_case_list to just that test case
+    # if test_name_parts is not None:
+    #     # test_name needs to have a test case name regardless of whether a function is specified
+    #     test_case_list = [test_case for test_case in test_case_list if test_case.__name__ == test_name_parts[0]]
     browser_test_cases = []
     # Generate test classes for each test case in the list
     for test_case in test_case_list:
         browser_test_cases.extend(generate_browser_test_cases(test_case, browser_test_classes))
     # if test_name is set, it could contain a specific test method to run
-    test_method = None if test_name_parts is None or len(test_name_parts) < 2 else test_name_parts[1]
+    # TODO: remove
+    # test_method = None if test_name_parts is None or len(test_name_parts) < 2 else test_name_parts[1]
     # load tests from the generated classes and return a suite of them
-    browser_tests = test_loader.load_browser_tests(browser_test_cases, test_method)
+    # TODO: pass class map
+    browser_tests = test_loader.load_browser_tests(browser_test_cases, None)
     return unittest.TestSuite(browser_tests)
 
 

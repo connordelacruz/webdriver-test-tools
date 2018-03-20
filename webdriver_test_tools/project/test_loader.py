@@ -5,8 +5,8 @@ import unittest
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase
 
 
-# TODO: pass a list of test cases?
-def load_project_tests(tests_module, test_module_names=None):
+# TODO: update docstring
+def load_project_tests(tests_module, test_class_names=None, test_module_names=None):
     """Returns a list of WebDriverTestCase subclasses from all submodules in a test
     project's tests/ directory
 
@@ -22,22 +22,26 @@ def load_project_tests(tests_module, test_module_names=None):
     for name in tests_module_attributes:
         obj = getattr(tests_module, name)
         if isinstance(obj, types.ModuleType):
-            test_list.extend(load_webdriver_test_cases(obj))
+            test_list.extend(load_webdriver_test_cases(obj, test_class_names))
     return test_list
 
 
-def load_webdriver_test_cases(module):
+def load_webdriver_test_cases(module, test_class_names=None):
     """Returns a list of WebDriverTestCase subclasses from a module
 
     :param module: The module to load tests from
+    :param test_class_names: (Optional) List of test case class names to load. Will load all if unspecified
 
     :return: A list of test classes loaded from the module
     """
     test_list = []
     for name in dir(module):
         obj = getattr(module, name)
+        # Load class if it subclasses WebDriverTestCase (but don't load WebDriverTestCase itself)
         if isinstance(obj, type) and issubclass(obj, WebDriverTestCase) and obj is not WebDriverTestCase:
-            test_list.append(obj)
+            # If test_class_names is specified, only load test cases whose names are specified
+            if test_class_names is None or name in test_class_names:
+                test_list.append(obj)
     return test_list
 
 

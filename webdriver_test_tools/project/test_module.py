@@ -30,10 +30,10 @@ def main(tests_module, config_module=None):
                 browser_class for browser_name, browser_class in browser_config.BROWSER_TEST_CLASSES.items()
                 if browser_name in args.browser
         ]
-    test_name = args.test
+    test_class_map = parse_test_names(args.test)
     test_module_names = args.module
     # Run tests using parsed args
-    run_tests(tests_module, config_module, browser_classes, test_name, test_module_names)
+    run_tests(tests_module, config_module, browser_classes, test_class_map, test_module_names)
 
 
 def get_parser(browser_config=None):
@@ -50,30 +50,51 @@ def get_parser(browser_config=None):
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
                         help='Run tests only in the specified browsers. Options: {{{}}}'.format(','.join(browser_choices)))
     # Arguments for specifying what test to run
-    # TODO: accept multiple arguments
-    parser.add_argument('-t', '--test', metavar='<TestCase>[.<test_method>]',
-                        help='Run a specific test case class or function')
+    parser.add_argument('-t', '--test', nargs='+', metavar='<TestCase>[.<test_method>]',
+                        help='Run specific test case classes or functions')
     # Arguments for specifying test module to run
     parser.add_argument('-m', '--module', nargs='+', metavar='<test_module>',
                         help='Run only tests in specific test modules')
     return parser
 
 
-def run_tests(tests_module, config_module, browser_classes=None, test_name=None, test_module_names=None):
+def parse_test_names(test_name_args):
+    """Returns a dictionary mapping test case names to a list of test functions
+
+    :param test_name_args: The parsed value of the --test command line argument
+    :return: None if test_name_args is None, otherwise return a list mapping test case names to a list of test functions to run. If list is empty, no specific function was given for that class
+    """
+    if test_name_args is None:
+        return None
+    class_map = {}
+    for test_name in test_name_args:
+        test_name_parts = test_name.split('.')
+        # If test class name is not yet mapped, map it to an empty list
+        if test_name_parts[0] not in class_map.keys():
+            class_map[test_name_parts[0]] = []
+        # If a function was specified, append it to the list of functions
+        if len(test_name_parts) > 1:
+            class_map[test_name_parts[0]].append(test_name_parts[1])
+    return class_map
+
+
+# TODO: rename test_name to test_class_map and update docs
+def run_tests(tests_module, config_module, browser_classes=None, test_class_map=None, test_module_names=None):
     """Run tests using parsed args and project modules
 
     :param tests_module: The module object for <test_project>.tests
     :param config_module: The module object for <test_project>.config or webdriver_test_tools.config if not specified
     :param browser_classes: (Optional) List of browser test classes from parsed arg for --browser command line argument
-    :param test_name: (Optional) Parsed arg for --test command line argument
+    :param test_class_map: (Optional) Parsed arg for --test command line argument
     :param test_module_names: (Optional) Parsed arg for --module command line argument
     """
     # Enable graceful Ctrl+C handling
     unittest.installHandler()
     # Load WebDriverTestCase subclasses from project tests
-    tests = test_loader.load_project_tests(tests_module, test_module_names)
+    test_class_names = None if test_class_map is None else test_class_map.keys()
+    tests = test_loader.load_project_tests(tests_module, test_class_names, test_module_names)
     # Generate browser test cases from the loaded WebDriverTestCase classes
-    browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes, test_name)
+    browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes, test_class_map)
     # Get configured test runner and run suite
     test_runner = config_module.TestSuiteConfig.get_runner()
     test_runner.run(browser_test_suite)
