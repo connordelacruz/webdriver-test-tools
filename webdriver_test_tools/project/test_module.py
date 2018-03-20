@@ -41,10 +41,12 @@ def get_parser(browser_config=None):
 
     :param browser_config: (Optional) BrowserConfig class for the project. Defaults to webdriver_test_tools.config.BrowserConfig if unspecified
     """
+    # TODO: custom usage string
     parser = argparse.ArgumentParser()
     # Use default config if module is None or doesn't contain BrowserConfig class
     if browser_config is None:
         browser_config = config.BrowserConfig
+    # TODO: set metavar to ''? The generated output is very cluttered by default
     # Arguments for specifying browser to use
     browser_choices = [k for k in browser_config.BROWSER_TEST_CLASSES]
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
@@ -62,7 +64,7 @@ def parse_test_names(test_name_args):
     """Returns a dictionary mapping test case names to a list of test functions
 
     :param test_name_args: The parsed value of the --test command line argument
-    :return: None if test_name_args is None, otherwise return a list mapping test case names to a list of test functions to run. If list is empty, no specific function was given for that class
+    :return: None if test_name_args is None, otherwise return a dictionary mapping test case names to a list of test functions to run. If list is empty, no specific function was given for that class
     """
     if test_name_args is None:
         return None
@@ -78,14 +80,13 @@ def parse_test_names(test_name_args):
     return class_map
 
 
-# TODO: rename test_name to test_class_map and update docs
 def run_tests(tests_module, config_module, browser_classes=None, test_class_map=None, test_module_names=None):
     """Run tests using parsed args and project modules
 
     :param tests_module: The module object for <test_project>.tests
     :param config_module: The module object for <test_project>.config or webdriver_test_tools.config if not specified
     :param browser_classes: (Optional) List of browser test classes from parsed arg for --browser command line argument
-    :param test_class_map: (Optional) Parsed arg for --test command line argument
+    :param test_class_map: (Optional) Result of passing parsed arg for --test command line argument to parse_test_names()
     :param test_module_names: (Optional) Parsed arg for --module command line argument
     """
     # Enable graceful Ctrl+C handling

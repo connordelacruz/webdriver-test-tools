@@ -5,12 +5,12 @@ import unittest
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase
 
 
-# TODO: update docstring
 def load_project_tests(tests_module, test_class_names=None, test_module_names=None):
     """Returns a list of WebDriverTestCase subclasses from all submodules in a test
     project's tests/ directory
 
     :param tests_module: The module object for <test_project>.tests
+    :param test_class_names: (Optional) List of test class names. Only load test cases with these names
     :param test_module_names: (Optional) List of test module names. Only load test cases from a submodule of tests_module with the given names
 
     :return: A list of test classes from all test modules
@@ -45,20 +45,21 @@ def load_webdriver_test_cases(module, test_class_names=None):
     return test_list
 
 
-# TODO: re-work for multiple test methods
-def load_browser_tests(browser_test_cases, test_method=None):
+def load_browser_tests(generated_test_cases, test_methods=None):
     """Load tests from browser test case classes
 
-    :param browser_test_cases: List of generated browser test case classes
-    :param test_method: (Optional) If specified, load only this test method from each browser test case
+    :param generated_test_cases: List of generated browser test case classes for a single subclass of WebDriverTestCase
+    :param test_methods: (Optional) List of test method names. If specified, load only these test methods from each browser test case
 
     :return: A list of loaded tests from the browser test cases
     """
-    if test_method is not None:
-        browser_tests = [browser_test_case(test_method) for browser_test_case in browser_test_cases]
+    # If test_methods is not None and is not empty, load only the specified test methods
+    if test_methods:
+        browser_tests = [browser_test_case(test_method) for test_method in test_methods for browser_test_case in generated_test_cases]
+    # Else load all test methods from each
     else:
         loader = unittest.TestLoader()
-        browser_tests = [loader.loadTestsFromTestCase(browser_test_case) for browser_test_case in browser_test_cases]
+        browser_tests = [loader.loadTestsFromTestCase(browser_test_case) for browser_test_case in generated_test_cases]
     return browser_tests
 
 

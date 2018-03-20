@@ -5,32 +5,22 @@ from webdriver_test_tools.config import BrowserConfig
 from webdriver_test_tools.project import test_loader
 
 
-def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_name=None):
+def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None):
     """Generates test cases for multiple browsers and returns a TestSuite with all of the new tests
 
     :param test_case_list: A list of WebDriverTestCase subclasses to generate a test suite for
-    :param browser_test_classes: (Optional) If specified, only generate tests using the browser classes specified in this list. If not specified, tests will be generated for each available browser test case class.
-    :param test_name: (Optional) Run only the specified test in each generated browser test case. This can be the name of the class (e.g. 'PrimaryNavTestCase') or the name of a single test method in a class (e.g. 'PrimaryNavTestCase.test_modal_links')
+    :param browser_test_classes: (Optional) If specified, only generate tests using the browser classes in this list. If not specified, tests will be generated for each available browser test case class.
+    :param test_class_map: (Optional) Dictionary mapping test case names to a list of test functions. If the list is empty, all test functions will be loaded
 
     :return: unittest.TestSuite object with generated tests for each browser
     """
-    # TODO: remove
-    # # if set, test_name could be 'TestCase' or 'TestCase.test_method'
-    # test_name_parts = None if test_name is None else test_name.split('.')
-    # # If test_name is specified, reduce test_case_list to just that test case
-    # if test_name_parts is not None:
-    #     # test_name needs to have a test case name regardless of whether a function is specified
-    #     test_case_list = [test_case for test_case in test_case_list if test_case.__name__ == test_name_parts[0]]
-    browser_test_cases = []
+    browser_tests = []
     # Generate test classes for each test case in the list
     for test_case in test_case_list:
-        browser_test_cases.extend(generate_browser_test_cases(test_case, browser_test_classes))
-    # if test_name is set, it could contain a specific test method to run
-    # TODO: remove
-    # test_method = None if test_name_parts is None or len(test_name_parts) < 2 else test_name_parts[1]
-    # load tests from the generated classes and return a suite of them
-    # TODO: pass class map
-    browser_tests = test_loader.load_browser_tests(browser_test_cases, None)
+        generated_tests = generate_browser_test_cases(test_case, browser_test_classes)
+        test_methods = None if test_class_map is None or test_case.__name__ not in test_class_map else test_class_map[test_case.__name__]
+        loaded_tests = test_loader.load_browser_tests(generated_tests, test_methods)
+        browser_tests.extend(loaded_tests)
     return unittest.TestSuite(browser_tests)
 
 
