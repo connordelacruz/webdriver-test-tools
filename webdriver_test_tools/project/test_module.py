@@ -47,13 +47,15 @@ def get_parser(browser_config=None):
         browser_config = config.BrowserConfig
     # Arguments for specifying browser to use
     browser_choices = [k for k in browser_config.BROWSER_TEST_CLASSES]
-    # TODO: use nicer metavar and list browser choices in help string?
-    parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, help='Run tests only in the specified browsers')
+    parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
+                        help='Run tests only in the specified browsers. Options: {{{}}}'.format(','.join(browser_choices)))
     # Arguments for specifying what test to run
     # TODO: accept multiple arguments
-    parser.add_argument('-t', '--test', help='Run a specific test case class or function', metavar='TestCase[.test_method]')
+    parser.add_argument('-t', '--test', metavar='<TestCase>[.<test_method>]',
+                        help='Run a specific test case class or function')
     # Arguments for specifying test module to run
-    parser.add_argument('-m', '--module', nargs='+', help='Run only tests in specific test modules', metavar='test_module')
+    parser.add_argument('-m', '--module', nargs='+', metavar='<test_module>',
+                        help='Run only tests in specific test modules')
     return parser
 
 
