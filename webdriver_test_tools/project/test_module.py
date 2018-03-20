@@ -31,9 +31,9 @@ def main(tests_module, config_module=None):
                 if browser_name in args.browser
         ]
     test_name = args.test
-    test_module_name = args.module
+    test_module_names = args.module
     # Run tests using parsed args
-    run_tests(tests_module, config_module, browser_classes, test_name, test_module_name)
+    run_tests(tests_module, config_module, browser_classes, test_name, test_module_names)
 
 
 def get_parser(browser_config=None):
@@ -47,28 +47,29 @@ def get_parser(browser_config=None):
         browser_config = config.BrowserConfig
     # Arguments for specifying browser to use
     browser_choices = [k for k in browser_config.BROWSER_TEST_CLASSES]
+    # TODO: use nicer metavar and list browser choices in help string?
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, help='Run tests only in the specified browsers')
     # Arguments for specifying what test to run
     # TODO: accept multiple arguments
     parser.add_argument('-t', '--test', help='Run a specific test case class or function', metavar='TestCase[.test_method]')
     # Arguments for specifying test module to run
-    parser.add_argument('-m', '--module', help='Run only tests in a specific test module', metavar='test_module')
+    parser.add_argument('-m', '--module', nargs='+', help='Run only tests in specific test modules', metavar='test_module')
     return parser
 
 
-def run_tests(tests_module, config_module, browser_classes=None, test_name=None, test_module_name=None):
+def run_tests(tests_module, config_module, browser_classes=None, test_name=None, test_module_names=None):
     """Run tests using parsed args and project modules
 
     :param tests_module: The module object for <test_project>.tests
     :param config_module: The module object for <test_project>.config or webdriver_test_tools.config if not specified
     :param browser_classes: (Optional) List of browser test classes from parsed arg for --browser command line argument
     :param test_name: (Optional) Parsed arg for --test command line argument
-    :param test_module_name: (Optional) Parsed arg for --module command line argument
+    :param test_module_names: (Optional) Parsed arg for --module command line argument
     """
     # Enable graceful Ctrl+C handling
     unittest.installHandler()
     # Load WebDriverTestCase subclasses from project tests
-    tests = test_loader.load_project_tests(tests_module, test_module_name)
+    tests = test_loader.load_project_tests(tests_module, test_module_names)
     # Generate browser test cases from the loaded WebDriverTestCase classes
     browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes, test_name)
     # Get configured test runner and run suite
