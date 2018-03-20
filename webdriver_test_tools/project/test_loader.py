@@ -1,9 +1,11 @@
 # Load test cases from a project
 
 import types
+import unittest
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase
 
 
+# TODO: pass a list of test cases?
 def load_project_tests(tests_module, test_module_name=None):
     """Returns a list of WebDriverTestCase subclasses from all submodules in a test
     project's tests/ directory
@@ -38,5 +40,21 @@ def load_webdriver_test_cases(module):
             test_list.append(obj)
     return test_list
 
+
+# TODO: re-work for multiple test methods
+def load_browser_tests(browser_test_cases, test_method=None):
+    """Load tests from browser test case classes
+
+    :param browser_test_cases: List of generated browser test case classes
+    :param test_method: (Optional) If specified, load only this test method from each browser test case
+
+    :return: A list of loaded tests from the browser test cases
+    """
+    if test_method is not None:
+        browser_tests = [browser_test_case(test_method) for browser_test_case in browser_test_cases]
+    else:
+        loader = unittest.TestLoader()
+        browser_tests = [loader.loadTestsFromTestCase(browser_test_case) for browser_test_case in browser_test_cases]
+    return browser_tests
 
 

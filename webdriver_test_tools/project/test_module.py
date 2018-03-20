@@ -49,6 +49,7 @@ def get_parser(browser_config=None):
     browser_choices = [k for k in browser_config.BROWSER_TEST_CLASSES]
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, help='Run tests only in the specified browsers')
     # Arguments for specifying what test to run
+    # TODO: accept multiple arguments
     parser.add_argument('-t', '--test', help='Run a specific test case class or function', metavar='TestCase[.test_method]')
     # Arguments for specifying test module to run
     parser.add_argument('-m', '--module', help='Run only tests in a specific test module', metavar='test_module')

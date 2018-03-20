@@ -2,6 +2,7 @@
 
 import unittest
 from webdriver_test_tools.config import BrowserConfig
+from webdriver_test_tools.project import test_loader
 
 
 def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_name=None):
@@ -26,24 +27,8 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
     # if test_name is set, it could contain a specific test method to run
     test_method = None if test_name_parts is None or len(test_name_parts) < 2 else test_name_parts[1]
     # load tests from the generated classes and return a suite of them
-    browser_tests = load_browser_tests(browser_test_cases, test_method)
+    browser_tests = test_loader.load_browser_tests(browser_test_cases, test_method)
     return unittest.TestSuite(browser_tests)
-
-
-def load_browser_tests(browser_test_cases, test_method=None):
-    """Load tests from browser test case classes
-
-    :param browser_test_cases: List of generated browser test case classes
-    :param test_method: (Optional) If specified, load only this test method from each browser test case
-
-    :return: A list of loaded tests from the browser test cases
-    """
-    if test_method is not None:
-        browser_tests = [browser_test_case(test_method) for browser_test_case in browser_test_cases]
-    else:
-        loader = unittest.TestLoader()
-        browser_tests = [loader.loadTestsFromTestCase(browser_test_case) for browser_test_case in browser_test_cases]
-    return browser_tests
 
 
 def generate_browser_test_cases(base_class, browser_test_classes=None):
