@@ -7,6 +7,7 @@
 
 import unittest
 from webdriver_test_tools.config import WebDriverConfig
+from webdriver_test_tools import test
 
 
 # Test Case Classes
@@ -28,6 +29,30 @@ class WebDriverTestCase(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
+
+    # Assertion methods
+    # --------------------------------
+
+    def assertExists(self, element_locator, msg=None):
+        """Check that an element exists
+
+        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        """
+        if not test.element_exists(self.driver, element_locator):
+            failure_message = 'No elements located using ("{0}", "{1}")'.format(*element_locator)
+            msg = self._formatMessage(msg, failure_message)
+            raise self.failureException(msg)
+
+
+    def assertNotExists(self, element_locator, msg=None):
+        """Check that an element doesn't exist
+
+        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        """
+        if test.element_exists(self.driver, element_locator):
+            failure_message = 'Elements located using ("{0}", "{1}")'.format(*element_locator)
+            msg = self._formatMessage(msg, failure_message)
+            raise self.failureException(msg)
 
 
 # Browser driver implementations
