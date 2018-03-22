@@ -40,6 +40,7 @@ class WebDriverTestCase(unittest.TestCase):
         """
         return '("{0}", "{1}")'.format(*locator)
 
+
     def assertExists(self, element_locator, msg=None):
         """Fail if element doesn't exist
 
@@ -80,6 +81,43 @@ class WebDriverTestCase(unittest.TestCase):
         """
         if test.in_view_change_test(self.driver, element_locator):
             failure_message = 'Element is scrolled into view'
+            msg = self._formatMessage(msg, failure_message)
+            raise self.failureException(msg)
+
+
+    def assertVisible(self, element_locator, msg=None):
+        """Fail if element isn't visible
+
+        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        """
+        if not test.visibility_change_test(self.driver, element_locator):
+            failure_message = 'Element is not visible'
+            msg = self._formatMessage(msg, failure_message)
+            raise self.failureException(msg)
+
+
+    def assertInvisible(self, element_locator, msg=None):
+        """Fail if element is visible
+
+        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        """
+        if not test.visibility_change_test(self.driver, element_locator, test_visible=False):
+            failure_message = 'Element is visible'
+            msg = self._formatMessage(msg, failure_message)
+            raise self.failureException(msg)
+
+
+    def assertUrlChange(self, expected_url, msg=None):
+        """Fail if the URL doesn't match the expected URL.
+
+        Assertion uses webdriver_test_tools.test.url_change_test() using the default 10
+        second wait timeout before determining that expected_url does not match the
+        current URL.
+
+        :param expected_url: The expected URL
+        """
+        if not test.url_change_test(self.driver, expected_url):
+            failure_message = 'Current URL = {}, expected URL = {}'.format(self.driver.current_url, expected_url)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
