@@ -33,24 +33,53 @@ class WebDriverTestCase(unittest.TestCase):
     # Assertion methods
     # --------------------------------
 
+    def _locator_string(self, locator):
+        """Shorthand for formating locator tuple as a string for failure output
+
+        :param locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        """
+        return '("{0}", "{1}")'.format(*locator)
+
     def assertExists(self, element_locator, msg=None):
-        """Check that an element exists
+        """Fail if element doesn't exist
 
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
         """
         if not test.element_exists(self.driver, element_locator):
-            failure_message = 'No elements located using ("{0}", "{1}")'.format(*element_locator)
+            failure_message = 'No elements located using ' + self._locator_string(element_locator)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
 
     def assertNotExists(self, element_locator, msg=None):
-        """Check that an element doesn't exist
+        """Fail if element exists
 
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
         """
         if test.element_exists(self.driver, element_locator):
-            failure_message = 'Elements located using ("{0}", "{1}")'.format(*element_locator)
+            failure_message = 'Elements located using ' + self._locator_string(element_locator)
+            msg = self._formatMessage(msg, failure_message)
+            raise self.failureException(msg)
+
+
+    def assertInView(self, element_locator, msg=None):
+        """Fail if element isn't scrolled into view
+
+        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        """
+        if not test.in_view_change_test(self.driver, element_locator):
+            failure_message = 'Element is not scrolled into view'
+            msg = self._formatMessage(msg, failure_message)
+            raise self.failureException(msg)
+
+
+    def assertNotInView(self, element_locator, msg=None):
+        """Fail if element is scrolled into view
+
+        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        """
+        if test.in_view_change_test(self.driver, element_locator):
+            failure_message = 'Element is scrolled into view'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
