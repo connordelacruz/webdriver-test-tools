@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.webdriver_test_case module &mdash; WebDriver Test Tools 0.8.0 documentation</title>
+  <title>webdriver_test_tools.classes.webdriver_test_case module &mdash; WebDriver Test Tools 0.9.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.8.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.9.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.classes package" href="webdriver_test_tools.classes.html"/>
         <link rel="next" title="webdriver_test_tools.config package" href="webdriver_test_tools.config.html"/>
         <link rel="prev" title="webdriver_test_tools.classes.base_page module" href="webdriver_test_tools.classes.base_page.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.8
+                0.9
               </div>
             
           
@@ -340,6 +340,107 @@ webdriver API, leading to several inaccurate test failures.</p>
 <code class="descname">SITE_URL</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SITE_URL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertExists">
+<code class="descname">assertExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertExists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if element doesn’t exist</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertInView">
+<code class="descname">assertInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertInView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if element isn’t scrolled into view</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertInvisible">
+<code class="descname">assertInvisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertInvisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertInvisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if element is visible</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertNotExists">
+<code class="descname">assertNotExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertNotExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertNotExists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if element exists</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertNotInView">
+<code class="descname">assertNotInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertNotInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertNotInView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if element is scrolled into view</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertUrlChange">
+<code class="descname">assertUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertUrlChange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if the URL doesn’t match the expected URL.</p>
+<p>Assertion uses webdriver_test_tools.test.url_change_test() using the default 10
+second wait timeout before determining that expected_url does not match the
+current URL.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>expected_url</strong> – The expected URL</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertVisible">
+<code class="descname">assertVisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertVisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if element isn’t visible</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.driver">
 <code class="descname">driver</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.driver" title="Permalink to this definition">¶</a></dt>
@@ -405,7 +506,7 @@ webdriver API, leading to several inaccurate test failures.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.8.0',
+            VERSION:'0.9.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
