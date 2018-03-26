@@ -1,4 +1,8 @@
-# Subclasses of BasePage with additional functions for convenience
+"""Subclasses of BasePage with additional functions for convenience.
+
+These classes define common operations and attributes for various common components. These can be subclassed in test projects if useful.
+"""
+
 from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_test_tools.webdriver import actions
 
@@ -6,9 +10,11 @@ from webdriver_test_tools.webdriver import actions
 # TODO: Since a lot of these define interfaces, need to somehow document the stuff that subclasses will want to override
 
 class WebPageObject(BasePage):
-    """Page object prototype for web pages"""
+    """Page object prototype for web pages
 
-    # File name of the page relative to config.SiteConfig.BASE_URL
+    :var PAGE_FILENAME: File name of the page relative to config.SiteConfig.BASE_URL
+    """
+
     PAGE_FILENAME = None
 
     def get_page_title(self):
@@ -20,16 +26,14 @@ class WebPageObject(BasePage):
 
 
 class NavObject(BasePage):
-    """Page object prototype for navbars"""
+    """Page object prototype for navbars
 
-    # Maps link text to a tuple containing its locator and the page object class for the target page, modal, section, etc (or None if need be)
+    :var LINK_MAP:  Maps link text to a tuple containing its locator and the page object class for the target page, modal, section, etc (or None if need be). Override in subclasses
+    :var HOVER_MAP: Maps link text to a tuple containing its locator and the page object class for the menu, dropdown, etc that should appear on hover (or None if need be). Override in subclasses
+    """
+
     LINK_MAP = {}
-
-    # Maps link text to a tuple containing its locator and the page object class for the menu, dropdown, etc that should appear on hover (or None if need be)
     HOVER_MAP = {}
-
-    # Page Functions
-    # --------------------------------
 
     def click_page_link(self, link_map_key):
         """Click one of the page links and return a page object class for the link target
@@ -62,11 +66,13 @@ class NavObject(BasePage):
 
 
 class FormObject(BasePage):
-    """Page object prototype for navbars"""
+    """Page object prototype for navbars
 
-    # Locator for the form element. Override in subclasses
+    :var FORM_LOCATOR: Locator for the form element. Override in subclasses
+    :var SUBMIT_LOCATOR: Locator for the submit button. Override in subclasses
+    """
+
     FORM_LOCATOR = None
-    # Locator for the submit button. Override in subclasses
     SUBMIT_LOCATOR = None
 
     class Input(object):
