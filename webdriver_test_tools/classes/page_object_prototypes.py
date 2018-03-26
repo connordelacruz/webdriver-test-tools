@@ -1,5 +1,6 @@
 # Subclasses of BasePage with additional functions for convenience
 from selenium.webdriver.common.action_chains import ActionChains
+from webdriver_test_tools.webdriver import actions
 
 
 # TODO: Since a lot of these define interfaces, need to somehow document the stuff that subclasses will want to override
@@ -58,6 +59,11 @@ class NavObject(BasePage):
 class FormObject(BasePage):
     """Page object prototype for navbars"""
 
+    # Locator for the form element. Override in subclasses
+    FORM_LOCATOR = None
+    # Locator for the submit button. Override in subclasses
+    SUBMIT_LOCATOR = None
+
     class Input(object):
         """Subclass used to contain name attributes and select/radio option lists for inputs
 
@@ -73,11 +79,32 @@ class FormObject(BasePage):
         """
         pass
 
-    # TODO: fill_form()
+    def fill_form(self, input_map):
+        """Fill the form element inputs
 
-    # TODO: submit_is_enabled()
+        :param input_map: Dictionary mapping input names to the values to set them to.
+            See webdriver_test_tools.webdriver.actions.form.fill_form_input for values
+            to use for different input types
+        """
+        form = self.find_element(self.FORM_LOCATOR)
+        actions.fill_form_inputs(self.driver, form, input_map)
 
-    # TODO: click_submit()
+
+    def submit_is_enabled(self):
+        """Short hand function for checking if the submit button is enabled. Useful
+        for forms with JavaScript input validation
+
+        :return: True if submit is enabled, False if it's disabled
+        """
+        return self.find_element(self.SUBMIT_LOCATOR).is_enabled()
+
+    def click_submit(self):
+        """Shorthand function for scrolling to the submit button and clicking it.
+        May want to override and return a page object for the resulting page, modal,
+        etc that's supposed to appear upon submitting
+        """
+        submit_button = self.find_element(self.SUBMIT_LOCATOR)
+        actions.scroll_to_and_click(self.driver, submit_button)
 
 
 
