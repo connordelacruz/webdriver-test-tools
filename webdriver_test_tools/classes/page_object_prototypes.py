@@ -60,7 +60,7 @@ class NavObject(BasePage):
         if link_map_key in self.HOVER_MAP:
             link_tuple = self.HOVER_MAP[link_map_key]
             link = self.find_element(link_tuple[0])
-            action_chain = ActionChains(driver)
+            action_chain = ActionChains(self.driver)
             action_chain.move_to_element(link).perform()
             # Initialize the target page object and return it
             return None if link_tuple[1] is None else link_tuple[1](self.driver)
