@@ -15,7 +15,7 @@ class BasePage(object):
     def find_element(self, locator):
         """Returns a WebElement object based on the locator tuple passed
 
-        Shorthand for self.driver.find_element(*locator)
+        Shorthand for ``self.driver.find_element(*locator)``
 
         :param locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
 
@@ -27,7 +27,7 @@ class BasePage(object):
     def find_elements(self, locator):
         """Returns a list of WebElement objects based on the locator tuple passed
 
-        Shorthand for self.driver.find_elements(*locator)
+        Shorthand for ``self.driver.find_elements(*locator)``
 
         :param locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
 

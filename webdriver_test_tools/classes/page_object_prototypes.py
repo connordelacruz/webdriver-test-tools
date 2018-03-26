@@ -81,13 +81,16 @@ class FormObject(BasePage):
 
         :Example:
 
-            SOME_INPUT = 'someInput'
+            .. code:: python
 
-            SOME_SELECT = 'someSelect'
-            SOME_SELECT_OPTIONS = [
-                    'vaule1',
-                    'value2',
-            ]
+                SOME_INPUT = 'someInput'
+
+                SOME_SELECT = 'someSelect'
+                SOME_SELECT_OPTIONS = [
+                        'vaule1',
+                        'value2',
+                ]
+
         """
         pass
 

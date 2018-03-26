@@ -7,6 +7,7 @@ Submodules
 .. toctree::
 
    webdriver_test_tools.classes.base_page
+   webdriver_test_tools.classes.page_object_prototypes
    webdriver_test_tools.classes.webdriver_test_case
 
 Module contents

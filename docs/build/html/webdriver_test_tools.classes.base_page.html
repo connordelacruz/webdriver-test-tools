@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.base_page module &mdash; WebDriver Test Tools 0.9.0 documentation</title>
+  <title>webdriver_test_tools.classes.base_page module &mdash; WebDriver Test Tools 0.10.0 documentation</title>
   
 
   
@@ -37,9 +37,9 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.9.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.10.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.classes package" href="webdriver_test_tools.classes.html"/>
-        <link rel="next" title="webdriver_test_tools.classes.webdriver_test_case module" href="webdriver_test_tools.classes.webdriver_test_case.html"/>
+        <link rel="next" title="webdriver_test_tools.classes.page_object_prototypes module" href="webdriver_test_tools.classes.page_object_prototypes.html"/>
         <link rel="prev" title="webdriver_test_tools.classes package" href="webdriver_test_tools.classes.html"/> 
 
   
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.9
+                0.10
               </div>
             
           
@@ -190,9 +190,38 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Base class for page objects</p>
 <dl class="method">
-<dt id="webdriver_test_tools.classes.base_page.BasePage.get_page_title">
-<code class="descname">get_page_title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/base_page.html#BasePage.get_page_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.base_page.BasePage.get_page_title" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="webdriver_test_tools.classes.base_page.BasePage.find_element">
+<code class="descname">find_element</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/base_page.html#BasePage.find_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.base_page.BasePage.find_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a WebElement object based on the locator tuple passed</p>
+<p>Shorthand for <code class="docutils literal notranslate"><span class="pre">self.driver.find_element(*locator)</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">WebElement</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.classes.base_page.BasePage.find_elements">
+<code class="descname">find_elements</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/base_page.html#BasePage.find_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.base_page.BasePage.find_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of WebElement objects based on the locator tuple passed</p>
+<p>Shorthand for <code class="docutils literal notranslate"><span class="pre">self.driver.find_elements(*locator)</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List of WebElement</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -208,7 +237,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.classes.webdriver_test_case.html" class="btn btn-neutral float-right" title="webdriver_test_tools.classes.webdriver_test_case module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.classes.page_object_prototypes.html" class="btn btn-neutral float-right" title="webdriver_test_tools.classes.page_object_prototypes module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="webdriver_test_tools.classes.html" class="btn btn-neutral" title="webdriver_test_tools.classes package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -242,7 +271,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.9.0',
+            VERSION:'0.10.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
