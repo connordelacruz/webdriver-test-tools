@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.actions.scroll module &mdash; WebDriver Test Tools 0.9.0 documentation</title>
+  <title>webdriver_test_tools.webdriver.actions.scroll module &mdash; WebDriver Test Tools 0.10.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.9.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.10.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.webdriver.actions package" href="webdriver_test_tools.webdriver.actions.html"/>
         <link rel="next" title="webdriver_test_tools.webdriver.support package" href="webdriver_test_tools.webdriver.support.html"/>
         <link rel="prev" title="webdriver_test_tools.webdriver.actions.form module" href="webdriver_test_tools.webdriver.actions.form.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.9
+                0.10
               </div>
             
           
@@ -196,8 +196,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium webdriver object</li>
-<li><strong>element</strong> – Element to scroll to</li>
+<li><strong>driver</strong> – Selenium WebDriver object</li>
+<li><strong>element</strong> – WebElement to scroll to</li>
 <li><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if False</li>
 </ul>
 </td>
@@ -220,6 +220,25 @@
 <li><strong>fixed_element</strong> – WebElement object for the fixed nav</li>
 <li><strong>additional_offset</strong> – (Default = 0) Additional offset from the top</li>
 <li><strong>align_to_top</strong> – (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the bottom if False</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.webdriver.actions.scroll.scroll_to_and_click">
+<code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">scroll_to_and_click</code><span class="sig-paren">(</span><em>driver</em>, <em>element</em>, <em>align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#scroll_to_and_click"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.scroll_to_and_click" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short hand function for scrolling an element into view and clicking it</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
+<li><strong>element</strong> – WebElement to scroll to and click on</li>
+<li><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if False</li>
 </ul>
 </td>
 </tr>
@@ -319,7 +338,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.9.0',
+            VERSION:'0.10.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

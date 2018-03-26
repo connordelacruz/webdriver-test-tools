@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.actions.scroll &mdash; WebDriver Test Tools 0.9.0 documentation</title>
+  <title>webdriver_test_tools.webdriver.actions.scroll &mdash; WebDriver Test Tools 0.10.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.9.0 documentation" href="../../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.10.0 documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.9
+                0.10
               </div>
             
           
@@ -174,12 +174,22 @@
 <div class="viewcode-block" id="scroll_into_view"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.scroll.html#webdriver_test_tools.webdriver.actions.scroll.scroll_into_view">[docs]</a><span class="k">def</span> <span class="nf">scroll_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">align_to_top</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Scroll to an element</span>
 
-<span class="sd">    :param driver: Selenium webdriver object</span>
-<span class="sd">    :param element: Element to scroll to</span>
+<span class="sd">    :param driver: Selenium WebDriver object</span>
+<span class="sd">    :param element: WebElement to scroll to</span>
 <span class="sd">    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;arguments[0].scrollIntoView(</span><span class="si">{}</span><span class="s1">);&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">align_to_top</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span></div>
     <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
+
+<div class="viewcode-block" id="scroll_to_and_click"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.scroll.html#webdriver_test_tools.webdriver.actions.scroll.scroll_to_and_click">[docs]</a><span class="k">def</span> <span class="nf">scroll_to_and_click</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">align_to_top</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Short hand function for scrolling an element into view and clicking it</span>
+
+<span class="sd">    :param driver: Selenium WebDriver object</span>
+<span class="sd">    :param element: WebElement to scroll to and click on</span>
+<span class="sd">    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">scroll_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">align_to_top</span><span class="p">)</span></div>
+    <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
 
 <div class="viewcode-block" id="scroll_to_position"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.scroll.html#webdriver_test_tools.webdriver.actions.scroll.scroll_to_position">[docs]</a><span class="k">def</span> <span class="nf">scroll_to_position</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Scroll window to the specified x,y coordinates</span>
@@ -264,7 +274,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'0.9.0',
+            VERSION:'0.10.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

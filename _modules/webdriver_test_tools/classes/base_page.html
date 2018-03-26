@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.base_page &mdash; WebDriver Test Tools 0.9.0 documentation</title>
+  <title>webdriver_test_tools.classes.base_page &mdash; WebDriver Test Tools 0.10.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.9.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.10.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.9
+                0.10
               </div>
             
           
@@ -168,10 +168,36 @@
     <span class="sd">&quot;&quot;&quot;Base class for page objects&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize page object</span>
+
+<span class="sd">        :param driver: Selenium WebDriver object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
 
-<div class="viewcode-block" id="BasePage.get_page_title"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.base_page.html#webdriver_test_tools.classes.base_page.BasePage.get_page_title">[docs]</a>    <span class="k">def</span> <span class="nf">get_page_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
-        <span class="k">return</span> <span class="n">driver</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span>
+
+<div class="viewcode-block" id="BasePage.find_element"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.base_page.html#webdriver_test_tools.classes.base_page.BasePage.find_element">[docs]</a>    <span class="k">def</span> <span class="nf">find_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a WebElement object based on the locator tuple passed</span>
+
+<span class="sd">        Shorthand for ``self.driver.find_element(*locator)``</span>
+
+<span class="sd">        :param locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+
+<span class="sd">        :rtype: WebElement</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="BasePage.find_elements"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.base_page.html#webdriver_test_tools.classes.base_page.BasePage.find_elements">[docs]</a>    <span class="k">def</span> <span class="nf">find_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of WebElement objects based on the locator tuple passed</span>
+
+<span class="sd">        Shorthand for ``self.driver.find_elements(*locator)``</span>
+
+<span class="sd">        :param locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+
+<span class="sd">        :rtype: List of WebElement</span>
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span>
+
 </pre></div>
 
            </div>
@@ -208,7 +234,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.9.0',
+            VERSION:'0.10.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
