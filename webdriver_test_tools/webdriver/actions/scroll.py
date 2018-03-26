@@ -11,12 +11,22 @@ from selenium.webdriver.support import expected_conditions as EC
 def scroll_into_view(driver, element, align_to_top=True):
     """Scroll to an element
 
-    :param driver: Selenium webdriver object
-    :param element: Element to scroll to
+    :param driver: Selenium WebDriver object
+    :param element: WebElement to scroll to
     :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if False
     """
     script_string = 'arguments[0].scrollIntoView({});'.format(str(align_to_top).lower())
     driver.execute_script(script_string, element)
+
+def scroll_to_and_click(driver, element, align_to_top=True):
+    """Short hand function for scrolling an element into view and clicking it
+
+    :param driver: Selenium WebDriver object
+    :param element: WebElement to scroll to and click on
+    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if False
+    """
+    scroll_into_view(driver, element, align_to_top)
+    element.click()
 
 def scroll_to_position(driver, x, y):
     """Scroll window to the specified x,y coordinates
