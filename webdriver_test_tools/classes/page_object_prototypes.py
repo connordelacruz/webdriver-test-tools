@@ -4,6 +4,7 @@ These classes define common operations and attributes for various common compone
 """
 
 from selenium.webdriver.common.action_chains import ActionChains
+from webdriver_test_tools.classes.base_page import BasePage
 from webdriver_test_tools.webdriver import actions
 
 
