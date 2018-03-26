@@ -119,7 +119,8 @@ class FormObject(BasePage):
         etc that's supposed to appear upon submitting
         """
         submit_button = self.find_element(self.SUBMIT_LOCATOR)
-        actions.scroll_to_and_click(self.driver, submit_button)
+        # TODO: figure out a cleaner way to handle align_to_top
+        actions.scroll_to_and_click(self.driver, submit_button, False)
 
 
 
