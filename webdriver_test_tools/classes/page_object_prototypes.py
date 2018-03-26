@@ -22,8 +22,11 @@ class WebPageObject(BasePage):
 class NavObject(BasePage):
     """Page object prototype for navbars"""
 
-    # Maps link text to a tuple containing its locator and the page object class for the target page, modal, section, etc
+    # Maps link text to a tuple containing its locator and the page object class for the target page, modal, section, etc (or None if need be)
     LINK_MAP = {}
+
+    # Maps link text to a tuple containing its locator and the page object class for the menu, dropdown, etc that should appear on hover (or None if need be)
+    HOVER_MAP = {}
 
     # Page Functions
     # --------------------------------
@@ -32,28 +35,30 @@ class NavObject(BasePage):
         """Click one of the page links and return a page object class for the link target
 
         :param link_map_key: Key into LINK_MAP for the link to click on
-        :return: Corresponding page object class for the link target
+        :return: Corresponding page object class for the link target (if applicable)
         """
         # TODO: raise exception?
         if link_map_key in self.LINK_MAP:
             link_tuple = self.LINK_MAP[link_map_key]
             self.find_element(link_tuple[0]).click()
             # Initialize the target page object and return it
-            return link_tuple[1](self.driver)
+            return None if link_tuple[1] is None else link_tuple[1](self.driver)
 
 
-    # TODO: extend LINK_MAP to have different page objects for hovering and clicking and return corresponding hover object?
     def hover_over_page_link(self, link_map_key):
         """Hover mouse over one of the page links
 
-        :param link_map_key: Key into LINK_MAP for the link to hover mouse over
+        :param link_map_key: Key into HOVER_MAP for the link to hover mouse over
+        :return: Corresponding page object class for the hover dropdown/container/etc (if applicable)
         """
         # TODO: raise exception?
-        if link_map_key in self.LINK_MAP:
-            link_tuple = self.LINK_MAP[link_map_key]
+        if link_map_key in self.HOVER_MAP:
+            link_tuple = self.HOVER_MAP[link_map_key]
             link = self.find_element(link_tuple[0])
             action_chain = ActionChains(driver)
             action_chain.move_to_element(link).perform()
+            # Initialize the target page object and return it
+            return None if link_tuple[1] is None else link_tuple[1](self.driver)
 
 
 class FormObject(BasePage):
