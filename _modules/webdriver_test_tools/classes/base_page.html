@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.base_page &mdash; WebDriver Test Tools 0.10.0 documentation</title>
+  <title>webdriver_test_tools.classes.base_page &mdash; WebDriver Test Tools 0.10.3 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.10.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.10.3 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -167,6 +167,16 @@
 <div class="viewcode-block" id="BasePage"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.base_page.html#webdriver_test_tools.classes.base_page.BasePage">[docs]</a><span class="k">class</span> <span class="nc">BasePage</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for page objects&quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="BasePage.Locator"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.base_page.html#webdriver_test_tools.classes.base_page.BasePage.Locator">[docs]</a>    <span class="k">class</span> <span class="nc">Locator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;WebDriver locator tuples for any elements that will need to be accessed by</span>
+<span class="sd">        this page object.</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">            ``SOME_ELEMENT = (By.ID, &#39;some-element&#39;)``</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+        <span class="k">pass</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize page object</span>
 
@@ -234,7 +244,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.10.0',
+            VERSION:'0.10.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.base_page module &mdash; WebDriver Test Tools 0.10.0 documentation</title>
+  <title>webdriver_test_tools.classes.base_page module &mdash; WebDriver Test Tools 0.10.3 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.10.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.10.3 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.classes package" href="webdriver_test_tools.classes.html"/>
         <link rel="next" title="webdriver_test_tools.classes.page_object_prototypes module" href="webdriver_test_tools.classes.page_object_prototypes.html"/>
         <link rel="prev" title="webdriver_test_tools.classes package" href="webdriver_test_tools.classes.html"/> 
@@ -189,6 +189,22 @@
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.base_page.</code><code class="descname">BasePage</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/base_page.html#BasePage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.base_page.BasePage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Base class for page objects</p>
+<dl class="class">
+<dt id="webdriver_test_tools.classes.base_page.BasePage.Locator">
+<em class="property">class </em><code class="descname">Locator</code><a class="reference internal" href="_modules/webdriver_test_tools/classes/base_page.html#BasePage.Locator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.base_page.BasePage.Locator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>WebDriver locator tuples for any elements that will need to be accessed by
+this page object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">SOME_ELEMENT</span> <span class="pre">=</span> <span class="pre">(By.ID,</span> <span class="pre">'some-element')</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="webdriver_test_tools.classes.base_page.BasePage.find_element">
 <code class="descname">find_element</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/base_page.html#BasePage.find_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.base_page.BasePage.find_element" title="Permalink to this definition">¶</a></dt>
@@ -271,7 +287,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.10.0',
+            VERSION:'0.10.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
