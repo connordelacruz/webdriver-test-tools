@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.page_object_prototypes module &mdash; WebDriver Test Tools 0.10.0 documentation</title>
+  <title>webdriver_test_tools.classes.page_object_prototypes module &mdash; WebDriver Test Tools 0.10.3 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.10.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.10.3 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.classes package" href="webdriver_test_tools.classes.html"/>
         <link rel="next" title="webdriver_test_tools.classes.webdriver_test_case module" href="webdriver_test_tools.classes.webdriver_test_case.html"/>
         <link rel="prev" title="webdriver_test_tools.classes.base_page module" href="webdriver_test_tools.classes.base_page.html"/> 
@@ -290,6 +290,7 @@ for forms with JavaScript input validation</p>
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
 <li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.LINK_MAP" title="webdriver_test_tools.classes.page_object_prototypes.NavObject.LINK_MAP"><strong>LINK_MAP</strong></a> – Maps link text to a tuple containing its locator and the page object class for the target page, modal, section, etc (or None if need be). Override in subclasses</li>
 <li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.HOVER_MAP" title="webdriver_test_tools.classes.page_object_prototypes.NavObject.HOVER_MAP"><strong>HOVER_MAP</strong></a> – Maps link text to a tuple containing its locator and the page object class for the menu, dropdown, etc that should appear on hover (or None if need be). Override in subclasses</li>
+<li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.fixed" title="webdriver_test_tools.classes.page_object_prototypes.NavObject.fixed"><strong>fixed</strong></a> – (Default = True) True if element is a fixed navbar, False otherwise. If set to False in a subclass, click_page_link() and hover_over_page_link() will scroll the target link into view before interacting with it</li>
 </ul>
 </td>
 </tr>
@@ -320,6 +321,11 @@ for forms with JavaScript input validation</p>
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.page_object_prototypes.NavObject.fixed">
+<code class="descname">fixed</code><em class="property"> = True</em><a class="headerlink" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.fixed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.page_object_prototypes.NavObject.hover_over_page_link">
@@ -419,7 +425,7 @@ for forms with JavaScript input validation</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.10.0',
+            VERSION:'0.10.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
