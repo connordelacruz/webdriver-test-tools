@@ -31,10 +31,14 @@ class NavObject(BasePage):
 
     :var LINK_MAP:  Maps link text to a tuple containing its locator and the page object class for the target page, modal, section, etc (or None if need be). Override in subclasses
     :var HOVER_MAP: Maps link text to a tuple containing its locator and the page object class for the menu, dropdown, etc that should appear on hover (or None if need be). Override in subclasses
+    :var fixed: (Default = True) True if element is a fixed navbar, False otherwise. If set to False in a subclass, click_page_link() and hover_over_page_link() will scroll the target link into view before interacting with it
     """
 
+    # Link maps
     LINK_MAP = {}
     HOVER_MAP = {}
+    # Nav attributes
+    fixed = True
 
     def click_page_link(self, link_map_key):
         """Click one of the page links and return a page object class for the link target
@@ -45,7 +49,10 @@ class NavObject(BasePage):
         # TODO: raise exception?
         if link_map_key in self.LINK_MAP:
             link_tuple = self.LINK_MAP[link_map_key]
-            self.find_element(link_tuple[0]).click()
+            link = self.find_element(link_tuple[0])
+            if not self.fixed:
+                actions.scroll_into_view(self.driver, link)
+            link.click()
             # Initialize the target page object and return it
             return None if link_tuple[1] is None else link_tuple[1](self.driver)
 
@@ -60,6 +67,8 @@ class NavObject(BasePage):
         if link_map_key in self.HOVER_MAP:
             link_tuple = self.HOVER_MAP[link_map_key]
             link = self.find_element(link_tuple[0])
+            if not self.fixed:
+                actions.scroll_into_view(self.driver, link)
             action_chain = ActionChains(self.driver)
             action_chain.move_to_element(link).perform()
             # Initialize the target page object and return it

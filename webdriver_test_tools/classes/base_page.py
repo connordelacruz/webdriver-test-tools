@@ -4,6 +4,16 @@
 class BasePage(object):
     """Base class for page objects"""
 
+    class Locator(object):
+        """WebDriver locator tuples for any elements that will need to be accessed by
+        this page object.
+
+        :Example:
+
+            ``SOME_ELEMENT = (By.ID, 'some-element')``
+        """
+        pass
+
     def __init__(self, driver):
         """Initialize page object
 
