@@ -7,6 +7,7 @@
 
 import unittest
 from webdriver_test_tools.config import WebDriverConfig
+from webdriver_test_tools.common import utils
 from webdriver_test_tools import test
 
 
@@ -132,8 +133,7 @@ class WebDriverTestCase(unittest.TestCase):
         :param expected_url: The expected URL
         """
         if not test.base_url_change_test(self.driver, expected_url):
-            # TODO: .find('?') unreliable
-            failure_message = 'Current base URL = {}, expected base URL = {}'.format(self.driver.current_url[:self.driver.current_url.find('?')], expected_url)
+            failure_message = 'Current base URL = {}, expected base URL = {}'.format(utils.get_base_url(self.driver.current_url), expected_url)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 

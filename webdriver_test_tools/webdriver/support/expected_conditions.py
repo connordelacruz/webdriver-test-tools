@@ -2,7 +2,7 @@
 
 # Imports
 from webdriver_test_tools import test
-from urllib.parse import urlparse
+from webdriver_test_tools.common import utils
 
 
 class element_is_in_view(object):
@@ -28,6 +28,5 @@ class base_url_to_be(object):
         self.url = url
 
     def __call__(self, driver):
-        current = urlparse(driver.current_url)
-        base_url = current.scheme + '://' + current.netloc + current.path
+        base_url = utils.get_base_url(driver.current_url)
         return self.url == base_url
