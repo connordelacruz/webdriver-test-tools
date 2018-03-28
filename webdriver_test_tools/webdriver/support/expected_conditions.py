@@ -1,8 +1,8 @@
 # Custom expected condition classes
 
 # Imports
-# ----------------------------------------------------------------
 from webdriver_test_tools import test
+from urllib.parse import urlparse
 
 
 class element_is_in_view(object):
@@ -28,4 +28,6 @@ class base_url_to_be(object):
         self.url = url
 
     def __call__(self, driver):
-        return self.url == driver.current_url[:driver.current_url.find('?')]
+        current = urlparse(driver.current_url)
+        base_url = current.scheme + '://' + current.netloc + current.path
+        return self.url == base_url
