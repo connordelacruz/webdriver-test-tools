@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.webdriver_test_case module &mdash; WebDriver Test Tools 0.10.3 documentation</title>
+  <title>webdriver_test_tools.classes.webdriver_test_case module &mdash; WebDriver Test Tools 0.11.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.10.3 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.11.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.classes package" href="webdriver_test_tools.classes.html"/>
         <link rel="next" title="webdriver_test_tools.config package" href="webdriver_test_tools.config.html"/>
         <link rel="prev" title="webdriver_test_tools.classes.page_object_prototypes module" href="webdriver_test_tools.classes.page_object_prototypes.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.10
+                0.11
               </div>
             
           
@@ -341,6 +341,23 @@ webdriver API, leading to several inaccurate test failures.</p>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertBaseUrlChange">
+<code class="descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if the URL (ignoring query strings) doesn’t match the expected URL.</p>
+<p>Assertion uses webdriver_test_tools.test.url_change_test() using the default 10
+second wait timeout before determining that expected_url does not match the
+current URL.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>expected_url</strong> – The expected URL</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertExists">
 <code class="descname">assertExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertExists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element doesn’t exist</p>
@@ -506,7 +523,7 @@ current URL.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.10.3',
+            VERSION:'0.11.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

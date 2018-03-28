@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.test module &mdash; WebDriver Test Tools 0.10.3 documentation</title>
+  <title>webdriver_test_tools.test module &mdash; WebDriver Test Tools 0.11.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.10.3 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.11.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools API" href="webdriver_test_tools.html"/>
         <link rel="next" title="webdriver_test_tools.version module" href="webdriver_test_tools.version.html"/>
         <link rel="prev" title="webdriver_test_tools.webdriver.locate module" href="webdriver_test_tools.webdriver.locate.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.10
+                0.11
               </div>
             
           
@@ -175,6 +175,25 @@
             
   <div class="section" id="module-webdriver_test_tools.test">
 <span id="webdriver-test-tools-test-module"></span><h1>webdriver_test_tools.test module<a class="headerlink" href="#module-webdriver_test_tools.test" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="webdriver_test_tools.test.base_url_change_test">
+<code class="descclassname">webdriver_test_tools.test.</code><code class="descname">base_url_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>expected_url</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/test.html#base_url_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.test.base_url_change_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expected condition test for URL change. Ignores query strings in current url</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>driver</strong> – Selenium webdriver object</li>
+<li><strong>expected_url</strong> – The expected base URL</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait expected conditions to occur before timing out</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="function">
 <dt id="webdriver_test_tools.test.element_exists">
 <code class="descclassname">webdriver_test_tools.test.</code><code class="descname">element_exists</code><span class="sig-paren">(</span><em>driver</em>, <em>element_locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/test.html#element_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.test.element_exists" title="Permalink to this definition">¶</a></dt>
@@ -350,7 +369,7 @@ within the viewport.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.10.3',
+            VERSION:'0.11.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
