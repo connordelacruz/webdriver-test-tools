@@ -15,3 +15,17 @@ class element_is_in_view(object):
         element = driver.find_element(*self.locator)
         return test.is_scrolled_into_view(driver, element, self.fully_in_view)
 
+
+class base_url_to_be(object):
+    """An expectation for checking the current url, ignoring query strings (i.e. strips
+    '?' and everything after it and only looks at the base URL)
+
+    url is the expected URL, which must be an exact match with the current base URL
+
+    returns True if the base URL matches, false otherwise
+    """
+    def __init__(self, url):
+        self.url = url
+
+    def __call__(self, driver):
+        return self.url == driver.current_url[:driver.current_url.find('?')]

@@ -119,3 +119,14 @@ def url_change_test(driver, expected_url, wait_timeout=10):
     """
     url_checker = EC.url_to_be(expected_url)
     return expected_condition_test(driver, url_checker, wait_timeout)
+
+
+def base_url_change_test(driver, expected_url, wait_timeout=10):
+    """Expected condition test for URL change. Ignores query strings in current url
+
+    :param driver: Selenium webdriver object
+    :param expected_url: The expected base URL
+    :param wait_timeout: (Default = 10) Number of seconds to wait expected conditions to occur before timing out
+    """
+    url_checker = customEC.base_url_to_be(expected_url)
+    return expected_condition_test(driver, url_checker, wait_timeout)

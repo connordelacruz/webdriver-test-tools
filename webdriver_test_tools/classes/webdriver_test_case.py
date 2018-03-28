@@ -122,6 +122,21 @@ class WebDriverTestCase(unittest.TestCase):
             raise self.failureException(msg)
 
 
+    def assertBaseUrlChange(self, expected_url, msg=None):
+        """Fail if the URL (ignoring query strings) doesn't match the expected URL.
+
+        Assertion uses webdriver_test_tools.test.url_change_test() using the default 10
+        second wait timeout before determining that expected_url does not match the
+        current URL.
+
+        :param expected_url: The expected URL
+        """
+        if not test.base_url_change_test(self.driver, expected_url):
+            failure_message = 'Current base URL = {}, expected base URL = {}'.format(self.driver.current_url[:self.driver.current_url.find('?')], expected_url)
+            msg = self._formatMessage(msg, failure_message)
+            raise self.failureException(msg)
+
+
 # Browser driver implementations
 # --------------------------------
 
