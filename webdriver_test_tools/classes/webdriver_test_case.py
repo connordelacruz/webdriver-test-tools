@@ -1,9 +1,4 @@
-#!/usr/bin/env python3
-
 # Test Case Superclass
-
-# Imports
-# ----------------------------------------------------------------
 
 import unittest
 from webdriver_test_tools.config import WebDriverConfig
@@ -12,7 +7,6 @@ from webdriver_test_tools import test
 
 
 # Test Case Classes
-# ----------------------------------------------------------------
 
 class WebDriverTestCase(unittest.TestCase):
     """Base class for web driver test cases
@@ -22,17 +16,20 @@ class WebDriverTestCase(unittest.TestCase):
 
     # Base URL for these tests. Must be set in test case implementations
     SITE_URL = None
+    # List of browser names to skip during test execution
+    # TODO: better document and implement
+    SKIP_BROWSERS = []
     # WebDriver object. Browser-specific subclasses need to initialize this in setUp() before calling super().setUp()
     driver = None
 
     def setUp(self):
+        # TODO: check if self.SHORT_NAME in self.SKIP_BROWSERS
         self.driver.get(self.SITE_URL)
 
     def tearDown(self):
         self.driver.quit()
 
     # Assertion methods
-    # --------------------------------
 
     def _locator_string(self, locator):
         """Shorthand for formating locator tuple as a string for failure output
@@ -40,7 +37,6 @@ class WebDriverTestCase(unittest.TestCase):
         :param locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
         """
         return '("{0}", "{1}")'.format(*locator)
-
 
     def assertExists(self, element_locator, msg=None):
         """Fail if element doesn't exist
@@ -52,7 +48,6 @@ class WebDriverTestCase(unittest.TestCase):
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-
     def assertNotExists(self, element_locator, msg=None):
         """Fail if element exists
 
@@ -62,7 +57,6 @@ class WebDriverTestCase(unittest.TestCase):
             failure_message = 'Elements located using ' + self._locator_string(element_locator)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
-
 
     def assertInView(self, element_locator, msg=None):
         """Fail if element isn't scrolled into view
@@ -74,7 +68,6 @@ class WebDriverTestCase(unittest.TestCase):
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-
     def assertNotInView(self, element_locator, msg=None):
         """Fail if element is scrolled into view
 
@@ -84,7 +77,6 @@ class WebDriverTestCase(unittest.TestCase):
             failure_message = 'Element is scrolled into view'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
-
 
     def assertVisible(self, element_locator, msg=None):
         """Fail if element isn't visible
@@ -96,7 +88,6 @@ class WebDriverTestCase(unittest.TestCase):
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-
     def assertInvisible(self, element_locator, msg=None):
         """Fail if element is visible
 
@@ -106,7 +97,6 @@ class WebDriverTestCase(unittest.TestCase):
             failure_message = 'Element is visible'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
-
 
     def assertUrlChange(self, expected_url, msg=None):
         """Fail if the URL doesn't match the expected URL.
@@ -122,7 +112,6 @@ class WebDriverTestCase(unittest.TestCase):
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-
     def assertBaseUrlChange(self, expected_url, msg=None):
         """Fail if the URL (ignoring query strings) doesn't match the expected URL.
 
@@ -133,13 +122,13 @@ class WebDriverTestCase(unittest.TestCase):
         :param expected_url: The expected URL
         """
         if not test.base_url_change_test(self.driver, expected_url):
-            failure_message = 'Current base URL = {}, expected base URL = {}'.format(utils.get_base_url(self.driver.current_url), expected_url)
+            failure_message = 'Current base URL = {}, expected base URL = {}'.format(
+                utils.get_base_url(self.driver.current_url), expected_url)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
 
-# Browser driver implementations
-# --------------------------------
+# Browser Driver Implementations
 
 class FirefoxTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Firefox webdriver
@@ -182,10 +171,11 @@ class SafariTestCase(WebDriverTestCase):
 
     .. warning::
 
-        Safari's webdriver can be unreliable and buggy. Apart from starting up a new
-        Safari instance each time it's initialized and leaving the process running even
-        when driver.quit() is called, it also seems to lack certain features of the
-        webdriver API, leading to several inaccurate test failures.
+        Safari's webdriver is missing certain features of the webdriver API, which can
+        cause test failures. As of Safari 11.0.3, issues with the following modules
+        have been encountered during testing:
+            - ``selenium.webdriver.common.action_chains``
+            - ``selenium.webdriver.support.select``
     """
     DRIVER_NAME = 'Safari'
     SHORT_NAME = DRIVER_NAME.lower()
@@ -231,4 +221,3 @@ class EdgeTestCase(WebDriverTestCase):
     def setUp(self):
         self.driver = WebDriverConfig.get_edge_driver()
         super().setUp()
-
