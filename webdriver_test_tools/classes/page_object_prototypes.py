@@ -82,8 +82,12 @@ class FormObject(BasePage):
     :var SUBMIT_LOCATOR: Locator for the submit button. Override in subclasses
     """
 
+    # Locators
     FORM_LOCATOR = None
     SUBMIT_LOCATOR = None
+    # Optional page object to return on click_submit()
+    # TODO: update docs
+    SUBMIT_SUCCESS_CLASS = None
 
     class Input(object):
         """Subclass used to contain name attributes and select/radio option lists for inputs
@@ -122,6 +126,7 @@ class FormObject(BasePage):
         """
         return self.find_element(self.SUBMIT_LOCATOR).is_enabled()
 
+    # TODO: test and update docs
     def click_submit(self):
         """Shorthand function for scrolling to the submit button and clicking it.
         May want to override and return a page object for the resulting page, modal,
@@ -130,6 +135,8 @@ class FormObject(BasePage):
         submit_button = self.find_element(self.SUBMIT_LOCATOR)
         # TODO: figure out a cleaner way to handle align_to_top
         actions.scroll_to_and_click(self.driver, submit_button, False)
+        if issubclass(self.SUBMIT_SUCCESS_CLASS, BasePage):
+            return self.SUBMIT_SUCCESS_CLASS(self.driver)
 
 
 
