@@ -225,3 +225,15 @@ class EdgeTestCase(WebDriverTestCase):
     def setUp(self):
         self.driver = WebDriverConfig.get_edge_driver()
         super().setUp()
+
+
+class Browsers(object):
+    # TODO: better documentation?
+    """Constants for browser short names"""
+    FIREFOX = FirefoxTestCase.SHORT_NAME
+    CHROME = ChromeTestCase.SHORT_NAME
+    SAFARI = SafariTestCase.SHORT_NAME
+    IE = IETestCase.SHORT_NAME
+    EDGE = EdgeTestCase.SHORT_NAME
+
+

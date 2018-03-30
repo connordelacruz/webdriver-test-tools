@@ -2,7 +2,6 @@
 
 from webdriver_test_tools.classes.webdriver_test_case import *
 from webdriver_test_tools.config import browser
-from webdriver_test_tools.config.browser import Browsers
 
 
 class BrowserConfig(browser.BrowserConfig):
