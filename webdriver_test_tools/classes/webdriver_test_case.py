@@ -1,6 +1,7 @@
 # Test Case Superclass
 
 import unittest
+from functools import wraps
 from webdriver_test_tools.config import WebDriverConfig
 from webdriver_test_tools.common import utils
 from webdriver_test_tools import test
@@ -131,6 +132,28 @@ class WebDriverTestCase(unittest.TestCase):
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
+    # Skipping Browsers
+    @staticmethod
+    def skipBrowsers(*browsers):
+        """Conditionally skip a test method for certain browsers
+
+        Usage Example:
+
+        .. code-block:: python
+
+            @WebDriverTestCase.skipBrowsers(Browsers.SAFARI, Browsers.IE)
+            test_method(self):
+                ...
+        """
+        def decorator(test_method):
+            @wraps(test_method)
+            def wrapper(*args, **kwargs):
+                test_case_obj = args[0]
+                if test_case_obj.SHORT_NAME in browsers:
+                    test_case_obj.skipTest('Skipping {}'.format(test_case_obj.DRIVER_NAME))
+                test_method(*args, **kwargs)
+            return wrapper
+        return decorator
 
 # Browser Driver Implementations
 
