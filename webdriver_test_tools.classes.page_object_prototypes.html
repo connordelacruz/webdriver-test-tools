@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.page_object_prototypes module &mdash; WebDriver Test Tools 0.12.0 documentation</title>
+  <title>webdriver_test_tools.classes.page_object_prototypes module &mdash; WebDriver Test Tools 0.13.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.12.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.13.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.classes package" href="webdriver_test_tools.classes.html"/>
         <link rel="next" title="webdriver_test_tools.classes.webdriver_test_case module" href="webdriver_test_tools.classes.webdriver_test_case.html"/>
         <link rel="prev" title="webdriver_test_tools.classes.base_page module" href="webdriver_test_tools.classes.base_page.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.12
+                0.13
               </div>
             
           
@@ -198,6 +198,9 @@
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
 <li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.FormObject.FORM_LOCATOR" title="webdriver_test_tools.classes.page_object_prototypes.FormObject.FORM_LOCATOR"><strong>FORM_LOCATOR</strong></a> – Locator for the form element. Override in subclasses</li>
 <li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.classes.page_object_prototypes.FormObject.SUBMIT_LOCATOR"><strong>SUBMIT_LOCATOR</strong></a> – Locator for the submit button. Override in subclasses</li>
+<li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.classes.page_object_prototypes.FormObject.SUBMIT_SUCCESS_CLASS"><strong>SUBMIT_SUCCESS_CLASS</strong></a> – (Optional) Page object of modal/webpage/etc that
+should appear on successful form submission. If subclass set to a subclass of
+BasePage, click_submit() will return an instance of this object.</li>
 </ul>
 </td>
 </tr>
@@ -237,12 +240,17 @@
 <code class="descname">SUBMIT_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.classes.page_object_prototypes.FormObject.SUBMIT_LOCATOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.page_object_prototypes.FormObject.SUBMIT_SUCCESS_CLASS">
+<code class="descname">SUBMIT_SUCCESS_CLASS</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.classes.page_object_prototypes.FormObject.SUBMIT_SUCCESS_CLASS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="webdriver_test_tools.classes.page_object_prototypes.FormObject.click_submit">
 <code class="descname">click_submit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/page_object_prototypes.html#FormObject.click_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.page_object_prototypes.FormObject.click_submit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shorthand function for scrolling to the submit button and clicking it.
-May want to override and return a page object for the resulting page, modal,
-etc that’s supposed to appear upon submitting</p>
+<dd><p>Shorthand function for scrolling to the submit button and clicking it.</p>
+<p>If self.SUBMIT_SUCCESS_CLASS is set to a subclass of BasePage, an instance of
+that object will be returned</p>
 </dd></dl>
 
 <dl class="method">
@@ -425,7 +433,7 @@ for forms with JavaScript input validation</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.12.0',
+            VERSION:'0.13.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
