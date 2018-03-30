@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_factory &mdash; WebDriver Test Tools 0.11.0 documentation</title>
+  <title>webdriver_test_tools.project.test_factory &mdash; WebDriver Test Tools 0.12.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.11.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.12.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.11
+                0.12
               </div>
             
           
@@ -197,9 +197,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># generate class only for browser_test_class if specified</span>
     <span class="n">browser_classes</span> <span class="o">=</span> <span class="n">BrowserConfig</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">browser_test_classes</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">browser_test_classes</span>
-    <span class="c1"># iterate through a list of browser classes and generate test case</span>
+    <span class="c1"># iterate through a list of browser classes and generate test cases</span>
+    <span class="c1"># skip browser classes if listed in base_class.SKIP_BROWSERS</span>
     <span class="n">browser_test_cases</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_class</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_classes</span>
+        <span class="n">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_class</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_classes</span> <span class="k">if</span> <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">base_class</span><span class="o">.</span><span class="n">SKIP_BROWSERS</span>
     <span class="p">]</span></div>
     <span class="k">return</span> <span class="n">browser_test_cases</span>
 
@@ -253,7 +254,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.11.0',
+            VERSION:'0.12.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

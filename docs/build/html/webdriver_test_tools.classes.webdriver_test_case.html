@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.webdriver_test_case module &mdash; WebDriver Test Tools 0.11.0 documentation</title>
+  <title>webdriver_test_tools.classes.webdriver_test_case module &mdash; WebDriver Test Tools 0.12.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.11.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.12.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.classes package" href="webdriver_test_tools.classes.html"/>
         <link rel="next" title="webdriver_test_tools.config package" href="webdriver_test_tools.config.html"/>
         <link rel="prev" title="webdriver_test_tools.classes.page_object_prototypes module" href="webdriver_test_tools.classes.page_object_prototypes.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.11
+                0.12
               </div>
             
           
@@ -184,6 +184,38 @@
             
   <div class="section" id="module-webdriver_test_tools.classes.webdriver_test_case">
 <span id="webdriver-test-tools-classes-webdriver-test-case-module"></span><h1>webdriver_test_tools.classes.webdriver_test_case module<a class="headerlink" href="#module-webdriver_test_tools.classes.webdriver_test_case" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">Browsers</code><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#Browsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Constants for browser short names</p>
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.CHROME">
+<code class="descname">CHROME</code><em class="property"> = 'chrome'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.CHROME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.EDGE">
+<code class="descname">EDGE</code><em class="property"> = 'edge'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.EDGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.FIREFOX">
+<code class="descname">FIREFOX</code><em class="property"> = 'firefox'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.FIREFOX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.IE">
+<code class="descname">IE</code><em class="property"> = 'ie'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.IE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.SAFARI">
+<code class="descname">SAFARI</code><em class="property"> = 'safari'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.SAFARI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="class">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">ChromeTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#ChromeTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase" title="Permalink to this definition">¶</a></dt>
@@ -306,10 +338,15 @@ uncommenting the corresponding line in <code class="docutils literal notranslate
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Safari’s webdriver can be unreliable and buggy. Apart from starting up a new
-Safari instance each time it’s initialized and leaving the process running even
-when driver.quit() is called, it also seems to lack certain features of the
-webdriver API, leading to several inaccurate test failures.</p>
+<p>Safari’s webdriver is missing certain features of the webdriver API, which can
+cause test failures. As of Safari 11.0.3, issues with the following modules
+have been encountered during testing:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">selenium.webdriver.common.action_chains</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">selenium.webdriver.support.select</span></code></li>
+</ul>
+</div></blockquote>
 </div>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.DRIVER_NAME">
@@ -336,8 +373,23 @@ webdriver API, leading to several inaccurate test failures.</p>
 <p>Base class for web driver test cases</p>
 <p>This defines the common setUp() and tearDown() tasks. It does not initialize self.driver so will not work on its own. Tests should be written with this as their parent class and have subclasses for each implementation in order to do multi-browser tests</p>
 <dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.DRIVER_NAME">
+<code class="descname">DRIVER_NAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SHORT_NAME">
+<code class="descname">SHORT_NAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SITE_URL">
 <code class="descname">SITE_URL</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SITE_URL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SKIP_BROWSERS">
+<code class="descname">SKIP_BROWSERS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SKIP_BROWSERS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -469,6 +521,18 @@ current URL.</p>
 <dd><p>Hook method for setting up the test fixture before exercising it.</p>
 </dd></dl>
 
+<dl class="staticmethod">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.skipBrowsers">
+<em class="property">static </em><code class="descname">skipBrowsers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.skipBrowsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.skipBrowsers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conditionally skip a test method for certain browsers</p>
+<p>Usage Example:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase</span><span class="o">.</span><span class="n">skipBrowsers</span><span class="p">(</span><span class="n">Browsers</span><span class="o">.</span><span class="n">SAFARI</span><span class="p">,</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">IE</span><span class="p">)</span>
+<span class="n">test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown">
 <code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
@@ -523,7 +587,7 @@ current URL.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.11.0',
+            VERSION:'0.12.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

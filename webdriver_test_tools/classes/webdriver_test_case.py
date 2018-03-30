@@ -139,7 +139,7 @@ class WebDriverTestCase(unittest.TestCase):
 
         Usage Example:
 
-        .. code-block:: python
+        .. code:: python
 
             @WebDriverTestCase.skipBrowsers(Browsers.SAFARI, Browsers.IE)
             test_method(self):
