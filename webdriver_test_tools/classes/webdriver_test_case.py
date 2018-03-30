@@ -17,14 +17,22 @@ class WebDriverTestCase(unittest.TestCase):
     # Base URL for these tests. Must be set in test case implementations
     SITE_URL = None
     # List of browser names to skip during test execution
-    # TODO: better document and implement
+    # TODO: better documentation
     SKIP_BROWSERS = []
+
     # WebDriver object. Browser-specific subclasses need to initialize this in setUp() before calling super().setUp()
     driver = None
+    # Browser name for the current driver. Browser-specific subclasses need to override this
+    DRIVER_NAME = None
+    # Short name for the driver used for command line args, skipping, etc. Should be all lowercase. Browser-specific subclasses need to override this
+    SHORT_NAME = None
 
     def setUp(self):
-        # TODO: check if self.SHORT_NAME in self.SKIP_BROWSERS
-        self.driver.get(self.SITE_URL)
+        # TODO: Move check to test generation?
+        if self.SHORT_NAME in self.SKIP_BROWSERS:
+            self.skipTest('({})'.format(self.DRIVER_NAME))
+        else:
+            self.driver.get(self.SITE_URL)
 
     def tearDown(self):
         self.driver.quit()
