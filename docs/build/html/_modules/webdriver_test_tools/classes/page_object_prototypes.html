@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.page_object_prototypes &mdash; WebDriver Test Tools 0.12.0 documentation</title>
+  <title>webdriver_test_tools.classes.page_object_prototypes &mdash; WebDriver Test Tools 0.13.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.12.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.13.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.12
+                0.13
               </div>
             
           
@@ -243,10 +243,16 @@
 
 <span class="sd">    :var FORM_LOCATOR: Locator for the form element. Override in subclasses</span>
 <span class="sd">    :var SUBMIT_LOCATOR: Locator for the submit button. Override in subclasses</span>
+<span class="sd">    :var SUBMIT_SUCCESS_CLASS: (Optional) Page object of modal/webpage/etc that</span>
+<span class="sd">        should appear on successful form submission. If subclass set to a subclass of</span>
+<span class="sd">        BasePage, click_submit() will return an instance of this object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># Locators</span>
     <span class="n">FORM_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">SUBMIT_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># Optional page object to return on click_submit()</span>
+    <span class="n">SUBMIT_SUCCESS_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="FormObject.Input"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.FormObject.Input">[docs]</a>    <span class="k">class</span> <span class="nc">Input</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Subclass used to contain name attributes and select/radio option lists for inputs</span>
@@ -276,7 +282,6 @@
         <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span><span class="p">)</span></div>
         <span class="n">actions</span><span class="o">.</span><span class="n">fill_form_inputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">input_map</span><span class="p">)</span>
 
-
 <div class="viewcode-block" id="FormObject.submit_is_enabled"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.FormObject.submit_is_enabled">[docs]</a>    <span class="k">def</span> <span class="nf">submit_is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Short hand function for checking if the submit button is enabled. Useful</span>
 <span class="sd">        for forms with JavaScript input validation</span>
@@ -287,12 +292,15 @@
 
 <div class="viewcode-block" id="FormObject.click_submit"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.FormObject.click_submit">[docs]</a>    <span class="k">def</span> <span class="nf">click_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shorthand function for scrolling to the submit button and clicking it.</span>
-<span class="sd">        May want to override and return a page object for the resulting page, modal,</span>
-<span class="sd">        etc that&#39;s supposed to appear upon submitting</span>
+
+<span class="sd">        If self.SUBMIT_SUCCESS_CLASS is set to a subclass of BasePage, an instance of</span>
+<span class="sd">        that object will be returned</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">submit_button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span>
-        <span class="c1"># TODO: figure out a cleaner way to handle align_to_top</span></div></div>
+        <span class="c1"># TODO: figure out a cleaner way to handle align_to_top</span>
         <span class="n">actions</span><span class="o">.</span><span class="n">scroll_to_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">submit_button</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">):</span></div></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
 
 
 
@@ -332,7 +340,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.12.0',
+            VERSION:'0.13.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
