@@ -34,9 +34,10 @@ def generate_browser_test_cases(base_class, browser_test_classes=None):
     """
     # generate class only for browser_test_class if specified
     browser_classes = BrowserConfig.BROWSER_TEST_CLASSES.values() if browser_test_classes is None else browser_test_classes
-    # iterate through a list of browser classes and generate test case
+    # iterate through a list of browser classes and generate test cases
+    # skip browser classes if listed in base_class.SKIP_BROWSERS
     browser_test_cases = [
-        generate_browser_test_case(base_class, browser_class) for browser_class in browser_classes
+        generate_browser_test_case(base_class, browser_class) for browser_class in browser_classes if browser_class.SHORT_NAME not in base_class.SKIP_BROWSERS
     ]
     return browser_test_cases
 

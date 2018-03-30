@@ -28,11 +28,7 @@ class WebDriverTestCase(unittest.TestCase):
     SHORT_NAME = None
 
     def setUp(self):
-        # TODO: Move check to test generation?
-        if self.SHORT_NAME in self.SKIP_BROWSERS:
-            self.skipTest('({})'.format(self.DRIVER_NAME))
-        else:
-            self.driver.get(self.SITE_URL)
+        self.driver.get(self.SITE_URL)
 
     def tearDown(self):
         self.driver.quit()

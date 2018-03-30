@@ -2,6 +2,7 @@
 
 from webdriver_test_tools.classes.webdriver_test_case import *
 
+# TODO: move to webdriver_test_tools.classes.webdriver_test_case
 class Browsers(object):
     """Constants for browser short names. Used for mapping to classes in BROWSER_TEST_CLASSES"""
     FIREFOX = FirefoxTestCase.SHORT_NAME
