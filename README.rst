@@ -56,11 +56,7 @@ The project currently supports the following platform-specific drivers as well. 
 These need to be enabled in ``<test_package>/config/browser.py`` by uncommenting 
 the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
 
-.. warning::
-
-    Support of these web drivers is experimental and may not work as expected. Some
-    drivers are not fully compatible with Selenium's WebDriver API, so unexpected 
-    behavior may occur, resulting in false positives in test results.
+For information on usage and considerations, see the `additional browsers documentation <http://connordelacruz.com/webdriver-test-tools/additional_browsers.html>`__.
 
 Libraries
 ---------
