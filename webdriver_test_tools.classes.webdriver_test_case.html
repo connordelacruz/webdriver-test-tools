@@ -98,6 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="README.html">Selenium WebDriver Test Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skip_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a><ul class="current">
@@ -235,7 +236,7 @@
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.setUp">
 <code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#ChromeTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.setUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+<dd><p>Calls <code class="docutils literal notranslate"><span class="pre">self.driver.get(self.SITE_URL)</span></code></p>
 </dd></dl>
 
 </dd></dl>
@@ -265,7 +266,7 @@ uncommenting the corresponding line in <code class="docutils literal notranslate
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.setUp">
 <code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#EdgeTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.setUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+<dd><p>Calls <code class="docutils literal notranslate"><span class="pre">self.driver.get(self.SITE_URL)</span></code></p>
 </dd></dl>
 
 </dd></dl>
@@ -289,7 +290,7 @@ uncommenting the corresponding line in <code class="docutils literal notranslate
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.setUp">
 <code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#FirefoxTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.setUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+<dd><p>Calls <code class="docutils literal notranslate"><span class="pre">self.driver.get(self.SITE_URL)</span></code></p>
 </dd></dl>
 
 </dd></dl>
@@ -319,7 +320,7 @@ uncommenting the corresponding line in <code class="docutils literal notranslate
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase.setUp">
 <code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#IETestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase.setUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+<dd><p>Calls <code class="docutils literal notranslate"><span class="pre">self.driver.get(self.SITE_URL)</span></code></p>
 </dd></dl>
 
 </dd></dl>
@@ -361,7 +362,7 @@ have been encountered during testing:</p>
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.setUp">
 <code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#SafariTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.setUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+<dd><p>Calls <code class="docutils literal notranslate"><span class="pre">self.driver.get(self.SITE_URL)</span></code></p>
 </dd></dl>
 
 </dd></dl>
@@ -371,7 +372,45 @@ have been encountered during testing:</p>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">WebDriverTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
 <p>Base class for web driver test cases</p>
-<p>This defines the common setUp() and tearDown() tasks. It does not initialize self.driver so will not work on its own. Tests should be written with this as their parent class and have subclasses for each implementation in order to do multi-browser tests</p>
+<p>This defines the common setUp() and tearDown() tasks. It does not initialize
+self.driver so will not work on its own. Tests should be written with this as their
+parent class. Browser-specific implementations of test cases will be generated when
+running tests</p>
+<p><strong>Tests that implement this class override the following variables:</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SITE_URL" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SITE_URL"><strong>WebDriverTestCase.SITE_URL</strong></a> – Go to this URL during setUp(). Tests that implement
+WebDriverTestCase must set this accordingly.</li>
+<li><a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SKIP_BROWSERS" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SKIP_BROWSERS"><strong>WebDriverTestCase.SKIP_BROWSERS</strong></a> – (Optional) List of browser names to skip test
+generation for. This can be useful if a test case class requires functionality
+that is not implemented in a certain driver, or if its tests are meant for
+specific browsers. Valid browser names are declared in the Browsers class.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Browser-specific implementations of this class need to override the following:</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.driver" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.driver"><strong>WebDriverTestCase.driver</strong></a> – Selenium WebDriver object. Need to initialize this
+in setUp() before calling super().setUp()</li>
+<li><a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.DRIVER_NAME" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.DRIVER_NAME"><strong>WebDriverTestCase.DRIVER_NAME</strong></a> – Name of the browser. This is mostly used in the
+docstrings of generated test classes to indicate what browser the tests are
+being run in</li>
+<li><a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SHORT_NAME" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.SHORT_NAME"><strong>WebDriverTestCase.SHORT_NAME</strong></a> – Short name for the driver used for command line
+args, skipping, etc. Should be all lowercase with no spaces</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.DRIVER_NAME">
 <code class="descname">DRIVER_NAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
@@ -518,7 +557,7 @@ current URL.</p>
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.setUp">
 <code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.setUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+<dd><p>Calls <code class="docutils literal notranslate"><span class="pre">self.driver.get(self.SITE_URL)</span></code></p>
 </dd></dl>
 
 <dl class="staticmethod">
@@ -536,7 +575,7 @@ current URL.</p>
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown">
 <code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
-<dd><p>Hook method for deconstructing the test fixture after testing it.</p>
+<dd><p>Calls <code class="docutils literal notranslate"><span class="pre">self.driver.quit()</span></code></p>
 </dd></dl>
 
 </dd></dl>
