@@ -8,7 +8,7 @@ WebDriver Test Tools
    README
    test_projects
    example_project
-   skip_browsers
+   additional_browsers
    webdriver_test_tools
 
 
