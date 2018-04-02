@@ -53,10 +53,8 @@ The project currently supports the following platform-specific drivers as well. 
 -  `Internet Explorer <https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver>`__
 -  `Edge <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>`__
 
-.. note::
-
-    These need to be enabled in ``<test_package>/config/browser.py`` by uncommenting 
-    the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
+These need to be enabled in ``<test_package>/config/browser.py`` by uncommenting 
+the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
 
 .. warning::
 

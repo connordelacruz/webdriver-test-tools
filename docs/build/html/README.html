@@ -112,6 +112,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -241,11 +242,8 @@ and conventions for building test suites.</p>
 <li><a class="reference external" href="https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver">Internet Explorer</a></li>
 <li><a class="reference external" href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/">Edge</a></li>
 </ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">These need to be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by uncommenting
+<p>These need to be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by uncommenting
 the corresponding line in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.BROWSER_TEST_CLASSES</span></code>.</p>
-</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Support of these web drivers is experimental and may not work as expected. Some
