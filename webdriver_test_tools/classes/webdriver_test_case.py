@@ -17,21 +17,24 @@ class WebDriverTestCase(unittest.TestCase):
     parent class. Browser-specific implementations of test cases will be generated when
     running tests
 
-    Tests that implement this class override the following variables:
-    :var SITE_URL: Go to this URL during setUp(). Tests that implement
-        WebDriverTestCase must set this accordingly.
-    :var SKIP_BROWSERS: (Optional) List of browser names to skip test generation for.
-        This can be useful if a test case class requires functionality that is not
-        implemented in a certain driver, or if its tests are meant for specific
-        browsers. Valid browser names are declared in the Browsers class.
+    **Tests that implement this class override the following variables:**
 
-    Browser-specific implementations of this class need to override the following:
-    :var driver: Selenium WebDriver object. Need to initialize this in setUp() before
-        calling super().setUp()
-    :var DRIVER_NAME: Name of the browser. This is mostly used in the docstrings of
-        generated test classes to indicate what browser the tests are being run in
-    :var SHORT_NAME: Short name for the driver used for command line args, skipping,
-        etc. Should be all lowercase with no spaces
+    :var WebDriverTestCase.SITE_URL: Go to this URL during setUp(). Tests that implement
+        WebDriverTestCase must set this accordingly.
+    :var WebDriverTestCase.SKIP_BROWSERS: (Optional) List of browser names to skip test
+        generation for. This can be useful if a test case class requires functionality
+        that is not implemented in a certain driver, or if its tests are meant for
+        specific browsers. Valid browser names are declared in the Browsers class.
+
+    **Browser-specific implementations of this class need to override the following:**
+
+    :var WebDriverTestCase.driver: Selenium WebDriver object. Need to initialize this
+        in setUp() before calling super().setUp()
+    :var WebDriverTestCase.DRIVER_NAME: Name of the browser. This is mostly used in the
+        docstrings of generated test classes to indicate what browser the tests are
+        being run in
+    :var WebDriverTestCase.SHORT_NAME: Short name for the driver used for command line
+        args, skipping, etc. Should be all lowercase with no spaces
     """
 
     # Test case attributes
@@ -44,9 +47,11 @@ class WebDriverTestCase(unittest.TestCase):
     SHORT_NAME = None
 
     def setUp(self):
+        """Calls ``self.driver.get(self.SITE_URL)``"""
         self.driver.get(self.SITE_URL)
 
     def tearDown(self):
+        """Calls ``self.driver.quit()``"""
         self.driver.quit()
 
     # Assertion methods
@@ -216,6 +221,7 @@ class SafariTestCase(WebDriverTestCase):
         Safari's webdriver is missing certain features of the webdriver API, which can
         cause test failures. As of Safari 11.0.3, issues with the following modules
         have been encountered during testing:
+
             - ``selenium.webdriver.common.action_chains``
             - ``selenium.webdriver.support.select``
     """

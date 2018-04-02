@@ -176,26 +176,46 @@
 <div class="viewcode-block" id="WebDriverTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase">[docs]</a><span class="k">class</span> <span class="nc">WebDriverTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for web driver test cases</span>
 
-<span class="sd">    This defines the common setUp() and tearDown() tasks. It does not initialize self.driver so will not work on its own. Tests should be written with this as their parent class and have subclasses for each implementation in order to do multi-browser tests</span>
+<span class="sd">    This defines the common setUp() and tearDown() tasks. It does not initialize</span>
+<span class="sd">    self.driver so will not work on its own. Tests should be written with this as their</span>
+<span class="sd">    parent class. Browser-specific implementations of test cases will be generated when</span>
+<span class="sd">    running tests</span>
+
+<span class="sd">    **Tests that implement this class override the following variables:**</span>
+
+<span class="sd">    :var WebDriverTestCase.SITE_URL: Go to this URL during setUp(). Tests that implement</span>
+<span class="sd">        WebDriverTestCase must set this accordingly.</span>
+<span class="sd">    :var WebDriverTestCase.SKIP_BROWSERS: (Optional) List of browser names to skip test</span>
+<span class="sd">        generation for. This can be useful if a test case class requires functionality</span>
+<span class="sd">        that is not implemented in a certain driver, or if its tests are meant for</span>
+<span class="sd">        specific browsers. Valid browser names are declared in the Browsers class.</span>
+
+<span class="sd">    **Browser-specific implementations of this class need to override the following:**</span>
+
+<span class="sd">    :var WebDriverTestCase.driver: Selenium WebDriver object. Need to initialize this</span>
+<span class="sd">        in setUp() before calling super().setUp()</span>
+<span class="sd">    :var WebDriverTestCase.DRIVER_NAME: Name of the browser. This is mostly used in the</span>
+<span class="sd">        docstrings of generated test classes to indicate what browser the tests are</span>
+<span class="sd">        being run in</span>
+<span class="sd">    :var WebDriverTestCase.SHORT_NAME: Short name for the driver used for command line</span>
+<span class="sd">        args, skipping, etc. Should be all lowercase with no spaces</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Base URL for these tests. Must be set in test case implementations</span>
+    <span class="c1"># Test case attributes</span>
     <span class="n">SITE_URL</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="c1"># List of browser names to skip during test execution</span>
-    <span class="c1"># TODO: better documentation</span>
     <span class="n">SKIP_BROWSERS</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="c1"># WebDriver object. Browser-specific subclasses need to initialize this in setUp() before calling super().setUp()</span>
+    <span class="c1"># Browser implementation attributes</span>
     <span class="n">driver</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="c1"># Browser name for the current driver. Browser-specific subclasses need to override this</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="c1"># Short name for the driver used for command line args, skipping, etc. Should be all lowercase. Browser-specific subclasses need to override this</span>
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="WebDriverTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
+<div class="viewcode-block" id="WebDriverTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calls ``self.driver.get(self.SITE_URL)``&quot;&quot;&quot;</span></div>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SITE_URL</span><span class="p">)</span>
 
-<div class="viewcode-block" id="WebDriverTestCase.tearDown"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
+<div class="viewcode-block" id="WebDriverTestCase.tearDown"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calls ``self.driver.quit()``&quot;&quot;&quot;</span></div>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 
     <span class="c1"># Assertion methods</span>
@@ -365,6 +385,7 @@
 <span class="sd">        Safari&#39;s webdriver is missing certain features of the webdriver API, which can</span>
 <span class="sd">        cause test failures. As of Safari 11.0.3, issues with the following modules</span>
 <span class="sd">        have been encountered during testing:</span>
+
 <span class="sd">            - ``selenium.webdriver.common.action_chains``</span>
 <span class="sd">            - ``selenium.webdriver.support.select``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -415,7 +436,6 @@
 
 
 <div class="viewcode-block" id="Browsers"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.Browsers">[docs]</a><span class="k">class</span> <span class="nc">Browsers</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="c1"># TODO: better documentation?</span>
     <span class="sd">&quot;&quot;&quot;Constants for browser short names&quot;&quot;&quot;</span>
     <span class="n">FIREFOX</span> <span class="o">=</span> <span class="n">FirefoxTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">CHROME</span> <span class="o">=</span> <span class="n">ChromeTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>

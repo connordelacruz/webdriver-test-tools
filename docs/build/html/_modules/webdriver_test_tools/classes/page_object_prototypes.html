@@ -172,8 +172,6 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver</span> <span class="k">import</span> <span class="n">actions</span>
 
 
-<span class="c1"># TODO: Since a lot of these define interfaces, need to somehow document the stuff that subclasses will want to override</span>
-
 <div class="viewcode-block" id="WebPageObject"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.WebPageObject">[docs]</a><span class="k">class</span> <span class="nc">WebPageObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Page object prototype for web pages</span>
 
@@ -298,7 +296,6 @@
 <span class="sd">        that object will be returned</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">submit_button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span>
-        <span class="c1"># TODO: figure out a cleaner way to handle align_to_top</span>
         <span class="n">actions</span><span class="o">.</span><span class="n">scroll_to_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">submit_button</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">):</span></div></div>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
