@@ -10,12 +10,12 @@ from webdriver_test_tools import test
 # Test Case Classes
 
 class WebDriverTestCase(unittest.TestCase):
-    # TODO: update docstring to explain vars driver implementation vars
     """Base class for web driver test cases
 
     This defines the common setUp() and tearDown() tasks. It does not initialize
     self.driver so will not work on its own. Tests should be written with this as their
-    parent class.
+    parent class. Browser-specific implementations of test cases will be generated when
+    running tests
 
     Tests that implement this class override the following variables:
     :var SITE_URL: Go to this URL during setUp(). Tests that implement
@@ -24,18 +24,23 @@ class WebDriverTestCase(unittest.TestCase):
         This can be useful if a test case class requires functionality that is not
         implemented in a certain driver, or if its tests are meant for specific
         browsers. Valid browser names are declared in the Browsers class.
+
+    Browser-specific implementations of this class need to override the following:
+    :var driver: Selenium WebDriver object. Need to initialize this in setUp() before
+        calling super().setUp()
+    :var DRIVER_NAME: Name of the browser. This is mostly used in the docstrings of
+        generated test classes to indicate what browser the tests are being run in
+    :var SHORT_NAME: Short name for the driver used for command line args, skipping,
+        etc. Should be all lowercase with no spaces
     """
 
-    # Base URL for these tests. Must be set in test case implementations
+    # Test case attributes
     SITE_URL = None
-    # List of browser names to skip during test execution
     SKIP_BROWSERS = []
 
-    # WebDriver object. Browser-specific subclasses need to initialize this in setUp() before calling super().setUp()
+    # Browser implementation attributes
     driver = None
-    # Browser name for the current driver. Browser-specific subclasses need to override this
     DRIVER_NAME = None
-    # Short name for the driver used for command line args, skipping, etc. Should be all lowercase. Browser-specific subclasses need to override this
     SHORT_NAME = None
 
     def setUp(self):
