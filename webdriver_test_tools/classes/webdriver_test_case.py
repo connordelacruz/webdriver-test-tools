@@ -10,15 +10,25 @@ from webdriver_test_tools import test
 # Test Case Classes
 
 class WebDriverTestCase(unittest.TestCase):
+    # TODO: update docstring to explain vars driver implementation vars
     """Base class for web driver test cases
 
-    This defines the common setUp() and tearDown() tasks. It does not initialize self.driver so will not work on its own. Tests should be written with this as their parent class and have subclasses for each implementation in order to do multi-browser tests
+    This defines the common setUp() and tearDown() tasks. It does not initialize
+    self.driver so will not work on its own. Tests should be written with this as their
+    parent class.
+
+    Tests that implement this class override the following variables:
+    :var SITE_URL: Go to this URL during setUp(). Tests that implement
+        WebDriverTestCase must set this accordingly.
+    :var SKIP_BROWSERS: (Optional) List of browser names to skip test generation for.
+        This can be useful if a test case class requires functionality that is not
+        implemented in a certain driver, or if its tests are meant for specific
+        browsers. Valid browser names are declared in the Browsers class.
     """
 
     # Base URL for these tests. Must be set in test case implementations
     SITE_URL = None
     # List of browser names to skip during test execution
-    # TODO: better documentation
     SKIP_BROWSERS = []
 
     # WebDriver object. Browser-specific subclasses need to initialize this in setUp() before calling super().setUp()
@@ -251,7 +261,6 @@ class EdgeTestCase(WebDriverTestCase):
 
 
 class Browsers(object):
-    # TODO: better documentation?
     """Constants for browser short names"""
     FIREFOX = FirefoxTestCase.SHORT_NAME
     CHROME = ChromeTestCase.SHORT_NAME
