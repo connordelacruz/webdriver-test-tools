@@ -1,6 +1,6 @@
 from urllib.parse import urlparse
 
-# TODO: module docstring
+"""Various utility methods for webdriver_test_tools submodules"""
 
 
 def get_base_url(url):

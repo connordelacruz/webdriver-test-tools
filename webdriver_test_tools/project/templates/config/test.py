@@ -6,8 +6,6 @@ from webdriver_test_tools.config import test
 class TestSuiteConfig(test.TestSuiteConfig):
     # UNCOMMENT TO OVERRIDE DEFAULT CONFIGURATIONS
 
-    # Configurations
-    # ----------------------------------------------------------------
     # Test runner class
     # RUNNER_CLASS = ColourTextTestRunner
 

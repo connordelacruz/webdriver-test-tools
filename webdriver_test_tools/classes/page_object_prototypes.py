@@ -8,8 +8,6 @@ from webdriver_test_tools.classes.base_page import BasePage
 from webdriver_test_tools.webdriver import actions
 
 
-# TODO: Since a lot of these define interfaces, need to somehow document the stuff that subclasses will want to override
-
 class WebPageObject(BasePage):
     """Page object prototype for web pages
 
@@ -134,7 +132,6 @@ class FormObject(BasePage):
         that object will be returned
         """
         submit_button = self.find_element(self.SUBMIT_LOCATOR)
-        # TODO: figure out a cleaner way to handle align_to_top
         actions.scroll_to_and_click(self.driver, submit_button, False)
         if issubclass(self.SUBMIT_SUCCESS_CLASS, BasePage):
             return self.SUBMIT_SUCCESS_CLASS(self.driver)
