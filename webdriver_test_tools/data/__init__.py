@@ -1,4 +1,3 @@
-# TODO: add loremipsum documentation (and contents?)
 """
 The `data` subpackage includes some external packages for generating fake user info and
 placeholder text. For more information, see their documentation pages:
