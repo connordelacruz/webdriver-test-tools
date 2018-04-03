@@ -13,7 +13,9 @@ placeholder text. For more information, see their documentation pages:
     .. automethod:: __init__
 
 .. automodule:: loremipsum
-
+    :members:
+    :undoc-members:
+    :show-inheritance:
 """
 from randomuser import RandomUser
 import loremipsum

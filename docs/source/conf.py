@@ -173,7 +173,7 @@ texinfo_documents = [
 intersphinx_mapping = {
         'https://docs.python.org/': None,
         'randomuser': ('http://connordelacruz.com/python-randomuser', None),
-        'loremipsum': ('http://http://connordelacruz.com/py-loremipsum', None),
+        'loremipsum': ('http://connordelacruz.com/py-loremipsum', None),
 }
 
 # -- Options for todo extension ----------------------------------------------
