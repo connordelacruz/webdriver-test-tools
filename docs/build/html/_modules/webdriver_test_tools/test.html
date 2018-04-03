@@ -164,20 +164,13 @@
   <h1>Source code for webdriver_test_tools.test</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Functions for commonly repeated test procedures</span>
 
-<span class="c1"># Imports</span>
-<span class="c1"># ----------------------------------------------------------------</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver.support</span> <span class="k">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">customEC</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="k">import</span> <span class="n">WebDriverWait</span>
 <span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="k">import</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">NoSuchElementException</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="k">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
 
 
-<span class="c1"># Functions</span>
-<span class="c1"># ----------------------------------------------------------------</span>
-
 <span class="c1"># Element Tests</span>
-<span class="c1"># --------------------------------</span>
-
 
 <div class="viewcode-block" id="element_exists"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.element_exists">[docs]</a><span class="k">def</span> <span class="nf">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns True if the element exists, False if not</span>
@@ -226,7 +219,6 @@
 
 
 <span class="c1"># Expected Condition Tests</span>
-<span class="c1"># --------------------------------</span>
 
 <div class="viewcode-block" id="expected_condition_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.expected_condition_test">[docs]</a><span class="k">def</span> <span class="nf">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">ec_object</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test for an expected condition until wait timeout is reached</span>
@@ -294,6 +286,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">url_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">base_url_to_be</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span>
+
 </pre></div>
 
            </div>

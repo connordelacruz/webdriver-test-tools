@@ -4,9 +4,10 @@ from colour_runner.runner import ColourTextTestRunner
 class TestSuiteConfig(object):
     """Configurations for test suite
 
-    :var RUNNER_CLASS: unittest TestRunner class to use when running tests
-    :var RUNNER_KWARGS: Dictionary mapping parameter names to desired values used to
-        initialize the TestRunner
+    :var TestSuiteConfig.RUNNER_CLASS: unittest TestRunner class to use when running
+        tests
+    :var TestSuiteConfig.RUNNER_KWARGS: Dictionary mapping parameter names to desired
+        values used to initialize the TestRunner
     """
 
     # Configure test runner
