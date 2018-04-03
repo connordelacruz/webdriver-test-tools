@@ -22,7 +22,7 @@ setup(
         install_requires=[
             'selenium>=3.9',
             'colour-runner>=0.0.5',
-            'randomuser>=1.0.0',
+            'randomuser>=1.2.0',
             'py-loremipsum>=1.0.0',
             'Jinja2>=2.9.5',
             ]
