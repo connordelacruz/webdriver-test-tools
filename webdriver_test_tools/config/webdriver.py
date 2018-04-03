@@ -9,8 +9,6 @@ class WebDriverConfig(object):
     # Root directory of webdriver_test_tools package
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
 
-    # Configurations
-    # ----------------------------------------------------------------
     # Path to the log directory
     LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
     # Implicit wait time for webdriver to poll DOM
@@ -33,10 +31,6 @@ class WebDriverConfig(object):
     EDGE_KWARGS = {}
 
     # Functions
-    # ----------------------------------------------------------------
-
-    # Web Drivers
-    # --------------------------------
 
     @classmethod
     def get_firefox_driver(cls):

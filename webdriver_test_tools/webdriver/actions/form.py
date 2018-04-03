@@ -1,7 +1,5 @@
 # Functions for interacting with forms
 
-# Imports
-# ----------------------------------------------------------------
 from webdriver_test_tools.webdriver import actions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select

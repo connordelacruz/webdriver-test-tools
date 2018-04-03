@@ -11,7 +11,6 @@ from webdriver_test_tools.version import __version__
 
 
 # Project creation functions
-# ----------------------------------------------------------------
 
 def create_test_directories(target_path):
     """Creates base directories for test writing that are initially empty (data/ and pages/)
@@ -131,7 +130,6 @@ def create_gitignore(target_path):
 
 
 # Helper functions
-# ----------------------------------------------------------------
 
 def create_directory(target_path, directory_name):
     """Creates a directory in the target path if it doesn't already exist
@@ -218,7 +216,6 @@ def create_file_from_template(template_path, target_path, filename, context):
 
 
 # Main methods
-# ----------------------------------------------------------------
 
 def initialize(target_path, package_name):
     """Initializes new project package
@@ -266,7 +263,5 @@ def main(package_name=None):
 
 if __name__ == '__main__':
     main()
-
-
 
 

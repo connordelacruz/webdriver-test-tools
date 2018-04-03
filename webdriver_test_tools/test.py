@@ -1,19 +1,12 @@
 # Functions for commonly repeated test procedures
 
-# Imports
-# ----------------------------------------------------------------
 from webdriver_test_tools.webdriver.support import expected_conditions as customEC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
 
-# Functions
-# ----------------------------------------------------------------
-
 # Element Tests
-# --------------------------------
-
 
 def element_exists(driver, element_locator):
     """Returns True if the element exists, False if not
@@ -62,7 +55,6 @@ def is_scrolled_into_view(driver, element, fully_in_view=True):
 
 
 # Expected Condition Tests
-# --------------------------------
 
 def expected_condition_test(driver, ec_object, wait_timeout=10):
     """Test for an expected condition until wait timeout is reached
@@ -130,3 +122,4 @@ def base_url_change_test(driver, expected_url, wait_timeout=10):
     """
     url_checker = customEC.base_url_to_be(expected_url)
     return expected_condition_test(driver, url_checker, wait_timeout)
+
