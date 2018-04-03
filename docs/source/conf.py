@@ -172,7 +172,8 @@ texinfo_documents = [
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
         'https://docs.python.org/': None,
-        'randomuser': ('http://connordelacruz.com/python-randomuser', None)
+        'randomuser': ('http://connordelacruz.com/python-randomuser', None),
+        'loremipsum': ('http://http://connordelacruz.com/py-loremipsum', None),
 }
 
 # -- Options for todo extension ----------------------------------------------
