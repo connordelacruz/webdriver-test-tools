@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>loremipsum &mdash; WebDriver Test Tools 0.13.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.13.0 documentation" href="../index.html"/>
+        <link rel="up" title="Module code" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.13
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Selenium WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webdriver_test_tools.html">webdriver_test_tools API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>loremipsum</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for loremipsum</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">urllib</span> <span class="k">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">error</span>
+
+
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.0.0&#39;</span>
+
+<span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;https://loripsum.net/api/&#39;</span>
+
+
+<div class="viewcode-block" id="ParagraphLength"><a class="viewcode-back" href="../webdriver_test_tools.data.html#loremipsum.ParagraphLength">[docs]</a><span class="k">class</span> <span class="nc">ParagraphLength</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Constants for the ``paragraph_length`` parameter in generate()&quot;&quot;&quot;</span>
+    <span class="n">SHORT</span> <span class="o">=</span> <span class="s1">&#39;short&#39;</span>
+    <span class="n">MEDIUM</span> <span class="o">=</span> <span class="s1">&#39;medium&#39;</span>
+    <span class="n">LONG</span> <span class="o">=</span> <span class="s1">&#39;long&#39;</span></div>
+    <span class="n">VERY_LONG</span> <span class="o">=</span> <span class="s1">&#39;verylong&#39;</span>
+
+
+<span class="c1"># Valid keys for html_options</span>
+<span class="n">HTML_OPTIONS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;decorate&#39;</span><span class="p">,</span>  <span class="c1"># Add bold, italic and marked text.</span>
+    <span class="s1">&#39;link&#39;</span><span class="p">,</span>  <span class="c1"># Add links.</span>
+    <span class="s1">&#39;ul&#39;</span><span class="p">,</span>  <span class="c1"># Add unordered lists.</span>
+    <span class="s1">&#39;ol&#39;</span><span class="p">,</span>  <span class="c1"># Add numbered lists.</span>
+    <span class="s1">&#39;dl&#39;</span><span class="p">,</span>  <span class="c1"># Add description lists.</span>
+    <span class="s1">&#39;bq&#39;</span><span class="p">,</span>  <span class="c1"># Add blockquotes.</span>
+    <span class="s1">&#39;code&#39;</span><span class="p">,</span>  <span class="c1"># Add code samples.</span>
+    <span class="s1">&#39;headers&#39;</span><span class="p">,</span>  <span class="c1"># Add headers.</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_request_url_string</span><span class="p">(</span><span class="n">request_args</span><span class="p">):</span>
+    <span class="n">url_string</span> <span class="o">=</span> <span class="n">URL</span>
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">request_args</span><span class="p">:</span>
+        <span class="n">url_string</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">url_string</span>
+
+
+<span class="k">def</span> <span class="nf">_generate</span><span class="p">(</span><span class="n">request_url</span><span class="p">):</span>
+    <span class="n">placeholder_text</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request_url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">placeholder_text</span>
+
+
+<div class="viewcode-block" id="generate"><a class="viewcode-back" href="../webdriver_test_tools.data.html#loremipsum.generate">[docs]</a><span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="n">paragraph_count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">paragraph_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allcaps</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">prude</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plaintext</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">html_options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">trailing_newlines</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate Lorem Ipsum placeholder text using the https://loripsum.net API.</span>
+
+<span class="sd">    Further documentation of parameters can be found at `loripsum.net &lt;https://loripsum.net&gt;`_</span>
+
+<span class="sd">    :param paragraph_count: (Optional) The number of paragraphs to generate. If</span>
+<span class="sd">        unspecified, API defaults to 3</span>
+<span class="sd">    :param paragraph_length: (Optional) The average length of a paragraph. Possible</span>
+<span class="sd">        values are declared as attributes in ``LoremIpsum.ParagraphLength``. If</span>
+<span class="sd">        unspecified, API defaults to &#39;long&#39;</span>
+<span class="sd">    :param allcaps: (Default = False) Use ALL CAPS</span>
+<span class="sd">    :param prude: (Default = False) Prude version. From the API documentation:</span>
+<span class="sd">        &quot;The original text contains a few instances of words like &#39;sex&#39; or &#39;homo&#39;.</span>
+<span class="sd">        Personally, we don&#39;t mind, because these are just common latin words</span>
+<span class="sd">        meaning &#39;six&#39; and &#39;man&#39;. However, some people (or your clients) might be</span>
+<span class="sd">        offended by this, so if you select the &#39;Prude version&#39;, these words will be</span>
+<span class="sd">        censored.&quot;</span>
+<span class="sd">    :param plaintext: (Default = True) Return plain text, no HTML</span>
+<span class="sd">    :param html_options: (Default = None) List of html options to specify in</span>
+<span class="sd">        request. This will be ignored if plaintext = True. The following options</span>
+<span class="sd">        are accepted</span>
+
+<span class="sd">            - &#39;decorate&#39; - Add bold, italic and marked text.</span>
+<span class="sd">            - &#39;link&#39;- Add links.</span>
+<span class="sd">            - &#39;ul&#39; - Add unordered lists.</span>
+<span class="sd">            - &#39;ol&#39; - Add numbered lists.</span>
+<span class="sd">            - &#39;dl&#39; - Add description lists.</span>
+<span class="sd">            - &#39;bq&#39; - Add blockquotes.</span>
+<span class="sd">            - &#39;code&#39; - Add code samples.</span>
+<span class="sd">            - &#39;headers&#39; - Add headers.</span>
+<span class="sd">    :param trailing_newlines: (Default = False) If False, strip trailing new lines</span>
+<span class="sd">        in generated text. If True, leave trailing new lines in.</span>
+
+<span class="sd">    :return: Result of querying loripsum.net API using the specified options</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">request_args</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">paragraph_count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">paragraph_count</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">paragraph_length</span><span class="p">:</span>
+        <span class="n">request_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">paragraph_length</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">allcaps</span><span class="p">:</span>
+        <span class="n">request_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;allcaps&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">prude</span><span class="p">:</span>
+        <span class="n">request_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;prude&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">plaintext</span><span class="p">:</span>
+        <span class="n">request_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;plaintext&#39;</span><span class="p">)</span>
+    <span class="c1"># If not plaintext and html_options is specified, add those args as well</span>
+    <span class="k">elif</span> <span class="n">html_options</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Ignore invalid options</span>
+        <span class="n">valid_html_options</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">option</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">html_options</span> <span class="k">if</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">HTML_OPTIONS</span>
+        <span class="p">]</span>
+        <span class="n">request_args</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">valid_html_options</span><span class="p">)</span>
+    <span class="n">request_url</span> <span class="o">=</span> <span class="n">_request_url_string</span><span class="p">(</span><span class="n">request_args</span><span class="p">)</span>
+    <span class="n">placeholder_text</span> <span class="o">=</span> <span class="n">_generate</span><span class="p">(</span><span class="n">request_url</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">placeholder_text</span> <span class="k">if</span> <span class="n">trailing_newlines</span> <span class="k">else</span> <span class="n">placeholder_text</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.13.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

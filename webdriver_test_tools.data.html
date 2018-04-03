@@ -184,7 +184,14 @@
 <h1>webdriver_test_tools.data package<a class="headerlink" href="#webdriver-test-tools-data-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-webdriver_test_tools.data">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-webdriver_test_tools.data" title="Permalink to this headline">¶</a></h2>
-<p>The python-randomuser package is installed as a convenience. For more information, see <a class="reference external" href="http://connordelacruz.com/python-randomuser/">its documentation</a></p>
+<p>The <cite>data</cite> subpackage includes some external packages for generating fake user info and
+placeholder text. For more information, see their documentation pages:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://connordelacruz.com/python-randomuser/">randomuser package</a></li>
+<li><a class="reference external" href="http://connordelacruz.com/py-loremipsum/">loremipsum</a></li>
+</ul>
+</div></blockquote>
 <dl class="class">
 <dt id="randomuser.randomuser.RandomUser">
 <em class="property">class </em><code class="descclassname">randomuser.randomuser.</code><code class="descname">RandomUser</code><span class="sig-paren">(</span><em>get_params=None</em>, <em>user_data=None</em>, <em>api_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/randomuser/randomuser.html#RandomUser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#randomuser.randomuser.RandomUser" title="Permalink to this definition">¶</a></dt>
@@ -534,6 +541,84 @@ instead of connecting once for each user and increasing load on both ends.</p>
 <dd><p>Returns zip code (wrapper for get_postcode())</p>
 </dd></dl>
 
+</dd></dl>
+
+<span class="target" id="module-loremipsum"></span><dl class="class">
+<dt id="loremipsum.ParagraphLength">
+<em class="property">class </em><code class="descclassname">loremipsum.</code><code class="descname">ParagraphLength</code><a class="reference internal" href="_modules/loremipsum.html#ParagraphLength"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#loremipsum.ParagraphLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Constants for the <code class="docutils literal notranslate"><span class="pre">paragraph_length</span></code> parameter in generate()</p>
+<dl class="attribute">
+<dt id="loremipsum.ParagraphLength.LONG">
+<code class="descname">LONG</code><em class="property"> = 'long'</em><a class="headerlink" href="#loremipsum.ParagraphLength.LONG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="loremipsum.ParagraphLength.MEDIUM">
+<code class="descname">MEDIUM</code><em class="property"> = 'medium'</em><a class="headerlink" href="#loremipsum.ParagraphLength.MEDIUM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="loremipsum.ParagraphLength.SHORT">
+<code class="descname">SHORT</code><em class="property"> = 'short'</em><a class="headerlink" href="#loremipsum.ParagraphLength.SHORT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="loremipsum.ParagraphLength.VERY_LONG">
+<code class="descname">VERY_LONG</code><em class="property"> = 'verylong'</em><a class="headerlink" href="#loremipsum.ParagraphLength.VERY_LONG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="loremipsum.generate">
+<code class="descclassname">loremipsum.</code><code class="descname">generate</code><span class="sig-paren">(</span><em>paragraph_count=None</em>, <em>paragraph_length=None</em>, <em>allcaps=False</em>, <em>prude=False</em>, <em>plaintext=True</em>, <em>html_options=None</em>, <em>trailing_newlines=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/loremipsum.html#generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#loremipsum.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate Lorem Ipsum placeholder text using the <a class="reference external" href="https://loripsum.net">https://loripsum.net</a> API.</p>
+<p>Further documentation of parameters can be found at <a class="reference external" href="https://loripsum.net">loripsum.net</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>paragraph_count</strong> – (Optional) The number of paragraphs to generate. If
+unspecified, API defaults to 3</li>
+<li><strong>paragraph_length</strong> – (Optional) The average length of a paragraph. Possible
+values are declared as attributes in <code class="docutils literal notranslate"><span class="pre">LoremIpsum.ParagraphLength</span></code>. If
+unspecified, API defaults to ‘long’</li>
+<li><strong>allcaps</strong> – (Default = False) Use ALL CAPS</li>
+<li><strong>prude</strong> – (Default = False) Prude version. From the API documentation:
+“The original text contains a few instances of words like ‘sex’ or ‘homo’.
+Personally, we don’t mind, because these are just common latin words
+meaning ‘six’ and ‘man’. However, some people (or your clients) might be
+offended by this, so if you select the ‘Prude version’, these words will be
+censored.”</li>
+<li><strong>plaintext</strong> – (Default = True) Return plain text, no HTML</li>
+<li><strong>html_options</strong> – <p>(Default = None) List of html options to specify in
+request. This will be ignored if plaintext = True. The following options
+are accepted</p>
+<blockquote>
+<div><ul>
+<li>’decorate’ - Add bold, italic and marked text.</li>
+<li>’link’- Add links.</li>
+<li>’ul’ - Add unordered lists.</li>
+<li>’ol’ - Add numbered lists.</li>
+<li>’dl’ - Add description lists.</li>
+<li>’bq’ - Add blockquotes.</li>
+<li>’code’ - Add code samples.</li>
+<li>’headers’ - Add headers.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><strong>trailing_newlines</strong> – (Default = False) If False, strip trailing new lines
+in generated text. If True, leave trailing new lines in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Result of querying loripsum.net API using the specified options</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
