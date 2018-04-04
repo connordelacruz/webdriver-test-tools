@@ -3,17 +3,13 @@ Selenium WebDriver Test Tools
 =============================
 
 |pypi|
-|license|
 |github|
 
-.. |pypi| image:: https://img.shields.io/pypi/v/webdriver-test-tools.svg
+.. |pypi| image:: https://img.shields.io/pypi/v/webdriver-test-tools.svg?longCache=true
     :alt: PyPI
     :target: http://pypi.python.org/pypi/webdriver-test-tools
 
-.. |license| image:: https://img.shields.io/pypi/l/webdriver-test-tools.svg
-    :alt: PyPI - License
-
-.. |github| image:: https://img.shields.io/badge/GitHub--green.svg?style=social&logo=github
+.. |github| image:: https://img.shields.io/badge/GitHub--green.svg?longCache=true&style=social&logo=github
     :alt: GitHub
     :target: https://github.com/connordelacruz/webdriver-test-tools
 
