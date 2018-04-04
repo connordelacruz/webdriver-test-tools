@@ -1,6 +1,8 @@
-#!/usr/bin/env python3
-
 from setuptools import setup, find_packages
+
+def readme():
+    with open('README.rst') as f:
+        return f.read()
 
 # Get __version__
 with open('./webdriver_test_tools/version.py') as f:
@@ -10,6 +12,7 @@ setup(
         name='webdriver_test_tools',
         version=__version__,
         description='Tools for using Selenium WebDriver with Python unit testing',
+        long_description=readme(),
         url='https://github.com/connordelacruz/webdriver-test-tools',
         download_url='https://github.com/connordelacruz/webdriver-test-tools/archive/{}.tar.gz'.format(__version__),
         author='Connor de la Cruz',

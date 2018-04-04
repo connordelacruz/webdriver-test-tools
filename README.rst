@@ -2,6 +2,22 @@
 Selenium WebDriver Test Tools
 =============================
 
+|pypi|
+|license|
+|github|
+
+.. |pypi| image:: https://img.shields.io/pypi/v/webdriver-test-tools.svg
+    :alt: PyPI
+    :target: http://pypi.python.org/pypi/webdriver-test-tools
+
+.. |license| image:: https://img.shields.io/pypi/l/webdriver-test-tools.svg
+    :alt: PyPI - License
+
+.. |github| image:: https://img.shields.io/badge/GitHub--green.svg?style=social&logo=github
+    :alt: GitHub
+    :target: https://github.com/connordelacruz/webdriver-test-tools
+
+
 Utilities for writing front-end test suites using `Selenium WebDriver <https://www.seleniumhq.org/docs/03_webdriver.jsp>`__ and python unit tests.
 
 .. contents::
