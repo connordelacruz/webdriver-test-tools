@@ -40,6 +40,8 @@ class WebDriverTestCase(unittest.TestCase):
     # Test case attributes
     SITE_URL = None
     SKIP_BROWSERS = []
+    # TODO: document and determine best default value
+    SKIP_MOBILE = None
 
     # Browser implementation attributes
     driver = None
@@ -175,6 +177,55 @@ class WebDriverTestCase(unittest.TestCase):
             return wrapper
         return decorator
 
+    @staticmethod
+    def skipMobile():
+        """Conditionally skip a test method for mobile browsers
+
+        Usage Example:
+
+        .. code:: python
+
+            @WebDriverTestCase.skipMobile()
+            test_method(self):
+                ...
+        """
+        def decorator(test_method):
+            @wraps(test_method)
+            def wrapper(*args, **kwargs):
+                test_case_obj = args[0]
+                if issubclass(type(test_case_obj), WebDriverMobileTestCase):
+                    test_case_obj.skipTest('Skipping for mobile')
+                test_method(*args, **kwargs)
+            return wrapper
+        return decorator
+
+    @staticmethod
+    def mobileOnly():
+        """Conditionally skip a test method for non-mobile browsers
+
+        Usage Example:
+
+        .. code:: python
+
+            @WebDriverTestCase.mobileOnly()
+            test_method(self):
+                ...
+        """
+        def decorator(test_method):
+            @wraps(test_method)
+            def wrapper(*args, **kwargs):
+                test_case_obj = args[0]
+                if not issubclass(type(test_case_obj), WebDriverMobileTestCase):
+                    test_case_obj.skipTest('Skipping for non-mobile')
+                test_method(*args, **kwargs)
+            return wrapper
+        return decorator
+
+
+class WebDriverMobileTestCase(WebDriverTestCase):
+    # TODO: document
+    SKIP_MOBILE = False
+
 # Browser Driver Implementations
 
 class FirefoxTestCase(WebDriverTestCase):
@@ -273,8 +324,14 @@ class EdgeTestCase(WebDriverTestCase):
 
 # Mobile browser emulation
 
-class ChromeMobileTestCase(WebDriverTestCase):
-    # TODO: document
+class ChromeMobileTestCase(WebDriverMobileTestCase):
+    """Implementation of WebDriverTestCase using Chrome webdriver. Emulates mobile
+    device layout.
+
+    `Driver download <https://sites.google.com/a/chromium.org/chromedriver/downloads>`__
+
+    `Mobile emulation info <https://sites.google.com/a/chromium.org/chromedriver/mobile-emulation>`__
+    """
     # TODO: specify emulated device name?
     DRIVER_NAME = 'Chrome Mobile [Emulated]'
     SHORT_NAME = 'chrome-mobile'
