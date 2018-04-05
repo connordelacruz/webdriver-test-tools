@@ -1,4 +1,4 @@
-# Functions for commonly repeated test procedures
+"""Functions for commonly repeated test procedures"""
 
 from webdriver_test_tools.webdriver.support import expected_conditions as customEC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,8 +15,10 @@ def element_exists(driver, element_locator):
     driver.find_element() and returns a boolean based on whether the exception occurred.
     Used for test assertions.
 
-    :param driver: Selenium webdriver object
+    :param driver: Selenium WebDriver object
     :param element_locator: Tuple in the format (by,selector) used to locate target
+
+    :return: True if the element exists, False if not
     """
     exists = True
     try:
@@ -33,9 +35,12 @@ def is_scrolled_into_view(driver, element, fully_in_view=True):
     to the viewport, so using JavaScript to determine whether the element is visible
     within the viewport.
 
-    :param driver: Selenium webdriver object
+    :param driver: Selenium WebDriver object
     :param element: WebElement for the element to check
-    :param fully_in_view: (Default = True) If True, check that the element is fully in view and not cut off. If False, check that it's at least partially in view
+    :param fully_in_view: (Default = True) If True, check that the element is fully in
+        view and not cut off. If False, check that it's at least partially in view
+
+    :return: True if the element is scrolled into view, False otherwise
     """
     # the JavaScript used to check if the element is in view.
     script_string = '''
@@ -59,11 +64,12 @@ def is_scrolled_into_view(driver, element, fully_in_view=True):
 def expected_condition_test(driver, ec_object, wait_timeout=10):
     """Test for an expected condition until wait timeout is reached
 
-    :param driver: Selenium webdriver object
+    :param driver: Selenium WebDriver object
     :param ec_object: Expected condition object
-    :param wait_timeout: (Default = 10) Number of seconds to wait for expected conditions to occur before timing out
+    :param wait_timeout: (Default = 10) Number of seconds to wait for expected
+        conditions to occur before timing out
 
-    :return: True if expected condition occurred, otherwise False.
+    :return: True if expected condition occurred, otherwise False
     """
     result = True
     try:
@@ -77,9 +83,10 @@ def expected_condition_test(driver, ec_object, wait_timeout=10):
 def in_view_change_test(driver, target_locator, wait_timeout=10):
     """Expected condition test for an element to scroll into view (e.g. same-page link with scroll animation)
 
-    :param driver: Selenium webdriver object
+    :param driver: Selenium WebDriver object
     :param target_locator: Tuple in the format (by,selector) used to locate target
-    :param wait_timeout: (Default = 10) Number of seconds to wait for expected conditions to occur before timing out
+    :param wait_timeout: (Default = 10) Number of seconds to wait for expected
+        conditions to occur before timing out
 
     :return: True if target is scrolled into view before timeout, False otherwise
     """
@@ -90,10 +97,13 @@ def in_view_change_test(driver, target_locator, wait_timeout=10):
 def visibility_change_test(driver, target_locator, test_visible=True, wait_timeout=10):
     """Expected condition test for visibility changes (e.g. modals)
 
-    :param driver: Selenium webdriver object
+    :param driver: Selenium WebDriver object
     :param target_locator: Tuple in the format (by,selector) used to locate target
-    :param test_visible: (Default=True) An optional variable describing what the visibility change is supposed to be. If True, test if the target becomes visible. If False, test if the target becomes invisible.
-    :param wait_timeout: (Default = 10) Number of seconds to wait expected conditions to occur before timing out
+    :param test_visible: (Default=True) An optional variable describing what the
+        visibility change is supposed to be. If True, test if the target becomes
+        visible. If False, test if the target becomes invisible
+    :param wait_timeout: (Default = 10) Number of seconds to wait for expected
+        conditions to occur before timing out
 
     :return: True if the target's visibily changes as expected, False otherwise
     """
@@ -105,9 +115,13 @@ def visibility_change_test(driver, target_locator, test_visible=True, wait_timeo
 def url_change_test(driver, expected_url, wait_timeout=10):
     """Expected condition test for URL change
 
-    :param driver: Selenium webdriver object
+    :param driver: Selenium WebDriver object
     :param expected_url: The expected URL
-    :param wait_timeout: (Default = 10) Number of seconds to wait expected conditions to occur before timing out
+    :param wait_timeout: (Default = 10) Number of seconds to wait for expected
+        conditions to occur before timing out
+
+    :return: True if the current URL matches the expected URL before timeout, False
+        otherwise
     """
     url_checker = EC.url_to_be(expected_url)
     return expected_condition_test(driver, url_checker, wait_timeout)
@@ -116,9 +130,13 @@ def url_change_test(driver, expected_url, wait_timeout=10):
 def base_url_change_test(driver, expected_url, wait_timeout=10):
     """Expected condition test for URL change. Ignores query strings in current url
 
-    :param driver: Selenium webdriver object
+    :param driver: Selenium WebDriver object
     :param expected_url: The expected base URL
-    :param wait_timeout: (Default = 10) Number of seconds to wait expected conditions to occur before timing out
+    :param wait_timeout: (Default = 10) Number of seconds to wait for expected
+        conditions to occur before timing out
+
+    :return: True if the current URL (ignoring query strings) matches the expected URL
+        before timeout, False otherwise
     """
     url_checker = customEC.base_url_to_be(expected_url)
     return expected_condition_test(driver, url_checker, wait_timeout)
