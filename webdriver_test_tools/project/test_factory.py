@@ -3,6 +3,7 @@
 import unittest
 from webdriver_test_tools.config import BrowserConfig
 from webdriver_test_tools.project import test_loader
+from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase
 
 
 def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None):
@@ -34,6 +35,11 @@ def generate_browser_test_cases(base_class, browser_test_classes=None):
     """
     # generate class only for browser_test_class if specified
     browser_classes = BrowserConfig.BROWSER_TEST_CLASSES.values() if browser_test_classes is None else browser_test_classes
+    # TODO: handle mobile/non-mobile test cases and skips
+    if base_class.SKIP_MOBILE:
+        browser_classes = [
+            browser_class for browser_class in browser_classes if not issubclass(browser_class, WebDriverMobileTestCase)
+        ]
     # iterate through a list of browser classes and generate test cases
     # skip browser classes if listed in base_class.SKIP_BROWSERS
     browser_test_cases = [
