@@ -63,12 +63,10 @@ class WebDriverConfig(object):
 
     @classmethod
     def get_chrome_mobile_driver(cls):
-        # TODO: document
+        """Returns webdriver.Chrome object using CHROME_KWARGS and CHROME_MOBILE_EMULATION to initialize"""
         options = webdriver.ChromeOptions()
         options.add_experimental_option("mobileEmulation", cls.CHROME_MOBILE_EMULATION)
-        chrome_mobile_kwargs = cls.CHROME_KWARGS
-        chrome_mobile_kwargs['options'] = options
-        return cls.set_driver_implicit_wait(webdriver.Chrome(**chrome_mobile_kwargs))
+        return cls.set_driver_implicit_wait(webdriver.Chrome(options=options, **cls.CHROME_KWARGS))
 
     @classmethod
     def set_driver_implicit_wait(cls, driver):
