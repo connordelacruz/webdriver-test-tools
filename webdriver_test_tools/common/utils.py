@@ -1,6 +1,6 @@
-from urllib.parse import urlparse
-
 """Various utility methods for webdriver_test_tools submodules"""
+
+from urllib.parse import urlparse
 
 
 def get_base_url(url):
