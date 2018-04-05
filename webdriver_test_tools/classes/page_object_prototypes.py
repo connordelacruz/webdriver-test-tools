@@ -6,6 +6,7 @@ These classes define common operations and attributes for various common compone
 from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_test_tools.classes.base_page import BasePage
 from webdriver_test_tools.webdriver import actions
+from webdriver_test_tools import test
 
 
 class WebPageObject(BasePage):
@@ -76,15 +77,31 @@ class NavObject(BasePage):
 class CollapsibleNavObject(NavObject):
     # TODO: document
 
-    MENU_BUTTON_LOCATOR = None
+    EXPAND_BUTTON_LOCATOR = None
+    COLLAPSE_BUTTON_LOCATOR = None
     MENU_CONTAINER_LOCATOR = None
-    MENU_COLLAPSE_BUTTON_LOCATOR = None
 
-    # TODO: def is_expanded(self):
+    def is_expanded(self):
+        # TODO: document and test
+        driver = self.driver
+        expanded = test.element_exists(driver, self.MENU_CONTAINER_LOCATOR) and self.find_element(self.MENU_CONTAINER_LOCATOR).is_displayed()
+        return expanded
 
-    # TODO: click_menu_button(self):
+    def click_expand_button(self):
+        # TODO: document and test
+        button = self.find_element(self.EXPAND_BUTTON_LOCATOR)
+        if not self.fixed:
+            actions.scroll_into_view(self.driver, button)
+        button.click()
+        # TODO: return page object for menu?
 
-    # TODO: click_collapse_button(self):
+    def click_collapse_button(self):
+        # TODO: document and test
+        button = self.find_element(self.COLLAPSE_BUTTON_LOCATOR)
+        if not self.fixed:
+            actions.scroll_into_view(self.driver, button)
+        button.click()
+        # TODO: return page object for menu?
 
 
 class FormObject(BasePage):

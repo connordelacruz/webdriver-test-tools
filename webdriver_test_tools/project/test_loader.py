@@ -2,7 +2,7 @@
 
 import types
 import unittest
-from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase
+from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase
 
 
 def load_project_tests(tests_module, test_class_names=None, test_module_names=None):
@@ -38,7 +38,7 @@ def load_webdriver_test_cases(module, test_class_names=None):
     for name in dir(module):
         obj = getattr(module, name)
         # Load class if it subclasses WebDriverTestCase (but don't load WebDriverTestCase itself)
-        if isinstance(obj, type) and issubclass(obj, WebDriverTestCase) and obj is not WebDriverTestCase:
+        if isinstance(obj, type) and issubclass(obj, WebDriverTestCase) and obj is not WebDriverTestCase and obj is not WebDriverMobileTestCase:
             # If test_class_names is specified, only load test cases whose names are specified
             if test_class_names is None or name in test_class_names:
                 test_list.append(obj)
