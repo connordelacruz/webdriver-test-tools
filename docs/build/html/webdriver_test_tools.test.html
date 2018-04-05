@@ -176,6 +176,7 @@
             
   <div class="section" id="module-webdriver_test_tools.test">
 <span id="webdriver-test-tools-test-module"></span><h1>webdriver_test_tools.test module<a class="headerlink" href="#module-webdriver_test_tools.test" title="Permalink to this headline">¶</a></h1>
+<p>Functions for commonly repeated test procedures</p>
 <dl class="function">
 <dt id="webdriver_test_tools.test.base_url_change_test">
 <code class="descclassname">webdriver_test_tools.test.</code><code class="descname">base_url_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>expected_url</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/test.html#base_url_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.test.base_url_change_test" title="Permalink to this definition">¶</a></dt>
@@ -184,11 +185,16 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium webdriver object</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
 <li><strong>expected_url</strong> – The expected base URL</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait expected conditions to occur before timing out</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the current URL (ignoring query strings) matches the expected URL
+before timeout, False otherwise</p>
 </td>
 </tr>
 </tbody>
@@ -206,10 +212,13 @@ Used for test assertions.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium webdriver object</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
 <li><strong>element_locator</strong> – Tuple in the format (by,selector) used to locate target</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the element exists, False if not</p>
 </td>
 </tr>
 </tbody>
@@ -225,13 +234,14 @@ Used for test assertions.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>driver</strong> – Selenium webdriver object</li>
+<li><strong>driver</strong> – Selenium WebDriver object</li>
 <li><strong>ec_object</strong> – Expected condition object</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected conditions to occur before timing out</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if expected condition occurred, otherwise False.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if expected condition occurred, otherwise False</p>
 </td>
 </tr>
 </tbody>
@@ -247,9 +257,10 @@ Used for test assertions.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>driver</strong> – Selenium webdriver object</li>
+<li><strong>driver</strong> – Selenium WebDriver object</li>
 <li><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate target</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected conditions to occur before timing out</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</li>
 </ul>
 </td>
 </tr>
@@ -271,11 +282,15 @@ within the viewport.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium webdriver object</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
 <li><strong>element</strong> – WebElement for the element to check</li>
-<li><strong>fully_in_view</strong> – (Default = True) If True, check that the element is fully in view and not cut off. If False, check that it’s at least partially in view</li>
+<li><strong>fully_in_view</strong> – (Default = True) If True, check that the element is fully in
+view and not cut off. If False, check that it’s at least partially in view</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the element is scrolled into view, False otherwise</p>
 </td>
 </tr>
 </tbody>
@@ -290,11 +305,16 @@ within the viewport.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium webdriver object</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
 <li><strong>expected_url</strong> – The expected URL</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait expected conditions to occur before timing out</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the current URL matches the expected URL before timeout, False
+otherwise</p>
 </td>
 </tr>
 </tbody>
@@ -310,10 +330,13 @@ within the viewport.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>driver</strong> – Selenium webdriver object</li>
+<li><strong>driver</strong> – Selenium WebDriver object</li>
 <li><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate target</li>
-<li><strong>test_visible</strong> – (Default=True) An optional variable describing what the visibility change is supposed to be. If True, test if the target becomes visible. If False, test if the target becomes invisible.</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait expected conditions to occur before timing out</li>
+<li><strong>test_visible</strong> – (Default=True) An optional variable describing what the
+visibility change is supposed to be. If True, test if the target becomes
+visible. If False, test if the target becomes invisible</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</li>
 </ul>
 </td>
 </tr>
