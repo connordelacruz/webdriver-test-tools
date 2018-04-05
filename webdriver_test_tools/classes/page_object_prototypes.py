@@ -73,6 +73,20 @@ class NavObject(BasePage):
             return None if link_tuple[1] is None else link_tuple[1](self.driver)
 
 
+class CollapsibleNavObject(NavObject):
+    # TODO: document
+
+    MENU_BUTTON_LOCATOR = None
+    MENU_CONTAINER_LOCATOR = None
+    MENU_COLLAPSE_BUTTON_LOCATOR = None
+
+    # TODO: def is_expanded(self):
+
+    # TODO: click_menu_button(self):
+
+    # TODO: click_collapse_button(self):
+
+
 class FormObject(BasePage):
     """Page object prototype for navbars
 
