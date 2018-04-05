@@ -14,5 +14,6 @@ class BrowserConfig(object):
         # Browsers.SAFARI: SafariTestCase,
         # Browsers.IE: IETestCase,
         # Browsers.EDGE: EdgeTestCase,
+        # Browsers.CHROME_MOBILE: ChromeMobileTestCase,
     }
 

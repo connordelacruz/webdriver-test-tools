@@ -271,6 +271,19 @@ class EdgeTestCase(WebDriverTestCase):
         super().setUp()
 
 
+# Mobile browser emulation
+
+class ChromeMobileTestCase(WebDriverTestCase):
+    # TODO: document
+    # TODO: specify emulated device name?
+    DRIVER_NAME = 'Chrome Mobile [Emulated]'
+    SHORT_NAME = 'chrome-mobile'
+
+    def setUp(self):
+        self.driver = WebDriverConfig.get_chrome_mobile_driver()
+        super().setUp()
+
+
 class Browsers(object):
     """Constants for browser short names"""
     FIREFOX = FirefoxTestCase.SHORT_NAME
@@ -278,5 +291,6 @@ class Browsers(object):
     SAFARI = SafariTestCase.SHORT_NAME
     IE = IETestCase.SHORT_NAME
     EDGE = EdgeTestCase.SHORT_NAME
+    CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
 
 
