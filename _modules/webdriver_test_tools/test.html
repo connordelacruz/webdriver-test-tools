@@ -162,7 +162,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.test</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Functions for commonly repeated test procedures</span>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for commonly repeated test procedures&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver.support</span> <span class="k">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">customEC</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="k">import</span> <span class="n">WebDriverWait</span>
@@ -179,8 +179,10 @@
 <span class="sd">    driver.find_element() and returns a boolean based on whether the exception occurred.</span>
 <span class="sd">    Used for test assertions.</span>
 
-<span class="sd">    :param driver: Selenium webdriver object</span>
+<span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param element_locator: Tuple in the format (by,selector) used to locate target</span>
+
+<span class="sd">    :return: True if the element exists, False if not</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">exists</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">try</span><span class="p">:</span>
@@ -197,9 +199,12 @@
 <span class="sd">    to the viewport, so using JavaScript to determine whether the element is visible</span>
 <span class="sd">    within the viewport.</span>
 
-<span class="sd">    :param driver: Selenium webdriver object</span>
+<span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param element: WebElement for the element to check</span>
-<span class="sd">    :param fully_in_view: (Default = True) If True, check that the element is fully in view and not cut off. If False, check that it&#39;s at least partially in view</span>
+<span class="sd">    :param fully_in_view: (Default = True) If True, check that the element is fully in</span>
+<span class="sd">        view and not cut off. If False, check that it&#39;s at least partially in view</span>
+
+<span class="sd">    :return: True if the element is scrolled into view, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># the JavaScript used to check if the element is in view.</span>
     <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
@@ -223,11 +228,12 @@
 <div class="viewcode-block" id="expected_condition_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.expected_condition_test">[docs]</a><span class="k">def</span> <span class="nf">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">ec_object</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test for an expected condition until wait timeout is reached</span>
 
-<span class="sd">    :param driver: Selenium webdriver object</span>
+<span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param ec_object: Expected condition object</span>
-<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected conditions to occur before timing out</span>
+<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected</span>
+<span class="sd">        conditions to occur before timing out</span>
 
-<span class="sd">    :return: True if expected condition occurred, otherwise False.</span>
+<span class="sd">    :return: True if expected condition occurred, otherwise False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">try</span><span class="p">:</span>
@@ -241,9 +247,10 @@
 <div class="viewcode-block" id="in_view_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.in_view_change_test">[docs]</a><span class="k">def</span> <span class="nf">in_view_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Expected condition test for an element to scroll into view (e.g. same-page link with scroll animation)</span>
 
-<span class="sd">    :param driver: Selenium webdriver object</span>
+<span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate target</span>
-<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected conditions to occur before timing out</span>
+<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected</span>
+<span class="sd">        conditions to occur before timing out</span>
 
 <span class="sd">    :return: True if target is scrolled into view before timeout, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -254,10 +261,13 @@
 <div class="viewcode-block" id="visibility_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.visibility_change_test">[docs]</a><span class="k">def</span> <span class="nf">visibility_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">test_visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Expected condition test for visibility changes (e.g. modals)</span>
 
-<span class="sd">    :param driver: Selenium webdriver object</span>
+<span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate target</span>
-<span class="sd">    :param test_visible: (Default=True) An optional variable describing what the visibility change is supposed to be. If True, test if the target becomes visible. If False, test if the target becomes invisible.</span>
-<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait expected conditions to occur before timing out</span>
+<span class="sd">    :param test_visible: (Default=True) An optional variable describing what the</span>
+<span class="sd">        visibility change is supposed to be. If True, test if the target becomes</span>
+<span class="sd">        visible. If False, test if the target becomes invisible</span>
+<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected</span>
+<span class="sd">        conditions to occur before timing out</span>
 
 <span class="sd">    :return: True if the target&#39;s visibily changes as expected, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -269,9 +279,13 @@
 <div class="viewcode-block" id="url_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.url_change_test">[docs]</a><span class="k">def</span> <span class="nf">url_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Expected condition test for URL change</span>
 
-<span class="sd">    :param driver: Selenium webdriver object</span>
+<span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param expected_url: The expected URL</span>
-<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait expected conditions to occur before timing out</span>
+<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected</span>
+<span class="sd">        conditions to occur before timing out</span>
+
+<span class="sd">    :return: True if the current URL matches the expected URL before timeout, False</span>
+<span class="sd">        otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">url_checker</span> <span class="o">=</span> <span class="n">EC</span><span class="o">.</span><span class="n">url_to_be</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span>
@@ -280,9 +294,13 @@
 <div class="viewcode-block" id="base_url_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.base_url_change_test">[docs]</a><span class="k">def</span> <span class="nf">base_url_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Expected condition test for URL change. Ignores query strings in current url</span>
 
-<span class="sd">    :param driver: Selenium webdriver object</span>
+<span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param expected_url: The expected base URL</span>
-<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait expected conditions to occur before timing out</span>
+<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected</span>
+<span class="sd">        conditions to occur before timing out</span>
+
+<span class="sd">    :return: True if the current URL (ignoring query strings) matches the expected URL</span>
+<span class="sd">        before timeout, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">url_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">base_url_to_be</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span>
