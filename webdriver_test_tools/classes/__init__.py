@@ -2,5 +2,5 @@
 
 from . import base_page
 from . import webdriver_test_case
-from . import page_object_prototype
+from . import page_object_prototypes
 
