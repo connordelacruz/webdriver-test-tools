@@ -33,32 +33,44 @@ python -m example_package
 To run all test cases in a file:
 
 ```
-python -m example_package --module <module_name>
+python -m example_package --module <test_module>
+```
+
+Multiple modules can be run at once:
+
+```
+python -m <test_package> --module <test_module0> <test_module1>
 ```
 
 To run a single TestCase class in a file:
 
 ```
-python -m example_package --module <module_name> --test <TestCaseClassName>
+python -m example_package --module <test_module> --test <TestClass>
 ```
 
-To run just one test function in a TestCase class:
+To run just one test method in a TestCase class:
 
 ```
-python -m example_package --module <module_name> --test <TestCaseClassName>.<test_function_name>
+python -m example_package --module <test_module> --test <TestClass>.<test_method>
 ```
 
 The `--module` argument can be omitted when using the `--test` argument:
 
 ```
-python -m example_package --test <TestCaseClassName>
+python -m example_package --test <TestClass>
 ```
 
 ```
-python -m example_package --test <TestCaseClassName>.<test_function_name>
+python -m example_package --test <TestClass>.<test_method>
 ```
 
 *Note:* This can be less efficient as each module will be searched for the specified test, but the difference in performance will likely be unnoticeable.  
+
+Multiple test classes and test methods can be run at once:
+
+```
+python -m <test_package> --test <TestClass0> <TestClass1>.<test_method>
+```
 
 To do any of the above in a specific browser rather than running in all available browsers, use the `--browser <browser>` command line argument. For a list of options you can specify with `--browser`, run `python -m example_package --help`.
 
@@ -79,7 +91,7 @@ This test structure is best used with the [Page Object Model](https://martinfowl
 
 ### Test Project Root Contents
 
-`README.md` is a template readme file with similar content to this documentation. `setup.py` is a python package setup file that allows the new test suite to be installed as a pip package.
+`setup.py` is a python package setup file that allows the new test suite to be installed as a pip package.
 
 ### Test Package Contents
 
@@ -104,3 +116,7 @@ When adding new test files, be sure to update `tests/__init__.py` to include the
 #### templates/
 
 Template files to use as a starting point when writing new test modules or page objects.
+
+---
+
+![webdriver_test_tools 0.15.1](https://img.shields.io/badge/generated%20using-webdriver__test__tools%200.15.1-blue.svg?style=for-the-badge)

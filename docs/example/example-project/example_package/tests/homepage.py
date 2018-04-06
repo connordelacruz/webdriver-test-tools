@@ -1,15 +1,12 @@
-# Imports
-# ----------------------------------------------------------------
 from example_package.pages.home import HomePage
 
 import webdriver_test_tools
-from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase
+from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase, Browsers
 from example_package import config
 from selenium import webdriver
 
 
 # Test Case Classes
-# ----------------------------------------------------------------
 
 class HomePageTestCase(WebDriverTestCase):
     """Really contrived example test case"""
@@ -17,8 +14,7 @@ class HomePageTestCase(WebDriverTestCase):
     # URL to go to at the start of each test
     SITE_URL = config.SiteConfig.SITE_URL
 
-    # Test Functions
-    # --------------------------------
+    # Test Methods
 
     def test_page_heading(self):
         """Ensure that the page heading text is correct"""
@@ -32,5 +28,4 @@ class HomePageTestCase(WebDriverTestCase):
         expected_url = config.SiteConfig.INFO_URL
         page_object.click_more_information_link()
         self.assertTrue(webdriver_test_tools.test.url_change_test(self.driver, expected_url))
-
 
