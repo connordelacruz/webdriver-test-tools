@@ -60,7 +60,8 @@ class NavObject(BasePage):
         """Hover mouse over one of the page links
 
         :param link_map_key: Key into HOVER_MAP for the link to hover mouse over
-        :return: Corresponding page object class for the hover dropdown/container/etc (if applicable)
+        :return: Corresponding page object class for the hover dropdown/container/etc
+            (if applicable)
         """
         # TODO: raise exception?
         if link_map_key in self.HOVER_MAP:
@@ -74,34 +75,39 @@ class NavObject(BasePage):
             return None if link_tuple[1] is None else link_tuple[1](self.driver)
 
 
+# TODO: document variables
 class CollapsibleNavObject(NavObject):
-    # TODO: document
+    """Subclass of NavObject with additional methods for collapsible nav menus
+
+    """
 
     EXPAND_BUTTON_LOCATOR = None
     COLLAPSE_BUTTON_LOCATOR = None
     MENU_CONTAINER_LOCATOR = None
 
     def is_expanded(self):
-        # TODO: document and test
+        """Check if the nav menu is expanded
+
+        :return: True if the nav menu is expanded, False if it's collapsed
+        """
         driver = self.driver
+        # TODO: document how the methods checks this
         expanded = test.element_exists(driver, self.MENU_CONTAINER_LOCATOR) and self.find_element(self.MENU_CONTAINER_LOCATOR).is_displayed()
         return expanded
 
     def click_expand_button(self):
-        # TODO: document and test
+        """Click the button to expand the nav menu"""
         button = self.find_element(self.EXPAND_BUTTON_LOCATOR)
         if not self.fixed:
             actions.scroll_into_view(self.driver, button)
         button.click()
-        # TODO: return page object for menu?
 
     def click_collapse_button(self):
-        # TODO: document and test
+        """Click the button to collapse the nav menu"""
         button = self.find_element(self.COLLAPSE_BUTTON_LOCATOR)
         if not self.fixed:
             actions.scroll_into_view(self.driver, button)
         button.click()
-        # TODO: return page object for menu?
 
 
 class FormObject(BasePage):
