@@ -1,5 +1,3 @@
-# Configurations for what browser test cases to use
-
 from webdriver_test_tools.classes.webdriver_test_case import *
 from webdriver_test_tools.config import browser
 
