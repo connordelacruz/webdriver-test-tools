@@ -17,20 +17,20 @@ By default, tests are generated for Firefox and Chrome. Additional browsers can 
 
 
     class BrowserConfig(browser.BrowserConfig):
-        # Dictionary of usable test case classes indexed by the short name for that class (i.e. its command line argument)
         BROWSER_TEST_CLASSES = {
             Browsers.FIREFOX: FirefoxTestCase,
             Browsers.CHROME: ChromeTestCase,
             Browsers.SAFARI: SafariTestCase,
             # Browsers.IE: IETestCase,
             # Browsers.EDGE: EdgeTestCase,
+            # Browsers.CHROME_MOBILE: ChromeMobileTestCase,
         }
 
 
 Skipping tests for certain browsers
 -----------------------------------
 
-Some browser drivers don't support certain features of the Selenium WebDriver API. If a test method or class requires these features to run, drovers that lack support for them will likely encounter errors leading to false failures. The ``WebDriverTestCase`` class provides utilities for skipping tests in certain browsers for these instances.
+Some browser drivers don't support certain features of the Selenium WebDriver API. If a test method or class requires these features to run, drivers that lack support for them will likely encounter errors leading to false failures. The ``WebDriverTestCase`` class provides utilities for skipping tests in certain browsers for these instances.
 
 Skipping browsers for test methods
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,5 +63,96 @@ To skip an entire test case class, override ``WebDriverTestCase.SKIP_BROWSERS`` 
 
 
 Valid browser names are declared as constants in the ``Browsers`` class, which is imported from ``webdriver_test_tools.classes.webdriver_test_case``
+
+
+Enabling mobile browsers
+------------------------
+
+Test cases that emulate mobile browser layouts are also enabled in ``<test_package>/config/browser.py``. For example, to generate test cases for Chrome emulating a mobile layout, add ``Browsers.CHROME_MOBILE`` to ``BrowserConfig.BROWSER_TEST_CLASSES``:   
+
+``config/browser.py``:
+
+.. code:: python
+    
+    from webdriver_test_tools.classes.webdriver_test_case import *
+    from webdriver_test_tools.config import browser
+
+
+    class BrowserConfig(browser.BrowserConfig):
+        BROWSER_TEST_CLASSES = {
+            Browsers.FIREFOX: FirefoxTestCase,
+            Browsers.CHROME: ChromeTestCase,
+            # Browsers.SAFARI: SafariTestCase,
+            # Browsers.IE: IETestCase,
+            # Browsers.EDGE: EdgeTestCase,
+            Browsers.CHROME_MOBILE: ChromeMobileTestCase,
+        }
+
+
+Skipping tests for mobile browsers
+----------------------------------
+
+Responsive site layouts can change significantly on mobile viewports, so the procedure for testing a feature may require different steps. The ``WebDriverTestCase`` class provides utilities for conditionally skipping tests for mobile or non-mobile browsers.
+
+Skipping mobile browsers
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Test methods
+^^^^^^^^^^^^
+
+To skip test methods for mobile browsers, use the ``@WebDriverTestTools.skipMobile()`` decorator method:
+
+.. code:: python
+
+    class ExampleTestCase(WebDriverTestCase):
+        ...
+        @WebDriverTestCase.skipMobile()
+        def test_mobile_skip(self):
+            ...
+
+
+Test case classes
+^^^^^^^^^^^^^^^^^
+
+To skip an entire test case class, set ``WebDriverTestCase.SKIP_MOBILE`` to ``True``:
+
+.. code:: python
+
+    class ExampleTestCase(WebDriverTestCase):
+        ...
+        SKIP_MOBILE = True
+
+
+Skipping non-mobile browsers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Utilities are also provided for running tests exclusively in mobile browsers.
+
+Test methods
+^^^^^^^^^^^^
+
+To skip test methods for non-mobile browsers, use the ``@WebDriverTestTools.mobileOnly()`` decorator method:
+
+.. code:: python
+
+    class ExampleTestCase(WebDriverTestCase):
+        ...
+        @WebDriverTestCase.mobileOnly()
+        def test_mobile_only(self):
+            ...
+
+
+Test case classes
+^^^^^^^^^^^^^^^^^
+
+To only use mobile browsers for a test case class, subclass ``WebDriverMobileTestCase``:
+
+.. code:: python
+
+    class ExampleMobileTestCase(WebDriverMobileTestCase):
+        ...
+
+
+
 
 
