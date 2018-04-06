@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.webdriver &mdash; WebDriver Test Tools 0.14.3 documentation</title>
+  <title>webdriver_test_tools.config.webdriver &mdash; WebDriver Test Tools 0.15.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.14.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.15.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.14
+                0.15
               </div>
             
           
@@ -194,6 +194,10 @@
     <span class="c1"># Edge webdriver initialization arguments</span>
     <span class="n">EDGE_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
 
+    <span class="c1"># Mobile Configurations</span>
+    <span class="c1"># Chrome mobile emulation</span>
+    <span class="n">CHROME_MOBILE_EMULATION</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;Pixel 2&quot;</span> <span class="p">}</span>
+
     <span class="c1"># Functions</span>
 
 <div class="viewcode-block" id="WebDriverConfig.get_firefox_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver">[docs]</a>    <span class="nd">@classmethod</span>
@@ -220,6 +224,13 @@
     <span class="k">def</span> <span class="nf">get_edge_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns webdriver.Edge object using EDGE_KWARGS to initialize&quot;&quot;&quot;</span></div>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Edge</span><span class="p">(</span><span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">EDGE_KWARGS</span><span class="p">))</span>
+
+<div class="viewcode-block" id="WebDriverConfig.get_chrome_mobile_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_mobile_driver">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_chrome_mobile_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns webdriver.Chrome object using CHROME_KWARGS and CHROME_MOBILE_EMULATION to initialize&quot;&quot;&quot;</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">ChromeOptions</span><span class="p">()</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s2">&quot;mobileEmulation&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_MOBILE_EMULATION</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span>
 
 <div class="viewcode-block" id="WebDriverConfig.set_driver_implicit_wait"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.set_driver_implicit_wait">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">set_driver_implicit_wait</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
@@ -265,7 +276,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.14.3',
+            VERSION:'0.15.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
