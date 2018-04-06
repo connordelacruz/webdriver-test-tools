@@ -17,9 +17,11 @@ def main(tests_module, config_module=None):
         config_module = config
     # Older projects may not have the BrowserConfig class
     browser_config = config_module.BrowserConfig if 'BrowserConfig' in dir(config_module) else config.BrowserConfig
+    browserstack_config = config_module.BrowserStackConfig if 'BrowserStackConfig' in dir(config_module) else config.BrowserStackConfig
     # Parse arguments
-    parser = get_parser(browser_config)
+    parser = get_parser(browser_config, browserstack_config)
     args = parser.parse_args()
+    # TODO: handle --browserstack arg if enabled (and handle args.browser differently)
     # Handle --browser args
     if args.browser is None:
         browser_classes = [
@@ -36,7 +38,8 @@ def main(tests_module, config_module=None):
     run_tests(tests_module, config_module, browser_classes, test_class_map, test_module_names)
 
 
-def get_parser(browser_config=None):
+# TODO: update docs
+def get_parser(browser_config=None, browserstack_config=None):
     """Returns the ArgumentParser object for use with main()
 
     :param browser_config: (Optional) BrowserConfig class for the project. Defaults to webdriver_test_tools.config.BrowserConfig if unspecified
@@ -45,10 +48,17 @@ def get_parser(browser_config=None):
     # Use default config if module is None or doesn't contain BrowserConfig class
     if browser_config is None:
         browser_config = config.BrowserConfig
+    if browserstack_config is None:
+        browserstack_config = config.BrowserStackConfig
     # Arguments for specifying browser to use
     browser_choices = [k for k in browser_config.BROWSER_TEST_CLASSES]
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
                         help='Run tests only in the specified browsers. Options: {{{}}}'.format(','.join(browser_choices)))
+    # Add argument for running on browserstack if the feature is enabled
+    # TODO: how to handle specifying browsers for BS?
+    if browserstack_config.ENABLE:
+        parser.add_argument('--browserstack', action='store_true',
+                            help='Run tests on BrowserStack instead of locally')
     # Arguments for specifying what test to run
     parser.add_argument('-t', '--test', nargs='+', metavar='<test>',
                         help='Run specific test case classes or test methods. Arguments should be in the format <TestCase>[.<method>]')
