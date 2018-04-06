@@ -75,10 +75,16 @@ class NavObject(BasePage):
             return None if link_tuple[1] is None else link_tuple[1](self.driver)
 
 
-# TODO: document variables
 class CollapsibleNavObject(NavObject):
     """Subclass of NavObject with additional methods for collapsible nav menus
 
+    In addition to the variables for :class:`NavObject`, the following variables need to
+    be defined for collapsible navs
+
+    :var EXPAND_BUTTON_LOCATOR: Locator for the button that expands the nav menu
+    :var COLLAPSE_BUTTON_LOCATOR: Locator for the button that expands the nav menu
+    :var MENU_CONTAINER_LOCATOR: Locator for the collapsing/expanding container of the
+        navigation menu
     """
 
     EXPAND_BUTTON_LOCATOR = None
@@ -88,10 +94,14 @@ class CollapsibleNavObject(NavObject):
     def is_expanded(self):
         """Check if the nav menu is expanded
 
+        This method checks if the element located by :attr:`MENU_CONTAINER_LOCATOR`
+        exists and is visible. This should be sufficient for many common implementations
+        of collapsible navs, but can be overridden if this isn't a reliable detection
+        method for an implementation
+
         :return: True if the nav menu is expanded, False if it's collapsed
         """
         driver = self.driver
-        # TODO: document how the methods checks this
         expanded = test.element_exists(driver, self.MENU_CONTAINER_LOCATOR) and self.find_element(self.MENU_CONTAINER_LOCATOR).is_displayed()
         return expanded
 
