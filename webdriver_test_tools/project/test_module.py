@@ -21,7 +21,7 @@ def main(tests_module, config_module=None):
     # Parse arguments
     parser = get_parser(browser_config, browserstack_config)
     args = parser.parse_args()
-    # TODO: handle --browserstack arg if enabled (and handle args.browser differently)
+    # TODO: handle --browserstack arg if enabled
     # Handle --browser args
     if args.browser is None:
         browser_classes = [
@@ -103,6 +103,7 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
     test_class_names = None if test_class_map is None else test_class_map.keys()
     tests = test_loader.load_project_tests(tests_module, test_class_names, test_module_names)
     # Generate browser test cases from the loaded WebDriverTestCase classes
+    # TODO: need to pass browserstack config module if enabled and --browserstack flag was specified
     browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes, test_class_map)
     # Get configured test runner and run suite
     test_runner = config_module.TestSuiteConfig.get_runner()

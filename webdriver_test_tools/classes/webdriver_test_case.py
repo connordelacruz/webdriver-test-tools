@@ -5,6 +5,7 @@ from functools import wraps
 from webdriver_test_tools.config import WebDriverConfig
 from webdriver_test_tools.common import utils
 from webdriver_test_tools import test
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 # Test Case Classes
@@ -48,9 +49,27 @@ class WebDriverTestCase(unittest.TestCase):
     SKIP_MOBILE = None
 
     # Browser implementation attributes
+    # TODO: move up to instance variables section:
     driver = None
     DRIVER_NAME = None
     SHORT_NAME = None
+    # TODO: DRIVER_INIT that stores initialization function for driver?
+    DRIVER_INIT = None
+
+    # TODO: update docstring to include these
+    # BrowserStack attributes
+    ENABLE_BS = False
+    # Command executor URL. Test projects need to set this with their access key and username
+    COMMAND_EXECUTOR = None
+    # Desired capabilities for the driver. Browser implementations override this
+    CAPABILITIES = None
+
+
+    # TODO: document appropriately
+    def _bs_driver_init(self):
+        """Initialize driver for BrowserStack"""
+        return webdriver.Remote(command_executor=self.COMMAND_EXECUTOR,
+                desired_capabilities=self.CAPABILITIES)
 
     def setUp(self):
         """Calls ``self.driver.get(self.SITE_URL)``"""
@@ -256,9 +275,12 @@ class ChromeTestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Chrome'
     SHORT_NAME = DRIVER_NAME.lower()
+    CAPABILITIES = DesiredCapabilities.CHROME
+    DRIVER_INIT = WebDriverConfig.get_chrome_driver
 
+    # TODO: implement DRIVER_INIT globally
     def setUp(self):
-        self.driver = WebDriverConfig.get_chrome_driver()
+        self.driver = self._bs_driver_init() if self.ENABLE_BS else self.DRIVER_INIT()
         super().setUp()
 
 

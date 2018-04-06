@@ -37,6 +37,7 @@ class Capabilities(object):
 
 # Test Case Classes
 
+# TODO: just merge w/ WebDriverTestCase and conditionally handle setUp() differently?
 class BrowserStackTestCase(WebDriverTestCase):
     # TODO: document
 
