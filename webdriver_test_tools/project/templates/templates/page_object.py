@@ -11,7 +11,6 @@ class TemplatePage(BasePage):
         """
         pass
 
-
-    # Page Functions
+    # Page Methods
 
 

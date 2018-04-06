@@ -6,6 +6,7 @@ These classes define common operations and attributes for various common compone
 from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_test_tools.classes.base_page import BasePage
 from webdriver_test_tools.webdriver import actions
+from webdriver_test_tools import test
 
 
 class WebPageObject(BasePage):
@@ -59,7 +60,8 @@ class NavObject(BasePage):
         """Hover mouse over one of the page links
 
         :param link_map_key: Key into HOVER_MAP for the link to hover mouse over
-        :return: Corresponding page object class for the hover dropdown/container/etc (if applicable)
+        :return: Corresponding page object class for the hover dropdown/container/etc
+            (if applicable)
         """
         # TODO: raise exception?
         if link_map_key in self.HOVER_MAP:
@@ -71,6 +73,51 @@ class NavObject(BasePage):
             action_chain.move_to_element(link).perform()
             # Initialize the target page object and return it
             return None if link_tuple[1] is None else link_tuple[1](self.driver)
+
+
+class CollapsibleNavObject(NavObject):
+    """Subclass of NavObject with additional methods for collapsible nav menus
+
+    In addition to the variables for :class:`NavObject`, the following variables need to
+    be defined for collapsible navs
+
+    :var EXPAND_BUTTON_LOCATOR: Locator for the button that expands the nav menu
+    :var COLLAPSE_BUTTON_LOCATOR: Locator for the button that expands the nav menu
+    :var MENU_CONTAINER_LOCATOR: Locator for the collapsing/expanding container of the
+        navigation menu
+    """
+
+    EXPAND_BUTTON_LOCATOR = None
+    COLLAPSE_BUTTON_LOCATOR = None
+    MENU_CONTAINER_LOCATOR = None
+
+    def is_expanded(self):
+        """Check if the nav menu is expanded
+
+        This method checks if the element located by :attr:`MENU_CONTAINER_LOCATOR`
+        exists and is visible. This should be sufficient for many common implementations
+        of collapsible navs, but can be overridden if this isn't a reliable detection
+        method for an implementation
+
+        :return: True if the nav menu is expanded, False if it's collapsed
+        """
+        driver = self.driver
+        expanded = test.element_exists(driver, self.MENU_CONTAINER_LOCATOR) and self.find_element(self.MENU_CONTAINER_LOCATOR).is_displayed()
+        return expanded
+
+    def click_expand_button(self):
+        """Click the button to expand the nav menu"""
+        button = self.find_element(self.EXPAND_BUTTON_LOCATOR)
+        if not self.fixed:
+            actions.scroll_into_view(self.driver, button)
+        button.click()
+
+    def click_collapse_button(self):
+        """Click the button to collapse the nav menu"""
+        button = self.find_element(self.COLLAPSE_BUTTON_LOCATOR)
+        if not self.fixed:
+            actions.scroll_into_view(self.driver, button)
+        button.click()
 
 
 class FormObject(BasePage):

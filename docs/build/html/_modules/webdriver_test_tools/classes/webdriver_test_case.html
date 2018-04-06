@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.webdriver_test_case &mdash; WebDriver Test Tools 0.14.3 documentation</title>
+  <title>webdriver_test_tools.classes.webdriver_test_case &mdash; WebDriver Test Tools 0.15.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.14.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.15.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.14
+                0.15
               </div>
             
           
@@ -189,6 +189,11 @@
 <span class="sd">        generation for. This can be useful if a test case class requires functionality</span>
 <span class="sd">        that is not implemented in a certain driver, or if its tests are meant for</span>
 <span class="sd">        specific browsers. Valid browser names are declared in the Browsers class.</span>
+<span class="sd">    :var WebDriverTestCase.SKIP_MOBILE: (Optional) By default, tests will be</span>
+<span class="sd">        generated for all enabled browsers, including mobile. If SKIP_MOBILE is set to</span>
+<span class="sd">        True, don&#39;t generate tests for mobile browsers. This can be helpful if the</span>
+<span class="sd">        layout changes between desktop and mobile viewports would alter the test</span>
+<span class="sd">        procedures.</span>
 
 <span class="sd">    **Browser-specific implementations of this class need to override the following:**</span>
 
@@ -204,6 +209,7 @@
     <span class="c1"># Test case attributes</span>
     <span class="n">SITE_URL</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">SKIP_BROWSERS</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">SKIP_MOBILE</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="c1"># Browser implementation attributes</span>
     <span class="n">driver</span> <span class="o">=</span> <span class="kc">None</span>
@@ -336,8 +342,61 @@
                 <span class="k">if</span> <span class="n">test_case_obj</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="ow">in</span> <span class="n">browsers</span><span class="p">:</span>
                     <span class="n">test_case_obj</span><span class="o">.</span><span class="n">skipTest</span><span class="p">(</span><span class="s1">&#39;Skipping </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_case_obj</span><span class="o">.</span><span class="n">DRIVER_NAME</span><span class="p">))</span>
                 <span class="n">test_method</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">wrapper</span></div>
+        <span class="k">return</span> <span class="n">decorator</span>
+
+<div class="viewcode-block" id="WebDriverTestCase.skipMobile"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.skipMobile">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">skipMobile</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Conditionally skip a test method for mobile browsers</span>
+
+<span class="sd">        Usage Example:</span>
+
+<span class="sd">        .. code:: python</span>
+
+<span class="sd">            @WebDriverTestCase.skipMobile()</span>
+<span class="sd">            test_method(self):</span>
+<span class="sd">                ...</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">test_method</span><span class="p">):</span>
+            <span class="nd">@wraps</span><span class="p">(</span><span class="n">test_method</span><span class="p">)</span>
+            <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">test_case_obj</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_case_obj</span><span class="p">),</span> <span class="n">WebDriverMobileTestCase</span><span class="p">):</span>
+                    <span class="n">test_case_obj</span><span class="o">.</span><span class="n">skipTest</span><span class="p">(</span><span class="s1">&#39;Skipping for mobile&#39;</span><span class="p">)</span>
+                <span class="n">test_method</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">wrapper</span></div>
+        <span class="k">return</span> <span class="n">decorator</span>
+
+<div class="viewcode-block" id="WebDriverTestCase.mobileOnly"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.mobileOnly">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">mobileOnly</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Conditionally skip a test method for non-mobile browsers</span>
+
+<span class="sd">        Usage Example:</span>
+
+<span class="sd">        .. code:: python</span>
+
+<span class="sd">            @WebDriverTestCase.mobileOnly()</span>
+<span class="sd">            test_method(self):</span>
+<span class="sd">                ...</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">test_method</span><span class="p">):</span>
+            <span class="nd">@wraps</span><span class="p">(</span><span class="n">test_method</span><span class="p">)</span>
+            <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">test_case_obj</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_case_obj</span><span class="p">),</span> <span class="n">WebDriverMobileTestCase</span><span class="p">):</span>
+                    <span class="n">test_case_obj</span><span class="o">.</span><span class="n">skipTest</span><span class="p">(</span><span class="s1">&#39;Skipping for non-mobile&#39;</span><span class="p">)</span>
+                <span class="n">test_method</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">wrapper</span></div></div>
         <span class="k">return</span> <span class="n">decorator</span>
+
+
+<div class="viewcode-block" id="WebDriverMobileTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverMobileTestCase">[docs]</a><span class="k">class</span> <span class="nc">WebDriverMobileTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for mobile web driver test cases</span>
+
+<span class="sd">    If a test subclasses WebDriverMobileTestCase instead of WebDriverTestCase, tests</span>
+<span class="sd">    will only be generated for mobile browsers</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+    <span class="n">SKIP_MOBILE</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1"># Browser Driver Implementations</span>
 
@@ -435,13 +494,32 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
 
 
+<span class="c1"># Mobile browser emulation</span>
+
+<div class="viewcode-block" id="ChromeMobileTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeMobileTestCase</span><span class="p">(</span><span class="n">WebDriverMobileTestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Chrome webdriver. Emulates mobile</span>
+<span class="sd">    device layout.</span>
+
+<span class="sd">    `Driver download &lt;https://sites.google.com/a/chromium.org/chromedriver/downloads&gt;`__</span>
+
+<span class="sd">    `Mobile emulation info &lt;https://sites.google.com/a/chromium.org/chromedriver/mobile-emulation&gt;`__</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Chrome Mobile [Emulated]&#39;</span>
+    <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="s1">&#39;chrome-mobile&#39;</span>
+
+<div class="viewcode-block" id="ChromeMobileTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_mobile_driver</span><span class="p">()</span></div></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+
+
 <div class="viewcode-block" id="Browsers"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.Browsers">[docs]</a><span class="k">class</span> <span class="nc">Browsers</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Constants for browser short names&quot;&quot;&quot;</span>
     <span class="n">FIREFOX</span> <span class="o">=</span> <span class="n">FirefoxTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">CHROME</span> <span class="o">=</span> <span class="n">ChromeTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">SAFARI</span> <span class="o">=</span> <span class="n">SafariTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
-    <span class="n">IE</span> <span class="o">=</span> <span class="n">IETestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span></div>
-    <span class="n">EDGE</span> <span class="o">=</span> <span class="n">EdgeTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
+    <span class="n">IE</span> <span class="o">=</span> <span class="n">IETestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
+    <span class="n">EDGE</span> <span class="o">=</span> <span class="n">EdgeTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span></div>
+    <span class="n">CHROME_MOBILE</span> <span class="o">=</span> <span class="n">ChromeMobileTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
 
 
 </pre></div>
@@ -480,7 +558,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.14.3',
+            VERSION:'0.15.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

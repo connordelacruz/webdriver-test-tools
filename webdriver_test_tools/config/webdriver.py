@@ -30,6 +30,10 @@ class WebDriverConfig(object):
     # Edge webdriver initialization arguments
     EDGE_KWARGS = {}
 
+    # Mobile Configurations
+    # Chrome mobile emulation
+    CHROME_MOBILE_EMULATION = { "deviceName": "Pixel 2" }
+
     # Functions
 
     @classmethod
@@ -56,6 +60,13 @@ class WebDriverConfig(object):
     def get_edge_driver(cls):
         """Returns webdriver.Edge object using EDGE_KWARGS to initialize"""
         return cls.set_driver_implicit_wait(webdriver.Edge(**cls.EDGE_KWARGS))
+
+    @classmethod
+    def get_chrome_mobile_driver(cls):
+        """Returns webdriver.Chrome object using CHROME_KWARGS and CHROME_MOBILE_EMULATION to initialize"""
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option("mobileEmulation", cls.CHROME_MOBILE_EMULATION)
+        return cls.set_driver_implicit_wait(webdriver.Chrome(options=options, **cls.CHROME_KWARGS))
 
     @classmethod
     def set_driver_implicit_wait(cls, driver):
