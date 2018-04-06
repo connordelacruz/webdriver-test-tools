@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.page_object_prototypes &mdash; WebDriver Test Tools 0.14.3 documentation</title>
+  <title>webdriver_test_tools.classes.page_object_prototypes &mdash; WebDriver Test Tools 0.15.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.14.3 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.15.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.14
+                0.15
               </div>
             
           
@@ -170,6 +170,7 @@
 <span class="kn">from</span> <span class="nn">selenium.webdriver.common.action_chains</span> <span class="k">import</span> <span class="n">ActionChains</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.base_page</span> <span class="k">import</span> <span class="n">BasePage</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver</span> <span class="k">import</span> <span class="n">actions</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">test</span>
 
 
 <div class="viewcode-block" id="WebPageObject"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.WebPageObject">[docs]</a><span class="k">class</span> <span class="nc">WebPageObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
@@ -223,7 +224,8 @@
         <span class="sd">&quot;&quot;&quot;Hover mouse over one of the page links</span>
 
 <span class="sd">        :param link_map_key: Key into HOVER_MAP for the link to hover mouse over</span>
-<span class="sd">        :return: Corresponding page object class for the hover dropdown/container/etc (if applicable)</span>
+<span class="sd">        :return: Corresponding page object class for the hover dropdown/container/etc</span>
+<span class="sd">            (if applicable)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: raise exception?</span>
         <span class="k">if</span> <span class="n">link_map_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">HOVER_MAP</span><span class="p">:</span>
@@ -235,6 +237,51 @@
             <span class="n">action_chain</span><span class="o">.</span><span class="n">move_to_element</span><span class="p">(</span><span class="n">link</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
             <span class="c1"># Initialize the target page object and return it</span></div></div>
             <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="CollapsibleNavObject"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.CollapsibleNavObject">[docs]</a><span class="k">class</span> <span class="nc">CollapsibleNavObject</span><span class="p">(</span><span class="n">NavObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Subclass of NavObject with additional methods for collapsible nav menus</span>
+
+<span class="sd">    In addition to the variables for :class:`NavObject`, the following variables need to</span>
+<span class="sd">    be defined for collapsible navs</span>
+
+<span class="sd">    :var EXPAND_BUTTON_LOCATOR: Locator for the button that expands the nav menu</span>
+<span class="sd">    :var COLLAPSE_BUTTON_LOCATOR: Locator for the button that expands the nav menu</span>
+<span class="sd">    :var MENU_CONTAINER_LOCATOR: Locator for the collapsing/expanding container of the</span>
+<span class="sd">        navigation menu</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">EXPAND_BUTTON_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">COLLAPSE_BUTTON_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">MENU_CONTAINER_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="CollapsibleNavObject.is_expanded"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.CollapsibleNavObject.is_expanded">[docs]</a>    <span class="k">def</span> <span class="nf">is_expanded</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the nav menu is expanded</span>
+
+<span class="sd">        This method checks if the element located by :attr:`MENU_CONTAINER_LOCATOR`</span>
+<span class="sd">        exists and is visible. This should be sufficient for many common implementations</span>
+<span class="sd">        of collapsible navs, but can be overridden if this isn&#39;t a reliable detection</span>
+<span class="sd">        method for an implementation</span>
+
+<span class="sd">        :return: True if the nav menu is expanded, False if it&#39;s collapsed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">driver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span>
+        <span class="n">expanded</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="n">expanded</span>
+
+<div class="viewcode-block" id="CollapsibleNavObject.click_expand_button"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.CollapsibleNavObject.click_expand_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_expand_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Click the button to expand the nav menu&quot;&quot;&quot;</span>
+        <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EXPAND_BUTTON_LOCATOR</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
+            <span class="n">actions</span><span class="o">.</span><span class="n">scroll_into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span></div>
+        <span class="n">button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+
+<div class="viewcode-block" id="CollapsibleNavObject.click_collapse_button"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.CollapsibleNavObject.click_collapse_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_collapse_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Click the button to collapse the nav menu&quot;&quot;&quot;</span>
+        <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">COLLAPSE_BUTTON_LOCATOR</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
+            <span class="n">actions</span><span class="o">.</span><span class="n">scroll_into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span></div></div>
+        <span class="n">button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
 
 
 <div class="viewcode-block" id="FormObject"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.FormObject">[docs]</a><span class="k">class</span> <span class="nc">FormObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
@@ -338,7 +385,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.14.3',
+            VERSION:'0.15.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
