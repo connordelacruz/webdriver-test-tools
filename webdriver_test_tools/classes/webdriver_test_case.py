@@ -25,6 +25,11 @@ class WebDriverTestCase(unittest.TestCase):
         generation for. This can be useful if a test case class requires functionality
         that is not implemented in a certain driver, or if its tests are meant for
         specific browsers. Valid browser names are declared in the Browsers class.
+    :var WebDriverTestCase.SKIP_MOBILE: (Optional) By default, tests will be
+        generated for all enabled browsers, including mobile. If SKIP_MOBILE is set to
+        True, don't generate tests for mobile browsers. This can be helpful if the
+        layout changes between desktop and mobile viewports would alter the test
+        procedures.
 
     **Browser-specific implementations of this class need to override the following:**
 
@@ -40,7 +45,6 @@ class WebDriverTestCase(unittest.TestCase):
     # Test case attributes
     SITE_URL = None
     SKIP_BROWSERS = []
-    # TODO: document and determine best default value
     SKIP_MOBILE = None
 
     # Browser implementation attributes
@@ -223,7 +227,11 @@ class WebDriverTestCase(unittest.TestCase):
 
 
 class WebDriverMobileTestCase(WebDriverTestCase):
-    # TODO: document
+    """Base class for mobile web driver test cases
+
+    If a test subclasses WebDriverMobileTestCase instead of WebDriverTestCase, tests
+    will only be generated for mobile browsers
+    """
     SKIP_MOBILE = False
 
 # Browser Driver Implementations
@@ -332,7 +340,6 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
 
     `Mobile emulation info <https://sites.google.com/a/chromium.org/chromedriver/mobile-emulation>`__
     """
-    # TODO: specify emulated device name?
     DRIVER_NAME = 'Chrome Mobile [Emulated]'
     SHORT_NAME = 'chrome-mobile'
 
