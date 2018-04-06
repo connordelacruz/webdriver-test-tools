@@ -56,6 +56,8 @@ class BrowserStackTestCase(WebDriverTestCase):
 
 class BSChromeTestCase(BrowserStackTestCase):
     """Implementation of BrowserStackTestCase using Chrome"""
+    DRIVER_NAME = 'Chrome [BrowserStack]'
+    SHORT_NAME = 'chrome'
     CAPABILITIES = DesiredCapabilities.CHROME
 
 
