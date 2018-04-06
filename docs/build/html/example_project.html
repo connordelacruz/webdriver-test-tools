@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Example Project &mdash; WebDriver Test Tools 0.15.0 documentation</title>
+  <title>Example Project &mdash; WebDriver Test Tools 0.15.1 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.15.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.15.1 documentation" href="index.html"/>
         <link rel="next" title="Testing with Additional Browsers" href="additional_browsers.html"/>
         <link rel="prev" title="Test Project Overview" href="test_projects.html"/> 
 
@@ -188,30 +188,30 @@
            <div itemprop="articleBody">
             
   <div class="section" id="example-project">
-<h1><a class="toc-backref" href="#id1">Example Project</a><a class="headerlink" href="#example-project" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id3">Example Project</a><a class="headerlink" href="#example-project" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#example-project" id="id1">Example Project</a><ul>
-<li><a class="reference internal" href="#initialize-the-project" id="id2">Initialize the project</a></li>
-<li><a class="reference internal" href="#configure-site-urls" id="id3">Configure site URLs</a></li>
-<li><a class="reference internal" href="#add-a-page-object" id="id4">Add a page object</a><ul>
-<li><a class="reference internal" href="#creating-a-new-page-object-module" id="id5">Creating a new page object module</a></li>
-<li><a class="reference internal" href="#locating-page-elements" id="id6">Locating page elements</a></li>
-<li><a class="reference internal" href="#interacting-with-page-elements" id="id7">Interacting with page elements</a></li>
+<li><a class="reference internal" href="#example-project" id="id3">Example Project</a><ul>
+<li><a class="reference internal" href="#initialize-the-project" id="id4">Initialize the project</a></li>
+<li><a class="reference internal" href="#configure-site-urls" id="id5">Configure site URLs</a></li>
+<li><a class="reference internal" href="#add-a-page-object" id="id6">Add a page object</a><ul>
+<li><a class="reference internal" href="#creating-a-new-page-object-module" id="id7">Creating a new page object module</a></li>
+<li><a class="reference internal" href="#locating-page-elements" id="id8">Locating page elements</a></li>
+<li><a class="reference internal" href="#interacting-with-page-elements" id="id9">Interacting with page elements</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#add-a-test" id="id8">Add a test</a><ul>
-<li><a class="reference internal" href="#creating-a-new-test-module" id="id9">Creating a new test module</a></li>
-<li><a class="reference internal" href="#adding-test-functions" id="id10">Adding test functions</a></li>
+<li><a class="reference internal" href="#add-a-test" id="id10">Add a test</a><ul>
+<li><a class="reference internal" href="#creating-a-new-test-module" id="id11">Creating a new test module</a></li>
+<li><a class="reference internal" href="#adding-test-functions" id="id12">Adding test functions</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#run-the-test" id="id11">Run the test</a><ul>
-<li><a class="reference internal" href="#running-the-test-suite" id="id12">Running the test suite</a></li>
-<li><a class="reference internal" href="#optional-command-line-arguments" id="id13">Optional command line arguments</a><ul>
-<li><a class="reference internal" href="#running-in-a-specific-browser" id="id14">Running in a specific browser</a></li>
-<li><a class="reference internal" href="#running-specific-test-modules" id="id15">Running specific test modules</a></li>
-<li><a class="reference internal" href="#running-specific-test-cases-or-functions" id="id16">Running specific test cases or functions</a></li>
+<li><a class="reference internal" href="#run-the-test" id="id13">Run the test</a><ul>
+<li><a class="reference internal" href="#running-the-test-suite" id="id14">Running the test suite</a></li>
+<li><a class="reference internal" href="#optional-command-line-arguments" id="id15">Optional command line arguments</a><ul>
+<li><a class="reference internal" href="#running-in-a-specific-browser" id="id16">Running in a specific browser</a></li>
+<li><a class="reference internal" href="#running-specific-test-modules" id="id17">Running specific test modules</a></li>
+<li><a class="reference internal" href="#running-specific-test-cases-or-functions" id="id18">Running specific test cases or functions</a></li>
 </ul>
 </li>
 </ul>
@@ -224,7 +224,7 @@
 for the example project can be found
 <a class="reference external" href="https://github.com/connordelacruz/webdriver-test-tools/tree/master/docs/example/example-project">here</a>.</p>
 <div class="section" id="initialize-the-project">
-<h2><a class="toc-backref" href="#id2">Initialize the project</a><a class="headerlink" href="#initialize-the-project" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Initialize the project</a><a class="headerlink" href="#initialize-the-project" title="Permalink to this headline">¶</a></h2>
 <p>First, create a directory for the test project:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">example</span><span class="o">-</span><span class="n">project</span>
 <span class="n">cd</span> <span class="n">example</span><span class="o">-</span><span class="n">project</span>
@@ -267,41 +267,54 @@ should create the following files and directories:</p>
 when changes are made to the source code.</p>
 </div>
 <div class="section" id="configure-site-urls">
-<h2><a class="toc-backref" href="#id3">Configure site URLs</a><a class="headerlink" href="#configure-site-urls" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Configure site URLs</a><a class="headerlink" href="#configure-site-urls" title="Permalink to this headline">¶</a></h2>
 <p>After initializing a project, the URL of the site to be tested will need
 to be configured. In <code class="docutils literal notranslate"><span class="pre">example_package/config/site.py</span></code>, set the
 <code class="docutils literal notranslate"><span class="pre">SITE_URL</span></code> and <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code> of the <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code> class.</p>
 <p>For this example, we’ll use <a class="reference external" href="https://www.example.com/">example.com</a>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">config/site.py</span></code>:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># URL configurations for a site</span>
-
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.config</span> <span class="k">import</span> <span class="n">site</span>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">config/site.py:</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.config</span> <span class="k">import</span> <span class="n">site</span>
 
 
 <span class="k">class</span> <span class="nc">SiteConfig</span><span class="p">(</span><span class="n">site</span><span class="o">.</span><span class="n">SiteConfig</span><span class="p">):</span>
-    <span class="c1"># URL of the home page</span>
-    <span class="n">SITE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://www.example.com&#39;</span>
-    <span class="c1"># Base URL for site pages (followed by a &#39;/&#39;)</span>
-    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="n">SITE_URL</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
-    <span class="c1"># DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE</span>
+    <span class="sd">&quot;&quot;&quot;URL configurations for a site</span>
+
+<span class="sd">    :var SiteConfig.SITE_URL: URL of the home page</span>
+<span class="sd">    :var SiteConfig.BASE_URL: Base URL for site pages (followed by a &#39;/&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="hll">    <span class="n">SITE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://www.example.com&#39;</span>
+</span><span class="hll">    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="n">SITE_URL</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
+</span>    <span class="c1"># DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE</span>
 </pre></div>
+</div>
 </div>
 <p>We’ll be testing that clicking a link takes us to an external page, so
 we’ll add another variable <code class="docutils literal notranslate"><span class="pre">INFO_URL</span></code> to <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">config/site.py</span></code>:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">config/site.py:</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.config</span> <span class="k">import</span> <span class="n">site</span>
+
+
 <span class="k">class</span> <span class="nc">SiteConfig</span><span class="p">(</span><span class="n">site</span><span class="o">.</span><span class="n">SiteConfig</span><span class="p">):</span>
-    <span class="o">...</span>
+    <span class="sd">&quot;&quot;&quot;URL configurations for a site</span>
+
+<span class="sd">    :var SiteConfig.SITE_URL: URL of the home page</span>
+<span class="sd">    :var SiteConfig.BASE_URL: Base URL for site pages (followed by a &#39;/&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">SITE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://www.example.com&#39;</span>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="n">SITE_URL</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
     <span class="c1"># DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE</span>
-    <span class="c1"># URL linked to by the &#39;More Information&#39; link on example.com</span>
-    <span class="n">INFO_URL</span> <span class="o">=</span> <span class="s1">&#39;https://www.iana.org/domains/reserved&#39;</span>
-</pre></div>
+<span class="hll">    <span class="c1"># URL linked to by the &#39;More Information&#39; link on example.com</span>
+</span><span class="hll">    <span class="n">INFO_URL</span> <span class="o">=</span> <span class="s1">&#39;https://www.iana.org/domains/reserved&#39;</span>
+</span></pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="add-a-page-object">
-<h2><a class="toc-backref" href="#id4">Add a page object</a><a class="headerlink" href="#add-a-page-object" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Add a page object</a><a class="headerlink" href="#add-a-page-object" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="creating-a-new-page-object-module">
-<h3><a class="toc-backref" href="#id5">Creating a new page object module</a><a class="headerlink" href="#creating-a-new-page-object-module" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Creating a new page object module</a><a class="headerlink" href="#creating-a-new-page-object-module" title="Permalink to this headline">¶</a></h3>
 <p>This test framework is best used with the <a class="reference external" href="https://martinfowler.com/bliki/PageObject.html">Page Object
 Model</a>. Interaction
 with the page should be handled by page objects to minimize the need to
@@ -318,7 +331,7 @@ keep track of input name attributes, but since there’s no inputs on
 example.com it can be omitted.</p>
 </div>
 <div class="section" id="locating-page-elements">
-<h3><a class="toc-backref" href="#id6">Locating page elements</a><a class="headerlink" href="#locating-page-elements" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Locating page elements</a><a class="headerlink" href="#locating-page-elements" title="Permalink to this headline">¶</a></h3>
 <p>For any element we need to locate, we’ll want to keep track of how to
 target it in the <code class="docutils literal notranslate"><span class="pre">Locator</span></code> subclass. Selenium WebDriver locators are
 tuples in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;selection</span> <span class="pre">type&gt;,</span> <span class="pre">&lt;selection</span> <span class="pre">string&gt;)</span></code>,
@@ -357,7 +370,7 @@ module:</p>
 locator for elements with the specified text.</p>
 </div>
 <div class="section" id="interacting-with-page-elements">
-<h3><a class="toc-backref" href="#id7">Interacting with page elements</a><a class="headerlink" href="#interacting-with-page-elements" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Interacting with page elements</a><a class="headerlink" href="#interacting-with-page-elements" title="Permalink to this headline">¶</a></h3>
 <p>For our example tests, we’ll want to look at the heading text and click
 on the ‘More information…’ link. Add the following functions to the
 <code class="docutils literal notranslate"><span class="pre">HomePage</span></code> class:</p>
@@ -376,9 +389,9 @@ on the ‘More information…’ link. Add the following functions to the
 </div>
 </div>
 <div class="section" id="add-a-test">
-<h2><a class="toc-backref" href="#id8">Add a test</a><a class="headerlink" href="#add-a-test" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Add a test</a><a class="headerlink" href="#add-a-test" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="creating-a-new-test-module">
-<h3><a class="toc-backref" href="#id9">Creating a new test module</a><a class="headerlink" href="#creating-a-new-test-module" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Creating a new test module</a><a class="headerlink" href="#creating-a-new-test-module" title="Permalink to this headline">¶</a></h3>
 <p>Now that we have a page object for interacting with example.com, we can
 write a test case. Copy the file <code class="docutils literal notranslate"><span class="pre">templates/test_case.py</span></code> to the
 <code class="docutils literal notranslate"><span class="pre">tests/</span></code> directory and name the copied file <code class="docutils literal notranslate"><span class="pre">homepage.py</span></code>:</p>
@@ -406,7 +419,7 @@ previous step.</p>
 </div>
 </div>
 <div class="section" id="adding-test-functions">
-<h3><a class="toc-backref" href="#id10">Adding test functions</a><a class="headerlink" href="#adding-test-functions" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Adding test functions</a><a class="headerlink" href="#adding-test-functions" title="Permalink to this headline">¶</a></h3>
 <p>We’re going to add 2 test functions:</p>
 <ol class="arabic simple">
 <li>Retrieve the heading text and assert that it says ‘Example Domain’</li>
@@ -437,9 +450,9 @@ order for the python <code class="docutils literal notranslate"><span class="pre
 </div>
 </div>
 <div class="section" id="run-the-test">
-<h2><a class="toc-backref" href="#id11">Run the test</a><a class="headerlink" href="#run-the-test" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Run the test</a><a class="headerlink" href="#run-the-test" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="running-the-test-suite">
-<h3><a class="toc-backref" href="#id12">Running the test suite</a><a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Running the test suite</a><a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">¶</a></h3>
 <p>To run our test suite:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">example_package</span>
 </pre></div>
@@ -462,7 +475,7 @@ output should look like this:</p>
 </div>
 </div>
 <div class="section" id="optional-command-line-arguments">
-<h3><a class="toc-backref" href="#id13">Optional command line arguments</a><a class="headerlink" href="#optional-command-line-arguments" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Optional command line arguments</a><a class="headerlink" href="#optional-command-line-arguments" title="Permalink to this headline">¶</a></h3>
 <p>Test packages can be run with various optional arguments to run a
 limited set of test cases instead of running the entire suite. To see a
 list of command line arguments, run:</p>
@@ -470,7 +483,7 @@ list of command line arguments, run:</p>
 </pre></div>
 </div>
 <div class="section" id="running-in-a-specific-browser">
-<h4><a class="toc-backref" href="#id14">Running in a specific browser</a><a class="headerlink" href="#running-in-a-specific-browser" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id16">Running in a specific browser</a><a class="headerlink" href="#running-in-a-specific-browser" title="Permalink to this headline">¶</a></h4>
 <p>If we just wanted to run the tests in a specific browser, we can use the
 <code class="docutils literal notranslate"><span class="pre">--browser</span></code> command line argument. For example, if we only wanted to
 run Firefox test cases:</p>
@@ -479,7 +492,7 @@ run Firefox test cases:</p>
 </div>
 </div>
 <div class="section" id="running-specific-test-modules">
-<h4><a class="toc-backref" href="#id15">Running specific test modules</a><a class="headerlink" href="#running-specific-test-modules" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id17">Running specific test modules</a><a class="headerlink" href="#running-specific-test-modules" title="Permalink to this headline">¶</a></h4>
 <p>If we only want to run a specific test module, we can use the
 <code class="docutils literal notranslate"><span class="pre">--module</span></code> command line argument. For example, if we just wanted to
 run <code class="docutils literal notranslate"><span class="pre">tests/homepage.py</span></code>:</p>
@@ -491,7 +504,7 @@ anything different than normal, but this can be useful in test projects
 with multiple test modules.</p>
 </div>
 <div class="section" id="running-specific-test-cases-or-functions">
-<h4><a class="toc-backref" href="#id16">Running specific test cases or functions</a><a class="headerlink" href="#running-specific-test-cases-or-functions" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id18">Running specific test cases or functions</a><a class="headerlink" href="#running-specific-test-cases-or-functions" title="Permalink to this headline">¶</a></h4>
 <p>If we only want to run a specific test case or function within a test
 case, we can use the <code class="docutils literal notranslate"><span class="pre">--test</span></code> command line argument. For example, if
 we just wanted to run HomePageTestCase:</p>
@@ -554,7 +567,7 @@ with multiple cases.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.15.0',
+            VERSION:'0.15.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

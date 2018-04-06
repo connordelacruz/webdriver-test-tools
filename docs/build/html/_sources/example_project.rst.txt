@@ -68,35 +68,20 @@ to be configured. In ``example_package/config/site.py``, set the
 
 For this example, we’ll use `example.com <https://www.example.com/>`__.
 
-``config/site.py``:
+.. literalinclude:: ../example/example-project/example_package/config/site.py
+    :caption: config/site.py:
+    :lines: 1-12
+    :emphasize-lines: 10-11
 
-.. code:: python
-
-    # URL configurations for a site
-
-    from webdriver_test_tools.config import site
-
-
-    class SiteConfig(site.SiteConfig):
-        # URL of the home page
-        SITE_URL = 'https://www.example.com'
-        # Base URL for site pages (followed by a '/')
-        BASE_URL = SITE_URL + '/'
-        # DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE
 
 We’ll be testing that clicking a link takes us to an external page, so
 we’ll add another variable ``INFO_URL`` to ``SiteConfig``:
 
-``config/site.py``:
+.. literalinclude:: ../example/example-project/example_package/config/site.py
+    :caption: config/site.py:
+    :lines: 1-
+    :emphasize-lines: 13-14
 
-.. code:: python
-
-    ...
-    class SiteConfig(site.SiteConfig):
-        ...
-        # DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE
-        # URL linked to by the 'More Information' link on example.com
-        INFO_URL = 'https://www.iana.org/domains/reserved'
 
 Add a page object
 -----------------
