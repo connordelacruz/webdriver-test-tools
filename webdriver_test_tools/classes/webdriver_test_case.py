@@ -262,9 +262,11 @@ class FirefoxTestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Firefox'
     SHORT_NAME = DRIVER_NAME.lower()
+    CAPABILITIES = DesiredCapabilities.FIREFOX.copy()
+    DRIVER_INIT = WebDriverConfig.get_firefox_driver
 
     def setUp(self):
-        self.driver = WebDriverConfig.get_firefox_driver()
+        self.driver = self._bs_driver_init() if self.ENABLE_BS else self.DRIVER_INIT()
         super().setUp()
 
 
@@ -275,7 +277,7 @@ class ChromeTestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Chrome'
     SHORT_NAME = DRIVER_NAME.lower()
-    CAPABILITIES = DesiredCapabilities.CHROME
+    CAPABILITIES = DesiredCapabilities.CHROME.copy()
     DRIVER_INIT = WebDriverConfig.get_chrome_driver
 
     # TODO: implement DRIVER_INIT globally
@@ -308,6 +310,8 @@ class SafariTestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Safari'
     SHORT_NAME = DRIVER_NAME.lower()
+    CAPABILITIES = DesiredCapabilities.SAFARI.copy()
+    DRIVER_INIT = WebDriverConfig.get_safari_driver
 
     def setUp(self):
         self.driver = WebDriverConfig.get_safari_driver()
@@ -327,6 +331,8 @@ class IETestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Internet Explorer'
     SHORT_NAME = 'ie'
+    CAPABILITIES = DesiredCapabilities.INTERNETEXPLORER.copy()
+    DRIVER_INIT = WebDriverConfig.get_ie_driver
 
     def setUp(self):
         self.driver = WebDriverConfig.get_ie_driver()
@@ -346,6 +352,8 @@ class EdgeTestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Edge'
     SHORT_NAME = DRIVER_NAME.lower()
+    CAPABILITIES = DesiredCapabilities.EDGE.copy()
+    DRIVER_INIT = WebDriverConfig.get_edge_driver
 
     def setUp(self):
         self.driver = WebDriverConfig.get_edge_driver()
@@ -364,6 +372,9 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
     """
     DRIVER_NAME = 'Chrome Mobile [Emulated]'
     SHORT_NAME = 'chrome-mobile'
+    # TODO: modify capabilities to use mobile
+    CAPABILITIES = DesiredCapabilities.CHROME.copy()
+    DRIVER_INIT = WebDriverConfig.get_chrome_mobile_driver
 
     def setUp(self):
         self.driver = WebDriverConfig.get_chrome_mobile_driver()
