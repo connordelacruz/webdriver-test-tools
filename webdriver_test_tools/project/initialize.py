@@ -53,6 +53,7 @@ def create_config_files(target_path):
         if os.path.isfile(source_file):
             target_file = os.path.join(target_path, config_file)
             shutil.copy(source_file, target_file)
+    # TODO: handle .j2 template files
 
 
 def create_template_files(target_path, context):

@@ -76,7 +76,6 @@ class WebDriverTestCase(unittest.TestCase):
     COMMAND_EXECUTOR = None
     CAPABILITIES = None
 
-
     def _bs_driver_init(self):
         """Initialize driver for BrowserStack
 
@@ -86,7 +85,7 @@ class WebDriverTestCase(unittest.TestCase):
         """
         self.CAPABILITIES['name'] = self._testMethodName
         return webdriver.Remote(command_executor=self.COMMAND_EXECUTOR,
-                desired_capabilities=self.CAPABILITIES)
+                                desired_capabilities=self.CAPABILITIES)
 
     def setUp(self):
         """Initialize driver and call ``self.driver.get(self.SITE_URL)``
@@ -213,6 +212,7 @@ class WebDriverTestCase(unittest.TestCase):
             test_method(self):
                 ...
         """
+
         def decorator(test_method):
             @wraps(test_method)
             def wrapper(*args, **kwargs):
@@ -220,7 +220,9 @@ class WebDriverTestCase(unittest.TestCase):
                 if test_case_obj.SHORT_NAME in browsers:
                     test_case_obj.skipTest('Skipping {}'.format(test_case_obj.DRIVER_NAME))
                 test_method(*args, **kwargs)
+
             return wrapper
+
         return decorator
 
     @staticmethod
@@ -235,6 +237,7 @@ class WebDriverTestCase(unittest.TestCase):
             test_method(self):
                 ...
         """
+
         def decorator(test_method):
             @wraps(test_method)
             def wrapper(*args, **kwargs):
@@ -242,7 +245,9 @@ class WebDriverTestCase(unittest.TestCase):
                 if issubclass(type(test_case_obj), WebDriverMobileTestCase):
                     test_case_obj.skipTest('Skipping for mobile')
                 test_method(*args, **kwargs)
+
             return wrapper
+
         return decorator
 
     @staticmethod
@@ -257,6 +262,7 @@ class WebDriverTestCase(unittest.TestCase):
             test_method(self):
                 ...
         """
+
         def decorator(test_method):
             @wraps(test_method)
             def wrapper(*args, **kwargs):
@@ -264,7 +270,9 @@ class WebDriverTestCase(unittest.TestCase):
                 if not issubclass(type(test_case_obj), WebDriverMobileTestCase):
                     test_case_obj.skipTest('Skipping for non-mobile')
                 test_method(*args, **kwargs)
+
             return wrapper
+
         return decorator
 
 
@@ -275,6 +283,7 @@ class WebDriverMobileTestCase(WebDriverTestCase):
     will only be generated for mobile browsers
     """
     SKIP_MOBILE = False
+
 
 # Browser Driver Implementations
 
@@ -374,8 +383,11 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
     """
     DRIVER_NAME = 'Chrome Mobile [Emulated]'
     SHORT_NAME = 'chrome-mobile'
-    # TODO: modify capabilities to use mobile (add 'chromeOptions' and set accordingly)
     CAPABILITIES = DesiredCapabilities.CHROME.copy()
+    # Set options for mobile emulation
+    CAPABILITIES['chromeOptions'] = {
+        'mobileEmulation': WebDriverConfig.CHROME_MOBILE_EMULATION,
+    }
     DRIVER_INIT = WebDriverConfig.get_chrome_mobile_driver
 
 
@@ -387,5 +399,3 @@ class Browsers(object):
     IE = IETestCase.SHORT_NAME
     EDGE = EdgeTestCase.SHORT_NAME
     CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
-
-

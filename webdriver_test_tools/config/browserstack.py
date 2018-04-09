@@ -46,7 +46,7 @@ class BrowserStackConfig(object):
         return command_executor
 
     @classmethod
-    def set_browserstack_capabilities(cls, desired_capabilities):
+    def add_browserstack_capabilities(cls, desired_capabilities):
         """Update a desired capabilities dictionary to include items from BS_CAPABILITIES
 
         :param desired_capabilities: Desired capabilities dictionary to update
