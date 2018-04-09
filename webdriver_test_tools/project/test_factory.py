@@ -1,4 +1,4 @@
-# Functions for generating test cases
+"""Functions for generating test cases"""
 
 import unittest
 from webdriver_test_tools.config import BrowserConfig
@@ -25,14 +25,15 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
     browser_tests = []
     # Generate test classes for each test case in the list
     for test_case in test_case_list:
-        generated_tests = generate_browser_test_cases(test_case, browser_test_classes)
+        generated_tests = generate_browser_test_cases(test_case, browser_test_classes, config_module, browserstack)
         test_methods = None if test_class_map is None or test_case.__name__ not in test_class_map else test_class_map[test_case.__name__]
         loaded_tests = test_loader.load_browser_tests(generated_tests, test_methods)
         browser_tests.extend(loaded_tests)
     return unittest.TestSuite(browser_tests)
 
 
-def generate_browser_test_cases(base_class, browser_test_classes=None):
+# TODO: update docs
+def generate_browser_test_cases(base_class, browser_test_classes=None, config_module=None, browserstack=False):
     """Generate test cases for each browser from a WebDriverTestCase subclass
 
     :param base_class: The WebDriverTestCase subclass to generate test classes for
@@ -57,12 +58,13 @@ def generate_browser_test_cases(base_class, browser_test_classes=None):
     # iterate through a list of browser classes and generate test cases
     # skip browser classes if listed in base_class.SKIP_BROWSERS
     browser_test_cases = [
-        generate_browser_test_case(base_class, browser_class) for browser_class in browser_classes if browser_class.SHORT_NAME not in base_class.SKIP_BROWSERS
+        generate_browser_test_case(base_class, browser_class, config_module, browserstack) for browser_class in browser_classes if browser_class.SHORT_NAME not in base_class.SKIP_BROWSERS
     ]
     return browser_test_cases
 
 
-def generate_browser_test_case(base_class, browser_test_class):
+# TODO: update docs
+def generate_browser_test_case(base_class, browser_test_class, config_module=None, browserstack=False):
     """Generates a browser-specific test case class from a generic WebDriverTestCase
 
     :param base_class: WebDriverTestCase containing test functions
@@ -75,4 +77,18 @@ def generate_browser_test_case(base_class, browser_test_class):
     # generate new class with driver name appended to the class name and in parentheses at the start of the docstring
     new_class = type(base_class_name + browser_test_class.DRIVER_NAME, (base_class, browser_test_class),
                      {'__doc__': '({}) '.format(browser_test_class.DRIVER_NAME) + base_class_doc})
+    # Enable BrowserStack execution
+    if browserstack:
+        new_class = enable_browserstack(new_class, config_module)
     return new_class
+
+
+def enable_browserstack(browser_test_case, config_module):
+    # TODO: document
+    # TODO: ensure config_module has BrowserStackConfig and that it's enabled
+    browser_test_case.ENABLE_BS = True
+    browser_test_case.COMMAND_EXECUTOR = config_module.BrowserStackConfig.get_command_executor()
+    return browser_test_case
+
+
+
