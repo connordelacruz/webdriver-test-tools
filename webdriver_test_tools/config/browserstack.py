@@ -1,3 +1,4 @@
+from webdriver_test_tools import version
 
 
 # TODO: document when everything is in place
@@ -11,9 +12,13 @@ class BrowserStackConfig(object):
     # Access key. Projects will need to override this
     ACCESS_KEY = None
 
-    # TODO: configure build and project names
-
-    # TODO: disable/enable video
+    # BrowserStack test configurations
+    BS_CAPABILITIES = {
+        'project': None,
+        'build': None,
+        'browserstack.video': True,
+        'browserstack.selenium_version': version.__selenium__,
+    }
 
     # TODO: configure available browsers
 
@@ -31,5 +36,9 @@ class BrowserStackConfig(object):
         command_executor = url_format.format(USERNAME=cls.USERNAME, ACCESS_KEY=cls.ACCESS_KEY)
         return command_executor
 
+    @classmethod
+    def set_browserstack_capabilities(cls, desired_capabilities):
+        # TODO: test and document
+        desired_capabilities.update(cls.BS_CAPABILITIES)
 
 

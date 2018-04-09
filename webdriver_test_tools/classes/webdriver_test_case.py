@@ -84,6 +84,7 @@ class WebDriverTestCase(unittest.TestCase):
             desired_capabilities parameters set to self.COMMAND_EXECUTOR and
             self.CAPABILITIES respectively.
         """
+        self.CAPABILITIES['name'] = self._testMethodName
         return webdriver.Remote(command_executor=self.COMMAND_EXECUTOR,
                 desired_capabilities=self.CAPABILITIES)
 
