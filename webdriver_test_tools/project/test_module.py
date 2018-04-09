@@ -21,7 +21,8 @@ def main(tests_module, config_module=None):
     # Parse arguments
     parser = get_parser(browser_config, browserstack_config)
     args = parser.parse_args()
-    # TODO: handle --browserstack arg if enabled
+    # handle --browserstack arg if enabled
+    browserstack = 'browserstack' in dir(args) and args.browserstack
     # Handle --browser args
     if args.browser is None:
         browser_classes = [
@@ -35,7 +36,7 @@ def main(tests_module, config_module=None):
     test_class_map = parse_test_names(args.test)
     test_module_names = args.module
     # Run tests using parsed args
-    run_tests(tests_module, config_module, browser_classes, test_class_map, test_module_names)
+    run_tests(tests_module, config_module, browser_classes, test_class_map, test_module_names, browserstack)
 
 
 # TODO: update docs
@@ -55,7 +56,6 @@ def get_parser(browser_config=None, browserstack_config=None):
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
                         help='Run tests only in the specified browsers. Options: {{{}}}'.format(','.join(browser_choices)))
     # Add argument for running on browserstack if the feature is enabled
-    # TODO: how to handle specifying browsers for BS?
     if browserstack_config.ENABLE:
         parser.add_argument('--browserstack', action='store_true',
                             help='Run tests on BrowserStack instead of locally')
@@ -88,7 +88,8 @@ def parse_test_names(test_name_args):
     return class_map
 
 
-def run_tests(tests_module, config_module, browser_classes=None, test_class_map=None, test_module_names=None):
+# TODO: update docs
+def run_tests(tests_module, config_module, browser_classes=None, test_class_map=None, test_module_names=None, browserstack=False):
     """Run tests using parsed args and project modules
 
     :param tests_module: The module object for <test_project>.tests
@@ -101,7 +102,7 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
     unittest.installHandler()
     # Load WebDriverTestCase subclasses from project tests
     test_class_names = None if test_class_map is None else test_class_map.keys()
-    tests = test_loader.load_project_tests(tests_module, test_class_names, test_module_names)
+    tests = test_loader.load_project_tests(tests_module, test_class_names, test_module_names, config_module, browserstack)
     # Generate browser test cases from the loaded WebDriverTestCase classes
     # TODO: need to pass browserstack config module if enabled and --browserstack flag was specified
     browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes, test_class_map)

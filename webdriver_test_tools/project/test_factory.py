@@ -6,7 +6,9 @@ from webdriver_test_tools.project import test_loader
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase
 
 
-def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None):
+# TODO: handle browserstack param based on config_module.BrowserStackConfig
+# TODO: update docs
+def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None, config_module=None, browserstack=False):
     """Generates test cases for multiple browsers and returns a TestSuite with all of the new tests
 
     :param test_case_list: A list of WebDriverTestCase subclasses to generate a test suite for
