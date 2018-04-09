@@ -45,16 +45,25 @@ def create_config_files(target_path, context):
     """
     target_path = create_directory(os.path.abspath(target_path), 'config')
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.config.__file__))
-    # Get only .py files
-    config_files = [os.path.basename(file) for file in glob.glob(os.path.join(template_path, '*.py'))]
+    # Non-template config files
+    config_files = [
+        'browser.py',
+        'site.py',
+        'test.py',
+    ]
     for config_file in config_files:
         source_file = os.path.join(template_path, config_file)
         # Precautionary check that this is a file
         if os.path.isfile(source_file):
             target_file = os.path.join(target_path, config_file)
             shutil.copy(source_file, target_file)
-    # Handle .j2 template files
-    create_file_from_template(template_path, target_path, 'browserstack.py', context)
+    # .j2 template files
+    template_files = [
+        '__init__.py',
+        'browserstack.py',
+    ]
+    for template_file in template_files:
+        create_file_from_template(template_path, target_path, template_file, context)
 
 
 def create_template_files(target_path, context):
