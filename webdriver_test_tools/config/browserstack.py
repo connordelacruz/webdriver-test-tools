@@ -11,6 +11,8 @@ class BrowserStackConfig(object):
     # Access key. Projects will need to override this
     ACCESS_KEY = None
 
+    # TODO: configure build and project names
+
     # TODO: configure available browsers
 
     # Methods
