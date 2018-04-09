@@ -10,7 +10,8 @@ def main(tests_module, config_module=None):
     """Function to call in test modules if __name__ == '__main__' at run time
 
     :param tests_module: The module object for <test_project>.tests
-    :param config_module: (Optional) The module object for <test_project>.config. Will use webdriver_test_tools.config if not specified
+    :param config_module: (Optional) The module object for <test_project>.config. Will
+        use webdriver_test_tools.config if not specified
     """
     # Fall back on default config module if test doesn't supply one
     if config_module is None:
@@ -43,7 +44,8 @@ def main(tests_module, config_module=None):
 def get_parser(browser_config=None, browserstack_config=None):
     """Returns the ArgumentParser object for use with main()
 
-    :param browser_config: (Optional) BrowserConfig class for the project. Defaults to webdriver_test_tools.config.BrowserConfig if unspecified
+    :param browser_config: (Optional) BrowserConfig class for the project. Defaults to
+        webdriver_test_tools.config.BrowserConfig if unspecified
     """
     parser = argparse.ArgumentParser()
     # Use default config if module is None or doesn't contain BrowserConfig class
@@ -72,7 +74,9 @@ def parse_test_names(test_name_args):
     """Returns a dictionary mapping test case names to a list of test functions
 
     :param test_name_args: The parsed value of the --test command line argument
-    :return: None if test_name_args is None, otherwise return a dictionary mapping test case names to a list of test functions to run. If list is empty, no specific function was given for that class
+    :return: None if test_name_args is None, otherwise return a dictionary mapping test
+        case names to a list of test functions to run. If list is empty, no specific
+        function was given for that class
     """
     if test_name_args is None:
         return None
@@ -88,24 +92,27 @@ def parse_test_names(test_name_args):
     return class_map
 
 
-# TODO: update docs
 def run_tests(tests_module, config_module, browser_classes=None, test_class_map=None, test_module_names=None, browserstack=False):
     """Run tests using parsed args and project modules
 
     :param tests_module: The module object for <test_project>.tests
-    :param config_module: The module object for <test_project>.config or webdriver_test_tools.config if not specified
-    :param browser_classes: (Optional) List of browser test classes from parsed arg for --browser command line argument
-    :param test_class_map: (Optional) Result of passing parsed arg for --test command line argument to parse_test_names()
+    :param config_module: The module object for <test_project>.config or
+        webdriver_test_tools.config if not specified
+    :param browser_classes: (Optional) List of browser test classes from parsed arg
+        for --browser command line argument
+    :param test_class_map: (Optional) Result of passing parsed arg for --test command
+        line argument to parse_test_names()
     :param test_module_names: (Optional) Parsed arg for --module command line argument
+    :param browserstack: (Default = False) If True, generated test cases should run on
+        BrowserStack
     """
     # Enable graceful Ctrl+C handling
     unittest.installHandler()
     # Load WebDriverTestCase subclasses from project tests
     test_class_names = None if test_class_map is None else test_class_map.keys()
-    tests = test_loader.load_project_tests(tests_module, test_class_names, test_module_names, config_module, browserstack)
+    tests = test_loader.load_project_tests(tests_module, test_class_names, test_module_names)
     # Generate browser test cases from the loaded WebDriverTestCase classes
-    # TODO: need to pass browserstack config module if enabled and --browserstack flag was specified
-    browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes, test_class_map)
+    browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes, test_class_map, config_module, browserstack)
     # Get configured test runner and run suite
     test_runner = config_module.TestSuiteConfig.get_runner()
     test_runner.run(browser_test_suite)

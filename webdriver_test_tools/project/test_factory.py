@@ -9,11 +9,16 @@ from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, 
 # TODO: handle browserstack param based on config_module.BrowserStackConfig
 # TODO: update docs
 def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None, config_module=None, browserstack=False):
-    """Generates test cases for multiple browsers and returns a TestSuite with all of the new tests
+    """Generates test cases for multiple browsers and returns a TestSuite with all of
+    the new tests
 
-    :param test_case_list: A list of WebDriverTestCase subclasses to generate a test suite for
-    :param browser_test_classes: (Optional) If specified, only generate tests using the browser classes in this list. If not specified, tests will be generated for each available browser test case class.
-    :param test_class_map: (Optional) Dictionary mapping test case names to a list of test functions. If the list is empty, all test functions will be loaded
+    :param test_case_list: A list of WebDriverTestCase subclasses to generate a test
+        suite for
+    :param browser_test_classes: (Optional) If specified, only generate tests using the
+        browser classes in this list. If not specified, tests will be generated for
+        each available browser test case class.
+    :param test_class_map: (Optional) Dictionary mapping test case names to a list of
+        test functions. If the list is empty, all test functions will be loaded
 
     :return: unittest.TestSuite object with generated tests for each browser
     """
@@ -31,7 +36,9 @@ def generate_browser_test_cases(base_class, browser_test_classes=None):
     """Generate test cases for each browser from a WebDriverTestCase subclass
 
     :param base_class: The WebDriverTestCase subclass to generate test classes for
-    :param browser_test_classes: (Optional) If specified, only generate tests using the browser classes specified in this list. If not specified, tests will be generated for each available browser test case class
+    :param browser_test_classes: (Optional) If specified, only generate tests using the
+        browser classes specified in this list. If not specified, tests will be
+        generated for each available browser test case class
 
     :return: List of generated test case classes for each browser
     """
@@ -59,7 +66,8 @@ def generate_browser_test_case(base_class, browser_test_class):
     """Generates a browser-specific test case class from a generic WebDriverTestCase
 
     :param base_class: WebDriverTestCase containing test functions
-    :param browser_test_class: The driver-specific implementation of WebDriverTestCase to generate a test for
+    :param browser_test_class: The driver-specific implementation of WebDriverTestCase
+        to generate a test for
     """
     # Get base class name and docstring
     base_class_name = base_class.__name__
