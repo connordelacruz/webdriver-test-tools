@@ -6,8 +6,6 @@ from webdriver_test_tools.project import test_loader
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase
 
 
-# TODO: handle browserstack param based on config_module.BrowserStackConfig
-# TODO: update docs
 def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None, config_module=None, browserstack=False):
     """Generates test cases for multiple browsers and returns a TestSuite with all of
     the new tests
@@ -19,6 +17,10 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
         each available browser test case class.
     :param test_class_map: (Optional) Dictionary mapping test case names to a list of
         test functions. If the list is empty, all test functions will be loaded
+    :param config_module: (Optional) The module object for <test_project>.config
+    :param browserstack: (Default = False) If True, configure generated test cases to
+        run on BrowserStack instead of locally. Need to provide `config_module` with
+        appropriately configured `BrowserStackConfig` class if set to True
 
     :return: unittest.TestSuite object with generated tests for each browser
     """
@@ -32,7 +34,6 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
     return unittest.TestSuite(browser_tests)
 
 
-# TODO: update docs
 def generate_browser_test_cases(base_class, browser_test_classes=None, config_module=None, browserstack=False):
     """Generate test cases for each browser from a WebDriverTestCase subclass
 
@@ -40,6 +41,10 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     :param browser_test_classes: (Optional) If specified, only generate tests using the
         browser classes specified in this list. If not specified, tests will be
         generated for each available browser test case class
+    :param config_module: (Optional) The module object for <test_project>.config
+    :param browserstack: (Default = False) If True, configure generated test cases to
+        run on BrowserStack instead of locally. Need to provide `config_module` with
+        appropriately configured `BrowserStackConfig` class if set to True
 
     :return: List of generated test case classes for each browser
     """
@@ -63,13 +68,20 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     return browser_test_cases
 
 
-# TODO: update docs
 def generate_browser_test_case(base_class, browser_test_class, config_module=None, browserstack=False):
     """Generates a browser-specific test case class from a generic WebDriverTestCase
 
     :param base_class: WebDriverTestCase containing test functions
     :param browser_test_class: The driver-specific implementation of WebDriverTestCase
         to generate a test for
+    :param config_module: (Optional) The module object for <test_project>.config
+    :param browserstack: (Default = False) If True, configure generated test cases to
+        run on BrowserStack instead of locally. Need to provide `config_module` with
+        appropriately configured `BrowserStackConfig` class if set to True
+
+    :return: Test case class with tests from `base_class` and driver configurations from
+        `browser_test_class`. If `browserstack` is set to True, returned class will have
+        appropriate attributes configured for BrowserStack execution
     """
     # Get base class name and docstring
     base_class_name = base_class.__name__
@@ -84,8 +96,18 @@ def generate_browser_test_case(base_class, browser_test_class, config_module=Non
 
 
 def enable_browserstack(browser_test_case, config_module):
-    # TODO: document
-    # TODO: ensure config_module has BrowserStackConfig and that it's enabled
+    """Enable BrowserStack test execution for a class
+
+    :param config_module: (Optional) The module object for <test_project>.config
+    :param browserstack: (Default = False) If True, configure generated test cases to
+        run on BrowserStack instead of locally. Need to provide `config_module` with
+        appropriately configured `BrowserStackConfig` class if set to True
+
+    :return: browser_test_case class with `ENABLE_BS` and `COMMAND_EXECUTOR` attributes
+        configured appropriately
+    """
+    if 'BrowserStackConfig' not in dir(config_module) or not BrowserStackConfig.ENABLE:
+        raise Exception('BrowserStack is not enabled or BrowserStackConfig class could not be found.')
     browser_test_case.ENABLE_BS = True
     browser_test_case.COMMAND_EXECUTOR = config_module.BrowserStackConfig.get_command_executor()
     return browser_test_case

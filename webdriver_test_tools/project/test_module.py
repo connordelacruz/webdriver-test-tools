@@ -40,12 +40,13 @@ def main(tests_module, config_module=None):
     run_tests(tests_module, config_module, browser_classes, test_class_map, test_module_names, browserstack)
 
 
-# TODO: update docs
 def get_parser(browser_config=None, browserstack_config=None):
     """Returns the ArgumentParser object for use with main()
 
     :param browser_config: (Optional) BrowserConfig class for the project. Defaults to
         webdriver_test_tools.config.BrowserConfig if unspecified
+    :param browserstack_config: (Optional) BrowserStackConfig class for the project.
+        Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified
     """
     parser = argparse.ArgumentParser()
     # Use default config if module is None or doesn't contain BrowserConfig class

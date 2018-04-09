@@ -373,7 +373,7 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
     """
     DRIVER_NAME = 'Chrome Mobile [Emulated]'
     SHORT_NAME = 'chrome-mobile'
-    # TODO: modify capabilities to use mobile
+    # TODO: modify capabilities to use mobile (add 'chromeOptions' and set accordingly)
     CAPABILITIES = DesiredCapabilities.CHROME.copy()
     DRIVER_INIT = WebDriverConfig.get_chrome_mobile_driver
 
