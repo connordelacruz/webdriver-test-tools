@@ -98,18 +98,18 @@ def generate_browser_test_case(base_class, browser_test_class, config_module=Non
 def enable_browserstack(browser_test_case, config_module):
     """Enable BrowserStack test execution for a class
 
-    :param config_module: (Optional) The module object for <test_project>.config
-    :param browserstack: (Default = False) If True, configure generated test cases to
-        run on BrowserStack instead of locally. Need to provide `config_module` with
-        appropriately configured `BrowserStackConfig` class if set to True
+    :param browser_test_case: Browser test case class to configure for BrowserStack usage
+    :param config_module: The module object for <test_project>.config
 
     :return: browser_test_case class with `ENABLE_BS` and `COMMAND_EXECUTOR` attributes
         configured appropriately
     """
-    if 'BrowserStackConfig' not in dir(config_module) or not BrowserStackConfig.ENABLE:
+    if 'BrowserStackConfig' not in dir(config_module) or not config_module.BrowserStackConfig.ENABLE:
         raise Exception('BrowserStack is not enabled or BrowserStackConfig class could not be found.')
+    bs_config = config_module.BrowserStackConfig
     browser_test_case.ENABLE_BS = True
-    browser_test_case.COMMAND_EXECUTOR = config_module.BrowserStackConfig.get_command_executor()
+    browser_test_case.COMMAND_EXECUTOR = bs_config.get_command_executor()
+    bs_config.add_browserstack_capabilities(browser_test_case.CAPABILITIES)
     return browser_test_case
 
 
