@@ -10,13 +10,17 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 # Test Case Classes
 
+# TODO: review docstring and ensure everything is covered
 class WebDriverTestCase(unittest.TestCase):
     """Base class for web driver test cases
 
     This defines the common setUp() and tearDown() tasks. It does not initialize
     self.driver so will not work on its own. Tests should be written with this as their
     parent class. Browser-specific implementations of test cases will be generated when
-    running tests
+    running tests.
+
+    **Instances of this class will have the following variables:**
+    :var WebDriverTestCase.driver: Selenium WebDriver object
 
     **Tests that implement this class override the following variables:**
 
@@ -34,14 +38,27 @@ class WebDriverTestCase(unittest.TestCase):
 
     **Browser-specific implementations of this class need to override the following:**
 
-    :var WebDriverTestCase.driver: Selenium WebDriver object. Need to initialize this
-        in setUp() before calling super().setUp()
+    :var WebDriverTestCase.DRIVER_INIT: Function that returns a Selenium WebDriver
+        object for the browser
     :var WebDriverTestCase.DRIVER_NAME: Name of the browser. This is mostly used in the
         docstrings of generated test classes to indicate what browser the tests are
         being run in
     :var WebDriverTestCase.SHORT_NAME: Short name for the driver used for command line
         args, skipping, etc. Should be all lowercase with no spaces
+    :var WebDriverTestCase.CAPABILITIES: The DesiredCapabilities dictionary for the
+        browser. Used for initializing BrowserStack remote driver
+
+    **The following attributes are used for running tests on BrowserStack:**
+
+    :var WebDriverTestCase.ENABLE_BS: (Default = False) If set to True, setUp() will
+        initialize a Remote webdriver instead of a local one and run tests on
+        BrowserStack
+    :var WebDriverTestCase.COMMAND_EXECUTOR: Command executor URL. Test projects need
+        to set this with their access key and username
     """
+
+    # Instance variables
+    driver = None
 
     # Test case attributes
     SITE_URL = None
@@ -49,30 +66,34 @@ class WebDriverTestCase(unittest.TestCase):
     SKIP_MOBILE = None
 
     # Browser implementation attributes
-    # TODO: move up to instance variables section:
-    driver = None
     DRIVER_NAME = None
     SHORT_NAME = None
-    # TODO: DRIVER_INIT that stores initialization function for driver?
     DRIVER_INIT = None
 
-    # TODO: update docstring to include these
     # BrowserStack attributes
     ENABLE_BS = False
-    # Command executor URL. Test projects need to set this with their access key and username
     COMMAND_EXECUTOR = None
-    # Desired capabilities for the driver. Browser implementations override this
     CAPABILITIES = None
 
 
-    # TODO: document appropriately
     def _bs_driver_init(self):
-        """Initialize driver for BrowserStack"""
+        """Initialize driver for BrowserStack
+
+        :return: webdriver.Remote object with the command_executor and
+            desired_capabilities parameters set to self.COMMAND_EXECUTOR and
+            self.CAPABILITIES respectively.
+        """
         return webdriver.Remote(command_executor=self.COMMAND_EXECUTOR,
                 desired_capabilities=self.CAPABILITIES)
 
     def setUp(self):
-        """Calls ``self.driver.get(self.SITE_URL)``"""
+        """Initialize driver and call ``self.driver.get(self.SITE_URL)``
+
+        If self.ENABLE_BS is False, self.driver gets the returned results of
+        self.DRIVER_INIT(). If self.ENABLE_BS is True, self.driver gets the returned
+        results of self._bs_driver_init()
+        """
+        self.driver = self._bs_driver_init() if self.ENABLE_BS else self.DRIVER_INIT()
         self.driver.get(self.SITE_URL)
 
     def tearDown(self):
@@ -265,10 +286,6 @@ class FirefoxTestCase(WebDriverTestCase):
     CAPABILITIES = DesiredCapabilities.FIREFOX.copy()
     DRIVER_INIT = WebDriverConfig.get_firefox_driver
 
-    def setUp(self):
-        self.driver = self._bs_driver_init() if self.ENABLE_BS else self.DRIVER_INIT()
-        super().setUp()
-
 
 class ChromeTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Chrome webdriver
@@ -279,11 +296,6 @@ class ChromeTestCase(WebDriverTestCase):
     SHORT_NAME = DRIVER_NAME.lower()
     CAPABILITIES = DesiredCapabilities.CHROME.copy()
     DRIVER_INIT = WebDriverConfig.get_chrome_driver
-
-    # TODO: implement DRIVER_INIT globally
-    def setUp(self):
-        self.driver = self._bs_driver_init() if self.ENABLE_BS else self.DRIVER_INIT()
-        super().setUp()
 
 
 # Experimental/Platform-specific
@@ -313,10 +325,6 @@ class SafariTestCase(WebDriverTestCase):
     CAPABILITIES = DesiredCapabilities.SAFARI.copy()
     DRIVER_INIT = WebDriverConfig.get_safari_driver
 
-    def setUp(self):
-        self.driver = WebDriverConfig.get_safari_driver()
-        super().setUp()
-
 
 class IETestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Internet Explorer webdriver
@@ -333,10 +341,6 @@ class IETestCase(WebDriverTestCase):
     SHORT_NAME = 'ie'
     CAPABILITIES = DesiredCapabilities.INTERNETEXPLORER.copy()
     DRIVER_INIT = WebDriverConfig.get_ie_driver
-
-    def setUp(self):
-        self.driver = WebDriverConfig.get_ie_driver()
-        super().setUp()
 
 
 class EdgeTestCase(WebDriverTestCase):
@@ -355,10 +359,6 @@ class EdgeTestCase(WebDriverTestCase):
     CAPABILITIES = DesiredCapabilities.EDGE.copy()
     DRIVER_INIT = WebDriverConfig.get_edge_driver
 
-    def setUp(self):
-        self.driver = WebDriverConfig.get_edge_driver()
-        super().setUp()
-
 
 # Mobile browser emulation
 
@@ -375,10 +375,6 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
     # TODO: modify capabilities to use mobile
     CAPABILITIES = DesiredCapabilities.CHROME.copy()
     DRIVER_INIT = WebDriverConfig.get_chrome_mobile_driver
-
-    def setUp(self):
-        self.driver = WebDriverConfig.get_chrome_mobile_driver()
-        super().setUp()
 
 
 class Browsers(object):
