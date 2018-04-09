@@ -1,4 +1,5 @@
 from webdriver_test_tools.config import browserstack
+from webdriver_test_tools.classes.webdriver_test_case import *
 
 
 # TODO: document when everything is in place
@@ -8,10 +9,28 @@ class BrowserStackConfig(browserstack.BrowserStackConfig):
     # Set to True to enable BrowserStack testing
     ENABLE = False
     # Account username. Projects will need to override this
-    USERNAME = None
+    USERNAME = ''
     # Access key. Projects will need to override this
-    ACCESS_KEY = None
+    ACCESS_KEY = ''
 
-    # TODO: configure available browsers
+    # BrowserStack test configurations
+    BS_CAPABILITIES = {
+        'project': '', # TODO: Jinja template with project name
+        # 'build': '',
+        # 'browserstack.video': True,
+        # 'browserstack.selenium_version': version.__selenium__, # TODO: jinja
+    }
+
+    # Configure available browsers
+    # TODO: default to BrowserConfig.BROWSER_TEST_CLASSES
+    BROWSER_TEST_CLASSES = {
+        Browsers.FIREFOX: FirefoxTestCase,
+        Browsers.CHROME: ChromeTestCase,
+        # Browsers.SAFARI: SafariTestCase,
+        # Browsers.IE: IETestCase,
+        # Browsers.EDGE: EdgeTestCase,
+        # Browsers.CHROME_MOBILE: ChromeMobileTestCase,
+    }
+
 
 

@@ -1,3 +1,4 @@
+from webdriver_test_tools.classes.webdriver_test_case import *
 from webdriver_test_tools import version
 
 
@@ -17,10 +18,18 @@ class BrowserStackConfig(object):
         'project': None,
         'build': None,
         'browserstack.video': True,
-        'browserstack.selenium_version': version.__selenium__,
+        # 'browserstack.selenium_version': version.__selenium__, # TODO: implement
     }
 
-    # TODO: configure available browsers
+    # Configure available browsers
+    BROWSER_TEST_CLASSES = {
+        Browsers.FIREFOX: FirefoxTestCase,
+        Browsers.CHROME: ChromeTestCase,
+        # Browsers.SAFARI: SafariTestCase,
+        # Browsers.IE: IETestCase,
+        # Browsers.EDGE: EdgeTestCase,
+        # Browsers.CHROME_MOBILE: ChromeMobileTestCase,
+    }
 
     # Methods
 
@@ -38,7 +47,10 @@ class BrowserStackConfig(object):
 
     @classmethod
     def set_browserstack_capabilities(cls, desired_capabilities):
-        # TODO: test and document
+        """Update a desired capabilities dictionary to include items from BS_CAPABILITIES
+
+        :param desired_capabilities: Desired capabilities dictionary to update
+        """
         desired_capabilities.update(cls.BS_CAPABILITIES)
 
 
