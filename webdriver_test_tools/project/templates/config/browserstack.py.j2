@@ -1,5 +1,6 @@
 from webdriver_test_tools.config import browserstack
 from webdriver_test_tools.classes.webdriver_test_case import *
+from {{test_package}}.config import BrowserConfig
 
 
 # TODO: document when everything is in place
@@ -15,22 +16,23 @@ class BrowserStackConfig(browserstack.BrowserStackConfig):
 
     # BrowserStack test configurations
     BS_CAPABILITIES = {
-        'project': '', # TODO: Jinja template with project name
+        'project': '{{test_package}}', 
         # 'build': '',
         # 'browserstack.video': True,
-        # 'browserstack.selenium_version': version.__selenium__, # TODO: jinja
+        # 'browserstack.selenium_version': '{{selenium_version}}',
     }
 
     # Configure available browsers
-    # TODO: default to BrowserConfig.BROWSER_TEST_CLASSES
-    BROWSER_TEST_CLASSES = {
-        Browsers.FIREFOX: FirefoxTestCase,
-        Browsers.CHROME: ChromeTestCase,
+    BROWSER_TEST_CLASSES = BrowserConfig.BROWSER_TEST_CLASSES.copy()
+    _additional_browsers = {
+        # Browsers.FIREFOX: FirefoxTestCase,
+        # Browsers.CHROME: ChromeTestCase,
         # Browsers.SAFARI: SafariTestCase,
         # Browsers.IE: IETestCase,
         # Browsers.EDGE: EdgeTestCase,
         # Browsers.CHROME_MOBILE: ChromeMobileTestCase,
     }
+    BROWSER_TEST_CLASSES.update(_additional_browsers)
 
 
 
