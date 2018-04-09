@@ -18,7 +18,7 @@ class BrowserStackConfig(browserstack.BrowserStackConfig):
     BS_CAPABILITIES = {
         'project': '{{ test_package }}',
         # 'build': '',
-        # 'browserstack.video': True,
+        'browserstack.video': False,
         # 'browserstack.selenium_version': '{{ selenium_version }}',
     }
 

@@ -17,8 +17,8 @@ class BrowserStackConfig(object):
     BS_CAPABILITIES = {
         'project': None,
         'build': None,
-        'browserstack.video': True,
-        # 'browserstack.selenium_version': version.__selenium__, # TODO: implement
+        'browserstack.video': False,
+        # 'browserstack.selenium_version': version.__selenium__, # TODO: implement?
     }
 
     # Configure available browsers
