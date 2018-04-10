@@ -162,7 +162,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.project.test_factory</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Functions for generating test cases</span>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for generating test cases&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">unittest</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.config</span> <span class="k">import</span> <span class="n">BrowserConfig</span>
@@ -170,30 +170,45 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.webdriver_test_case</span> <span class="k">import</span> <span class="n">WebDriverTestCase</span><span class="p">,</span> <span class="n">WebDriverMobileTestCase</span>
 
 
-<div class="viewcode-block" id="generate_browser_test_suite"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_suite">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_suite</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates test cases for multiple browsers and returns a TestSuite with all of the new tests</span>
+<div class="viewcode-block" id="generate_browser_test_suite"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_suite">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_suite</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates test cases for multiple browsers and returns a TestSuite with all of</span>
+<span class="sd">    the new tests</span>
 
-<span class="sd">    :param test_case_list: A list of WebDriverTestCase subclasses to generate a test suite for</span>
-<span class="sd">    :param browser_test_classes: (Optional) If specified, only generate tests using the browser classes in this list. If not specified, tests will be generated for each available browser test case class.</span>
-<span class="sd">    :param test_class_map: (Optional) Dictionary mapping test case names to a list of test functions. If the list is empty, all test functions will be loaded</span>
+<span class="sd">    :param test_case_list: A list of WebDriverTestCase subclasses to generate a test</span>
+<span class="sd">        suite for</span>
+<span class="sd">    :param browser_test_classes: (Optional) If specified, only generate tests using the</span>
+<span class="sd">        browser classes in this list. If not specified, tests will be generated for</span>
+<span class="sd">        each available browser test case class.</span>
+<span class="sd">    :param test_class_map: (Optional) Dictionary mapping test case names to a list of</span>
+<span class="sd">        test functions. If the list is empty, all test functions will be loaded</span>
+<span class="sd">    :param config_module: (Optional) The module object for &lt;test_project&gt;.config</span>
+<span class="sd">    :param browserstack: (Default = False) If True, configure generated test cases to</span>
+<span class="sd">        run on BrowserStack instead of locally. Need to provide `config_module` with</span>
+<span class="sd">        appropriately configured `BrowserStackConfig` class if set to True</span>
 
 <span class="sd">    :return: unittest.TestSuite object with generated tests for each browser</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">browser_tests</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="c1"># Generate test classes for each test case in the list</span>
     <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_case_list</span><span class="p">:</span>
-        <span class="n">generated_tests</span> <span class="o">=</span> <span class="n">generate_browser_test_cases</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="p">)</span>
+        <span class="n">generated_tests</span> <span class="o">=</span> <span class="n">generate_browser_test_cases</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">)</span>
         <span class="n">test_methods</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">test_class_map</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">test_class_map</span> <span class="k">else</span> <span class="n">test_class_map</span><span class="p">[</span><span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
         <span class="n">loaded_tests</span> <span class="o">=</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_browser_tests</span><span class="p">(</span><span class="n">generated_tests</span><span class="p">,</span> <span class="n">test_methods</span><span class="p">)</span>
         <span class="n">browser_tests</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">loaded_tests</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestSuite</span><span class="p">(</span><span class="n">browser_tests</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="generate_browser_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_cases">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_cases</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_browser_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_cases">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_cases</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generate test cases for each browser from a WebDriverTestCase subclass</span>
 
 <span class="sd">    :param base_class: The WebDriverTestCase subclass to generate test classes for</span>
-<span class="sd">    :param browser_test_classes: (Optional) If specified, only generate tests using the browser classes specified in this list. If not specified, tests will be generated for each available browser test case class</span>
+<span class="sd">    :param browser_test_classes: (Optional) If specified, only generate tests using the</span>
+<span class="sd">        browser classes specified in this list. If not specified, tests will be</span>
+<span class="sd">        generated for each available browser test case class</span>
+<span class="sd">    :param config_module: (Optional) The module object for &lt;test_project&gt;.config</span>
+<span class="sd">    :param browserstack: (Default = False) If True, configure generated test cases to</span>
+<span class="sd">        run on BrowserStack instead of locally. Need to provide `config_module` with</span>
+<span class="sd">        appropriately configured `BrowserStackConfig` class if set to True</span>
 
 <span class="sd">    :return: List of generated test case classes for each browser</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -212,24 +227,57 @@
     <span class="c1"># iterate through a list of browser classes and generate test cases</span>
     <span class="c1"># skip browser classes if listed in base_class.SKIP_BROWSERS</span>
     <span class="n">browser_test_cases</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_class</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_classes</span> <span class="k">if</span> <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">base_class</span><span class="o">.</span><span class="n">SKIP_BROWSERS</span>
+        <span class="n">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_class</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_classes</span> <span class="k">if</span> <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">base_class</span><span class="o">.</span><span class="n">SKIP_BROWSERS</span>
     <span class="p">]</span></div>
     <span class="k">return</span> <span class="n">browser_test_cases</span>
 
 
-<div class="viewcode-block" id="generate_browser_test_case"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_case">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_browser_test_case"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_case">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generates a browser-specific test case class from a generic WebDriverTestCase</span>
 
 <span class="sd">    :param base_class: WebDriverTestCase containing test functions</span>
-<span class="sd">    :param browser_test_class: The driver-specific implementation of WebDriverTestCase to generate a test for</span>
+<span class="sd">    :param browser_test_class: The driver-specific implementation of WebDriverTestCase</span>
+<span class="sd">        to generate a test for</span>
+<span class="sd">    :param config_module: (Optional) The module object for &lt;test_project&gt;.config</span>
+<span class="sd">    :param browserstack: (Default = False) If True, configure generated test cases to</span>
+<span class="sd">        run on BrowserStack instead of locally. Need to provide `config_module` with</span>
+<span class="sd">        appropriately configured `BrowserStackConfig` class if set to True</span>
+
+<span class="sd">    :return: Test case class with tests from `base_class` and driver configurations from</span>
+<span class="sd">        `browser_test_class`. If `browserstack` is set to True, returned class will have</span>
+<span class="sd">        appropriate attributes configured for BrowserStack execution</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Get base class name and docstring</span>
     <span class="n">base_class_name</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__name__</span>
     <span class="n">base_class_doc</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__doc__</span>
     <span class="c1"># generate new class with driver name appended to the class name and in parentheses at the start of the docstring</span>
     <span class="n">new_class</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">base_class_name</span> <span class="o">+</span> <span class="n">browser_test_class</span><span class="o">.</span><span class="n">DRIVER_NAME</span><span class="p">,</span> <span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">),</span>
-                     <span class="p">{</span><span class="s1">&#39;__doc__&#39;</span><span class="p">:</span> <span class="s1">&#39;(</span><span class="si">{}</span><span class="s1">) &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">browser_test_class</span><span class="o">.</span><span class="n">DRIVER_NAME</span><span class="p">)</span> <span class="o">+</span> <span class="n">base_class_doc</span><span class="p">})</span></div>
+                     <span class="p">{</span><span class="s1">&#39;__doc__&#39;</span><span class="p">:</span> <span class="s1">&#39;(</span><span class="si">{}</span><span class="s1">) &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">browser_test_class</span><span class="o">.</span><span class="n">DRIVER_NAME</span><span class="p">)</span> <span class="o">+</span> <span class="n">base_class_doc</span><span class="p">})</span>
+    <span class="c1"># Enable BrowserStack execution</span>
+    <span class="k">if</span> <span class="n">browserstack</span><span class="p">:</span>
+        <span class="n">new_class</span> <span class="o">=</span> <span class="n">enable_browserstack</span><span class="p">(</span><span class="n">new_class</span><span class="p">,</span> <span class="n">config_module</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">new_class</span>
+
+
+<div class="viewcode-block" id="enable_browserstack"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.enable_browserstack">[docs]</a><span class="k">def</span> <span class="nf">enable_browserstack</span><span class="p">(</span><span class="n">browser_test_case</span><span class="p">,</span> <span class="n">config_module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Enable BrowserStack test execution for a class</span>
+
+<span class="sd">    :param browser_test_case: Browser test case class to configure for BrowserStack usage</span>
+<span class="sd">    :param config_module: The module object for &lt;test_project&gt;.config</span>
+
+<span class="sd">    :return: browser_test_case class with `ENABLE_BS` and `COMMAND_EXECUTOR` attributes</span>
+<span class="sd">        configured appropriately</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s1">&#39;BrowserStackConfig&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserStackConfig</span><span class="o">.</span><span class="n">ENABLE</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;BrowserStack is not enabled or BrowserStackConfig class could not be found.&#39;</span><span class="p">)</span>
+    <span class="n">bs_config</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserStackConfig</span>
+    <span class="n">browser_test_case</span><span class="o">.</span><span class="n">ENABLE_BS</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">browser_test_case</span><span class="o">.</span><span class="n">COMMAND_EXECUTOR</span> <span class="o">=</span> <span class="n">bs_config</span><span class="o">.</span><span class="n">get_command_executor</span><span class="p">()</span>
+    <span class="n">bs_config</span><span class="o">.</span><span class="n">add_browserstack_capabilities</span><span class="p">(</span><span class="n">browser_test_case</span><span class="o">.</span><span class="n">CAPABILITIES</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">browser_test_case</span>
+
+
+
 </pre></div>
 
            </div>
