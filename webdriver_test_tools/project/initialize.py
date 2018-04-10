@@ -7,7 +7,7 @@ import re
 import jinja2
 
 import webdriver_test_tools.project.templates
-from webdriver_test_tools.version import __version__
+from webdriver_test_tools.version import __version__, __selenium__
 
 
 # Project creation functions
@@ -31,28 +31,39 @@ def create_tests_init(target_path, context):
 
     :param target_path: The path to the test package directory
     :param context: Jinja context used to render template
-    :return:
     """
     target_path = create_directory(os.path.abspath(target_path), 'tests')
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.tests.__file__))
     create_file_from_template(template_path, target_path, '__init__.py', context)
 
 
-def create_config_files(target_path):
+def create_config_files(target_path, context):
     """Creates test package config directory and config files
 
     :param target_path: The path to the test package directory
+    :param context: Jinja context used to render template
     """
     target_path = create_directory(os.path.abspath(target_path), 'config')
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.config.__file__))
-    # Get only .py files
-    config_files = [os.path.basename(file) for file in glob.glob(os.path.join(template_path, '*.py'))]
+    # Non-template config files
+    config_files = [
+        'browser.py',
+        'site.py',
+        'test.py',
+    ]
     for config_file in config_files:
         source_file = os.path.join(template_path, config_file)
         # Precautionary check that this is a file
         if os.path.isfile(source_file):
             target_file = os.path.join(target_path, config_file)
             shutil.copy(source_file, target_file)
+    # .j2 template files
+    template_files = [
+        '__init__.py',
+        'browserstack.py',
+    ]
+    for template_file in template_files:
+        create_file_from_template(template_path, target_path, template_file, context)
 
 
 def create_template_files(target_path, context):
@@ -187,7 +198,7 @@ def render_template(template_path, context):
     ).get_template(filename).render(context)
 
 
-def generate_context(test_package, test_tools_version):
+def generate_context(test_package, test_tools_version, selenium_version):
     """Returns a jinja context to use for rendering templates
 
     :param test_package: Name of the python test package
@@ -196,6 +207,7 @@ def generate_context(test_package, test_tools_version):
     context = {
             'test_package': test_package,
             'test_tools_version': test_tools_version,
+            'selenium_version': selenium_version,
             }
     return context
 
@@ -225,7 +237,7 @@ def initialize(target_path, package_name):
     """
     outer_path = os.path.abspath(target_path)
     package_name = validate_package_name(package_name)
-    context = generate_context(package_name, __version__)
+    context = generate_context(package_name, __version__, __selenium__)
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
     create_readme(outer_path, context)
@@ -235,7 +247,7 @@ def initialize(target_path, package_name):
     create_main_module(package_path, context)
     create_test_directories(package_path)
     create_tests_init(package_path, context)
-    create_config_files(package_path)
+    create_config_files(package_path, context)
     create_template_files(package_path, context)
 
 

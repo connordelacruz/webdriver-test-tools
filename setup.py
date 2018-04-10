@@ -4,7 +4,7 @@ def readme():
     with open('README.rst') as f:
         return f.read()
 
-# Get __version__ and __devstatus__
+# Get __version__, __devstatus__, and __selenium__
 with open('./webdriver_test_tools/version.py') as f:
     exec(f.read())
 
@@ -12,11 +12,12 @@ with open('./webdriver_test_tools/version.py') as f:
 # Installation
 
 install_requires = [
-    'selenium>=3.9',
+    'selenium>={}'.format(__selenium__),
     'colour-runner>=0.0.5',
     'randomuser>=1.2.0',
     'py-loremipsum>=1.0.0',
     'Jinja2>=2.9.5',
+    'urllib3>=1.22',
 ]
 
 entry_points = {

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_factory module &mdash; WebDriver Test Tools 0.15.1 documentation</title>
+  <title>webdriver_test_tools.project.test_factory module &mdash; WebDriver Test Tools 0.16.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.15.1 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.16.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.project package" href="webdriver_test_tools.project.html"/>
         <link rel="next" title="webdriver_test_tools.project.test_loader module" href="webdriver_test_tools.project.test_loader.html"/>
         <link rel="prev" title="webdriver_test_tools.project.initialize module" href="webdriver_test_tools.project.initialize.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.15
+                0.16
               </div>
             
           
@@ -99,9 +99,11 @@
 <li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a><ul class="current">
@@ -185,18 +187,51 @@
             
   <div class="section" id="module-webdriver_test_tools.project.test_factory">
 <span id="webdriver-test-tools-project-test-factory-module"></span><h1>webdriver_test_tools.project.test_factory module<a class="headerlink" href="#module-webdriver_test_tools.project.test_factory" title="Permalink to this headline">¶</a></h1>
+<p>Functions for generating test cases</p>
+<dl class="function">
+<dt id="webdriver_test_tools.project.test_factory.enable_browserstack">
+<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">enable_browserstack</code><span class="sig-paren">(</span><em>browser_test_case</em>, <em>config_module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#enable_browserstack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.enable_browserstack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable BrowserStack test execution for a class</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>browser_test_case</strong> – Browser test case class to configure for BrowserStack usage</li>
+<li><strong>config_module</strong> – The module object for &lt;test_project&gt;.config</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">browser_test_case class with <cite>ENABLE_BS</cite> and <cite>COMMAND_EXECUTOR</cite> attributes
+configured appropriately</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_factory.generate_browser_test_case">
-<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_case</code><span class="sig-paren">(</span><em>base_class</em>, <em>browser_test_class</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_case" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_case</code><span class="sig-paren">(</span><em>base_class</em>, <em>browser_test_class</em>, <em>config_module=None</em>, <em>browserstack=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_case" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a browser-specific test case class from a generic WebDriverTestCase</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>base_class</strong> – WebDriverTestCase containing test functions</li>
-<li><strong>browser_test_class</strong> – The driver-specific implementation of WebDriverTestCase to generate a test for</li>
+<li><strong>browser_test_class</strong> – The driver-specific implementation of WebDriverTestCase
+to generate a test for</li>
+<li><strong>config_module</strong> – (Optional) The module object for &lt;test_project&gt;.config</li>
+<li><strong>browserstack</strong> – (Default = False) If True, configure generated test cases to
+run on BrowserStack instead of locally. Need to provide <cite>config_module</cite> with
+appropriately configured <cite>BrowserStackConfig</cite> class if set to True</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Test case class with tests from <cite>base_class</cite> and driver configurations from
+<cite>browser_test_class</cite>. If <cite>browserstack</cite> is set to True, returned class will have
+appropriate attributes configured for BrowserStack execution</p>
 </td>
 </tr>
 </tbody>
@@ -205,7 +240,7 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_factory.generate_browser_test_cases">
-<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_cases</code><span class="sig-paren">(</span><em>base_class</em>, <em>browser_test_classes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_cases" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_cases</code><span class="sig-paren">(</span><em>base_class</em>, <em>browser_test_classes=None</em>, <em>config_module=None</em>, <em>browserstack=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_cases" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate test cases for each browser from a WebDriverTestCase subclass</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -213,7 +248,13 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>base_class</strong> – The WebDriverTestCase subclass to generate test classes for</li>
-<li><strong>browser_test_classes</strong> – (Optional) If specified, only generate tests using the browser classes specified in this list. If not specified, tests will be generated for each available browser test case class</li>
+<li><strong>browser_test_classes</strong> – (Optional) If specified, only generate tests using the
+browser classes specified in this list. If not specified, tests will be
+generated for each available browser test case class</li>
+<li><strong>config_module</strong> – (Optional) The module object for &lt;test_project&gt;.config</li>
+<li><strong>browserstack</strong> – (Default = False) If True, configure generated test cases to
+run on BrowserStack instead of locally. Need to provide <cite>config_module</cite> with
+appropriately configured <cite>BrowserStackConfig</cite> class if set to True</li>
 </ul>
 </td>
 </tr>
@@ -226,16 +267,25 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_factory.generate_browser_test_suite">
-<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_suite</code><span class="sig-paren">(</span><em>test_case_list</em>, <em>browser_test_classes=None</em>, <em>test_class_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_suite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_suite" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates test cases for multiple browsers and returns a TestSuite with all of the new tests</p>
+<code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_suite</code><span class="sig-paren">(</span><em>test_case_list</em>, <em>browser_test_classes=None</em>, <em>test_class_map=None</em>, <em>config_module=None</em>, <em>browserstack=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_suite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_suite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates test cases for multiple browsers and returns a TestSuite with all of
+the new tests</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>test_case_list</strong> – A list of WebDriverTestCase subclasses to generate a test suite for</li>
-<li><strong>browser_test_classes</strong> – (Optional) If specified, only generate tests using the browser classes in this list. If not specified, tests will be generated for each available browser test case class.</li>
-<li><strong>test_class_map</strong> – (Optional) Dictionary mapping test case names to a list of test functions. If the list is empty, all test functions will be loaded</li>
+<li><strong>test_case_list</strong> – A list of WebDriverTestCase subclasses to generate a test
+suite for</li>
+<li><strong>browser_test_classes</strong> – (Optional) If specified, only generate tests using the
+browser classes in this list. If not specified, tests will be generated for
+each available browser test case class.</li>
+<li><strong>test_class_map</strong> – (Optional) Dictionary mapping test case names to a list of
+test functions. If the list is empty, all test functions will be loaded</li>
+<li><strong>config_module</strong> – (Optional) The module object for &lt;test_project&gt;.config</li>
+<li><strong>browserstack</strong> – (Default = False) If True, configure generated test cases to
+run on BrowserStack instead of locally. Need to provide <cite>config_module</cite> with
+appropriately configured <cite>BrowserStackConfig</cite> class if set to True</li>
 </ul>
 </td>
 </tr>
@@ -292,7 +342,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.15.1',
+            VERSION:'0.16.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

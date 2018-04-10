@@ -9,6 +9,7 @@ WebDriver Test Tools
    test_projects
    example_project
    additional_browsers
+   browserstack
    webdriver_test_tools
 
 

@@ -5,6 +5,8 @@ from functools import wraps
 from webdriver_test_tools.config import WebDriverConfig
 from webdriver_test_tools.common import utils
 from webdriver_test_tools import test
+from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 # Test Case Classes
@@ -15,7 +17,10 @@ class WebDriverTestCase(unittest.TestCase):
     This defines the common setUp() and tearDown() tasks. It does not initialize
     self.driver so will not work on its own. Tests should be written with this as their
     parent class. Browser-specific implementations of test cases will be generated when
-    running tests
+    running tests.
+
+    **Instances of this class will have the following variables:**
+    :var WebDriverTestCase.driver: Selenium WebDriver object
 
     **Tests that implement this class override the following variables:**
 
@@ -33,14 +38,27 @@ class WebDriverTestCase(unittest.TestCase):
 
     **Browser-specific implementations of this class need to override the following:**
 
-    :var WebDriverTestCase.driver: Selenium WebDriver object. Need to initialize this
-        in setUp() before calling super().setUp()
+    :var WebDriverTestCase.DRIVER_INIT: Function that returns a Selenium WebDriver
+        object for the browser
     :var WebDriverTestCase.DRIVER_NAME: Name of the browser. This is mostly used in the
         docstrings of generated test classes to indicate what browser the tests are
         being run in
     :var WebDriverTestCase.SHORT_NAME: Short name for the driver used for command line
         args, skipping, etc. Should be all lowercase with no spaces
+    :var WebDriverTestCase.CAPABILITIES: The DesiredCapabilities dictionary for the
+        browser. Used for initializing BrowserStack remote driver
+
+    **The following attributes are used for running tests on BrowserStack:**
+
+    :var WebDriverTestCase.ENABLE_BS: (Default = False) If set to True, setUp() will
+        initialize a Remote webdriver instead of a local one and run tests on
+        BrowserStack
+    :var WebDriverTestCase.COMMAND_EXECUTOR: Command executor URL. Test generator
+        needs to set this with the configured access key and username
     """
+
+    # Instance variables
+    driver = None
 
     # Test case attributes
     SITE_URL = None
@@ -48,12 +66,34 @@ class WebDriverTestCase(unittest.TestCase):
     SKIP_MOBILE = None
 
     # Browser implementation attributes
-    driver = None
     DRIVER_NAME = None
     SHORT_NAME = None
+    DRIVER_INIT = None
+
+    # BrowserStack attributes
+    ENABLE_BS = False
+    COMMAND_EXECUTOR = None
+    CAPABILITIES = None
+
+    def _bs_driver_init(self):
+        """Initialize driver for BrowserStack
+
+        :return: webdriver.Remote object with the command_executor and
+            desired_capabilities parameters set to self.COMMAND_EXECUTOR and
+            self.CAPABILITIES respectively.
+        """
+        self.CAPABILITIES['name'] = self._testMethodName
+        return webdriver.Remote(command_executor=self.COMMAND_EXECUTOR,
+                                desired_capabilities=self.CAPABILITIES)
 
     def setUp(self):
-        """Calls ``self.driver.get(self.SITE_URL)``"""
+        """Initialize driver and call ``self.driver.get(self.SITE_URL)``
+
+        If self.ENABLE_BS is False, self.driver gets the returned results of
+        self.DRIVER_INIT(). If self.ENABLE_BS is True, self.driver gets the returned
+        results of self._bs_driver_init()
+        """
+        self.driver = self._bs_driver_init() if self.ENABLE_BS else self.DRIVER_INIT()
         self.driver.get(self.SITE_URL)
 
     def tearDown(self):
@@ -171,6 +211,7 @@ class WebDriverTestCase(unittest.TestCase):
             test_method(self):
                 ...
         """
+
         def decorator(test_method):
             @wraps(test_method)
             def wrapper(*args, **kwargs):
@@ -178,7 +219,9 @@ class WebDriverTestCase(unittest.TestCase):
                 if test_case_obj.SHORT_NAME in browsers:
                     test_case_obj.skipTest('Skipping {}'.format(test_case_obj.DRIVER_NAME))
                 test_method(*args, **kwargs)
+
             return wrapper
+
         return decorator
 
     @staticmethod
@@ -193,6 +236,7 @@ class WebDriverTestCase(unittest.TestCase):
             test_method(self):
                 ...
         """
+
         def decorator(test_method):
             @wraps(test_method)
             def wrapper(*args, **kwargs):
@@ -200,7 +244,9 @@ class WebDriverTestCase(unittest.TestCase):
                 if issubclass(type(test_case_obj), WebDriverMobileTestCase):
                     test_case_obj.skipTest('Skipping for mobile')
                 test_method(*args, **kwargs)
+
             return wrapper
+
         return decorator
 
     @staticmethod
@@ -215,6 +261,7 @@ class WebDriverTestCase(unittest.TestCase):
             test_method(self):
                 ...
         """
+
         def decorator(test_method):
             @wraps(test_method)
             def wrapper(*args, **kwargs):
@@ -222,7 +269,9 @@ class WebDriverTestCase(unittest.TestCase):
                 if not issubclass(type(test_case_obj), WebDriverMobileTestCase):
                     test_case_obj.skipTest('Skipping for non-mobile')
                 test_method(*args, **kwargs)
+
             return wrapper
+
         return decorator
 
 
@@ -234,6 +283,7 @@ class WebDriverMobileTestCase(WebDriverTestCase):
     """
     SKIP_MOBILE = False
 
+
 # Browser Driver Implementations
 
 class FirefoxTestCase(WebDriverTestCase):
@@ -243,10 +293,8 @@ class FirefoxTestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Firefox'
     SHORT_NAME = DRIVER_NAME.lower()
-
-    def setUp(self):
-        self.driver = WebDriverConfig.get_firefox_driver()
-        super().setUp()
+    CAPABILITIES = DesiredCapabilities.FIREFOX.copy()
+    DRIVER_INIT = WebDriverConfig.get_firefox_driver
 
 
 class ChromeTestCase(WebDriverTestCase):
@@ -256,10 +304,8 @@ class ChromeTestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Chrome'
     SHORT_NAME = DRIVER_NAME.lower()
-
-    def setUp(self):
-        self.driver = WebDriverConfig.get_chrome_driver()
-        super().setUp()
+    CAPABILITIES = DesiredCapabilities.CHROME.copy()
+    DRIVER_INIT = WebDriverConfig.get_chrome_driver
 
 
 # Experimental/Platform-specific
@@ -286,10 +332,8 @@ class SafariTestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Safari'
     SHORT_NAME = DRIVER_NAME.lower()
-
-    def setUp(self):
-        self.driver = WebDriverConfig.get_safari_driver()
-        super().setUp()
+    CAPABILITIES = DesiredCapabilities.SAFARI.copy()
+    DRIVER_INIT = WebDriverConfig.get_safari_driver
 
 
 class IETestCase(WebDriverTestCase):
@@ -305,10 +349,10 @@ class IETestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Internet Explorer'
     SHORT_NAME = 'ie'
-
-    def setUp(self):
-        self.driver = WebDriverConfig.get_ie_driver()
-        super().setUp()
+    CAPABILITIES = DesiredCapabilities.INTERNETEXPLORER.copy()
+    # Set version
+    CAPABILITIES['version'] = '11'
+    DRIVER_INIT = WebDriverConfig.get_ie_driver
 
 
 class EdgeTestCase(WebDriverTestCase):
@@ -324,10 +368,10 @@ class EdgeTestCase(WebDriverTestCase):
     """
     DRIVER_NAME = 'Edge'
     SHORT_NAME = DRIVER_NAME.lower()
-
-    def setUp(self):
-        self.driver = WebDriverConfig.get_edge_driver()
-        super().setUp()
+    CAPABILITIES = DesiredCapabilities.EDGE.copy()
+    # Set version
+    CAPABILITIES['version'] = '16'
+    DRIVER_INIT = WebDriverConfig.get_edge_driver
 
 
 # Mobile browser emulation
@@ -342,10 +386,12 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
     """
     DRIVER_NAME = 'Chrome Mobile [Emulated]'
     SHORT_NAME = 'chrome-mobile'
-
-    def setUp(self):
-        self.driver = WebDriverConfig.get_chrome_mobile_driver()
-        super().setUp()
+    CAPABILITIES = DesiredCapabilities.CHROME.copy()
+    # Set options for mobile emulation
+    CAPABILITIES['chromeOptions'] = {
+        'mobileEmulation': WebDriverConfig.CHROME_MOBILE_EMULATION,
+    }
+    DRIVER_INIT = WebDriverConfig.get_chrome_mobile_driver
 
 
 class Browsers(object):
@@ -356,5 +402,4 @@ class Browsers(object):
     IE = IETestCase.SHORT_NAME
     EDGE = EdgeTestCase.SHORT_NAME
     CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
-
 
