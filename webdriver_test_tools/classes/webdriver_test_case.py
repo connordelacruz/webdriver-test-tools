@@ -11,7 +11,6 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 # Test Case Classes
 
-# TODO: review docstring and ensure everything is covered
 class WebDriverTestCase(unittest.TestCase):
     """Base class for web driver test cases
 
@@ -54,8 +53,8 @@ class WebDriverTestCase(unittest.TestCase):
     :var WebDriverTestCase.ENABLE_BS: (Default = False) If set to True, setUp() will
         initialize a Remote webdriver instead of a local one and run tests on
         BrowserStack
-    :var WebDriverTestCase.COMMAND_EXECUTOR: Command executor URL. Test projects need
-        to set this with their access key and username
+    :var WebDriverTestCase.COMMAND_EXECUTOR: Command executor URL. Test generator
+        needs to set this with the configured access key and username
     """
 
     # Instance variables
@@ -84,8 +83,6 @@ class WebDriverTestCase(unittest.TestCase):
             self.CAPABILITIES respectively.
         """
         self.CAPABILITIES['name'] = self._testMethodName
-        # TODO: set to a session identifier?
-        self.CAPABILITIES['build'] = self.__class__.__name__
         return webdriver.Remote(command_executor=self.COMMAND_EXECUTOR,
                                 desired_capabilities=self.CAPABILITIES)
 
@@ -353,6 +350,8 @@ class IETestCase(WebDriverTestCase):
     DRIVER_NAME = 'Internet Explorer'
     SHORT_NAME = 'ie'
     CAPABILITIES = DesiredCapabilities.INTERNETEXPLORER.copy()
+    # Set version
+    CAPABILITIES['version'] = '11'
     DRIVER_INIT = WebDriverConfig.get_ie_driver
 
 
@@ -370,6 +369,8 @@ class EdgeTestCase(WebDriverTestCase):
     DRIVER_NAME = 'Edge'
     SHORT_NAME = DRIVER_NAME.lower()
     CAPABILITIES = DesiredCapabilities.EDGE.copy()
+    # Set version
+    CAPABILITIES['version'] = '16'
     DRIVER_INIT = WebDriverConfig.get_edge_driver
 
 
@@ -401,3 +402,4 @@ class Browsers(object):
     IE = IETestCase.SHORT_NAME
     EDGE = EdgeTestCase.SHORT_NAME
     CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
+
