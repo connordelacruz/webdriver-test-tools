@@ -48,27 +48,62 @@ def get_parser(browser_config=None, browserstack_config=None):
     :param browserstack_config: (Optional) BrowserStackConfig class for the project.
         Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified
     """
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     # Use default config if module is None or doesn't contain BrowserConfig class
     if browser_config is None:
         browser_config = config.BrowserConfig
     if browserstack_config is None:
         browserstack_config = config.BrowserStackConfig
     # Arguments for specifying browser to use
+    # TODO: additional choices based on browserstack_config.BROWSER_TEST_CLASSES
+    # TODO: format options list
     browser_choices = [k for k in browser_config.BROWSER_TEST_CLASSES]
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
-                        help='Run tests only in the specified browsers. Options: {{{}}}'.format(','.join(browser_choices)))
+                        help='Run tests only in the specified browsers.\nOptions: {{{}}}'.format(','.join(browser_choices)))
     # Add argument for running on browserstack if the feature is enabled
     if browserstack_config.ENABLE:
         parser.add_argument('--browserstack', action='store_true',
                             help='Run tests on BrowserStack instead of locally')
     # Arguments for specifying what test to run
     parser.add_argument('-t', '--test', nargs='+', metavar='<test>',
-                        help='Run specific test case classes or test methods. Arguments should be in the format <TestCase>[.<method>]')
+                        help='Run specific test case classes or test methods.\nArguments should be in the format <TestCase>[.<method>]')
     # Arguments for specifying test module to run
     parser.add_argument('-m', '--module', nargs='+', metavar='<module>',
                         help='Run only tests in specific test modules')
     return parser
+
+
+def format_browser_choices(browser_config, browserstack_config):
+    # TODO: document and implement
+    options = ''
+    local_set = set(browser_config.BROWSER_TEST_CLASSES)
+    browserstack_set = set(browserstack_config.BROWSER_TEST_CLASSES)
+    # If browserstack is disabled or there's no difference in browsers
+    if not browserstack_config.ENABLE or not local_set - browserstack_set:
+        options = '\nOptions: ' + browser_list_string(browser_config.BROWSER_TEST_CLASSES)
+    # Else if there is some difference between enabled sets
+    else:
+        both_set = local_set.intersection(browserstack_set)
+        local_only = local_set - browserstack_set
+        browserstack_only = browserstack_set - local_set
+        if both_set:
+            options += '\nLocal & BrowserStack: ' + browser_list_string(list(both_set))
+        if local_only:
+            options += '\nLocal Only: ' + browser_list_string(list(local_only))
+        if browserstack_only:
+            options += '\nBrowserStack Only: ' + browser_list_string(list(browserstack_only))
+    return options
+
+
+def browser_list_string(browser_names):
+    """Takes a list of browser names and returns a string representation in the format
+    '{browser0,browser1,browser2}'
+
+    :param browser_names: List of browser names
+
+    :return: String representation of the browser name list
+    """
+    return '{{{}}}'.format(','.join(browser_names))
 
 
 def parse_test_names(test_name_args):
