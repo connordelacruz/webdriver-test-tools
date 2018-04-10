@@ -24,15 +24,17 @@ def main(tests_module, config_module=None):
     args = parser.parse_args()
     # handle --browserstack arg if enabled
     browserstack = 'browserstack' in dir(args) and args.browserstack
+    # Determine what config class to use based on --browserstack arg
+    browser_config_class = browserstack_config if browserstack else browser_config
     # Handle --browser args
     if args.browser is None:
         browser_classes = [
-            browser_class for browser_name, browser_class in browser_config.BROWSER_TEST_CLASSES.items()
+            browser_class for browser_name, browser_class in browser_config_class.BROWSER_TEST_CLASSES.items()
         ]
     else:
         browser_classes = [
-                browser_class for browser_name, browser_class in browser_config.BROWSER_TEST_CLASSES.items()
-                if browser_name in args.browser
+            browser_class for browser_name, browser_class in browser_config_class.BROWSER_TEST_CLASSES.items()
+            if browser_name in args.browser
         ]
     test_class_map = parse_test_names(args.test)
     test_module_names = args.module
@@ -55,9 +57,10 @@ def get_parser(browser_config=None, browserstack_config=None):
     if browserstack_config is None:
         browserstack_config = config.BrowserStackConfig
     # Arguments for specifying browser to use
-    browser_choices = [k for k in browser_config.BROWSER_TEST_CLASSES]
-    # TODO: handle choices for browserstack vs local choices
-    browserstack_choices = [k for k in browserstack_config.BROWSER_TEST_CLASSES]
+    if browserstack_config.ENABLE:
+        browser_choices = list(set(browser_config.BROWSER_TEST_CLASSES) | set(browserstack_config.BROWSER_TEST_CLASSES))
+    else:
+        browser_choices = list(browser_config.BROWSER_TEST_CLASSES.keys())
     options_help = format_browser_choices(browser_config, browserstack_config)
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
                         help='Run tests only in the specified browsers.' + options_help)
