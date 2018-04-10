@@ -2,26 +2,29 @@ from webdriver_test_tools.classes.webdriver_test_case import *
 from webdriver_test_tools import version
 
 
-# TODO: document when everything is in place
 class BrowserStackConfig(object):
-    """Configurations for BrowserStack testing"""
+    """Global configurations for BrowserStack testing
 
-    # Set to True to enable BrowserStack testing
+    :var BrowserStackConfig.ENABLE: Set to True to enable BrowserStack testing
+    :var BrowserStackConfig.USERNAME: Account username. Projects will need to override this
+    :var BrowserStackConfig.ACCESS_KEY: Access key. Projects will need to override this
+    :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations
+        `Capabilities reference <https://www.browserstack.com/automate/capabilities#>`__
+    :var BrowserStackConfig.BROWSER_TEST_CLASSES: Dictionary of browser test case classes to
+        use indexed by the short name for that class (i.e. its command line argument).
+    """
+
     ENABLE = False
-    # Account username. Projects will need to override this
     USERNAME = None
-    # Access key. Projects will need to override this
     ACCESS_KEY = None
 
-    # BrowserStack test configurations
     BS_CAPABILITIES = {
         'project': None,
         'build': None,
         'browserstack.video': False,
-        # 'browserstack.selenium_version': version.__selenium__, # TODO: implement?
+        # 'browserstack.selenium_version': version.__selenium__,
     }
 
-    # Configure available browsers
     BROWSER_TEST_CLASSES = {
         Browsers.FIREFOX: FirefoxTestCase,
         Browsers.CHROME: ChromeTestCase,

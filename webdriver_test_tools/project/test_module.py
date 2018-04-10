@@ -182,6 +182,7 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
     test_runner.run(browser_test_suite)
     # Link to BrowserStack automation dashboard if applicable
     if browserstack:
+        # TODO: integrate into custom test runner class
         print('', 'See BrowserStack Automation Dashboard for Detailed Results:',
               'https://www.browserstack.com/automate', sep='\n')
 

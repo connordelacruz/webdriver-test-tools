@@ -17,6 +17,7 @@ install_requires = [
     'randomuser>=1.2.0',
     'py-loremipsum>=1.0.0',
     'Jinja2>=2.9.5',
+    'urllib3>=1.22',
 ]
 
 entry_points = {
