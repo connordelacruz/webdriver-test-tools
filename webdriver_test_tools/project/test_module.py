@@ -56,10 +56,11 @@ def get_parser(browser_config=None, browserstack_config=None):
         browserstack_config = config.BrowserStackConfig
     # Arguments for specifying browser to use
     # TODO: additional choices based on browserstack_config.BROWSER_TEST_CLASSES
-    # TODO: format options list
     browser_choices = [k for k in browser_config.BROWSER_TEST_CLASSES]
+    # TODO: format options list
+    options_help = format_browser_choices(browser_config, browserstack_config)
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
-                        help='Run tests only in the specified browsers.\nOptions: {{{}}}'.format(','.join(browser_choices)))
+                        help='Run tests only in the specified browsers.' + options_help)
     # Add argument for running on browserstack if the feature is enabled
     if browserstack_config.ENABLE:
         parser.add_argument('--browserstack', action='store_true',
@@ -79,7 +80,7 @@ def format_browser_choices(browser_config, browserstack_config):
     local_set = set(browser_config.BROWSER_TEST_CLASSES)
     browserstack_set = set(browserstack_config.BROWSER_TEST_CLASSES)
     # If browserstack is disabled or there's no difference in browsers
-    if not browserstack_config.ENABLE or not local_set - browserstack_set:
+    if not browserstack_config.ENABLE or local_set == browserstack_set:
         options = '\nOptions: ' + browser_list_string(browser_config.BROWSER_TEST_CLASSES)
     # Else if there is some difference between enabled sets
     else:
