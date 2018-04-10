@@ -84,6 +84,8 @@ class WebDriverTestCase(unittest.TestCase):
             self.CAPABILITIES respectively.
         """
         self.CAPABILITIES['name'] = self._testMethodName
+        # TODO: set to a session identifier?
+        self.CAPABILITIES['build'] = self.__class__.__name__
         return webdriver.Remote(command_executor=self.COMMAND_EXECUTOR,
                                 desired_capabilities=self.CAPABILITIES)
 

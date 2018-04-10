@@ -20,7 +20,6 @@ class BrowserStackConfig(object):
 
     BS_CAPABILITIES = {
         'project': None,
-        'build': None,
         'browserstack.video': False,
         # 'browserstack.selenium_version': version.__selenium__,
     }
