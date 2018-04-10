@@ -85,7 +85,7 @@ def format_browser_choices(browser_config, browserstack_config):
 
     .. code:: python
 
-        '\nOptions: {browser0,browser1}'
+        '\\nOptions: {browser0,browser1}'
 
     If BrowserStack is enabled and there are different browsers enabled for local and
     BrowserStack, output string will have the following format:
