@@ -55,9 +55,9 @@ def get_parser(browser_config=None, browserstack_config=None):
     if browserstack_config is None:
         browserstack_config = config.BrowserStackConfig
     # Arguments for specifying browser to use
-    # TODO: additional choices based on browserstack_config.BROWSER_TEST_CLASSES
     browser_choices = [k for k in browser_config.BROWSER_TEST_CLASSES]
-    # TODO: format options list
+    # TODO: handle choices for browserstack vs local choices
+    browserstack_choices = [k for k in browserstack_config.BROWSER_TEST_CLASSES]
     options_help = format_browser_choices(browser_config, browserstack_config)
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
                         help='Run tests only in the specified browsers.' + options_help)
@@ -75,7 +75,31 @@ def get_parser(browser_config=None, browserstack_config=None):
 
 
 def format_browser_choices(browser_config, browserstack_config):
-    # TODO: document and implement
+    """Format the help string for browser choices
+
+    If BrowserStack is disabled or doesn't have any browsers enabled that aren't also in
+    the local browser config, output string will have the following format:
+
+    .. code:: python
+
+        '\nOptions: {browser0,browser1}'
+
+    If BrowserStack is enabled and there are different browsers enabled for local and
+    BrowserStack, output string will have the following format:
+
+    .. code:: python
+
+        '''
+        Local & BrowserStack: {browser0,browser1}
+        Local Only: {browser2,browser3}
+        BrowserStack Only: {browser4,browser5}
+        '''
+
+    :param browser_config: BrowserConfig class
+    :param browserstack_config: BrowserStackConfig class
+
+    :return: Formatted help string for browser options
+    """
     options = ''
     local_set = set(browser_config.BROWSER_TEST_CLASSES)
     browserstack_set = set(browserstack_config.BROWSER_TEST_CLASSES)
