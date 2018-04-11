@@ -1,37 +1,44 @@
-# Configurations for webdriver
-
 from selenium import webdriver
 import webdriver_test_tools
 import os.path
 
 
 class WebDriverConfig(object):
+    """Configurations for webdriver
+
+    :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the log
+        subdirectory in the webdriver_test_tools package root directory
+    :var WebDriverConfig.LOG_PATH: Implicit wait time for webdriver to poll DOM
+        .. note::
+
+            Documentation says not to mix this with explicit waits and some instability
+            was noticed when it was set to 10. Projects can override this if necessary.
+            `Implicit wait documentation <https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits>`__
+
+    Browser driver initialization arguments:
+
+    :var WebDriverConfig.FIREFOX_KWARGS:
+    :var WebDriverConfig.CHROME_KWARGS:
+    :var WebDriverConfig.SAFARI_KWARGS:
+    :var WebDriverConfig.IE_KWARGS:
+    :var WebDriverConfig.EDGE_KWARGS:
+
+    Mobile configurations:
+
+    :var WebDriverConfig.CHROME_MOBILE_EMULATION:
+    """
     # Root directory of webdriver_test_tools package
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
-
-    # Path to the log directory
     LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
-    # Implicit wait time for webdriver to poll DOM
-    # NOTE: Documentation says not to mix this with explicit waits and some instability
-    # was noticed when it was set to 10. Leaving this value in for compatibility and for
-    # a possible update where projects can override these configs, but it's essentially
-    # not used currently.
-    # https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits
+
     IMPLICIT_WAIT = 0
 
-    # Firefox webdriver initialization arguments
     FIREFOX_KWARGS = {'log_path': os.path.join(LOG_PATH, 'geckodriver.log')}
-    # Chrome webdriver initialization arguments
     CHROME_KWARGS = {'service_log_path': os.path.join(LOG_PATH, 'chromedriver.log')}
-    # Safari webdriver initialization arguments
     SAFARI_KWARGS = {}
-    # Internet Explorer webdriver initialization arguments
     IE_KWARGS = {}
-    # Edge webdriver initialization arguments
     EDGE_KWARGS = {}
 
-    # Mobile Configurations
-    # Chrome mobile emulation
     CHROME_MOBILE_EMULATION = { "deviceName": "Pixel 2" }
 
     # Functions
