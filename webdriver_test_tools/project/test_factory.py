@@ -89,6 +89,9 @@ def generate_browser_test_case(base_class, browser_test_class, config_module=Non
     # generate new class with driver name appended to the class name and in parentheses at the start of the docstring
     new_class = type(base_class_name + browser_test_class.DRIVER_NAME, (base_class, browser_test_class),
                      {'__doc__': '({}) '.format(browser_test_class.DRIVER_NAME) + base_class_doc})
+    # Use project's WebDriverConfig class if it exists
+    if 'WebDriverConfig' in dir(config_module):
+        new_class.WebDriverConfig = config_module.WebDriverConfig
     # Enable BrowserStack execution
     if browserstack:
         new_class = enable_browserstack(new_class, config_module)

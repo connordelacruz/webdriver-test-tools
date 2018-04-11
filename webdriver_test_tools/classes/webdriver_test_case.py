@@ -38,7 +38,7 @@ class WebDriverTestCase(unittest.TestCase):
 
     **Browser-specific implementations of this class need to override the following:**
 
-    :var WebDriverTestCase.DRIVER_INIT: Function that returns a Selenium WebDriver
+    :function WebDriverTestCase.driver_init: Function that returns a Selenium WebDriver
         object for the browser
     :var WebDriverTestCase.DRIVER_NAME: Name of the browser. This is mostly used in the
         docstrings of generated test classes to indicate what browser the tests are
@@ -59,6 +59,8 @@ class WebDriverTestCase(unittest.TestCase):
 
     # Instance variables
     driver = None
+    # TODO: Update docs
+    WebDriverConfig = WebDriverConfig
 
     # Test case attributes
     SITE_URL = None
@@ -68,14 +70,13 @@ class WebDriverTestCase(unittest.TestCase):
     # Browser implementation attributes
     DRIVER_NAME = None
     SHORT_NAME = None
-    DRIVER_INIT = None
 
     # BrowserStack attributes
     ENABLE_BS = False
     COMMAND_EXECUTOR = None
     CAPABILITIES = None
 
-    def _bs_driver_init(self):
+    def bs_driver_init(self):
         """Initialize driver for BrowserStack
 
         :return: webdriver.Remote object with the command_executor and
@@ -86,6 +87,12 @@ class WebDriverTestCase(unittest.TestCase):
         return webdriver.Remote(command_executor=self.COMMAND_EXECUTOR,
                                 desired_capabilities=self.CAPABILITIES)
 
+    def driver_init(self):
+        """Returns an initialized WebDriver object. Browser test case classes must
+        implement this
+        """
+        pass
+
     def setUp(self):
         """Initialize driver and call ``self.driver.get(self.SITE_URL)``
 
@@ -93,7 +100,7 @@ class WebDriverTestCase(unittest.TestCase):
         self.DRIVER_INIT(). If self.ENABLE_BS is True, self.driver gets the returned
         results of self._bs_driver_init()
         """
-        self.driver = self._bs_driver_init() if self.ENABLE_BS else self.DRIVER_INIT()
+        self.driver = self.bs_driver_init() if self.ENABLE_BS else self.driver_init()
         self.driver.get(self.SITE_URL)
 
     def tearDown(self):
@@ -294,7 +301,9 @@ class FirefoxTestCase(WebDriverTestCase):
     DRIVER_NAME = 'Firefox'
     SHORT_NAME = DRIVER_NAME.lower()
     CAPABILITIES = DesiredCapabilities.FIREFOX.copy()
-    DRIVER_INIT = WebDriverConfig.get_firefox_driver
+
+    def driver_init(self):
+        return self.WebDriverConfig.get_firefox_driver()
 
 
 class ChromeTestCase(WebDriverTestCase):
@@ -305,7 +314,9 @@ class ChromeTestCase(WebDriverTestCase):
     DRIVER_NAME = 'Chrome'
     SHORT_NAME = DRIVER_NAME.lower()
     CAPABILITIES = DesiredCapabilities.CHROME.copy()
-    DRIVER_INIT = WebDriverConfig.get_chrome_driver
+
+    def driver_init(self):
+        return self.WebDriverConfig.get_chrome_driver()
 
 
 # Experimental/Platform-specific
@@ -333,7 +344,9 @@ class SafariTestCase(WebDriverTestCase):
     DRIVER_NAME = 'Safari'
     SHORT_NAME = DRIVER_NAME.lower()
     CAPABILITIES = DesiredCapabilities.SAFARI.copy()
-    DRIVER_INIT = WebDriverConfig.get_safari_driver
+
+    def driver_init(self):
+        return self.WebDriverConfig.get_safari_driver()
 
 
 class IETestCase(WebDriverTestCase):
@@ -352,7 +365,9 @@ class IETestCase(WebDriverTestCase):
     CAPABILITIES = DesiredCapabilities.INTERNETEXPLORER.copy()
     # Set version
     CAPABILITIES['version'] = '11'
-    DRIVER_INIT = WebDriverConfig.get_ie_driver
+
+    def driver_init(self):
+        return self.WebDriverConfig.get_ie_driver()
 
 
 class EdgeTestCase(WebDriverTestCase):
@@ -371,7 +386,9 @@ class EdgeTestCase(WebDriverTestCase):
     CAPABILITIES = DesiredCapabilities.EDGE.copy()
     # Set version
     CAPABILITIES['version'] = '16'
-    DRIVER_INIT = WebDriverConfig.get_edge_driver
+
+    def driver_init(self):
+        return self.WebDriverConfig.get_edge_driver()
 
 
 # Mobile browser emulation
@@ -391,7 +408,9 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
     CAPABILITIES['chromeOptions'] = {
         'mobileEmulation': WebDriverConfig.CHROME_MOBILE_EMULATION,
     }
-    DRIVER_INIT = WebDriverConfig.get_chrome_mobile_driver
+
+    def driver_init(self):
+        return self.WebDriverConfig.get_chrome_mobile_driver()
 
 
 class Browsers(object):

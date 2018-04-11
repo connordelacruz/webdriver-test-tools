@@ -33,9 +33,9 @@ def create_log_directory(target_path):
     """
     target_path = os.path.abspath(target_path)
     source_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.log.__file__))
-    create_directory(target_path, 'log')
+    log_path = create_directory(target_path, 'log')
     filename = '.gitignore'
-    shutil.copy(os.path.join(source_path, filename), os.path.join(target_path, filename))
+    shutil.copy(os.path.join(source_path, filename), os.path.join(log_path, filename))
 
 
 def create_tests_init(target_path, context):
@@ -110,7 +110,7 @@ def create_package_directory(target_path, package_name):
 
 
 def create_main_module(target_path, context):
-    """Creates __main__.py module for test package
+    """Creates __main__.py and __init__.py modules for test package
 
     :param target_path: The path to the test package directory
     :param context: Jinja context used to render template
@@ -118,6 +118,9 @@ def create_main_module(target_path, context):
     target_path = os.path.abspath(target_path)
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
     create_file_from_template(template_path, target_path, '__main__.py', context)
+    # "Touch" __init__.py to create an empty file
+    init_path = os.path.join(target_path, '__init__.py')
+    open(init_path, 'a').close()
 
 
 def create_setup_file(target_path, context):
