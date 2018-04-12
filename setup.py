@@ -18,6 +18,7 @@ install_requires = [
     'py-loremipsum>=1.0.0',
     'Jinja2>=2.9.5',
     'urllib3>=1.22',
+    'blessings>=1.6.1',
 ]
 
 entry_points = {

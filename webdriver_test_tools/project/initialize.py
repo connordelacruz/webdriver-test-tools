@@ -5,10 +5,17 @@ import os
 import shutil
 import re
 import jinja2
+from blessings import Terminal
 
 import webdriver_test_tools.project.templates
 from webdriver_test_tools.version import __version__, __selenium__
 
+
+# For formatted terminal output
+term = Terminal()
+
+# Prepend to input prompts
+PROMPT_PREFIX = '> '
 
 # Project creation functions
 
@@ -279,16 +286,18 @@ def validate_package_name(package_name):
     return validated_package_name
 
 
-def prompt(text, default=None, validate=nonempty):
+def prompt(text, default=None, validate=nonempty, trailing_newline=True):
     """Prompt the user for input and validate it
 
     :param text: Text to display in prompt
     :param default: (Optional) default value
     :param validate: (Default = nonempty) Validation function for input
+    :param trailing_newline: (Default = True) Print a blank line after receiving user input and successfully validating
 
     :return: Validated input
     """
     prompt_text = '{} [{}]: '.format(text, default) if default is not None else text + ': '
+    prompt_text = term.magenta(PROMPT_PREFIX + prompt_text)
     while True:
         val = input(prompt_text).strip()
         if default is not None and not val:
@@ -296,9 +305,11 @@ def prompt(text, default=None, validate=nonempty):
         try:
             val = validate(val)
         except ValidationError as e:
-            print(str(e))
+            print(term.bold_red(str(e)))
             continue
         break
+    if trailing_newline:
+        print('')
     return val
 
 
@@ -328,7 +339,6 @@ def initialize(target_path, package_name, project_title):
     create_template_files(package_path, context)
 
 
-# TODO: color output
 # TODO: implement optional params
 def main(package_name=None, project_title=None):
     """Command line dialogs for initializing a test project
@@ -340,6 +350,7 @@ def main(package_name=None, project_title=None):
         project title will be skipped and function will continue using this as the
         project title
     """
+    print(term.bold('webdriver_test_tools {} project initialization'.format(__version__)) + '\n')
     # Prompt for input if no package name is passed as a parameter
     # TODO: validate package_name if provided as a param
     # if package_name is None:
@@ -355,8 +366,8 @@ def main(package_name=None, project_title=None):
     # Create project package
     print('Creating test project...')
     initialize(os.getcwd(), validated_package_name, validated_project_title)
-    print('Project initialized.')
-    print('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name))
+    print(term.green('Project initialized.') + '\n')
+    print(term.bold('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
 
 
 if __name__ == '__main__':
