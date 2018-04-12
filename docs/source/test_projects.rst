@@ -81,12 +81,16 @@ directories inside the project directory:
     ├── setup.py
     └── <test_package>/
         ├── __main__.py
+        ├── __init__.py
         ├── config/
         │   ├── __init__.py
         │   ├── browser.py
+        │   ├── browserstack.py
         │   ├── site.py
-        │   └── test.py
+        │   ├── test.py
+        │   └── webdriver.py
         ├── data/
+        ├── log/
         ├── pages/
         ├── templates/
         │   ├── page_object.py
@@ -119,7 +123,12 @@ data/
 ^^^^^
 
 Static data for tests that must use specific values (e.g. emails,
-check-in codes).
+usernames, etc).
+
+log/
+^^^^
+
+Default output directory for WebDriver logs.
 
 pages/
 ^^^^^^

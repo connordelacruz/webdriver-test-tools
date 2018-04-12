@@ -134,15 +134,16 @@ def create_setup_file(target_path, context):
     create_file_from_template(template_path, target_path, 'setup.py', context)
 
 
+# TODO: use README.rst instead
 def create_readme(target_path, context):
-    """Create README.md for test project
+    """Create README.rst for test project
 
     :param target_path: The path to the outer directory where the package directory is contained
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
-    create_file_from_template(template_path, target_path, 'README.md', context)
+    create_file_from_template(template_path, target_path, 'README.rst', context)
 
 
 def create_gitignore(target_path):
@@ -214,16 +215,27 @@ def render_template(template_path, context):
     ).get_template(filename).render(context)
 
 
-def generate_context(test_package, test_tools_version, selenium_version):
+def generate_context(test_package, test_tools_version, selenium_version, project_title=None):
     """Returns a jinja context to use for rendering templates
 
     :param test_package: Name of the python test package
-    :param test_tools_version: Version of webdriver_test_tools to use as install dependency
+    :param test_tools_version: Version of webdriver_test_tools to use as install
+        dependency
+    :param selenium_version: Version of selenium package used when developing/testing
+        the current version of webdriver_test_tools
+    :param project_title: (Default = test_package) Human-readable title for the test
+        project. Defaults to the value of test_package if not provided
+
+    :return: Dictionary to use as a context when rendering Jinja templates
     """
+    if project_title is None:
+        project_title = test_package
+
     context = {
             'test_package': test_package,
             'test_tools_version': test_tools_version,
             'selenium_version': selenium_version,
+            'project_title': project_title,
             }
     return context
 
@@ -245,15 +257,16 @@ def create_file_from_template(template_path, target_path, filename, context):
 
 # Main methods
 
-def initialize(target_path, package_name):
+def initialize(target_path, package_name, project_title):
     """Initializes new project package
 
     :param target_path: Path to directory that will contain test package
     :param package_name: Name of the test package to create (will be validated)
+    :param project_title: Human readable title of the test project.
     """
     outer_path = os.path.abspath(target_path)
     package_name = validate_package_name(package_name)
-    context = generate_context(package_name, __version__, __selenium__)
+    context = generate_context(package_name, __version__, __selenium__, project_title)
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
     create_readme(outer_path, context)
@@ -268,10 +281,17 @@ def initialize(target_path, package_name):
     create_template_files(package_path, context)
 
 
-def main(package_name=None):
+# TODO: color output
+# TODO: better validation
+def main(package_name=None, project_title=None):
     """Command line dialogs for initializing a test project
 
-    :param package_name: (Optional) If specified, the prompt asking the user to enter a package name will be skipped and function will continue using this as the package name
+    :param package_name: (Optional) If specified, the prompt asking the user to enter a
+        package name will be skipped and function will continue using this as the
+        package name
+    :param project_title: (Optional) If specified, the prompt asking the user to enter a
+        project title will be skipped and function will continue using this as the
+        project title
     """
     # Prompt for input if no package name is passed as a parameter
     if package_name is None:
@@ -283,9 +303,17 @@ def main(package_name=None):
     if package_name != validated_package_name:
         message_format = 'Name was changed to {} in order to be a valid python package'
         print(message_format.format(validated_package_name))
+    # Prompt for optional project title, default to validated_package_name
+    if project_title is None:
+        print('(Optional) Enter a human-readable name for the test project')
+        project_title = input('Project title [{}]: '.format(validated_package_name))
+    # TODO: better validation
+    validated_project_title = project_title.strip()
+    if not validated_project_title:
+        validated_project_title = validated_package_name
     # Create project package
     print('Creating test project...')
-    initialize(os.getcwd(), validated_package_name)
+    initialize(os.getcwd(), validated_package_name, validated_project_title)
     print('Project initialized.')
     print('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name))
 
