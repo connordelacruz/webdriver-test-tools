@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.webdriver module &mdash; WebDriver Test Tools 0.16.0 documentation</title>
+  <title>webdriver_test_tools.config.webdriver module &mdash; WebDriver Test Tools 0.17.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.16.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.17.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.config package" href="webdriver_test_tools.config.html"/>
         <link rel="next" title="webdriver_test_tools.data package" href="webdriver_test_tools.data.html"/>
         <link rel="prev" title="webdriver_test_tools.config.test module" href="webdriver_test_tools.config.test.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.16
+                0.17
               </div>
             
           
@@ -190,34 +190,125 @@
 <dl class="class">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.config.webdriver.</code><code class="descname">WebDriverConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="classmethod">
+<dd><p>Configurations for webdriver</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>WebDriverConfig.LOG_PATH</strong> – Path to the log directory. Defaults to the log
+subdirectory in the webdriver_test_tools package root directory</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IMPLICIT_WAIT" title="webdriver_test_tools.config.webdriver.WebDriverConfig.IMPLICIT_WAIT"><strong>WebDriverConfig.IMPLICIT_WAIT</strong></a> – <p>Implicit wait time for webdriver to poll DOM</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Documentation says not to mix this with explicit waits and some instability
+was noticed when it was set to 10. Projects can override this if necessary.
+<a class="reference external" href="https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits">Implicit wait documentation</a></p>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Browser driver initialization arguments:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS"><strong>WebDriverConfig.FIREFOX_KWARGS</strong></a> – Keyword args for webdriver.Firefox()</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS"><strong>WebDriverConfig.CHROME_KWARGS</strong></a> – Keyword args for webdriver.Chrome()</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS"><strong>WebDriverConfig.SAFARI_KWARGS</strong></a> – Keyword args for webdriver.Safari()</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS"><strong>WebDriverConfig.IE_KWARGS</strong></a> – Keyword args for webdriver.Ie()</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS"><strong>WebDriverConfig.EDGE_KWARGS</strong></a> – Keyword args for webdriver.Edge()</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Logging configurations are set when the corresponding <code class="docutils literal notranslate"><span class="pre">get_&lt;browser&gt;_driver()</span></code>
+method is called. This allows for projects to override the <code class="docutils literal notranslate"><span class="pre">LOG_PATH</span></code> variable
+without having to also override all <code class="docutils literal notranslate"><span class="pre">&lt;browser&gt;_KWARGS</span></code> variables as well.</p>
+</div>
+<p>Mobile configurations:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION"><strong>WebDriverConfig.CHROME_MOBILE_EMULATION</strong></a> – Dictionary with ‘mobileEmulation’
+options for Chrome</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS">
+<code class="descname">CHROME_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION">
+<code class="descname">CHROME_MOBILE_EMULATION</code><em class="property"> = {'deviceName': 'Pixel 2'}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS">
+<code class="descname">EDGE_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS">
+<code class="descname">FIREFOX_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS">
+<code class="descname">IE_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.IMPLICIT_WAIT">
+<code class="descname">IMPLICIT_WAIT</code><em class="property"> = 0</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IMPLICIT_WAIT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS">
+<code class="descname">SAFARI_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver">
 <em class="property">classmethod </em><code class="descname">get_chrome_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Chrome object using CHROME_KWARGS to initialize</p>
+<dd><p>Returns webdriver.Chrome object using CHROME_KWARGS and LOG_PATH to
+initialize</p>
 </dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_mobile_driver">
 <em class="property">classmethod </em><code class="descname">get_chrome_mobile_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_mobile_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_mobile_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Chrome object using CHROME_KWARGS and CHROME_MOBILE_EMULATION to initialize</p>
+<dd><p>Returns webdriver.Chrome object using CHROME_KWARGS, LOG_PATH, and
+CHROME_MOBILE_EMULATION to initialize</p>
 </dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_edge_driver">
 <em class="property">classmethod </em><code class="descname">get_edge_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_edge_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_edge_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Edge object using EDGE_KWARGS to initialize</p>
+<dd><p>Returns webdriver.Edge object using EDGE_KWARGS and LOG_PATH to initialize</p>
 </dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver">
 <em class="property">classmethod </em><code class="descname">get_firefox_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_firefox_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Firefox object using FIREFOX_KWARGS to initialize</p>
+<dd><p>Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to
+initialize</p>
 </dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_ie_driver">
 <em class="property">classmethod </em><code class="descname">get_ie_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_ie_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_ie_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Ie object using IE_KWARGS to initialize</p>
+<dd><p>Returns webdriver.Ie object using IE_KWARGS and LOG_PATH to initialize</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -280,7 +371,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.16.0',
+            VERSION:'0.17.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

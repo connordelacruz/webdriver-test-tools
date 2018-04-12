@@ -26,6 +26,18 @@ def create_test_directories(target_path):
         create_directory(target_path, project_dir)
 
 
+def create_log_directory(target_path):
+    """Creates log/ directory and log/.gitignore file
+
+    :param target_path: The path to the test package directory
+    """
+    target_path = os.path.abspath(target_path)
+    source_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.log.__file__))
+    log_path = create_directory(target_path, 'log')
+    filename = '.gitignore'
+    shutil.copy(os.path.join(source_path, filename), os.path.join(log_path, filename))
+
+
 def create_tests_init(target_path, context):
     """Creates test package tests/ subdirectory and tests/__init__.py
 
@@ -61,6 +73,7 @@ def create_config_files(target_path, context):
     template_files = [
         '__init__.py',
         'browserstack.py',
+        'webdriver.py',
     ]
     for template_file in template_files:
         create_file_from_template(template_path, target_path, template_file, context)
@@ -97,7 +110,7 @@ def create_package_directory(target_path, package_name):
 
 
 def create_main_module(target_path, context):
-    """Creates __main__.py module for test package
+    """Creates __main__.py and __init__.py modules for test package
 
     :param target_path: The path to the test package directory
     :param context: Jinja context used to render template
@@ -105,6 +118,9 @@ def create_main_module(target_path, context):
     target_path = os.path.abspath(target_path)
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
     create_file_from_template(template_path, target_path, '__main__.py', context)
+    # "Touch" __init__.py to create an empty file
+    init_path = os.path.join(target_path, '__init__.py')
+    open(init_path, 'a').close()
 
 
 def create_setup_file(target_path, context):
@@ -246,6 +262,7 @@ def initialize(target_path, package_name):
     # Initialize package files
     create_main_module(package_path, context)
     create_test_directories(package_path)
+    create_log_directory(package_path)
     create_tests_init(package_path, context)
     create_config_files(package_path, context)
     create_template_files(package_path, context)
