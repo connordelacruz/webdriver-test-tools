@@ -134,7 +134,6 @@ def create_setup_file(target_path, context):
     create_file_from_template(template_path, target_path, 'setup.py', context)
 
 
-# TODO: use README.rst instead
 def create_readme(target_path, context):
     """Create README.rst for test project
 
@@ -171,22 +170,6 @@ def create_directory(target_path, directory_name):
     if not os.path.exists(path):
         os.makedirs(path)
     return path
-
-
-def validate_package_name(package_name):
-    """Removes and replaces characters to ensure a string is a valid python package name
-
-    :param package_name: The desired package name
-
-    :return: Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed
-    """
-    # Trim outer whitespace and replace inner whitespace and hyphens with underscore
-    package_name = re.sub(r'\s+|-+', '_', package_name.strip())
-    # Remove non-alphanumeric or _ characters
-    package_name = re.sub(r'[^\w\s]', '', package_name)
-    # Remove leading characters until we hit a letter or underscore
-    package_name = re.sub(r'^[^a-zA-Z_]+', '', package_name)
-    return package_name
 
 
 def render_template_to_file(template_path, context, target_path):
@@ -255,6 +238,70 @@ def create_file_from_template(template_path, target_path, filename, context):
     render_template_to_file(file_template, context, file_target)
 
 
+# Prompt helper methods
+
+class ValidationError(Exception):
+    """Exception raised if input validation fails"""
+    pass
+
+
+def nonempty(text):
+    """Input validation function. Raises ValidationError if text is empty
+
+    :param text: Text to validate
+
+    :return: Validated text
+    """
+    if not text:
+        raise ValidationError('Please enter some text.')
+    return text
+
+
+def validate_package_name(package_name):
+    """Removes and replaces characters to ensure a string is a valid python package name
+
+    :param package_name: The desired package name
+
+    :return: Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed
+    """
+    # Trim outer whitespace and replace inner whitespace and hyphens with underscore
+    validated_package_name = re.sub(r'\s+|-+', '_', package_name.strip())
+    # Remove non-alphanumeric or _ characters
+    validated_package_name = re.sub(r'[^\w\s]', '', validated_package_name)
+    # Remove leading characters until we hit a letter or underscore
+    validated_package_name = re.sub(r'^[^a-zA-Z_]+', '', validated_package_name)
+    if not validated_package_name:
+        raise ValidationError('Please enter a valid package name.')
+    # Alert user of any changes made in validation
+    if package_name != validated_package_name:
+        message_format = 'Name was changed to {} in order to be a valid python package'
+        print(message_format.format(validated_package_name))
+    return validated_package_name
+
+
+def prompt(text, default=None, validate=nonempty):
+    """Prompt the user for input and validate it
+
+    :param text: Text to display in prompt
+    :param default: (Optional) default value
+    :param validate: (Default = nonempty) Validation function for input
+
+    :return: Validated input
+    """
+    prompt_text = '{} [{}]: '.format(text, default) if default is not None else text + ': '
+    while True:
+        val = input(prompt_text).strip()
+        if default is not None and not val:
+            val = default
+        try:
+            val = validate(val)
+        except ValidationError as e:
+            print(str(e))
+            continue
+        break
+    return val
+
+
 # Main methods
 
 def initialize(target_path, package_name, project_title):
@@ -282,7 +329,7 @@ def initialize(target_path, package_name, project_title):
 
 
 # TODO: color output
-# TODO: better validation
+# TODO: implement optional params
 def main(package_name=None, project_title=None):
     """Command line dialogs for initializing a test project
 
@@ -294,23 +341,17 @@ def main(package_name=None, project_title=None):
         project title
     """
     # Prompt for input if no package name is passed as a parameter
-    if package_name is None:
-        print('Enter a name for the test package')
-        print('(use only alphanumeric characters and underscores. Cannot start with a number)')
-        package_name = input('Package name: ')
-    validated_package_name = validate_package_name(package_name)
-    # Alert user of any changes made in validation
-    if package_name != validated_package_name:
-        message_format = 'Name was changed to {} in order to be a valid python package'
-        print(message_format.format(validated_package_name))
+    # TODO: validate package_name if provided as a param
+    # if package_name is None:
+    print('Enter a name for the test package')
+    print('(use only alphanumeric characters and underscores. Cannot start with a number)')
+    validated_package_name = prompt('Package name', validate=validate_package_name)
     # Prompt for optional project title, default to validated_package_name
-    if project_title is None:
-        print('(Optional) Enter a human-readable name for the test project')
-        project_title = input('Project title [{}]: '.format(validated_package_name))
-    # TODO: better validation
-    validated_project_title = project_title.strip()
-    if not validated_project_title:
-        validated_project_title = validated_package_name
+    # TODO: validate project_title if provided as a param
+    # if project_title is None:
+    print('(Optional) Enter a human-readable name for the test project')
+    # TODO: validation function
+    validated_project_title = prompt('Project title', validated_package_name)
     # Create project package
     print('Creating test project...')
     initialize(os.getcwd(), validated_package_name, validated_project_title)
