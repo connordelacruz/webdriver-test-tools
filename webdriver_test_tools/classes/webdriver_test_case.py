@@ -21,6 +21,7 @@ class WebDriverTestCase(unittest.TestCase):
 
     **Instances of this class will have the following variables:**
     :var WebDriverTestCase.driver: Selenium WebDriver object
+    :var WebDriverTestCase.WebDriverConfig: WebDriverConfig class
 
     **Tests that implement this class override the following variables:**
 
@@ -59,7 +60,6 @@ class WebDriverTestCase(unittest.TestCase):
 
     # Instance variables
     driver = None
-    # TODO: Update docs
     WebDriverConfig = WebDriverConfig
 
     # Test case attributes
