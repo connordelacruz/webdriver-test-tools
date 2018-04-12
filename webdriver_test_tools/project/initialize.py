@@ -282,8 +282,27 @@ def validate_package_name(package_name):
     # Alert user of any changes made in validation
     if package_name != validated_package_name:
         message_format = 'Name was changed to {} in order to be a valid python package'
-        print(message_format.format(validated_package_name))
+        print(term.yellow(message_format.format(validated_package_name)))
     return validated_package_name
+
+
+def validate_project_title(project_title):
+    """Sanitizes string to avoid syntax erros when inserting the title into template
+    files
+
+    :param project_title: The desired project title
+
+    :return: Modifed project_title with only alphanumeric characters, spaces, underscores, and hyphens
+    """
+    # Trim outer whitespace and remove that aren't alphanumeric or an underscore/hyphen
+    validated_project_title = re.sub(r'[^\w\s-]', '', project_title.strip())
+    if not validated_project_title:
+        raise ValidationError('Please enter a valid project title.')
+    # Alert user of any changes made in validation
+    if project_title != validated_project_title:
+        message_format = 'Title was changed to {} to avoid syntax errors.'
+        print(term.yellow(message_format.format(validated_project_title)))
+    return validated_project_title
 
 
 def prompt(text, default=None, validate=nonempty, trailing_newline=True):
@@ -352,17 +371,13 @@ def main(package_name=None, project_title=None):
     """
     print(term.bold('webdriver_test_tools {} project initialization'.format(__version__)) + '\n')
     # Prompt for input if no package name is passed as a parameter
-    # TODO: validate package_name if provided as a param
-    # if package_name is None:
     print('Enter a name for the test package')
     print('(use only alphanumeric characters and underscores. Cannot start with a number)')
     validated_package_name = prompt('Package name', validate=validate_package_name)
     # Prompt for optional project title, default to validated_package_name
-    # TODO: validate project_title if provided as a param
-    # if project_title is None:
     print('(Optional) Enter a human-readable name for the test project')
-    # TODO: validation function
-    validated_project_title = prompt('Project title', validated_package_name)
+    print('(can use alphanumeric characters, spaces, hyphens, and underscores)')
+    validated_project_title = prompt('Project title', default=validated_package_name, validate=validate_project_title)
     # Create project package
     print('Creating test project...')
     initialize(os.getcwd(), validated_package_name, validated_project_title)
