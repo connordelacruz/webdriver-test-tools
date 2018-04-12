@@ -8,7 +8,8 @@ class WebDriverConfig(object):
 
     :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the log
         subdirectory in the webdriver_test_tools package root directory
-    :var WebDriverConfig.LOG_PATH: Implicit wait time for webdriver to poll DOM
+    :var WebDriverConfig.IMPLICIT_WAIT: Implicit wait time for webdriver to poll DOM
+
         .. note::
 
             Documentation says not to mix this with explicit waits and some instability
@@ -17,15 +18,22 @@ class WebDriverConfig(object):
 
     Browser driver initialization arguments:
 
-    :var WebDriverConfig.FIREFOX_KWARGS:
-    :var WebDriverConfig.CHROME_KWARGS:
-    :var WebDriverConfig.SAFARI_KWARGS:
-    :var WebDriverConfig.IE_KWARGS:
-    :var WebDriverConfig.EDGE_KWARGS:
+    :var WebDriverConfig.FIREFOX_KWARGS: Keyword args for webdriver.Firefox()
+    :var WebDriverConfig.CHROME_KWARGS: Keyword args for webdriver.Chrome()
+    :var WebDriverConfig.SAFARI_KWARGS: Keyword args for webdriver.Safari()
+    :var WebDriverConfig.IE_KWARGS: Keyword args for webdriver.Ie()
+    :var WebDriverConfig.EDGE_KWARGS: Keyword args for webdriver.Edge()
+
+    .. note::
+
+        Logging configurations are set when the corresponding ``get_<browser>_driver()``
+        method is called. This allows for projects to override the ``LOG_PATH`` variable
+        without having to also override all ``<browser>_KWARGS`` variables as well.
 
     Mobile configurations:
 
-    :var WebDriverConfig.CHROME_MOBILE_EMULATION:
+    :var WebDriverConfig.CHROME_MOBILE_EMULATION: Dictionary with 'mobileEmulation'
+        options for Chrome
     """
     # Root directory of webdriver_test_tools package
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))

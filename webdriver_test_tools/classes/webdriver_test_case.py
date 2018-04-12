@@ -20,6 +20,7 @@ class WebDriverTestCase(unittest.TestCase):
     running tests.
 
     **Instances of this class will have the following variables:**
+
     :var WebDriverTestCase.driver: Selenium WebDriver object
     :var WebDriverTestCase.WebDriverConfig: WebDriverConfig class
 

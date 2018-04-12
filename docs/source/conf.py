@@ -167,6 +167,11 @@ texinfo_documents = [
 
 # -- Extension configuration -------------------------------------------------
 
+# -- Options for autodoc extension ----------------------------------------------
+
+# TODO: implement and re-work
+# autodoc_default_flags = ['members', 'undoc-members']
+
 # -- Options for intersphinx extension ---------------------------------------
 
 # Example configuration for intersphinx: refer to the Python standard library.

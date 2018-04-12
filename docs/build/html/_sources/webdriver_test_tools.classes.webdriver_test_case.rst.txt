@@ -5,3 +5,10 @@ webdriver\_test\_tools.classes.webdriver\_test\_case module
     :members:
     :undoc-members:
     :show-inheritance:
+    :exclude-members: WebDriverTestCase
+
+    .. autoclass :: WebDriverTestCase
+        :members:
+        :exclude-members: WebDriverConfig
+
+    
