@@ -83,21 +83,22 @@ def generate_browser_test_case(base_class, browser_test_class, config_module=Non
         `browser_test_class`. If `browserstack` is set to True, returned class will have
         appropriate attributes configured for BrowserStack execution
     """
-    # Get base class name and docstring
+    # Get base class attributes
     base_class_name = base_class.__name__
     base_class_doc = base_class.__doc__
     base_class_module = base_class.__module__
-    # generate new class with driver name appended to the class name and in parentheses at the start of the docstring
-    new_class_name = base_class_name + browser_test_class.DRIVER_NAME
+    # Append the driver name portion of <Driver>TestCase to the class name
+    browser_class_suffix = browser_test_class.__name__.replace('TestCase', '')
+    new_class_name = base_class_name + browser_class_suffix
+    # Use modified docstring and original module name from base class
     new_class_dict = {
         '__doc__': '({}) '.format(browser_test_class.DRIVER_NAME) + base_class_doc,
         '__module__': base_class_module,
     }
-    new_class = type(new_class_name, (base_class, browser_test_class), new_class_dict)
     # Use project's WebDriverConfig class if it exists
-    # TODO: move this to new_class_dict?
     if 'WebDriverConfig' in dir(config_module):
-        new_class.WebDriverConfig = config_module.WebDriverConfig
+        new_class_dict['WebDriverConfig'] = config_module.WebDriverConfig
+    new_class = type(new_class_name, (base_class, browser_test_class), new_class_dict)
     # Enable BrowserStack execution
     if browserstack:
         new_class = enable_browserstack(new_class, config_module)
@@ -107,12 +108,14 @@ def generate_browser_test_case(base_class, browser_test_class, config_module=Non
 def enable_browserstack(browser_test_case, config_module):
     """Enable BrowserStack test execution for a class
 
-    :param browser_test_case: Browser test case class to configure for BrowserStack usage
+    :param browser_test_case: Browser test case class to configure for BrowserStack
+        usage
     :param config_module: The module object for <test_project>.config
 
     :return: browser_test_case class with `ENABLE_BS` and `COMMAND_EXECUTOR` attributes
         configured appropriately
     """
+    # Raise exception if somehow this method was called but BrowserStack is not configured/enabled
     if 'BrowserStackConfig' not in dir(config_module) or not config_module.BrowserStackConfig.ENABLE:
         raise Exception('BrowserStack is not enabled or BrowserStackConfig class could not be found.')
     bs_config = config_module.BrowserStackConfig
