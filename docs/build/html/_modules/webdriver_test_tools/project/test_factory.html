@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_factory &mdash; WebDriver Test Tools 0.18.0 documentation</title>
+  <title>webdriver_test_tools.project.test_factory &mdash; WebDriver Test Tools 0.19.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.18.0 documentation" href="../../../index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.19.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.18
+                0.19
               </div>
             
           
@@ -248,15 +248,22 @@
 <span class="sd">        `browser_test_class`. If `browserstack` is set to True, returned class will have</span>
 <span class="sd">        appropriate attributes configured for BrowserStack execution</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Get base class name and docstring</span>
+    <span class="c1"># Get base class attributes</span>
     <span class="n">base_class_name</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__name__</span>
     <span class="n">base_class_doc</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__doc__</span>
-    <span class="c1"># generate new class with driver name appended to the class name and in parentheses at the start of the docstring</span>
-    <span class="n">new_class</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">base_class_name</span> <span class="o">+</span> <span class="n">browser_test_class</span><span class="o">.</span><span class="n">DRIVER_NAME</span><span class="p">,</span> <span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">),</span>
-                     <span class="p">{</span><span class="s1">&#39;__doc__&#39;</span><span class="p">:</span> <span class="s1">&#39;(</span><span class="si">{}</span><span class="s1">) &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">browser_test_class</span><span class="o">.</span><span class="n">DRIVER_NAME</span><span class="p">)</span> <span class="o">+</span> <span class="n">base_class_doc</span><span class="p">})</span>
+    <span class="n">base_class_module</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__module__</span>
+    <span class="c1"># Append the driver name portion of &lt;Driver&gt;TestCase to the class name</span>
+    <span class="n">browser_class_suffix</span> <span class="o">=</span> <span class="n">browser_test_class</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;TestCase&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">new_class_name</span> <span class="o">=</span> <span class="n">base_class_name</span> <span class="o">+</span> <span class="n">browser_class_suffix</span>
+    <span class="c1"># Use modified docstring and original module name from base class</span>
+    <span class="n">new_class_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;__doc__&#39;</span><span class="p">:</span> <span class="s1">&#39;(</span><span class="si">{}</span><span class="s1">) &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">browser_test_class</span><span class="o">.</span><span class="n">DRIVER_NAME</span><span class="p">)</span> <span class="o">+</span> <span class="n">base_class_doc</span><span class="p">,</span>
+        <span class="s1">&#39;__module__&#39;</span><span class="p">:</span> <span class="n">base_class_module</span><span class="p">,</span>
+    <span class="p">}</span>
     <span class="c1"># Use project&#39;s WebDriverConfig class if it exists</span>
     <span class="k">if</span> <span class="s1">&#39;WebDriverConfig&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">config_module</span><span class="p">):</span>
-        <span class="n">new_class</span><span class="o">.</span><span class="n">WebDriverConfig</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">WebDriverConfig</span>
+        <span class="n">new_class_dict</span><span class="p">[</span><span class="s1">&#39;WebDriverConfig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">WebDriverConfig</span>
+    <span class="n">new_class</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">new_class_name</span><span class="p">,</span> <span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">),</span> <span class="n">new_class_dict</span><span class="p">)</span>
     <span class="c1"># Enable BrowserStack execution</span>
     <span class="k">if</span> <span class="n">browserstack</span><span class="p">:</span>
         <span class="n">new_class</span> <span class="o">=</span> <span class="n">enable_browserstack</span><span class="p">(</span><span class="n">new_class</span><span class="p">,</span> <span class="n">config_module</span><span class="p">)</span></div>
@@ -266,12 +273,14 @@
 <div class="viewcode-block" id="enable_browserstack"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.enable_browserstack">[docs]</a><span class="k">def</span> <span class="nf">enable_browserstack</span><span class="p">(</span><span class="n">browser_test_case</span><span class="p">,</span> <span class="n">config_module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Enable BrowserStack test execution for a class</span>
 
-<span class="sd">    :param browser_test_case: Browser test case class to configure for BrowserStack usage</span>
+<span class="sd">    :param browser_test_case: Browser test case class to configure for BrowserStack</span>
+<span class="sd">        usage</span>
 <span class="sd">    :param config_module: The module object for &lt;test_project&gt;.config</span>
 
 <span class="sd">    :return: browser_test_case class with `ENABLE_BS` and `COMMAND_EXECUTOR` attributes</span>
 <span class="sd">        configured appropriately</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Raise exception if somehow this method was called but BrowserStack is not configured/enabled</span>
     <span class="k">if</span> <span class="s1">&#39;BrowserStackConfig&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserStackConfig</span><span class="o">.</span><span class="n">ENABLE</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;BrowserStack is not enabled or BrowserStackConfig class could not be found.&#39;</span><span class="p">)</span>
     <span class="n">bs_config</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserStackConfig</span>
@@ -318,7 +327,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.18.0',
+            VERSION:'0.19.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
