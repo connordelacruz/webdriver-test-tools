@@ -94,7 +94,7 @@ Project Structure
 ::
 
     <project-directory>/
-    ├── README.md
+    ├── README.rst
     ├── setup.py
     └── <test_package>/
         ├── __main__.py
