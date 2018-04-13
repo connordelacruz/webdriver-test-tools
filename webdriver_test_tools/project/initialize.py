@@ -13,7 +13,6 @@ from webdriver_test_tools.version import __version__, __selenium__
 
 # For formatted terminal output
 term = Terminal()
-
 # Prepend to input prompts
 PROMPT_PREFIX = '> '
 
@@ -205,7 +204,8 @@ def render_template(template_path, context):
     ).get_template(filename).render(context)
 
 
-def generate_context(test_package, test_tools_version, selenium_version, project_title=None):
+# TODO: document optional values and re-arranged params
+def generate_context(test_package, project_title=None, test_tools_version=__version__, selenium_version=__selenium__, version_badge=True):
     """Returns a jinja context to use for rendering templates
 
     :param test_package: Name of the python test package
@@ -215,6 +215,8 @@ def generate_context(test_package, test_tools_version, selenium_version, project
         the current version of webdriver_test_tools
     :param project_title: (Default = test_package) Human-readable title for the test
         project. Defaults to the value of test_package if not provided
+    :param version_badge: (Default = True) Include "generated using
+        webdriver_test_tools <version>" badge on README if True
 
     :return: Dictionary to use as a context when rendering Jinja templates
     """
@@ -226,6 +228,7 @@ def generate_context(test_package, test_tools_version, selenium_version, project
             'test_tools_version': test_tools_version,
             'selenium_version': selenium_version,
             'project_title': project_title,
+            'version_badge': version_badge,
             }
     return context
 
@@ -343,7 +346,7 @@ def initialize(target_path, package_name, project_title):
     """
     outer_path = os.path.abspath(target_path)
     package_name = validate_package_name(package_name)
-    context = generate_context(package_name, __version__, __selenium__, project_title)
+    context = generate_context(package_name, project_title)
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
     create_readme(outer_path, context)

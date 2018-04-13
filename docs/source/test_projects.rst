@@ -176,4 +176,3 @@ Template files to use as a starting point when writing new test modules or page 
 * ``page_object.py``: Template for page objects. Copy to the ``pages/`` directory to use as a starting point when creating new page objects.
 * ``test_case.py``: Template test module. Copy to the ``tests/`` directory to use as a starting point when creating new tests. 
 
-
