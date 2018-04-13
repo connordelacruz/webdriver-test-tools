@@ -18,14 +18,27 @@ Utilities for writing front-end test suites using `Selenium WebDriver <https://w
 
 .. contents::
 
+
 Overview
 ========
 
-This project aims to reduce the amount of time and additional code
-required to automate front-end functional testing by providing utilities
-and conventions for building test suites.
+This project aims to reduce the amount of time and additional code required to automate front-end functional testing by providing utilities and conventions for building test suites. 
 
-This project uses Selenium WebDriver for automated browser actions and the python unittest library for the test framework. 
+**Features:**
+
+- Utilities and extended functionality for the Selenium WebDriver package
+- Pre-defined test methods for commonly used test procedures
+- Unit testing framework for automated tests on multiple browsers
+- Implementation of the `Page Object Model <https://martinfowler.com/bliki/PageObject.html>`__ and pre-defined page objects for common elements (navbars, forms, etc)
+- Command line tool for quickly generating files and directories for new test projects
+- Support for automating tests on `BrowserStack <https://www.browserstack.com/>`__
+
+
+This project uses Selenium WebDriver for automated browser actions and the python unittest library for the test framework, documentation for which can be found below:
+
+- `Selenium with Python <https://seleniumhq.github.io/selenium/docs/api/py/api.html>`__
+- `Python unit testing framework <https://docs.python.org/3/library/unittest.html>`__
+
 
 Prerequisites
 =============
@@ -39,56 +52,46 @@ Python
 Drivers
 -------
 
-Required
-~~~~~~~~
+In order to use Selenium, drivers will need to be installed for any browser tests will be run on.
 
-The following web drivers are required:
+Cross-Platform
+~~~~~~~~~~~~~~
+
+The following cross-platform browser drivers are supported and enabled by default:
 
 -  `geckodriver <https://github.com/mozilla/geckodriver/releases>`__
    (FireFox)
 -  `chromedriver <https://sites.google.com/a/chromium.org/chromedriver/downloads>`__
    (Google Chrome)
 
-On MacOS, both drivers can be installed using
-`Homebrew <https://brew.sh/>`__:
+These can be disabled in ``<test_package>/config/browser.py`` by commenting out the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``. 
 
-::
 
-    brew install geckodriver chromedriver
+Platform-Specific
+~~~~~~~~~~~~~~~~~
 
-Platform-Specific (Optional)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The project currently supports the following platform-specific drivers as well. These are not required, but can be useful for adding tests for platform-specific drivers:
+The following platform-specific drivers are supported:
 
 -  `Safari <https://webkit.org/blog/6900/webdriver-support-in-safari-10/>`__ 
 -  `Internet Explorer <https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver>`__
 -  `Edge <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>`__
 
-These need to be enabled in ``<test_package>/config/browser.py`` by uncommenting 
-the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
+These need to be enabled in ``<test_package>/config/browser.py`` by uncommenting the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
 
 For information on usage and considerations, see the `additional browsers documentation <http://connordelacruz.com/webdriver-test-tools/additional_browsers.html>`__.
 
-Libraries
----------
-
-The framework uses Selenium WebDriver and python unittest libraries, documentation for which can be found below:
-
-- `Selenium with Python <https://seleniumhq.github.io/selenium/docs/api/py/api.html>`__
-- `Python unit testing framework <https://docs.python.org/3/library/unittest.html>`__
 
 Installation
 ============
 
-After installing the above prerequisites, run:
+The package can be installed using pip:
 
 ::
 
     pip install webdriver-test-tools
 
-**Note:** Command may be ``pip3`` instead of ``pip`` depending on the
-system
+**Note:** Command may be ``pip3`` instead of ``pip`` depending on the system.
+
 
 Command Line Usage
 ==================
@@ -105,6 +108,5 @@ To initialize a new test project in the current directory:
 
     webdriver_test_tools --init
 
-This will generate a new test package with template files and project
-directories. For information and examples, see the `test project
-documentation <http://connordelacruz.com/webdriver-test-tools/test_projects.html>`__.
+This will generate a new test package with template files and project directories. For information and examples, see the `test project documentation <http://connordelacruz.com/webdriver-test-tools/test_projects.html>`__.
+
