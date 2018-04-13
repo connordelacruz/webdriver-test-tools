@@ -170,10 +170,17 @@
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">jinja2</span>
+<span class="kn">from</span> <span class="nn">blessings</span> <span class="k">import</span> <span class="n">Terminal</span>
 
 <span class="kn">import</span> <span class="nn">webdriver_test_tools.project.templates</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.version</span> <span class="k">import</span> <span class="n">__version__</span><span class="p">,</span> <span class="n">__selenium__</span>
 
+
+<span class="c1"># For formatted terminal output</span>
+<span class="n">term</span> <span class="o">=</span> <span class="n">Terminal</span><span class="p">()</span>
+
+<span class="c1"># Prepend to input prompts</span>
+<span class="n">PROMPT_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;&gt; &#39;</span>
 
 <span class="c1"># Project creation functions</span>
 
@@ -300,14 +307,14 @@
 
 
 <div class="viewcode-block" id="create_readme"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_readme">[docs]</a><span class="k">def</span> <span class="nf">create_readme</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create README.md for test project</span>
+    <span class="sd">&quot;&quot;&quot;Create README.rst for test project</span>
 
 <span class="sd">    :param target_path: The path to the outer directory where the package directory is contained</span>
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
     <span class="n">template_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span></div>
-    <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;README.md&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;README.rst&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="create_gitignore"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_gitignore">[docs]</a><span class="k">def</span> <span class="nf">create_gitignore</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
@@ -337,22 +344,6 @@
     <span class="k">return</span> <span class="n">path</span>
 
 
-<div class="viewcode-block" id="validate_package_name"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.validate_package_name">[docs]</a><span class="k">def</span> <span class="nf">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python package name</span>
-
-<span class="sd">    :param package_name: The desired package name</span>
-
-<span class="sd">    :return: Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Trim outer whitespace and replace inner whitespace and hyphens with underscore</span>
-    <span class="n">package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+|-+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-    <span class="c1"># Remove non-alphanumeric or _ characters</span>
-    <span class="n">package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="p">)</span>
-    <span class="c1"># Remove leading characters until we hit a letter or underscore</span>
-    <span class="n">package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[^a-zA-Z_]+&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">package_name</span>
-
-
 <div class="viewcode-block" id="render_template_to_file"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.render_template_to_file">[docs]</a><span class="k">def</span> <span class="nf">render_template_to_file</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">target_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Writes rendered jinja template to a file</span>
 
@@ -379,16 +370,27 @@
     <span class="p">)</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="generate_context"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.generate_context">[docs]</a><span class="k">def</span> <span class="nf">generate_context</span><span class="p">(</span><span class="n">test_package</span><span class="p">,</span> <span class="n">test_tools_version</span><span class="p">,</span> <span class="n">selenium_version</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_context"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.generate_context">[docs]</a><span class="k">def</span> <span class="nf">generate_context</span><span class="p">(</span><span class="n">test_package</span><span class="p">,</span> <span class="n">test_tools_version</span><span class="p">,</span> <span class="n">selenium_version</span><span class="p">,</span> <span class="n">project_title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a jinja context to use for rendering templates</span>
 
 <span class="sd">    :param test_package: Name of the python test package</span>
-<span class="sd">    :param test_tools_version: Version of webdriver_test_tools to use as install dependency</span>
+<span class="sd">    :param test_tools_version: Version of webdriver_test_tools to use as install</span>
+<span class="sd">        dependency</span>
+<span class="sd">    :param selenium_version: Version of selenium package used when developing/testing</span>
+<span class="sd">        the current version of webdriver_test_tools</span>
+<span class="sd">    :param project_title: (Default = test_package) Human-readable title for the test</span>
+<span class="sd">        project. Defaults to the value of test_package if not provided</span>
+
+<span class="sd">    :return: Dictionary to use as a context when rendering Jinja templates</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">project_title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">project_title</span> <span class="o">=</span> <span class="n">test_package</span>
+
     <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;test_package&#39;</span><span class="p">:</span> <span class="n">test_package</span><span class="p">,</span>
             <span class="s1">&#39;test_tools_version&#39;</span><span class="p">:</span> <span class="n">test_tools_version</span><span class="p">,</span>
             <span class="s1">&#39;selenium_version&#39;</span><span class="p">:</span> <span class="n">selenium_version</span><span class="p">,</span>
+            <span class="s1">&#39;project_title&#39;</span><span class="p">:</span> <span class="n">project_title</span><span class="p">,</span>
             <span class="p">}</span></div>
     <span class="k">return</span> <span class="n">context</span>
 
@@ -408,17 +410,105 @@
     <span class="n">render_template_to_file</span><span class="p">(</span><span class="n">file_template</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">file_target</span><span class="p">)</span>
 
 
+<span class="c1"># Prompt helper methods</span>
+
+<div class="viewcode-block" id="ValidationError"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.ValidationError">[docs]</a><span class="k">class</span> <span class="nc">ValidationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Exception raised if input validation fails&quot;&quot;&quot;</span></div>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="nonempty"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.nonempty">[docs]</a><span class="k">def</span> <span class="nf">nonempty</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Input validation function. Raises ValidationError if text is empty</span>
+
+<span class="sd">    :param text: Text to validate</span>
+
+<span class="sd">    :return: Validated text</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">text</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter some text.&#39;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">text</span>
+
+
+<div class="viewcode-block" id="validate_package_name"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.validate_package_name">[docs]</a><span class="k">def</span> <span class="nf">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python package name</span>
+
+<span class="sd">    :param package_name: The desired package name</span>
+
+<span class="sd">    :return: Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Trim outer whitespace and replace inner whitespace and hyphens with underscore</span>
+    <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+|-+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="c1"># Remove non-alphanumeric or _ characters</span>
+    <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">validated_package_name</span><span class="p">)</span>
+    <span class="c1"># Remove leading characters until we hit a letter or underscore</span>
+    <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[^a-zA-Z_]+&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">validated_package_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">validated_package_name</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid package name.&#39;</span><span class="p">)</span>
+    <span class="c1"># Alert user of any changes made in validation</span>
+    <span class="k">if</span> <span class="n">package_name</span> <span class="o">!=</span> <span class="n">validated_package_name</span><span class="p">:</span>
+        <span class="n">message_format</span> <span class="o">=</span> <span class="s1">&#39;Name was changed to </span><span class="si">{}</span><span class="s1"> in order to be a valid python package&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">yellow</span><span class="p">(</span><span class="n">message_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">)))</span></div>
+    <span class="k">return</span> <span class="n">validated_package_name</span>
+
+
+<div class="viewcode-block" id="validate_project_title"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.validate_project_title">[docs]</a><span class="k">def</span> <span class="nf">validate_project_title</span><span class="p">(</span><span class="n">project_title</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sanitizes string to avoid syntax erros when inserting the title into template</span>
+<span class="sd">    files</span>
+
+<span class="sd">    :param project_title: The desired project title</span>
+
+<span class="sd">    :return: Modifed project_title with only alphanumeric characters, spaces, underscores, and hyphens</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Trim outer whitespace and remove that aren&#39;t alphanumeric or an underscore/hyphen</span>
+    <span class="n">validated_project_title</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s-]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">project_title</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">validated_project_title</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid project title.&#39;</span><span class="p">)</span>
+    <span class="c1"># Alert user of any changes made in validation</span>
+    <span class="k">if</span> <span class="n">project_title</span> <span class="o">!=</span> <span class="n">validated_project_title</span><span class="p">:</span>
+        <span class="n">message_format</span> <span class="o">=</span> <span class="s1">&#39;Title was changed to </span><span class="si">{}</span><span class="s1"> to avoid syntax errors.&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">yellow</span><span class="p">(</span><span class="n">message_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_project_title</span><span class="p">)))</span></div>
+    <span class="k">return</span> <span class="n">validated_project_title</span>
+
+
+<div class="viewcode-block" id="prompt"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.prompt">[docs]</a><span class="k">def</span> <span class="nf">prompt</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">nonempty</span><span class="p">,</span> <span class="n">trailing_newline</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prompt the user for input and validate it</span>
+
+<span class="sd">    :param text: Text to display in prompt</span>
+<span class="sd">    :param default: (Optional) default value</span>
+<span class="sd">    :param validate: (Default = nonempty) Validation function for input</span>
+<span class="sd">    :param trailing_newline: (Default = True) Print a blank line after receiving user input and successfully validating</span>
+
+<span class="sd">    :return: Validated input</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">prompt_text</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> [</span><span class="si">{}</span><span class="s1">]: &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span> <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span>
+    <span class="n">prompt_text</span> <span class="o">=</span> <span class="n">term</span><span class="o">.</span><span class="n">magenta</span><span class="p">(</span><span class="n">PROMPT_PREFIX</span> <span class="o">+</span> <span class="n">prompt_text</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">prompt_text</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">default</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">validate</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">bold_red</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)))</span>
+            <span class="k">continue</span>
+        <span class="k">break</span>
+    <span class="k">if</span> <span class="n">trailing_newline</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">val</span>
+
+
 <span class="c1"># Main methods</span>
 
-<div class="viewcode-block" id="initialize"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.initialize">[docs]</a><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
+<div class="viewcode-block" id="initialize"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.initialize">[docs]</a><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">project_title</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Initializes new project package</span>
 
 <span class="sd">    :param target_path: Path to directory that will contain test package</span>
 <span class="sd">    :param package_name: Name of the test package to create (will be validated)</span>
+<span class="sd">    :param project_title: Human readable title of the test project.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">outer_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
     <span class="n">package_name</span> <span class="o">=</span> <span class="n">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="n">generate_context</span><span class="p">(</span><span class="n">package_name</span><span class="p">,</span> <span class="n">__version__</span><span class="p">,</span> <span class="n">__selenium__</span><span class="p">)</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">generate_context</span><span class="p">(</span><span class="n">package_name</span><span class="p">,</span> <span class="n">__version__</span><span class="p">,</span> <span class="n">__selenium__</span><span class="p">,</span> <span class="n">project_title</span><span class="p">)</span>
     <span class="c1"># Initialize files in the outer directory</span>
     <span class="n">create_setup_file</span><span class="p">(</span><span class="n">outer_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
     <span class="n">create_readme</span><span class="p">(</span><span class="n">outer_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
@@ -433,26 +523,31 @@
     <span class="n">create_template_files</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="c1"># TODO: implement optional params</span>
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">project_title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Command line dialogs for initializing a test project</span>
 
-<span class="sd">    :param package_name: (Optional) If specified, the prompt asking the user to enter a package name will be skipped and function will continue using this as the package name</span>
+<span class="sd">    :param package_name: (Optional) If specified, the prompt asking the user to enter a</span>
+<span class="sd">        package name will be skipped and function will continue using this as the</span>
+<span class="sd">        package name</span>
+<span class="sd">    :param project_title: (Optional) If specified, the prompt asking the user to enter a</span>
+<span class="sd">        project title will be skipped and function will continue using this as the</span>
+<span class="sd">        project title</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">bold</span><span class="p">(</span><span class="s1">&#39;webdriver_test_tools </span><span class="si">{}</span><span class="s1"> project initialization&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">__version__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="c1"># Prompt for input if no package name is passed as a parameter</span>
-    <span class="k">if</span> <span class="n">package_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Enter a name for the test package&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(use only alphanumeric characters and underscores. Cannot start with a number)&#39;</span><span class="p">)</span>
-        <span class="n">package_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Package name: &#39;</span><span class="p">)</span>
-    <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
-    <span class="c1"># Alert user of any changes made in validation</span>
-    <span class="k">if</span> <span class="n">package_name</span> <span class="o">!=</span> <span class="n">validated_package_name</span><span class="p">:</span>
-        <span class="n">message_format</span> <span class="o">=</span> <span class="s1">&#39;Name was changed to </span><span class="si">{}</span><span class="s1"> in order to be a valid python package&#39;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">message_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Enter a name for the test package&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(use only alphanumeric characters and underscores. Cannot start with a number)&#39;</span><span class="p">)</span>
+    <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Package name&#39;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate_package_name</span><span class="p">)</span>
+    <span class="c1"># Prompt for optional project title, default to validated_package_name</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(Optional) Enter a human-readable name for the test project&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(can use alphanumeric characters, spaces, hyphens, and underscores)&#39;</span><span class="p">)</span>
+    <span class="n">validated_project_title</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Project title&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">validated_package_name</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate_project_title</span><span class="p">)</span>
     <span class="c1"># Create project package</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Creating test project...&#39;</span><span class="p">)</span>
-    <span class="n">initialize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">validated_package_name</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Project initialized.&#39;</span><span class="p">)</span></div>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To get started, set the SITE_URL for the project in </span><span class="si">{}</span><span class="s1">/config/site.py&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">))</span>
+    <span class="n">initialize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">validated_package_name</span><span class="p">,</span> <span class="n">validated_project_title</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">green</span><span class="p">(</span><span class="s1">&#39;Project initialized.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+    <span class="nb">print</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">bold</span><span class="p">(</span><span class="s1">&#39;To get started, set the SITE_URL for the project in </span><span class="si">{}</span><span class="s1">/config/site.py&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">)))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>

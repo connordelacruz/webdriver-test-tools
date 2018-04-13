@@ -187,6 +187,13 @@
             
   <div class="section" id="module-webdriver_test_tools.project.initialize">
 <span id="webdriver-test-tools-project-initialize-module"></span><h1>webdriver_test_tools.project.initialize module<a class="headerlink" href="#module-webdriver_test_tools.project.initialize" title="Permalink to this headline">¶</a></h1>
+<dl class="exception">
+<dt id="webdriver_test_tools.project.initialize.ValidationError">
+<em class="property">exception </em><code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">ValidationError</code><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#ValidationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.ValidationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Exception raised if input validation fails</p>
+</dd></dl>
+
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.create_config_files">
 <code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_config_files</code><span class="sig-paren">(</span><em>target_path</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_config_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_config_files" title="Permalink to this definition">¶</a></dt>
@@ -317,7 +324,7 @@
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.create_readme">
 <code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_readme</code><span class="sig-paren">(</span><em>target_path</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_readme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_readme" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create README.md for test project</p>
+<dd><p>Create README.rst for test project</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -402,16 +409,24 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.generate_context">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">generate_context</code><span class="sig-paren">(</span><em>test_package</em>, <em>test_tools_version</em>, <em>selenium_version</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#generate_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.generate_context" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">generate_context</code><span class="sig-paren">(</span><em>test_package</em>, <em>test_tools_version</em>, <em>selenium_version</em>, <em>project_title=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#generate_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.generate_context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a jinja context to use for rendering templates</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>test_package</strong> – Name of the python test package</li>
-<li><strong>test_tools_version</strong> – Version of webdriver_test_tools to use as install dependency</li>
+<li><strong>test_tools_version</strong> – Version of webdriver_test_tools to use as install
+dependency</li>
+<li><strong>selenium_version</strong> – Version of selenium package used when developing/testing
+the current version of webdriver_test_tools</li>
+<li><strong>project_title</strong> – (Default = test_package) Human-readable title for the test
+project. Defaults to the value of test_package if not provided</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Dictionary to use as a context when rendering Jinja templates</p>
 </td>
 </tr>
 </tbody>
@@ -420,7 +435,7 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.initialize">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">initialize</code><span class="sig-paren">(</span><em>target_path</em>, <em>package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.initialize" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">initialize</code><span class="sig-paren">(</span><em>target_path</em>, <em>package_name</em>, <em>project_title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.initialize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes new project package</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -429,6 +444,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>target_path</strong> – Path to directory that will contain test package</li>
 <li><strong>package_name</strong> – Name of the test package to create (will be validated)</li>
+<li><strong>project_title</strong> – Human readable title of the test project.</li>
 </ul>
 </td>
 </tr>
@@ -438,13 +454,60 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.main">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">main</code><span class="sig-paren">(</span><em>package_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.main" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">main</code><span class="sig-paren">(</span><em>package_name=None</em>, <em>project_title=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Command line dialogs for initializing a test project</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package_name</strong> – (Optional) If specified, the prompt asking the user to enter a package name will be skipped and function will continue using this as the package name</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>package_name</strong> – (Optional) If specified, the prompt asking the user to enter a
+package name will be skipped and function will continue using this as the
+package name</li>
+<li><strong>project_title</strong> – (Optional) If specified, the prompt asking the user to enter a
+project title will be skipped and function will continue using this as the
+project title</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.initialize.nonempty">
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">nonempty</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#nonempty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.nonempty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input validation function. Raises ValidationError if text is empty</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> – Text to validate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Validated text</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.initialize.prompt">
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>default=None</em>, <em>validate=&lt;function nonempty&gt;</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.prompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompt the user for input and validate it</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>text</strong> – Text to display in prompt</li>
+<li><strong>default</strong> – (Optional) default value</li>
+<li><strong>validate</strong> – (Default = nonempty) Validation function for input</li>
+<li><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user input and successfully validating</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Validated input</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -501,6 +564,23 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package_name</strong> – The desired package name</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.initialize.validate_project_title">
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">validate_project_title</code><span class="sig-paren">(</span><em>project_title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#validate_project_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.validate_project_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sanitizes string to avoid syntax erros when inserting the title into template
+files</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>project_title</strong> – The desired project title</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modifed project_title with only alphanumeric characters, spaces, underscores, and hyphens</td>
 </tr>
 </tbody>
 </table>

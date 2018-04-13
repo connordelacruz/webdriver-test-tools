@@ -3,6 +3,29 @@ Test Project Overview
 
 .. contents::
 
+Setup
+-----
+
+Installation
+~~~~~~~~~~~~
+
+After initializing the test project, change to the root directory of the project and run:
+
+::
+
+    pip install -e .
+
+Installing with the ``-e`` flag will update the package automatically when changes are made to the source code.
+
+**Note:** Command may be ``pip3`` instead of ``pip`` depending on the system
+
+
+Configuration
+~~~~~~~~~~~~~
+
+After initializing a project, the URL of the site to be tested will need to be configured. In ``<test_package>/config/site.py``, set the ``SITE_URL`` and ``BASE_URL`` of the ``SiteConfig`` class. You can add any other URLs you'll need as class variables as well. 
+
+
 Basic Command Line Usage
 ------------------------
 
@@ -42,8 +65,7 @@ To run just one test method in a TestCase class:
 
     python -m <test_package> --module <test_module> --test <TestClass>.<test_method>
 
-The ``--module`` argument can be omitted when using the ``--test``
-argument:
+The ``--module`` argument can be omitted when using the ``--test`` argument:
 
 ::
 
@@ -53,9 +75,7 @@ argument:
 
     python -m <test_package> --test <TestClass>.<test_method>
 
-**Note:** This can be less efficient as each module will be searched for
-the specified test, but the difference in performance will likely be
-unnoticeable.
+**Note:** This can be less efficient as each module will be searched for the specified test, but in practice the difference in performance is negligible.
 
 Multiple test classes and test methods can be run at once:
 
@@ -63,16 +83,13 @@ Multiple test classes and test methods can be run at once:
     
     python -m <test_package> --test <TestClass0> <TestClass1>.<test_method>
 
-To do any of the above in a specific browser rather than running in all
-available browsers, use the ``--browser <browser>`` command line
-argument. For a list of options you can specify with ``--browser``, run
-``python -m <test_package> --help``.
+To do any of the above in a specific browser rather than running in all available browsers, use the ``--browser <browser>`` command line argument. For a list of options you can specify with ``--browser``, run ``python -m <test_package> --help``.
+
 
 Project Structure
 -----------------
 
-``webdriver_test_tools --init`` will create the following files and
-directories inside the project directory:
+``webdriver_test_tools --init`` will create the following files and directories inside the project directory:
 
 ::
 
@@ -98,57 +115,65 @@ directories inside the project directory:
         └── tests/
             └── __init__.py
 
-This test structure is best used with the `Page Object
-Model <https://martinfowler.com/bliki/PageObject.html>`__. Interaction
-with the page should be handled by page objects to minimize the need to
-alter tests whenever the HTML is changed.
+This test structure is designed to be used with the `Page Object Model <https://martinfowler.com/bliki/PageObject.html>`__. Interaction with the page should be handled by page objects to minimize the need to alter tests whenever the HTML is changed.
+
 
 Test Project Root Contents
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``README.md`` is a template readme file with similar content to this
-documentation. ``setup.py`` is a python package setup file that allows
-the new test suite to be installed as a pip package.
+* ``setup.py``: Python package setup file that allows the new test suite to be installed as a pip package.
 
-Test Package Contents
-~~~~~~~~~~~~~~~~~~~~~
+
+Test Package Root Contents
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* ``__main__.py``: Required to run tests from the command line. 
+* ``__init__.py``: Empty init file so Python recognizes the directory as a package.
+
+
+Test Package Directories
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 config/
 ^^^^^^^
 
-Configurations used by test scripts for site URLs, web driver options,
-and the python unittest framework.
+Configurations used by test scripts for site URLs, web driver options, and the python unittest framework.
+
+* ``browser.py``: Configure which browsers to run tests in.
+* ``browserstack.py``: Enable and configure testing with `BrowserStack <https://browserstack.com>`__.
+* ``site.py``: Configure URLs used for testing.
+* ``test.py``: Configure the ``unittest.TestRunner`` class.
+* ``webdriver.py``: Configure WebDrivers and log output directory.
+
 
 data/
 ^^^^^
 
-Static data for tests that must use specific values (e.g. emails,
-usernames, etc).
+Static data for tests that must use specific values (e.g. emails, usernames, etc).
 
 log/
 ^^^^
 
-Default output directory for WebDriver logs.
+Default output directory for WebDriver logs. This can be changed in ``config/webdriver.py``.
 
 pages/
 ^^^^^^
 
-Page object classes for pages and components. These classes should
-handle locating and interacting with elements on the page. A template
-page object can be found in ``templates/page_object.py``.
+Page object classes for pages and components. These classes should handle locating and interacting with elements on the page. A template page object can be found in ``templates/page_object.py``.
 
 tests/
 ^^^^^^
 
-Test case modules. These use page objects to interact with elements and
-assert that the expected behavior occurs. A template test file can be
-found in ``templates/test_case.py``.
+Test case modules. These use page objects to interact with elements and assert that the expected behavior occurs. A template test file can be found in ``templates/test_case.py``.
 
-When adding new test files, be sure to update ``tests/__init__.py`` to
-include the new module so the framework can detect the new test cases.
+When adding new test files, be sure to update ``tests/__init__.py`` to include the new module so the framework can detect the new test cases.
 
 templates/
 ^^^^^^^^^^
 
-Template files to use as a starting point when writing new test modules
-or page objects.
+Template files to use as a starting point when writing new test modules or page objects.
+
+* ``page_object.py``: Template for page objects. Copy to the ``pages/`` directory to use as a starting point when creating new page objects.
+* ``test_case.py``: Template test module. Copy to the ``tests/`` directory to use as a starting point when creating new tests. 
+
+
