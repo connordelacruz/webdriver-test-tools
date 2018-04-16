@@ -3,7 +3,7 @@ import os
 import webdriver_test_tools.project.templates
 from webdriver_test_tools.project import initialize
 
-# TODO: document and clean up
+"""Rebuild source docs templates that are based on project template files"""
 
 docs_path = os.path.dirname(os.path.abspath(__file__))
 target_path = os.path.join(docs_path, 'source/test_projects.rst')
