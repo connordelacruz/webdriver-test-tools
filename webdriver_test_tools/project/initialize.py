@@ -7,7 +7,7 @@ import re
 import jinja2
 from blessings import Terminal
 
-import webdriver_test_tools.project.templates
+from webdriver_test_tools.project import templates
 from webdriver_test_tools.version import __version__, __selenium__
 
 
@@ -39,7 +39,7 @@ def create_log_directory(target_path):
     :param target_path: The path to the test package directory
     """
     target_path = os.path.abspath(target_path)
-    source_path = webdriver_test_tools.project.templates.log.get_path()
+    source_path = templates.log.get_path()
     log_path = create_directory(target_path, 'log')
     shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(log_path, '.gitignore'))
 
@@ -51,7 +51,7 @@ def create_tests_init(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = create_directory(os.path.abspath(target_path), 'tests')
-    template_path = webdriver_test_tools.project.templates.tests.get_path()
+    template_path = templates.tests.get_path()
     create_file_from_template(template_path, target_path, '__init__.py', context)
 
 
@@ -62,7 +62,7 @@ def create_config_files(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = create_directory(os.path.abspath(target_path), 'config')
-    template_path = webdriver_test_tools.project.templates.config.get_path()
+    template_path = templates.config.get_path()
     template_files = [
         '__init__.py',
         'browser.py',
@@ -82,7 +82,7 @@ def create_template_files(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = create_directory(os.path.abspath(target_path), 'templates')
-    template_path = webdriver_test_tools.project.templates.templates.get_path()
+    template_path = templates.templates.get_path()
     template_files = [
         'page_object.py',
         'test_case.py',
@@ -111,7 +111,7 @@ def create_main_module(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    template_path = webdriver_test_tools.project.templates.get_path()
+    template_path = templates.get_path()
     create_file_from_template(template_path, target_path, '__main__.py', context)
     # "Touch" __init__.py to create an empty file
     init_path = os.path.join(target_path, '__init__.py')
@@ -125,7 +125,7 @@ def create_setup_file(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    template_path = webdriver_test_tools.project.templates.get_path()
+    template_path = templates.get_path()
     create_file_from_template(template_path, target_path, 'setup.py', context)
 
 
@@ -136,7 +136,7 @@ def create_readme(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    template_path = webdriver_test_tools.project.templates.get_path()
+    template_path = templates.get_path()
     create_file_from_template(template_path, target_path, 'README.rst', context)
 
 
@@ -146,7 +146,7 @@ def create_gitignore(target_path):
     :param target_path: The path to the outer directory where the package directory is contained
     """
     target_path = os.path.abspath(target_path)
-    source_path = webdriver_test_tools.project.templates.get_path()
+    source_path = templates.get_path()
     shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(target_path, '.gitignore'))
 
 
