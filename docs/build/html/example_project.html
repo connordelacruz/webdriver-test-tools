@@ -351,15 +351,16 @@ to the <code class="docutils literal notranslate"><span class="pre">pages/</span
     <span class="c1"># Page Methods</span>
 
 <span class="hll">    <span class="k">def</span> <span class="nf">get_heading_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class="hll">        <span class="n">heading_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Locator</span><span class="o">.</span><span class="n">HEADING</span><span class="p">)</span>
+</span><span class="hll">        <span class="n">heading_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Locator</span><span class="o">.</span><span class="n">HEADING</span><span class="p">)</span>
 </span><span class="hll">        <span class="k">return</span> <span class="n">heading_element</span><span class="o">.</span><span class="n">text</span>
 </span>
 <span class="hll">    <span class="k">def</span> <span class="nf">click_more_information_link</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class="hll">        <span class="n">link_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Locator</span><span class="o">.</span><span class="n">INFO_LINK</span><span class="p">)</span>
+</span><span class="hll">        <span class="n">link_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Locator</span><span class="o">.</span><span class="n">INFO_LINK</span><span class="p">)</span>
 </span><span class="hll">        <span class="n">link_element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
 </span></pre></div>
 </div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">BasePage</span></code> method <code class="docutils literal notranslate"><span class="pre">self.find_element(locator)</span></code> is shorthand for <code class="docutils literal notranslate"><span class="pre">self.driver.find_element(*locator)</span></code>.</p>
 </div>
 </div>
 <div class="section" id="add-a-test">

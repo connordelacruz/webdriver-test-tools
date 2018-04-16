@@ -121,6 +121,8 @@ For our example tests, we’ll want to look at the heading text and click on the
     :pyobject: HomePage
     :emphasize-lines: 12-14,16-18
 
+The ``BasePage`` method ``self.find_element(locator)`` is shorthand for ``self.driver.find_element(*locator)``. 
+
 
 Add a test
 ----------
