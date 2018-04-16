@@ -33,11 +33,12 @@ def create_test_directories(target_path):
         create_directory(target_path, project_dir)
 
 
-# TODO: update param docs
 def create_log_directory(target_path, create_gitignore=True):
     """Creates log/ directory and log/.gitignore file
 
     :param target_path: The path to the test package directory
+    :param create_gitignore: (Default = True) Copy template .gitignore file to log
+        directory if True
     """
     target_path = os.path.abspath(target_path)
     source_path = templates.log.get_path()
@@ -299,7 +300,12 @@ def validate_project_title(project_title):
 
 
 def validate_yn(answer):
-    # TODO: document
+    """Validate y/n prompts
+
+    :param answer: User response to y/n prompt
+
+    :return: True if user answered yes, False if user answered no
+    """
     answer = answer.lower().strip()
     if answer not in ['y', 'yes', 'n', 'no']:
         raise ValidationError('Please enter "y" or "n".')
@@ -335,13 +341,14 @@ def prompt(text, default=None, validate=nonempty, trailing_newline=True):
 
 # Main methods
 
-# TODO: update param docs
 def initialize(target_path, package_name, project_title, create_gitignore=True):
     """Initializes new project package
 
     :param target_path: Path to directory that will contain test package
     :param package_name: Name of the test package to create (will be validated)
     :param project_title: Human readable title of the test project.
+    :param create_gitignore: (Default = True) Copy template .gitignore file to
+        project root directory if True
     """
     outer_path = os.path.abspath(target_path)
     package_name = validate_package_name(package_name)
