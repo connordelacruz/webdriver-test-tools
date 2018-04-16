@@ -39,10 +39,9 @@ def create_log_directory(target_path):
     :param target_path: The path to the test package directory
     """
     target_path = os.path.abspath(target_path)
-    source_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.log.__file__))
+    source_path = webdriver_test_tools.project.templates.log.get_path()
     log_path = create_directory(target_path, 'log')
-    filename = '.gitignore'
-    shutil.copy(os.path.join(source_path, filename), os.path.join(log_path, filename))
+    shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(log_path, '.gitignore'))
 
 
 def create_tests_init(target_path, context):
@@ -52,7 +51,7 @@ def create_tests_init(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = create_directory(os.path.abspath(target_path), 'tests')
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.tests.__file__))
+    template_path = webdriver_test_tools.project.templates.tests.get_path()
     create_file_from_template(template_path, target_path, '__init__.py', context)
 
 
@@ -63,7 +62,7 @@ def create_config_files(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = create_directory(os.path.abspath(target_path), 'config')
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.config.__file__))
+    template_path = webdriver_test_tools.project.templates.config.get_path()
     template_files = [
         '__init__.py',
         'browser.py',
@@ -83,7 +82,7 @@ def create_template_files(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = create_directory(os.path.abspath(target_path), 'templates')
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.templates.__file__))
+    template_path = webdriver_test_tools.project.templates.templates.get_path()
     template_files = [
         'page_object.py',
         'test_case.py',
@@ -112,7 +111,7 @@ def create_main_module(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
+    template_path = webdriver_test_tools.project.templates.get_path()
     create_file_from_template(template_path, target_path, '__main__.py', context)
     # "Touch" __init__.py to create an empty file
     init_path = os.path.join(target_path, '__init__.py')
@@ -126,7 +125,7 @@ def create_setup_file(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
+    template_path = webdriver_test_tools.project.templates.get_path()
     create_file_from_template(template_path, target_path, 'setup.py', context)
 
 
@@ -137,7 +136,7 @@ def create_readme(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
+    template_path = webdriver_test_tools.project.templates.get_path()
     create_file_from_template(template_path, target_path, 'README.rst', context)
 
 
@@ -147,9 +146,8 @@ def create_gitignore(target_path):
     :param target_path: The path to the outer directory where the package directory is contained
     """
     target_path = os.path.abspath(target_path)
-    source_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
-    filename = '.gitignore'
-    shutil.copy(os.path.join(source_path, filename), os.path.join(target_path, filename))
+    source_path = webdriver_test_tools.project.templates.get_path()
+    shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(target_path, '.gitignore'))
 
 
 # Helper functions
