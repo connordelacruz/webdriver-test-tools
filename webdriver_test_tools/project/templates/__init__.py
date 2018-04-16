@@ -1,3 +1,5 @@
+from . import project_root
+from . import package_root
 from . import config
 from . import templates
 from . import tests

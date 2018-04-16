@@ -111,7 +111,7 @@ def create_main_module(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    template_path = templates.get_path()
+    template_path = templates.package_root.get_path()
     create_file_from_template(template_path, target_path, '__main__.py', context)
     # "Touch" __init__.py to create an empty file
     init_path = os.path.join(target_path, '__init__.py')
@@ -125,7 +125,7 @@ def create_setup_file(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    template_path = templates.get_path()
+    template_path = templates.project_root.get_path()
     create_file_from_template(template_path, target_path, 'setup.py', context)
 
 
@@ -136,7 +136,7 @@ def create_readme(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    template_path = templates.get_path()
+    template_path = templates.project_root.get_path()
     create_file_from_template(template_path, target_path, 'README.rst', context)
 
 
@@ -146,7 +146,7 @@ def create_gitignore(target_path):
     :param target_path: The path to the outer directory where the package directory is contained
     """
     target_path = os.path.abspath(target_path)
-    source_path = templates.get_path()
+    source_path = templates.project_root.get_path()
     shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(target_path, '.gitignore'))
 
 
