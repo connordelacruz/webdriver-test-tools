@@ -33,7 +33,8 @@ def create_test_directories(target_path):
         create_directory(target_path, project_dir)
 
 
-def create_log_directory(target_path):
+# TODO: update param docs
+def create_log_directory(target_path, create_gitignore=True):
     """Creates log/ directory and log/.gitignore file
 
     :param target_path: The path to the test package directory
@@ -41,7 +42,8 @@ def create_log_directory(target_path):
     target_path = os.path.abspath(target_path)
     source_path = templates.log.get_path()
     log_path = create_directory(target_path, 'log')
-    shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(log_path, '.gitignore'))
+    if create_gitignore:
+        shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(log_path, '.gitignore'))
 
 
 def create_tests_init(target_path, context):
@@ -296,6 +298,14 @@ def validate_project_title(project_title):
     return validated_project_title
 
 
+def validate_yn(answer):
+    # TODO: document
+    answer = answer.lower().strip()
+    if answer not in ['y', 'yes', 'n', 'no']:
+        raise ValidationError('Please enter "y" or "n".')
+    return answer in ['y', 'yes']
+
+
 def prompt(text, default=None, validate=nonempty, trailing_newline=True):
     """Prompt the user for input and validate it
 
@@ -325,7 +335,8 @@ def prompt(text, default=None, validate=nonempty, trailing_newline=True):
 
 # Main methods
 
-def initialize(target_path, package_name, project_title):
+# TODO: update param docs
+def initialize(target_path, package_name, project_title, create_gitignore=True):
     """Initializes new project package
 
     :param target_path: Path to directory that will contain test package
@@ -338,12 +349,13 @@ def initialize(target_path, package_name, project_title):
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
     create_readme(outer_path, context)
-    create_gitignore(outer_path)
+    if create_gitignore:
+        create_gitignore(outer_path)
     package_path = create_package_directory(outer_path, package_name)
     # Initialize package files
     create_main_module(package_path, context)
     create_test_directories(package_path)
-    create_log_directory(package_path)
+    create_log_directory(package_path, create_gitignore)
     create_tests_init(package_path, context)
     create_config_files(package_path, context)
     create_template_files(package_path, context)
@@ -369,9 +381,13 @@ def main(package_name=None, project_title=None):
     print('(Optional) Enter a human-readable name for the test project')
     print('(can use alphanumeric characters, spaces, hyphens, and underscores)')
     validated_project_title = prompt('Project title', default=validated_package_name, validate=validate_project_title)
+    # Ask if gitignore files should be generated
+    print('Create .gitignore files for project root and log directory?')
+    print('(Ignores python cache files, package install files, local driver logs, etc)')
+    create_gitignore = prompt('Create .gitignore files (y/n)', default='y', validate=validate_yn)
     # Create project package
     print('Creating test project...')
-    initialize(os.getcwd(), validated_package_name, validated_project_title)
+    initialize(os.getcwd(), validated_package_name, validated_project_title, create_gitignore)
     print(term.green('Project initialized.') + '\n')
     print(term.bold('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
 
