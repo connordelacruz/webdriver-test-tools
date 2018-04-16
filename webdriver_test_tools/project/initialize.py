@@ -17,6 +17,7 @@ term = Terminal()
 PROMPT_PREFIX = '> '
 
 # Project creation functions
+# TODO: reorganize
 
 def create_test_directories(target_path):
     """Creates base directories for test writing that are initially empty (data/ and pages/)
@@ -63,22 +64,12 @@ def create_config_files(target_path, context):
     """
     target_path = create_directory(os.path.abspath(target_path), 'config')
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.config.__file__))
-    # Non-template config files
-    config_files = [
-        'browser.py',
-        'site.py',
-        'test.py',
-    ]
-    for config_file in config_files:
-        source_file = os.path.join(template_path, config_file)
-        # Precautionary check that this is a file
-        if os.path.isfile(source_file):
-            target_file = os.path.join(target_path, config_file)
-            shutil.copy(source_file, target_file)
-    # .j2 template files
     template_files = [
         '__init__.py',
+        'browser.py',
         'browserstack.py',
+        'site.py',
+        'test.py',
         'webdriver.py',
     ]
     for template_file in template_files:
@@ -93,13 +84,12 @@ def create_template_files(target_path, context):
     """
     target_path = create_directory(os.path.abspath(target_path), 'templates')
     template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.templates.__file__))
-    # Copy over page_object.py since it doesn't really need any changes
-    page_object_file = 'page_object.py'
-    page_object_source = os.path.join(template_path, page_object_file)
-    page_object_target = os.path.join(target_path, page_object_file)
-    shutil.copy(page_object_source, page_object_target)
-    # Render a template for test_case.py and copy that over
-    create_file_from_template(template_path, target_path, 'test_case.py', context)
+    template_files = [
+        'page_object.py',
+        'test_case.py',
+    ]
+    for template_file in template_files:
+        create_file_from_template(template_path, target_path, template_file, context)
 
 
 def create_package_directory(target_path, package_name):
