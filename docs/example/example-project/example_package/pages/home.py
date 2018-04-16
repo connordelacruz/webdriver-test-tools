@@ -15,10 +15,10 @@ class HomePage(BasePage):
     # Page Methods
 
     def get_heading_text(self):
-        heading_element = self.driver.find_element(*self.Locator.HEADING)
+        heading_element = self.find_element(self.Locator.HEADING)
         return heading_element.text
 
     def click_more_information_link(self):
-        link_element = self.driver.find_element(*self.Locator.INFO_LINK)
+        link_element = self.find_element(self.Locator.INFO_LINK)
         link_element.click()
 

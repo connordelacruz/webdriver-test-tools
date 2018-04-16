@@ -1,5 +1,5 @@
 {{ project_title }}
-===================
+{{ '=' * project_title|length() }}
 
 .. contents::
 
@@ -176,6 +176,7 @@ Template files to use as a starting point when writing new test modules or page 
 * ``page_object.py``: Template for page objects. Copy to the ``pages/`` directory to use as a starting point when creating new page objects.
 * ``test_case.py``: Template test module. Copy to the ``tests/`` directory to use as a starting point when creating new tests. 
 
+{% if version_badge %}
 ----
 
 |webdriver_test_tools|
@@ -183,4 +184,4 @@ Template files to use as a starting point when writing new test modules or page 
 .. |webdriver_test_tools| image:: https://img.shields.io/badge/generated%20using-webdriver__test__tools%20{{ test_tools_version }}-blue.svg?style=for-the-badge
     :alt: webdriver_test_tools {{ test_tools_version }}
 
-
+{% endif %}
