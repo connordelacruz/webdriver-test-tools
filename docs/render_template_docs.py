@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 import os
-import webdriver_test_tools.project.templates
+from webdriver_test_tools.project import templates
 from webdriver_test_tools.project import initialize
 
 """Rebuild source docs templates that are based on project template files"""
 
 docs_path = os.path.dirname(os.path.abspath(__file__))
 target_path = os.path.join(docs_path, 'source/test_projects.rst')
-template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
+template_path = templates.project_root.get_path()
 readme_path = os.path.join(template_path, 'README.rst.j2')
 
 test_package = '<test_package>'

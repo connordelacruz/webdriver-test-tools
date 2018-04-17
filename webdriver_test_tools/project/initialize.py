@@ -7,7 +7,7 @@ import re
 import jinja2
 from blessings import Terminal
 
-import webdriver_test_tools.project.templates
+from webdriver_test_tools.project import templates
 from webdriver_test_tools.version import __version__, __selenium__
 
 
@@ -18,88 +18,38 @@ PROMPT_PREFIX = '> '
 
 # Project creation functions
 
-def create_test_directories(target_path):
-    """Creates base directories for test writing that are initially empty (data/ and pages/)
+# Project Root
 
-    :param target_path: The path to the test package directory
+def create_setup_file(target_path, context):
+    """Creates setup.py for test project
+
+    :param target_path: The path to the outer directory where the package directory is contained
+    :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    project_dirs = [
-            'data',
-            'pages',
-            ]
-    for project_dir in project_dirs:
-        create_directory(target_path, project_dir)
+    template_path = templates.project_root.get_path()
+    create_file_from_template(template_path, target_path, 'setup.py', context)
 
 
-def create_log_directory(target_path):
-    """Creates log/ directory and log/.gitignore file
+def create_readme(target_path, context):
+    """Create README.rst for test project
 
-    :param target_path: The path to the test package directory
+    :param target_path: The path to the outer directory where the package directory is contained
+    :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    source_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.log.__file__))
-    log_path = create_directory(target_path, 'log')
-    filename = '.gitignore'
-    shutil.copy(os.path.join(source_path, filename), os.path.join(log_path, filename))
+    template_path = templates.project_root.get_path()
+    create_file_from_template(template_path, target_path, 'README.rst', context)
 
 
-def create_tests_init(target_path, context):
-    """Creates test package tests/ subdirectory and tests/__init__.py
+def create_gitignore(target_path):
+    """Create .gitignore file at the root of the test project
 
-    :param target_path: The path to the test package directory
-    :param context: Jinja context used to render template
+    :param target_path: The path to the outer directory where the package directory is contained
     """
-    target_path = create_directory(os.path.abspath(target_path), 'tests')
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.tests.__file__))
-    create_file_from_template(template_path, target_path, '__init__.py', context)
-
-
-def create_config_files(target_path, context):
-    """Creates test package config directory and config files
-
-    :param target_path: The path to the test package directory
-    :param context: Jinja context used to render template
-    """
-    target_path = create_directory(os.path.abspath(target_path), 'config')
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.config.__file__))
-    # Non-template config files
-    config_files = [
-        'browser.py',
-        'site.py',
-        'test.py',
-    ]
-    for config_file in config_files:
-        source_file = os.path.join(template_path, config_file)
-        # Precautionary check that this is a file
-        if os.path.isfile(source_file):
-            target_file = os.path.join(target_path, config_file)
-            shutil.copy(source_file, target_file)
-    # .j2 template files
-    template_files = [
-        '__init__.py',
-        'browserstack.py',
-        'webdriver.py',
-    ]
-    for template_file in template_files:
-        create_file_from_template(template_path, target_path, template_file, context)
-
-
-def create_template_files(target_path, context):
-    """Creates test package template directory and template files
-
-    :param target_path: The path to the test package directory
-    :param context: Jinja context used to render template
-    """
-    target_path = create_directory(os.path.abspath(target_path), 'templates')
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.templates.__file__))
-    # Copy over page_object.py since it doesn't really need any changes
-    page_object_file = 'page_object.py'
-    page_object_source = os.path.join(template_path, page_object_file)
-    page_object_target = os.path.join(target_path, page_object_file)
-    shutil.copy(page_object_source, page_object_target)
-    # Render a template for test_case.py and copy that over
-    create_file_from_template(template_path, target_path, 'test_case.py', context)
+    target_path = os.path.abspath(target_path)
+    source_path = templates.project_root.get_path()
+    shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(target_path, '.gitignore'))
 
 
 def create_package_directory(target_path, package_name):
@@ -115,6 +65,8 @@ def create_package_directory(target_path, package_name):
     return create_directory(target_path, package_directory)
 
 
+# Package Root
+
 def create_main_module(target_path, context):
     """Creates __main__.py and __init__.py modules for test package
 
@@ -122,47 +74,98 @@ def create_main_module(target_path, context):
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
+    template_path = templates.package_root.get_path()
     create_file_from_template(template_path, target_path, '__main__.py', context)
     # "Touch" __init__.py to create an empty file
     init_path = os.path.join(target_path, '__init__.py')
-    open(init_path, 'a').close()
+    touch(init_path)
 
 
-def create_setup_file(target_path, context):
-    """Creates setup.py for test project
+def create_test_directories(target_path):
+    """Creates base directories for test writing that are initially empty (data/ and pages/)
 
-    :param target_path: The path to the outer directory where the package directory is contained
+    :param target_path: The path to the test package directory
+    """
+    target_path = os.path.abspath(target_path)
+    project_dirs = [
+            'data',
+            'pages',
+            ]
+    for project_dir in project_dirs:
+        create_directory(target_path, project_dir)
+
+
+def create_log_directory(target_path, gitignore_files=True):
+    """Creates log/ directory and log/.gitignore file
+
+    :param target_path: The path to the test package directory
+    :param gitignore_files: (Default = True) Copy template .gitignore file to log
+        directory if True
+    """
+    target_path = os.path.abspath(target_path)
+    source_path = templates.log.get_path()
+    log_path = create_directory(target_path, 'log')
+    if gitignore_files:
+        shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(log_path, '.gitignore'))
+
+
+def create_tests_init(target_path, context):
+    """Creates test package tests/ subdirectory and tests/__init__.py
+
+    :param target_path: The path to the test package directory
     :param context: Jinja context used to render template
     """
-    target_path = os.path.abspath(target_path)
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
-    create_file_from_template(template_path, target_path, 'setup.py', context)
+    target_path = create_directory(os.path.abspath(target_path), 'tests')
+    template_path = templates.tests.get_path()
+    create_file_from_template(template_path, target_path, '__init__.py', context)
 
 
-def create_readme(target_path, context):
-    """Create README.rst for test project
+def create_config_files(target_path, context):
+    """Creates test package config directory and config files
 
-    :param target_path: The path to the outer directory where the package directory is contained
+    :param target_path: The path to the test package directory
     :param context: Jinja context used to render template
     """
-    target_path = os.path.abspath(target_path)
-    template_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
-    create_file_from_template(template_path, target_path, 'README.rst', context)
+    target_path = create_directory(os.path.abspath(target_path), 'config')
+    template_path = templates.config.get_path()
+    template_files = [
+        '__init__.py',
+        'browser.py',
+        'browserstack.py',
+        'site.py',
+        'test.py',
+        'webdriver.py',
+    ]
+    for template_file in template_files:
+        create_file_from_template(template_path, target_path, template_file, context)
 
 
-def create_gitignore(target_path):
-    """Create .gitignore file at the root of the test project
+def create_template_files(target_path, context):
+    """Creates test package template directory and template files
 
-    :param target_path: The path to the outer directory where the package directory is contained
+    :param target_path: The path to the test package directory
+    :param context: Jinja context used to render template
     """
-    target_path = os.path.abspath(target_path)
-    source_path = os.path.dirname(os.path.abspath(webdriver_test_tools.project.templates.__file__))
-    filename = '.gitignore'
-    shutil.copy(os.path.join(source_path, filename), os.path.join(target_path, filename))
+    target_path = create_directory(os.path.abspath(target_path), 'templates')
+    template_path = templates.templates.get_path()
+    template_files = [
+        'page_object.py',
+        'test_case.py',
+    ]
+    for template_file in template_files:
+        create_file_from_template(template_path, target_path, template_file, context)
 
 
 # Helper functions
+
+def touch(filepath):
+    """'Touch' a file. Creates an empty file if it doesn't exist, leaves existing files
+    unchanged
+
+    :param filepath: Path of the file to touch
+    """
+    open(filepath, 'a').close()
+
 
 def create_directory(target_path, directory_name):
     """Creates a directory in the target path if it doesn't already exist
@@ -178,18 +181,6 @@ def create_directory(target_path, directory_name):
     return path
 
 
-def render_template_to_file(template_path, context, target_path):
-    """Writes rendered jinja template to a file
-
-    :param template_path: The path to the jinja template
-    :param context: Jinja context used to render template
-    :param target_path: File path to write the rendered template to
-    """
-    with open(target_path, 'w') as f:
-        file_contents = render_template(template_path, context)
-        f.write(file_contents)
-
-
 def render_template(template_path, context):
     """Returns the rendered contents of a jinja template
 
@@ -202,6 +193,33 @@ def render_template(template_path, context):
     return jinja2.Environment(
         loader=jinja2.FileSystemLoader(path or './')
     ).get_template(filename).render(context)
+
+
+def render_template_to_file(template_path, context, target_path):
+    """Writes rendered jinja template to a file
+
+    :param template_path: The path to the jinja template
+    :param context: Jinja context used to render template
+    :param target_path: File path to write the rendered template to
+    """
+    with open(target_path, 'w') as f:
+        file_contents = render_template(template_path, context)
+        f.write(file_contents)
+
+
+def create_file_from_template(template_path, target_path, filename, context):
+    """Short hand function that renders a template with the specified filename followed by a '.j2' extension from the template path to a file with the specified name in the target path
+
+    The use of '.j2' as a file extension is to distinguish templates from package modules.
+
+    :param template_path: Path to template directory
+    :param target_path: Path to target directory
+    :param filename: Name of the template file. Will be used as the filename for the rendered file written to the target directory
+    :param context: Jinja context used to render template
+    """
+    file_template = os.path.join(template_path, filename + '.j2')
+    file_target = os.path.join(target_path, filename)
+    render_template_to_file(file_template, context, file_target)
 
 
 def generate_context(test_package, project_title=None, test_tools_version=__version__, selenium_version=__selenium__, version_badge=True):
@@ -231,21 +249,6 @@ def generate_context(test_package, project_title=None, test_tools_version=__vers
             'version_badge': version_badge,
             }
     return context
-
-
-def create_file_from_template(template_path, target_path, filename, context):
-    """Short hand function that renders a template with the specified filename followed by a '.j2' extension from the template path to a file with the specified name in the target path
-
-    The use of '.j2' as a file extension is to distinguish templates from package modules.
-
-    :param template_path: Path to template directory
-    :param target_path: Path to target directory
-    :param filename: Name of the template file. Will be used as the filename for the rendered file written to the target directory
-    :param context: Jinja context used to render template
-    """
-    file_template = os.path.join(template_path, filename + '.j2')
-    file_target = os.path.join(target_path, filename)
-    render_template_to_file(file_template, context, file_target)
 
 
 # Prompt helper methods
@@ -308,6 +311,19 @@ def validate_project_title(project_title):
     return validated_project_title
 
 
+def validate_yn(answer):
+    """Validate y/n prompts
+
+    :param answer: User response to y/n prompt
+
+    :return: True if user answered yes, False if user answered no
+    """
+    answer = answer.lower().strip()
+    if answer not in ['y', 'yes', 'n', 'no']:
+        raise ValidationError('Please enter "y" or "n".')
+    return answer in ['y', 'yes']
+
+
 def prompt(text, default=None, validate=nonempty, trailing_newline=True):
     """Prompt the user for input and validate it
 
@@ -337,12 +353,14 @@ def prompt(text, default=None, validate=nonempty, trailing_newline=True):
 
 # Main methods
 
-def initialize(target_path, package_name, project_title):
+def initialize(target_path, package_name, project_title, gitignore_files=True):
     """Initializes new project package
 
     :param target_path: Path to directory that will contain test package
     :param package_name: Name of the test package to create (will be validated)
     :param project_title: Human readable title of the test project.
+    :param gitignore_files: (Default = True) Copy template .gitignore file to
+        project root directory if True
     """
     outer_path = os.path.abspath(target_path)
     package_name = validate_package_name(package_name)
@@ -350,12 +368,13 @@ def initialize(target_path, package_name, project_title):
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
     create_readme(outer_path, context)
-    create_gitignore(outer_path)
+    if gitignore_files:
+        create_gitignore(outer_path)
     package_path = create_package_directory(outer_path, package_name)
     # Initialize package files
     create_main_module(package_path, context)
     create_test_directories(package_path)
-    create_log_directory(package_path)
+    create_log_directory(package_path, gitignore_files)
     create_tests_init(package_path, context)
     create_config_files(package_path, context)
     create_template_files(package_path, context)
@@ -381,9 +400,13 @@ def main(package_name=None, project_title=None):
     print('(Optional) Enter a human-readable name for the test project')
     print('(can use alphanumeric characters, spaces, hyphens, and underscores)')
     validated_project_title = prompt('Project title', default=validated_package_name, validate=validate_project_title)
+    # Ask if gitignore files should be generated
+    print('Create .gitignore files for project root and log directory?')
+    print('(Ignores python cache files, package install files, local driver logs, etc)')
+    gitignore_files = prompt('Create .gitignore files (y/n)', default='y', validate=validate_yn)
     # Create project package
     print('Creating test project...')
-    initialize(os.getcwd(), validated_package_name, validated_project_title)
+    initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files)
     print(term.green('Project initialized.') + '\n')
     print(term.bold('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
 

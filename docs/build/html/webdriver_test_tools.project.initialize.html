@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.initialize module &mdash; WebDriver Test Tools 0.19.1 documentation</title>
+  <title>webdriver_test_tools.project.initialize module &mdash; WebDriver Test Tools 0.20.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.19.1 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.20.0 documentation" href="index.html"/>
         <link rel="up" title="webdriver_test_tools.project package" href="webdriver_test_tools.project.html"/>
         <link rel="next" title="webdriver_test_tools.project.test_factory module" href="webdriver_test_tools.project.test_factory.html"/>
         <link rel="prev" title="webdriver_test_tools.project package" href="webdriver_test_tools.project.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                0.19
+                0.20
               </div>
             
           
@@ -270,13 +270,18 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.create_log_directory">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_log_directory</code><span class="sig-paren">(</span><em>target_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_log_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_log_directory" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_log_directory</code><span class="sig-paren">(</span><em>target_path</em>, <em>gitignore_files=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_log_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_log_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates log/ directory and log/.gitignore file</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target_path</strong> – The path to the test package directory</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target_path</strong> – The path to the test package directory</li>
+<li><strong>gitignore_files</strong> – (Default = True) Copy template .gitignore file to log
+directory if True</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -409,7 +414,7 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.generate_context">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">generate_context</code><span class="sig-paren">(</span><em>test_package</em>, <em>project_title=None</em>, <em>test_tools_version='0.19.1'</em>, <em>selenium_version='3.9.0'</em>, <em>version_badge=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#generate_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.generate_context" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">generate_context</code><span class="sig-paren">(</span><em>test_package</em>, <em>project_title=None</em>, <em>test_tools_version='0.20.0'</em>, <em>selenium_version='3.9.0'</em>, <em>version_badge=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#generate_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.generate_context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a jinja context to use for rendering templates</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -438,7 +443,7 @@ webdriver_test_tools &lt;version&gt;” badge on README if True</li>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.initialize">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">initialize</code><span class="sig-paren">(</span><em>target_path</em>, <em>package_name</em>, <em>project_title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.initialize" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">initialize</code><span class="sig-paren">(</span><em>target_path</em>, <em>package_name</em>, <em>project_title</em>, <em>gitignore_files=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.initialize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes new project package</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -448,6 +453,8 @@ webdriver_test_tools &lt;version&gt;” badge on README if True</li>
 <li><strong>target_path</strong> – Path to directory that will contain test package</li>
 <li><strong>package_name</strong> – Name of the test package to create (will be validated)</li>
 <li><strong>project_title</strong> – Human readable title of the test project.</li>
+<li><strong>gitignore_files</strong> – (Default = True) Copy template .gitignore file to
+project root directory if True</li>
 </ul>
 </td>
 </tr>
@@ -557,6 +564,21 @@ project title</li>
 </dd></dl>
 
 <dl class="function">
+<dt id="webdriver_test_tools.project.initialize.touch">
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">touch</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#touch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.touch" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘Touch’ a file. Creates an empty file if it doesn’t exist, leaves existing files
+unchanged</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath</strong> – Path of the file to touch</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="webdriver_test_tools.project.initialize.validate_package_name">
 <code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">validate_package_name</code><span class="sig-paren">(</span><em>package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#validate_package_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.validate_package_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes and replaces characters to ensure a string is a valid python package name</p>
@@ -584,6 +606,22 @@ files</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>project_title</strong> – The desired project title</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modifed project_title with only alphanumeric characters, spaces, underscores, and hyphens</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.initialize.validate_yn">
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">validate_yn</code><span class="sig-paren">(</span><em>answer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#validate_yn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.validate_yn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate y/n prompts</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>answer</strong> – User response to y/n prompt</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if user answered yes, False if user answered no</td>
 </tr>
 </tbody>
 </table>
@@ -635,7 +673,7 @@ files</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.19.1',
+            VERSION:'0.20.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
