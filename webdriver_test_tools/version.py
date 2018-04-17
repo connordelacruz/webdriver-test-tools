@@ -9,5 +9,5 @@
 __version__ = '0.20.0'
 __devstatus__ = 'Development Status :: 2 - Pre-Alpha'
 
-__selenium__ = '3.9.0'
+__selenium__ = '3.11.0'
 
