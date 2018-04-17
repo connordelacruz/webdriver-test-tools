@@ -78,7 +78,7 @@ def create_main_module(target_path, context):
     create_file_from_template(template_path, target_path, '__main__.py', context)
     # "Touch" __init__.py to create an empty file
     init_path = os.path.join(target_path, '__init__.py')
-    open(init_path, 'a').close()
+    touch(init_path)
 
 
 def create_test_directories(target_path):
@@ -157,6 +157,15 @@ def create_template_files(target_path, context):
 
 
 # Helper functions
+
+def touch(filepath):
+    """'Touch' a file. Creates an empty file if it doesn't exist, leaves existing files
+    unchanged
+
+    :param filepath: Path of the file to touch
+    """
+    open(filepath, 'a').close()
+
 
 def create_directory(target_path, directory_name):
     """Creates a directory in the target path if it doesn't already exist
