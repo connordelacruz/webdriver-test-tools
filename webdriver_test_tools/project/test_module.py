@@ -22,6 +22,10 @@ def main(tests_module, config_module=None):
     # Parse arguments
     parser = get_parser(browser_config, browserstack_config)
     args = parser.parse_args()
+    # If --list is specified, print available tests and exit
+    if args.list:
+        list_tests(tests_module)
+        exit()
     # handle --browserstack arg if enabled
     browserstack = 'browserstack' in dir(args) and args.browserstack
     # Determine what config class to use based on --browserstack arg
@@ -74,6 +78,9 @@ def get_parser(browser_config=None, browserstack_config=None):
     # Arguments for specifying test module to run
     parser.add_argument('-m', '--module', nargs='+', metavar='<module>',
                         help='Run only tests in specific test modules')
+    # Argument for listing tests
+    parser.add_argument('-l', '--list', action='store_true',
+                        help='Print a list of available tests')
     return parser
 
 
@@ -185,6 +192,14 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
         # TODO: integrate into custom test runner class
         print('', 'See BrowserStack Automation Dashboard for Detailed Results:',
               'https://www.browserstack.com/automate', sep='\n')
+
+
+def list_tests(tests_module):
+    # TODO: document and implement
+    tests = test_loader.load_project_tests(tests_module)
+    # TODO: use unittest.TestLoader to load tests, then print out a suite
+    for test_case in tests:
+        print(test_case)
 
 
 
