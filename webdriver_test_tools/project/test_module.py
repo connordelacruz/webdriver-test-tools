@@ -1,6 +1,8 @@
 # Functions for test modules
 import argparse
 import unittest
+import textwrap
+from blessings import Terminal
 
 from webdriver_test_tools import config
 from webdriver_test_tools.project import test_loader, test_factory
@@ -194,12 +196,17 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
               'https://www.browserstack.com/automate', sep='\n')
 
 
+# TODO: take arguments for modules/classes to print tests from
 def list_tests(tests_module):
     # TODO: document and implement
+    # For formatted terminal output
+    term = Terminal()
     tests = test_loader.load_project_tests(tests_module)
-    # TODO: use unittest.TestLoader to load tests, then print out a suite
-    for test_case in tests:
-        print(test_case)
+    for test_class in tests:
+        print(term.blue(test_class.__name__) + ':')
+        test_cases = unittest.loader.getTestCaseNames(test_class, 'test')
+        for test_case in test_cases:
+            print(textwrap.indent(test_case, '   '))
 
 
 
