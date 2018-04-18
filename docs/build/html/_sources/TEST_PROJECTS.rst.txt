@@ -35,55 +35,65 @@ For info on command line arguments:
 
     python -m <test_package> --help
 
+
+Running Tests
+~~~~~~~~~~~~~
+
 To run all tests:
 
 ::
 
     python -m <test_package>
 
-To run all test cases in a file:
+To run all test cases in one or more modules:
 
 ::
 
-    python -m <test_package> --module <test_module>
+    python -m <test_package> --module <test_module> [<test_module> ...]
 
-Multiple modules can be run at once:
-
-::
-
-    python -m <test_package> --module <test_module0> <test_module1>
-
-To run a single TestCase class in a file:
+To run specific TestCase classes:
 
 ::
 
-    python -m <test_package> --module <test_module> --test <TestClass>
+    python -m <test_package> --test <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
 
-To run just one test method in a TestCase class:
+The ``--test`` argument will run all tests in a class if no method is specified for it.
 
-::
+**Note:** If the ``--module`` and ``--test`` arguments are used together, only the specified modules will be searched when looking for the specified test classes. If any of the test classes do not exist in any of the specified modules, they will be ignored.
 
-    python -m <test_package> --module <test_module> --test <TestClass>.<test_method>
 
-The ``--module`` argument can be omitted when using the ``--test`` argument:
+Using Specific Browsers
+^^^^^^^^^^^^^^^^^^^^^^^
 
-::
-
-    python -m <test_package> --test <TestClass>
+To do any of the above in specific browsers rather than running in all available browsers, use the ``--browser`` command line argument:
 
 ::
 
-    python -m <test_package> --test <TestClass>.<test_method>
+    python -m <test_package> <args> --browser <browser> [<browser ...]
 
-**Note:** This can be less efficient as each module will be searched for the specified test, but in practice the difference in performance is negligible.
+For a list of options you can specify with ``--browser``, run ``python -m <test_package> --help``.
 
-Multiple test classes and test methods can be run at once:
+
+List Available Tests
+~~~~~~~~~~~~~~~~~~~~
+
+To print a list of available test classes and methods:
 
 ::
-    
-    python -m <test_package> --test <TestClass0> <TestClass1>.<test_method>
 
-To do any of the above in a specific browser rather than running in all available browsers, use the ``--browser <browser>`` command line argument. For a list of options you can specify with ``--browser``, run ``python -m <test_package> --help``.
+    python -m <test_package> --list
+
+To only list test classes from specific modules:
+
+::
+
+    python -m <test_package> --list --module <test_module> [<test_module> ...]
+
+To only list specific test classes:
+
+::
+
+    python -m <test_package> --list --test <TestClass> [<TestClass> ...]
 
 
 Project Structure

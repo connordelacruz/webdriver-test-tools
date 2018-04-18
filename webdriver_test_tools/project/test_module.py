@@ -1,6 +1,8 @@
 # Functions for test modules
 import argparse
 import unittest
+import textwrap
+from blessings import Terminal
 
 from webdriver_test_tools import config
 from webdriver_test_tools.project import test_loader, test_factory
@@ -22,6 +24,13 @@ def main(tests_module, config_module=None):
     # Parse arguments
     parser = get_parser(browser_config, browserstack_config)
     args = parser.parse_args()
+    # get --test and --module args
+    test_class_map = parse_test_names(args.test)
+    test_module_names = args.module
+    # If --list is specified, print available tests and exit
+    if args.list:
+        list_tests(tests_module, test_class_map, test_module_names)
+        exit()
     # handle --browserstack arg if enabled
     browserstack = 'browserstack' in dir(args) and args.browserstack
     # Determine what config class to use based on --browserstack arg
@@ -36,8 +45,6 @@ def main(tests_module, config_module=None):
             browser_class for browser_name, browser_class in browser_config_class.BROWSER_TEST_CLASSES.items()
             if browser_name in args.browser
         ]
-    test_class_map = parse_test_names(args.test)
-    test_module_names = args.module
     # Run tests using parsed args
     run_tests(tests_module, config_module, browser_classes, test_class_map, test_module_names, browserstack)
 
@@ -74,9 +81,13 @@ def get_parser(browser_config=None, browserstack_config=None):
     # Arguments for specifying test module to run
     parser.add_argument('-m', '--module', nargs='+', metavar='<module>',
                         help='Run only tests in specific test modules')
+    # Argument for listing tests
+    parser.add_argument('-l', '--list', action='store_true',
+                        help='Print a list of available tests and exit')
     return parser
 
 
+# TODO: style using Terminal()
 def format_browser_choices(browser_config, browserstack_config):
     """Format the help string for browser choices
 
@@ -182,9 +193,29 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
     test_runner.run(browser_test_suite)
     # Link to BrowserStack automation dashboard if applicable
     if browserstack:
-        # TODO: integrate into custom test runner class
+        # TODO: integrate into custom test runner class?
         print('', 'See BrowserStack Automation Dashboard for Detailed Results:',
               'https://www.browserstack.com/automate', sep='\n')
+
+
+def list_tests(tests_module, test_class_map=None, test_module_names=None):
+    """Print a list of available tests
+
+    :param tests_module: The module object for <test_project>.tests
+    :param test_class_map: (Optional) Result of passing parsed arg for --test command
+        line argument to parse_test_names()
+    :param test_module_names: (Optional) Parsed arg for --module command line argument
+    """
+    test_class_names = None if test_class_map is None else test_class_map.keys()
+    # For formatted terminal output
+    term = Terminal()
+    indent = ' ' * 3
+    tests = test_loader.load_project_tests(tests_module, test_class_names, test_module_names)
+    for test_class in tests:
+        print(term.blue(test_class.__name__) + ':')
+        test_cases = unittest.loader.getTestCaseNames(test_class, 'test')
+        for test_case in test_cases:
+            print(textwrap.indent(test_case, indent))
 
 
 

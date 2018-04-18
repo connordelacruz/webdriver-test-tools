@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Test Project Overview &mdash; WebDriver Test Tools 0.21.0 documentation</title>
+  <title>Test Project Overview &mdash; WebDriver Test Tools 0.22.0 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.21.0 documentation" href="index.html"/>
+    <link rel="top" title="WebDriver Test Tools 0.22.0 documentation" href="index.html"/>
         <link rel="next" title="Example Project" href="example_project.html"/>
         <link rel="prev" title="Selenium WebDriver Test Tools" href="README.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.21
+                0.22
               </div>
             
           
@@ -101,7 +101,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#basic-command-line-usage">Basic Command Line Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-command-line-usage">Basic Command Line Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-specific-browsers">Using Specific Browsers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#list-available-tests">List Available Tests</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#project-structure">Project Structure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#test-project-root-contents">Test Project Root Contents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test-package-root-contents">Test Package Root Contents</a></li>
@@ -196,17 +203,24 @@
 <li><a class="reference internal" href="#configuration" id="id4">Configuration</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#basic-command-line-usage" id="id5">Basic Command Line Usage</a></li>
-<li><a class="reference internal" href="#project-structure" id="id6">Project Structure</a><ul>
-<li><a class="reference internal" href="#test-project-root-contents" id="id7">Test Project Root Contents</a></li>
-<li><a class="reference internal" href="#test-package-root-contents" id="id8">Test Package Root Contents</a></li>
-<li><a class="reference internal" href="#test-package-directories" id="id9">Test Package Directories</a><ul>
-<li><a class="reference internal" href="#config" id="id10">config/</a></li>
-<li><a class="reference internal" href="#data" id="id11">data/</a></li>
-<li><a class="reference internal" href="#log" id="id12">log/</a></li>
-<li><a class="reference internal" href="#pages" id="id13">pages/</a></li>
-<li><a class="reference internal" href="#tests" id="id14">tests/</a></li>
-<li><a class="reference internal" href="#templates" id="id15">templates/</a></li>
+<li><a class="reference internal" href="#basic-command-line-usage" id="id5">Basic Command Line Usage</a><ul>
+<li><a class="reference internal" href="#running-tests" id="id6">Running Tests</a><ul>
+<li><a class="reference internal" href="#using-specific-browsers" id="id7">Using Specific Browsers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#list-available-tests" id="id8">List Available Tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#project-structure" id="id9">Project Structure</a><ul>
+<li><a class="reference internal" href="#test-project-root-contents" id="id10">Test Project Root Contents</a></li>
+<li><a class="reference internal" href="#test-package-root-contents" id="id11">Test Package Root Contents</a></li>
+<li><a class="reference internal" href="#test-package-directories" id="id12">Test Package Directories</a><ul>
+<li><a class="reference internal" href="#config" id="id13">config/</a></li>
+<li><a class="reference internal" href="#data" id="id14">data/</a></li>
+<li><a class="reference internal" href="#log" id="id15">log/</a></li>
+<li><a class="reference internal" href="#pages" id="id16">pages/</a></li>
+<li><a class="reference internal" href="#tests" id="id17">tests/</a></li>
+<li><a class="reference internal" href="#templates" id="id18">templates/</a></li>
 </ul>
 </li>
 </ul>
@@ -237,42 +251,49 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 </div>
+<div class="section" id="running-tests">
+<h3><a class="toc-backref" href="#id6">Running Tests</a><a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h3>
 <p>To run all tests:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>To run all test cases in a file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span>
+<p>To run all test cases in one or more modules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Multiple modules can be run at once:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module0</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">test_module1</span><span class="o">&gt;</span>
+<p>To run specific TestCase classes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span><span class="p">[</span><span class="o">.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span><span class="p">[</span><span class="o">.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>To run a single TestCase class in a file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">--test</span></code> argument will run all tests in a class if no method is specified for it.</p>
+<p><strong>Note:</strong> If the <code class="docutils literal notranslate"><span class="pre">--module</span></code> and <code class="docutils literal notranslate"><span class="pre">--test</span></code> arguments are used together, only the specified modules will be searched when looking for the specified test classes. If any of the test classes do not exist in any of the specified modules, they will be ignored.</p>
+<div class="section" id="using-specific-browsers">
+<h4><a class="toc-backref" href="#id7">Using Specific Browsers</a><a class="headerlink" href="#using-specific-browsers" title="Permalink to this headline">¶</a></h4>
+<p>To do any of the above in specific browsers rather than running in all available browsers, use the <code class="docutils literal notranslate"><span class="pre">--browser</span></code> command line argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">browser</span> <span class="o">&lt;</span><span class="n">browser</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">browser</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>To run just one test method in a TestCase class:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span>
+<p>For a list of options you can specify with <code class="docutils literal notranslate"><span class="pre">--browser</span></code>, run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">&lt;test_package&gt;</span> <span class="pre">--help</span></code>.</p>
+</div>
+</div>
+<div class="section" id="list-available-tests">
+<h3><a class="toc-backref" href="#id8">List Available Tests</a><a class="headerlink" href="#list-available-tests" title="Permalink to this headline">¶</a></h3>
+<p>To print a list of available test classes and methods:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="nb">list</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">--module</span></code> argument can be omitted when using the <code class="docutils literal notranslate"><span class="pre">--test</span></code> argument:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span>
+<p>To only list test classes from specific modules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="nb">list</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span>
+<p>To only list specific test classes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="nb">list</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p><strong>Note:</strong> This can be less efficient as each module will be searched for the specified test, but in practice the difference in performance is negligible.</p>
-<p>Multiple test classes and test methods can be run at once:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass0</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">TestClass1</span><span class="o">&gt;.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span>
-</pre></div>
 </div>
-<p>To do any of the above in a specific browser rather than running in all available browsers, use the <code class="docutils literal notranslate"><span class="pre">--browser</span> <span class="pre">&lt;browser&gt;</span></code> command line argument. For a list of options you can specify with <code class="docutils literal notranslate"><span class="pre">--browser</span></code>, run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">&lt;test_package&gt;</span> <span class="pre">--help</span></code>.</p>
 </div>
 <div class="section" id="project-structure">
-<h2><a class="toc-backref" href="#id6">Project Structure</a><a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">Project Structure</a><a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span> <span class="pre">--init</span></code> will create the following files and directories inside the project directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;project-directory&gt;/
 ├── README.rst
@@ -299,22 +320,22 @@
 </div>
 <p>This test structure is designed to be used with the <a class="reference external" href="https://martinfowler.com/bliki/PageObject.html">Page Object Model</a>. Interaction with the page should be handled by page objects to minimize the need to alter tests whenever the HTML is changed.</p>
 <div class="section" id="test-project-root-contents">
-<h3><a class="toc-backref" href="#id7">Test Project Root Contents</a><a class="headerlink" href="#test-project-root-contents" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">Test Project Root Contents</a><a class="headerlink" href="#test-project-root-contents" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">setup.py</span></code>: Python package setup file that allows the new test suite to be installed as a pip package.</li>
 </ul>
 </div>
 <div class="section" id="test-package-root-contents">
-<h3><a class="toc-backref" href="#id8">Test Package Root Contents</a><a class="headerlink" href="#test-package-root-contents" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Test Package Root Contents</a><a class="headerlink" href="#test-package-root-contents" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">__main__.py</span></code>: Required to run tests from the command line.</li>
 <li><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>: Empty init file so Python recognizes the directory as a package.</li>
 </ul>
 </div>
 <div class="section" id="test-package-directories">
-<h3><a class="toc-backref" href="#id9">Test Package Directories</a><a class="headerlink" href="#test-package-directories" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Test Package Directories</a><a class="headerlink" href="#test-package-directories" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="config">
-<h4><a class="toc-backref" href="#id10">config/</a><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id13">config/</a><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h4>
 <p>Configurations used by test scripts for site URLs, web driver options, and the python unittest framework.</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">browser.py</span></code>: Configure which browsers to run tests in.</li>
@@ -325,24 +346,24 @@
 </ul>
 </div>
 <div class="section" id="data">
-<h4><a class="toc-backref" href="#id11">data/</a><a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id14">data/</a><a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
 <p>Static data for tests that must use specific values (e.g.&nbsp;emails, usernames, etc).</p>
 </div>
 <div class="section" id="log">
-<h4><a class="toc-backref" href="#id12">log/</a><a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id15">log/</a><a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h4>
 <p>Default output directory for WebDriver logs. This can be changed in <code class="docutils literal notranslate"><span class="pre">config/webdriver.py</span></code>.</p>
 </div>
 <div class="section" id="pages">
-<h4><a class="toc-backref" href="#id13">pages/</a><a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id16">pages/</a><a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h4>
 <p>Page object classes for pages and components. These classes should handle locating and interacting with elements on the page. A template page object can be found in <code class="docutils literal notranslate"><span class="pre">templates/page_object.py</span></code>.</p>
 </div>
 <div class="section" id="tests">
-<h4><a class="toc-backref" href="#id14">tests/</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id17">tests/</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
 <p>Test case modules. These use page objects to interact with elements and assert that the expected behavior occurs. A template test file can be found in <code class="docutils literal notranslate"><span class="pre">templates/test_case.py</span></code>.</p>
 <p>When adding new test files, be sure to update <code class="docutils literal notranslate"><span class="pre">tests/__init__.py</span></code> to include the new module so the framework can detect the new test cases.</p>
 </div>
 <div class="section" id="templates">
-<h4><a class="toc-backref" href="#id15">templates/</a><a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id18">templates/</a><a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h4>
 <p>Template files to use as a starting point when writing new test modules or page objects.</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">page_object.py</span></code>: Template for page objects. Copy to the <code class="docutils literal notranslate"><span class="pre">pages/</span></code> directory to use as a starting point when creating new page objects.</li>
@@ -397,7 +418,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.21.0',
+            VERSION:'0.22.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
