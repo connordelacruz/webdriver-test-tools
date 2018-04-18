@@ -260,6 +260,26 @@ Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified</li>
 </dd></dl>
 
 <dl class="function">
+<dt id="webdriver_test_tools.project.test_module.list_tests">
+<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">list_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_class_map=None</em>, <em>test_module_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#list_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.list_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a list of available tests</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
+<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for –test command
+line argument to parse_test_names()</li>
+<li><strong>test_module_names</strong> – (Optional) Parsed arg for –module command line argument</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="webdriver_test_tools.project.test_module.main">
 <code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">main</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to call in test modules if __name__ == ‘__main__’ at run time</p>
