@@ -83,10 +83,11 @@ def get_parser(browser_config=None, browserstack_config=None):
                         help='Run only tests in specific test modules')
     # Argument for listing tests
     parser.add_argument('-l', '--list', action='store_true',
-                        help='Print a list of available tests')
+                        help='Print a list of available tests and exit')
     return parser
 
 
+# TODO: style using Terminal()
 def format_browser_choices(browser_config, browserstack_config):
     """Format the help string for browser choices
 
