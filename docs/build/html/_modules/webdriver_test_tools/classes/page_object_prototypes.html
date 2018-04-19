@@ -27,25 +27,17 @@
   
 
   
-  
     <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.22.0 documentation" href="../../../index.html"/>
-        <link rel="up" title="Module code" href="../../index.html"/> 
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -110,7 +102,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">WebDriver Test Tools</a>
@@ -118,9 +110,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -149,8 +142,6 @@
     
     
       <li class="wy-breadcrumbs-aside">
-        
-            
         
       </li>
     
@@ -186,8 +177,8 @@
         <span class="sd">&quot;&quot;&quot;Get the title of the current page</span>
 
 <span class="sd">        :return: Title of the current page</span>
-<span class="sd">        &quot;&quot;&quot;</span></div></div>
-        <span class="k">return</span> <span class="n">driver</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">driver</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span></div></div>
 
 
 <div class="viewcode-block" id="NavObject"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.NavObject">[docs]</a><span class="k">class</span> <span class="nc">NavObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
@@ -217,8 +208,8 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
                 <span class="n">actions</span><span class="o">.</span><span class="n">scroll_into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">link</span><span class="p">)</span>
             <span class="n">link</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-            <span class="c1"># Initialize the target page object and return it</span></div>
-            <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+            <span class="c1"># Initialize the target page object and return it</span>
+            <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="NavObject.hover_over_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.NavObject.hover_over_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">hover_over_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
@@ -236,8 +227,8 @@
                 <span class="n">actions</span><span class="o">.</span><span class="n">scroll_into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">link</span><span class="p">)</span>
             <span class="n">action_chain</span> <span class="o">=</span> <span class="n">ActionChains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
             <span class="n">action_chain</span><span class="o">.</span><span class="n">move_to_element</span><span class="p">(</span><span class="n">link</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
-            <span class="c1"># Initialize the target page object and return it</span></div></div>
-            <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+            <span class="c1"># Initialize the target page object and return it</span>
+            <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="CollapsibleNavObject"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.CollapsibleNavObject">[docs]</a><span class="k">class</span> <span class="nc">CollapsibleNavObject</span><span class="p">(</span><span class="n">NavObject</span><span class="p">):</span>
@@ -267,22 +258,22 @@
 <span class="sd">        :return: True if the nav menu is expanded, False if it&#39;s collapsed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">driver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span>
-        <span class="n">expanded</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">()</span></div>
-        <span class="k">return</span> <span class="n">expanded</span>
+        <span class="n">expanded</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">expanded</span></div>
 
 <div class="viewcode-block" id="CollapsibleNavObject.click_expand_button"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.CollapsibleNavObject.click_expand_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_expand_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Click the button to expand the nav menu&quot;&quot;&quot;</span>
         <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EXPAND_BUTTON_LOCATOR</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
-            <span class="n">actions</span><span class="o">.</span><span class="n">scroll_into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span></div>
-        <span class="n">button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+            <span class="n">actions</span><span class="o">.</span><span class="n">scroll_into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
+        <span class="n">button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="CollapsibleNavObject.click_collapse_button"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.CollapsibleNavObject.click_collapse_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_collapse_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Click the button to collapse the nav menu&quot;&quot;&quot;</span>
         <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">COLLAPSE_BUTTON_LOCATOR</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
-            <span class="n">actions</span><span class="o">.</span><span class="n">scroll_into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span></div></div>
-        <span class="n">button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+            <span class="n">actions</span><span class="o">.</span><span class="n">scroll_into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
+        <span class="n">button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></div></div>
 
 
 <div class="viewcode-block" id="FormObject"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.FormObject">[docs]</a><span class="k">class</span> <span class="nc">FormObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
@@ -316,8 +307,8 @@
 <span class="sd">                        &#39;value2&#39;,</span>
 <span class="sd">                ]</span>
 
-<span class="sd">        &quot;&quot;&quot;</span></div>
-        <span class="k">pass</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="FormObject.fill_form"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.FormObject.fill_form">[docs]</a>    <span class="k">def</span> <span class="nf">fill_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_map</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fill the form element inputs</span>
@@ -326,16 +317,16 @@
 <span class="sd">            See webdriver_test_tools.webdriver.actions.form.fill_form_input for values</span>
 <span class="sd">            to use for different input types</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span><span class="p">)</span></div>
-        <span class="n">actions</span><span class="o">.</span><span class="n">fill_form_inputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">input_map</span><span class="p">)</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span><span class="p">)</span>
+        <span class="n">actions</span><span class="o">.</span><span class="n">fill_form_inputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">input_map</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FormObject.submit_is_enabled"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.FormObject.submit_is_enabled">[docs]</a>    <span class="k">def</span> <span class="nf">submit_is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Short hand function for checking if the submit button is enabled. Useful</span>
 <span class="sd">        for forms with JavaScript input validation</span>
 
 <span class="sd">        :return: True if submit is enabled, False if it&#39;s disabled</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="FormObject.click_submit"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.FormObject.click_submit">[docs]</a>    <span class="k">def</span> <span class="nf">click_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shorthand function for scrolling to the submit button and clicking it.</span>
@@ -345,17 +336,15 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">submit_button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span>
         <span class="n">actions</span><span class="o">.</span><span class="n">scroll_to_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">submit_button</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">):</span></div></div>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span></div></div>
 
 
 
 </pre></div>
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -368,7 +357,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -387,6 +376,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
             VERSION:'0.22.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -404,14 +394,13 @@
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

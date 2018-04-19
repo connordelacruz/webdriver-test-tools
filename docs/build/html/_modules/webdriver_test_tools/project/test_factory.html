@@ -27,25 +27,17 @@
   
 
   
-  
     <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="WebDriver Test Tools 0.22.0 documentation" href="../../../index.html"/>
-        <link rel="up" title="Module code" href="../../index.html"/> 
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -110,7 +102,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">WebDriver Test Tools</a>
@@ -118,9 +110,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -149,8 +142,6 @@
     
     
       <li class="wy-breadcrumbs-aside">
-        
-            
         
       </li>
     
@@ -195,8 +186,8 @@
         <span class="n">generated_tests</span> <span class="o">=</span> <span class="n">generate_browser_test_cases</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">)</span>
         <span class="n">test_methods</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">test_class_map</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">test_class_map</span> <span class="k">else</span> <span class="n">test_class_map</span><span class="p">[</span><span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
         <span class="n">loaded_tests</span> <span class="o">=</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_browser_tests</span><span class="p">(</span><span class="n">generated_tests</span><span class="p">,</span> <span class="n">test_methods</span><span class="p">)</span>
-        <span class="n">browser_tests</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">loaded_tests</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestSuite</span><span class="p">(</span><span class="n">browser_tests</span><span class="p">)</span>
+        <span class="n">browser_tests</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">loaded_tests</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestSuite</span><span class="p">(</span><span class="n">browser_tests</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="generate_browser_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_cases">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_cases</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -229,8 +220,8 @@
     <span class="c1"># skip browser classes if listed in base_class.SKIP_BROWSERS</span>
     <span class="n">browser_test_cases</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_class</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_classes</span> <span class="k">if</span> <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">base_class</span><span class="o">.</span><span class="n">SKIP_BROWSERS</span>
-    <span class="p">]</span></div>
-    <span class="k">return</span> <span class="n">browser_test_cases</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">browser_test_cases</span></div>
 
 
 <div class="viewcode-block" id="generate_browser_test_case"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_case">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -266,8 +257,8 @@
     <span class="n">new_class</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">new_class_name</span><span class="p">,</span> <span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_class</span><span class="p">),</span> <span class="n">new_class_dict</span><span class="p">)</span>
     <span class="c1"># Enable BrowserStack execution</span>
     <span class="k">if</span> <span class="n">browserstack</span><span class="p">:</span>
-        <span class="n">new_class</span> <span class="o">=</span> <span class="n">enable_browserstack</span><span class="p">(</span><span class="n">new_class</span><span class="p">,</span> <span class="n">config_module</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">new_class</span>
+        <span class="n">new_class</span> <span class="o">=</span> <span class="n">enable_browserstack</span><span class="p">(</span><span class="n">new_class</span><span class="p">,</span> <span class="n">config_module</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_class</span></div>
 
 
 <div class="viewcode-block" id="enable_browserstack"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.enable_browserstack">[docs]</a><span class="k">def</span> <span class="nf">enable_browserstack</span><span class="p">(</span><span class="n">browser_test_case</span><span class="p">,</span> <span class="n">config_module</span><span class="p">):</span>
@@ -286,17 +277,15 @@
     <span class="n">bs_config</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserStackConfig</span>
     <span class="n">browser_test_case</span><span class="o">.</span><span class="n">ENABLE_BS</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">browser_test_case</span><span class="o">.</span><span class="n">COMMAND_EXECUTOR</span> <span class="o">=</span> <span class="n">bs_config</span><span class="o">.</span><span class="n">get_command_executor</span><span class="p">()</span>
-    <span class="n">bs_config</span><span class="o">.</span><span class="n">add_browserstack_capabilities</span><span class="p">(</span><span class="n">browser_test_case</span><span class="o">.</span><span class="n">CAPABILITIES</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">browser_test_case</span>
+    <span class="n">bs_config</span><span class="o">.</span><span class="n">add_browserstack_capabilities</span><span class="p">(</span><span class="n">browser_test_case</span><span class="o">.</span><span class="n">CAPABILITIES</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">browser_test_case</span></div>
 
 
 
 </pre></div>
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -309,7 +298,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -328,6 +317,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
             VERSION:'0.22.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -345,14 +335,13 @@
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
