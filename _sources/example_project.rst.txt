@@ -182,8 +182,11 @@ This prints a list of test cases and their test methods in the package. The outp
        test_page_heading
 
 
-Run the test
-------------
+Run the tests
+-------------
+
+.. image:: ./_static/example_package.gif
+
 
 Running the test suite
 ~~~~~~~~~~~~~~~~~~~~~~
