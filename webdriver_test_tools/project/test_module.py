@@ -87,7 +87,6 @@ def get_parser(browser_config=None, browserstack_config=None):
     return parser
 
 
-# TODO: style using Terminal()
 def format_browser_choices(browser_config, browserstack_config):
     """Format the help string for browser choices
 

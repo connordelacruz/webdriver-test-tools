@@ -16,6 +16,7 @@ Selenium WebDriver Test Tools
 
 Utilities for writing front-end test suites using `Selenium WebDriver <https://www.seleniumhq.org/docs/03_webdriver.jsp>`__ and python unit tests.
 
+
 .. contents::
 
 
@@ -24,7 +25,9 @@ Overview
 
 This project aims to reduce the amount of time and additional code required to automate front-end functional testing by providing utilities and conventions for building test suites. 
 
-**Features:**
+
+Features
+--------
 
 - Utilities and extended functionality for the Selenium WebDriver package
 - Pre-defined test methods for commonly used test procedures
@@ -38,6 +41,22 @@ This project uses Selenium WebDriver for automated browser actions and the pytho
 
 - `Selenium with Python <https://seleniumhq.github.io/selenium/docs/api/py/api.html>`__
 - `Python unit testing framework <https://docs.python.org/3/library/unittest.html>`__
+
+
+Creating a Test Suite
+---------------------
+
+The package itself does not contain test cases. To generate files for a new test suite, change into the desired directory and run:
+
+::
+
+    webdriver_test_tools --init
+
+This will generate a new test package with template files and project directories. 
+
+For information on the test package structure and command line arguments, see the `test project documentation <http://connordelacruz.com/webdriver-test-tools/test_projects.html>`__.
+
+For information on setting up a test project and writing tests using the ``webdriver_test_tools`` framework, see the `example test project documentation <http://connordelacruz.com/webdriver-test-tools/example_project.html>`__.
 
 
 Prerequisites
@@ -107,6 +126,4 @@ To initialize a new test project in the current directory:
 ::
 
     webdriver_test_tools --init
-
-This will generate a new test package with template files and project directories. For information and examples, see the `test project documentation <http://connordelacruz.com/webdriver-test-tools/test_projects.html>`__.
 
