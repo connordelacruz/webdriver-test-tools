@@ -167,7 +167,19 @@ We’re going to add 2 test functions:
 
 **Note:** Test functions need to begin with the prefix ``test_`` in order for the python ``unittest`` library to recognize them as tests.
 
-We should now have everything we need to run our test suite.
+We should now have everything we need to run our test suite. To verify that the framework is able to detect the tests, run:
+
+::
+
+    python -m example_package --list
+
+This prints a list of test cases and their test methods in the package. The output should look like this:
+
+::
+
+    HomePageTestCase:
+       test_more_information_link
+       test_page_heading
 
 
 Run the test

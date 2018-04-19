@@ -432,7 +432,16 @@ to the <code class="docutils literal notranslate"><span class="pre">pages/</span
 </div>
 </div>
 <p><strong>Note:</strong> Test functions need to begin with the prefix <code class="docutils literal notranslate"><span class="pre">test_</span></code> in order for the python <code class="docutils literal notranslate"><span class="pre">unittest</span></code> library to recognize them as tests.</p>
-<p>We should now have everything we need to run our test suite.</p>
+<p>We should now have everything we need to run our test suite. To verify that the framework is able to detect the tests, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">example_package</span> <span class="o">--</span><span class="nb">list</span>
+</pre></div>
+</div>
+<p>This prints a list of test cases and their test methods in the package. The output should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HomePageTestCase</span><span class="p">:</span>
+   <span class="n">test_more_information_link</span>
+   <span class="n">test_page_heading</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="run-the-test">
