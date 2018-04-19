@@ -14,7 +14,7 @@ with open('./webdriver_test_tools/version.py') as f:
 install_requires = [
     'selenium>={}'.format(__selenium__),
     'colour-runner>=0.0.5',
-    'randomuser>=1.2.0',
+    'randomuser>=1.4.0',
     'py-loremipsum>=1.0.0',
     'Jinja2>=2.9.5',
     'urllib3>=1.22',
