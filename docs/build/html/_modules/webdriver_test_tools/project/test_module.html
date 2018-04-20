@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 0.22.0 documentation</title>
+  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 0.23.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.22
+                0.23
               </div>
             
           
@@ -201,8 +201,8 @@
             <span class="n">browser_class</span> <span class="k">for</span> <span class="n">browser_name</span><span class="p">,</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_config_class</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">browser_name</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">browser</span>
         <span class="p">]</span>
-    <span class="c1"># Run tests using parsed args</span>
-    <span class="n">run_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browser_classes</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">)</span></div>
+    <span class="c1"># Run tests using parsed args</span></div>
+    <span class="n">run_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browser_classes</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="get_parser"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.get_parser">[docs]</a><span class="k">def</span> <span class="nf">get_parser</span><span class="p">(</span><span class="n">browser_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -239,8 +239,8 @@
                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run only tests in specific test modules&#39;</span><span class="p">)</span>
     <span class="c1"># Argument for listing tests</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--list&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Print a list of available tests and exit&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span></div>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Print a list of available tests and exit&#39;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">parser</span>
 
 
 <div class="viewcode-block" id="format_browser_choices"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.format_browser_choices">[docs]</a><span class="k">def</span> <span class="nf">format_browser_choices</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">):</span>
@@ -285,8 +285,8 @@
         <span class="k">if</span> <span class="n">local_only</span><span class="p">:</span>
             <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local Only: &#39;</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">local_only</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">browserstack_only</span><span class="p">:</span>
-            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">BrowserStack Only: &#39;</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">browserstack_only</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">options</span></div>
+            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">BrowserStack Only: &#39;</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">browserstack_only</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">options</span>
 
 
 <div class="viewcode-block" id="browser_list_string"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.browser_list_string">[docs]</a><span class="k">def</span> <span class="nf">browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">):</span>
@@ -296,8 +296,8 @@
 <span class="sd">    :param browser_names: List of browser names</span>
 
 <span class="sd">    :return: String representation of the browser name list</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">browser_names</span><span class="p">))</span></div>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+    <span class="k">return</span> <span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">browser_names</span><span class="p">))</span>
 
 
 <div class="viewcode-block" id="parse_test_names"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.parse_test_names">[docs]</a><span class="k">def</span> <span class="nf">parse_test_names</span><span class="p">(</span><span class="n">test_name_args</span><span class="p">):</span>
@@ -318,8 +318,8 @@
             <span class="n">class_map</span><span class="p">[</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># If a function was specified, append it to the list of functions</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">class_map</span><span class="p">[</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">class_map</span></div>
+            <span class="n">class_map</span><span class="p">[</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+    <span class="k">return</span> <span class="n">class_map</span>
 
 
 <div class="viewcode-block" id="run_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.run_tests">[docs]</a><span class="k">def</span> <span class="nf">run_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browser_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -349,8 +349,8 @@
     <span class="c1"># Link to BrowserStack automation dashboard if applicable</span>
     <span class="k">if</span> <span class="n">browserstack</span><span class="p">:</span>
         <span class="c1"># TODO: integrate into custom test runner class?</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;See BrowserStack Automation Dashboard for Detailed Results:&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;https://www.browserstack.com/automate&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;See BrowserStack Automation Dashboard for Detailed Results:&#39;</span><span class="p">,</span></div>
+              <span class="s1">&#39;https://www.browserstack.com/automate&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="list_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.list_tests">[docs]</a><span class="k">def</span> <span class="nf">list_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -369,8 +369,8 @@
     <span class="k">for</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">blue</span><span class="p">(</span><span class="n">test_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
         <span class="n">test_cases</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">getTestCaseNames</span><span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">indent</span><span class="p">))</span></div>
+        <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span></div>
+            <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">indent</span><span class="p">))</span>
 
 
 
@@ -408,7 +408,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.22.0',
+            VERSION:'0.23.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

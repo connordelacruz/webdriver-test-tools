@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.test &mdash; WebDriver Test Tools 0.22.0 documentation</title>
+  <title>webdriver_test_tools.test &mdash; WebDriver Test Tools 0.23.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.22
+                0.23
               </div>
             
           
@@ -180,8 +180,8 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">element_locator</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">NoSuchElementException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">exists</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">return</span> <span class="n">exists</span></div>
+        <span class="n">exists</span> <span class="o">=</span> <span class="kc">False</span></div>
+    <span class="k">return</span> <span class="n">exists</span>
 
 
 <div class="viewcode-block" id="is_scrolled_into_view"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.is_scrolled_into_view">[docs]</a><span class="k">def</span> <span class="nf">is_scrolled_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">fully_in_view</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -211,8 +211,8 @@
 <span class="s1">            isVisible = elemTop &lt; window.innerHeight &amp;&amp; elemBottom &gt;= 0;</span>
 <span class="s1">        return isVisible;</span>
 <span class="s1">    }(arguments[0],arguments[1])</span>
-<span class="s1">    &#39;&#39;&#39;</span>
-    <span class="k">return</span> <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">fully_in_view</span><span class="p">)</span></div>
+<span class="s1">    &#39;&#39;&#39;</span></div>
+    <span class="k">return</span> <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">fully_in_view</span><span class="p">)</span>
 
 
 <span class="c1"># Expected Condition Tests</span>
@@ -232,8 +232,8 @@
         <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">ec_object</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="c1"># One last check to ensure expected condition is in place on return</span>
-    <span class="k">return</span> <span class="n">result</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">(</span><span class="n">ec_object</span><span class="p">(</span><span class="n">driver</span><span class="p">))</span></div>
+    <span class="c1"># One last check to ensure expected condition is in place on return</span></div>
+    <span class="k">return</span> <span class="n">result</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">(</span><span class="n">ec_object</span><span class="p">(</span><span class="n">driver</span><span class="p">))</span>
 
 
 <div class="viewcode-block" id="in_view_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.in_view_change_test">[docs]</a><span class="k">def</span> <span class="nf">in_view_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
@@ -246,8 +246,8 @@
 
 <span class="sd">    :return: True if target is scrolled into view before timeout, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">in_view_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">element_is_in_view</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">in_view_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
+    <span class="n">in_view_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">element_is_in_view</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">in_view_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="visibility_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.visibility_change_test">[docs]</a><span class="k">def</span> <span class="nf">visibility_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">test_visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
@@ -264,8 +264,8 @@
 <span class="sd">    :return: True if the target&#39;s visibily changes as expected, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Determine what EC to use based on test_visible</span>
-    <span class="n">visibility_checker</span> <span class="o">=</span> <span class="n">EC</span><span class="o">.</span><span class="n">visibility_of_element_located</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span> <span class="k">if</span> <span class="n">test_visible</span> <span class="k">else</span> <span class="n">EC</span><span class="o">.</span><span class="n">invisibility_of_element_located</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">visibility_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
+    <span class="n">visibility_checker</span> <span class="o">=</span> <span class="n">EC</span><span class="o">.</span><span class="n">visibility_of_element_located</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span> <span class="k">if</span> <span class="n">test_visible</span> <span class="k">else</span> <span class="n">EC</span><span class="o">.</span><span class="n">invisibility_of_element_located</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">visibility_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="url_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.url_change_test">[docs]</a><span class="k">def</span> <span class="nf">url_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
@@ -279,8 +279,8 @@
 <span class="sd">    :return: True if the current URL matches the expected URL before timeout, False</span>
 <span class="sd">        otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url_checker</span> <span class="o">=</span> <span class="n">EC</span><span class="o">.</span><span class="n">url_to_be</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
+    <span class="n">url_checker</span> <span class="o">=</span> <span class="n">EC</span><span class="o">.</span><span class="n">url_to_be</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="base_url_change_test"><a class="viewcode-back" href="../../webdriver_test_tools.test.html#webdriver_test_tools.test.base_url_change_test">[docs]</a><span class="k">def</span> <span class="nf">base_url_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
@@ -294,8 +294,8 @@
 <span class="sd">    :return: True if the current URL (ignoring query strings) matches the expected URL</span>
 <span class="sd">        before timeout, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">url_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">base_url_to_be</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
+    <span class="n">url_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">base_url_to_be</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span>
 
 </pre></div>
 
@@ -331,7 +331,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.22.0',
+            VERSION:'0.23.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
