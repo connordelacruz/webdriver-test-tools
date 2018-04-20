@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from webdriver_test_tools.project import test_module
-from test_project import config, tests
+from framework_tests import config, tests
 
 
 if __name__ == '__main__':

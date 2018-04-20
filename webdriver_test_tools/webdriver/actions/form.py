@@ -67,7 +67,7 @@ def select_radio_input(driver, form_element, name, value):
     :param name: Name attribute of the radio input(s)
     :param value: Value attribute of the radio input to select
     """
-    radio_selector = 'input[type=radio][name={}][value={}]'.format(name,value)
+    radio_selector = 'input[type="radio"][name="{}"][value="{}"]'.format(name,value)
     radio_element = form_element.find_element_by_css_selector(radio_selector)
     # Selenium throws an error when trying to click something out of view
     actions.scroll_into_view(driver, radio_element, False)

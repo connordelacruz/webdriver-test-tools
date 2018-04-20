@@ -1,6 +1,6 @@
 from webdriver_test_tools.config import browserstack
 from webdriver_test_tools.classes.webdriver_test_case import *
-from test_project.config import BrowserConfig
+from framework_tests.config import BrowserConfig
 
 
 class BrowserStackConfig(browserstack.BrowserStackConfig):
@@ -19,7 +19,7 @@ class BrowserStackConfig(browserstack.BrowserStackConfig):
     ACCESS_KEY = ''
 
     BS_CAPABILITIES = {
-        'project': 'test_project',
+        'project': 'framework_tests',
         'browserstack.video': False,
         # 'browserstack.selenium_version': '3.11.0',
     }

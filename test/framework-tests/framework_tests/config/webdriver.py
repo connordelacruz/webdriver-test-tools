@@ -1,7 +1,7 @@
 import webdriver_test_tools
 from webdriver_test_tools import config
 import os.path
-import test_project
+import framework_tests
 
 
 class WebDriverConfig(config.WebDriverConfig):
@@ -29,7 +29,7 @@ class WebDriverConfig(config.WebDriverConfig):
     :var WebDriverConfig.CHROME_MOBILE_EMULATION:
     """
 
-    _PACKAGE_ROOT = os.path.dirname(os.path.abspath(test_project.__file__))
+    _PACKAGE_ROOT = os.path.dirname(os.path.abspath(framework_tests.__file__))
     LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
 
     # UNCOMMENT TO OVERRIDE DEFAULT CONFIGURATIONS

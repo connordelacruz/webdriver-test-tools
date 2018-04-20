@@ -2,7 +2,7 @@
 
 import webdriver_test_tools
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase, Browsers
-from test_project import config
+from framework_tests import config
 from selenium import webdriver
 
 

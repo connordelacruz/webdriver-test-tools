@@ -1,5 +1,5 @@
-Framework Project Tests
-=======================
+webdriver_test_tools Framework Tests
+====================================
 
 .. contents::
 
@@ -23,7 +23,7 @@ Installing with the ``-e`` flag will update the package automatically when chang
 Configuration
 ~~~~~~~~~~~~~
 
-After initializing a project, the URL of the site to be tested will need to be configured. In ``test_project/config/site.py``, set the ``SITE_URL`` and ``BASE_URL`` of the ``SiteConfig`` class. You can add any other URLs you'll need as class variables as well. 
+After initializing a project, the URL of the site to be tested will need to be configured. In ``framework_tests/config/site.py``, set the ``SITE_URL`` and ``BASE_URL`` of the ``SiteConfig`` class. You can add any other URLs you'll need as class variables as well. 
 
 
 Basic Command Line Usage
@@ -33,7 +33,7 @@ For info on command line arguments:
 
 ::
 
-    python -m test_project --help
+    python -m framework_tests --help
 
 
 Running Tests
@@ -43,19 +43,19 @@ To run all tests:
 
 ::
 
-    python -m test_project
+    python -m framework_tests
 
 To run all test cases in one or more modules:
 
 ::
 
-    python -m test_project --module <test_module> [<test_module> ...]
+    python -m framework_tests --module <test_module> [<test_module> ...]
 
 To run specific TestCase classes:
 
 ::
 
-    python -m test_project --test <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
+    python -m framework_tests --test <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
 
 The ``--test`` argument will run all tests in a class if no method is specified for it.
 
@@ -69,9 +69,9 @@ To do any of the above in specific browsers rather than running in all available
 
 ::
 
-    python -m test_project <args> --browser <browser> [<browser ...]
+    python -m framework_tests <args> --browser <browser> [<browser ...]
 
-For a list of options you can specify with ``--browser``, run ``python -m test_project --help``.
+For a list of options you can specify with ``--browser``, run ``python -m framework_tests --help``.
 
 
 List Available Tests
@@ -81,19 +81,19 @@ To print a list of available test classes and methods:
 
 ::
 
-    python -m test_project --list
+    python -m framework_tests --list
 
 To only list test classes from specific modules:
 
 ::
 
-    python -m test_project --list --module <test_module> [<test_module> ...]
+    python -m framework_tests --list --module <test_module> [<test_module> ...]
 
 To only list specific test classes:
 
 ::
 
-    python -m test_project --list --test <TestClass> [<TestClass> ...]
+    python -m framework_tests --list --test <TestClass> [<TestClass> ...]
 
 
 Project Structure
@@ -106,7 +106,7 @@ Project Structure
     <project-directory>/
     ├── README.rst
     ├── setup.py
-    └── test_project/
+    └── framework_tests/
         ├── __main__.py
         ├── __init__.py
         ├── config/
