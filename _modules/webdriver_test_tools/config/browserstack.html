@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.browserstack &mdash; WebDriver Test Tools 0.22.0 documentation</title>
+  <title>webdriver_test_tools.config.browserstack &mdash; WebDriver Test Tools 0.23.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.22
+                0.23
               </div>
             
           
@@ -200,16 +200,16 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">USERNAME</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ACCESS_KEY</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;USERNAME or ACCESS_KEY not set in BrowserStackConfig&#39;</span><span class="p">)</span>
         <span class="n">url_format</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">{USERNAME}</span><span class="s1">:</span><span class="si">{ACCESS_KEY}</span><span class="s1">@hub.browserstack.com:80/wd/hub&#39;</span>
-        <span class="n">command_executor</span> <span class="o">=</span> <span class="n">url_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">USERNAME</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">ACCESS_KEY</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">ACCESS_KEY</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">command_executor</span></div>
+        <span class="n">command_executor</span> <span class="o">=</span> <span class="n">url_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">USERNAME</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">ACCESS_KEY</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">ACCESS_KEY</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">command_executor</span>
 
 <div class="viewcode-block" id="BrowserStackConfig.add_browserstack_capabilities"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browserstack.html#webdriver_test_tools.config.browserstack.BrowserStackConfig.add_browserstack_capabilities">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">add_browserstack_capabilities</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">desired_capabilities</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update a desired capabilities dictionary to include items from BS_CAPABILITIES</span>
 
 <span class="sd">        :param desired_capabilities: Desired capabilities dictionary to update</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">desired_capabilities</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">)</span></div></div>
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
+        <span class="n">desired_capabilities</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">)</span>
 
 
 </pre></div>
@@ -246,7 +246,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.22.0',
+            VERSION:'0.23.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

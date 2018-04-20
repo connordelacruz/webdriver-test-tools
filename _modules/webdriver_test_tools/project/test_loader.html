@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_loader &mdash; WebDriver Test Tools 0.22.0 documentation</title>
+  <title>webdriver_test_tools.project.test_loader &mdash; WebDriver Test Tools 0.23.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.22
+                0.23
               </div>
             
           
@@ -178,8 +178,8 @@
     <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tests_module_attributes</span><span class="p">:</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">):</span>
-            <span class="n">test_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">load_webdriver_test_cases</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">test_list</span></div>
+            <span class="n">test_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">load_webdriver_test_cases</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">test_list</span>
 
 
 <div class="viewcode-block" id="load_webdriver_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_webdriver_test_cases">[docs]</a><span class="k">def</span> <span class="nf">load_webdriver_test_cases</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">test_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -197,8 +197,8 @@
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">WebDriverTestCase</span><span class="p">)</span> <span class="ow">and</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">WebDriverTestCase</span> <span class="ow">and</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">WebDriverMobileTestCase</span><span class="p">:</span>
             <span class="c1"># If test_class_names is specified, only load test cases whose names are specified</span>
             <span class="k">if</span> <span class="n">test_class_names</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">test_class_names</span><span class="p">:</span>
-                <span class="n">test_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">test_list</span></div>
+                <span class="n">test_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">test_list</span>
 
 
 <div class="viewcode-block" id="load_browser_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_browser_tests">[docs]</a><span class="k">def</span> <span class="nf">load_browser_tests</span><span class="p">(</span><span class="n">generated_test_cases</span><span class="p">,</span> <span class="n">test_methods</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -215,8 +215,8 @@
     <span class="c1"># Else load all test methods from each</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">loader</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span>
-        <span class="n">browser_tests</span> <span class="o">=</span> <span class="p">[</span><span class="n">loader</span><span class="o">.</span><span class="n">loadTestsFromTestCase</span><span class="p">(</span><span class="n">browser_test_case</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_test_case</span> <span class="ow">in</span> <span class="n">generated_test_cases</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">browser_tests</span></div>
+        <span class="n">browser_tests</span> <span class="o">=</span> <span class="p">[</span><span class="n">loader</span><span class="o">.</span><span class="n">loadTestsFromTestCase</span><span class="p">(</span><span class="n">browser_test_case</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_test_case</span> <span class="ow">in</span> <span class="n">generated_test_cases</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="n">browser_tests</span>
 
 
 </pre></div>
@@ -253,7 +253,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.22.0',
+            VERSION:'0.23.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

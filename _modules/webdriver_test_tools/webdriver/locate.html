@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.locate &mdash; WebDriver Test Tools 0.22.0 documentation</title>
+  <title>webdriver_test_tools.webdriver.locate &mdash; WebDriver Test Tools 0.23.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.22
+                0.23
               </div>
             
           
@@ -171,8 +171,8 @@
     <span class="n">select_expression_format</span> <span class="o">=</span> <span class="s1">&#39;text()=</span><span class="si">{text}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="n">exact_match</span> <span class="k">else</span> <span class="s1">&#39;contains(text(), &quot;</span><span class="si">{text}</span><span class="s1">&quot;)&#39;</span>
     <span class="n">xpath_format</span> <span class="o">=</span> <span class="s1">&#39;//</span><span class="si">{tag_type}</span><span class="s1">[</span><span class="si">{select_expr}</span><span class="s1">]&#39;</span>
     <span class="n">select_expression</span> <span class="o">=</span> <span class="n">select_expression_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">element_text</span><span class="p">)</span>
-    <span class="n">element_xpath</span> <span class="o">=</span> <span class="n">xpath_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag_type</span><span class="o">=</span><span class="n">element_type</span><span class="p">,</span> <span class="n">select_expr</span><span class="o">=</span><span class="n">select_expression</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">element_xpath</span><span class="p">)</span></div>
+    <span class="n">element_xpath</span> <span class="o">=</span> <span class="n">xpath_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag_type</span><span class="o">=</span><span class="n">element_type</span><span class="p">,</span> <span class="n">select_expr</span><span class="o">=</span><span class="n">select_expression</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">element_xpath</span><span class="p">)</span>
 
 </pre></div>
 
@@ -208,7 +208,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.22.0',
+            VERSION:'0.23.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
