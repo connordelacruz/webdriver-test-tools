@@ -104,7 +104,7 @@ class FormActionsTestCase(WebDriverTestCase):
         form = driver.find_element(*self.FORM_LOCATOR)
         input_map = self.make_input_map()
         actions.form.fill_form_inputs(driver, form, input_map)
-        retrieved_values = actions.form.get_form_input_values(driver, form, input_map.keys())
+        retrieved_values = actions.form.get_form_input_values(form, input_map.keys())
 
         # Compare retrieved_values to input_map
         for name, val in input_map.items():

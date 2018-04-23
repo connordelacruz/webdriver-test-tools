@@ -6,6 +6,8 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
 
+# TODO: rename functions to omit scroll_ prefix, add wrappers containing scroll_ prefix for legacy purposes
+
 def scroll_into_view(driver, element, align_to_top=True):
     """Scroll to an element
 
