@@ -1,11 +1,16 @@
 # Functions for interacting with forms
 
-from webdriver_test_tools.webdriver import actions
+from webdriver_test_tools.webdriver import locate
+from webdriver_test_tools.webdriver.actions import scroll
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
+# TODO: Turn this into a class similar to selenium.webdriver.support.ui.Select?
+
+# Setting form input values
+# TODO: update function names to be consistent (e.g. set_<input type>_value()) and use old names as wrappers for legacy code?
 
 def fill_form_inputs(driver, form_element, input_name_map):
     """Takes a dictionary mapping input names to the desired values and fill out the form accordingly
@@ -70,7 +75,7 @@ def select_radio_input(driver, form_element, name, value):
     radio_selector = 'input[type="radio"][name="{}"][value="{}"]'.format(name,value)
     radio_element = form_element.find_element_by_css_selector(radio_selector)
     # Selenium throws an error when trying to click something out of view
-    actions.scroll_into_view(driver, radio_element, False)
+    scroll.into_view(driver, radio_element, False)
     radio_element.click()
 
 def toggle_checkbox_input(driver, checkbox_element, value):
@@ -86,7 +91,7 @@ def toggle_checkbox_input(driver, checkbox_element, value):
         # If checkbox is visible, scroll it into view and click
         if checkbox_element.is_displayed():
             # Selenium throws an error when trying to click something out of view
-            actions.scroll_into_view(driver, checkbox_element, False)
+            scroll.into_view(driver, checkbox_element, False)
             checkbox_element.click()
         # Element might be invisible for styling. Try to find its label and click that
         else:
@@ -94,7 +99,7 @@ def toggle_checkbox_input(driver, checkbox_element, value):
             label_css = 'label[for="{}"]'.format(checkbox_id)
             element_label = driver.find_element_by_css_selector(label_css)
             # Selenium throws an error when trying to click something out of view
-            actions.scroll_into_view(driver, element_label, False)
+            scroll.into_view(driver, element_label, False)
             element_label.click()
 
 def fill_field_input(input_element, value, clear_current_value=False):
@@ -129,5 +134,111 @@ def select_multiple_options(select_element, values, clear_current_selection=Fals
         select.deselect_all()
     for value in values:
         select.select_by_value(value)
+
+
+# Retrieving form input values
+
+def get_form_input_values(form_element, input_names=None):
+    """Returns a dictionary mapping input names to their current values
+
+    :param form_element: WebElement for the form or container where the inputs are located. Alternatively, a WebDriver element can be used to retrieve all inputs on the current page.
+    :param input_names: (Optional) List of input names to get the values of. If provided, only elements whose names are listed will be checked
+
+    :return: Dictionary mapping input names to their current values. See the documentation for the ``value`` parameter of :func:`fill_form_input` for value types of different inputs.
+    """
+    input_elements = form_element.find_elements(*locate.input_elements())
+    if input_names is not None:
+        input_elements = [element for element in input_elements if element.get_attribute('name') in input_names]
+    input_map = {}
+    for input_element in input_elements:
+        value = get_form_input_value(input_element)
+        if value is not None:
+            input_map[input_element.get_attribute('name')] = value
+    return input_map
+
+
+def get_form_input_value(input_element):
+    """Returns the value of an input
+
+    This function contains the logic to determine what kind of input this is and uses the appropriate function to retrieve its value
+
+    :param input_element: WebElement for the input
+
+    :return: The value of the input
+    """
+    value = None
+    # If element tag isn't input, use tag name as input_type (e.g. select)
+    input_type = input_element.tag_name if input_element.tag_name != 'input' else input_element.get_attribute('type')
+    # figure out the input type, handle appropriately
+    # Radio Buttons
+    if input_type == 'radio':
+        value = get_radio_value(input_element)
+    # Checkboxes
+    elif input_type == 'checkbox':
+        value = get_checkbox_value(input_element)
+    # Selects
+    elif input_type == 'select':
+        # Single select
+        if input_element.get_attribute('multiple') is None:
+            value = get_select_value(input_element)
+        # Multiple select
+        else:
+            value = get_select_multiple_values(input_element)
+    # Other input types (text, file, etc)
+    else:
+        value = get_field_value(input_element)
+    return value
+
+
+def get_radio_value(input_element):
+    """Get the value of a radio input (if it's selected)
+
+    :param input_element: WebElement for the input
+
+    :return: The value attribute of the radio button if input_element is selected, None if it's not selected
+    """
+    return input_element.get_attribute('value') if input_element.is_selected() else None
+
+
+def get_checkbox_value(input_element):
+    """Get the value of a checkbox input
+
+    :param input_element: WebElement for the input
+
+    :return: True if element is checked, False if it's unchecked
+    """
+    return input_element.is_selected()
+
+
+def get_field_value(input_element):
+    """Get the value of a text input or similar input type (number, password, etc)
+
+    :param input_element: WebElement for the input
+
+    :return: Value of the input
+    """
+    return input_element.get_attribute('value')
+
+
+def get_select_value(input_element):
+    """Get the value of the selected option in a single select element
+
+    :param input_element: WebElement for the input
+
+    :return: The value attribute of the selected option
+    """
+    return input_element.get_attribute('value')
+
+
+def get_select_multiple_values(input_element):
+    """Get the values of the selected options in a multiple select element
+
+    :param input_element: WebElement for the input
+
+    :return: List containing the value attribute of the selected options
+    """
+    select = Select(input_element)
+    return [option.get_attribute('value') for option in select.all_selected_options]
+
 
 

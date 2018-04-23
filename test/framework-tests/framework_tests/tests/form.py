@@ -98,4 +98,18 @@ class FormActionsTestCase(WebDriverTestCase):
             self.assertEqual(set(expected_val), set(input_val))
 
 
+    def test_get_form_input_values(self):
+        """Test that result of get_form_input_values() matches input for fill_form_inputs()"""
+        driver = self.driver
+        form = driver.find_element(*self.FORM_LOCATOR)
+        input_map = self.make_input_map()
+        actions.form.fill_form_inputs(driver, form, input_map)
+        retrieved_values = actions.form.get_form_input_values(form, input_map.keys())
+
+        # Compare retrieved_values to input_map
+        for name, val in input_map.items():
+            with self.subTest('Compare input values', input_name=name, expected_value=val):
+                self.assertEqual(val, retrieved_values[name])
+
+
 

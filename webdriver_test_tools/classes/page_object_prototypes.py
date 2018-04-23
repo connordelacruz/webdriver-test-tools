@@ -50,7 +50,7 @@ class NavObject(BasePage):
             link_tuple = self.LINK_MAP[link_map_key]
             link = self.find_element(link_tuple[0])
             if not self.fixed:
-                actions.scroll_into_view(self.driver, link)
+                actions.scroll.into_view(self.driver, link)
             link.click()
             # Initialize the target page object and return it
             return None if link_tuple[1] is None else link_tuple[1](self.driver)
@@ -68,7 +68,7 @@ class NavObject(BasePage):
             link_tuple = self.HOVER_MAP[link_map_key]
             link = self.find_element(link_tuple[0])
             if not self.fixed:
-                actions.scroll_into_view(self.driver, link)
+                actions.scroll.into_view(self.driver, link)
             action_chain = ActionChains(self.driver)
             action_chain.move_to_element(link).perform()
             # Initialize the target page object and return it
@@ -109,14 +109,14 @@ class CollapsibleNavObject(NavObject):
         """Click the button to expand the nav menu"""
         button = self.find_element(self.EXPAND_BUTTON_LOCATOR)
         if not self.fixed:
-            actions.scroll_into_view(self.driver, button)
+            actions.scroll.into_view(self.driver, button)
         button.click()
 
     def click_collapse_button(self):
         """Click the button to collapse the nav menu"""
         button = self.find_element(self.COLLAPSE_BUTTON_LOCATOR)
         if not self.fixed:
-            actions.scroll_into_view(self.driver, button)
+            actions.scroll.into_view(self.driver, button)
         button.click()
 
 
@@ -162,7 +162,7 @@ class FormObject(BasePage):
             to use for different input types
         """
         form = self.find_element(self.FORM_LOCATOR)
-        actions.fill_form_inputs(self.driver, form, input_map)
+        actions.form.fill_form_inputs(self.driver, form, input_map)
 
     def submit_is_enabled(self):
         """Short hand function for checking if the submit button is enabled. Useful
@@ -179,7 +179,7 @@ class FormObject(BasePage):
         that object will be returned
         """
         submit_button = self.find_element(self.SUBMIT_LOCATOR)
-        actions.scroll_to_and_click(self.driver, submit_button, False)
+        actions.scroll.to_and_click(self.driver, submit_button, False)
         if issubclass(self.SUBMIT_SUCCESS_CLASS, BasePage):
             return self.SUBMIT_SUCCESS_CLASS(self.driver)
 
