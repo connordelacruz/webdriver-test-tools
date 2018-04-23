@@ -38,7 +38,14 @@ class FormActionsTestCase(WebDriverTestCase):
     MULTIPLESELECT_OPTIONS = ['1', '2', '3']
 
     def make_input_map(self, prefix=OPT_PREFIX):
-        # TODO: document
+        """Returns a map of input names to the desired values to set them to
+
+        :param prefix: (Default = OPT_PREFIX) Name prefix for the type of input.
+            ('opt' for optional inputs, 'req' for required inputs, 'dis' for
+            disabled inputs)
+
+        :return: Dictionary mapping input names to values to set them to
+        """
         input_map = {
             prefix + self.TEXT: 'Test input',
             prefix + self.RADIO: self.RADIO_VALS[0],
