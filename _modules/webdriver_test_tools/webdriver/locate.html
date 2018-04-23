@@ -174,6 +174,27 @@
     <span class="n">element_xpath</span> <span class="o">=</span> <span class="n">xpath_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag_type</span><span class="o">=</span><span class="n">element_type</span><span class="p">,</span> <span class="n">select_expr</span><span class="o">=</span><span class="n">select_expression</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">element_xpath</span><span class="p">)</span>
 
+
+<div class="viewcode-block" id="input_elements"><a class="viewcode-back" href="../../../webdriver_test_tools.webdriver.locate.html#webdriver_test_tools.webdriver.locate.input_elements">[docs]</a><span class="k">def</span> <span class="nf">input_elements</span><span class="p">(</span><span class="n">exclude_buttons</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a locator that selects input, select, textarea, and (optionally) button elements</span>
+
+<span class="sd">    To narrow down results, this is best used on the conainer element where the desired inputs are located. E.g.:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        form_element = driver.find_element_by_id(&#39;form-id&#39;)</span>
+<span class="sd">        input_elements = form_element.find_elements(*locate.input_elements())</span>
+
+<span class="sd">    :param exclude_buttons: (Default = False) If set to True, omit button elements from selector</span>
+
+<span class="sd">    :return: Locator selecting input elements</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">css_string</span> <span class="o">=</span> <span class="s1">&#39;input,select,textarea&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">exclude_buttons</span><span class="p">:</span>
+        <span class="n">css_string</span> <span class="o">+=</span> <span class="s1">&#39;,button&#39;</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="n">css_string</span><span class="p">)</span>
+
+
 </pre></div>
 
            </div>

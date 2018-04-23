@@ -203,6 +203,27 @@
 </table>
 </dd></dl>
 
+<dl class="function">
+<dt id="webdriver_test_tools.webdriver.locate.input_elements">
+<code class="descclassname">webdriver_test_tools.webdriver.locate.</code><code class="descname">input_elements</code><span class="sig-paren">(</span><em>exclude_buttons=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/locate.html#input_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.locate.input_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a locator that selects input, select, textarea, and (optionally) button elements</p>
+<p>To narrow down results, this is best used on the conainer element where the desired inputs are located. E.g.:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form_element</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;form-id&#39;</span><span class="p">)</span>
+<span class="n">input_elements</span> <span class="o">=</span> <span class="n">form_element</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="o">*</span><span class="n">locate</span><span class="o">.</span><span class="n">input_elements</span><span class="p">())</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>exclude_buttons</strong> – (Default = False) If set to True, omit button elements from selector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Locator selecting input elements</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 
