@@ -1,7 +1,7 @@
 # Functions for interacting with forms
 
-# TODO: only import actions.scroll (circular import)
-from webdriver_test_tools.webdriver import actions, locate
+from webdriver_test_tools.webdriver import locate
+from webdriver_test_tools.webdriver.actions import scroll
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
@@ -74,7 +74,7 @@ def select_radio_input(driver, form_element, name, value):
     radio_selector = 'input[type="radio"][name="{}"][value="{}"]'.format(name,value)
     radio_element = form_element.find_element_by_css_selector(radio_selector)
     # Selenium throws an error when trying to click something out of view
-    actions.scroll_into_view(driver, radio_element, False)
+    scroll.into_view(driver, radio_element, False)
     radio_element.click()
 
 def toggle_checkbox_input(driver, checkbox_element, value):
@@ -90,7 +90,7 @@ def toggle_checkbox_input(driver, checkbox_element, value):
         # If checkbox is visible, scroll it into view and click
         if checkbox_element.is_displayed():
             # Selenium throws an error when trying to click something out of view
-            actions.scroll_into_view(driver, checkbox_element, False)
+            scroll.into_view(driver, checkbox_element, False)
             checkbox_element.click()
         # Element might be invisible for styling. Try to find its label and click that
         else:
@@ -98,7 +98,7 @@ def toggle_checkbox_input(driver, checkbox_element, value):
             label_css = 'label[for="{}"]'.format(checkbox_id)
             element_label = driver.find_element_by_css_selector(label_css)
             # Selenium throws an error when trying to click something out of view
-            actions.scroll_into_view(driver, element_label, False)
+            scroll.into_view(driver, element_label, False)
             element_label.click()
 
 def fill_field_input(input_element, value, clear_current_value=False):
@@ -164,7 +164,6 @@ def get_form_input_value(input_element):
     # figure out the input type, handle appropriately
     # Radio Buttons
     if input_type == 'radio':
-        # TODO: handle radio groups
         value = get_radio_value(input_element)
     # Checkboxes
     elif input_type == 'checkbox':

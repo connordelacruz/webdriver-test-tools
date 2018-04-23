@@ -2,6 +2,7 @@
 import argparse
 import unittest
 import textwrap
+import warnings
 from blessings import Terminal
 
 from webdriver_test_tools import config
@@ -189,6 +190,8 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
     browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes, test_class_map, config_module, browserstack)
     # Get configured test runner and run suite
     test_runner = config_module.TestSuiteConfig.get_runner()
+    # TODO: handle deprecation warnings after tests finish
+    # warnings.simplefilter('always', DeprecationWarning)
     test_runner.run(browser_test_suite)
     # Link to BrowserStack automation dashboard if applicable
     if browserstack:
