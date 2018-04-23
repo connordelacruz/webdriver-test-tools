@@ -6,6 +6,9 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
+# TODO: come up with consistent naming conventions, make changed functions wrappers for new functions for legacy purposes
+
+# Setting form input values
 
 def fill_form_inputs(driver, form_element, input_name_map):
     """Takes a dictionary mapping input names to the desired values and fill out the form accordingly
@@ -129,5 +132,74 @@ def select_multiple_options(select_element, values, clear_current_selection=Fals
         select.deselect_all()
     for value in values:
         select.select_by_value(value)
+
+
+# Retrieving form input values
+
+# TODO: optional list of input names to restrict results to?
+def get_form_input_values(driver, form_element):
+    # TODO: document
+    locator = (BY.CSS_SELECTOR, ':input')
+    input_elements = form_element.find_elements(*locator)
+    input_map = {}
+    for input_element in input_elements:
+        value = get_form_input_value(input_element)
+        if value is not None:
+            input_map[input_element.get_attribute('name')] = value
+    return input_map
+
+
+def get_form_input_value(input_element):
+    # TODO: document
+    value = None
+    # If element tag isn't input, use tag name as input_type (e.g. select)
+    input_type = input_element.tag_name if input_element.tag_name != 'input' else input_element.get_attribute('type')
+    # figure out the input type, handle appropriately
+    # Radio Buttons
+    if input_type == 'radio':
+        # TODO: handle radio groups
+        value = get_radio_value(input_element)
+    # Checkboxes
+    elif input_type == 'checkbox':
+        value = get_checkbox_value(input_element)
+    # Selects
+    elif input_type == 'select':
+        # Single select
+        if input_element.get_attribute('multiple') is None:
+            value = get_select_value(input_element)
+        # Multiple select
+        else:
+            value = get_select_multiple_values(input_element)
+    # Other input types (text, file, etc)
+    else:
+        value = get_field_value(input_element)
+    return value
+
+
+def get_radio_value(input_element):
+    # TODO: document
+    return input_element.get_attribute('value') if input_element.is_selected() else None
+
+
+def get_checkbox_value(input_element):
+    # TODO: document
+    return input_element.is_selected()
+
+
+def get_field_value(input_element):
+    # TODO: document
+    return input_element.get_attribute('value')
+
+
+def get_select_value(input_element):
+    # TODO: document
+    return input_element.get_attribute('value')
+
+
+def get_select_multiple_values(input_element):
+    # TODO: document
+    select = Select(input_element)
+    return [option.get_attribute('value') for option in select.all_selected_options]
+
 
 
