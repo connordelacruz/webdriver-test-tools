@@ -162,7 +162,7 @@ class FormObject(BasePage):
             to use for different input types
         """
         form = self.find_element(self.FORM_LOCATOR)
-        actions.fill_form_inputs(self.driver, form, input_map)
+        actions.form.fill_form_inputs(self.driver, form, input_map)
 
     def submit_is_enabled(self):
         """Short hand function for checking if the submit button is enabled. Useful

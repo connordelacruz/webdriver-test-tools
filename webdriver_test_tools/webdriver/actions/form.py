@@ -7,9 +7,10 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
-# TODO: come up with consistent naming conventions, make changed functions wrappers for new functions for legacy purposes
+# TODO: Turn this into a class similar to selenium.webdriver.support.ui.Select?
 
 # Setting form input values
+# TODO: update function names to be consistent (e.g. set_<input type>_value()) and use old names as wrappers for legacy code?
 
 def fill_form_inputs(driver, form_element, input_name_map):
     """Takes a dictionary mapping input names to the desired values and fill out the form accordingly
@@ -157,7 +158,14 @@ def get_form_input_values(form_element, input_names=None):
 
 
 def get_form_input_value(input_element):
-    # TODO: document
+    """Returns the value of an input
+
+    This function contains the logic to determine what kind of input this is and uses the appropriate function to retrieve its value
+
+    :param input_element: WebElement for the input
+
+    :return: The value of the input
+    """
     value = None
     # If element tag isn't input, use tag name as input_type (e.g. select)
     input_type = input_element.tag_name if input_element.tag_name != 'input' else input_element.get_attribute('type')

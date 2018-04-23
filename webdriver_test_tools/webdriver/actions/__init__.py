@@ -1,5 +1,5 @@
 from . import form
 from . import scroll
-# TODO: import modules, not module contents?
-from .form import *
+# TODO: Remove these in a future update
+from .form_deprecated import *
 from .scroll_deprecated import *
