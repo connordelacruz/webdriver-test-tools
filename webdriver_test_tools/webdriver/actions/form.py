@@ -1,6 +1,7 @@
 # Functions for interacting with forms
 
-from webdriver_test_tools.webdriver import actions
+# TODO: only import actions.scroll (circular import)
+from webdriver_test_tools.webdriver import actions, locate
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
@@ -136,11 +137,11 @@ def select_multiple_options(select_element, values, clear_current_selection=Fals
 
 # Retrieving form input values
 
-# TODO: optional list of input names to restrict results to?
-def get_form_input_values(driver, form_element):
+def get_form_input_values(driver, form_element, input_names=None):
     # TODO: document
-    locator = (BY.CSS_SELECTOR, ':input')
-    input_elements = form_element.find_elements(*locator)
+    input_elements = form_element.find_elements(*locate.input_elements())
+    if input_names is not None:
+        input_elements = [element for element in input_elements if element.get_attribute('name') in input_names]
     input_map = {}
     for input_element in input_elements:
         value = get_form_input_value(input_element)

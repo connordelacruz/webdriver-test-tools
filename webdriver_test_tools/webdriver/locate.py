@@ -18,3 +18,24 @@ def by_element_text(element_text, element_type='*', exact_match=False):
     element_xpath = xpath_format.format(tag_type=element_type, select_expr=select_expression)
     return (By.XPATH, element_xpath)
 
+
+def input_elements(exclude_buttons=False):
+    """Return a locator that selects input, select, textarea, and (optionally) button elements
+
+    To narrow down results, this is best used on the conainer element where the desired inputs are located. E.g.:
+
+    .. code-block:: python
+
+        form_element = driver.find_element_by_id('form-id')
+        input_elements = form_element.find_elements(*locate.input_elements())
+
+    :param exclude_buttons: (Default = False) If set to True, omit button elements from selector
+
+    :return: Locator selecting input elements
+    """
+    css_string = 'input,select,textarea'
+    if not exclude_buttons:
+        css_string += ',button'
+    return (By.CSS_SELECTOR, css_string)
+
+
