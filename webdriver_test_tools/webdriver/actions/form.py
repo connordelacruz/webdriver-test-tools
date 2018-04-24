@@ -7,8 +7,6 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
-# TODO: Turn this into a class similar to selenium.webdriver.support.ui.Select?
-
 # Setting form input values
 # TODO: update function names to be consistent (e.g. set_<input type>_value()) and use old names as wrappers for legacy code?
 
