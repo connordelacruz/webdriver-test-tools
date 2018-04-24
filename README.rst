@@ -14,7 +14,9 @@ Selenium WebDriver Test Tools
     :target: https://github.com/connordelacruz/webdriver-test-tools
 
 
-Utilities for writing front-end test suites using `Selenium WebDriver <https://www.seleniumhq.org/docs/03_webdriver.jsp>`__ and python unit tests.
+Utilities for writing front-end test suites using `Selenium WebDriver`_ and python unit tests.
+
+.. _Selenium WebDriver: https://www.seleniumhq.org/docs/03_webdriver.jsp
 
 
 .. contents::
@@ -32,9 +34,12 @@ Features
 - Utilities and extended functionality for the Selenium WebDriver package
 - Pre-defined test methods for commonly used test procedures
 - Unit testing framework for automated tests on multiple browsers
-- Implementation of the `Page Object Model <https://martinfowler.com/bliki/PageObject.html>`__ and pre-defined page objects for common elements (navbars, forms, etc)
+- Implementation of the `Page Object Model`_ and pre-defined page objects for common elements (navbars, forms, etc)
 - Command line tool for quickly generating files and directories for new test projects
-- Support for automating tests on `BrowserStack <https://www.browserstack.com/>`__
+- Support for automating tests on `BrowserStack`_
+
+.. _Page Object Model: https://martinfowler.com/bliki/PageObject.html
+.. _BrowserStack: https://www.browserstack.com/
 
 
 This project uses Selenium WebDriver for automated browser actions and the python unittest library for the test framework, documentation for which can be found below:
@@ -54,9 +59,20 @@ The package itself does not contain test cases. To generate files for a new test
 
 This will generate a new test package with template files and project directories. 
 
-For information on the test package structure and command line arguments, see the `test project documentation <http://connordelacruz.com/webdriver-test-tools/test_projects.html>`__.
+For information on the test package structure and command line arguments, see the `test project documentation`_.
 
-For information on setting up a test project and writing tests using the ``webdriver_test_tools`` framework, see the `example test project documentation <http://connordelacruz.com/webdriver-test-tools/example_project.html>`__.
+For information on setting up a test project and writing tests using the ``webdriver_test_tools`` framework, see the `example test project documentation`_.
+
+.. _test project documentation: http://connordelacruz.com/webdriver-test-tools/test_projects.html
+.. _example test project documentation: http://connordelacruz.com/webdriver-test-tools/example_project.html
+
+
+Documentation
+-------------
+
+For full project documentation and examples, see the `project documentation`_.
+
+.. _project documentation: http://connordelacruz.com/webdriver-test-tools/
 
 
 Prerequisites
@@ -78,10 +94,8 @@ Cross-Platform
 
 The following cross-platform browser drivers are supported and enabled by default:
 
--  `geckodriver <https://github.com/mozilla/geckodriver/releases>`__
-   (FireFox)
--  `chromedriver <https://sites.google.com/a/chromium.org/chromedriver/downloads>`__
-   (Google Chrome)
+-  `FireFox <https://github.com/mozilla/geckodriver/releases>`__
+-  `Google Chrome <https://sites.google.com/a/chromium.org/chromedriver/downloads>`__
 
 These can be disabled in ``<test_package>/config/browser.py`` by commenting out the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``. 
 
@@ -91,13 +105,20 @@ Platform-Specific
 
 The following platform-specific drivers are supported:
 
--  `Safari <https://webkit.org/blog/6900/webdriver-support-in-safari-10/>`__ 
--  `Internet Explorer <https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver>`__
--  `Edge <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>`__
+-  `Safari`_ 
+-  `Internet Explorer`_
+-  `Edge`_
+
+.. _Safari: https://webkit.org/blog/6900/webdriver-support-in-safari-10/ 
+.. _Internet Explorer: https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver
+.. _Edge: https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+
 
 These need to be enabled in ``<test_package>/config/browser.py`` by uncommenting the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
 
-For information on usage and considerations, see the `additional browsers documentation <http://connordelacruz.com/webdriver-test-tools/additional_browsers.html>`__.
+For information on usage and considerations, see the `additional browsers documentation`_.
+
+.. _additional browsers documentation: http://connordelacruz.com/webdriver-test-tools/additional_browsers.html
 
 
 Installation
@@ -126,4 +147,14 @@ To initialize a new test project in the current directory:
 ::
 
     webdriver_test_tools --init
+
+
+Contributing
+============
+
+Please read the `contributing guidelines`_ for details.
+
+.. _contributing guidelines: https://github.com/connordelacruz/webdriver-test-tools/blob/master/.github/CONTRIBUTING.rst
+
+
 
