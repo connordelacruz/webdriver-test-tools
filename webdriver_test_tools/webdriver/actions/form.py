@@ -16,26 +16,39 @@ def fill_form_inputs(driver, form_element, input_name_map):
     Iterates through input_name_map and calls fill_form_input() to handle filling in the input based on its type
 
     :param driver: Selenium webdriver object (largely for scrolling into view)
-    :param form_element: The Selenium WebElement for the form or container with the desired inputs. Used for locating the input elements by name in case there are other elements on the page with the same name attribute
-    :param input_name_map: A dictionary mapping the name of the input to the value to set it to. See the documentation for fill_form_input() for value types for the different inputs.
+    :param form_element: The Selenium WebElement for the form or container with the
+        desired inputs. Used for locating the input elements by name in case there are
+        other elements on the page with the same name attribute
+    :param input_name_map: A dictionary mapping the name of the input to the value to
+        set it to. See the documentation for fill_form_input() for value types for the
+        different inputs.
     """
     # Iterate through input_name_map
     for name, value in input_name_map.items():
         fill_form_input(driver, form_element, name, value)
 
 def fill_form_input(driver, form_element, name, value):
-    """Takes the name and value of a form input and determines what type it is to fill it appropriately.
+    """Takes the name and value of a form input and determines what type it is to fill
+    it appropriately.
 
-    :param driver: Selenium webdriver object (largely for scrolling clickable inputs into view)
-    :param form_element: The Selenium WebElement for the form or container with the desired inputs. Used for locating the input elements by name in case there are other elements on the page with the same name attribute
+    :param driver: Selenium webdriver object (largely for scrolling clickable inputs
+        into view)
+    :param form_element: The Selenium WebElement for the form or container with the
+        desired inputs. Used for locating the input elements by name in case there are
+        other elements on the page with the same name attribute
     :param name: The name attribute of the input
     :param value: The desired value to set the input to.
-        For checkbox elements, this value should be a boolean (True=checked, False=unchecked).
-        For radio elements, this should be the value attribute of the radio to select.
-        For single select elements, this value should be the value of the option to select.
-        For multiple select elements, this value should be a list of values of the options to select.
-        For file inputs, this value should be a filepath to the desired file.
-        For other input types (text, number, etc) this should be a string representation of the values to enter into it.
+
+        * For checkbox elements, this value should be a boolean (True=checked,
+          False=unchecked).
+        * For radio elements, this should be the value attribute of the radio to select.
+        * For single select elements, this value should be the value of the option to
+          select.
+        * For multiple select elements, this value should be a list of values of the
+          options to select.
+        * For file inputs, this value should be a filepath to the desired file.
+        * For other input types (text, number, etc) this should be a string
+          representation of the values to enter into it.
     """
     input_element = form_element.find_element_by_name(name)
     # If element tag isn't input, use tag name as input_type (e.g. select)
@@ -65,8 +78,11 @@ def fill_form_input(driver, form_element, name, value):
 def select_radio_input(driver, form_element, name, value):
     """Selects a radio input with the specified name and value attributes
 
-    :param driver: Selenium webdriver object. Used for scrolling the element into view before clicking element
-    :param form_element: The Selenium WebElement for the form or container with the desired inputs. Used for locating the input elements by name in case there are other elements on the page with the same name attribute
+    :param driver: Selenium webdriver object. Used for scrolling the element into view
+        before clicking element
+    :param form_element: The Selenium WebElement for the form or container with the
+        desired inputs. Used for locating the input elements by name in case there are
+        other elements on the page with the same name attribute
     :param name: Name attribute of the radio input(s)
     :param value: Value attribute of the radio input to select
     """
@@ -79,9 +95,14 @@ def select_radio_input(driver, form_element, name, value):
 def toggle_checkbox_input(driver, checkbox_element, value):
     """Set the checked state of a checkbox input
 
-    First checks if the checkbox value doesn't match the desired value. If not, it then checks if element is visible. If it is, scroll to it and click it. If it isn't, it tries to find a label for the element by getting the element id and selecting a label with that id as the for attribute. If it finds one, it scrolls to that and clicks it.
+    First checks if the checkbox value doesn't match the desired value. If not, it then
+    checks if element is visible. If it is, scroll to it and click it. If it isn't, it
+    tries to find a label for the element by getting the element id and selecting a
+    label with that id as the for attribute. If it finds one, it scrolls to that and
+    clicks it.
 
-    :param driver: Selenium webdriver object. Used for scrolling the element into view before clicking element
+    :param driver: Selenium webdriver object. Used for scrolling the element into view
+        before clicking element
     :param checkbox_element: WebElement for the checkbox to toggle
     :param value: True to ensure box is checked, False to ensure it's unchecked
     """
@@ -101,11 +122,13 @@ def toggle_checkbox_input(driver, checkbox_element, value):
             element_label.click()
 
 def fill_field_input(input_element, value, clear_current_value=False):
-    """Fill an input that is normally typed into (e.g. inputs of type text, password, number, etc)
+    """Fill an input that is normally typed into (e.g. inputs of type text, password,
+    number, etc)
 
     :param input_element: WebElement for the input
     :param value: String of key presses to simulate using the send_keys() function
-    :param clear_current_value: (Default = False) If True, clear out any existing value in the input before entering the new one
+    :param clear_current_value: (Default = False) If True, clear out any existing value
+        in the input before entering the new one
     """
     if clear_current_value:
         input_element.clear()
@@ -125,7 +148,8 @@ def select_multiple_options(select_element, values, clear_current_selection=Fals
 
     :param select_element: WebElement for the select input
     :param values: List of values of the options to select
-    :param clear_current_selection: (Default = False) If True, deselect all currently selected options before selection the new ones
+    :param clear_current_selection: (Default = False) If True, deselect all currently
+        selected options before selection the new ones
     """
     select = Select(select_element)
     if clear_current_selection:
@@ -139,10 +163,15 @@ def select_multiple_options(select_element, values, clear_current_selection=Fals
 def get_form_input_values(form_element, input_names=None):
     """Returns a dictionary mapping input names to their current values
 
-    :param form_element: WebElement for the form or container where the inputs are located. Alternatively, a WebDriver element can be used to retrieve all inputs on the current page.
-    :param input_names: (Optional) List of input names to get the values of. If provided, only elements whose names are listed will be checked
+    :param form_element: WebElement for the form or container where the inputs are
+        located. Alternatively, a WebDriver element can be used to retrieve all inputs
+        on the current page.
+    :param input_names: (Optional) List of input names to get the values of. If
+        provided, only elements whose names are listed will be checked
 
-    :return: Dictionary mapping input names to their current values. See the documentation for the ``value`` parameter of :func:`fill_form_input` for value types of different inputs.
+    :return: Dictionary mapping input names to their current values. See the
+        documentation for the ``value`` parameter of :func:`fill_form_input` for value
+        types of different inputs.
     """
     input_elements = form_element.find_elements(*locate.input_elements())
     if input_names is not None:
@@ -158,7 +187,8 @@ def get_form_input_values(form_element, input_names=None):
 def get_form_input_value(input_element):
     """Returns the value of an input
 
-    This function contains the logic to determine what kind of input this is and uses the appropriate function to retrieve its value
+    This function contains the logic to determine what kind of input this is and uses
+    the appropriate function to retrieve its value
 
     :param input_element: WebElement for the input
 
@@ -193,7 +223,8 @@ def get_radio_value(input_element):
 
     :param input_element: WebElement for the input
 
-    :return: The value attribute of the radio button if input_element is selected, None if it's not selected
+    :return: The value attribute of the radio button if input_element is selected, None
+        if it's not selected
     """
     return input_element.get_attribute('value') if input_element.is_selected() else None
 

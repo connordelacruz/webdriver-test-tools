@@ -229,8 +229,11 @@
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.create_file_from_template">
 <code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_file_from_template</code><span class="sig-paren">(</span><em>template_path</em>, <em>target_path</em>, <em>filename</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_file_from_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_file_from_template" title="Permalink to this definition">¶</a></dt>
-<dd><p>Short hand function that renders a template with the specified filename followed by a ‘.j2’ extension from the template path to a file with the specified name in the target path</p>
-<p>The use of ‘.j2’ as a file extension is to distinguish templates from package modules.</p>
+<dd><p>Short hand function that renders a template with the specified filename followed
+by a ‘.j2’ extension from the template path to a file with the specified name in
+the target path</p>
+<p>The use of ‘.j2’ as a file extension is to distinguish templates from package
+modules.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -238,7 +241,8 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>template_path</strong> – Path to template directory</li>
 <li><strong>target_path</strong> – Path to target directory</li>
-<li><strong>filename</strong> – Name of the template file. Will be used as the filename for the rendered file written to the target directory</li>
+<li><strong>filename</strong> – Name of the template file. Will be used as the filename for the
+rendered file written to the target directory</li>
 <li><strong>context</strong> – Jinja context used to render template</li>
 </ul>
 </td>
@@ -255,7 +259,8 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target_path</strong> – The path to the outer directory where the package directory is contained</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target_path</strong> – The path to the outer directory where the package directory is
+contained</td>
 </tr>
 </tbody>
 </table>
@@ -328,7 +333,8 @@ directory if True</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target_path</strong> – The path to the outer directory where the package directory is contained</li>
+<li><strong>target_path</strong> – The path to the outer directory where the package directory is
+contained</li>
 <li><strong>context</strong> – Jinja context used to render template</li>
 </ul>
 </td>
@@ -346,7 +352,8 @@ directory if True</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target_path</strong> – The path to the outer directory where the package directory is contained</li>
+<li><strong>target_path</strong> – The path to the outer directory where the package directory is
+contained</li>
 <li><strong>context</strong> – Jinja context used to render template</li>
 </ul>
 </td>
@@ -505,7 +512,8 @@ project title</li>
 <li><strong>text</strong> – Text to display in prompt</li>
 <li><strong>default</strong> – (Optional) default value</li>
 <li><strong>validate</strong> – (Default = nonempty) Validation function for input</li>
-<li><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user input and successfully validating</li>
+<li><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user
+input and successfully validating</li>
 </ul>
 </td>
 </tr>
@@ -581,7 +589,8 @@ unchanged</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package_name</strong> – The desired package name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified package_name with whitespaces and hyphens replaced with
+underscores and all invalid characters removed</td>
 </tr>
 </tbody>
 </table>
@@ -598,7 +607,8 @@ files</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>project_title</strong> – The desired project title</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modifed project_title with only alphanumeric characters, spaces, underscores, and hyphens</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modifed project_title with only alphanumeric characters, spaces,
+underscores, and hyphens</td>
 </tr>
 </tbody>
 </table>

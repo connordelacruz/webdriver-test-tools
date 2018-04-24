@@ -23,7 +23,8 @@ PROMPT_PREFIX = '> '
 def create_setup_file(target_path, context):
     """Creates setup.py for test project
 
-    :param target_path: The path to the outer directory where the package directory is contained
+    :param target_path: The path to the outer directory where the package directory is
+        contained
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
@@ -34,7 +35,8 @@ def create_setup_file(target_path, context):
 def create_readme(target_path, context):
     """Create README.rst for test project
 
-    :param target_path: The path to the outer directory where the package directory is contained
+    :param target_path: The path to the outer directory where the package directory is
+        contained
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
@@ -45,7 +47,8 @@ def create_readme(target_path, context):
 def create_gitignore(target_path):
     """Create .gitignore file at the root of the test project
 
-    :param target_path: The path to the outer directory where the package directory is contained
+    :param target_path: The path to the outer directory where the package directory is
+        contained
     """
     target_path = os.path.abspath(target_path)
     source_path = templates.project_root.get_path()
@@ -208,13 +211,17 @@ def render_template_to_file(template_path, context, target_path):
 
 
 def create_file_from_template(template_path, target_path, filename, context):
-    """Short hand function that renders a template with the specified filename followed by a '.j2' extension from the template path to a file with the specified name in the target path
+    """Short hand function that renders a template with the specified filename followed
+    by a '.j2' extension from the template path to a file with the specified name in
+    the target path
 
-    The use of '.j2' as a file extension is to distinguish templates from package modules.
+    The use of '.j2' as a file extension is to distinguish templates from package
+    modules.
 
     :param template_path: Path to template directory
     :param target_path: Path to target directory
-    :param filename: Name of the template file. Will be used as the filename for the rendered file written to the target directory
+    :param filename: Name of the template file. Will be used as the filename for the
+        rendered file written to the target directory
     :param context: Jinja context used to render template
     """
     file_template = os.path.join(template_path, filename + '.j2')
@@ -275,7 +282,8 @@ def validate_package_name(package_name):
 
     :param package_name: The desired package name
 
-    :return: Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed
+    :return: Modified package_name with whitespaces and hyphens replaced with
+        underscores and all invalid characters removed
     """
     # Trim outer whitespace and replace inner whitespace and hyphens with underscore
     validated_package_name = re.sub(r'\s+|-+', '_', package_name.strip())
@@ -298,7 +306,8 @@ def validate_project_title(project_title):
 
     :param project_title: The desired project title
 
-    :return: Modifed project_title with only alphanumeric characters, spaces, underscores, and hyphens
+    :return: Modifed project_title with only alphanumeric characters, spaces,
+        underscores, and hyphens
     """
     # Trim outer whitespace and remove that aren't alphanumeric or an underscore/hyphen
     validated_project_title = re.sub(r'[^\w\s-]', '', project_title.strip())
@@ -330,7 +339,8 @@ def prompt(text, default=None, validate=nonempty, trailing_newline=True):
     :param text: Text to display in prompt
     :param default: (Optional) default value
     :param validate: (Default = nonempty) Validation function for input
-    :param trailing_newline: (Default = True) Print a blank line after receiving user input and successfully validating
+    :param trailing_newline: (Default = True) Print a blank line after receiving user
+        input and successfully validating
 
     :return: Validated input
     """

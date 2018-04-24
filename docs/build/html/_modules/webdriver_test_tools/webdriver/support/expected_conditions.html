@@ -154,15 +154,16 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.webdriver.support.expected_conditions</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Custom expected condition classes</span>
+<span></span><span class="sd">&quot;&quot;&quot;Custom expected condition classes&quot;&quot;&quot;</span>
 
-<span class="c1"># Imports</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">test</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.common</span> <span class="k">import</span> <span class="n">utils</span>
 
 
 <div class="viewcode-block" id="element_is_in_view"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.expected_conditions.html#webdriver_test_tools.webdriver.support.expected_conditions.element_is_in_view">[docs]</a><span class="k">class</span> <span class="nc">element_is_in_view</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Custom wait condition for WebDriverWait() that uses JavaScript to check if an element is scrolled into view&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Custom wait condition for WebDriverWait() that uses JavaScript to check if an</span>
+<span class="sd">    element is scrolled into view</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator</span><span class="p">,</span> <span class="n">fully_in_view</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">locator</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fully_in_view</span> <span class="o">=</span> <span class="n">fully_in_view</span>

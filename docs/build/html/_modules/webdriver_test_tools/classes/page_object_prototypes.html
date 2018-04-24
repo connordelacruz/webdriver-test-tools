@@ -156,7 +156,8 @@
   <h1>Source code for webdriver_test_tools.classes.page_object_prototypes</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Subclasses of BasePage with additional functions for convenience.</span>
 
-<span class="sd">These classes define common operations and attributes for various common components. These can be subclassed in test projects if useful.</span>
+<span class="sd">These classes define common operations and attributes for various common components.</span>
+<span class="sd">These can be subclassed in test projects if useful.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">selenium.webdriver.common.action_chains</span> <span class="k">import</span> <span class="n">ActionChains</span>
@@ -184,9 +185,15 @@
 <div class="viewcode-block" id="NavObject"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.NavObject">[docs]</a><span class="k">class</span> <span class="nc">NavObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Page object prototype for navbars</span>
 
-<span class="sd">    :var LINK_MAP:  Maps link text to a tuple containing its locator and the page object class for the target page, modal, section, etc (or None if need be). Override in subclasses</span>
-<span class="sd">    :var HOVER_MAP: Maps link text to a tuple containing its locator and the page object class for the menu, dropdown, etc that should appear on hover (or None if need be). Override in subclasses</span>
-<span class="sd">    :var fixed: (Default = True) True if element is a fixed navbar, False otherwise. If set to False in a subclass, click_page_link() and hover_over_page_link() will scroll the target link into view before interacting with it</span>
+<span class="sd">    :var LINK_MAP:  Maps link text to a tuple containing its locator and the page object</span>
+<span class="sd">        class for the target page, modal, section, etc (or None if need be).</span>
+<span class="sd">        Override in subclasses</span>
+<span class="sd">    :var HOVER_MAP: Maps link text to a tuple containing its locator and the page</span>
+<span class="sd">        object class for the menu, dropdown, etc that should appear on hover (or None</span>
+<span class="sd">        if need be). Override in subclasses</span>
+<span class="sd">    :var fixed: (Default = True) True if element is a fixed navbar, False otherwise. If</span>
+<span class="sd">        set to False in a subclass, click_page_link() and hover_over_page_link() will</span>
+<span class="sd">        scroll the target link into view before interacting with it</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Link maps</span>
@@ -196,9 +203,11 @@
     <span class="n">fixed</span> <span class="o">=</span> <span class="kc">True</span>
 
 <div class="viewcode-block" id="NavObject.click_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.NavObject.click_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">click_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Click one of the page links and return a page object class for the link target</span>
+        <span class="sd">&quot;&quot;&quot;Click one of the page links and return a page object class for the link</span>
+<span class="sd">        target</span>
 
 <span class="sd">        :param link_map_key: Key into LINK_MAP for the link to click on</span>
+
 <span class="sd">        :return: Corresponding page object class for the link target (if applicable)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: raise exception?</span>
@@ -216,6 +225,7 @@
         <span class="sd">&quot;&quot;&quot;Hover mouse over one of the page links</span>
 
 <span class="sd">        :param link_map_key: Key into HOVER_MAP for the link to hover mouse over</span>
+
 <span class="sd">        :return: Corresponding page object class for the hover dropdown/container/etc</span>
 <span class="sd">            (if applicable)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -293,7 +303,8 @@
     <span class="n">SUBMIT_SUCCESS_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="FormObject.Input"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.page_object_prototypes.html#webdriver_test_tools.classes.page_object_prototypes.FormObject.Input">[docs]</a>    <span class="k">class</span> <span class="nc">Input</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Subclass used to contain name attributes and select/radio option lists for inputs</span>
+        <span class="sd">&quot;&quot;&quot;Subclass used to contain name attributes and select/radio option lists for</span>
+<span class="sd">        inputs</span>
 
 <span class="sd">        :Example:</span>
 
