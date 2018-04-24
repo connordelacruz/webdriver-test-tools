@@ -1,28 +1,34 @@
-### Issue Description
+## Issue Description
 <!-- Describe issue here -->
 
-#### Expected Behavior
+### Expected Behavior
 <!-- What should be happening -->
 
-#### Actual Behavior
+### Actual Behavior
 <!-- What happens instead -->
 
-#### Steps to Reproduce
+### Steps to Reproduce
 <!-- List steps/example code here -->
 
 
-### Versions
+## Versions
 
-* webdriver_test_tools version:  
-* selenium version:  
-* python version: 
+* **webdriver-test-tools version:** 
+* **selenium version:**
+* **python version:**
 
 
-### Environment
+## Environment
 
 <!-- List OS and version -->
-* OS: 
+* **OS:** 
 <!-- Which browsers the issue is occurring in (if applicable) -->
-* Affected Browser(s): 
+* **Affected Browser(s):**
+  * [ ] Chrome
+  * [ ] Firefox
+  * [ ] Safari
+  * [ ] Edge
+  * [ ] IE
+  * [ ] Chrome Mobile (Emulated)
 
 
