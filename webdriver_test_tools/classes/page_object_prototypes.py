@@ -1,6 +1,7 @@
 """Subclasses of BasePage with additional functions for convenience.
 
-These classes define common operations and attributes for various common components. These can be subclassed in test projects if useful.
+These classes define common operations and attributes for various common components.
+These can be subclassed in test projects if useful.
 """
 
 from selenium.webdriver.common.action_chains import ActionChains
@@ -28,9 +29,15 @@ class WebPageObject(BasePage):
 class NavObject(BasePage):
     """Page object prototype for navbars
 
-    :var LINK_MAP:  Maps link text to a tuple containing its locator and the page object class for the target page, modal, section, etc (or None if need be). Override in subclasses
-    :var HOVER_MAP: Maps link text to a tuple containing its locator and the page object class for the menu, dropdown, etc that should appear on hover (or None if need be). Override in subclasses
-    :var fixed: (Default = True) True if element is a fixed navbar, False otherwise. If set to False in a subclass, click_page_link() and hover_over_page_link() will scroll the target link into view before interacting with it
+    :var LINK_MAP:  Maps link text to a tuple containing its locator and the page object
+        class for the target page, modal, section, etc (or None if need be).
+        Override in subclasses
+    :var HOVER_MAP: Maps link text to a tuple containing its locator and the page
+        object class for the menu, dropdown, etc that should appear on hover (or None
+        if need be). Override in subclasses
+    :var fixed: (Default = True) True if element is a fixed navbar, False otherwise. If
+        set to False in a subclass, click_page_link() and hover_over_page_link() will
+        scroll the target link into view before interacting with it
     """
 
     # Link maps
@@ -40,9 +47,11 @@ class NavObject(BasePage):
     fixed = True
 
     def click_page_link(self, link_map_key):
-        """Click one of the page links and return a page object class for the link target
+        """Click one of the page links and return a page object class for the link
+        target
 
         :param link_map_key: Key into LINK_MAP for the link to click on
+
         :return: Corresponding page object class for the link target (if applicable)
         """
         # TODO: raise exception?
@@ -60,6 +69,7 @@ class NavObject(BasePage):
         """Hover mouse over one of the page links
 
         :param link_map_key: Key into HOVER_MAP for the link to hover mouse over
+
         :return: Corresponding page object class for the hover dropdown/container/etc
             (if applicable)
         """
@@ -137,7 +147,8 @@ class FormObject(BasePage):
     SUBMIT_SUCCESS_CLASS = None
 
     class Input(object):
-        """Subclass used to contain name attributes and select/radio option lists for inputs
+        """Subclass used to contain name attributes and select/radio option lists for
+        inputs
 
         :Example:
 
