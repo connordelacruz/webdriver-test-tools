@@ -172,26 +172,39 @@
 <span class="sd">    Iterates through input_name_map and calls fill_form_input() to handle filling in the input based on its type</span>
 
 <span class="sd">    :param driver: Selenium webdriver object (largely for scrolling into view)</span>
-<span class="sd">    :param form_element: The Selenium WebElement for the form or container with the desired inputs. Used for locating the input elements by name in case there are other elements on the page with the same name attribute</span>
-<span class="sd">    :param input_name_map: A dictionary mapping the name of the input to the value to set it to. See the documentation for fill_form_input() for value types for the different inputs.</span>
+<span class="sd">    :param form_element: The Selenium WebElement for the form or container with the</span>
+<span class="sd">        desired inputs. Used for locating the input elements by name in case there are</span>
+<span class="sd">        other elements on the page with the same name attribute</span>
+<span class="sd">    :param input_name_map: A dictionary mapping the name of the input to the value to</span>
+<span class="sd">        set it to. See the documentation for fill_form_input() for value types for the</span>
+<span class="sd">        different inputs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Iterate through input_name_map</span>
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">input_name_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></div>
         <span class="n">fill_form_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
 <div class="viewcode-block" id="fill_form_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.fill_form_input">[docs]</a><span class="k">def</span> <span class="nf">fill_form_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Takes the name and value of a form input and determines what type it is to fill it appropriately.</span>
+    <span class="sd">&quot;&quot;&quot;Takes the name and value of a form input and determines what type it is to fill</span>
+<span class="sd">    it appropriately.</span>
 
-<span class="sd">    :param driver: Selenium webdriver object (largely for scrolling clickable inputs into view)</span>
-<span class="sd">    :param form_element: The Selenium WebElement for the form or container with the desired inputs. Used for locating the input elements by name in case there are other elements on the page with the same name attribute</span>
+<span class="sd">    :param driver: Selenium webdriver object (largely for scrolling clickable inputs</span>
+<span class="sd">        into view)</span>
+<span class="sd">    :param form_element: The Selenium WebElement for the form or container with the</span>
+<span class="sd">        desired inputs. Used for locating the input elements by name in case there are</span>
+<span class="sd">        other elements on the page with the same name attribute</span>
 <span class="sd">    :param name: The name attribute of the input</span>
 <span class="sd">    :param value: The desired value to set the input to.</span>
-<span class="sd">        For checkbox elements, this value should be a boolean (True=checked, False=unchecked).</span>
-<span class="sd">        For radio elements, this should be the value attribute of the radio to select.</span>
-<span class="sd">        For single select elements, this value should be the value of the option to select.</span>
-<span class="sd">        For multiple select elements, this value should be a list of values of the options to select.</span>
-<span class="sd">        For file inputs, this value should be a filepath to the desired file.</span>
-<span class="sd">        For other input types (text, number, etc) this should be a string representation of the values to enter into it.</span>
+
+<span class="sd">        * For checkbox elements, this value should be a boolean (True=checked,</span>
+<span class="sd">          False=unchecked).</span>
+<span class="sd">        * For radio elements, this should be the value attribute of the radio to select.</span>
+<span class="sd">        * For single select elements, this value should be the value of the option to</span>
+<span class="sd">          select.</span>
+<span class="sd">        * For multiple select elements, this value should be a list of values of the</span>
+<span class="sd">          options to select.</span>
+<span class="sd">        * For file inputs, this value should be a filepath to the desired file.</span>
+<span class="sd">        * For other input types (text, number, etc) this should be a string</span>
+<span class="sd">          representation of the values to enter into it.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">input_element</span> <span class="o">=</span> <span class="n">form_element</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="c1"># If element tag isn&#39;t input, use tag name as input_type (e.g. select)</span>
@@ -221,8 +234,11 @@
 <div class="viewcode-block" id="select_radio_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.select_radio_input">[docs]</a><span class="k">def</span> <span class="nf">select_radio_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Selects a radio input with the specified name and value attributes</span>
 
-<span class="sd">    :param driver: Selenium webdriver object. Used for scrolling the element into view before clicking element</span>
-<span class="sd">    :param form_element: The Selenium WebElement for the form or container with the desired inputs. Used for locating the input elements by name in case there are other elements on the page with the same name attribute</span>
+<span class="sd">    :param driver: Selenium webdriver object. Used for scrolling the element into view</span>
+<span class="sd">        before clicking element</span>
+<span class="sd">    :param form_element: The Selenium WebElement for the form or container with the</span>
+<span class="sd">        desired inputs. Used for locating the input elements by name in case there are</span>
+<span class="sd">        other elements on the page with the same name attribute</span>
 <span class="sd">    :param name: Name attribute of the radio input(s)</span>
 <span class="sd">    :param value: Value attribute of the radio input to select</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -235,9 +251,14 @@
 <div class="viewcode-block" id="toggle_checkbox_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.toggle_checkbox_input">[docs]</a><span class="k">def</span> <span class="nf">toggle_checkbox_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">checkbox_element</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Set the checked state of a checkbox input</span>
 
-<span class="sd">    First checks if the checkbox value doesn&#39;t match the desired value. If not, it then checks if element is visible. If it is, scroll to it and click it. If it isn&#39;t, it tries to find a label for the element by getting the element id and selecting a label with that id as the for attribute. If it finds one, it scrolls to that and clicks it.</span>
+<span class="sd">    First checks if the checkbox value doesn&#39;t match the desired value. If not, it then</span>
+<span class="sd">    checks if element is visible. If it is, scroll to it and click it. If it isn&#39;t, it</span>
+<span class="sd">    tries to find a label for the element by getting the element id and selecting a</span>
+<span class="sd">    label with that id as the for attribute. If it finds one, it scrolls to that and</span>
+<span class="sd">    clicks it.</span>
 
-<span class="sd">    :param driver: Selenium webdriver object. Used for scrolling the element into view before clicking element</span>
+<span class="sd">    :param driver: Selenium webdriver object. Used for scrolling the element into view</span>
+<span class="sd">        before clicking element</span>
 <span class="sd">    :param checkbox_element: WebElement for the checkbox to toggle</span>
 <span class="sd">    :param value: True to ensure box is checked, False to ensure it&#39;s unchecked</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -257,11 +278,13 @@
             <span class="n">element_label</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
 
 <div class="viewcode-block" id="fill_field_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.fill_field_input">[docs]</a><span class="k">def</span> <span class="nf">fill_field_input</span><span class="p">(</span><span class="n">input_element</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">clear_current_value</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Fill an input that is normally typed into (e.g. inputs of type text, password, number, etc)</span>
+    <span class="sd">&quot;&quot;&quot;Fill an input that is normally typed into (e.g. inputs of type text, password,</span>
+<span class="sd">    number, etc)</span>
 
 <span class="sd">    :param input_element: WebElement for the input</span>
 <span class="sd">    :param value: String of key presses to simulate using the send_keys() function</span>
-<span class="sd">    :param clear_current_value: (Default = False) If True, clear out any existing value in the input before entering the new one</span>
+<span class="sd">    :param clear_current_value: (Default = False) If True, clear out any existing value</span>
+<span class="sd">        in the input before entering the new one</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">clear_current_value</span><span class="p">:</span>
         <span class="n">input_element</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
@@ -281,7 +304,8 @@
 
 <span class="sd">    :param select_element: WebElement for the select input</span>
 <span class="sd">    :param values: List of values of the options to select</span>
-<span class="sd">    :param clear_current_selection: (Default = False) If True, deselect all currently selected options before selection the new ones</span>
+<span class="sd">    :param clear_current_selection: (Default = False) If True, deselect all currently</span>
+<span class="sd">        selected options before selection the new ones</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">select_element</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">clear_current_selection</span><span class="p">:</span>
@@ -295,10 +319,15 @@
 <div class="viewcode-block" id="get_form_input_values"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_form_input_values">[docs]</a><span class="k">def</span> <span class="nf">get_form_input_values</span><span class="p">(</span><span class="n">form_element</span><span class="p">,</span> <span class="n">input_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a dictionary mapping input names to their current values</span>
 
-<span class="sd">    :param form_element: WebElement for the form or container where the inputs are located. Alternatively, a WebDriver element can be used to retrieve all inputs on the current page.</span>
-<span class="sd">    :param input_names: (Optional) List of input names to get the values of. If provided, only elements whose names are listed will be checked</span>
+<span class="sd">    :param form_element: WebElement for the form or container where the inputs are</span>
+<span class="sd">        located. Alternatively, a WebDriver element can be used to retrieve all inputs</span>
+<span class="sd">        on the current page.</span>
+<span class="sd">    :param input_names: (Optional) List of input names to get the values of. If</span>
+<span class="sd">        provided, only elements whose names are listed will be checked</span>
 
-<span class="sd">    :return: Dictionary mapping input names to their current values. See the documentation for the ``value`` parameter of :func:`fill_form_input` for value types of different inputs.</span>
+<span class="sd">    :return: Dictionary mapping input names to their current values. See the</span>
+<span class="sd">        documentation for the ``value`` parameter of :func:`fill_form_input` for value</span>
+<span class="sd">        types of different inputs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">input_elements</span> <span class="o">=</span> <span class="n">form_element</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="o">*</span><span class="n">locate</span><span class="o">.</span><span class="n">input_elements</span><span class="p">())</span>
     <span class="k">if</span> <span class="n">input_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -314,7 +343,8 @@
 <div class="viewcode-block" id="get_form_input_value"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_form_input_value">[docs]</a><span class="k">def</span> <span class="nf">get_form_input_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the value of an input</span>
 
-<span class="sd">    This function contains the logic to determine what kind of input this is and uses the appropriate function to retrieve its value</span>
+<span class="sd">    This function contains the logic to determine what kind of input this is and uses</span>
+<span class="sd">    the appropriate function to retrieve its value</span>
 
 <span class="sd">    :param input_element: WebElement for the input</span>
 
@@ -349,7 +379,8 @@
 
 <span class="sd">    :param input_element: WebElement for the input</span>
 
-<span class="sd">    :return: The value attribute of the radio button if input_element is selected, None if it&#39;s not selected</span>
+<span class="sd">    :return: The value attribute of the radio button if input_element is selected, None</span>
+<span class="sd">        if it&#39;s not selected</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
     <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
 

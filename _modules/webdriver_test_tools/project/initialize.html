@@ -179,7 +179,8 @@
 <div class="viewcode-block" id="create_setup_file"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_setup_file">[docs]</a><span class="k">def</span> <span class="nf">create_setup_file</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates setup.py for test project</span>
 
-<span class="sd">    :param target_path: The path to the outer directory where the package directory is contained</span>
+<span class="sd">    :param target_path: The path to the outer directory where the package directory is</span>
+<span class="sd">        contained</span>
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
@@ -190,7 +191,8 @@
 <div class="viewcode-block" id="create_readme"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_readme">[docs]</a><span class="k">def</span> <span class="nf">create_readme</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create README.rst for test project</span>
 
-<span class="sd">    :param target_path: The path to the outer directory where the package directory is contained</span>
+<span class="sd">    :param target_path: The path to the outer directory where the package directory is</span>
+<span class="sd">        contained</span>
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
@@ -201,7 +203,8 @@
 <div class="viewcode-block" id="create_gitignore"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_gitignore">[docs]</a><span class="k">def</span> <span class="nf">create_gitignore</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create .gitignore file at the root of the test project</span>
 
-<span class="sd">    :param target_path: The path to the outer directory where the package directory is contained</span>
+<span class="sd">    :param target_path: The path to the outer directory where the package directory is</span>
+<span class="sd">        contained</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
     <span class="n">source_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">project_root</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span></div>
@@ -364,13 +367,17 @@
 
 
 <div class="viewcode-block" id="create_file_from_template"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_file_from_template">[docs]</a><span class="k">def</span> <span class="nf">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Short hand function that renders a template with the specified filename followed by a &#39;.j2&#39; extension from the template path to a file with the specified name in the target path</span>
+    <span class="sd">&quot;&quot;&quot;Short hand function that renders a template with the specified filename followed</span>
+<span class="sd">    by a &#39;.j2&#39; extension from the template path to a file with the specified name in</span>
+<span class="sd">    the target path</span>
 
-<span class="sd">    The use of &#39;.j2&#39; as a file extension is to distinguish templates from package modules.</span>
+<span class="sd">    The use of &#39;.j2&#39; as a file extension is to distinguish templates from package</span>
+<span class="sd">    modules.</span>
 
 <span class="sd">    :param template_path: Path to template directory</span>
 <span class="sd">    :param target_path: Path to target directory</span>
-<span class="sd">    :param filename: Name of the template file. Will be used as the filename for the rendered file written to the target directory</span>
+<span class="sd">    :param filename: Name of the template file. Will be used as the filename for the</span>
+<span class="sd">        rendered file written to the target directory</span>
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">file_template</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;.j2&#39;</span><span class="p">)</span>
@@ -431,7 +438,8 @@
 
 <span class="sd">    :param package_name: The desired package name</span>
 
-<span class="sd">    :return: Modified package_name with whitespaces and hyphens replaced with underscores and all invalid characters removed</span>
+<span class="sd">    :return: Modified package_name with whitespaces and hyphens replaced with</span>
+<span class="sd">        underscores and all invalid characters removed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Trim outer whitespace and replace inner whitespace and hyphens with underscore</span>
     <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+|-+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
@@ -454,7 +462,8 @@
 
 <span class="sd">    :param project_title: The desired project title</span>
 
-<span class="sd">    :return: Modifed project_title with only alphanumeric characters, spaces, underscores, and hyphens</span>
+<span class="sd">    :return: Modifed project_title with only alphanumeric characters, spaces,</span>
+<span class="sd">        underscores, and hyphens</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Trim outer whitespace and remove that aren&#39;t alphanumeric or an underscore/hyphen</span>
     <span class="n">validated_project_title</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s-]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">project_title</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
@@ -486,7 +495,8 @@
 <span class="sd">    :param text: Text to display in prompt</span>
 <span class="sd">    :param default: (Optional) default value</span>
 <span class="sd">    :param validate: (Default = nonempty) Validation function for input</span>
-<span class="sd">    :param trailing_newline: (Default = True) Print a blank line after receiving user input and successfully validating</span>
+<span class="sd">    :param trailing_newline: (Default = True) Print a blank line after receiving user</span>
+<span class="sd">        input and successfully validating</span>
 
 <span class="sd">    :return: Validated input</span>
 <span class="sd">    &quot;&quot;&quot;</span>

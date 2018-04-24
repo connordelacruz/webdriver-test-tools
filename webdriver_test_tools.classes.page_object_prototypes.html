@@ -181,7 +181,8 @@
   <div class="section" id="module-webdriver_test_tools.classes.page_object_prototypes">
 <span id="webdriver-test-tools-classes-page-object-prototypes-module"></span><h1>webdriver_test_tools.classes.page_object_prototypes module<a class="headerlink" href="#module-webdriver_test_tools.classes.page_object_prototypes" title="Permalink to this headline">¶</a></h1>
 <p>Subclasses of BasePage with additional functions for convenience.</p>
-<p>These classes define common operations and attributes for various common components. These can be subclassed in test projects if useful.</p>
+<p>These classes define common operations and attributes for various common components.
+These can be subclassed in test projects if useful.</p>
 <dl class="class">
 <dt id="webdriver_test_tools.classes.page_object_prototypes.CollapsibleNavObject">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.page_object_prototypes.</code><code class="descname">CollapsibleNavObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/page_object_prototypes.html#CollapsibleNavObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.page_object_prototypes.CollapsibleNavObject" title="Permalink to this definition">¶</a></dt>
@@ -279,7 +280,8 @@ BasePage, click_submit() will return an instance of this object.</li>
 <dt id="webdriver_test_tools.classes.page_object_prototypes.FormObject.Input">
 <em class="property">class </em><code class="descname">Input</code><a class="reference internal" href="_modules/webdriver_test_tools/classes/page_object_prototypes.html#FormObject.Input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.page_object_prototypes.FormObject.Input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Subclass used to contain name attributes and select/radio option lists for inputs</p>
+<p>Subclass used to contain name attributes and select/radio option lists for
+inputs</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -360,9 +362,15 @@ for forms with JavaScript input validation</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.LINK_MAP" title="webdriver_test_tools.classes.page_object_prototypes.NavObject.LINK_MAP"><strong>LINK_MAP</strong></a> – Maps link text to a tuple containing its locator and the page object class for the target page, modal, section, etc (or None if need be). Override in subclasses</li>
-<li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.HOVER_MAP" title="webdriver_test_tools.classes.page_object_prototypes.NavObject.HOVER_MAP"><strong>HOVER_MAP</strong></a> – Maps link text to a tuple containing its locator and the page object class for the menu, dropdown, etc that should appear on hover (or None if need be). Override in subclasses</li>
-<li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.fixed" title="webdriver_test_tools.classes.page_object_prototypes.NavObject.fixed"><strong>fixed</strong></a> – (Default = True) True if element is a fixed navbar, False otherwise. If set to False in a subclass, click_page_link() and hover_over_page_link() will scroll the target link into view before interacting with it</li>
+<li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.LINK_MAP" title="webdriver_test_tools.classes.page_object_prototypes.NavObject.LINK_MAP"><strong>LINK_MAP</strong></a> – Maps link text to a tuple containing its locator and the page object
+class for the target page, modal, section, etc (or None if need be).
+Override in subclasses</li>
+<li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.HOVER_MAP" title="webdriver_test_tools.classes.page_object_prototypes.NavObject.HOVER_MAP"><strong>HOVER_MAP</strong></a> – Maps link text to a tuple containing its locator and the page
+object class for the menu, dropdown, etc that should appear on hover (or None
+if need be). Override in subclasses</li>
+<li><a class="reference internal" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.fixed" title="webdriver_test_tools.classes.page_object_prototypes.NavObject.fixed"><strong>fixed</strong></a> – (Default = True) True if element is a fixed navbar, False otherwise. If
+set to False in a subclass, click_page_link() and hover_over_page_link() will
+scroll the target link into view before interacting with it</li>
 </ul>
 </td>
 </tr>
@@ -381,7 +389,8 @@ for forms with JavaScript input validation</p>
 <dl class="method">
 <dt id="webdriver_test_tools.classes.page_object_prototypes.NavObject.click_page_link">
 <code class="descname">click_page_link</code><span class="sig-paren">(</span><em>link_map_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/page_object_prototypes.html#NavObject.click_page_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.page_object_prototypes.NavObject.click_page_link" title="Permalink to this definition">¶</a></dt>
-<dd><p>Click one of the page links and return a page object class for the link target</p>
+<dd><p>Click one of the page links and return a page object class for the link
+target</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

@@ -163,8 +163,11 @@
     <span class="sd">&quot;&quot;&quot;Returns a locator that selects an element with the specified text</span>
 
 <span class="sd">    :param element_text: The text of the element to locate.</span>
-<span class="sd">    :param element_type: (Optional) The tag type of the element. If unspecified, will search all tag types for the specified text.</span>
-<span class="sd">    :param exact_match: (Default = False) If True, will only match elements with the exact string as its text. If False, match elements whose text contains the specified string but may also contain other text.</span>
+<span class="sd">    :param element_type: (Optional) The tag type of the element. If unspecified, will</span>
+<span class="sd">        search all tag types for the specified text.</span>
+<span class="sd">    :param exact_match: (Default = False) If True, will only match elements with the</span>
+<span class="sd">        exact string as its text. If False, match elements whose text contains the</span>
+<span class="sd">        specified string but may also contain other text.</span>
 
 <span class="sd">    :return: Locator selecting elements by the specified text</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -176,16 +179,19 @@
 
 
 <div class="viewcode-block" id="input_elements"><a class="viewcode-back" href="../../../webdriver_test_tools.webdriver.locate.html#webdriver_test_tools.webdriver.locate.input_elements">[docs]</a><span class="k">def</span> <span class="nf">input_elements</span><span class="p">(</span><span class="n">exclude_buttons</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a locator that selects input, select, textarea, and (optionally) button elements</span>
+    <span class="sd">&quot;&quot;&quot;Return a locator that selects input, select, textarea, and (optionally) button</span>
+<span class="sd">    elements</span>
 
-<span class="sd">    To narrow down results, this is best used on the conainer element where the desired inputs are located. E.g.:</span>
+<span class="sd">    To narrow down results, this is best used on the conainer element where the desired</span>
+<span class="sd">    inputs are located. E.g.:</span>
 
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        form_element = driver.find_element_by_id(&#39;form-id&#39;)</span>
 <span class="sd">        input_elements = form_element.find_elements(*locate.input_elements())</span>
 
-<span class="sd">    :param exclude_buttons: (Default = False) If set to True, omit button elements from selector</span>
+<span class="sd">    :param exclude_buttons: (Default = False) If set to True, omit button elements from</span>
+<span class="sd">        selector</span>
 
 <span class="sd">    :return: Locator selecting input elements</span>
 <span class="sd">    &quot;&quot;&quot;</span>
