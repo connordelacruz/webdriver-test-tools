@@ -34,6 +34,11 @@ class WebDriverConfig(object):
 
     :var WebDriverConfig.CHROME_MOBILE_EMULATION: Dictionary with 'mobileEmulation'
         options for Chrome
+
+    Headless browser configurations:
+
+    :var WebDriverConfig.CHROME_HEADLESS_ARGS: Command line arguments to use in addition to the --headless flag
+    :var WebDriverConfig.FIREFOX_HEADLESS_ARGS: Command line arguments to use in addition to the -headless flag
     """
     # Root directory of webdriver_test_tools package
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
@@ -48,9 +53,8 @@ class WebDriverConfig(object):
     EDGE_KWARGS = {}
 
     CHROME_MOBILE_EMULATION = { "deviceName": "Pixel 2" }
-    # TODO: document
     CHROME_HEADLESS_ARGS = ['--window-size=1920x1080',]
-    # TODO: document and figure out window size?
+    # TODO: figure out window size?
     FIREFOX_HEADLESS_ARGS = []
 
     # Functions
@@ -107,7 +111,7 @@ class WebDriverConfig(object):
         options = webdriver.ChromeOptions()
         for arg in cls.CHROME_HEADLESS_ARGS:
             options.add_argument(arg)
-        # TODO: ChromeOptions has a setter for headless, but it causes an error
+        # NOTE: ChromeOptions has a setter decorator for headless, but it causes an error
         options.add_argument('--headless')
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 

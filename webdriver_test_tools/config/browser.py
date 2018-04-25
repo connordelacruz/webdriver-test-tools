@@ -15,5 +15,7 @@ class BrowserConfig(object):
         # Browsers.IE: IETestCase,
         # Browsers.EDGE: EdgeTestCase,
         # Browsers.CHROME_MOBILE: ChromeMobileTestCase,
+        # Browsers.CHROME_HEADLESS: ChromeHeadlessTestCase,
+        # Browsers.FIREFOX_HEADLESS: FirefoxHeadlessTestCase,
     }
 
