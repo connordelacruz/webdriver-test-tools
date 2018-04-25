@@ -48,6 +48,8 @@ class WebDriverConfig(object):
     EDGE_KWARGS = {}
 
     CHROME_MOBILE_EMULATION = { "deviceName": "Pixel 2" }
+    # TODO: document
+    CHROME_HEADLESS_ARGS = ['--window-size=1920x1080',]
 
     # Functions
 
@@ -92,6 +94,19 @@ class WebDriverConfig(object):
         service_log_path = os.path.join(cls.LOG_PATH, 'mobile_chromedriver.log')
         options = webdriver.ChromeOptions()
         options.add_experimental_option("mobileEmulation", cls.CHROME_MOBILE_EMULATION)
+        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
+
+    @classmethod
+    def get_chrome_headless_driver(cls):
+        """Returns webdriver.Chrome object using CHROME_KWARGS, LOG_PATH, and
+        CHROME_HEADLESS_ARGS to initialize. Runs using --headless argument
+        """
+        service_log_path = os.path.join(cls.LOG_PATH, 'headless_chromedriver.log')
+        options = webdriver.ChromeOptions()
+        for arg in cls.CHROME_HEADLESS_ARGS:
+            options.add_argument(arg)
+        # TODO: ChromeOptions has a setter for headless, but it causes an error
+        options.add_argument('--headless')
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 
     @classmethod
