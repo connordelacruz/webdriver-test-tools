@@ -59,16 +59,18 @@ class WebDriverConfig(object):
 
     # Functions
 
+    # TODO: implement and documeny headless
     @classmethod
-    def get_firefox_driver(cls):
+    def get_firefox_driver(cls, headless=False):
         """Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to
         initialize
         """
         log_path = os.path.join(cls.LOG_PATH, 'geckodriver.log')
         return cls.set_driver_implicit_wait(webdriver.Firefox(log_path=log_path, **cls.FIREFOX_KWARGS))
 
+    # TODO: implement and documeny headless
     @classmethod
-    def get_chrome_driver(cls):
+    def get_chrome_driver(cls, headless=False):
         """Returns webdriver.Chrome object using CHROME_KWARGS and LOG_PATH to
         initialize
         """
@@ -102,6 +104,7 @@ class WebDriverConfig(object):
         options.add_experimental_option("mobileEmulation", cls.CHROME_MOBILE_EMULATION)
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 
+    # TODO: just return chrome options object
     @classmethod
     def get_chrome_headless_driver(cls):
         """Returns webdriver.Chrome object using CHROME_KWARGS, LOG_PATH, and
@@ -115,6 +118,7 @@ class WebDriverConfig(object):
         options.add_argument('--headless')
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 
+    # TODO: just return firefox options object
     @classmethod
     def get_firefox_headless_driver(cls):
         """Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to

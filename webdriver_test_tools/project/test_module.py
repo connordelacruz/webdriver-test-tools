@@ -76,6 +76,7 @@ def get_parser(browser_config=None, browserstack_config=None):
     if browserstack_config.ENABLE:
         parser.add_argument('--browserstack', action='store_true',
                             help='Run tests on BrowserStack instead of locally')
+    # TODO: add --headless argument and implement
     # Arguments for specifying what test to run
     parser.add_argument('-t', '--test', nargs='+', metavar='<test>',
                         help='Run specific test case classes or test methods.\nArguments should be in the format <TestCase>[.<method>]')

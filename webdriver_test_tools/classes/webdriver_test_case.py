@@ -77,6 +77,10 @@ class WebDriverTestCase(unittest.TestCase):
     COMMAND_EXECUTOR = None
     CAPABILITIES = None
 
+    # Headless browser attributes
+    # TODO: document and implement
+    HEADLESS = False
+
     def bs_driver_init(self):
         """Initialize driver for BrowserStack
 
@@ -414,6 +418,8 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
         return self.WebDriverConfig.get_chrome_mobile_driver()
 
 
+# TODO: merge headless classes into superclass
+
 class ChromeHeadlessTestCase(ChromeTestCase):
     """Implementation of WebDriverTestCase using Chrome webdriver. Runs using the
     --headless command line argument
@@ -426,6 +432,7 @@ class ChromeHeadlessTestCase(ChromeTestCase):
     SHORT_NAME = 'chrome-headless'
 
     def driver_init(self):
+        # TODO: get_chrome_driver(headless=self.HEADLESS)
         return self.WebDriverConfig.get_chrome_headless_driver()
 
 
@@ -441,6 +448,7 @@ class FirefoxHeadlessTestCase(FirefoxTestCase):
     SHORT_NAME = 'firefox-headless'
 
     def driver_init(self):
+        # TODO: get_firefox_driver(headless=self.HEADLESS)
         return self.WebDriverConfig.get_firefox_headless_driver()
 
 
