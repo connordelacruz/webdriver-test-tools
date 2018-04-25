@@ -50,6 +50,8 @@ class WebDriverConfig(object):
     CHROME_MOBILE_EMULATION = { "deviceName": "Pixel 2" }
     # TODO: document
     CHROME_HEADLESS_ARGS = ['--window-size=1920x1080',]
+    # TODO: document and figure out window size?
+    FIREFOX_HEADLESS_ARGS = []
 
     # Functions
 
@@ -108,6 +110,18 @@ class WebDriverConfig(object):
         # TODO: ChromeOptions has a setter for headless, but it causes an error
         options.add_argument('--headless')
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
+
+    @classmethod
+    def get_firefox_headless_driver(cls):
+        """Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to
+        initialize. Runs using -headless argument
+        """
+        log_path = os.path.join(cls.LOG_PATH, 'headless_geckodriver.log')
+        options = webdriver.FirefoxOptions()
+        for arg in cls.FIREFOX_HEADLESS_ARGS:
+            options.add_argument(arg)
+        options.add_argument('-headless')
+        return cls.set_driver_implicit_wait(webdriver.Firefox(log_path=log_path, options=options, **cls.FIREFOX_KWARGS))
 
     @classmethod
     def set_driver_implicit_wait(cls, driver):
