@@ -78,7 +78,8 @@ class WebDriverTestCase(unittest.TestCase):
     CAPABILITIES = None
 
     # Headless browser attributes
-    # TODO: document and implement
+    # TODO: document
+    # TODO: rename to ENABLE_HEADLESS for consistency
     HEADLESS = False
 
     def bs_driver_init(self):
@@ -302,6 +303,10 @@ class FirefoxTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Firefox webdriver
 
     `Driver download <https://github.com/mozilla/geckodriver/releases>`__
+
+    This driver supports headless browsing:
+
+        `Headless browser info <https://developer.mozilla.org/en-US/Firefox/Headless_mode>`__
     """
     DRIVER_NAME = 'Firefox'
     SHORT_NAME = DRIVER_NAME.lower()
@@ -315,6 +320,10 @@ class ChromeTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Chrome webdriver
 
     `Driver download <https://sites.google.com/a/chromium.org/chromedriver/downloads>`__
+
+    This driver supports headless browsing:
+
+        `Headless browser info <https://developers.google.com/web/updates/2017/04/headless-chrome>`__
     """
     DRIVER_NAME = 'Chrome'
     SHORT_NAME = DRIVER_NAME.lower()
@@ -418,38 +427,6 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
         return self.WebDriverConfig.get_chrome_mobile_driver()
 
 
-# TODO: remove, move headless browser info link to parent
-class ChromeHeadlessTestCase(ChromeTestCase):
-    """Implementation of WebDriverTestCase using Chrome webdriver. Runs using the
-    --headless command line argument
-
-    `Driver download <https://sites.google.com/a/chromium.org/chromedriver/downloads>`__
-
-    `Headless browser info <https://developers.google.com/web/updates/2017/04/headless-chrome>`__
-    """
-    DRIVER_NAME = 'Chrome [Headless]'
-    SHORT_NAME = 'chrome-headless'
-
-    def driver_init(self):
-        return self.WebDriverConfig.get_chrome_headless_driver()
-
-
-# TODO: remove, move headless browser info link to parent
-class FirefoxHeadlessTestCase(FirefoxTestCase):
-    """Implementation of WebDriverTestCase using Firefox webdriver. Runs using the
-    -headless command line argument
-
-    `Driver download <https://github.com/mozilla/geckodriver/releases>`__
-
-    `Headless browser info <https://developer.mozilla.org/en-US/Firefox/Headless_mode>`__
-    """
-    DRIVER_NAME = 'Firefox [Headless]'
-    SHORT_NAME = 'firefox-headless'
-
-    def driver_init(self):
-        return self.WebDriverConfig.get_firefox_headless_driver()
-
-
 class Browsers(object):
     """Constants for browser short names"""
     FIREFOX = FirefoxTestCase.SHORT_NAME
@@ -458,9 +435,6 @@ class Browsers(object):
     IE = IETestCase.SHORT_NAME
     EDGE = EdgeTestCase.SHORT_NAME
     CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
-    # TODO: remove headless
-    CHROME_HEADLESS = ChromeHeadlessTestCase.SHORT_NAME
-    FIREFOX_HEADLESS = FirefoxHeadlessTestCase.SHORT_NAME
     # List of browser classes that support headless browsing
     # TODO: document
     HEADLESS_COMPATIBLE = [

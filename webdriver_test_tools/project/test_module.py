@@ -72,17 +72,18 @@ def get_parser(browser_config=None, browserstack_config=None):
         browser_choices = list(set(browser_config.BROWSER_TEST_CLASSES) | set(browserstack_config.BROWSER_TEST_CLASSES))
     else:
         browser_choices = list(browser_config.BROWSER_TEST_CLASSES.keys())
-    options_help = format_browser_choices(browser_config, browserstack_config)
+    browser_options_help = format_browser_choices(browser_config, browserstack_config)
     parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
-                        help='Run tests only in the specified browsers.' + options_help)
+                        help='Run tests only in the specified browsers.' + browser_options_help)
     # Add argument for running on browserstack if the feature is enabled
     if browserstack_config.ENABLE:
         parser.add_argument('--browserstack', action='store_true',
                             help='Run tests on BrowserStack instead of locally')
     # Add --headless argument and implement
     # TODO: list compatible browsers in help string
+    headless_options_help = format_headless_browsers(browser_config)
     parser.add_argument('-H', '--headless', action='store_true',
-                        help='Run tests using headless browsers.\nWill only run using headless compatible browsers')
+                        help='Run tests using headless browsers.' + headless_options_help)
     # Arguments for specifying what test to run
     parser.add_argument('-t', '--test', nargs='+', metavar='<test>',
                         help='Run specific test case classes or test methods.\nArguments should be in the format <TestCase>[.<method>]')
@@ -139,6 +140,14 @@ def format_browser_choices(browser_config, browserstack_config):
         if browserstack_only:
             options += '\nBrowserStack Only: ' + browser_list_string(list(browserstack_only))
     return options
+
+
+def format_headless_browsers(browser_config):
+    # TODO: document
+    browser_names = [
+        browser_class.SHORT_NAME for browser_class in browser_config.Browsers.HEADLESS_COMPATIBLE
+    ]
+    return '\nCompatible Browsers: ' + browser_list_string(browser_names)
 
 
 def browser_list_string(browser_names):

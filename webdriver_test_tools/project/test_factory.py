@@ -3,6 +3,7 @@
 import unittest
 from webdriver_test_tools.config import BrowserConfig
 from webdriver_test_tools.project import test_loader
+# TODO: use BrowserConfig.Browsers instead of importing
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase, Browsers
 
 
@@ -144,10 +145,14 @@ def enable_browserstack(browser_test_case, config_module):
 
 
 def enable_headless(browser_test_case):
-    # TODO: document
+    """Enable headless browser test execution for a class
+
+    :param browser_test_case: Browser test case class to configure for BrowserStack
+        usage
+
+    :return: browser_test_case class with `HEADLESS` attribute configured
+    """
     browser_test_case.HEADLESS = True
-    # TODO: make sure new_class.__doc__ gets updated (or remove this)
-    browser_test_case.DRIVER_NAME += ' [Headless]'
     return browser_test_case
 
 
