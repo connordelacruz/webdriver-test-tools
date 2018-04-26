@@ -153,6 +153,28 @@ To only use mobile browsers for a test case class, subclass ``WebDriverMobileTes
         ...
 
 
+Using headless browsers
+-----------------------
+
+By default, tests run using the browser's GUI. While it can be helpful to see
+what's going on during test execution, loading and rendering the browser window
+can be resource-intensive and slows down performance during test execution.
+
+To improve performance, tests can be run in `headless browsers`_ using the
+``--headless`` argument:
+
+::
+
+    python -m <test_package> <args> --headless
+
+**Note:** When using the ``--headless`` argument, tests will only be run with
+the following web drivers that support running in a headless environment:
+
+    * `Chrome <https://developers.google.com/web/updates/2017/04/headless-chrome>`__
+    * `Firefox <https://developer.mozilla.org/en-US/Firefox/Headless_mode>`__
+
+.. _headless browsers: https://en.wikipedia.org/wiki/Headless_browser
+
 
 
 
