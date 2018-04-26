@@ -57,6 +57,12 @@ class WebDriverTestCase(unittest.TestCase):
         BrowserStack
     :var WebDriverTestCase.COMMAND_EXECUTOR: Command executor URL. Test generator
         needs to set this with the configured access key and username
+
+    **The following attributes are used for running tests in a headless browser:**
+
+    :var WebDriverTestCase.ENABLE_HEADLESS: (Default = False) If set to True, browser
+        implementations with headless browser support will configure their drivers to
+        run tests in a headless browser
     """
 
     # Instance variables
@@ -78,9 +84,7 @@ class WebDriverTestCase(unittest.TestCase):
     CAPABILITIES = None
 
     # Headless browser attributes
-    # TODO: document
-    # TODO: rename to ENABLE_HEADLESS for consistency
-    HEADLESS = False
+    ENABLE_HEADLESS = False
 
     def bs_driver_init(self):
         """Initialize driver for BrowserStack
@@ -313,7 +317,7 @@ class FirefoxTestCase(WebDriverTestCase):
     CAPABILITIES = DesiredCapabilities.FIREFOX.copy()
 
     def driver_init(self):
-        return self.WebDriverConfig.get_firefox_driver(self.HEADLESS)
+        return self.WebDriverConfig.get_firefox_driver(self.ENABLE_HEADLESS)
 
 
 class ChromeTestCase(WebDriverTestCase):
@@ -330,7 +334,7 @@ class ChromeTestCase(WebDriverTestCase):
     CAPABILITIES = DesiredCapabilities.CHROME.copy()
 
     def driver_init(self):
-        return self.WebDriverConfig.get_chrome_driver(self.HEADLESS)
+        return self.WebDriverConfig.get_chrome_driver(self.ENABLE_HEADLESS)
 
 
 # Experimental/Platform-specific
@@ -428,7 +432,11 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
 
 
 class Browsers(object):
-    """Constants for browser short names"""
+    """Constants for browser short names
+
+    :var Browsers.HEADLESS_COMPATIBLE: List of WebDriverTestCase subclasses that
+        support test execution in a headless browser
+    """
     FIREFOX = FirefoxTestCase.SHORT_NAME
     CHROME = ChromeTestCase.SHORT_NAME
     SAFARI = SafariTestCase.SHORT_NAME
@@ -436,7 +444,6 @@ class Browsers(object):
     EDGE = EdgeTestCase.SHORT_NAME
     CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
     # List of browser classes that support headless browsing
-    # TODO: document
     HEADLESS_COMPATIBLE = [
         FirefoxTestCase,
         ChromeTestCase,

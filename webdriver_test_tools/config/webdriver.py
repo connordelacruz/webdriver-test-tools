@@ -54,7 +54,6 @@ class WebDriverConfig(object):
 
     CHROME_MOBILE_EMULATION = { "deviceName": "Pixel 2" }
     CHROME_HEADLESS_ARGS = ['--window-size=1920x1080',]
-    # TODO: figure out window size?
     FIREFOX_HEADLESS_ARGS = []
 
     # Functions

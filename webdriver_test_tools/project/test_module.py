@@ -80,7 +80,6 @@ def get_parser(browser_config=None, browserstack_config=None):
         parser.add_argument('--browserstack', action='store_true',
                             help='Run tests on BrowserStack instead of locally')
     # Add --headless argument and implement
-    # TODO: list compatible browsers in help string
     headless_options_help = format_headless_browsers(browser_config)
     parser.add_argument('-H', '--headless', action='store_true',
                         help='Run tests using headless browsers.' + headless_options_help)
@@ -143,7 +142,12 @@ def format_browser_choices(browser_config, browserstack_config):
 
 
 def format_headless_browsers(browser_config):
-    # TODO: document
+    """Format the help string for compatible browsers in --headless help string
+
+    :param browser_config: BrowserConfig class
+
+    :return: Formatted help string for browser options
+    """
     browser_names = [
         browser_class.SHORT_NAME for browser_class in browser_config.Browsers.HEADLESS_COMPATIBLE
     ]
@@ -183,7 +187,6 @@ def parse_test_names(test_name_args):
     return class_map
 
 
-# TODO: document and implement headless
 def run_tests(tests_module, config_module, browser_classes=None, test_class_map=None,
               test_module_names=None, browserstack=False, headless=False):
     """Run tests using parsed args and project modules
@@ -198,6 +201,9 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
     :param test_module_names: (Optional) Parsed arg for --module command line argument
     :param browserstack: (Default = False) If True, generated test cases should run on
         BrowserStack
+    :param headless: (Default = False) If True, configure driver to run tests in a
+        headless browser. Tests will only be generated for drivers that support
+        running headless browsers
     """
     # Enable graceful Ctrl+C handling
     unittest.installHandler()

@@ -3,11 +3,9 @@
 import unittest
 from webdriver_test_tools.config import BrowserConfig
 from webdriver_test_tools.project import test_loader
-# TODO: use BrowserConfig.Browsers instead of importing
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase, Browsers
 
 
-# TODO: document and implement headless arg
 def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None,
                                 config_module=None, browserstack=False, headless=False):
     """Generates test cases for multiple browsers and returns a TestSuite with all of
@@ -24,6 +22,9 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
     :param browserstack: (Default = False) If True, configure generated test cases to
         run on BrowserStack instead of locally. Need to provide `config_module` with
         appropriately configured `BrowserStackConfig` class if set to True
+    :param headless: (Default = False) If True, configure driver to run tests in a
+        headless browser. Tests will only be generated for drivers that support
+        running headless browsers
 
     :return: unittest.TestSuite object with generated tests for each browser
     """
@@ -45,7 +46,6 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
     return unittest.TestSuite(browser_tests)
 
 
-# TODO: document and implement headless arg
 def generate_browser_test_cases(base_class, browser_test_classes=None, config_module=None,
                                 browserstack=False, headless=False):
     """Generate test cases for each browser from a WebDriverTestCase subclass
@@ -58,6 +58,8 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     :param browserstack: (Default = False) If True, configure generated test cases to
         run on BrowserStack instead of locally. Need to provide `config_module` with
         appropriately configured `BrowserStackConfig` class if set to True
+    :param headless: (Default = False) If True, configure driver to run tests in a
+        headless browser
 
     :return: List of generated test case classes for each browser
     """
@@ -82,7 +84,6 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     return browser_test_cases
 
 
-# TODO: document and implement headless arg
 def generate_browser_test_case(base_class, browser_test_class, config_module=None,
                                browserstack=False, headless=False):
     """Generates a browser-specific test case class from a generic WebDriverTestCase
@@ -94,6 +95,8 @@ def generate_browser_test_case(base_class, browser_test_class, config_module=Non
     :param browserstack: (Default = False) If True, configure generated test cases to
         run on BrowserStack instead of locally. Need to provide `config_module` with
         appropriately configured `BrowserStackConfig` class if set to True
+    :param headless: (Default = False) If True, configure driver to run tests in a
+        headless browser
 
     :return: Test case class with tests from `base_class` and driver configurations from
         `browser_test_class`. If `browserstack` is set to True, returned class will have
@@ -150,9 +153,9 @@ def enable_headless(browser_test_case):
     :param browser_test_case: Browser test case class to configure for BrowserStack
         usage
 
-    :return: browser_test_case class with `HEADLESS` attribute configured
+    :return: browser_test_case class with `ENABLE_HEADLESS` attribute configured
     """
-    browser_test_case.HEADLESS = True
+    browser_test_case.ENABLE_HEADLESS = True
     return browser_test_case
 
 
