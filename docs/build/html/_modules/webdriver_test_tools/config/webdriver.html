@@ -190,6 +190,11 @@
 
 <span class="sd">    :var WebDriverConfig.CHROME_MOBILE_EMULATION: Dictionary with &#39;mobileEmulation&#39;</span>
 <span class="sd">        options for Chrome</span>
+
+<span class="sd">    Headless browser configurations:</span>
+
+<span class="sd">    :var WebDriverConfig.CHROME_HEADLESS_ARGS: Command line arguments to use in addition to the --headless flag</span>
+<span class="sd">    :var WebDriverConfig.FIREFOX_HEADLESS_ARGS: Command line arguments to use in addition to the -headless flag</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Root directory of webdriver_test_tools package</span>
     <span class="n">_PACKAGE_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
@@ -204,24 +209,34 @@
     <span class="n">EDGE_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="n">CHROME_MOBILE_EMULATION</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;Pixel 2&quot;</span> <span class="p">}</span>
+    <span class="n">CHROME_HEADLESS_ARGS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--window-size=1920x1080&#39;</span><span class="p">,]</span>
+    <span class="n">FIREFOX_HEADLESS_ARGS</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="c1"># Functions</span>
 
 <div class="viewcode-block" id="WebDriverConfig.get_firefox_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_firefox_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_firefox_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to</span>
 <span class="sd">        initialize</span>
+
+<span class="sd">        :param headless: (Default = False) If True, configure driver to run a</span>
+<span class="sd">            headless browser</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">LOG_PATH</span><span class="p">,</span> <span class="s1">&#39;geckodriver.log&#39;</span><span class="p">)</span></div>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">(</span><span class="n">log_path</span><span class="o">=</span><span class="n">log_path</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">FIREFOX_KWARGS</span><span class="p">))</span>
+        <span class="n">log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">LOG_PATH</span><span class="p">,</span> <span class="s1">&#39;geckodriver.log&#39;</span><span class="p">)</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_firefox_headless_options</span><span class="p">()</span> <span class="k">if</span> <span class="n">headless</span> <span class="k">else</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">(</span><span class="n">log_path</span><span class="o">=</span><span class="n">log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">FIREFOX_KWARGS</span><span class="p">))</span>
 
 <div class="viewcode-block" id="WebDriverConfig.get_chrome_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_chrome_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_chrome_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns webdriver.Chrome object using CHROME_KWARGS and LOG_PATH to</span>
 <span class="sd">        initialize</span>
+
+<span class="sd">        :param headless: (Default = False) If True, configure driver to run a</span>
+<span class="sd">            headless browser</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">service_log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">LOG_PATH</span><span class="p">,</span> <span class="s1">&#39;chromedriver.log&#39;</span><span class="p">)</span></div>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span>
+        <span class="n">service_log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">LOG_PATH</span><span class="p">,</span> <span class="s1">&#39;chromedriver.log&#39;</span><span class="p">)</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_chrome_headless_options</span><span class="p">()</span> <span class="k">if</span> <span class="n">headless</span> <span class="k">else</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span>
 
 <div class="viewcode-block" id="WebDriverConfig.get_safari_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_safari_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_safari_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
@@ -249,6 +264,30 @@
         <span class="n">options</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">ChromeOptions</span><span class="p">()</span>
         <span class="n">options</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s2">&quot;mobileEmulation&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_MOBILE_EMULATION</span><span class="p">)</span></div>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span>
+
+    <span class="c1"># Driver Options</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_get_firefox_headless_options</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns FirefoxOptions with -headless argument and arguments from</span>
+<span class="sd">        FIREFOX_HEADLESS_ARGS set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">FirefoxOptions</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">FIREFOX_HEADLESS_ARGS</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-headless&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">options</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_get_chrome_headless_options</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns ChromeOptions with --headless argument and arguments from</span>
+<span class="sd">        CHROME_HEADLESS_ARGS set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">ChromeOptions</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_HEADLESS_ARGS</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--headless&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">options</span>
 
 <div class="viewcode-block" id="WebDriverConfig.set_driver_implicit_wait"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.set_driver_implicit_wait">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">set_driver_implicit_wait</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
