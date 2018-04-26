@@ -1,6 +1,6 @@
-=============================
-Selenium WebDriver Test Tools
-=============================
+====================
+WebDriver Test Tools
+====================
 
 |pypi|
 |github|
@@ -25,23 +25,23 @@ A front-end testing framework using `Selenium WebDriver`_ and Python.
 Overview
 ========
 
-This project aims to reduce the amount of time and additional code required to
-automate front-end functional testing by providing utilities and conventions for
-building test suites. 
+WebDriver Test Tools provides a framework and utilities for writing front-end 
+functional tests.
 
 
 Features
 --------
 
+- Testing framework for writing cross-browser front-end test suites
+- Pre-defined test functions for commonly used test procedures
 - Utilities and extended functionality for the Selenium WebDriver package
-- Pre-defined test methods for commonly used test procedures
-- Unit testing framework for automated tests on multiple browsers
-- Support for testing on headless browsers
-- Implementation of the `Page Object Model`_ and pre-defined page objects for
+- Implementation of the `Page Object Model`_ with pre-defined page objects for
   common elements (navbars, forms, etc)
 - Command line tool for quickly generating files and directories for new test
   projects
-- Support for automating tests on `BrowserStack`_
+- Mobile device layout emulation for responsive tests
+- Headless browser testing
+- Support for running tests on `BrowserStack`_
 
 .. _Page Object Model: https://martinfowler.com/bliki/PageObject.html
 .. _BrowserStack: https://www.browserstack.com/
