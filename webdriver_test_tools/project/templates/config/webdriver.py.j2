@@ -18,15 +18,27 @@ class WebDriverConfig(config.WebDriverConfig):
 
     Browser driver initialization arguments:
 
-    :var WebDriverConfig.FIREFOX_KWARGS:
-    :var WebDriverConfig.CHROME_KWARGS:
-    :var WebDriverConfig.SAFARI_KWARGS:
-    :var WebDriverConfig.IE_KWARGS:
-    :var WebDriverConfig.EDGE_KWARGS:
+    :var WebDriverConfig.FIREFOX_KWARGS: Keyword args for webdriver.Firefox()
+    :var WebDriverConfig.CHROME_KWARGS: Keyword args for webdriver.Chrome()
+    :var WebDriverConfig.SAFARI_KWARGS: Keyword args for webdriver.Safari()
+    :var WebDriverConfig.IE_KWARGS: Keyword args for webdriver.Ie()
+    :var WebDriverConfig.EDGE_KWARGS: Keyword args for webdriver.Edge()
+
+    .. note::
+
+        Logging configurations are set when the corresponding ``get_<browser>_driver()``
+        method is called. This allows for projects to override the ``LOG_PATH`` variable
+        without having to also override all ``<browser>_KWARGS`` variables as well.
 
     Mobile configurations:
 
-    :var WebDriverConfig.CHROME_MOBILE_EMULATION:
+    :var WebDriverConfig.CHROME_MOBILE_EMULATION: Dictionary with 'mobileEmulation'
+        options for Chrome
+
+    Headless browser configurations:
+
+    :var WebDriverConfig.CHROME_HEADLESS_ARGS: Command line arguments to use in addition to the --headless flag
+    :var WebDriverConfig.FIREFOX_HEADLESS_ARGS: Command line arguments to use in addition to the -headless flag
     """
 
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath({{test_package}}.__file__))
@@ -43,4 +55,6 @@ class WebDriverConfig(config.WebDriverConfig):
     # EDGE_KWARGS = {}
 
     # CHROME_MOBILE_EMULATION = { "deviceName": "Pixel 2" }
+    # CHROME_HEADLESS_ARGS = ['--window-size=1920x1080',]
+    # FIREFOX_HEADLESS_ARGS = []
 

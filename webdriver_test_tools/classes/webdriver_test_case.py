@@ -57,6 +57,12 @@ class WebDriverTestCase(unittest.TestCase):
         BrowserStack
     :var WebDriverTestCase.COMMAND_EXECUTOR: Command executor URL. Test generator
         needs to set this with the configured access key and username
+
+    **The following attributes are used for running tests in a headless browser:**
+
+    :var WebDriverTestCase.ENABLE_HEADLESS: (Default = False) If set to True, browser
+        implementations with headless browser support will configure their drivers to
+        run tests in a headless browser
     """
 
     # Instance variables
@@ -76,6 +82,9 @@ class WebDriverTestCase(unittest.TestCase):
     ENABLE_BS = False
     COMMAND_EXECUTOR = None
     CAPABILITIES = None
+
+    # Headless browser attributes
+    ENABLE_HEADLESS = False
 
     def bs_driver_init(self):
         """Initialize driver for BrowserStack
@@ -298,26 +307,34 @@ class FirefoxTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Firefox webdriver
 
     `Driver download <https://github.com/mozilla/geckodriver/releases>`__
+
+    This driver supports headless browsing:
+
+        `Headless browser info <https://developer.mozilla.org/en-US/Firefox/Headless_mode>`__
     """
     DRIVER_NAME = 'Firefox'
     SHORT_NAME = DRIVER_NAME.lower()
     CAPABILITIES = DesiredCapabilities.FIREFOX.copy()
 
     def driver_init(self):
-        return self.WebDriverConfig.get_firefox_driver()
+        return self.WebDriverConfig.get_firefox_driver(self.ENABLE_HEADLESS)
 
 
 class ChromeTestCase(WebDriverTestCase):
     """Implementation of WebDriverTestCase using Chrome webdriver
 
     `Driver download <https://sites.google.com/a/chromium.org/chromedriver/downloads>`__
+
+    This driver supports headless browsing:
+
+        `Headless browser info <https://developers.google.com/web/updates/2017/04/headless-chrome>`__
     """
     DRIVER_NAME = 'Chrome'
     SHORT_NAME = DRIVER_NAME.lower()
     CAPABILITIES = DesiredCapabilities.CHROME.copy()
 
     def driver_init(self):
-        return self.WebDriverConfig.get_chrome_driver()
+        return self.WebDriverConfig.get_chrome_driver(self.ENABLE_HEADLESS)
 
 
 # Experimental/Platform-specific
@@ -415,11 +432,20 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
 
 
 class Browsers(object):
-    """Constants for browser short names"""
+    """Constants for browser short names
+
+    :var Browsers.HEADLESS_COMPATIBLE: List of WebDriverTestCase subclasses that
+        support test execution in a headless browser
+    """
     FIREFOX = FirefoxTestCase.SHORT_NAME
     CHROME = ChromeTestCase.SHORT_NAME
     SAFARI = SafariTestCase.SHORT_NAME
     IE = IETestCase.SHORT_NAME
     EDGE = EdgeTestCase.SHORT_NAME
     CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
+    # List of browser classes that support headless browsing
+    HEADLESS_COMPATIBLE = [
+        FirefoxTestCase,
+        ChromeTestCase,
+    ]
 

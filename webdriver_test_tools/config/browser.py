@@ -17,3 +17,9 @@ class BrowserConfig(object):
         # Browsers.CHROME_MOBILE: ChromeMobileTestCase,
     }
 
+    class Browsers(Browsers):
+        """Attribute that mirrors the content of :class:`webdriver_test_tools.classes.webdriver_test_case.Browsers`
+        for convenience
+        """
+        pass
+

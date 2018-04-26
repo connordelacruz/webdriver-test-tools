@@ -34,6 +34,11 @@ class WebDriverConfig(object):
 
     :var WebDriverConfig.CHROME_MOBILE_EMULATION: Dictionary with 'mobileEmulation'
         options for Chrome
+
+    Headless browser configurations:
+
+    :var WebDriverConfig.CHROME_HEADLESS_ARGS: Command line arguments to use in addition to the --headless flag
+    :var WebDriverConfig.FIREFOX_HEADLESS_ARGS: Command line arguments to use in addition to the -headless flag
     """
     # Root directory of webdriver_test_tools package
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
@@ -48,24 +53,34 @@ class WebDriverConfig(object):
     EDGE_KWARGS = {}
 
     CHROME_MOBILE_EMULATION = { "deviceName": "Pixel 2" }
+    CHROME_HEADLESS_ARGS = ['--window-size=1920x1080',]
+    FIREFOX_HEADLESS_ARGS = []
 
     # Functions
 
     @classmethod
-    def get_firefox_driver(cls):
+    def get_firefox_driver(cls, headless=False):
         """Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to
         initialize
+
+        :param headless: (Default = False) If True, configure driver to run a
+            headless browser
         """
         log_path = os.path.join(cls.LOG_PATH, 'geckodriver.log')
-        return cls.set_driver_implicit_wait(webdriver.Firefox(log_path=log_path, **cls.FIREFOX_KWARGS))
+        options = cls._get_firefox_headless_options() if headless else None
+        return cls.set_driver_implicit_wait(webdriver.Firefox(log_path=log_path, options=options, **cls.FIREFOX_KWARGS))
 
     @classmethod
-    def get_chrome_driver(cls):
+    def get_chrome_driver(cls, headless=False):
         """Returns webdriver.Chrome object using CHROME_KWARGS and LOG_PATH to
         initialize
+
+        :param headless: (Default = False) If True, configure driver to run a
+            headless browser
         """
         service_log_path = os.path.join(cls.LOG_PATH, 'chromedriver.log')
-        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, **cls.CHROME_KWARGS))
+        options = cls._get_chrome_headless_options() if headless else None
+        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 
     @classmethod
     def get_safari_driver(cls):
@@ -93,6 +108,30 @@ class WebDriverConfig(object):
         options = webdriver.ChromeOptions()
         options.add_experimental_option("mobileEmulation", cls.CHROME_MOBILE_EMULATION)
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
+
+    # Driver Options
+
+    @classmethod
+    def _get_firefox_headless_options(cls):
+        """Returns FirefoxOptions with -headless argument and arguments from
+        FIREFOX_HEADLESS_ARGS set
+        """
+        options = webdriver.FirefoxOptions()
+        for arg in cls.FIREFOX_HEADLESS_ARGS:
+            options.add_argument(arg)
+        options.add_argument('-headless')
+        return options
+
+    @classmethod
+    def _get_chrome_headless_options(cls):
+        """Returns ChromeOptions with --headless argument and arguments from
+        CHROME_HEADLESS_ARGS set
+        """
+        options = webdriver.ChromeOptions()
+        for arg in cls.CHROME_HEADLESS_ARGS:
+            options.add_argument(arg)
+        options.add_argument('--headless')
+        return options
 
     @classmethod
     def set_driver_implicit_wait(cls, driver):

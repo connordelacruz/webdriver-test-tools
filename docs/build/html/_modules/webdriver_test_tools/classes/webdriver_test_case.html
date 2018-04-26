@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.webdriver_test_case &mdash; WebDriver Test Tools 0.24.0 documentation</title>
+  <title>webdriver_test_tools.classes.webdriver_test_case &mdash; WebDriver Test Tools 0.25.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.24
+                0.25
               </div>
             
           
@@ -213,6 +213,12 @@
 <span class="sd">        BrowserStack</span>
 <span class="sd">    :var WebDriverTestCase.COMMAND_EXECUTOR: Command executor URL. Test generator</span>
 <span class="sd">        needs to set this with the configured access key and username</span>
+
+<span class="sd">    **The following attributes are used for running tests in a headless browser:**</span>
+
+<span class="sd">    :var WebDriverTestCase.ENABLE_HEADLESS: (Default = False) If set to True, browser</span>
+<span class="sd">        implementations with headless browser support will configure their drivers to</span>
+<span class="sd">        run tests in a headless browser</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Instance variables</span>
@@ -232,6 +238,9 @@
     <span class="n">ENABLE_BS</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">COMMAND_EXECUTOR</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">CAPABILITIES</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Headless browser attributes</span>
+    <span class="n">ENABLE_HEADLESS</span> <span class="o">=</span> <span class="kc">False</span>
 
 <div class="viewcode-block" id="WebDriverTestCase.bs_driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.bs_driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">bs_driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize driver for BrowserStack</span>
@@ -454,26 +463,34 @@
     <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Firefox webdriver</span>
 
 <span class="sd">    `Driver download &lt;https://github.com/mozilla/geckodriver/releases&gt;`__</span>
+
+<span class="sd">    This driver supports headless browsing:</span>
+
+<span class="sd">        `Headless browser info &lt;https://developer.mozilla.org/en-US/Firefox/Headless_mode&gt;`__</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Firefox&#39;</span>
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="n">CAPABILITIES</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">FIREFOX</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 <div class="viewcode-block" id="FirefoxTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_firefox_driver</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_firefox_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_HEADLESS</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="ChromeTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Chrome webdriver</span>
 
 <span class="sd">    `Driver download &lt;https://sites.google.com/a/chromium.org/chromedriver/downloads&gt;`__</span>
+
+<span class="sd">    This driver supports headless browsing:</span>
+
+<span class="sd">        `Headless browser info &lt;https://developers.google.com/web/updates/2017/04/headless-chrome&gt;`__</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Chrome&#39;</span>
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="n">CAPABILITIES</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">CHROME</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 <div class="viewcode-block" id="ChromeTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_driver</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_HEADLESS</span><span class="p">)</span>
 
 
 <span class="c1"># Experimental/Platform-specific</span>
@@ -571,13 +588,22 @@
 
 
 <div class="viewcode-block" id="Browsers"><a class="viewcode-back" href="../../../webdriver_test_tools.classes.webdriver_test_case.html#webdriver_test_tools.classes.webdriver_test_case.Browsers">[docs]</a><span class="k">class</span> <span class="nc">Browsers</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Constants for browser short names&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Constants for browser short names</span>
+
+<span class="sd">    :var Browsers.HEADLESS_COMPATIBLE: List of WebDriverTestCase subclasses that</span>
+<span class="sd">        support test execution in a headless browser</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">FIREFOX</span> <span class="o">=</span> <span class="n">FirefoxTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">CHROME</span> <span class="o">=</span> <span class="n">ChromeTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">SAFARI</span> <span class="o">=</span> <span class="n">SafariTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">IE</span> <span class="o">=</span> <span class="n">IETestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
-    <span class="n">EDGE</span> <span class="o">=</span> <span class="n">EdgeTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span></div>
+    <span class="n">EDGE</span> <span class="o">=</span> <span class="n">EdgeTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">CHROME_MOBILE</span> <span class="o">=</span> <span class="n">ChromeMobileTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
+    <span class="c1"># List of browser classes that support headless browsing</span>
+    <span class="n">HEADLESS_COMPATIBLE</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">FirefoxTestCase</span><span class="p">,</span>
+        <span class="n">ChromeTestCase</span><span class="p">,</span></div>
+    <span class="p">]</span>
 
 </pre></div>
 
@@ -613,7 +639,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.24.0',
+            VERSION:'0.25.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

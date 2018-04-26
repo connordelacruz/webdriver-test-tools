@@ -3,10 +3,11 @@
 import unittest
 from webdriver_test_tools.config import BrowserConfig
 from webdriver_test_tools.project import test_loader
-from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase
+from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase, Browsers
 
 
-def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None, config_module=None, browserstack=False):
+def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None,
+                                config_module=None, browserstack=False, headless=False):
     """Generates test cases for multiple browsers and returns a TestSuite with all of
     the new tests
 
@@ -21,20 +22,32 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
     :param browserstack: (Default = False) If True, configure generated test cases to
         run on BrowserStack instead of locally. Need to provide `config_module` with
         appropriately configured `BrowserStackConfig` class if set to True
+    :param headless: (Default = False) If True, configure driver to run tests in a
+        headless browser. Tests will only be generated for drivers that support
+        running headless browsers
 
     :return: unittest.TestSuite object with generated tests for each browser
     """
+    # if headless, only use compatible browsers in browser_test_classes
+    if headless:
+        if browser_test_classes is None:
+            browser_test_classes = Browsers.HEADLESS_COMPATIBLE.copy()
+        else:
+            browser_test_classes = [
+                browser_test_class for browser_test_class in browser_test_classes if browser_test_class in Browsers.HEADLESS_COMPATIBLE
+            ]
     browser_tests = []
     # Generate test classes for each test case in the list
     for test_case in test_case_list:
-        generated_tests = generate_browser_test_cases(test_case, browser_test_classes, config_module, browserstack)
+        generated_tests = generate_browser_test_cases(test_case, browser_test_classes, config_module, browserstack, headless)
         test_methods = None if test_class_map is None or test_case.__name__ not in test_class_map else test_class_map[test_case.__name__]
         loaded_tests = test_loader.load_browser_tests(generated_tests, test_methods)
         browser_tests.extend(loaded_tests)
     return unittest.TestSuite(browser_tests)
 
 
-def generate_browser_test_cases(base_class, browser_test_classes=None, config_module=None, browserstack=False):
+def generate_browser_test_cases(base_class, browser_test_classes=None, config_module=None,
+                                browserstack=False, headless=False):
     """Generate test cases for each browser from a WebDriverTestCase subclass
 
     :param base_class: The WebDriverTestCase subclass to generate test classes for
@@ -45,6 +58,8 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     :param browserstack: (Default = False) If True, configure generated test cases to
         run on BrowserStack instead of locally. Need to provide `config_module` with
         appropriately configured `BrowserStackConfig` class if set to True
+    :param headless: (Default = False) If True, configure driver to run tests in a
+        headless browser
 
     :return: List of generated test case classes for each browser
     """
@@ -63,12 +78,14 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     # iterate through a list of browser classes and generate test cases
     # skip browser classes if listed in base_class.SKIP_BROWSERS
     browser_test_cases = [
-        generate_browser_test_case(base_class, browser_class, config_module, browserstack) for browser_class in browser_classes if browser_class.SHORT_NAME not in base_class.SKIP_BROWSERS
+        generate_browser_test_case(base_class, browser_class, config_module, browserstack, headless) for browser_class in browser_classes
+        if browser_class.SHORT_NAME not in base_class.SKIP_BROWSERS
     ]
     return browser_test_cases
 
 
-def generate_browser_test_case(base_class, browser_test_class, config_module=None, browserstack=False):
+def generate_browser_test_case(base_class, browser_test_class, config_module=None,
+                               browserstack=False, headless=False):
     """Generates a browser-specific test case class from a generic WebDriverTestCase
 
     :param base_class: WebDriverTestCase containing test functions
@@ -78,6 +95,8 @@ def generate_browser_test_case(base_class, browser_test_class, config_module=Non
     :param browserstack: (Default = False) If True, configure generated test cases to
         run on BrowserStack instead of locally. Need to provide `config_module` with
         appropriately configured `BrowserStackConfig` class if set to True
+    :param headless: (Default = False) If True, configure driver to run tests in a
+        headless browser
 
     :return: Test case class with tests from `base_class` and driver configurations from
         `browser_test_class`. If `browserstack` is set to True, returned class will have
@@ -102,6 +121,9 @@ def generate_browser_test_case(base_class, browser_test_class, config_module=Non
     # Enable BrowserStack execution
     if browserstack:
         new_class = enable_browserstack(new_class, config_module)
+    # Enable headless browsers
+    if headless:
+        new_class = enable_headless(new_class)
     return new_class
 
 
@@ -124,5 +146,16 @@ def enable_browserstack(browser_test_case, config_module):
     bs_config.add_browserstack_capabilities(browser_test_case.CAPABILITIES)
     return browser_test_case
 
+
+def enable_headless(browser_test_case):
+    """Enable headless browser test execution for a class
+
+    :param browser_test_case: Browser test case class to configure for BrowserStack
+        usage
+
+    :return: browser_test_case class with `ENABLE_HEADLESS` attribute configured
+    """
+    browser_test_case.ENABLE_HEADLESS = True
+    return browser_test_case
 
 

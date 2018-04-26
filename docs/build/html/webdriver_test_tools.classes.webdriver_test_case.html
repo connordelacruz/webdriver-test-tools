@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.classes.webdriver_test_case module &mdash; WebDriver Test Tools 0.24.0 documentation</title>
+  <title>webdriver_test_tools.classes.webdriver_test_case module &mdash; WebDriver Test Tools 0.25.0 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.24
+                0.25
               </div>
             
           
@@ -259,6 +259,17 @@ BrowserStack</li>
 needs to set this with the configured access key and username</li>
 </ul>
 </td>
+</tr>
+</tbody>
+</table>
+<p><strong>The following attributes are used for running tests in a headless browser:</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>WebDriverTestCase.ENABLE_HEADLESS</strong> – (Default = False) If set to True, browser
+implementations with headless browser support will configure their drivers to
+run tests in a headless browser</td>
 </tr>
 </tbody>
 </table>
@@ -461,6 +472,15 @@ results of self._bs_driver_init()</p>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">Browsers</code><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#Browsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Constants for browser short names</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.HEADLESS_COMPATIBLE" title="webdriver_test_tools.classes.webdriver_test_case.Browsers.HEADLESS_COMPATIBLE"><strong>Browsers.HEADLESS_COMPATIBLE</strong></a> – List of WebDriverTestCase subclasses that
+support test execution in a headless browser</td>
+</tr>
+</tbody>
+</table>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.CHROME">
 <code class="descname">CHROME</code><em class="property"> = 'chrome'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.CHROME" title="Permalink to this definition">¶</a></dt>
@@ -479,6 +499,11 @@ results of self._bs_driver_init()</p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.FIREFOX">
 <code class="descname">FIREFOX</code><em class="property"> = 'firefox'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.FIREFOX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.HEADLESS_COMPATIBLE">
+<code class="descname">HEADLESS_COMPATIBLE</code><em class="property"> = [&lt;class 'webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase'&gt;, &lt;class 'webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase'&gt;]</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.HEADLESS_COMPATIBLE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -531,6 +556,9 @@ implement this</p>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
 <p>Implementation of WebDriverTestCase using Chrome webdriver</p>
 <p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Driver download</a></p>
+<p>This driver supports headless browsing:</p>
+<blockquote>
+<div><a class="reference external" href="https://developers.google.com/web/updates/2017/04/headless-chrome">Headless browser info</a></div></blockquote>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.CAPABILITIES">
 <code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'chrome', 'platform': 'ANY', 'version': ''}</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
@@ -597,6 +625,9 @@ implement this</p>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
 <p>Implementation of WebDriverTestCase using Firefox webdriver</p>
 <p><a class="reference external" href="https://github.com/mozilla/geckodriver/releases">Driver download</a></p>
+<p>This driver supports headless browsing:</p>
+<blockquote>
+<div><a class="reference external" href="https://developer.mozilla.org/en-US/Firefox/Headless_mode">Headless browser info</a></div></blockquote>
 <dl class="attribute">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.CAPABILITIES">
 <code class="descname">CAPABILITIES</code><em class="property"> = {'acceptInsecureCerts': True, 'browserName': 'firefox', 'marionette': True}</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
@@ -763,7 +794,7 @@ will only be generated for mobile browsers</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.24.0',
+            VERSION:'0.25.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
