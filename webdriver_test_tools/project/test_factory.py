@@ -6,7 +6,9 @@ from webdriver_test_tools.project import test_loader
 from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase
 
 
-def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None, config_module=None, browserstack=False):
+# TODO: document and implement headless arg
+def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None,
+                                config_module=None, browserstack=False, headless=False):
     """Generates test cases for multiple browsers and returns a TestSuite with all of
     the new tests
 
@@ -34,7 +36,9 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
     return unittest.TestSuite(browser_tests)
 
 
-def generate_browser_test_cases(base_class, browser_test_classes=None, config_module=None, browserstack=False):
+# TODO: document and implement headless arg
+def generate_browser_test_cases(base_class, browser_test_classes=None, config_module=None,
+                                browserstack=False, headless=False):
     """Generate test cases for each browser from a WebDriverTestCase subclass
 
     :param base_class: The WebDriverTestCase subclass to generate test classes for
@@ -68,7 +72,9 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     return browser_test_cases
 
 
-def generate_browser_test_case(base_class, browser_test_class, config_module=None, browserstack=False):
+# TODO: document and implement headless arg
+def generate_browser_test_case(base_class, browser_test_class, config_module=None,
+                               browserstack=False, headless=False):
     """Generates a browser-specific test case class from a generic WebDriverTestCase
 
     :param base_class: WebDriverTestCase containing test functions
@@ -102,6 +108,9 @@ def generate_browser_test_case(base_class, browser_test_class, config_module=Non
     # Enable BrowserStack execution
     if browserstack:
         new_class = enable_browserstack(new_class, config_module)
+    # Enable headless browsers
+    if headless:
+        new_class = enable_headless(new_class)
     return new_class
 
 
@@ -124,5 +133,12 @@ def enable_browserstack(browser_test_case, config_module):
     bs_config.add_browserstack_capabilities(browser_test_case.CAPABILITIES)
     return browser_test_case
 
+
+def enable_headless(browser_test_case):
+    # TODO: document
+    browser_test_case.HEADLESS = True
+    # TODO: make sure new_class.__doc__ gets updated
+    browser_test_case.DRIVER_NAME += ' [Headless]'
+    return browser_test_case
 
 

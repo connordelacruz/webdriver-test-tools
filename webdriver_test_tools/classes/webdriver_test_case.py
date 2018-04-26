@@ -308,7 +308,7 @@ class FirefoxTestCase(WebDriverTestCase):
     CAPABILITIES = DesiredCapabilities.FIREFOX.copy()
 
     def driver_init(self):
-        return self.WebDriverConfig.get_firefox_driver()
+        return self.WebDriverConfig.get_firefox_driver(self.HEADLESS)
 
 
 class ChromeTestCase(WebDriverTestCase):
@@ -321,7 +321,7 @@ class ChromeTestCase(WebDriverTestCase):
     CAPABILITIES = DesiredCapabilities.CHROME.copy()
 
     def driver_init(self):
-        return self.WebDriverConfig.get_chrome_driver()
+        return self.WebDriverConfig.get_chrome_driver(self.HEADLESS)
 
 
 # Experimental/Platform-specific
@@ -462,4 +462,10 @@ class Browsers(object):
     CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
     CHROME_HEADLESS = ChromeHeadlessTestCase.SHORT_NAME
     FIREFOX_HEADLESS = FirefoxHeadlessTestCase.SHORT_NAME
+    # List of browser classes that support headless browsing
+    # TODO: document
+    HEADLESS_COMPATIBLE = [
+        FIREFOX,
+        CHROME,
+    ]
 

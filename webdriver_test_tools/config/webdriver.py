@@ -104,32 +104,43 @@ class WebDriverConfig(object):
         options.add_experimental_option("mobileEmulation", cls.CHROME_MOBILE_EMULATION)
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 
-    # TODO: just return chrome options object
+    # TODO: merge into get_chrome_driver()
     @classmethod
     def get_chrome_headless_driver(cls):
         """Returns webdriver.Chrome object using CHROME_KWARGS, LOG_PATH, and
         CHROME_HEADLESS_ARGS to initialize. Runs using --headless argument
         """
         service_log_path = os.path.join(cls.LOG_PATH, 'headless_chromedriver.log')
-        options = webdriver.ChromeOptions()
-        for arg in cls.CHROME_HEADLESS_ARGS:
-            options.add_argument(arg)
-        # NOTE: ChromeOptions has a setter decorator for headless, but it causes an error
-        options.add_argument('--headless')
+        options = cls._get_chrome_headless_options()
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 
-    # TODO: just return firefox options object
+    # TODO: merge into get_firefox_driver()
     @classmethod
     def get_firefox_headless_driver(cls):
         """Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to
         initialize. Runs using -headless argument
         """
         log_path = os.path.join(cls.LOG_PATH, 'headless_geckodriver.log')
+        options = cls._get_firefox_headless_options()
+        return cls.set_driver_implicit_wait(webdriver.Firefox(log_path=log_path, options=options, **cls.FIREFOX_KWARGS))
+
+    @classmethod
+    def _get_firefox_headless_options(cls):
+        # TODO: document
         options = webdriver.FirefoxOptions()
         for arg in cls.FIREFOX_HEADLESS_ARGS:
             options.add_argument(arg)
         options.add_argument('-headless')
-        return cls.set_driver_implicit_wait(webdriver.Firefox(log_path=log_path, options=options, **cls.FIREFOX_KWARGS))
+        return options
+
+    @classmethod
+    def _get_chrome_headless_options(cls):
+        # TODO: document
+        options = webdriver.ChromeOptions()
+        for arg in cls.CHROME_HEADLESS_ARGS:
+            options.add_argument(arg)
+        options.add_argument('--headless')
+        return options
 
     @classmethod
     def set_driver_implicit_wait(cls, driver):
