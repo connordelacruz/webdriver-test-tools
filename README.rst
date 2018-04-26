@@ -14,8 +14,7 @@ Selenium WebDriver Test Tools
     :target: https://github.com/connordelacruz/webdriver-test-tools
 
 
-Utilities for writing front-end test suites using `Selenium WebDriver`_ and
-python unit tests.
+A front-end testing framework using `Selenium WebDriver`_ and Python.
 
 .. _Selenium WebDriver: https://www.seleniumhq.org/docs/03_webdriver.jsp
 
