@@ -59,23 +59,25 @@ class WebDriverConfig(object):
 
     # Functions
 
-    # TODO: implement and documeny headless
+    # TODO: document headless
     @classmethod
     def get_firefox_driver(cls, headless=False):
         """Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to
         initialize
         """
         log_path = os.path.join(cls.LOG_PATH, 'geckodriver.log')
-        return cls.set_driver_implicit_wait(webdriver.Firefox(log_path=log_path, **cls.FIREFOX_KWARGS))
+        options = cls._get_firefox_headless_options() if headless else None
+        return cls.set_driver_implicit_wait(webdriver.Firefox(log_path=log_path, options=options, **cls.FIREFOX_KWARGS))
 
-    # TODO: implement and documeny headless
+    # TODO: document headless
     @classmethod
     def get_chrome_driver(cls, headless=False):
         """Returns webdriver.Chrome object using CHROME_KWARGS and LOG_PATH to
         initialize
         """
         service_log_path = os.path.join(cls.LOG_PATH, 'chromedriver.log')
-        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, **cls.CHROME_KWARGS))
+        options = cls._get_chrome_headless_options() if headless else None
+        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 
     @classmethod
     def get_safari_driver(cls):
@@ -104,7 +106,7 @@ class WebDriverConfig(object):
         options.add_experimental_option("mobileEmulation", cls.CHROME_MOBILE_EMULATION)
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 
-    # TODO: merge into get_chrome_driver()
+    # TODO: remove
     @classmethod
     def get_chrome_headless_driver(cls):
         """Returns webdriver.Chrome object using CHROME_KWARGS, LOG_PATH, and
@@ -114,7 +116,7 @@ class WebDriverConfig(object):
         options = cls._get_chrome_headless_options()
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 
-    # TODO: merge into get_firefox_driver()
+    # TODO: remove
     @classmethod
     def get_firefox_headless_driver(cls):
         """Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to

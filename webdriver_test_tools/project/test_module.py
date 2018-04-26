@@ -39,7 +39,6 @@ def main(tests_module, config_module=None):
     # Determine what config class to use based on --browserstack arg
     browser_config_class = browserstack_config if browserstack else browser_config
     # Handle --browser args
-    # TODO: if headless, only get compatible browsers
     if args.browser is None:
         browser_classes = [
             browser_class for browser_name, browser_class in browser_config_class.BROWSER_TEST_CLASSES.items()

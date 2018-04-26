@@ -418,8 +418,7 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
         return self.WebDriverConfig.get_chrome_mobile_driver()
 
 
-# TODO: merge headless classes into superclass
-
+# TODO: remove, move headless browser info link to parent
 class ChromeHeadlessTestCase(ChromeTestCase):
     """Implementation of WebDriverTestCase using Chrome webdriver. Runs using the
     --headless command line argument
@@ -432,10 +431,10 @@ class ChromeHeadlessTestCase(ChromeTestCase):
     SHORT_NAME = 'chrome-headless'
 
     def driver_init(self):
-        # TODO: get_chrome_driver(headless=self.HEADLESS)
         return self.WebDriverConfig.get_chrome_headless_driver()
 
 
+# TODO: remove, move headless browser info link to parent
 class FirefoxHeadlessTestCase(FirefoxTestCase):
     """Implementation of WebDriverTestCase using Firefox webdriver. Runs using the
     -headless command line argument
@@ -448,7 +447,6 @@ class FirefoxHeadlessTestCase(FirefoxTestCase):
     SHORT_NAME = 'firefox-headless'
 
     def driver_init(self):
-        # TODO: get_firefox_driver(headless=self.HEADLESS)
         return self.WebDriverConfig.get_firefox_headless_driver()
 
 
@@ -460,12 +458,13 @@ class Browsers(object):
     IE = IETestCase.SHORT_NAME
     EDGE = EdgeTestCase.SHORT_NAME
     CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
+    # TODO: remove headless
     CHROME_HEADLESS = ChromeHeadlessTestCase.SHORT_NAME
     FIREFOX_HEADLESS = FirefoxHeadlessTestCase.SHORT_NAME
     # List of browser classes that support headless browsing
     # TODO: document
     HEADLESS_COMPATIBLE = [
-        FIREFOX,
-        CHROME,
+        FirefoxTestCase,
+        ChromeTestCase,
     ]
 

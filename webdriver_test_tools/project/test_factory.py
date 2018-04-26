@@ -3,7 +3,7 @@
 import unittest
 from webdriver_test_tools.config import BrowserConfig
 from webdriver_test_tools.project import test_loader
-from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase
+from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase, Browsers
 
 
 # TODO: document and implement headless arg
@@ -26,10 +26,18 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
 
     :return: unittest.TestSuite object with generated tests for each browser
     """
+    # if headless, only use compatible browsers in browser_test_classes
+    if headless:
+        if browser_test_classes is None:
+            browser_test_classes = Browsers.HEADLESS_COMPATIBLE.copy()
+        else:
+            browser_test_classes = [
+                browser_test_class for browser_test_class in browser_test_classes if browser_test_class in Browsers.HEADLESS_COMPATIBLE
+            ]
     browser_tests = []
     # Generate test classes for each test case in the list
     for test_case in test_case_list:
-        generated_tests = generate_browser_test_cases(test_case, browser_test_classes, config_module, browserstack)
+        generated_tests = generate_browser_test_cases(test_case, browser_test_classes, config_module, browserstack, headless)
         test_methods = None if test_class_map is None or test_case.__name__ not in test_class_map else test_class_map[test_case.__name__]
         loaded_tests = test_loader.load_browser_tests(generated_tests, test_methods)
         browser_tests.extend(loaded_tests)
@@ -67,7 +75,8 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     # iterate through a list of browser classes and generate test cases
     # skip browser classes if listed in base_class.SKIP_BROWSERS
     browser_test_cases = [
-        generate_browser_test_case(base_class, browser_class, config_module, browserstack) for browser_class in browser_classes if browser_class.SHORT_NAME not in base_class.SKIP_BROWSERS
+        generate_browser_test_case(base_class, browser_class, config_module, browserstack, headless) for browser_class in browser_classes
+        if browser_class.SHORT_NAME not in base_class.SKIP_BROWSERS
     ]
     return browser_test_cases
 
@@ -137,7 +146,7 @@ def enable_browserstack(browser_test_case, config_module):
 def enable_headless(browser_test_case):
     # TODO: document
     browser_test_case.HEADLESS = True
-    # TODO: make sure new_class.__doc__ gets updated
+    # TODO: make sure new_class.__doc__ gets updated (or remove this)
     browser_test_case.DRIVER_NAME += ' [Headless]'
     return browser_test_case
 
