@@ -236,6 +236,24 @@ options for Chrome</td>
 </tr>
 </tbody>
 </table>
+<p>Headless browser configurations:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS"><strong>WebDriverConfig.CHROME_HEADLESS_ARGS</strong></a> – Command line arguments to use in addition to the –headless flag</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS"><strong>WebDriverConfig.FIREFOX_HEADLESS_ARGS</strong></a> – Command line arguments to use in addition to the -headless flag</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS">
+<code class="descname">CHROME_HEADLESS_ARGS</code><em class="property"> = ['--window-size=1920x1080']</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS">
 <code class="descname">CHROME_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="Permalink to this definition">¶</a></dt>
@@ -249,6 +267,11 @@ options for Chrome</td>
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS">
 <code class="descname">EDGE_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS">
+<code class="descname">FIREFOX_HEADLESS_ARGS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -273,9 +296,18 @@ options for Chrome</td>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver">
-<em class="property">classmethod </em><code class="descname">get_chrome_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">get_chrome_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns webdriver.Chrome object using CHROME_KWARGS and LOG_PATH to
 initialize</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>headless</strong> – (Default = False) If True, configure driver to run a
+headless browser</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="classmethod">
@@ -293,9 +325,18 @@ CHROME_MOBILE_EMULATION to initialize</p>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver">
-<em class="property">classmethod </em><code class="descname">get_firefox_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_firefox_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">get_firefox_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_firefox_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to
 initialize</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>headless</strong> – (Default = False) If True, configure driver to run a
+headless browser</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="classmethod">
