@@ -100,13 +100,18 @@ class WebDriverConfig(object):
         return cls.set_driver_implicit_wait(webdriver.Edge(log_path=log_path, **cls.EDGE_KWARGS))
 
     @classmethod
-    def get_chrome_mobile_driver(cls):
+    def get_chrome_mobile_driver(cls, headless=False):
         """Returns webdriver.Chrome object using CHROME_KWARGS, LOG_PATH, and
         CHROME_MOBILE_EMULATION to initialize
+
+        :param headless: (Default = False) If True, configure driver to run a
+            headless browser
         """
         service_log_path = os.path.join(cls.LOG_PATH, 'mobile_chromedriver.log')
         options = webdriver.ChromeOptions()
         options.add_experimental_option("mobileEmulation", cls.CHROME_MOBILE_EMULATION)
+        if headless:
+            options.add_argument('--headless')
         return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
 
     # Driver Options
