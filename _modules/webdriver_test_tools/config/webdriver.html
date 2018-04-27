@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.webdriver &mdash; WebDriver Test Tools 0.25.0 documentation</title>
+  <title>webdriver_test_tools.config.webdriver &mdash; WebDriver Test Tools 0.26.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.25
+                0.26
               </div>
             
           
@@ -256,13 +256,18 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Edge</span><span class="p">(</span><span class="n">log_path</span><span class="o">=</span><span class="n">log_path</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">EDGE_KWARGS</span><span class="p">))</span>
 
 <div class="viewcode-block" id="WebDriverConfig.get_chrome_mobile_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_mobile_driver">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_chrome_mobile_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_chrome_mobile_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns webdriver.Chrome object using CHROME_KWARGS, LOG_PATH, and</span>
 <span class="sd">        CHROME_MOBILE_EMULATION to initialize</span>
+
+<span class="sd">        :param headless: (Default = False) If True, configure driver to run a</span>
+<span class="sd">            headless browser</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">service_log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">LOG_PATH</span><span class="p">,</span> <span class="s1">&#39;mobile_chromedriver.log&#39;</span><span class="p">)</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">ChromeOptions</span><span class="p">()</span>
-        <span class="n">options</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s2">&quot;mobileEmulation&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_MOBILE_EMULATION</span><span class="p">)</span></div>
+        <span class="n">options</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s2">&quot;mobileEmulation&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_MOBILE_EMULATION</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">headless</span><span class="p">:</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--headless&#39;</span><span class="p">)</span></div>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span>
 
     <span class="c1"># Driver Options</span>
@@ -331,7 +336,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.25.0',
+            VERSION:'0.26.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
