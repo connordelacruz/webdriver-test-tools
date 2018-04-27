@@ -59,7 +59,7 @@ project_urls = {
 setup(
     name='webdriver_test_tools',
     version=__version__,
-    description='Tools for using Selenium WebDriver with Python unit testing',
+    description='A front-end testing framework using Selenium WebDriver and Python',
     long_description=readme(),
     url=url,
     download_url=download_url,
