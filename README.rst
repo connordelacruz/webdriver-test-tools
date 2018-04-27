@@ -86,8 +86,7 @@ Drivers
 In order to use Selenium, drivers will need to be installed for any browser
 tests will be run on.
 
-Cross-Platform
-^^^^^^^^^^^^^^
+**Cross-Platform**
 
 The following cross-platform browser drivers are supported and enabled by
 default:
@@ -99,8 +98,7 @@ These can be disabled in ``<test_package>/config/browser.py`` by commenting out
 the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``. 
 
 
-Platform-Specific
-^^^^^^^^^^^^^^^^^
+**Platform-Specific**
 
 The following platform-specific drivers are supported:
 
