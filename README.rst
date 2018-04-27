@@ -194,7 +194,9 @@ Test Projects
 -------------
 
 Test projects generated using ``webdriver_test_tools --init`` have their own 
-set of command line arguments.
+set of command line arguments. For detailed information on test project command 
+line usage and additional command line arguments, see the `Test Project 
+Overview`_ documentation.
 
 For info on command line arguments:
 
@@ -236,9 +238,18 @@ browsers:
 For a list of options you can specify with ``--browser``, run ``python -m
 <test_package> --help``.
 
+To improve performance, tests can be run in `headless browsers`_ using the
+``--headless`` argument:
 
-For detailed information on test project command line usage and additional
-command line arguments, see the `Test Project Overview`_ documentation.
+::
+
+    python -m <test_package> <args> --headless
+
+For a list of supported drivers, run ``python -m <test_package> --help``. For
+details on using the ``--headless`` argument, see `Testing with Additional
+Browsers`_.
+
+.. _headless browsers: https://en.wikipedia.org/wiki/Headless_browser
 
 
 Contributing

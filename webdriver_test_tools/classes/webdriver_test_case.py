@@ -428,7 +428,7 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
     }
 
     def driver_init(self):
-        return self.WebDriverConfig.get_chrome_mobile_driver()
+        return self.WebDriverConfig.get_chrome_mobile_driver(self.ENABLE_HEADLESS)
 
 
 class Browsers(object):
@@ -447,5 +447,6 @@ class Browsers(object):
     HEADLESS_COMPATIBLE = [
         FirefoxTestCase,
         ChromeTestCase,
+        ChromeMobileTestCase,
     ]
 
