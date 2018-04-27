@@ -85,7 +85,7 @@
             
               <p class="caption"><span class="caption-text">Docs:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">Selenium WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">WebDriver Test Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../additional_browsers.html">Testing with Additional Browsers</a></li>
@@ -169,8 +169,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fully_in_view</span> <span class="o">=</span> <span class="n">fully_in_view</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-        <span class="n">element</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">locator</span><span class="p">)</span></div>
-        <span class="k">return</span> <span class="n">test</span><span class="o">.</span><span class="n">is_scrolled_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fully_in_view</span><span class="p">)</span>
+        <span class="n">element</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">locator</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">test</span><span class="o">.</span><span class="n">is_scrolled_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fully_in_view</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="base_url_to_be"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.expected_conditions.html#webdriver_test_tools.webdriver.support.expected_conditions.base_url_to_be">[docs]</a><span class="k">class</span> <span class="nc">base_url_to_be</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -185,8 +185,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-        <span class="n">base_url</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_base_url</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">current_url</span><span class="p">)</span></div>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">==</span> <span class="n">base_url</span>
+        <span class="n">base_url</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_base_url</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">current_url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">==</span> <span class="n">base_url</span></div>
 </pre></div>
 
            </div>
