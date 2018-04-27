@@ -168,7 +168,7 @@
 <span class="c1"># ----------------------------------------------------------------</span>
 
 <span class="c1"># Python module version</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.3.1&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.4.0&#39;</span>
 
 <span class="c1"># Version of the random user API</span>
 <span class="n">API_VERSION</span> <span class="o">=</span> <span class="s1">&#39;1.1&#39;</span>
@@ -190,15 +190,15 @@
 <div class="viewcode-block" id="RandomUser.PictureSize"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.PictureSize">[docs]</a>    <span class="k">class</span> <span class="nc">PictureSize</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constants for size parameter in get_picture()&quot;&quot;&quot;</span>
         <span class="n">LARGE</span> <span class="o">=</span> <span class="s1">&#39;large&#39;</span>
-        <span class="n">MEDIUM</span> <span class="o">=</span> <span class="s1">&#39;medium&#39;</span>
-        <span class="n">THUMBNAIL</span> <span class="o">=</span> <span class="s1">&#39;thumbnail&#39;</span></div>
+        <span class="n">MEDIUM</span> <span class="o">=</span> <span class="s1">&#39;medium&#39;</span></div>
+        <span class="n">THUMBNAIL</span> <span class="o">=</span> <span class="s1">&#39;thumbnail&#39;</span>
 
 <div class="viewcode-block" id="RandomUser.Info"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.Info">[docs]</a>    <span class="k">class</span> <span class="nc">Info</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constants for _info dictionary keys&quot;&quot;&quot;</span>
         <span class="n">SEED</span> <span class="o">=</span> <span class="s1">&#39;seed&#39;</span>
         <span class="n">RESULTS</span> <span class="o">=</span> <span class="s1">&#39;results&#39;</span>
-        <span class="n">PAGE</span> <span class="o">=</span> <span class="s1">&#39;page&#39;</span>
-        <span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;version&#39;</span></div>
+        <span class="n">PAGE</span> <span class="o">=</span> <span class="s1">&#39;page&#39;</span></div>
+        <span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;version&#39;</span>
 
     <span class="c1"># Exceptions</span>
 
@@ -208,8 +208,8 @@
 <span class="sd">        Documentation on API errors: https://randomuser.me/documentation#errors</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;API returned an error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">))</span></div>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span></div>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;API returned an error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
 
     <span class="c1"># Functions</span>
 
@@ -227,8 +227,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span> <span class="o">=</span> <span class="n">URL</span>
             <span class="k">if</span> <span class="n">get_params</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span> <span class="o">+=</span> <span class="s1">&#39;?&#39;</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">get_params</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_generate_user</span><span class="p">()</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span> <span class="o">+=</span> <span class="s1">&#39;?&#39;</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">get_params</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_generate_user</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_generate_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Query the randomuser.me API and store parsed results in _data and _info&quot;&quot;&quot;</span>
@@ -246,16 +246,16 @@
 
 <span class="sd">        :param capitalize: (Default = True) Capitalize first letter if True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">first_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;first&#39;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">first_name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">first_name</span></div>
+        <span class="n">first_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;first&#39;</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">first_name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">first_name</span>
 
 <div class="viewcode-block" id="RandomUser.get_last_name"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_last_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_last_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capitalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns last name</span>
 
 <span class="sd">        :param capitalize: (Default = True) Capitalize first letter if True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">last_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;last&#39;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">last_name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">last_name</span></div>
+        <span class="n">last_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;last&#39;</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">last_name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">last_name</span>
 
 <div class="viewcode-block" id="RandomUser.get_full_name"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_full_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capitalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns first and last name separated by a space</span>
@@ -264,12 +264,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">first_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_first_name</span><span class="p">(</span><span class="n">capitalize</span><span class="p">)</span>
         <span class="n">last_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_last_name</span><span class="p">(</span><span class="n">capitalize</span><span class="p">)</span>
-        <span class="n">full_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">full_name</span></div>
+        <span class="n">full_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">full_name</span>
 
 <div class="viewcode-block" id="RandomUser.get_gender"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_gender">[docs]</a>    <span class="k">def</span> <span class="nf">get_gender</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns gender&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns gender&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RandomUser.get_dob"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_dob">[docs]</a>    <span class="k">def</span> <span class="nf">get_dob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parse_time</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns date of birth as a string in the format &#39;%Y-%m-%d %H:%M:%S&#39;</span>
@@ -278,12 +278,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;dob&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">parse_time</span><span class="p">:</span>
-            <span class="n">dob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_time</span><span class="p">(</span><span class="n">dob</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">dob</span></div>
+            <span class="n">dob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_time</span><span class="p">(</span><span class="n">dob</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">dob</span>
 
 <div class="viewcode-block" id="RandomUser.get_nat"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_nat">[docs]</a>    <span class="k">def</span> <span class="nf">get_nat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns nationality&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;nat&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns nationality&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;nat&#39;</span><span class="p">]</span>
 
     <span class="c1"># Location</span>
     <span class="c1"># --------------------------------</span>
@@ -293,32 +293,32 @@
 
 <span class="sd">        :param capitalize: (Default = True) Capitalize first letter of words if True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">street</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;street&#39;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">street</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">street</span></div>
+        <span class="n">street</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;street&#39;</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">street</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">street</span>
 
 <div class="viewcode-block" id="RandomUser.get_city"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_city">[docs]</a>    <span class="k">def</span> <span class="nf">get_city</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capitalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns city</span>
 
 <span class="sd">        :param capitalize: (Default = True) Capitalize first letter of words if True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">city</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;city&#39;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">city</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">city</span></div>
+        <span class="n">city</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;city&#39;</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">city</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">city</span>
 
 <div class="viewcode-block" id="RandomUser.get_state"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_state">[docs]</a>    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capitalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns state</span>
 
 <span class="sd">        :param capitalize: (Default = True) Capitalize first letter of words if True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">state</span></div>
+        <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;state&#39;</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">state</span>
 
 <div class="viewcode-block" id="RandomUser.get_postcode"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_postcode">[docs]</a>    <span class="k">def</span> <span class="nf">get_postcode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns post code&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;postcode&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns post code&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;postcode&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RandomUser.get_zipcode"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_zipcode">[docs]</a>    <span class="k">def</span> <span class="nf">get_zipcode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns zip code (wrapper for get_postcode())&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_postcode</span><span class="p">()</span></div>
+        <span class="sd">&quot;&quot;&quot; Returns zip code (wrapper for get_postcode())&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_postcode</span><span class="p">()</span>
 
     <span class="c1"># Contact</span>
     <span class="c1"># --------------------------------</span>
@@ -341,31 +341,31 @@
 
 <span class="sd">        :param strip_parentheses: (Default = False) Omit parentheses if True</span>
 <span class="sd">        :param strip_hyphens: (Default = False) Omit hyphens if True</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_phone_number</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;phone&#39;</span><span class="p">],</span> <span class="n">strip_parentheses</span><span class="p">,</span> <span class="n">strip_hyphens</span><span class="p">)</span></div>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_phone_number</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;phone&#39;</span><span class="p">],</span> <span class="n">strip_parentheses</span><span class="p">,</span> <span class="n">strip_hyphens</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RandomUser.get_cell"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_cell">[docs]</a>    <span class="k">def</span> <span class="nf">get_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip_parentheses</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">strip_hyphens</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns cell phone number as a string in the format &#39;(###)-###-####&#39;</span>
 
 <span class="sd">        :param strip_parentheses: (Default = False) Omit parentheses if True</span>
 <span class="sd">        :param strip_hyphens: (Default = False) Omit hyphens if True</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_phone_number</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;cell&#39;</span><span class="p">],</span> <span class="n">strip_parentheses</span><span class="p">,</span> <span class="n">strip_hyphens</span><span class="p">)</span></div>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_phone_number</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;cell&#39;</span><span class="p">],</span> <span class="n">strip_parentheses</span><span class="p">,</span> <span class="n">strip_hyphens</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RandomUser.get_email"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_email">[docs]</a>    <span class="k">def</span> <span class="nf">get_email</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns email address&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns email address&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
 
     <span class="c1"># Login</span>
     <span class="c1"># --------------------------------</span>
 
 <div class="viewcode-block" id="RandomUser.get_username"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_username">[docs]</a>    <span class="k">def</span> <span class="nf">get_username</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns username&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns username&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RandomUser.get_password"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_password">[docs]</a>    <span class="k">def</span> <span class="nf">get_password</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns password&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns password&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RandomUser.get_registered"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_registered">[docs]</a>    <span class="k">def</span> <span class="nf">get_registered</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parse_time</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns registration date as a string in the format &#39;%Y-%m-%d %H:%M:%S&#39;</span>
@@ -374,40 +374,40 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">registered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;registered&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">parse_time</span><span class="p">:</span>
-            <span class="n">registered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_time</span><span class="p">(</span><span class="n">registered</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">registered</span></div>
+            <span class="n">registered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_time</span><span class="p">(</span><span class="n">registered</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">registered</span>
 
 <div class="viewcode-block" id="RandomUser.get_login_salt"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_login_salt">[docs]</a>    <span class="k">def</span> <span class="nf">get_login_salt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns user login salt&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;salt&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns user login salt&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;salt&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RandomUser.get_login_md5"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_login_md5">[docs]</a>    <span class="k">def</span> <span class="nf">get_login_md5</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns user login md5&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;md5&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns user login md5&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;md5&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RandomUser.get_login_sha1"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_login_sha1">[docs]</a>    <span class="k">def</span> <span class="nf">get_login_sha1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns user login sha1&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;sha1&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns user login sha1&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;sha1&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RandomUser.get_login_sha256"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_login_sha256">[docs]</a>    <span class="k">def</span> <span class="nf">get_login_sha256</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns user login sha256&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;sha256&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns user login sha256&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;sha256&#39;</span><span class="p">]</span>
 
     <span class="c1"># ID</span>
     <span class="c1"># --------------------------------</span>
 
 <div class="viewcode-block" id="RandomUser.get_id_type"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_id_type">[docs]</a>    <span class="k">def</span> <span class="nf">get_id_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the ID type&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns the ID type&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RandomUser.get_id_number"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_id_number">[docs]</a>    <span class="k">def</span> <span class="nf">get_id_number</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the ID number&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns the ID number&quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RandomUser.get_id"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a dictionary mapping &#39;type&#39; to ID type and &#39;number&#39; to ID number</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id_type</span><span class="p">(),</span> <span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id_number</span><span class="p">()}</span></div>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id_type</span><span class="p">(),</span> <span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id_number</span><span class="p">()}</span>
 
     <span class="c1"># Misc</span>
     <span class="c1"># --------------------------------</span>
@@ -416,15 +416,15 @@
         <span class="sd">&quot;&quot;&quot;Returns url to a .jpg of the generated user</span>
 
 <span class="sd">        :param size: (Default = PictureSize.LARGE) The size of picture to return the url for. Size values are stored as constants in PictureSize subclass.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;picture&#39;</span><span class="p">][</span><span class="n">size</span><span class="p">]</span></div>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;picture&#39;</span><span class="p">][</span><span class="n">size</span><span class="p">]</span>
 
 <div class="viewcode-block" id="RandomUser.get_info"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a dictionary with information about the API query</span>
 
 <span class="sd">        Keys for the info dictionary are stored as constants in Info subclass.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span></div>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span>
 
     <span class="c1"># Helper Functions</span>
     <span class="c1"># --------------------------------</span>
@@ -463,8 +463,8 @@
         <span class="n">users</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">user_data</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]:</span>
             <span class="n">user</span> <span class="o">=</span> <span class="n">RandomUser</span><span class="p">(</span><span class="n">user_data</span><span class="o">=</span><span class="n">user_data</span><span class="p">,</span> <span class="n">api_info</span><span class="o">=</span><span class="n">info</span><span class="p">)</span>
-            <span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">users</span></div></div>
+            <span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">users</span>
 </pre></div>
 
            </div>

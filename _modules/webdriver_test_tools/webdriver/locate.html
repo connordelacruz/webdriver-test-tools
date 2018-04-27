@@ -174,8 +174,8 @@
     <span class="n">select_expression_format</span> <span class="o">=</span> <span class="s1">&#39;text()=</span><span class="si">{text}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="n">exact_match</span> <span class="k">else</span> <span class="s1">&#39;contains(text(), &quot;</span><span class="si">{text}</span><span class="s1">&quot;)&#39;</span>
     <span class="n">xpath_format</span> <span class="o">=</span> <span class="s1">&#39;//</span><span class="si">{tag_type}</span><span class="s1">[</span><span class="si">{select_expr}</span><span class="s1">]&#39;</span>
     <span class="n">select_expression</span> <span class="o">=</span> <span class="n">select_expression_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">element_text</span><span class="p">)</span>
-    <span class="n">element_xpath</span> <span class="o">=</span> <span class="n">xpath_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag_type</span><span class="o">=</span><span class="n">element_type</span><span class="p">,</span> <span class="n">select_expr</span><span class="o">=</span><span class="n">select_expression</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">element_xpath</span><span class="p">)</span></div>
+    <span class="n">element_xpath</span> <span class="o">=</span> <span class="n">xpath_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag_type</span><span class="o">=</span><span class="n">element_type</span><span class="p">,</span> <span class="n">select_expr</span><span class="o">=</span><span class="n">select_expression</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">element_xpath</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="input_elements"><a class="viewcode-back" href="../../../webdriver_test_tools.webdriver.locate.html#webdriver_test_tools.webdriver.locate.input_elements">[docs]</a><span class="k">def</span> <span class="nf">input_elements</span><span class="p">(</span><span class="n">exclude_buttons</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -197,8 +197,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">css_string</span> <span class="o">=</span> <span class="s1">&#39;input,select,textarea&#39;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">exclude_buttons</span><span class="p">:</span>
-        <span class="n">css_string</span> <span class="o">+=</span> <span class="s1">&#39;,button&#39;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="n">css_string</span><span class="p">)</span></div>
+        <span class="n">css_string</span> <span class="o">+=</span> <span class="s1">&#39;,button&#39;</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="n">css_string</span><span class="p">)</span>
 
 
 </pre></div>
