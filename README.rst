@@ -132,7 +132,7 @@ Installation
 
 The package can be installed using pip:
 
-.. code-block:: none
+::
 
     pip install webdriver-test-tools
 
@@ -145,7 +145,7 @@ Creating a Test Suite
 The package itself does not contain test cases. To generate files for a new test
 suite, change into the desired directory and run:
 
-.. code-block:: none
+::
 
     webdriver_test_tools --init
 
@@ -172,24 +172,25 @@ webdriver_test_tools
 
 For info on command line arguments:
 
-.. code-block:: none
+::
 
     webdriver_test_tools --help
 
 To initialize a new test project in the current directory:
 
-.. code-block:: none
+::
 
     webdriver_test_tools --init
 
 To print the version number:
 
-.. code-block:: none
+::
 
     webdriver_test_tools --version
 
 
 .. readme-only
+
 Test Projects
 -------------
 

@@ -6,7 +6,7 @@
     package.
 """
 
-__version__ = '0.26.0'
+__version__ = '0.26.3'
 __devstatus__ = 'Development Status :: 2 - Pre-Alpha'
 
 __selenium__ = '3.11.0'
