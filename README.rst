@@ -56,31 +56,6 @@ found below:
   <https://docs.python.org/3/library/unittest.html>`__
 
 
-Creating a Test Suite
----------------------
-
-The package itself does not contain test cases. To generate files for a new test
-suite, change into the desired directory and run:
-
-.. code-block:: none
-
-    webdriver_test_tools --init
-
-This will generate a new test package with template files and project
-directories.
-
-The following documentation goes into detail on test projects:
-
-    - `Test Project Overview`_: Test project setup, configuration, command line
-      usage, and directory structure
-    - `Example Test Project`_: Step-by-step tutorial with a simple example test
-      project
-
-
-.. _Test Project Overview: http://connordelacruz.com/webdriver-test-tools/test_projects.html
-.. _Example Test Project: http://connordelacruz.com/webdriver-test-tools/example_project.html
-
-
 Documentation
 -------------
 
@@ -93,23 +68,26 @@ Full documentation for WebDriver Test Tools:
 .. _webdriver_test_tools Package API: http://connordelacruz.com/webdriver-test-tools/webdriver_test_tools.html
 
 
+Set Up
+======
+
 Prerequisites
-=============
+-------------
 
 Python
-------
+~~~~~~
 
 -  python 3+
 -  pip
 
 Drivers
--------
+~~~~~~~
 
 In order to use Selenium, drivers will need to be installed for any browser
 tests will be run on.
 
 Cross-Platform
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 The following cross-platform browser drivers are supported and enabled by
 default:
@@ -122,7 +100,7 @@ the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
 
 
 Platform-Specific
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 The following platform-specific drivers are supported:
 
@@ -152,7 +130,7 @@ testing:
 
 
 Installation
-============
+------------
 
 The package can be installed using pip:
 
@@ -163,8 +141,36 @@ The package can be installed using pip:
 **Note:** Command may be ``pip3`` instead of ``pip`` depending on the system.
 
 
+Creating a Test Suite
+---------------------
+
+The package itself does not contain test cases. To generate files for a new test
+suite, change into the desired directory and run:
+
+.. code-block:: none
+
+    webdriver_test_tools --init
+
+This will generate a new test package with template files and project
+directories.
+
+The following documentation goes into detail on test projects:
+
+    - `Test Project Overview`_: Test project setup, configuration, command line
+      usage, and directory structure
+    - `Example Test Project`_: Step-by-step tutorial with a simple example test
+      project
+
+
+.. _Test Project Overview: http://connordelacruz.com/webdriver-test-tools/test_projects.html
+.. _Example Test Project: http://connordelacruz.com/webdriver-test-tools/example_project.html
+
+
 Command Line Usage
 ==================
+
+webdriver_test_tools
+--------------------
 
 For info on command line arguments:
 
@@ -177,6 +183,64 @@ To initialize a new test project in the current directory:
 .. code-block:: none
 
     webdriver_test_tools --init
+
+To print the version number:
+
+.. code-block:: none
+
+    webdriver_test_tools --version
+
+
+.. readme-only
+Test Projects
+-------------
+
+Test projects generated using ``webdriver_test_tools --init`` have their own 
+set of command line arguments.
+
+For info on command line arguments:
+
+::
+
+    python -m <test_package> --help
+
+To print a list of available test classes and methods:
+
+::
+
+    python -m <test_package> --list
+
+To run all tests:
+
+::
+
+    python -m <test_package>
+
+To run all test cases in one or more modules:
+
+::
+
+    python -m <test_package> --module <test_module> [<test_module> ...]
+
+To run specific TestCase classes:
+
+::
+
+    python -m <test_package> --test <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
+
+To do any of the above in specific browsers rather than running in all available
+browsers:
+
+::
+
+    python -m <test_package> <args> --browser <browser> [<browser ...]
+
+For a list of options you can specify with ``--browser``, run ``python -m
+<test_package> --help``.
+
+
+For detailed information on test project command line usage and additional
+command line arguments, see the `Test Project Overview`_ documentation.
 
 
 Contributing
