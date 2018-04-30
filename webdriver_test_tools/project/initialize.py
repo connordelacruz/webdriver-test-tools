@@ -300,7 +300,7 @@ def validate_project_title(project_title):
 
 # Main methods
 
-def initialize(target_path, package_name, project_title, gitignore_files=True):
+def initialize(target_path, package_name, project_title, gitignore_files=True, readme_file=True):
     """Initializes new project package
 
     :param target_path: Path to directory that will contain test package
@@ -308,13 +308,16 @@ def initialize(target_path, package_name, project_title, gitignore_files=True):
     :param project_title: Human readable title of the test project.
     :param gitignore_files: (Default = True) Copy template .gitignore file to
         project root directory if True
+    :param readme_file: (Default = True) Render template README file to project
+        root directory if True
     """
     outer_path = os.path.abspath(target_path)
     package_name = validate_package_name(package_name)
     context = generate_context(package_name, project_title)
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
-    create_readme(outer_path, context)
+    if readme_file:
+        create_readme(outer_path, context)
     if gitignore_files:
         create_gitignore(outer_path)
     package_path = create_package_directory(outer_path, package_name)
@@ -352,9 +355,13 @@ def main(package_name=None, project_title=None):
     print('Create .gitignore files for project root and log directory?')
     print('(Ignores python cache files, package install files, local driver logs, etc)')
     gitignore_files = cmd.prompt('Create .gitignore files (y/n)', default='y', validate=cmd.validate_yn)
+    # Ask if README should be generated
+    print('Generate README file?')
+    print('(README contains information on command line usage and directory structure)')
+    readme_file = cmd.prompt('Create README file (y/n)', default='y', validate=cmd.validate_yn)
     # Create project package
     print('Creating test project...')
-    initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files)
+    initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files, readme_file)
     print(cmd.COLORS['success']('Project initialized.') + '\n')
     print(cmd.COLORS['emphasize']('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
 
