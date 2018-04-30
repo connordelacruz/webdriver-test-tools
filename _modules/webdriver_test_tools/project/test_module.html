@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 0.26.0 documentation</title>
+  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 0.26.3 documentation</title>
   
 
   
@@ -158,9 +158,8 @@
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
-<span class="c1"># import warnings</span>
-<span class="kn">from</span> <span class="nn">blessings</span> <span class="k">import</span> <span class="n">Terminal</span>
 
+<span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">cmd</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">config</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">test_factory</span>
 
@@ -217,37 +216,45 @@
 <span class="sd">    :param browserstack_config: (Optional) BrowserStackConfig class for the project.</span>
 <span class="sd">        Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Run the test suite.&#39;</span>
+    <span class="n">epilog</span> <span class="o">=</span> <span class="s1">&#39;For more information, visit &lt;http://connordelacruz.com/webdriver-test-tools/&gt;&#39;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span> <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                     <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">epilog</span><span class="p">)</span>
     <span class="c1"># Use default config if module is None or doesn&#39;t contain BrowserConfig class</span>
     <span class="k">if</span> <span class="n">browser_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">browser_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">BrowserConfig</span>
     <span class="k">if</span> <span class="n">browserstack_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">browserstack_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">BrowserStackConfig</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Optional Arguments&#39;</span><span class="p">)</span>
+    <span class="c1"># Arguments for specifying what test to run</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--test&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;test&gt;&#39;</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run specific test case classes or test methods.</span><span class="se">\n</span><span class="s1">Arguments should be in the format &lt;TestCase&gt;[.&lt;method&gt;]&#39;</span><span class="p">)</span>
+    <span class="c1"># Arguments for specifying test module to run</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--module&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;module&gt;&#39;</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run only tests in specific test modules&#39;</span><span class="p">)</span>
     <span class="c1"># Arguments for specifying browser to use</span>
     <span class="k">if</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">ENABLE</span><span class="p">:</span>
         <span class="n">browser_choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">browserstack_config</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">browser_choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="n">browser_options_help</span> <span class="o">=</span> <span class="n">format_browser_choices</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="s1">&#39;--browser&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">browser_choices</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;browser&gt;&#39;</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run tests only in the specified browsers.&#39;</span> <span class="o">+</span> <span class="n">browser_options_help</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="s1">&#39;--browser&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">browser_choices</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;browser&gt;&#39;</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run tests only in the specified browsers.&#39;</span> <span class="o">+</span> <span class="n">browser_options_help</span><span class="p">)</span>
     <span class="c1"># Add argument for running on browserstack if the feature is enabled</span>
     <span class="k">if</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">ENABLE</span><span class="p">:</span>
-        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--browserstack&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
-                            <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run tests on BrowserStack instead of locally&#39;</span><span class="p">)</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-B&#39;</span><span class="p">,</span> <span class="s1">&#39;--browserstack&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+                           <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run tests on BrowserStack instead of locally&#39;</span><span class="p">)</span>
     <span class="c1"># Add --headless argument and implement</span>
     <span class="n">headless_options_help</span> <span class="o">=</span> <span class="n">format_headless_browsers</span><span class="p">(</span><span class="n">browser_config</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-H&#39;</span><span class="p">,</span> <span class="s1">&#39;--headless&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run tests using headless browsers.&#39;</span> <span class="o">+</span> <span class="n">headless_options_help</span><span class="p">)</span>
-    <span class="c1"># Arguments for specifying what test to run</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--test&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;test&gt;&#39;</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run specific test case classes or test methods.</span><span class="se">\n</span><span class="s1">Arguments should be in the format &lt;TestCase&gt;[.&lt;method&gt;]&#39;</span><span class="p">)</span>
-    <span class="c1"># Arguments for specifying test module to run</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--module&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;module&gt;&#39;</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run only tests in specific test modules&#39;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-H&#39;</span><span class="p">,</span> <span class="s1">&#39;--headless&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run tests using headless browsers.&#39;</span> <span class="o">+</span> <span class="n">headless_options_help</span><span class="p">)</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Commands&#39;</span><span class="p">)</span>
+    <span class="c1"># Help message</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span> <span class="s1">&#39;--help&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;help&#39;</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Show this help message and exit&#39;</span><span class="p">)</span>
     <span class="c1"># Argument for listing tests</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--list&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
-                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Print a list of available tests and exit&#39;</span><span class="p">)</span></div>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--list&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Print a list of available tests and exit&#39;</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">parser</span>
 
 
@@ -289,11 +296,11 @@
         <span class="n">local_only</span> <span class="o">=</span> <span class="n">local_set</span> <span class="o">-</span> <span class="n">browserstack_set</span>
         <span class="n">browserstack_only</span> <span class="o">=</span> <span class="n">browserstack_set</span> <span class="o">-</span> <span class="n">local_set</span>
         <span class="k">if</span> <span class="n">both_set</span><span class="p">:</span>
-            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local &amp; BrowserStack: &#39;</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">both_set</span><span class="p">))</span>
+            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local &amp; BrowserStack:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">both_set</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">local_only</span><span class="p">:</span>
-            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local Only: &#39;</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">local_only</span><span class="p">))</span>
+            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local Only:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">local_only</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">browserstack_only</span><span class="p">:</span>
-            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">BrowserStack Only: &#39;</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">browserstack_only</span><span class="p">))</span></div>
+            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">BrowserStack Only:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">browserstack_only</span><span class="p">))</span></div>
     <span class="k">return</span> <span class="n">options</span>
 
 
@@ -307,7 +314,7 @@
     <span class="n">browser_names</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_config</span><span class="o">.</span><span class="n">Browsers</span><span class="o">.</span><span class="n">HEADLESS_COMPATIBLE</span>
     <span class="p">]</span></div>
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Compatible Browsers: &#39;</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Compatible Browsers:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="browser_list_string"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.browser_list_string">[docs]</a><span class="k">def</span> <span class="nf">browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">):</span>
@@ -372,12 +379,9 @@
                                                                   <span class="n">browserstack</span><span class="p">,</span> <span class="n">headless</span><span class="p">)</span>
     <span class="c1"># Get configured test runner and run suite</span>
     <span class="n">test_runner</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">TestSuiteConfig</span><span class="o">.</span><span class="n">get_runner</span><span class="p">()</span>
-    <span class="c1"># TODO: handle deprecation warnings after tests finish?</span>
-    <span class="c1"># warnings.simplefilter(&#39;always&#39;, DeprecationWarning)</span>
     <span class="n">test_runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">browser_test_suite</span><span class="p">)</span>
     <span class="c1"># Link to BrowserStack automation dashboard if applicable</span>
     <span class="k">if</span> <span class="n">browserstack</span><span class="p">:</span>
-        <span class="c1"># TODO: integrate into custom test runner class?</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;See BrowserStack Automation Dashboard for Detailed Results:&#39;</span><span class="p">,</span></div>
               <span class="s1">&#39;https://www.browserstack.com/automate&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
@@ -391,15 +395,12 @@
 <span class="sd">    :param test_module_names: (Optional) Parsed arg for --module command line argument</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">test_class_names</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">test_class_map</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">test_class_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-    <span class="c1"># For formatted terminal output</span>
-    <span class="n">term</span> <span class="o">=</span> <span class="n">Terminal</span><span class="p">()</span>
-    <span class="n">indent</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">3</span>
     <span class="n">tests</span> <span class="o">=</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">blue</span><span class="p">(</span><span class="n">test_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">](</span><span class="n">test_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
         <span class="n">test_cases</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">getTestCaseNames</span><span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span></div>
-            <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">indent</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span><span class="p">))</span>
 
 
 
@@ -437,7 +438,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.26.0',
+            VERSION:'0.26.3',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
