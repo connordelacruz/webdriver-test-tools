@@ -2,7 +2,6 @@
 import argparse
 import unittest
 import textwrap
-# import warnings
 from blessings import Terminal
 
 from webdriver_test_tools import config
@@ -67,6 +66,15 @@ def get_parser(browser_config=None, browserstack_config=None):
         browser_config = config.BrowserConfig
     if browserstack_config is None:
         browserstack_config = config.BrowserStackConfig
+    # Argument for listing tests
+    parser.add_argument('-l', '--list', action='store_true',
+                        help='Print a list of available tests and exit')
+    # Arguments for specifying what test to run
+    parser.add_argument('-t', '--test', nargs='+', metavar='<test>',
+                        help='Run specific test case classes or test methods.\nArguments should be in the format <TestCase>[.<method>]')
+    # Arguments for specifying test module to run
+    parser.add_argument('-m', '--module', nargs='+', metavar='<module>',
+                        help='Run only tests in specific test modules')
     # Arguments for specifying browser to use
     if browserstack_config.ENABLE:
         browser_choices = list(set(browser_config.BROWSER_TEST_CLASSES) | set(browserstack_config.BROWSER_TEST_CLASSES))
@@ -83,15 +91,6 @@ def get_parser(browser_config=None, browserstack_config=None):
     headless_options_help = format_headless_browsers(browser_config)
     parser.add_argument('-H', '--headless', action='store_true',
                         help='Run tests using headless browsers.' + headless_options_help)
-    # Arguments for specifying what test to run
-    parser.add_argument('-t', '--test', nargs='+', metavar='<test>',
-                        help='Run specific test case classes or test methods.\nArguments should be in the format <TestCase>[.<method>]')
-    # Arguments for specifying test module to run
-    parser.add_argument('-m', '--module', nargs='+', metavar='<module>',
-                        help='Run only tests in specific test modules')
-    # Argument for listing tests
-    parser.add_argument('-l', '--list', action='store_true',
-                        help='Print a list of available tests and exit')
     return parser
 
 
@@ -216,12 +215,9 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
                                                                   browserstack, headless)
     # Get configured test runner and run suite
     test_runner = config_module.TestSuiteConfig.get_runner()
-    # TODO: handle deprecation warnings after tests finish?
-    # warnings.simplefilter('always', DeprecationWarning)
     test_runner.run(browser_test_suite)
     # Link to BrowserStack automation dashboard if applicable
     if browserstack:
-        # TODO: integrate into custom test runner class?
         print('', 'See BrowserStack Automation Dashboard for Detailed Results:',
               'https://www.browserstack.com/automate', sep='\n')
 
