@@ -5,16 +5,11 @@ import os
 import shutil
 import re
 import jinja2
-from blessings import Terminal
 
+from webdriver_test_tools import cmd
 from webdriver_test_tools.project import templates
 from webdriver_test_tools.version import __version__, __selenium__
 
-
-# For formatted terminal output
-term = Terminal()
-# Prepend to input prompts
-PROMPT_PREFIX = '> '
 
 # Project creation functions
 
@@ -258,24 +253,7 @@ def generate_context(test_package, project_title=None, test_tools_version=__vers
     return context
 
 
-# Prompt helper methods
-
-class ValidationError(Exception):
-    """Exception raised if input validation fails"""
-    pass
-
-
-def nonempty(text):
-    """Input validation function. Raises ValidationError if text is empty
-
-    :param text: Text to validate
-
-    :return: Validated text
-    """
-    if not text:
-        raise ValidationError('Please enter some text.')
-    return text
-
+# Prompt validation functions
 
 def validate_package_name(package_name):
     """Removes and replaces characters to ensure a string is a valid python package name
@@ -292,11 +270,11 @@ def validate_package_name(package_name):
     # Remove leading characters until we hit a letter or underscore
     validated_package_name = re.sub(r'^[^a-zA-Z_]+', '', validated_package_name)
     if not validated_package_name:
-        raise ValidationError('Please enter a valid package name.')
+        raise cmd.ValidationError('Please enter a valid package name.')
     # Alert user of any changes made in validation
     if package_name != validated_package_name:
         message_format = 'Name was changed to {} in order to be a valid python package'
-        print(term.yellow(message_format.format(validated_package_name)))
+        cmd.print_validation_warning(message_format.format(validated_package_name))
     return validated_package_name
 
 
@@ -312,53 +290,12 @@ def validate_project_title(project_title):
     # Trim outer whitespace and remove that aren't alphanumeric or an underscore/hyphen
     validated_project_title = re.sub(r'[^\w\s-]', '', project_title.strip())
     if not validated_project_title:
-        raise ValidationError('Please enter a valid project title.')
+        raise cmd.ValidationError('Please enter a valid project title.')
     # Alert user of any changes made in validation
     if project_title != validated_project_title:
         message_format = 'Title was changed to {} to avoid syntax errors.'
-        print(term.yellow(message_format.format(validated_project_title)))
+        cmd.print_validation_warning(message_format.format(validated_project_title))
     return validated_project_title
-
-
-def validate_yn(answer):
-    """Validate y/n prompts
-
-    :param answer: User response to y/n prompt
-
-    :return: True if user answered yes, False if user answered no
-    """
-    answer = answer.lower().strip()
-    if answer not in ['y', 'yes', 'n', 'no']:
-        raise ValidationError('Please enter "y" or "n".')
-    return answer in ['y', 'yes']
-
-
-def prompt(text, default=None, validate=nonempty, trailing_newline=True):
-    """Prompt the user for input and validate it
-
-    :param text: Text to display in prompt
-    :param default: (Optional) default value
-    :param validate: (Default = nonempty) Validation function for input
-    :param trailing_newline: (Default = True) Print a blank line after receiving user
-        input and successfully validating
-
-    :return: Validated input
-    """
-    prompt_text = '{} [{}]: '.format(text, default) if default is not None else text + ': '
-    prompt_text = term.magenta(PROMPT_PREFIX + prompt_text)
-    while True:
-        val = input(prompt_text).strip()
-        if default is not None and not val:
-            val = default
-        try:
-            val = validate(val)
-        except ValidationError as e:
-            print(term.bold_red(str(e)))
-            continue
-        break
-    if trailing_newline:
-        print('')
-    return val
 
 
 # Main methods
@@ -401,24 +338,25 @@ def main(package_name=None, project_title=None):
         project title will be skipped and function will continue using this as the
         project title
     """
-    print(term.bold('webdriver_test_tools {} project initialization'.format(__version__)) + '\n')
+    print(cmd.COLORS['title']('webdriver_test_tools {} project initialization'.format(__version__)) + '\n')
     # Prompt for input if no package name is passed as a parameter
     print('Enter a name for the test package')
     print('(use only alphanumeric characters and underscores. Cannot start with a number)')
-    validated_package_name = prompt('Package name', validate=validate_package_name)
+    validated_package_name = cmd.prompt('Package name', validate=validate_package_name)
     # Prompt for optional project title, default to validated_package_name
     print('(Optional) Enter a human-readable name for the test project')
     print('(can use alphanumeric characters, spaces, hyphens, and underscores)')
-    validated_project_title = prompt('Project title', default=validated_package_name, validate=validate_project_title)
+    validated_project_title = cmd.prompt('Project title', default=validated_package_name,
+                                         validate=validate_project_title)
     # Ask if gitignore files should be generated
     print('Create .gitignore files for project root and log directory?')
     print('(Ignores python cache files, package install files, local driver logs, etc)')
-    gitignore_files = prompt('Create .gitignore files (y/n)', default='y', validate=validate_yn)
+    gitignore_files = cmd.prompt('Create .gitignore files (y/n)', default='y', validate=cmd.validate_yn)
     # Create project package
     print('Creating test project...')
     initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files)
-    print(term.green('Project initialized.') + '\n')
-    print(term.bold('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
+    print(cmd.COLORS['success']('Project initialized.') + '\n')
+    print(cmd.COLORS['emphasize']('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
 
 
 if __name__ == '__main__':
