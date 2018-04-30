@@ -60,38 +60,43 @@ def get_parser(browser_config=None, browserstack_config=None):
     :param browserstack_config: (Optional) BrowserStackConfig class for the project.
         Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified
     """
-    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter,
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, add_help=False,
                                      epilog='For more information, visit <http://connordelacruz.com/webdriver-test-tools/>')
     # Use default config if module is None or doesn't contain BrowserConfig class
     if browser_config is None:
         browser_config = config.BrowserConfig
     if browserstack_config is None:
         browserstack_config = config.BrowserStackConfig
-    # Argument for listing tests
-    parser.add_argument('-l', '--list', action='store_true',
-                        help='Print a list of available tests and exit')
+    group = parser.add_argument_group('Optional Arguments')
     # Arguments for specifying what test to run
-    parser.add_argument('-t', '--test', nargs='+', metavar='<test>',
-                        help='Run specific test case classes or test methods.\nArguments should be in the format <TestCase>[.<method>]')
+    group.add_argument('-t', '--test', nargs='+', metavar='<test>',
+                       help='Run specific test case classes or test methods.\nArguments should be in the format <TestCase>[.<method>]')
     # Arguments for specifying test module to run
-    parser.add_argument('-m', '--module', nargs='+', metavar='<module>',
-                        help='Run only tests in specific test modules')
+    group.add_argument('-m', '--module', nargs='+', metavar='<module>',
+                       help='Run only tests in specific test modules')
     # Arguments for specifying browser to use
     if browserstack_config.ENABLE:
         browser_choices = list(set(browser_config.BROWSER_TEST_CLASSES) | set(browserstack_config.BROWSER_TEST_CLASSES))
     else:
         browser_choices = list(browser_config.BROWSER_TEST_CLASSES.keys())
     browser_options_help = format_browser_choices(browser_config, browserstack_config)
-    parser.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
-                        help='Run tests only in the specified browsers.' + browser_options_help)
+    group.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
+                       help='Run tests only in the specified browsers.' + browser_options_help)
     # Add argument for running on browserstack if the feature is enabled
     if browserstack_config.ENABLE:
-        parser.add_argument('-B', '--browserstack', action='store_true',
-                            help='Run tests on BrowserStack instead of locally')
+        group.add_argument('-B', '--browserstack', action='store_true',
+                           help='Run tests on BrowserStack instead of locally')
     # Add --headless argument and implement
     headless_options_help = format_headless_browsers(browser_config)
-    parser.add_argument('-H', '--headless', action='store_true',
-                        help='Run tests using headless browsers.' + headless_options_help)
+    group.add_argument('-H', '--headless', action='store_true',
+                       help='Run tests using headless browsers.' + headless_options_help)
+    group = parser.add_argument_group('Commands')
+    # Help message
+    group.add_argument('-h', '--help', action='help',
+                       help='Show this help message and exit')
+    # Argument for listing tests
+    group.add_argument('-l', '--list', action='store_true',
+                       help='Print a list of available tests and exit')
     return parser
 
 
