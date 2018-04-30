@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
     webdriver_test_tools.classes
+    webdriver_test_tools.cmd
     webdriver_test_tools.common
     webdriver_test_tools.config
     webdriver_test_tools.data

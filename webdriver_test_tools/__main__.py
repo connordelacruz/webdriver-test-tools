@@ -7,13 +7,18 @@ from webdriver_test_tools.project import initialize
 
 def get_parser():
     """Returns ArgumentParser object for use with main()"""
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(add_help=False, epilog='For more information, visit <http://connordelacruz.com/webdriver-test-tools/>')
+    group = parser.add_argument_group('Commands')
     # Argument for initializing
-    parser.add_argument('-i', '--init', action='store_true',
-            help='Initialize a new test project in the current directory')
+    group.add_argument('-i', '--init', action='store_true',
+                       help='Initialize a new test project in the current directory')
+    group = parser.add_argument_group('General')
+    # Help message
+    group.add_argument('-h', '--help', action='help',
+                       help='Show this help message and exit')
     # Print version number
-    parser.add_argument('-V', '--version', action='store_true',
-            help='Print version number and exit')
+    group.add_argument('-V', '--version', action='store_true',
+                       help='Show version number and exit')
     return parser
 
 
