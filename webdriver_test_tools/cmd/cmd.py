@@ -1,4 +1,3 @@
-import re
 from blessings import Terminal
 
 # Formatting
@@ -7,6 +6,8 @@ _term = Terminal()
 
 # Prepend to input prompts
 PROMPT_PREFIX = '> '
+# Constant for terminal "indentation"
+INDENT = ' ' * 3
 
 # Color/formatting functions for different types of output
 COLORS = {

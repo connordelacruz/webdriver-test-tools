@@ -2,8 +2,8 @@
 import argparse
 import unittest
 import textwrap
-from blessings import Terminal
 
+from webdriver_test_tools import cmd
 from webdriver_test_tools import config
 from webdriver_test_tools.project import test_loader, test_factory
 
@@ -85,7 +85,7 @@ def get_parser(browser_config=None, browserstack_config=None):
                         help='Run tests only in the specified browsers.' + browser_options_help)
     # Add argument for running on browserstack if the feature is enabled
     if browserstack_config.ENABLE:
-        parser.add_argument('--browserstack', action='store_true',
+        parser.add_argument('-B', '--browserstack', action='store_true',
                             help='Run tests on BrowserStack instead of locally')
     # Add --headless argument and implement
     headless_options_help = format_headless_browsers(browser_config)
@@ -132,11 +132,11 @@ def format_browser_choices(browser_config, browserstack_config):
         local_only = local_set - browserstack_set
         browserstack_only = browserstack_set - local_set
         if both_set:
-            options += '\nLocal & BrowserStack: ' + browser_list_string(list(both_set))
+            options += '\nLocal & BrowserStack:\n' + cmd.INDENT + browser_list_string(list(both_set))
         if local_only:
-            options += '\nLocal Only: ' + browser_list_string(list(local_only))
+            options += '\nLocal Only:\n' + cmd.INDENT + browser_list_string(list(local_only))
         if browserstack_only:
-            options += '\nBrowserStack Only: ' + browser_list_string(list(browserstack_only))
+            options += '\nBrowserStack Only:\n' + cmd.INDENT + browser_list_string(list(browserstack_only))
     return options
 
 
@@ -150,7 +150,7 @@ def format_headless_browsers(browser_config):
     browser_names = [
         browser_class.SHORT_NAME for browser_class in browser_config.Browsers.HEADLESS_COMPATIBLE
     ]
-    return '\nCompatible Browsers: ' + browser_list_string(browser_names)
+    return '\nCompatible Browsers:\n' + cmd.INDENT + browser_list_string(browser_names)
 
 
 def browser_list_string(browser_names):
@@ -231,15 +231,12 @@ def list_tests(tests_module, test_class_map=None, test_module_names=None):
     :param test_module_names: (Optional) Parsed arg for --module command line argument
     """
     test_class_names = None if test_class_map is None else test_class_map.keys()
-    # For formatted terminal output
-    term = Terminal()
-    indent = ' ' * 3
     tests = test_loader.load_project_tests(tests_module, test_class_names, test_module_names)
     for test_class in tests:
-        print(term.blue(test_class.__name__) + ':')
+        print(cmd.COLORS['title'](test_class.__name__) + ':')
         test_cases = unittest.loader.getTestCaseNames(test_class, 'test')
         for test_case in test_cases:
-            print(textwrap.indent(test_case, indent))
+            print(textwrap.indent(test_case, cmd.INDENT))
 
 
 
