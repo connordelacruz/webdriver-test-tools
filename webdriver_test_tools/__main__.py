@@ -7,7 +7,7 @@ from webdriver_test_tools.project import initialize
 
 def get_parser():
     """Returns ArgumentParser object for use with main()"""
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(epilog='For more information, visit <http://connordelacruz.com/webdriver-test-tools/>')
     # Argument for initializing
     parser.add_argument('-i', '--init', action='store_true',
             help='Initialize a new test project in the current directory')

@@ -60,7 +60,8 @@ def get_parser(browser_config=None, browserstack_config=None):
     :param browserstack_config: (Optional) BrowserStackConfig class for the project.
         Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified
     """
-    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter,
+                                     epilog='For more information, visit <http://connordelacruz.com/webdriver-test-tools/>')
     # Use default config if module is None or doesn't contain BrowserConfig class
     if browser_config is None:
         browser_config = config.BrowserConfig
