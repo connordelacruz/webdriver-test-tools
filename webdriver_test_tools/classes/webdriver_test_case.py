@@ -4,7 +4,7 @@ import unittest
 from functools import wraps
 from webdriver_test_tools.config import WebDriverConfig
 from webdriver_test_tools.common import utils
-from webdriver_test_tools import test
+from webdriver_test_tools.webdriver.support import test
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 

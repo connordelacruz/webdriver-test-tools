@@ -27,5 +27,5 @@ class HomePageTestCase(WebDriverTestCase):
         page_object = HomePage(self.driver)
         expected_url = config.SiteConfig.INFO_URL
         page_object.click_more_information_link()
-        self.assertTrue(webdriver_test_tools.test.url_change_test(self.driver, expected_url))
+        self.assertUrlChange(expected_url)
 

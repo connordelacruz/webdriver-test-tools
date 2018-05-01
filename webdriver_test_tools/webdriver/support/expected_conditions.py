@@ -1,6 +1,6 @@
 """Custom expected condition classes"""
 
-from webdriver_test_tools import test
+from . import test
 from webdriver_test_tools.common import utils
 
 

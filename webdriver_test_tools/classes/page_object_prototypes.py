@@ -7,7 +7,7 @@ These can be subclassed in test projects if useful.
 from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_test_tools.classes.base_page import BasePage
 from webdriver_test_tools.webdriver import actions
-from webdriver_test_tools import test
+from webdriver_test_tools.webdriver.support import test
 
 
 class WebPageObject(BasePage):
