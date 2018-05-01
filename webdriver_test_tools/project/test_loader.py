@@ -1,8 +1,8 @@
-# Load test cases from a project
+"""Load test cases from a project"""
 
 import types
 import unittest
-from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase
+from webdriver_test_tools.testcase import *
 
 
 def load_project_tests(tests_module, test_class_names=None, test_module_names=None):
