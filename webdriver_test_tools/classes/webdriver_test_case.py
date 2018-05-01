@@ -186,6 +186,26 @@ class WebDriverTestCase(unittest.TestCase):
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
+    def assertEnabled(self, element_locator, msg=None):
+        """Fail if element is disabled
+
+        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        """
+        if not self.driver.find_element(*element_locator).is_enabled():
+            failure_msg = 'Element is disabled'
+            msg = self._formatMessage(msg, failure_message)
+            raise self.failureException(msg)
+
+    def assertDisabled(self, element_locator, msg=None):
+        """Fail if element is enabled
+
+        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        """
+        if self.driver.find_element(*element_locator).is_enabled():
+            failure_msg = 'Element is enabled'
+            msg = self._formatMessage(msg, failure_message)
+            raise self.failureException(msg)
+
     def assertUrlChange(self, expected_url, msg=None):
         """Fail if the URL doesn't match the expected URL.
 
