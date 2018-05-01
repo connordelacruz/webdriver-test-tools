@@ -187,7 +187,7 @@ class WebDriverTestCase(unittest.TestCase):
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
         """
         if not self.driver.find_element(*element_locator).is_enabled():
-            failure_msg = 'Element is disabled'
+            failure_message = 'Element is disabled'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
@@ -197,7 +197,7 @@ class WebDriverTestCase(unittest.TestCase):
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
         """
         if self.driver.find_element(*element_locator).is_enabled():
-            failure_msg = 'Element is enabled'
+            failure_message = 'Element is enabled'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
