@@ -23,7 +23,7 @@ class WebPageObject(BasePage):
 
         :return: Title of the current page
         """
-        return driver.get_title()
+        return self.driver.get_title()
 
 
 class NavObject(BasePage):
