@@ -39,9 +39,6 @@ def print_validation_warning(text):
     print(COLORS['warning'](text))
 
 
-# TODO: more print methods for other formats?
-
-
 # User Input
 
 class ValidationError(Exception):

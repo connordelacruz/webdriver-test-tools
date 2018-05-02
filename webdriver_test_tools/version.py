@@ -11,3 +11,14 @@ __devstatus__ = 'Development Status :: 2 - Pre-Alpha'
 
 __selenium__ = '3.11.0'
 
+
+def get_version_info():
+    """Returns a dictionary with version information about the webdriver_test_tools package
+
+    :return: Dictionary with keys 'version', 'devstatus', and 'selenium'
+    """
+    return {
+        'version': __version__,
+        'devstatus': __devstatus__,
+        'selenium': __selenium__,
+    }
