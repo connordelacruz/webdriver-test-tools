@@ -6,7 +6,6 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
 # TODO: consistent naming conventions
-# TODO: ensure WebDriverTestCase has assertion methods for all of these
 
 
 # Element Tests

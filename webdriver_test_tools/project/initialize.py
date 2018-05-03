@@ -1,14 +1,12 @@
 # Used to create a new test package
 
-import glob
 import os
 import shutil
 import re
 import jinja2
 
-from webdriver_test_tools import cmd
+from webdriver_test_tools import cmd, version
 from webdriver_test_tools.project import templates
-from webdriver_test_tools.version import __version__, __selenium__
 
 
 # Project creation functions
@@ -224,7 +222,8 @@ def create_file_from_template(template_path, target_path, filename, context):
     render_template_to_file(file_template, context, file_target)
 
 
-def generate_context(test_package, project_title=None, test_tools_version=__version__, selenium_version=__selenium__, version_badge=True):
+# TODO: test and update docs
+def generate_context(test_package, project_title=None, version_info=None, version_badge=True):
     """Returns a jinja context to use for rendering templates
 
     :param test_package: Name of the python test package
@@ -242,11 +241,13 @@ def generate_context(test_package, project_title=None, test_tools_version=__vers
     """
     if project_title is None:
         project_title = test_package
+    if version_info is None:
+        version_info = version.get_version_info()
 
     context = {
             'test_package': test_package,
-            'test_tools_version': test_tools_version,
-            'selenium_version': selenium_version,
+            'test_tools_version': version_info['version'],
+            'selenium_version': version_info['selenium'],
             'project_title': project_title,
             'version_badge': version_badge,
             }
@@ -341,7 +342,8 @@ def main(package_name=None, project_title=None):
         project title will be skipped and function will continue using this as the
         project title
     """
-    print(cmd.COLORS['title']('webdriver_test_tools {} project initialization'.format(__version__)) + '\n')
+    version_info = version.get_version_info()
+    print(cmd.COLORS['title']('webdriver_test_tools {} project initialization'.format(version_info['version'])) + '\n')
     # Prompt for input if no package name is passed as a parameter
     print('Enter a name for the test package')
     print('(use only alphanumeric characters and underscores. Cannot start with a number)')

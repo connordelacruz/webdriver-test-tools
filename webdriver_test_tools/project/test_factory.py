@@ -1,6 +1,7 @@
 """Functions for generating test cases"""
 
 import unittest
+
 from webdriver_test_tools.config import BrowserConfig
 from webdriver_test_tools.project import test_loader
 from webdriver_test_tools.testcase import *
