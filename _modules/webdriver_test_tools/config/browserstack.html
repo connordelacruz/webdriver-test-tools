@@ -154,8 +154,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.config.browserstack</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.webdriver_test_case</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">version</span>
+<span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase.browsers</span> <span class="k">import</span> <span class="o">*</span>
 
 
 <div class="viewcode-block" id="BrowserStackConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browserstack.html#webdriver_test_tools.config.browserstack.BrowserStackConfig">[docs]</a><span class="k">class</span> <span class="nc">BrowserStackConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -177,7 +176,6 @@
     <span class="n">BS_CAPABILITIES</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;project&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="s1">&#39;browserstack.video&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="c1"># &#39;browserstack.selenium_version&#39;: version.__selenium__,</span>
     <span class="p">}</span>
 
     <span class="n">BROWSER_TEST_CLASSES</span> <span class="o">=</span> <span class="p">{</span>
@@ -190,6 +188,16 @@
     <span class="p">}</span>
 
     <span class="c1"># Methods</span>
+
+    <span class="c1"># TODO: use this instead of storing classes directly</span>
+    <span class="c1"># @classmethod</span>
+    <span class="c1"># def get_browser_classes(cls, browser_short_names):</span>
+    <span class="c1">#     # TODO: document</span>
+    <span class="c1">#     browser_classes = {</span>
+    <span class="c1">#         short_name: browser_class for short_name, browser_class in cls.BROWSER_TEST_CLASSES.items()</span>
+    <span class="c1">#         if short_name in browser_short_names</span>
+    <span class="c1">#     }</span>
+    <span class="c1">#     return browser_classes</span>
 
 <div class="viewcode-block" id="BrowserStackConfig.get_command_executor"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browserstack.html#webdriver_test_tools.config.browserstack.BrowserStackConfig.get_command_executor">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_command_executor</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>

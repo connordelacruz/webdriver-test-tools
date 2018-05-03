@@ -154,7 +154,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.config.browser</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.webdriver_test_case</span> <span class="k">import</span> <span class="o">*</span>
+<span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase.browsers</span> <span class="k">import</span> <span class="o">*</span>
 
 
 <div class="viewcode-block" id="BrowserConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig">[docs]</a><span class="k">class</span> <span class="nc">BrowserConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -178,6 +178,16 @@
 <span class="sd">        for convenience</span>
 <span class="sd">        &quot;&quot;&quot;</span></div></div>
         <span class="k">pass</span>
+
+    <span class="c1"># TODO: use this instead of storing classes directly</span>
+    <span class="c1"># @classmethod</span>
+    <span class="c1"># def get_browser_classes(cls, browser_short_names):</span>
+    <span class="c1">#     # TODO: document</span>
+    <span class="c1">#     browser_classes = {</span>
+    <span class="c1">#         short_name: browser_class for short_name, browser_class in cls.BROWSER_TEST_CLASSES.items()</span>
+    <span class="c1">#         if short_name in browser_short_names</span>
+    <span class="c1">#     }</span>
+    <span class="c1">#     return browser_classes</span>
 
 </pre></div>
 
