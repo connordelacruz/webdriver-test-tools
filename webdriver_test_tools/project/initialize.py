@@ -222,18 +222,12 @@ def create_file_from_template(template_path, target_path, filename, context):
     render_template_to_file(file_template, context, file_target)
 
 
-# TODO: test and update docs
-def generate_context(test_package, project_title=None, version_info=None, version_badge=True):
+def generate_context(test_package, project_title=None, version_badge=True):
     """Returns a jinja context to use for rendering templates
 
     :param test_package: Name of the python test package
     :param project_title: (Default = test_package) Human-readable title for the test
         project. Defaults to the value of test_package if not provided
-    :param test_tools_version: (Optional) Version of webdriver_test_tools to use as
-        install dependency. Defaults to ``webdriver_test_tools.version.__version__``
-    :param selenium_version: (Optional) Version of selenium package used when
-        developing/testing the current version of webdriver_test_tools. Defaults to
-        ``webdriver_test_tools.version.__selenium__``
     :param version_badge: (Default = True) Include "generated using
         webdriver_test_tools <version>" badge on README if True
 
@@ -241,8 +235,7 @@ def generate_context(test_package, project_title=None, version_info=None, versio
     """
     if project_title is None:
         project_title = test_package
-    if version_info is None:
-        version_info = version.get_version_info()
+    version_info = version.get_version_info()
 
     context = {
             'test_package': test_package,
@@ -331,7 +324,7 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
     create_template_files(package_path, context)
 
 
-# TODO: implement optional params
+# TODO: implement optional params (use for optional command line args?)
 def main(package_name=None, project_title=None):
     """Command line dialogs for initializing a test project
 
@@ -342,8 +335,8 @@ def main(package_name=None, project_title=None):
         project title will be skipped and function will continue using this as the
         project title
     """
-    version_info = version.get_version_info()
-    print(cmd.COLORS['title']('webdriver_test_tools {} project initialization'.format(version_info['version'])) + '\n')
+    # TODO: catch KeyboardInterrupt
+    print(cmd.COLORS['title']('webdriver_test_tools project initialization') + '\n')
     # Prompt for input if no package name is passed as a parameter
     print('Enter a name for the test package')
     print('(use only alphanumeric characters and underscores. Cannot start with a number)')
