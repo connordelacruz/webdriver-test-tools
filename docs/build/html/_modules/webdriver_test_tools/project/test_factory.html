@@ -157,9 +157,10 @@
 <span></span><span class="sd">&quot;&quot;&quot;Functions for generating test cases&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">unittest</span>
+
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.config</span> <span class="k">import</span> <span class="n">BrowserConfig</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_loader</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.webdriver_test_case</span> <span class="k">import</span> <span class="n">WebDriverTestCase</span><span class="p">,</span> <span class="n">WebDriverMobileTestCase</span><span class="p">,</span> <span class="n">Browsers</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase</span> <span class="k">import</span> <span class="o">*</span>
 
 
 <div class="viewcode-block" id="generate_browser_test_suite"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_suite">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_suite</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>

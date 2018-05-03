@@ -420,7 +420,7 @@ to the <code class="docutils literal notranslate"><span class="pre">pages/</span
 </span><span class="hll">        <span class="n">page_object</span> <span class="o">=</span> <span class="n">HomePage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
 </span><span class="hll">        <span class="n">expected_url</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">SiteConfig</span><span class="o">.</span><span class="n">INFO_URL</span>
 </span><span class="hll">        <span class="n">page_object</span><span class="o">.</span><span class="n">click_more_information_link</span><span class="p">()</span>
-</span><span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">url_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">))</span>
+</span><span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">assertUrlChange</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span>
 </span>
 </pre></div>
 </div>
