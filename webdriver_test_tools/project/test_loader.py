@@ -5,6 +5,7 @@ import unittest
 from webdriver_test_tools.testcase import *
 
 
+# TODO: skip_class_names
 def load_project_tests(tests_module, test_class_names=None, test_module_names=None):
     """Returns a list of WebDriverTestCase subclasses from all submodules in a test
     project's tests/ directory
@@ -26,6 +27,7 @@ def load_project_tests(tests_module, test_class_names=None, test_module_names=No
     return test_list
 
 
+# TODO: skip_class_names
 def load_webdriver_test_cases(module, test_class_names=None):
     """Returns a list of WebDriverTestCase subclasses from a module
 
@@ -38,8 +40,10 @@ def load_webdriver_test_cases(module, test_class_names=None):
     for name in dir(module):
         obj = getattr(module, name)
         # Load class if it subclasses WebDriverTestCase (but don't load WebDriverTestCase itself)
+        # TODO: move some of this to a new function, the if statement is way too long to be single line
         if isinstance(obj, type) and issubclass(obj, WebDriverTestCase) and obj is not WebDriverTestCase and obj is not WebDriverMobileTestCase:
             # If test_class_names is specified, only load test cases whose names are specified
+            # TODO: skip_class_names
             if test_class_names is None or name in test_class_names:
                 test_list.append(obj)
     return test_list

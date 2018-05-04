@@ -7,6 +7,7 @@ from webdriver_test_tools.project import test_loader
 from webdriver_test_tools.testcase import *
 
 
+# TODO: skip_class_map
 def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None,
                                 config_module=None, browserstack=False, headless=False):
     """Generates test cases for multiple browsers and returns a TestSuite with all of
