@@ -1,5 +1,5 @@
 from webdriver_test_tools.config import browserstack
-from webdriver_test_tools.classes.webdriver_test_case import *
+from webdriver_test_tools.testcase.browsers import *
 from framework_tests.config import BrowserConfig
 
 

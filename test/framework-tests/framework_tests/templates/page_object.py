@@ -1,4 +1,4 @@
-from webdriver_test_tools.classes.base_page import BasePage
+from webdriver_test_tools.pageobject import BasePage
 from webdriver_test_tools.webdriver import actions, locate
 from selenium.webdriver.common.by import By
 
