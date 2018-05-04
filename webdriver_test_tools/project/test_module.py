@@ -8,13 +8,13 @@ from webdriver_test_tools import config
 from webdriver_test_tools.project import test_loader, test_factory
 
 
-# TODO: optional package_name param, takes __package__ from project __main__ and sets argparse program name accordingly
-def main(tests_module, config_module=None):
+def main(tests_module, config_module=None, package_name=None):
     """Function to call in test modules if __name__ == '__main__' at run time
 
     :param tests_module: The module object for <test_project>.tests
     :param config_module: (Optional) The module object for <test_project>.config. Will
         use webdriver_test_tools.config if not specified
+    :param package_name: (Optional) The name of the package (i.e. __package__)
     """
     # Fall back on default config module if test doesn't supply one
     if config_module is None:
@@ -23,7 +23,7 @@ def main(tests_module, config_module=None):
     browser_config = config_module.BrowserConfig if 'BrowserConfig' in dir(config_module) else config.BrowserConfig
     browserstack_config = config_module.BrowserStackConfig if 'BrowserStackConfig' in dir(config_module) else config.BrowserStackConfig
     # Parse arguments
-    parser = get_parser(browser_config, browserstack_config)
+    parser = get_parser(browser_config, browserstack_config, package_name)
     args = parser.parse_args()
     # get --test and --module args
     test_class_map = parse_test_names(args.test)
@@ -55,18 +55,21 @@ def main(tests_module, config_module=None):
               test_module_names, browserstack, headless)
 
 
-def get_parser(browser_config=None, browserstack_config=None):
+def get_parser(browser_config=None, browserstack_config=None, package_name=None):
     """Returns the ArgumentParser object for use with main()
 
     :param browser_config: (Optional) BrowserConfig class for the project. Defaults to
         webdriver_test_tools.config.BrowserConfig if unspecified
     :param browserstack_config: (Optional) BrowserStackConfig class for the project.
         Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified
+    :param package_name: (Optional) The name of the package (i.e. __package__)
+
+    :return: ArgumentParser for the test package
     """
     description = 'Run the test suite.'
     epilog = 'For more information, visit <http://connordelacruz.com/webdriver-test-tools/>'
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, add_help=False,
-                                     description=description, epilog=epilog)
+                                     prog=package_name, description=description, epilog=epilog)
     # Use default config if module is None or doesn't contain BrowserConfig class
     if browser_config is None:
         browser_config = config.BrowserConfig
