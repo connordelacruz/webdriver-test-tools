@@ -156,6 +156,7 @@
   <h1>Source code for webdriver_test_tools.project.initialize</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Used to create a new test package</span>
 
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -491,30 +492,38 @@
 <span class="sd">        project title will be skipped and function will continue using this as the</span>
 <span class="sd">        project title</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: catch KeyboardInterrupt</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">](</span><span class="s1">&#39;webdriver_test_tools project initialization&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="c1"># Prompt for input if no package name is passed as a parameter</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Enter a name for the test package&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(use only alphanumeric characters and underscores. Cannot start with a number)&#39;</span><span class="p">)</span>
-    <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Package name&#39;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate_package_name</span><span class="p">)</span>
-    <span class="c1"># Prompt for optional project title, default to validated_package_name</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(Optional) Enter a human-readable name for the test project&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(can use alphanumeric characters, spaces, hyphens, and underscores)&#39;</span><span class="p">)</span>
-    <span class="n">validated_project_title</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Project title&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">validated_package_name</span><span class="p">,</span>
-                                         <span class="n">validate</span><span class="o">=</span><span class="n">validate_project_title</span><span class="p">)</span>
-    <span class="c1"># Ask if gitignore files should be generated</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Create .gitignore files for project root and log directory?&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(Ignores python cache files, package install files, local driver logs, etc)&#39;</span><span class="p">)</span>
-    <span class="n">gitignore_files</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Create .gitignore files (y/n)&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">validate_yn</span><span class="p">)</span>
-    <span class="c1"># Ask if README should be generated</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Generate README file?&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(README contains information on command line usage and directory structure)&#39;</span><span class="p">)</span>
-    <span class="n">readme_file</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Create README file (y/n)&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">validate_yn</span><span class="p">)</span>
-    <span class="c1"># Create project package</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Creating test project...&#39;</span><span class="p">)</span>
-    <span class="n">initialize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">validated_package_name</span><span class="p">,</span> <span class="n">validated_project_title</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="p">,</span> <span class="n">readme_file</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">](</span><span class="s1">&#39;Project initialized.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
-    <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;emphasize&#39;</span><span class="p">](</span><span class="s1">&#39;To get started, set the SITE_URL for the project in </span><span class="si">{}</span><span class="s1">/config/site.py&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">)))</span>
+    <span class="n">initialize_start</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">](</span><span class="s1">&#39;webdriver_test_tools project initialization&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="c1"># Prompt for input if no package name is passed as a parameter</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Enter a name for the test package&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(use only alphanumeric characters and underscores. Cannot start with a number)&#39;</span><span class="p">)</span>
+        <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Package name&#39;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate_package_name</span><span class="p">)</span>
+        <span class="c1"># Prompt for optional project title, default to validated_package_name</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(Optional) Enter a human-readable name for the test project&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(can use alphanumeric characters, spaces, hyphens, and underscores)&#39;</span><span class="p">)</span>
+        <span class="n">validated_project_title</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Project title&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">validated_package_name</span><span class="p">,</span>
+                                             <span class="n">validate</span><span class="o">=</span><span class="n">validate_project_title</span><span class="p">)</span>
+        <span class="c1"># Ask if gitignore files should be generated</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Create .gitignore files for project root and log directory?&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(Ignores python cache files, package install files, local driver logs, etc)&#39;</span><span class="p">)</span>
+        <span class="n">gitignore_files</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Create .gitignore files (y/n)&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">validate_yn</span><span class="p">)</span>
+        <span class="c1"># Ask if README should be generated</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Generate README file?&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(README contains information on command line usage and directory structure)&#39;</span><span class="p">)</span>
+        <span class="n">readme_file</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s1">&#39;Create README file (y/n)&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">validate_yn</span><span class="p">)</span>
+        <span class="c1"># Create project package</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Creating test project...&#39;</span><span class="p">)</span>
+        <span class="n">initialize_start</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">initialize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">validated_package_name</span><span class="p">,</span> <span class="n">validated_project_title</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="p">,</span> <span class="n">readme_file</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">](</span><span class="s1">&#39;Project initialized.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;emphasize&#39;</span><span class="p">](</span><span class="s1">&#39;To get started, set the SITE_URL for the project in </span><span class="si">{}</span><span class="s1">/config/site.py&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">)))</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">initialize_start</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Initialization was cancelled mid-operation.&#39;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;warning&#39;</span><span class="p">](</span><span class="n">msg</span><span class="p">))</span></div>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>

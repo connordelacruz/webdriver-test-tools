@@ -163,7 +163,8 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase</span> <span class="k">import</span> <span class="o">*</span>
 
 
-<div class="viewcode-block" id="generate_browser_test_suite"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_suite">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_suite</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="generate_browser_test_suite"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_suite">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_suite</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                 <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generates test cases for multiple browsers and returns a TestSuite with all of</span>
 <span class="sd">    the new tests</span>
@@ -175,6 +176,8 @@
 <span class="sd">        each available browser test case class.</span>
 <span class="sd">    :param test_class_map: (Optional) Dictionary mapping test case names to a list of</span>
 <span class="sd">        test functions. If the list is empty, all test functions will be loaded</span>
+<span class="sd">    :param skip_class_map: (Optional) Dictionary mapping test case names to a list of</span>
+<span class="sd">        test functions. If the list is empty, entire class will be skipped</span>
 <span class="sd">    :param config_module: (Optional) The module object for &lt;test_project&gt;.config</span>
 <span class="sd">    :param browserstack: (Default = False) If True, configure generated test cases to</span>
 <span class="sd">        run on BrowserStack instead of locally. Need to provide `config_module` with</span>
@@ -197,10 +200,22 @@
     <span class="c1"># Generate test classes for each test case in the list</span>
     <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_case_list</span><span class="p">:</span>
         <span class="n">generated_tests</span> <span class="o">=</span> <span class="n">generate_browser_test_cases</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">,</span> <span class="n">headless</span><span class="p">)</span>
-        <span class="n">test_methods</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">test_class_map</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">test_class_map</span> <span class="k">else</span> <span class="n">test_class_map</span><span class="p">[</span><span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
-        <span class="n">loaded_tests</span> <span class="o">=</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_browser_tests</span><span class="p">(</span><span class="n">generated_tests</span><span class="p">,</span> <span class="n">test_methods</span><span class="p">)</span>
+        <span class="n">test_methods</span> <span class="o">=</span> <span class="n">_get_test_methods</span><span class="p">(</span><span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">)</span>
+        <span class="n">skip_methods</span> <span class="o">=</span> <span class="n">_get_test_methods</span><span class="p">(</span><span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span>
+        <span class="n">loaded_tests</span> <span class="o">=</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_browser_tests</span><span class="p">(</span><span class="n">generated_tests</span><span class="p">,</span> <span class="n">test_methods</span><span class="p">,</span> <span class="n">skip_methods</span><span class="p">)</span>
         <span class="n">browser_tests</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">loaded_tests</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestSuite</span><span class="p">(</span><span class="n">browser_tests</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_get_test_methods</span><span class="p">(</span><span class="n">test_case_name</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Takes test_class_map or skip_class_map and returns the list of methods for the test case or None if no methods were specified for it</span>
+
+<span class="sd">    :param test_case_name: Name of the test case to check</span>
+<span class="sd">    :param test_class_map: Dictionary mapping test names to a list of methods</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">test_class_map</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">test_case_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">test_class_map</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">test_class_map</span><span class="p">[</span><span class="n">test_case_name</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="generate_browser_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.generate_browser_test_cases">[docs]</a><span class="k">def</span> <span class="nf">generate_browser_test_cases</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
