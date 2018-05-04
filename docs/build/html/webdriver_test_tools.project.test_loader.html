@@ -94,7 +94,8 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
@@ -105,6 +106,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
@@ -184,7 +186,7 @@
 <p>Load test cases from a project</p>
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_browser_tests">
-<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_browser_tests</code><span class="sig-paren">(</span><em>generated_test_cases</em>, <em>test_methods=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_browser_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_browser_tests" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_browser_tests</code><span class="sig-paren">(</span><em>generated_test_cases</em>, <em>test_methods=None</em>, <em>skip_methods=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_browser_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_browser_tests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load tests from browser test case classes</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -193,6 +195,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>generated_test_cases</strong> – List of generated browser test case classes for a single subclass of WebDriverTestCase</li>
 <li><strong>test_methods</strong> – (Optional) List of test method names. If specified, load only these test methods from each browser test case</li>
+<li><strong>skip_methods</strong> – (Optional) List of test method names. If specified, do not load these test methods from each browser test case</li>
 </ul>
 </td>
 </tr>
@@ -205,7 +208,7 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_project_tests">
-<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_project_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_class_names=None</em>, <em>test_module_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_project_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em>, <em>test_class_names=None</em>, <em>skip_class_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of WebDriverTestCase subclasses from all submodules in a test
 project’s tests/ directory</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -214,8 +217,9 @@ project’s tests/ directory</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
-<li><strong>test_class_names</strong> – (Optional) List of test class names. Only load test cases with these names</li>
 <li><strong>test_module_names</strong> – (Optional) List of test module names. Only load test cases from a submodule of tests_module with the given names</li>
+<li><strong>test_class_names</strong> – (Optional) List of test class names. Only load test cases with these names</li>
+<li><strong>skip_class_names</strong> – (Optional) List of test class names. Skip test cases with these names</li>
 </ul>
 </td>
 </tr>
@@ -228,7 +232,7 @@ project’s tests/ directory</p>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_webdriver_test_cases">
-<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_webdriver_test_cases</code><span class="sig-paren">(</span><em>module</em>, <em>test_class_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_webdriver_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_webdriver_test_cases" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_webdriver_test_cases</code><span class="sig-paren">(</span><em>module</em>, <em>test_class_names=None</em>, <em>skip_class_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_webdriver_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_webdriver_test_cases" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of WebDriverTestCase subclasses from a module</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -237,6 +241,7 @@ project’s tests/ directory</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>module</strong> – The module to load tests from</li>
 <li><strong>test_class_names</strong> – (Optional) List of test case class names to load. Will load all if unspecified</li>
+<li><strong>test_class_names</strong> – (Optional) List of test case class names to skip. Will skip none if unspecified</li>
 </ul>
 </td>
 </tr>
