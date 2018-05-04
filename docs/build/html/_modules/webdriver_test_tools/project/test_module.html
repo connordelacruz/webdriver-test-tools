@@ -164,13 +164,13 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">test_factory</span>
 
 
-<span class="c1"># TODO: optional package_name param, takes __package__ from project __main__ and sets argparse program name accordingly</span>
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function to call in test modules if __name__ == &#39;__main__&#39; at run time</span>
 
 <span class="sd">    :param tests_module: The module object for &lt;test_project&gt;.tests</span>
 <span class="sd">    :param config_module: (Optional) The module object for &lt;test_project&gt;.config. Will</span>
 <span class="sd">        use webdriver_test_tools.config if not specified</span>
+<span class="sd">    :param package_name: (Optional) The name of the package (i.e. __package__)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Fall back on default config module if test doesn&#39;t supply one</span>
     <span class="k">if</span> <span class="n">config_module</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -179,7 +179,7 @@
     <span class="n">browser_config</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserConfig</span> <span class="k">if</span> <span class="s1">&#39;BrowserConfig&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">BrowserConfig</span>
     <span class="n">browserstack_config</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserStackConfig</span> <span class="k">if</span> <span class="s1">&#39;BrowserStackConfig&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">BrowserStackConfig</span>
     <span class="c1"># Parse arguments</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">)</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">,</span> <span class="n">package_name</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
     <span class="c1"># get --test and --module args</span>
     <span class="n">test_class_map</span> <span class="o">=</span> <span class="n">parse_test_names</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">test</span><span class="p">)</span>
@@ -211,18 +211,21 @@
               <span class="n">test_module_names</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">,</span> <span class="n">headless</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="get_parser"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.get_parser">[docs]</a><span class="k">def</span> <span class="nf">get_parser</span><span class="p">(</span><span class="n">browser_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_parser"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.get_parser">[docs]</a><span class="k">def</span> <span class="nf">get_parser</span><span class="p">(</span><span class="n">browser_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the ArgumentParser object for use with main()</span>
 
 <span class="sd">    :param browser_config: (Optional) BrowserConfig class for the project. Defaults to</span>
 <span class="sd">        webdriver_test_tools.config.BrowserConfig if unspecified</span>
 <span class="sd">    :param browserstack_config: (Optional) BrowserStackConfig class for the project.</span>
 <span class="sd">        Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified</span>
+<span class="sd">    :param package_name: (Optional) The name of the package (i.e. __package__)</span>
+
+<span class="sd">    :return: ArgumentParser for the test package</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Run the test suite.&#39;</span>
     <span class="n">epilog</span> <span class="o">=</span> <span class="s1">&#39;For more information, visit &lt;http://connordelacruz.com/webdriver-test-tools/&gt;&#39;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span> <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                     <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">epilog</span><span class="p">)</span>
+                                     <span class="n">prog</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">epilog</span><span class="p">)</span>
     <span class="c1"># Use default config if module is None or doesn&#39;t contain BrowserConfig class</span>
     <span class="k">if</span> <span class="n">browser_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">browser_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">BrowserConfig</span>

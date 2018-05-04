@@ -253,18 +253,22 @@ BrowserStack, output string will have the following format:</p>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_module.get_parser">
-<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">get_parser</code><span class="sig-paren">(</span><em>browser_config=None</em>, <em>browserstack_config=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#get_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.get_parser" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">get_parser</code><span class="sig-paren">(</span><em>browser_config=None</em>, <em>browserstack_config=None</em>, <em>package_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#get_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.get_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the ArgumentParser object for use with main()</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>browser_config</strong> – (Optional) BrowserConfig class for the project. Defaults to
 webdriver_test_tools.config.BrowserConfig if unspecified</li>
 <li><strong>browserstack_config</strong> – (Optional) BrowserStackConfig class for the project.
 Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified</li>
+<li><strong>package_name</strong> – (Optional) The name of the package (i.e. __package__)</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">ArgumentParser for the test package</p>
 </td>
 </tr>
 </tbody>
@@ -295,7 +299,7 @@ line argument to parse_test_names()</li>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_module.main">
-<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">main</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.main" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">main</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module=None</em>, <em>package_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to call in test modules if __name__ == ‘__main__’ at run time</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -305,6 +309,7 @@ line argument to parse_test_names()</li>
 <li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
 <li><strong>config_module</strong> – (Optional) The module object for &lt;test_project&gt;.config. Will
 use webdriver_test_tools.config if not specified</li>
+<li><strong>package_name</strong> – (Optional) The name of the package (i.e. __package__)</li>
 </ul>
 </td>
 </tr>
