@@ -1,9 +1,10 @@
 """Functions for generating test cases"""
 
 import unittest
+
 from webdriver_test_tools.config import BrowserConfig
 from webdriver_test_tools.project import test_loader
-from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase, Browsers
+from webdriver_test_tools.testcase import *
 
 
 def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None,

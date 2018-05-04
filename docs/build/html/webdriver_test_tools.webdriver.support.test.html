@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>webdriver_test_tools.webdriver.support.test module &mdash; WebDriver Test Tools 0.27.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.27
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.webdriver.support.test module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/webdriver_test_tools.webdriver.support.test.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-webdriver_test_tools.webdriver.support.test">
+<span id="webdriver-test-tools-webdriver-support-test-module"></span><h1>webdriver_test_tools.webdriver.support.test module<a class="headerlink" href="#module-webdriver_test_tools.webdriver.support.test" title="Permalink to this headline">¶</a></h1>
+<p>Functions for commonly repeated test procedures</p>
+<dl class="function">
+<dt id="webdriver_test_tools.webdriver.support.test.base_url_change_test">
+<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">base_url_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>expected_url</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#base_url_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.base_url_change_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expected condition test for URL change. Ignores query strings in current url</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
+<li><strong>expected_url</strong> – The expected base URL</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the current URL (ignoring query strings) matches the expected URL
+before timeout, False otherwise</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.webdriver.support.test.element_exists">
+<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">element_exists</code><span class="sig-paren">(</span><em>driver</em>, <em>element_locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#element_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.element_exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the element exists, False if not</p>
+<p>This function is just a wrapper that catches the NoSuchElementException thrown by
+driver.find_element() and returns a boolean based on whether the exception occurred.
+Used for test assertions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
+<li><strong>element_locator</strong> – Tuple in the format (by,selector) used to locate target</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the element exists, False if not</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.webdriver.support.test.expected_condition_test">
+<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">expected_condition_test</code><span class="sig-paren">(</span><em>driver</em>, <em>ec_object</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#expected_condition_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.expected_condition_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for an expected condition until wait timeout is reached</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
+<li><strong>ec_object</strong> – Expected condition object</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if expected condition occurred, otherwise False</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.webdriver.support.test.in_view_change_test">
+<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">in_view_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>target_locator</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#in_view_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.in_view_change_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expected condition test for an element to scroll into view (e.g. same-page link with scroll animation)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
+<li><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate target</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if target is scrolled into view before timeout, False otherwise</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.webdriver.support.test.is_scrolled_into_view">
+<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">is_scrolled_into_view</code><span class="sig-paren">(</span><em>driver</em>, <em>element</em>, <em>fully_in_view=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#is_scrolled_into_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.is_scrolled_into_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the element is scrolled into view, False otherwise</p>
+<p>Currently, Selenium doesn’t offer a means of getting an element’s location relative
+to the viewport, so using JavaScript to determine whether the element is visible
+within the viewport.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
+<li><strong>element</strong> – WebElement for the element to check</li>
+<li><strong>fully_in_view</strong> – (Default = True) If True, check that the element is fully in
+view and not cut off. If False, check that it’s at least partially in view</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the element is scrolled into view, False otherwise</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.webdriver.support.test.url_change_test">
+<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">url_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>expected_url</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#url_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.url_change_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expected condition test for URL change</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
+<li><strong>expected_url</strong> – The expected URL</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the current URL matches the expected URL before timeout, False
+otherwise</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.webdriver.support.test.visibility_change_test">
+<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">visibility_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>target_locator</em>, <em>test_visible=True</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#visibility_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.visibility_change_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expected condition test for visibility changes (e.g. modals)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
+<li><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate target</li>
+<li><strong>test_visible</strong> – (Default=True) An optional variable describing what the
+visibility change is supposed to be. If True, test if the target becomes
+visible. If False, test if the target becomes invisible</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the target’s visibily changes as expected, False otherwise</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.27.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

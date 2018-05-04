@@ -154,11 +154,11 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.project.test_loader</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Load test cases from a project</span>
+<span></span><span class="sd">&quot;&quot;&quot;Load test cases from a project&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">types</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.webdriver_test_case</span> <span class="k">import</span> <span class="n">WebDriverTestCase</span><span class="p">,</span> <span class="n">WebDriverMobileTestCase</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase</span> <span class="k">import</span> <span class="o">*</span>
 
 
 <div class="viewcode-block" id="load_project_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_project_tests">[docs]</a><span class="k">def</span> <span class="nf">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>

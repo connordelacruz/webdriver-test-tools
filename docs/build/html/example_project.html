@@ -219,36 +219,40 @@
 <div class="section" id="initialize-the-project">
 <h2><a class="toc-backref" href="#id9">Initialize the project</a><a class="headerlink" href="#initialize-the-project" title="Permalink to this headline">¶</a></h2>
 <p>First, create a directory for the test project:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">example</span><span class="o">-</span><span class="n">project</span>
-<span class="n">cd</span> <span class="n">example</span><span class="o">-</span><span class="n">project</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>mkdir example-project
+cd example-project
 </pre></div>
 </div>
 <p>Once in the project directory, run the following command to initialize the project:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">webdriver_test_tools</span> <span class="o">--</span><span class="n">init</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>webdriver_test_tools --init
 </pre></div>
 </div>
 <p>You will be prompted to enter a name for the test project python package. To be a valid package name, it needs to only use alphanumeric characters and underscores and it cannot start with a number. For this example, we’ll call it <code class="docutils literal notranslate"><span class="pre">example_package</span></code>. Initializing the project should create the following files and directories:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>example-project/
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>example-project/
+├── README.rst
 ├── example_package/
+│   ├── __init__.py
+│   ├── __main__.py
 │   ├── config/
 │   │   ├── __init__.py
 │   │   ├── browser.py
+│   │   ├── browserstack.py
 │   │   ├── site.py
-│   │   └── test.py
+│   │   ├── test.py
+│   │   └── webdriver.py
 │   ├── data/
+│   ├── log/
 │   ├── pages/
 │   ├── templates/
 │   │   ├── page_object.py
 │   │   └── test_case.py
-│   ├── tests/
-│   │   └── __init__.py
-│   └── __main__.py
-├── README.md
+│   └── tests/
+│       └── __init__.py
 └── setup.py
 </pre></div>
 </div>
 <p>After initializing the test project, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install -e .
 </pre></div>
 </div>
 <p>Installing with the <code class="docutils literal notranslate"><span class="pre">-e</span></code> flag will update the package automatically when changes are made to the source code.</p>
@@ -303,7 +307,7 @@
 <p>After configuring URLs, we’ll want to add a page object for the home
 page of example.com. Copy the template file <code class="docutils literal notranslate"><span class="pre">templates/page_object.py</span></code>
 to the <code class="docutils literal notranslate"><span class="pre">pages/</span></code> directory and name the copied file <code class="docutils literal notranslate"><span class="pre">home.py</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">example_package</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">page_object</span><span class="o">.</span><span class="n">py</span> <span class="n">example_package</span><span class="o">/</span><span class="n">pages</span><span class="o">/</span><span class="n">home</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cp example_package/templates/page_object.py example_package/pages/home.py
 </pre></div>
 </div>
 <p>In <code class="docutils literal notranslate"><span class="pre">pages/home.py</span></code>, rename the <code class="docutils literal notranslate"><span class="pre">TemplatePage</span></code> class to <code class="docutils literal notranslate"><span class="pre">HomePage</span></code>.</p>
@@ -362,7 +366,7 @@ to the <code class="docutils literal notranslate"><span class="pre">pages/</span
 <div class="section" id="creating-a-new-test-module">
 <h3><a class="toc-backref" href="#id16">Creating a new test module</a><a class="headerlink" href="#creating-a-new-test-module" title="Permalink to this headline">¶</a></h3>
 <p>Now that we have a page object for interacting with example.com, we can write a test case. Copy the file <code class="docutils literal notranslate"><span class="pre">templates/test_case.py</span></code> to the <code class="docutils literal notranslate"><span class="pre">tests/</span></code> directory and name the copied file <code class="docutils literal notranslate"><span class="pre">homepage.py</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">example_package</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">test_case</span><span class="o">.</span><span class="n">py</span> <span class="n">example_package</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">homepage</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cp example_package/templates/test_case.py example_package/tests/homepage.py
 </pre></div>
 </div>
 <p>Whenever a new test module is created, it needs to be imported in <code class="docutils literal notranslate"><span class="pre">tests/__init__.py</span></code> so the framework can detect it when loading tests.</p>
@@ -379,7 +383,7 @@ to the <code class="docutils literal notranslate"><span class="pre">pages/</span
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">from</span> <span class="nn">example_package.pages.home</span> <span class="k">import</span> <span class="n">HomePage</span>
 </span>
 <span class="kn">import</span> <span class="nn">webdriver_test_tools</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.webdriver_test_case</span> <span class="k">import</span> <span class="n">WebDriverTestCase</span><span class="p">,</span> <span class="n">WebDriverMobileTestCase</span><span class="p">,</span> <span class="n">Browsers</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">example_package</span> <span class="k">import</span> <span class="n">config</span>
 <span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
 
@@ -420,20 +424,20 @@ to the <code class="docutils literal notranslate"><span class="pre">pages/</span
 </span><span class="hll">        <span class="n">page_object</span> <span class="o">=</span> <span class="n">HomePage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
 </span><span class="hll">        <span class="n">expected_url</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">SiteConfig</span><span class="o">.</span><span class="n">INFO_URL</span>
 </span><span class="hll">        <span class="n">page_object</span><span class="o">.</span><span class="n">click_more_information_link</span><span class="p">()</span>
-</span><span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">url_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">))</span>
+</span><span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">assertUrlChange</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span>
 </span>
 </pre></div>
 </div>
 </div>
 <p><strong>Note:</strong> Test functions need to begin with the prefix <code class="docutils literal notranslate"><span class="pre">test_</span></code> in order for the python <code class="docutils literal notranslate"><span class="pre">unittest</span></code> library to recognize them as tests.</p>
 <p>We should now have everything we need to run our test suite. To verify that the framework is able to detect the tests, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">example_package</span> <span class="o">--</span><span class="nb">list</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --list
 </pre></div>
 </div>
 <p>This prints a list of test cases and their test methods in the package. The output should look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HomePageTestCase</span><span class="p">:</span>
-   <span class="n">test_more_information_link</span>
-   <span class="n">test_page_heading</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>HomePageTestCase:
+   test_more_information_link
+   test_page_heading
 </pre></div>
 </div>
 </div>
@@ -444,41 +448,41 @@ to the <code class="docutils literal notranslate"><span class="pre">pages/</span
 <div class="section" id="running-the-test-suite">
 <h3><a class="toc-backref" href="#id19">Running the test suite</a><a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">¶</a></h3>
 <p>To run our test suite:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">example_package</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package
 </pre></div>
 </div>
 <p>This will generate new test case classes for Chrome and Firefox based on the test case classes we wrote and run them. If all tests pass, the output should look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Firefox</span><span class="p">)</span> <span class="n">Really</span> <span class="n">contrived</span> <span class="n">example</span> <span class="n">test</span> <span class="n">case</span>
-    <span class="n">Test</span> <span class="n">that</span> <span class="n">the</span> <span class="s1">&#39;More information...&#39;</span> <span class="n">link</span> <span class="n">goes</span> <span class="n">to</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">URL</span> <span class="o">...</span> <span class="n">ok</span>
-    <span class="n">Ensure</span> <span class="n">that</span> <span class="n">the</span> <span class="n">page</span> <span class="n">heading</span> <span class="n">text</span> <span class="ow">is</span> <span class="n">correct</span> <span class="o">...</span> <span class="n">ok</span>
-<span class="p">(</span><span class="n">Chrome</span><span class="p">)</span> <span class="n">Really</span> <span class="n">contrived</span> <span class="n">example</span> <span class="n">test</span> <span class="n">case</span>
-    <span class="n">Test</span> <span class="n">that</span> <span class="n">the</span> <span class="s1">&#39;More information...&#39;</span> <span class="n">link</span> <span class="n">goes</span> <span class="n">to</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">URL</span> <span class="o">...</span> <span class="n">ok</span>
-    <span class="n">Ensure</span> <span class="n">that</span> <span class="n">the</span> <span class="n">page</span> <span class="n">heading</span> <span class="n">text</span> <span class="ow">is</span> <span class="n">correct</span> <span class="o">...</span> <span class="n">ok</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(Firefox) Really contrived example test case
+    Test that the &#39;More information...&#39; link goes to the correct URL ... ok
+    Ensure that the page heading text is correct ... ok
+(Chrome) Really contrived example test case
+    Test that the &#39;More information...&#39; link goes to the correct URL ... ok
+    Ensure that the page heading text is correct ... ok
 
-<span class="o">----------------------------------------------------------------------</span>
-<span class="n">Ran</span> <span class="mi">4</span> <span class="n">tests</span> <span class="ow">in</span> <span class="mf">15.436</span><span class="n">s</span>
+----------------------------------------------------------------------
+Ran 4 tests in 15.436s
 
-<span class="n">OK</span>
+OK
 </pre></div>
 </div>
 </div>
 <div class="section" id="optional-command-line-arguments">
 <h3><a class="toc-backref" href="#id20">Optional command line arguments</a><a class="headerlink" href="#optional-command-line-arguments" title="Permalink to this headline">¶</a></h3>
 <p>Test packages can be run with various optional arguments to run a limited set of test cases instead of running the entire suite. To see a list of command line arguments, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">example_package</span> <span class="o">--</span><span class="n">help</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --help
 </pre></div>
 </div>
 <div class="section" id="running-in-a-specific-browser">
 <h4><a class="toc-backref" href="#id21">Running in a specific browser</a><a class="headerlink" href="#running-in-a-specific-browser" title="Permalink to this headline">¶</a></h4>
 <p>If we just wanted to run the tests in a specific browser, we can use the <code class="docutils literal notranslate"><span class="pre">--browser</span></code> command line argument. For example, if we only wanted to run Firefox test cases:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">example_package</span> <span class="o">--</span><span class="n">browser</span> <span class="n">firefox</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --browser firefox
 </pre></div>
 </div>
 </div>
 <div class="section" id="running-specific-test-modules">
 <h4><a class="toc-backref" href="#id22">Running specific test modules</a><a class="headerlink" href="#running-specific-test-modules" title="Permalink to this headline">¶</a></h4>
 <p>If we only want to run a specific test module, we can use the <code class="docutils literal notranslate"><span class="pre">--module</span></code> command line argument. For example, if we just wanted to run <code class="docutils literal notranslate"><span class="pre">tests/homepage.py</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">example_package</span> <span class="o">--</span><span class="n">module</span> <span class="n">homepage</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --module homepage
 </pre></div>
 </div>
 <p>Since we only have one test module in this example, this doesn’t do anything different than normal, but this can be useful in test projects with multiple test modules.</p>
@@ -486,12 +490,12 @@ to the <code class="docutils literal notranslate"><span class="pre">pages/</span
 <div class="section" id="running-specific-test-cases-or-functions">
 <h4><a class="toc-backref" href="#id23">Running specific test cases or functions</a><a class="headerlink" href="#running-specific-test-cases-or-functions" title="Permalink to this headline">¶</a></h4>
 <p>If we only want to run a specific test case or function within a test case, we can use the <code class="docutils literal notranslate"><span class="pre">--test</span></code> command line argument. For example, if we just wanted to run HomePageTestCase:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">example_package</span> <span class="o">--</span><span class="n">test</span> <span class="n">HomePageTestCase</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --test HomePageTestCase
 </pre></div>
 </div>
 <p>Since we only have one test case class in this example, this doesn’t do anything different than normal, but this can be useful in test projects with multiple cases.</p>
 <p>If we just wanted to run the <code class="docutils literal notranslate"><span class="pre">test_more_information_link</span></code> function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">example_package</span> <span class="o">--</span><span class="n">test</span> <span class="n">HomePageTestCase</span><span class="o">.</span><span class="n">test_more_information_link</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --test HomePageTestCase.test_more_information_link
 </pre></div>
 </div>
 </div>

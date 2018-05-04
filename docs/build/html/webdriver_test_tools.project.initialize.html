@@ -408,7 +408,7 @@ contained</li>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.generate_context">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">generate_context</code><span class="sig-paren">(</span><em>test_package</em>, <em>project_title=None</em>, <em>test_tools_version='0.27.0'</em>, <em>selenium_version='3.11.0'</em>, <em>version_badge=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#generate_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.generate_context" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">generate_context</code><span class="sig-paren">(</span><em>test_package</em>, <em>project_title=None</em>, <em>version_badge=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#generate_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.generate_context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a jinja context to use for rendering templates</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -418,11 +418,6 @@ contained</li>
 <li><strong>test_package</strong> – Name of the python test package</li>
 <li><strong>project_title</strong> – (Default = test_package) Human-readable title for the test
 project. Defaults to the value of test_package if not provided</li>
-<li><strong>test_tools_version</strong> – (Optional) Version of webdriver_test_tools to use as
-install dependency. Defaults to <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools.version.__version__</span></code></li>
-<li><strong>selenium_version</strong> – (Optional) Version of selenium package used when
-developing/testing the current version of webdriver_test_tools. Defaults to
-<code class="docutils literal notranslate"><span class="pre">webdriver_test_tools.version.__selenium__</span></code></li>
 <li><strong>version_badge</strong> – (Default = True) Include “generated using
 webdriver_test_tools &lt;version&gt;” badge on README if True</li>
 </ul>

@@ -8,6 +8,7 @@ from webdriver_test_tools import config
 from webdriver_test_tools.project import test_loader, test_factory
 
 
+# TODO: optional package_name param, takes __package__ from project __main__ and sets argparse program name accordingly
 def main(tests_module, config_module=None):
     """Function to call in test modules if __name__ == '__main__' at run time
 

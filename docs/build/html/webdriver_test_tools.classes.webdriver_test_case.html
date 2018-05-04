@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.cmd package" href="webdriver_test_tools.cmd.html" />
+    <link rel="next" title="webdriver_test_tools.version module" href="webdriver_test_tools.version.html" />
     <link rel="prev" title="webdriver_test_tools.classes.page_object_prototypes module" href="webdriver_test_tools.classes.page_object_prototypes.html" /> 
 
   
@@ -94,17 +94,19 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.classes.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.classes.html#module-webdriver_test_tools.classes">Module contents</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.classes.html#module-webdriver_test_tools.classes">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
@@ -181,9 +183,11 @@
             
   <div class="section" id="module-webdriver_test_tools.classes.webdriver_test_case">
 <span id="webdriver-test-tools-classes-webdriver-test-case-module"></span><h1>webdriver_test_tools.classes.webdriver_test_case module<a class="headerlink" href="#module-webdriver_test_tools.classes.webdriver_test_case" title="Permalink to this headline">¶</a></h1>
+<p>The classes from this module have been moved to the <a class="reference internal" href="webdriver_test_tools.testcase.html"><span class="doc">webdriver_test_tools.testcase package</span></a>
+subpackage. This module imports * from webdriver_test_tools.testcase for legacy purposes</p>
 <dl class="class">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">WebDriverTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">WebDriverTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for web driver test cases</p>
 <p>This defines the common setUp() and tearDown() tasks. It does not initialize
 self.driver so will not work on its own. Tests should be written with this as their
@@ -276,7 +280,7 @@ run tests in a headless browser</td>
 </table>
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertBaseUrlChange">
-<code class="descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if the URL (ignoring query strings) doesn’t match the expected URL.</p>
 <p>Assertion uses webdriver_test_tools.test.url_change_test() using the default 10
 second wait timeout before determining that expected_url does not match the
@@ -292,8 +296,36 @@ current URL.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertDisabled">
+<code class="descname">assertDisabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertDisabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertDisabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if element is enabled</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertEnabled">
+<code class="descname">assertEnabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertEnabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertEnabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if element is disabled</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertExists">
-<code class="descname">assertExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertExists" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertExists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element doesn’t exist</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -307,7 +339,7 @@ current URL.</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertInView">
-<code class="descname">assertInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertInView" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertInView" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element isn’t scrolled into view</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -321,7 +353,7 @@ current URL.</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertInvisible">
-<code class="descname">assertInvisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertInvisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertInvisible" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertInvisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInvisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertInvisible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is visible</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -335,7 +367,7 @@ current URL.</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertNotExists">
-<code class="descname">assertNotExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertNotExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertNotExists" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertNotExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertNotExists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element exists</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -349,7 +381,7 @@ current URL.</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertNotInView">
-<code class="descname">assertNotInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertNotInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertNotInView" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertNotInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertNotInView" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is scrolled into view</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -363,7 +395,7 @@ current URL.</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertUrlChange">
-<code class="descname">assertUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertUrlChange" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertUrlChange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if the URL doesn’t match the expected URL.</p>
 <p>Assertion uses webdriver_test_tools.test.url_change_test() using the default 10
 second wait timeout before determining that expected_url does not match the
@@ -380,7 +412,7 @@ current URL.</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertVisible">
-<code class="descname">assertVisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.assertVisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertVisible" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertVisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertVisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.assertVisible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element isn’t visible</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -394,7 +426,7 @@ current URL.</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.bs_driver_init">
-<code class="descname">bs_driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.bs_driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.bs_driver_init" title="Permalink to this definition">¶</a></dt>
+<code class="descname">bs_driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.bs_driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.bs_driver_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize driver for BrowserStack</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -410,14 +442,14 @@ self.CAPABILITIES respectively.</td>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.driver_init">
-<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
+<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an initialized WebDriver object. Browser test case classes must
 implement this</p>
 </dd></dl>
 
 <dl class="staticmethod">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.mobileOnly">
-<em class="property">static </em><code class="descname">mobileOnly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.mobileOnly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.mobileOnly" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">mobileOnly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.mobileOnly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.mobileOnly" title="Permalink to this definition">¶</a></dt>
 <dd><p>Conditionally skip a test method for non-mobile browsers</p>
 <p>Usage Example:</p>
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase</span><span class="o">.</span><span class="n">mobileOnly</span><span class="p">()</span>
@@ -429,7 +461,7 @@ implement this</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.setUp">
-<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.setUp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize driver and call <code class="docutils literal notranslate"><span class="pre">self.driver.get(self.SITE_URL)</span></code></p>
 <p>If self.ENABLE_BS is False, self.driver gets the returned results of
 self.DRIVER_INIT(). If self.ENABLE_BS is True, self.driver gets the returned
@@ -438,7 +470,7 @@ results of self._bs_driver_init()</p>
 
 <dl class="staticmethod">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.skipBrowsers">
-<em class="property">static </em><code class="descname">skipBrowsers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.skipBrowsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.skipBrowsers" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">skipBrowsers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.skipBrowsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.skipBrowsers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Conditionally skip a test method for certain browsers</p>
 <p>Usage Example:</p>
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase</span><span class="o">.</span><span class="n">skipBrowsers</span><span class="p">(</span><span class="n">Browsers</span><span class="o">.</span><span class="n">SAFARI</span><span class="p">,</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">IE</span><span class="p">)</span>
@@ -450,7 +482,7 @@ results of self._bs_driver_init()</p>
 
 <dl class="staticmethod">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.skipMobile">
-<em class="property">static </em><code class="descname">skipMobile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.skipMobile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.skipMobile" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">skipMobile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.skipMobile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.skipMobile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Conditionally skip a test method for mobile browsers</p>
 <p>Usage Example:</p>
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase</span><span class="o">.</span><span class="n">skipMobile</span><span class="p">()</span>
@@ -462,292 +494,9 @@ results of self._bs_driver_init()</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown">
-<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverTestCase.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <code class="docutils literal notranslate"><span class="pre">self.driver.quit()</span></code></p>
 </dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">Browsers</code><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#Browsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Constants for browser short names</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.HEADLESS_COMPATIBLE" title="webdriver_test_tools.classes.webdriver_test_case.Browsers.HEADLESS_COMPATIBLE"><strong>Browsers.HEADLESS_COMPATIBLE</strong></a> – List of WebDriverTestCase subclasses that
-support test execution in a headless browser</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.CHROME">
-<code class="descname">CHROME</code><em class="property"> = 'chrome'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.CHROME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.CHROME_MOBILE">
-<code class="descname">CHROME_MOBILE</code><em class="property"> = 'chrome-mobile'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.CHROME_MOBILE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.EDGE">
-<code class="descname">EDGE</code><em class="property"> = 'edge'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.EDGE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.FIREFOX">
-<code class="descname">FIREFOX</code><em class="property"> = 'firefox'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.FIREFOX" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.HEADLESS_COMPATIBLE">
-<code class="descname">HEADLESS_COMPATIBLE</code><em class="property"> = [&lt;class 'webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase'&gt;, &lt;class 'webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase'&gt;, &lt;class 'webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase'&gt;]</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.HEADLESS_COMPATIBLE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.IE">
-<code class="descname">IE</code><em class="property"> = 'ie'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.IE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.Browsers.SAFARI">
-<code class="descname">SAFARI</code><em class="property"> = 'safari'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.Browsers.SAFARI" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">ChromeMobileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#ChromeMobileTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverMobileTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverMobileTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverMobileTestCase</span></code></a></p>
-<p>Implementation of WebDriverTestCase using Chrome webdriver. Emulates mobile
-device layout.</p>
-<p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Driver download</a></p>
-<p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/mobile-emulation">Mobile emulation info</a></p>
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'chrome', 'chromeOptions': {'mobileEmulation': {'deviceName': 'Pixel 2'}}, 'platform': 'ANY', 'version': ''}</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase.DRIVER_NAME">
-<code class="descname">DRIVER_NAME</code><em class="property"> = 'Chrome Mobile [Emulated]'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase.SHORT_NAME">
-<code class="descname">SHORT_NAME</code><em class="property"> = 'chrome-mobile'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase.driver_init">
-<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#ChromeMobileTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeMobileTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an initialized WebDriver object. Browser test case classes must
-implement this</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">ChromeTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#ChromeTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
-<p>Implementation of WebDriverTestCase using Chrome webdriver</p>
-<p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Driver download</a></p>
-<p>This driver supports headless browsing:</p>
-<blockquote>
-<div><a class="reference external" href="https://developers.google.com/web/updates/2017/04/headless-chrome">Headless browser info</a></div></blockquote>
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'chrome', 'platform': 'ANY', 'version': ''}</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.DRIVER_NAME">
-<code class="descname">DRIVER_NAME</code><em class="property"> = 'Chrome'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.SHORT_NAME">
-<code class="descname">SHORT_NAME</code><em class="property"> = 'chrome'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.driver_init">
-<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#ChromeTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.ChromeTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an initialized WebDriver object. Browser test case classes must
-implement this</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">EdgeTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#EdgeTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
-<p>Implementation of WebDriverTestCase using Edge webdriver</p>
-<p><a class="reference external" href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/">Driver download</a></p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">This class is experimental and has not been fully tested. It is disabled by
-default but can be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by
-uncommenting the corresponding line in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.BROWSER_TEST_CLASSES</span></code>.</p>
-</div>
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'MicrosoftEdge', 'platform': 'WINDOWS', 'version': '16'}</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.DRIVER_NAME">
-<code class="descname">DRIVER_NAME</code><em class="property"> = 'Edge'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.SHORT_NAME">
-<code class="descname">SHORT_NAME</code><em class="property"> = 'edge'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.driver_init">
-<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#EdgeTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.EdgeTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an initialized WebDriver object. Browser test case classes must
-implement this</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">FirefoxTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#FirefoxTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
-<p>Implementation of WebDriverTestCase using Firefox webdriver</p>
-<p><a class="reference external" href="https://github.com/mozilla/geckodriver/releases">Driver download</a></p>
-<p>This driver supports headless browsing:</p>
-<blockquote>
-<div><a class="reference external" href="https://developer.mozilla.org/en-US/Firefox/Headless_mode">Headless browser info</a></div></blockquote>
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = {'acceptInsecureCerts': True, 'browserName': 'firefox', 'marionette': True}</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.DRIVER_NAME">
-<code class="descname">DRIVER_NAME</code><em class="property"> = 'Firefox'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.SHORT_NAME">
-<code class="descname">SHORT_NAME</code><em class="property"> = 'firefox'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.driver_init">
-<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#FirefoxTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.FirefoxTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an initialized WebDriver object. Browser test case classes must
-implement this</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">IETestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#IETestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
-<p>Implementation of WebDriverTestCase using Internet Explorer webdriver</p>
-<p><a class="reference external" href="https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver">Driver info</a></p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">This class is experimental and has not been fully tested. It is disabled by
-default but can be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by
-uncommenting the corresponding line in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.BROWSER_TEST_CLASSES</span></code>.</p>
-</div>
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'internet explorer', 'platform': 'WINDOWS', 'version': '11'}</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase.DRIVER_NAME">
-<code class="descname">DRIVER_NAME</code><em class="property"> = 'Internet Explorer'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase.SHORT_NAME">
-<code class="descname">SHORT_NAME</code><em class="property"> = 'ie'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.IETestCase.driver_init">
-<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#IETestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.IETestCase.driver_init" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an initialized WebDriver object. Browser test case classes must
-implement this</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">SafariTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#SafariTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
-<p>Implementation of WebDriverTestCase using Safari webdriver</p>
-<p><a class="reference external" href="https://webkit.org/blog/6900/webdriver-support-in-safari-10/">Driver info</a></p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">This class is experimental and has not been fully tested. It is disabled by
-default but can be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by
-uncommenting the corresponding line in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.BROWSER_TEST_CLASSES</span></code>.</p>
-</div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p>Safari’s webdriver is missing certain features of the webdriver API, which can
-cause test failures. As of Safari 11.0.3, issues with the following modules
-have been encountered during testing:</p>
-<blockquote class="last">
-<div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">selenium.webdriver.common.action_chains</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">selenium.webdriver.support.select</span></code></li>
-</ul>
-</div></blockquote>
-</div>
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'safari', 'platform': 'MAC', 'version': ''}</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.DRIVER_NAME">
-<code class="descname">DRIVER_NAME</code><em class="property"> = 'Safari'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.SHORT_NAME">
-<code class="descname">SHORT_NAME</code><em class="property"> = 'safari'</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.driver_init">
-<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#SafariTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.SafariTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an initialized WebDriver object. Browser test case classes must
-implement this</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverMobileTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.classes.webdriver_test_case.</code><code class="descname">WebDriverMobileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/classes/webdriver_test_case.html#WebDriverMobileTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverMobileTestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase" title="webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.classes.webdriver_test_case.WebDriverTestCase</span></code></a></p>
-<p>Base class for mobile web driver test cases</p>
-<p>If a test subclasses WebDriverMobileTestCase instead of WebDriverTestCase, tests
-will only be generated for mobile browsers</p>
-<dl class="attribute">
-<dt id="webdriver_test_tools.classes.webdriver_test_case.WebDriverMobileTestCase.SKIP_MOBILE">
-<code class="descname">SKIP_MOBILE</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.classes.webdriver_test_case.WebDriverMobileTestCase.SKIP_MOBILE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -761,7 +510,7 @@ will only be generated for mobile browsers</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.cmd.html" class="btn btn-neutral float-right" title="webdriver_test_tools.cmd package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.version.html" class="btn btn-neutral float-right" title="webdriver_test_tools.version module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="webdriver_test_tools.classes.page_object_prototypes.html" class="btn btn-neutral" title="webdriver_test_tools.classes.page_object_prototypes module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

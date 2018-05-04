@@ -1,10 +1,10 @@
 import webdriver_test_tools
-from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase, Browsers
+from webdriver_test_tools.testcase import *
 from framework_tests import config
 from selenium import webdriver
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-# Import actions subpackage
 from webdriver_test_tools.webdriver import actions
 
 
@@ -110,6 +110,4 @@ class FormActionsTestCase(WebDriverTestCase):
         for name, val in input_map.items():
             with self.subTest('Compare input values', input_name=name, expected_value=val):
                 self.assertEqual(val, retrieved_values[name])
-
-
 

@@ -5,6 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
+# TODO: consistent naming conventions
+
 
 # Element Tests
 
@@ -60,6 +62,7 @@ def is_scrolled_into_view(driver, element, fully_in_view=True):
 
 
 # Expected Condition Tests
+# TODO: extract these to another module?
 
 def expected_condition_test(driver, ec_object, wait_timeout=10):
     """Test for an expected condition until wait timeout is reached
