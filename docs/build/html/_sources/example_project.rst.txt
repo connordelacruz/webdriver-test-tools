@@ -264,3 +264,21 @@ If we just wanted to run the ``test_more_information_link`` function:
 .. code-block:: none
 
     python -m example_package --test HomePageTestCase.test_more_information_link
+
+Skipping test cases or functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If we wanted to skip a test case or function within a test case, we can use the
+``--skip`` command line argument, which uses the same syntax as ``--test``. For 
+example, if we wanted to run all tests except for the 
+``test_more_information_link`` function:
+
+.. code-block:: none
+
+    python -m example_package --skip HomePageTestCase.test_more_information_link
+
+Again, this isn't particularly interesting since we only have 2 test functions,
+but can be useful in larger test projects.
+
+
+

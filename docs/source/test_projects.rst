@@ -56,19 +56,25 @@ To run all test cases in one or more modules:
 
     python -m <test_package> --module <test_module> [<test_module> ...]
 
-To run specific TestCase classes:
+To run specific test case classes or methods:
 
 ::
 
     python -m <test_package> --test <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
 
-The ``--test`` argument will run all tests in a class if no method is specified
-for it.
+To skip certain test cases or methods:
 
-**Note:** If the ``--module`` and ``--test`` arguments are used together, only
-the specified modules will be searched when looking for the specified test
-classes. If any of the test classes do not exist in any of the specified
-modules, they will be ignored.
+::
+
+    python -m <test_package> --skip <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
+
+
+These arguments can be used together. When combined, they are processed in the
+following order:
+
+1. ``--module`` reduces the set of tests to those in the specified modules
+2. ``--test`` reduces the set of tests to the specified classes and methods
+3. ``--skip`` removes the specified classes and methods from the set of tests
 
 
 Using Specific Browsers

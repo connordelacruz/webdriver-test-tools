@@ -1,5 +1,6 @@
 # Used to create a new test package
 
+import sys
 import os
 import shutil
 import re
@@ -335,30 +336,38 @@ def main(package_name=None, project_title=None):
         project title will be skipped and function will continue using this as the
         project title
     """
-    # TODO: catch KeyboardInterrupt
-    print(cmd.COLORS['title']('webdriver_test_tools project initialization') + '\n')
-    # Prompt for input if no package name is passed as a parameter
-    print('Enter a name for the test package')
-    print('(use only alphanumeric characters and underscores. Cannot start with a number)')
-    validated_package_name = cmd.prompt('Package name', validate=validate_package_name)
-    # Prompt for optional project title, default to validated_package_name
-    print('(Optional) Enter a human-readable name for the test project')
-    print('(can use alphanumeric characters, spaces, hyphens, and underscores)')
-    validated_project_title = cmd.prompt('Project title', default=validated_package_name,
-                                         validate=validate_project_title)
-    # Ask if gitignore files should be generated
-    print('Create .gitignore files for project root and log directory?')
-    print('(Ignores python cache files, package install files, local driver logs, etc)')
-    gitignore_files = cmd.prompt('Create .gitignore files (y/n)', default='y', validate=cmd.validate_yn)
-    # Ask if README should be generated
-    print('Generate README file?')
-    print('(README contains information on command line usage and directory structure)')
-    readme_file = cmd.prompt('Create README file (y/n)', default='y', validate=cmd.validate_yn)
-    # Create project package
-    print('Creating test project...')
-    initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files, readme_file)
-    print(cmd.COLORS['success']('Project initialized.') + '\n')
-    print(cmd.COLORS['emphasize']('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
+    initialize_start = False
+    try:
+        print(cmd.COLORS['title']('webdriver_test_tools project initialization') + '\n')
+        # Prompt for input if no package name is passed as a parameter
+        print('Enter a name for the test package')
+        print('(use only alphanumeric characters and underscores. Cannot start with a number)')
+        validated_package_name = cmd.prompt('Package name', validate=validate_package_name)
+        # Prompt for optional project title, default to validated_package_name
+        print('(Optional) Enter a human-readable name for the test project')
+        print('(can use alphanumeric characters, spaces, hyphens, and underscores)')
+        validated_project_title = cmd.prompt('Project title', default=validated_package_name,
+                                             validate=validate_project_title)
+        # Ask if gitignore files should be generated
+        print('Create .gitignore files for project root and log directory?')
+        print('(Ignores python cache files, package install files, local driver logs, etc)')
+        gitignore_files = cmd.prompt('Create .gitignore files (y/n)', default='y', validate=cmd.validate_yn)
+        # Ask if README should be generated
+        print('Generate README file?')
+        print('(README contains information on command line usage and directory structure)')
+        readme_file = cmd.prompt('Create README file (y/n)', default='y', validate=cmd.validate_yn)
+        # Create project package
+        print('Creating test project...')
+        initialize_start = True
+        initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files, readme_file)
+        print(cmd.COLORS['success']('Project initialized.') + '\n')
+        print(cmd.COLORS['emphasize']('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
+    except KeyboardInterrupt:
+        print('')
+        if initialize_start:
+            msg = 'Initialization was cancelled mid-operation.'
+            print(cmd.COLORS['warning'](msg))
+        sys.exit()
 
 
 if __name__ == '__main__':
