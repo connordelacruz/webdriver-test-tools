@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.cmd package" href="webdriver_test_tools.cmd.html" />
+    <link rel="next" title="webdriver_test_tools.version module" href="webdriver_test_tools.version.html" />
     <link rel="prev" title="webdriver_test_tools.classes.page_object_prototypes module" href="webdriver_test_tools.classes.page_object_prototypes.html" /> 
 
   
@@ -94,17 +94,19 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.classes.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.classes.html#module-webdriver_test_tools.classes">Module contents</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.classes.html#module-webdriver_test_tools.classes">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
@@ -197,8 +199,8 @@ running tests.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver"><strong>WebDriverTestCase.driver</strong></a> – Selenium WebDriver object</li>
-<li><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.WebDriverConfig" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.WebDriverConfig"><strong>WebDriverTestCase.WebDriverConfig</strong></a> – WebDriverConfig class</li>
+<li><strong>WebDriverTestCase.driver</strong> – Selenium WebDriver object</li>
+<li><strong>WebDriverTestCase.WebDriverConfig</strong> – WebDriverConfig class</li>
 </ul>
 </td>
 </tr>
@@ -210,13 +212,13 @@ running tests.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL"><strong>WebDriverTestCase.SITE_URL</strong></a> – Go to this URL during setUp(). Tests that implement
+<li><strong>WebDriverTestCase.SITE_URL</strong> – Go to this URL during setUp(). Tests that implement
 WebDriverTestCase must set this accordingly.</li>
-<li><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS"><strong>WebDriverTestCase.SKIP_BROWSERS</strong></a> – (Optional) List of browser names to skip test
+<li><strong>WebDriverTestCase.SKIP_BROWSERS</strong> – (Optional) List of browser names to skip test
 generation for. This can be useful if a test case class requires functionality
 that is not implemented in a certain driver, or if its tests are meant for
 specific browsers. Valid browser names are declared in the Browsers class.</li>
-<li><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE"><strong>WebDriverTestCase.SKIP_MOBILE</strong></a> – (Optional) By default, tests will be
+<li><strong>WebDriverTestCase.SKIP_MOBILE</strong> – (Optional) By default, tests will be
 generated for all enabled browsers, including mobile. If SKIP_MOBILE is set to
 True, don’t generate tests for mobile browsers. This can be helpful if the
 layout changes between desktop and mobile viewports would alter the test
@@ -237,12 +239,12 @@ object for the browser</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME"><strong>WebDriverTestCase.DRIVER_NAME</strong></a> – Name of the browser. This is mostly used in the
+<li><strong>WebDriverTestCase.DRIVER_NAME</strong> – Name of the browser. This is mostly used in the
 docstrings of generated test classes to indicate what browser the tests are
 being run in</li>
-<li><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME"><strong>WebDriverTestCase.SHORT_NAME</strong></a> – Short name for the driver used for command line
+<li><strong>WebDriverTestCase.SHORT_NAME</strong> – Short name for the driver used for command line
 args, skipping, etc. Should be all lowercase with no spaces</li>
-<li><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES"><strong>WebDriverTestCase.CAPABILITIES</strong></a> – The DesiredCapabilities dictionary for the
+<li><strong>WebDriverTestCase.CAPABILITIES</strong> – The DesiredCapabilities dictionary for the
 browser. Used for initializing BrowserStack remote driver</li>
 </ul>
 </td>
@@ -255,10 +257,10 @@ browser. Used for initializing BrowserStack remote driver</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS"><strong>WebDriverTestCase.ENABLE_BS</strong></a> – (Default = False) If set to True, setUp() will
+<li><strong>WebDriverTestCase.ENABLE_BS</strong> – (Default = False) If set to True, setUp() will
 initialize a Remote webdriver instead of a local one and run tests on
 BrowserStack</li>
-<li><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR"><strong>WebDriverTestCase.COMMAND_EXECUTOR</strong></a> – Command executor URL. Test generator
+<li><strong>WebDriverTestCase.COMMAND_EXECUTOR</strong> – Command executor URL. Test generator
 needs to set this with the configured access key and username</li>
 </ul>
 </td>
@@ -270,7 +272,7 @@ needs to set this with the configured access key and username</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS"><strong>WebDriverTestCase.ENABLE_HEADLESS</strong></a> – (Default = False) If set to True, browser
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>WebDriverTestCase.ENABLE_HEADLESS</strong> – (Default = False) If set to True, browser
 implementations with headless browser support will configure their drivers to
 run tests in a headless browser</td>
 </tr>
@@ -508,7 +510,7 @@ results of self._bs_driver_init()</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.cmd.html" class="btn btn-neutral float-right" title="webdriver_test_tools.cmd package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.version.html" class="btn btn-neutral float-right" title="webdriver_test_tools.version module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="webdriver_test_tools.classes.page_object_prototypes.html" class="btn btn-neutral" title="webdriver_test_tools.classes.page_object_prototypes module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

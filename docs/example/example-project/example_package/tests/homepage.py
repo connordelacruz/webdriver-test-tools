@@ -1,7 +1,7 @@
 from example_package.pages.home import HomePage
 
 import webdriver_test_tools
-from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase, Browsers
+from webdriver_test_tools.testcase import *
 from example_package import config
 from selenium import webdriver
 

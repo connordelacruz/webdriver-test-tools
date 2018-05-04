@@ -1,4 +1,4 @@
-from webdriver_test_tools.classes.webdriver_test_case import *
+from webdriver_test_tools.testcase.browsers import *
 from webdriver_test_tools.config import browser
 
 
@@ -17,4 +17,3 @@ class BrowserConfig(browser.BrowserConfig):
         # Browsers.EDGE: EdgeTestCase,
         # Browsers.CHROME_MOBILE: ChromeMobileTestCase,
     }
-
