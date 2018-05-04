@@ -223,11 +223,18 @@ To run all test cases in one or more modules:
 
     python -m <test_package> --module <test_module> [<test_module> ...]
 
-To run specific TestCase classes:
+To run specific test case classes or methods:
 
 ::
 
     python -m <test_package> --test <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
+
+To skip certain test cases or methods:
+
+::
+
+    python -m <test_package> --skip <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
+
 
 To do any of the above in specific browsers rather than running in all available
 browsers:
