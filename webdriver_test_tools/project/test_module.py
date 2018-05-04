@@ -32,7 +32,7 @@ def main(tests_module, config_module=None):
     test_module_names = args.module
     # If --list is specified, print available tests and exit
     if args.list:
-        list_tests(tests_module, test_class_map, test_module_names)
+        list_tests(tests_module, test_module_names, test_class_map, skip_class_map)
         exit()
     # handle --browserstack arg if enabled
     browserstack = 'browserstack' in dir(args) and args.browserstack
@@ -181,11 +181,11 @@ def browser_list_string(browser_names):
     return '{{{}}}'.format(','.join(browser_names))
 
 
-# TODO: parse skips too
 def parse_test_names(test_name_args):
     """Returns a dictionary mapping test case names to a list of test functions
 
-    :param test_name_args: The parsed value of the --test command line argument
+    :param test_name_args: The parsed value of the --test or --skip arguments
+
     :return: None if test_name_args is None, otherwise return a dictionary mapping test
         case names to a list of test functions to run. If list is empty, no specific
         function was given for that class
@@ -204,16 +204,19 @@ def parse_test_names(test_name_args):
     return class_map
 
 
-def list_tests(tests_module, test_class_map=None, test_module_names=None):
+def list_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
     """Print a list of available tests
 
     :param tests_module: The module object for <test_project>.tests
+    :param test_module_names: (Optional) Parsed arg for --module command line argument
     :param test_class_map: (Optional) Result of passing parsed arg for --test command
         line argument to parse_test_names()
-    :param test_module_names: (Optional) Parsed arg for --module command line argument
+    :param skip_class_map: (Optional) Result of passing parsed arg for --skip command
+        line argument to parse_test_names()
     """
     test_class_names = None if test_class_map is None else test_class_map.keys()
-    tests = test_loader.load_project_tests(tests_module, test_class_names, test_module_names)
+    skip_class_names = _get_skip_class_names(skip_class_map)
+    tests = test_loader.load_project_tests(tests_module, test_module_names, test_class_names, skip_class_names)
     for test_class in tests:
         print(cmd.COLORS['title'](test_class.__name__) + ':')
         test_cases = unittest.loader.getTestCaseNames(test_class, 'test')
@@ -221,7 +224,6 @@ def list_tests(tests_module, test_class_map=None, test_module_names=None):
             print(textwrap.indent(test_case, cmd.INDENT))
 
 
-# TODO: update docs and implement
 def run_tests(tests_module, config_module, browser_classes=None, test_class_map=None,
               skip_class_map=None, test_module_names=None, browserstack=False, headless=False):
     """Run tests using parsed args and project modules
@@ -232,6 +234,8 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
     :param browser_classes: (Optional) List of browser test classes from parsed arg
         for --browser command line argument
     :param test_class_map: (Optional) Result of passing parsed arg for --test command
+        line argument to parse_test_names()
+    :param skip_class_map: (Optional) Result of passing parsed arg for --skip command
         line argument to parse_test_names()
     :param test_module_names: (Optional) Parsed arg for --module command line argument
     :param browserstack: (Default = False) If True, generated test cases should run on
@@ -244,11 +248,11 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
     unittest.installHandler()
     # Load WebDriverTestCase subclasses from project tests
     test_class_names = None if test_class_map is None else test_class_map.keys()
-    skip_class_names = None if skip_class_map is None else skip_class_map.keys()
-    tests = test_loader.load_project_tests(tests_module, test_class_names, test_module_names)
+    skip_class_names = _get_skip_class_names(skip_class_map)
+    tests = test_loader.load_project_tests(tests_module, test_module_names, test_class_names, skip_class_names)
     # Generate browser test cases from the loaded WebDriverTestCase classes
     browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes,
-                                                                  test_class_map, config_module,
+                                                                  test_class_map, skip_class_map, config_module,
                                                                   browserstack, headless)
     # Get configured test runner and run suite
     test_runner = config_module.TestSuiteConfig.get_runner()
@@ -257,6 +261,21 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
     if browserstack:
         print('', 'See BrowserStack Automation Dashboard for Detailed Results:',
               'https://www.browserstack.com/automate', sep='\n')
+
+
+def _get_skip_class_names(skip_class_map):
+    """Returns list of classes to skip
+
+    Returned list only contains names of classes where all methods are skipped.
+    If skip_class_map is None, returns None
+
+    :param skip_class_map: Result of passing parsed arg for --skip command line argument to parse_test_names()
+    """
+    if skip_class_map:
+        return [
+            class_name for class_name, methods in skip_class_map.items() if not methods
+        ]
+    return None
 
 
 

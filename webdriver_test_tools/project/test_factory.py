@@ -7,8 +7,8 @@ from webdriver_test_tools.project import test_loader
 from webdriver_test_tools.testcase import *
 
 
-# TODO: skip_class_map
-def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None,
+def generate_browser_test_suite(test_case_list, browser_test_classes=None,
+                                test_class_map=None, skip_class_map=None,
                                 config_module=None, browserstack=False, headless=False):
     """Generates test cases for multiple browsers and returns a TestSuite with all of
     the new tests
@@ -20,6 +20,8 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
         each available browser test case class.
     :param test_class_map: (Optional) Dictionary mapping test case names to a list of
         test functions. If the list is empty, all test functions will be loaded
+    :param skip_class_map: (Optional) Dictionary mapping test case names to a list of
+        test functions. If the list is empty, entire class will be skipped
     :param config_module: (Optional) The module object for <test_project>.config
     :param browserstack: (Default = False) If True, configure generated test cases to
         run on BrowserStack instead of locally. Need to provide `config_module` with
@@ -42,10 +44,22 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
     # Generate test classes for each test case in the list
     for test_case in test_case_list:
         generated_tests = generate_browser_test_cases(test_case, browser_test_classes, config_module, browserstack, headless)
-        test_methods = None if test_class_map is None or test_case.__name__ not in test_class_map else test_class_map[test_case.__name__]
-        loaded_tests = test_loader.load_browser_tests(generated_tests, test_methods)
+        test_methods = _get_test_methods(test_case.__name__, test_class_map)
+        skip_methods = _get_test_methods(test_case.__name__, skip_class_map)
+        loaded_tests = test_loader.load_browser_tests(generated_tests, test_methods, skip_methods)
         browser_tests.extend(loaded_tests)
     return unittest.TestSuite(browser_tests)
+
+
+def _get_test_methods(test_case_name, test_class_map):
+    """Takes test_class_map or skip_class_map and returns the list of methods for the test case or None if no methods were specified for it
+
+    :param test_case_name: Name of the test case to check
+    :param test_class_map: Dictionary mapping test names to a list of methods
+    """
+    if test_class_map is None or test_case_name not in test_class_map:
+        return None
+    return test_class_map[test_case_name]
 
 
 def generate_browser_test_cases(base_class, browser_test_classes=None, config_module=None,
