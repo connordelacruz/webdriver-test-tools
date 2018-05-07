@@ -26,9 +26,8 @@ def main(tests_module, config_module=None, package_name=None):
     # Parse arguments
     parser = get_parser(browser_config, browserstack_config, package_name)
     args = parser.parse_args()
-    # get --test and --module args
+    # get --test, --skip, and --module args
     test_class_map = parse_test_names(args.test)
-    # get --skip
     skip_class_map = parse_test_names(args.skip)
     test_module_names = args.module
     # If --list is specified, print available tests and exit
