@@ -6,38 +6,43 @@ Testing with Additional Browsers
 Enabling additional browsers
 ----------------------------
 
-By default, tests are generated for Firefox and Chrome. Additional browsers can be enabled in ``<test_package>/config/browser.py``. For example, to generate test cases for Safari, add ``Browsers.SAFARI`` to ``BrowserConfig.BROWSER_TEST_CLASSES``: 
+By default, tests are generated for Firefox and Chrome. Additional browsers can
+be enabled in ``<test_package>/config/browser.py``. For example, to generate
+test cases for Safari, set ``Browsers.SAFARI`` to ``True`` in 
+``BrowserConfig.ENABLED_BROWSERS``: 
 
-``config/browser.py``:
 
-.. code:: python
-    
-    from webdriver_test_tools.classes.webdriver_test_case import *
-    from webdriver_test_tools.config import browser
-
+.. code-block:: python
+    :caption: config/browser.py
+    :emphasize-lines: 5
 
     class BrowserConfig(browser.BrowserConfig):
-        BROWSER_TEST_CLASSES = {
-            Browsers.FIREFOX: FirefoxTestCase,
-            Browsers.CHROME: ChromeTestCase,
-            Browsers.SAFARI: SafariTestCase,
-            # Browsers.IE: IETestCase,
-            # Browsers.EDGE: EdgeTestCase,
-            # Browsers.CHROME_MOBILE: ChromeMobileTestCase,
+        ENABLED_BROWSERS = {
+            Browsers.FIREFOX: True,
+            Browsers.CHROME: True,
+            Browsers.SAFARI: True,
+            Browsers.IE: False,
+            Browsers.EDGE: False,
+            Browsers.CHROME_MOBILE: False,
         }
 
 
 Skipping tests for certain browsers
 -----------------------------------
 
-Some browser drivers don't support certain features of the Selenium WebDriver API. If a test method or class requires these features to run, drivers that lack support for them will likely encounter errors leading to false failures. The ``WebDriverTestCase`` class provides utilities for skipping tests in certain browsers for these instances.
+Some browser drivers don't support certain features of the Selenium WebDriver
+API. If a test method or class requires these features to run, drivers that lack
+support for them will likely encounter errors leading to false failures. The
+``WebDriverTestCase`` class provides utilities for skipping tests in certain
+browsers for these instances.
 
 Skipping browsers for test methods
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To skip test methods for specific browsers, use the ``@WebDriverTestTools.skipBrowsers()`` decorator method:
+To skip test methods for specific browsers, use the
+``@WebDriverTestTools.skipBrowsers()`` decorator method:
 
-.. code:: python
+.. code-block:: python
 
     class ExampleTestCase(WebDriverTestCase):
         ...
@@ -53,46 +58,51 @@ To skip test methods for specific browsers, use the ``@WebDriverTestTools.skipBr
 Skipping browsers for test case classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To skip an entire test case class, override ``WebDriverTestCase.SKIP_BROWSERS`` with a list of browser names to skip:
+To skip an entire test case class, override ``WebDriverTestCase.SKIP_BROWSERS``
+with a list of browser names to skip:
 
-.. code:: python
+.. code-block:: python
 
     class ExampleTestCase(WebDriverTestCase):
         ...
         SKIP_BROWSERS = [Browsers.SAFARI, Browsers.IE,]
 
 
-Valid browser names are declared as constants in the ``Browsers`` class, which is imported from ``webdriver_test_tools.classes.webdriver_test_case``
+Valid browser names are declared as constants in the ``Browsers`` class, which
+is imported from ``webdriver_test_tools.testcase``.
 
 
 Enabling mobile browsers
 ------------------------
 
-Test cases that emulate mobile browser layouts are also enabled in ``<test_package>/config/browser.py``. For example, to generate test cases for Chrome emulating a mobile layout, add ``Browsers.CHROME_MOBILE`` to ``BrowserConfig.BROWSER_TEST_CLASSES``:   
+Test cases that emulate mobile browser layouts are also enabled in
+``<test_package>/config/browser.py``. For example, to generate test cases for
+Chrome emulating a mobile layout, set ``Browsers.CHROME_MOBILE`` to ``True`` in
+``BrowserConfig.ENABLED_BROWSERS``: 
 
-``config/browser.py``:
 
-.. code:: python
-    
-    from webdriver_test_tools.classes.webdriver_test_case import *
-    from webdriver_test_tools.config import browser
-
+.. code-block:: python
+    :caption: config/browser.py
+    :emphasize-lines: 8
 
     class BrowserConfig(browser.BrowserConfig):
-        BROWSER_TEST_CLASSES = {
-            Browsers.FIREFOX: FirefoxTestCase,
-            Browsers.CHROME: ChromeTestCase,
-            # Browsers.SAFARI: SafariTestCase,
-            # Browsers.IE: IETestCase,
-            # Browsers.EDGE: EdgeTestCase,
-            Browsers.CHROME_MOBILE: ChromeMobileTestCase,
+        ENABLED_BROWSERS = {
+            Browsers.FIREFOX: True,
+            Browsers.CHROME: True,
+            Browsers.SAFARI: False,
+            Browsers.IE: False,
+            Browsers.EDGE: False,
+            Browsers.CHROME_MOBILE: True,
         }
 
 
 Skipping tests for mobile browsers
 ----------------------------------
 
-Responsive site layouts can change significantly on mobile viewports, so the procedure for testing a feature may require different steps. The ``WebDriverTestCase`` class provides utilities for conditionally skipping tests for mobile or non-mobile browsers.
+Responsive site layouts can change significantly on mobile viewports, so the
+procedure for testing a feature may require different steps. The
+``WebDriverTestCase`` class provides utilities for conditionally skipping tests
+for mobile or non-mobile browsers.
 
 Skipping mobile browsers
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -102,7 +112,7 @@ Test methods
 
 To skip test methods for mobile browsers, use the ``@WebDriverTestTools.skipMobile()`` decorator method:
 
-.. code:: python
+.. code-block:: python
 
     class ExampleTestCase(WebDriverTestCase):
         ...
@@ -116,7 +126,7 @@ Test case classes
 
 To skip an entire test case class, set ``WebDriverTestCase.SKIP_MOBILE`` to ``True``:
 
-.. code:: python
+.. code-block:: python
 
     class ExampleTestCase(WebDriverTestCase):
         ...
@@ -131,9 +141,10 @@ Utilities are also provided for running tests exclusively in mobile browsers.
 Test methods
 ^^^^^^^^^^^^
 
-To skip test methods for non-mobile browsers, use the ``@WebDriverTestTools.mobileOnly()`` decorator method:
+To skip test methods for non-mobile browsers, use the
+``@WebDriverTestTools.mobileOnly()`` decorator method:
 
-.. code:: python
+.. code-block:: python
 
     class ExampleTestCase(WebDriverTestCase):
         ...
@@ -145,9 +156,10 @@ To skip test methods for non-mobile browsers, use the ``@WebDriverTestTools.mobi
 Test case classes
 ^^^^^^^^^^^^^^^^^
 
-To only use mobile browsers for a test case class, subclass ``WebDriverMobileTestCase``:
+To only use mobile browsers for a test case class, subclass
+``WebDriverMobileTestCase``:
 
-.. code:: python
+.. code-block:: python
 
     class ExampleMobileTestCase(WebDriverMobileTestCase):
         ...
