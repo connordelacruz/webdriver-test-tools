@@ -1,10 +1,9 @@
 from selenium import webdriver
 import webdriver_test_tools
-import os.path
+import os
 
-# TODO: move to webdriver.config
 
-class WebDriverConfig(object):
+class WebDriverConfig:
     """Configurations for webdriver
 
     :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the log
@@ -53,7 +52,7 @@ class WebDriverConfig(object):
     IE_KWARGS = {}
     EDGE_KWARGS = {}
 
-    CHROME_MOBILE_EMULATION = { "deviceName": "Pixel 2" }
+    CHROME_MOBILE_EMULATION = {"deviceName": "Pixel 2"}
     CHROME_HEADLESS_ARGS = ['--window-size=1920x1080',]
     FIREFOX_HEADLESS_ARGS = []
 
@@ -81,7 +80,8 @@ class WebDriverConfig(object):
         """
         service_log_path = os.path.join(cls.LOG_PATH, 'chromedriver.log')
         options = cls._get_chrome_headless_options() if headless else None
-        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
+        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options,
+                                                             **cls.CHROME_KWARGS))
 
     @classmethod
     def get_safari_driver(cls):
@@ -113,7 +113,8 @@ class WebDriverConfig(object):
         options.add_experimental_option("mobileEmulation", cls.CHROME_MOBILE_EMULATION)
         if headless:
             options.add_argument('--headless')
-        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options, **cls.CHROME_KWARGS))
+        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options,
+                                                             **cls.CHROME_KWARGS))
 
     # Driver Options
 
