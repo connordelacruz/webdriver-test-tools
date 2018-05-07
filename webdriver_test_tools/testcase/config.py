@@ -47,14 +47,24 @@ class BrowserConfig:
     }
 
     @classmethod
-    def get_browser_classes(cls):
+    def get_browser_classes(cls, browser_names=None):
         """Get a list of enabled browser classes
+
+        :param browser_names: (Optional) List of browser names to get classes for
 
         :return: List of enabled browser test case classes
         """
+        if browser_names is None:
+            browser_names = cls.ENABLED_BROWSERS.keys()
+        else:
+            # Use only valid browser names
+            browser_names = [
+                browser_name for browser_name in browser_names
+                if browser_name in cls.ENABLED_BROWSERS.keys()
+            ]
         browser_classes = [
             browser_class for short_name, browser_class in cls.BROWSER_TEST_CLASSES.items()
-            if short_name in cls.ENABLED_BROWSERS and cls.ENABLED_BROWSERS[short_name]
+            if short_name in browser_names and cls.ENABLED_BROWSERS[short_name]
         ]
         return browser_classes
 

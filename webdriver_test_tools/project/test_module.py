@@ -5,6 +5,7 @@ import textwrap
 
 from webdriver_test_tools import cmd
 from webdriver_test_tools import config
+from webdriver_test_tools.testcase.browsers import Browsers
 from webdriver_test_tools.project import test_loader, test_factory
 
 
@@ -167,8 +168,9 @@ def format_headless_browsers(browser_config):
 
     :return: Formatted help string for browser options
     """
+    # TODO: factor in browser_config enabled browsers
     browser_names = [
-        browser_class.SHORT_NAME for browser_class in browser_config.Browsers.HEADLESS_COMPATIBLE
+        browser_class.SHORT_NAME for browser_class in Browsers.HEADLESS_COMPATIBLE
     ]
     return '\nCompatible Browsers:\n' + cmd.INDENT + browser_list_string(browser_names)
 
