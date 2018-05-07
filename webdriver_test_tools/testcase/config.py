@@ -8,15 +8,6 @@ class BrowserConfig:
         True enables the browser, False disables it. Defaults to Chrome and
         Firefox since they're not platform specific
     """
-    # TODO: Remove
-    # BROWSER_TEST_CLASSES = {
-    #     Browsers.FIREFOX: FirefoxTestCase,
-    #     Browsers.CHROME: ChromeTestCase,
-    #     Browsers.SAFARI: SafariTestCase,
-    #     Browsers.IE: IETestCase,
-    #     Browsers.EDGE: EdgeTestCase,
-    #     Browsers.CHROME_MOBILE: ChromeMobileTestCase,
-    # }
 
     ENABLED_BROWSERS = {
         Browsers.FIREFOX: True,
@@ -69,8 +60,9 @@ class BrowserStackConfig(BrowserConfig):
     :var BrowserStackConfig.ACCESS_KEY: Access key. Projects will need to override this
     :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations
         `Capabilities reference <https://www.browserstack.com/automate/capabilities#>`__
-    :var BrowserStackConfig.BROWSER_TEST_CLASSES: Dictionary of browser test case classes to
-        use indexed by the short name for that class (i.e. its command line argument).
+    :var BrowserStackConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.
+        True enables the browser, False disables it. Defaults to Chrome and
+        Firefox since they're not platform specific
     """
 
     ENABLE = False
