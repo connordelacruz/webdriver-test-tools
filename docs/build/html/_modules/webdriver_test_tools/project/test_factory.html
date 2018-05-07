@@ -158,7 +158,6 @@
 
 <span class="kn">import</span> <span class="nn">unittest</span>
 
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.config</span> <span class="k">import</span> <span class="n">BrowserConfig</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_loader</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase</span> <span class="k">import</span> <span class="o">*</span>
 
@@ -191,10 +190,12 @@
     <span class="c1"># if headless, only use compatible browsers in browser_test_classes</span>
     <span class="k">if</span> <span class="n">headless</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">browser_test_classes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># TODO: intersect w/ enabled browsers</span>
             <span class="n">browser_test_classes</span> <span class="o">=</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">HEADLESS_COMPATIBLE</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">browser_test_classes</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="n">browser_test_class</span> <span class="k">for</span> <span class="n">browser_test_class</span> <span class="ow">in</span> <span class="n">browser_test_classes</span> <span class="k">if</span> <span class="n">browser_test_class</span> <span class="ow">in</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">HEADLESS_COMPATIBLE</span>
+                <span class="n">browser_test_class</span> <span class="k">for</span> <span class="n">browser_test_class</span> <span class="ow">in</span> <span class="n">browser_test_classes</span>
+                <span class="k">if</span> <span class="n">browser_test_class</span> <span class="ow">in</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">HEADLESS_COMPATIBLE</span>
             <span class="p">]</span>
     <span class="n">browser_tests</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="c1"># Generate test classes for each test case in the list</span>
@@ -236,7 +237,7 @@
 <span class="sd">    :return: List of generated test case classes for each browser</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># generate class only for browser_test_class if specified</span>
-    <span class="n">browser_classes</span> <span class="o">=</span> <span class="n">BrowserConfig</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">browser_test_classes</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">browser_test_classes</span>
+    <span class="n">browser_classes</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserConfig</span><span class="o">.</span><span class="n">get_browser_classes</span><span class="p">()</span> <span class="k">if</span> <span class="n">browser_test_classes</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">browser_test_classes</span>
     <span class="c1"># If this test is for non-mobile only, don&#39;t generate tests for subclasses of WebDriverMobileTestCase</span>
     <span class="k">if</span> <span class="n">base_class</span><span class="o">.</span><span class="n">SKIP_MOBILE</span><span class="p">:</span>
         <span class="n">browser_classes</span> <span class="o">=</span> <span class="p">[</span>
@@ -250,7 +251,8 @@
     <span class="c1"># iterate through a list of browser classes and generate test cases</span>
     <span class="c1"># skip browser classes if listed in base_class.SKIP_BROWSERS</span>
     <span class="n">browser_test_cases</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_class</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">,</span> <span class="n">headless</span><span class="p">)</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_classes</span>
+        <span class="n">generate_browser_test_case</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">browser_class</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">,</span> <span class="n">headless</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_classes</span>
         <span class="k">if</span> <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">base_class</span><span class="o">.</span><span class="n">SKIP_BROWSERS</span>
     <span class="p">]</span></div>
     <span class="k">return</span> <span class="n">browser_test_cases</span>

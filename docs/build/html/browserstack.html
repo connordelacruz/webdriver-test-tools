@@ -163,32 +163,41 @@
            <div itemprop="articleBody">
             
   <div class="section" id="browserstack-support">
-<h1><a class="toc-backref" href="#id1">BrowserStack Support</a><a class="headerlink" href="#browserstack-support" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id3">BrowserStack Support</a><a class="headerlink" href="#browserstack-support" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#browserstack-support" id="id1">BrowserStack Support</a><ul>
-<li><a class="reference internal" href="#enabling-browserstack-support" id="id2">Enabling BrowserStack support</a></li>
-<li><a class="reference internal" href="#running-tests-with-browserstack" id="id3">Running tests with BrowserStack</a></li>
-<li><a class="reference internal" href="#configuring-browsers" id="id4">Configuring Browsers</a></li>
+<li><a class="reference internal" href="#browserstack-support" id="id3">BrowserStack Support</a><ul>
+<li><a class="reference internal" href="#enabling-browserstack-support" id="id4">Enabling BrowserStack support</a></li>
+<li><a class="reference internal" href="#running-tests-with-browserstack" id="id5">Running tests with BrowserStack</a></li>
+<li><a class="reference internal" href="#configuring-browsers" id="id6">Configuring Browsers</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="enabling-browserstack-support">
-<h2><a class="toc-backref" href="#id2">Enabling BrowserStack support</a><a class="headerlink" href="#enabling-browserstack-support" title="Permalink to this headline">¶</a></h2>
-<p>Testing with BrowserStack can be configured for a project in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browserstack.py</span></code>. To enable BrowserStack support, set <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.ENABLE</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> and set <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.USERNAME</span></code> and <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.ACCESS_KEY</span></code> to your BrowserStack account username and access key respectively. These values can be found on the <a class="reference external" href="https://www.browserstack.com/automate">BrowserStack Automate dashboard</a>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">config/browserstack.py</span></code>:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BrowserStackConfig</span><span class="p">(</span><span class="n">browserstack</span><span class="o">.</span><span class="n">BrowserStackConfig</span><span class="p">):</span>
-    <span class="n">ENABLE</span> <span class="o">=</span> <span class="kc">True</span>
+<h2><a class="toc-backref" href="#id4">Enabling BrowserStack support</a><a class="headerlink" href="#enabling-browserstack-support" title="Permalink to this headline">¶</a></h2>
+<p>Testing with BrowserStack can be configured for a project in
+<code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browserstack.py</span></code>. To enable BrowserStack support, set
+<code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.ENABLE</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> and set
+<code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.USERNAME</span></code> and <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.ACCESS_KEY</span></code> to your
+BrowserStack account username and access key respectively. These values can be
+found on the <a class="reference external" href="https://www.browserstack.com/automate">BrowserStack Automate dashboard</a>.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">config/browserstack.py</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BrowserStackConfig</span><span class="p">(</span><span class="n">browserstack</span><span class="o">.</span><span class="n">BrowserStackConfig</span><span class="p">):</span>
+    <span class="n">ENABLE</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="n">USERNAME</span> <span class="o">=</span> <span class="s1">&#39;EXAMPLE&#39;</span>
     <span class="n">ACCESS_KEY</span> <span class="o">=</span> <span class="s1">&#39;EXAMPLEKEY&#39;</span>
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="running-tests-with-browserstack">
-<h2><a class="toc-backref" href="#id3">Running tests with BrowserStack</a><a class="headerlink" href="#running-tests-with-browserstack" title="Permalink to this headline">¶</a></h2>
-<p>After enabling and configuring BrowserStack, use the <code class="docutils literal notranslate"><span class="pre">--browserstack</span></code> command line argument to run tests on BrowserStack instead of running locally. Some examples:</p>
+<h2><a class="toc-backref" href="#id5">Running tests with BrowserStack</a><a class="headerlink" href="#running-tests-with-browserstack" title="Permalink to this headline">¶</a></h2>
+<p>After enabling and configuring BrowserStack, use the <code class="docutils literal notranslate"><span class="pre">--browserstack</span></code> command
+line argument to run tests on BrowserStack instead of running locally. Some
+examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">browserstack</span>
 </pre></div>
 </div>
@@ -203,38 +212,25 @@
 </div>
 </div>
 <div class="section" id="configuring-browsers">
-<h2><a class="toc-backref" href="#id4">Configuring Browsers</a><a class="headerlink" href="#configuring-browsers" title="Permalink to this headline">¶</a></h2>
-<p>By default, BrowserStack tests are generated for the same browsers enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code>. To enable additional browsers when testing with BrowserStack, modify <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig._additional_browsers</span></code>. For example, to enable test cases for Internet Explorer, uncomment the corresponding line in the config file:</p>
-<p><code class="docutils literal notranslate"><span class="pre">config/browserstack.py</span></code>:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BrowserStackConfig</span><span class="p">(</span><span class="n">browserstack</span><span class="o">.</span><span class="n">BrowserStackConfig</span><span class="p">):</span>
+<h2><a class="toc-backref" href="#id6">Configuring Browsers</a><a class="headerlink" href="#configuring-browsers" title="Permalink to this headline">¶</a></h2>
+<p>By default, BrowserStack tests are generated for Firefox and Chrome. Additional
+browsers can be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browserstack.py</span></code>. For
+example, to enable test cases for Internet Explorer, set <code class="docutils literal notranslate"><span class="pre">Browsers.IE</span></code> to
+<code class="docutils literal notranslate"><span class="pre">True</span></code> in <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.ENABLED_BROWSERS</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">config/browserstack.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BrowserStackConfig</span><span class="p">(</span><span class="n">browserstack</span><span class="o">.</span><span class="n">BrowserStackConfig</span><span class="p">):</span>
     <span class="o">...</span>
-    <span class="c1"># Defaults to using the same browsers configured in BrowserConfig class</span>
-    <span class="n">BROWSER_TEST_CLASSES</span> <span class="o">=</span> <span class="n">BrowserConfig</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="c1"># Add additional browsers here:</span>
-    <span class="n">_additional_browsers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="c1"># Browsers.FIREFOX: FirefoxTestCase,</span>
-        <span class="c1"># Browsers.CHROME: ChromeTestCase,</span>
-        <span class="c1"># Browsers.SAFARI: SafariTestCase,</span>
-        <span class="n">Browsers</span><span class="o">.</span><span class="n">IE</span><span class="p">:</span> <span class="n">IETestCase</span><span class="p">,</span>
-        <span class="c1"># Browsers.EDGE: EdgeTestCase,</span>
-        <span class="c1"># Browsers.CHROME_MOBILE: ChromeMobileTestCase,</span>
+    <span class="n">ENABLED_BROWSERS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Browsers</span><span class="o">.</span><span class="n">FIREFOX</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="n">Browsers</span><span class="o">.</span><span class="n">CHROME</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="n">Browsers</span><span class="o">.</span><span class="n">SAFARI</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+<span class="hll">        <span class="n">Browsers</span><span class="o">.</span><span class="n">IE</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+</span>        <span class="n">Browsers</span><span class="o">.</span><span class="n">EDGE</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="n">Browsers</span><span class="o">.</span><span class="n">CHROME_MOBILE</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
     <span class="p">}</span>
-    <span class="n">BROWSER_TEST_CLASSES</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_additional_browsers</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>BrowserStack browsers can be configured independently of <code class="docutils literal notranslate"><span class="pre">BrowserConfig</span></code> by setting <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.BROWSER_TEST_CLASSES</span></code> directly instead of copying the configurations from <code class="docutils literal notranslate"><span class="pre">BrowserConfig</span></code>. For example, if you only wanted to enable Internet Explorer for BrowserStack tests:</p>
-<p><code class="docutils literal notranslate"><span class="pre">config/browserstack.py</span></code>:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BrowserStackConfig</span><span class="p">(</span><span class="n">browserstack</span><span class="o">.</span><span class="n">BrowserStackConfig</span><span class="p">):</span>
-    <span class="o">...</span>
-    <span class="n">BROWSER_TEST_CLASSES</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="c1"># Browsers.FIREFOX: FirefoxTestCase,</span>
-        <span class="c1"># Browsers.CHROME: ChromeTestCase,</span>
-        <span class="c1"># Browsers.SAFARI: SafariTestCase,</span>
-        <span class="n">Browsers</span><span class="o">.</span><span class="n">IE</span><span class="p">:</span> <span class="n">IETestCase</span><span class="p">,</span>
-        <span class="c1"># Browsers.EDGE: EdgeTestCase,</span>
-        <span class="c1"># Browsers.CHROME_MOBILE: ChromeMobileTestCase,</span>
-    <span class="p">}</span>
-</pre></div>
 </div>
 </div>
 </div>

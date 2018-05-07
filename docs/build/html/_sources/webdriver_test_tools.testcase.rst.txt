@@ -13,6 +13,7 @@ Submodules
    webdriver_test_tools.testcase.ie
    webdriver_test_tools.testcase.safari
    webdriver_test_tools.testcase.webdriver
+   webdriver_test_tools.testcase.config
 
 Module contents
 ---------------
