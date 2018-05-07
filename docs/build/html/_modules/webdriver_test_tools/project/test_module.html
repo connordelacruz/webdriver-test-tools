@@ -161,6 +161,7 @@
 
 <span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">cmd</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">config</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase.browsers</span> <span class="k">import</span> <span class="n">Browsers</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">test_factory</span>
 
 
@@ -175,7 +176,7 @@
     <span class="c1"># Fall back on default config module if test doesn&#39;t supply one</span>
     <span class="k">if</span> <span class="n">config_module</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">config_module</span> <span class="o">=</span> <span class="n">config</span>
-    <span class="c1"># Older projects may not have the BrowserConfig class</span>
+    <span class="c1"># Older projects may not have the BrowserConfig or BrowserStackConfig class</span>
     <span class="n">browser_config</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserConfig</span> <span class="k">if</span> <span class="s1">&#39;BrowserConfig&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">BrowserConfig</span>
     <span class="n">browserstack_config</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserStackConfig</span> <span class="k">if</span> <span class="s1">&#39;BrowserStackConfig&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">BrowserStackConfig</span>
     <span class="c1"># Parse arguments</span>
@@ -197,15 +198,7 @@
     <span class="c1"># Determine what config class to use based on --browserstack arg</span>
     <span class="n">browser_config_class</span> <span class="o">=</span> <span class="n">browserstack_config</span> <span class="k">if</span> <span class="n">browserstack</span> <span class="k">else</span> <span class="n">browser_config</span>
     <span class="c1"># Handle --browser args</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">browser</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">browser_classes</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">browser_class</span> <span class="k">for</span> <span class="n">browser_name</span><span class="p">,</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_config_class</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-        <span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">browser_classes</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">browser_class</span> <span class="k">for</span> <span class="n">browser_name</span><span class="p">,</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_config_class</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">browser_name</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">browser</span>
-        <span class="p">]</span>
+    <span class="n">browser_classes</span> <span class="o">=</span> <span class="n">browser_config_class</span><span class="o">.</span><span class="n">get_browser_classes</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">browser</span><span class="p">)</span>
     <span class="c1"># Run tests using parsed args</span>
     <span class="n">run_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browser_classes</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">,</span></div>
               <span class="n">test_module_names</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">,</span> <span class="n">headless</span><span class="p">)</span>
@@ -248,9 +241,9 @@
     <span class="c1"># Arguments for specifying browser to use</span>
     <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Browser Arguments&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">ENABLE</span><span class="p">:</span>
-        <span class="n">browser_choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">browserstack_config</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="p">))</span>
+        <span class="n">browser_choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">browserstack_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">()))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">browser_choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">browser_choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
     <span class="n">browser_options_help</span> <span class="o">=</span> <span class="n">format_browser_choices</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">)</span>
     <span class="n">browser_help</span> <span class="o">=</span> <span class="s1">&#39;Run tests only in the specified browsers.&#39;</span> <span class="o">+</span> <span class="n">browser_options_help</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="s1">&#39;--browser&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">browser_choices</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;browser&gt;&#39;</span><span class="p">,</span>
@@ -297,11 +290,11 @@
 <span class="sd">    :return: Formatted help string for browser options</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">options</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="n">local_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="p">)</span>
-    <span class="n">browserstack_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">browserstack_config</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="p">)</span>
+    <span class="n">local_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
+    <span class="n">browserstack_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">browserstack_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
     <span class="c1"># If browserstack is disabled or there&#39;s no difference in browsers</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">ENABLE</span> <span class="ow">or</span> <span class="n">local_set</span> <span class="o">==</span> <span class="n">browserstack_set</span><span class="p">:</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Options: &#39;</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">BROWSER_TEST_CLASSES</span><span class="p">)</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Options: &#39;</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
     <span class="c1"># Else if there is some difference between enabled sets</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">both_set</span> <span class="o">=</span> <span class="n">local_set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">browserstack_set</span><span class="p">)</span>
@@ -323,8 +316,10 @@
 
 <span class="sd">    :return: Formatted help string for browser options</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">enabled_browsers</span> <span class="o">=</span> <span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">()</span>
     <span class="n">browser_names</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">browser_config</span><span class="o">.</span><span class="n">Browsers</span><span class="o">.</span><span class="n">HEADLESS_COMPATIBLE</span>
+        <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">HEADLESS_COMPATIBLE</span>
+        <span class="k">if</span> <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="ow">in</span> <span class="n">enabled_browsers</span>
     <span class="p">]</span></div>
     <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Compatible Browsers:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">)</span>
 

@@ -11,7 +11,7 @@ class IETestCase(WebDriverTestCase):
 
         This class is experimental and has not been fully tested. It is disabled by
         default but can be enabled in ``<test_package>/config/browser.py`` by
-        uncommenting the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
+        setting the corresponding value in ``BrowserConfig.ENABLED_BROWSERS`` to ``True``.
     """
     DRIVER_NAME = 'Internet Explorer'
     SHORT_NAME = 'ie'

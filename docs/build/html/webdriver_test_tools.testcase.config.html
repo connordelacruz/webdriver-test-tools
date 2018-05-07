@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>webdriver_test_tools.testcase.config module &mdash; WebDriver Test Tools 0.27.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.27
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.testcase.config module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/webdriver_test_tools.testcase.config.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-webdriver_test_tools.testcase.config">
+<span id="webdriver-test-tools-testcase-config-module"></span><h1>webdriver_test_tools.testcase.config module<a class="headerlink" href="#module-webdriver_test_tools.testcase.config" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="webdriver_test_tools.testcase.config.BrowserConfig">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.config.</code><code class="descname">BrowserConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/testcase/config.html#BrowserConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Configurations for what browsers to generate tests for</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.testcase.config.BrowserConfig.ENABLED_BROWSERS" title="webdriver_test_tools.testcase.config.BrowserConfig.ENABLED_BROWSERS"><strong>BrowserConfig.ENABLED_BROWSERS</strong></a> – Dictionary mapping browser names to a boolean.
+True enables the browser, False disables it. Defaults to Chrome and
+Firefox since they’re not platform specific</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.config.BrowserConfig.ENABLED_BROWSERS">
+<code class="descname">ENABLED_BROWSERS</code><em class="property"> = {'chrome': True, 'chrome-mobile': False, 'edge': False, 'firefox': True, 'ie': False, 'safari': False}</em><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserConfig.ENABLED_BROWSERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="webdriver_test_tools.testcase.config.BrowserConfig.get_browser_classes">
+<em class="property">classmethod </em><code class="descname">get_browser_classes</code><span class="sig-paren">(</span><em>browser_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/config.html#BrowserConfig.get_browser_classes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserConfig.get_browser_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of enabled browser classes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>browser_names</strong> – (Optional) List of browser names to get classes for</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of enabled browser test case classes</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="webdriver_test_tools.testcase.config.BrowserConfig.get_browser_names">
+<em class="property">classmethod </em><code class="descname">get_browser_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/config.html#BrowserConfig.get_browser_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserConfig.get_browser_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of short names for enabled browser classes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of short names for enabled browser test case classes</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="webdriver_test_tools.testcase.config.BrowserStackConfig">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.config.</code><code class="descname">BrowserStackConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/testcase/config.html#BrowserStackConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserStackConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.testcase.config.BrowserConfig" title="webdriver_test_tools.testcase.config.BrowserConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.testcase.config.BrowserConfig</span></code></a></p>
+<p>Global configurations for BrowserStack testing</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.config.BrowserStackConfig.ENABLE" title="webdriver_test_tools.testcase.config.BrowserStackConfig.ENABLE"><strong>BrowserStackConfig.ENABLE</strong></a> – Set to True to enable BrowserStack testing</li>
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.config.BrowserStackConfig.USERNAME" title="webdriver_test_tools.testcase.config.BrowserStackConfig.USERNAME"><strong>BrowserStackConfig.USERNAME</strong></a> – Account username. Projects will need to override this</li>
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.config.BrowserStackConfig.ACCESS_KEY" title="webdriver_test_tools.testcase.config.BrowserStackConfig.ACCESS_KEY"><strong>BrowserStackConfig.ACCESS_KEY</strong></a> – Access key. Projects will need to override this</li>
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.config.BrowserStackConfig.BS_CAPABILITIES" title="webdriver_test_tools.testcase.config.BrowserStackConfig.BS_CAPABILITIES"><strong>BrowserStackConfig.BS_CAPABILITIES</strong></a> – BrowserStack test configurations
+<a class="reference external" href="https://www.browserstack.com/automate/capabilities#">Capabilities reference</a></li>
+<li><strong>BrowserStackConfig.ENABLED_BROWSERS</strong> – Dictionary mapping browser names to a boolean.
+True enables the browser, False disables it. Defaults to Chrome and
+Firefox since they’re not platform specific</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.config.BrowserStackConfig.ACCESS_KEY">
+<code class="descname">ACCESS_KEY</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserStackConfig.ACCESS_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.config.BrowserStackConfig.BS_CAPABILITIES">
+<code class="descname">BS_CAPABILITIES</code><em class="property"> = {'browserstack.video': False, 'project': None}</em><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserStackConfig.BS_CAPABILITIES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.config.BrowserStackConfig.ENABLE">
+<code class="descname">ENABLE</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserStackConfig.ENABLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.config.BrowserStackConfig.USERNAME">
+<code class="descname">USERNAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserStackConfig.USERNAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="webdriver_test_tools.testcase.config.BrowserStackConfig.add_browserstack_capabilities">
+<em class="property">classmethod </em><code class="descname">add_browserstack_capabilities</code><span class="sig-paren">(</span><em>desired_capabilities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/config.html#BrowserStackConfig.add_browserstack_capabilities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserStackConfig.add_browserstack_capabilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a desired capabilities dictionary to include items from BS_CAPABILITIES</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>desired_capabilities</strong> – Desired capabilities dictionary to update</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="webdriver_test_tools.testcase.config.BrowserStackConfig.get_command_executor">
+<em class="property">classmethod </em><code class="descname">get_command_executor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/config.html#BrowserStackConfig.get_command_executor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.config.BrowserStackConfig.get_command_executor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the command executor URL</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Command executor URL formatted with USERNAME and ACCESS_KEY</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.27.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

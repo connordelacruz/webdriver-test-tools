@@ -5,6 +5,7 @@ import textwrap
 
 from webdriver_test_tools import cmd
 from webdriver_test_tools import config
+from webdriver_test_tools.testcase.browsers import Browsers
 from webdriver_test_tools.project import test_loader, test_factory
 
 
@@ -19,7 +20,7 @@ def main(tests_module, config_module=None, package_name=None):
     # Fall back on default config module if test doesn't supply one
     if config_module is None:
         config_module = config
-    # Older projects may not have the BrowserConfig class
+    # Older projects may not have the BrowserConfig or BrowserStackConfig class
     browser_config = config_module.BrowserConfig if 'BrowserConfig' in dir(config_module) else config.BrowserConfig
     browserstack_config = config_module.BrowserStackConfig if 'BrowserStackConfig' in dir(config_module) else config.BrowserStackConfig
     # Parse arguments
@@ -41,15 +42,7 @@ def main(tests_module, config_module=None, package_name=None):
     # Determine what config class to use based on --browserstack arg
     browser_config_class = browserstack_config if browserstack else browser_config
     # Handle --browser args
-    if args.browser is None:
-        browser_classes = [
-            browser_class for browser_name, browser_class in browser_config_class.BROWSER_TEST_CLASSES.items()
-        ]
-    else:
-        browser_classes = [
-            browser_class for browser_name, browser_class in browser_config_class.BROWSER_TEST_CLASSES.items()
-            if browser_name in args.browser
-        ]
+    browser_classes = browser_config_class.get_browser_classes(args.browser)
     # Run tests using parsed args
     run_tests(tests_module, config_module, browser_classes, test_class_map, skip_class_map,
               test_module_names, browserstack, headless)
@@ -92,9 +85,9 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     # Arguments for specifying browser to use
     group = parser.add_argument_group('Browser Arguments')
     if browserstack_config.ENABLE:
-        browser_choices = list(set(browser_config.BROWSER_TEST_CLASSES) | set(browserstack_config.BROWSER_TEST_CLASSES))
+        browser_choices = list(set(browser_config.get_browser_names()) | set(browserstack_config.get_browser_names()))
     else:
-        browser_choices = list(browser_config.BROWSER_TEST_CLASSES.keys())
+        browser_choices = list(browser_config.get_browser_names())
     browser_options_help = format_browser_choices(browser_config, browserstack_config)
     browser_help = 'Run tests only in the specified browsers.' + browser_options_help
     group.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
@@ -141,11 +134,11 @@ def format_browser_choices(browser_config, browserstack_config):
     :return: Formatted help string for browser options
     """
     options = ''
-    local_set = set(browser_config.BROWSER_TEST_CLASSES)
-    browserstack_set = set(browserstack_config.BROWSER_TEST_CLASSES)
+    local_set = set(browser_config.get_browser_names())
+    browserstack_set = set(browserstack_config.get_browser_names())
     # If browserstack is disabled or there's no difference in browsers
     if not browserstack_config.ENABLE or local_set == browserstack_set:
-        options = '\nOptions: ' + browser_list_string(browser_config.BROWSER_TEST_CLASSES)
+        options = '\nOptions: ' + browser_list_string(browser_config.get_browser_names())
     # Else if there is some difference between enabled sets
     else:
         both_set = local_set.intersection(browserstack_set)
@@ -167,8 +160,10 @@ def format_headless_browsers(browser_config):
 
     :return: Formatted help string for browser options
     """
+    enabled_browsers = browser_config.get_browser_names()
     browser_names = [
-        browser_class.SHORT_NAME for browser_class in browser_config.Browsers.HEADLESS_COMPATIBLE
+        browser_class.SHORT_NAME for browser_class in Browsers.HEADLESS_COMPATIBLE
+        if browser_class.SHORT_NAME in enabled_browsers
     ]
     return '\nCompatible Browsers:\n' + cmd.INDENT + browser_list_string(browser_names)
 
