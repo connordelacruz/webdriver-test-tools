@@ -68,6 +68,17 @@ class BrowserConfig:
         ]
         return browser_classes
 
+    @classmethod
+    def get_browser_names(cls):
+        """Returns a list of short names for enabled browser classes
+
+        :return: List of short names for enabled browser test case classes
+        """
+        return [
+            browser_name for browser_name, is_enabled in cls.ENABLED_BROWSERS.items()
+            if is_enabled
+        ]
+
 
 class BrowserStackConfig(BrowserConfig):
     """Global configurations for BrowserStack testing
