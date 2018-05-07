@@ -1,6 +1,5 @@
 from webdriver_test_tools.config import browserstack
 from webdriver_test_tools.testcase.browsers import *
-from example_package.config import BrowserConfig
 
 
 class BrowserStackConfig(browserstack.BrowserStackConfig):
@@ -10,8 +9,9 @@ class BrowserStackConfig(browserstack.BrowserStackConfig):
     :var BrowserStackConfig.USERNAME: Account username. Required for BrowserStack testing
     :var BrowserStackConfig.ACCESS_KEY: Access key. Required for BrowserStack testing
     :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations
-    :var BrowserStackConfig.BROWSER_TEST_CLASSES: Dictionary of browser test case classes to
-        use indexed by the short name for that class (i.e. its command line argument).
+    :var BrowserConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.
+        True enables the browser, False disables it. Defaults to Chrome and
+        Firefox since they're not platform specific
     """
 
     ENABLE = False
@@ -24,17 +24,13 @@ class BrowserStackConfig(browserstack.BrowserStackConfig):
         # 'browserstack.selenium_version': '3.11.0',
     }
 
-    # Defaults to using the same browsers configured in BrowserConfig class
-    BROWSER_TEST_CLASSES = BrowserConfig.BROWSER_TEST_CLASSES.copy()
-    # Add additional browsers here:
-    _additional_browsers = {
-        # Browsers.FIREFOX: FirefoxTestCase,
-        # Browsers.CHROME: ChromeTestCase,
-        # Browsers.SAFARI: SafariTestCase,
-        # Browsers.IE: IETestCase,
-        # Browsers.EDGE: EdgeTestCase,
-        # Browsers.CHROME_MOBILE: ChromeMobileTestCase,
+    ENABLED_BROWSERS = {
+        Browsers.FIREFOX: True,
+        Browsers.CHROME: True,
+        Browsers.SAFARI: False,
+        Browsers.IE: False,
+        Browsers.EDGE: False,
+        Browsers.CHROME_MOBILE: False,
     }
-    BROWSER_TEST_CLASSES.update(_additional_browsers)
 
 
