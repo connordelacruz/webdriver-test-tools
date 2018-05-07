@@ -4,21 +4,20 @@ from .browsers import *
 class BrowserConfig:
     """Configurations for what browsers to generate tests for
 
-    :var BrowserConfig.BROWSER_TEST_CLASSES: Dictionary of browser test case classes to
-        use indexed by the short name for that class (i.e. its command line argument).
-        Default to Chrome and Firefox since they're not platform specific
+    :var BrowserConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.
+        True enables the browser, False disables it. Defaults to Chrome and
+        Firefox since they're not platform specific
     """
-    # TODO: move this to Browsers?
-    BROWSER_TEST_CLASSES = {
-        Browsers.FIREFOX: FirefoxTestCase,
-        Browsers.CHROME: ChromeTestCase,
-        Browsers.SAFARI: SafariTestCase,
-        Browsers.IE: IETestCase,
-        Browsers.EDGE: EdgeTestCase,
-        Browsers.CHROME_MOBILE: ChromeMobileTestCase,
-    }
+    # TODO: Remove
+    # BROWSER_TEST_CLASSES = {
+    #     Browsers.FIREFOX: FirefoxTestCase,
+    #     Browsers.CHROME: ChromeTestCase,
+    #     Browsers.SAFARI: SafariTestCase,
+    #     Browsers.IE: IETestCase,
+    #     Browsers.EDGE: EdgeTestCase,
+    #     Browsers.CHROME_MOBILE: ChromeMobileTestCase,
+    # }
 
-    # TODO: update docstring
     ENABLED_BROWSERS = {
         Browsers.FIREFOX: True,
         Browsers.CHROME: True,
@@ -45,7 +44,7 @@ class BrowserConfig:
                 if browser_name in cls.ENABLED_BROWSERS.keys()
             ]
         browser_classes = [
-            browser_class for short_name, browser_class in cls.BROWSER_TEST_CLASSES.items()
+            browser_class for short_name, browser_class in Browsers.TEST_CLASSES.items()
             if short_name in browser_names and cls.ENABLED_BROWSERS[short_name]
         ]
         return browser_classes
