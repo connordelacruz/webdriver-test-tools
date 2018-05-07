@@ -34,8 +34,10 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None,
     # if headless, only use compatible browsers in browser_test_classes
     if headless:
         if browser_test_classes is None:
-            # TODO: intersect w/ enabled browsers
-            browser_test_classes = Browsers.HEADLESS_COMPATIBLE.copy()
+            browser_test_classes = [
+                browser_test_class for browser_test_class in Browsers.HEADLESS_COMPATIBLE
+                if browser_test_class in config_module.BrowserConfig.get_browser_classes()
+            ]
         else:
             browser_test_classes = [
                 browser_test_class for browser_test_class in browser_test_classes
