@@ -1,6 +1,8 @@
-from selenium import webdriver
-import webdriver_test_tools
 import os
+
+from selenium import webdriver
+
+import webdriver_test_tools
 
 
 class WebDriverConfig:
