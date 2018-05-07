@@ -27,6 +27,7 @@ class BrowserConfig:
         use indexed by the short name for that class (i.e. its command line argument).
         Default to Chrome and Firefox since they're not platform specific
     """
+    # TODO: move this to Browsers?
     BROWSER_TEST_CLASSES = {
         Browsers.FIREFOX: FirefoxTestCase,
         Browsers.CHROME: ChromeTestCase,
@@ -45,20 +46,16 @@ class BrowserConfig:
         Browsers.CHROME_MOBILE: False,
     }
 
-    # TODO: is this necessary? Find references and remove?
-    class Browsers(Browsers):
-        """Attribute that mirrors the content of :class:`webdriver_test_tools.classes.webdriver_test_case.Browsers`
-        for convenience
-        """
-        pass
-
     @classmethod
     def get_browser_classes(cls):
-        # TODO: document and implement
-        browser_classes = {
-            short_name: browser_class for short_name, browser_class in cls.BROWSER_TEST_CLASSES.items()
+        """Get a list of enabled browser classes
+
+        :return: List of enabled browser test case classes
+        """
+        browser_classes = [
+            browser_class for short_name, browser_class in cls.BROWSER_TEST_CLASSES.items()
             if short_name in cls.ENABLED_BROWSERS and cls.ENABLED_BROWSERS[short_name]
-        }
+        ]
         return browser_classes
 
 

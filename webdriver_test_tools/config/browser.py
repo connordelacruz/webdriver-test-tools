@@ -23,13 +23,3 @@ class BrowserConfig(object):
         """
         pass
 
-    # TODO: use this instead of storing classes directly
-    # @classmethod
-    # def get_browser_classes(cls, browser_short_names):
-    #     # TODO: document
-    #     browser_classes = {
-    #         short_name: browser_class for short_name, browser_class in cls.BROWSER_TEST_CLASSES.items()
-    #         if short_name in browser_short_names
-    #     }
-    #     return browser_classes
-

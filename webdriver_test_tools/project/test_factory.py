@@ -35,6 +35,7 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None,
     # if headless, only use compatible browsers in browser_test_classes
     if headless:
         if browser_test_classes is None:
+            # TODO: intersect w/ enabled browsers
             browser_test_classes = Browsers.HEADLESS_COMPATIBLE.copy()
         else:
             browser_test_classes = [
@@ -80,6 +81,7 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     :return: List of generated test case classes for each browser
     """
     # generate class only for browser_test_class if specified
+    # TODO: BrowserConfig.get_browser_classes()
     browser_classes = BrowserConfig.BROWSER_TEST_CLASSES.values() if browser_test_classes is None else browser_test_classes
     # If this test is for non-mobile only, don't generate tests for subclasses of WebDriverMobileTestCase
     if base_class.SKIP_MOBILE:

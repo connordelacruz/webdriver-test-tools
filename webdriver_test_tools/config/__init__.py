@@ -3,6 +3,7 @@
 from .site import SiteConfig
 from .test import TestSuiteConfig
 from .webdriver import WebDriverConfig
+# TODO: update these to import from testcase.config
 from .browser import BrowserConfig
 from .browserstack import BrowserStackConfig
 
