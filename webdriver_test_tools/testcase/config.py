@@ -1,25 +1,6 @@
 from .browsers import *
 
 
-class Browsers:
-    """Constants for browser short names
-
-    :var Browsers.HEADLESS_COMPATIBLE: List of WebDriverTestCase subclasses that
-        support test execution in a headless browser
-    """
-    FIREFOX = FirefoxTestCase.SHORT_NAME
-    CHROME = ChromeTestCase.SHORT_NAME
-    SAFARI = SafariTestCase.SHORT_NAME
-    IE = IETestCase.SHORT_NAME
-    EDGE = EdgeTestCase.SHORT_NAME
-    CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
-    # List of browser classes that support headless browsing
-    HEADLESS_COMPATIBLE = [
-        FirefoxTestCase,
-        ChromeTestCase,
-        ChromeMobileTestCase,
-    ]
-
 class BrowserConfig:
     """Configurations for what browsers to generate tests for
 
@@ -37,6 +18,7 @@ class BrowserConfig:
         Browsers.CHROME_MOBILE: ChromeMobileTestCase,
     }
 
+    # TODO: update docstring
     ENABLED_BROWSERS = {
         Browsers.FIREFOX: True,
         Browsers.CHROME: True,

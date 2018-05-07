@@ -4,7 +4,6 @@ from .firefox import *
 from .ie import *
 from .safari import *
 
-# TODO: move to config?
 class Browsers(object):
     """Constants for browser short names
 
