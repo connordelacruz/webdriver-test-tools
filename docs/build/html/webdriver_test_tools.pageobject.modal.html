@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.form module &mdash; WebDriver Test Tools 0.28.0 documentation</title>
+  <title>webdriver_test_tools.pageobject.modal module &mdash; WebDriver Test Tools 0.28.0 documentation</title>
   
 
   
@@ -31,8 +31,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.pageobject.modal module" href="webdriver_test_tools.pageobject.modal.html" />
-    <link rel="prev" title="webdriver_test_tools.pageobject.base module" href="webdriver_test_tools.pageobject.base.html" /> 
+    <link rel="next" title="webdriver_test_tools.pageobject.nav module" href="webdriver_test_tools.pageobject.nav.html" />
+    <link rel="prev" title="webdriver_test_tools.pageobject.form module" href="webdriver_test_tools.pageobject.form.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -162,13 +162,13 @@
         
           <li><a href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a> &raquo;</li>
         
-      <li>webdriver_test_tools.pageobject.form module</li>
+      <li>webdriver_test_tools.pageobject.modal module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/webdriver_test_tools.pageobject.form.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/webdriver_test_tools.pageobject.modal.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -181,102 +181,69 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-webdriver_test_tools.pageobject.form">
-<span id="webdriver-test-tools-pageobject-form-module"></span><h1>webdriver_test_tools.pageobject.form module<a class="headerlink" href="#module-webdriver_test_tools.pageobject.form" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-webdriver_test_tools.pageobject.modal">
+<span id="webdriver-test-tools-pageobject-modal-module"></span><h1>webdriver_test_tools.pageobject.modal module<a class="headerlink" href="#module-webdriver_test_tools.pageobject.modal" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="webdriver_test_tools.pageobject.form.FormObject">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.form.</code><code class="descname">FormObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject" title="Permalink to this definition">¶</a></dt>
+<dt id="webdriver_test_tools.pageobject.modal.ModalObject">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.modal.</code><code class="descname">ModalObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.base.BasePage</span></code></a></p>
-<p>Page object prototype for navbars</p>
+<p>Page object prototype for modals</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><strong>FORM_LOCATOR</strong></a> – Locator for the form element. Override in subclasses</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><strong>SUBMIT_LOCATOR</strong></a> – Locator for the submit button. Override in subclasses</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><strong>SUBMIT_SUCCESS_CLASS</strong></a> – (Optional) Page object of modal/webpage/etc that
-should appear on successful form submission. If subclass set to a subclass of
-BasePage, click_submit() will return an instance of this object.</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR" title="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR"><strong>MODAL_LOCATOR</strong></a> – Locator for the modal element. Override in subclasses</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR" title="webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR"><strong>CLOSE_LOCATOR</strong></a> – Locator for the close button. Override in subclasses</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS" title="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS"><strong>MODAL_BODY_CLASS</strong></a> – (Optional) Page object for the contents of the modal body.
+If set to a subclass of BasePage, get_modal_body() will return an instance
+of this object.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR">
-<code class="descname">FORM_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.pageobject.form.FormObject.Input">
-<em class="property">class </em><code class="descname">Input</code><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.Input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.Input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Subclass used to contain name attributes and select/radio option lists for
-inputs</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="code python first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SOME_INPUT</span> <span class="o">=</span> <span class="s1">&#39;someInput&#39;</span>
-
-<span class="n">SOME_SELECT</span> <span class="o">=</span> <span class="s1">&#39;someSelect&#39;</span>
-<span class="n">SOME_SELECT_OPTIONS</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;vaule1&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;value2&#39;</span><span class="p">,</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR">
-<code class="descname">SUBMIT_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<dt id="webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR">
+<code class="descname">CLOSE_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS">
-<code class="descname">SUBMIT_SUCCESS_CLASS</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="Permalink to this definition">¶</a></dt>
+<dt id="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS">
+<code class="descname">MODAL_BODY_CLASS</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR">
+<code class="descname">MODAL_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="webdriver_test_tools.pageobject.form.FormObject.click_submit">
-<code class="descname">click_submit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.click_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shorthand function for scrolling to the submit button and clicking it.</p>
-<p>If self.SUBMIT_SUCCESS_CLASS is set to a subclass of BasePage, an instance of
-that object will be returned</p>
+<dt id="webdriver_test_tools.pageobject.modal.ModalObject.click_close_button">
+<code class="descname">click_close_button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject.click_close_button"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.click_close_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Click the modal close button</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="webdriver_test_tools.pageobject.form.FormObject.fill_form">
-<code class="descname">fill_form</code><span class="sig-paren">(</span><em>input_map</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.fill_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.fill_form" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fill the form element inputs</p>
+<dt id="webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body">
+<code class="descname">get_modal_body</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject.get_modal_body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>If self.MODAL_BODY_CLASS is set to a subclass of BasePage, returns an instance of
+that object. Otherwise, returns None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.modal.ModalObject.is_displayed">
+<code class="descname">is_displayed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject.is_displayed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.is_displayed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the modal is displayed</p>
+<p>This method checks if the element located by <a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR" title="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MODAL_LOCATOR</span></code></a>
+exists and is visible. This should be sufficient for many common implementations
+of modals, but can be overridden if this isn’t a reliable detection
+method for an implementation</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_map</strong> – Dictionary mapping input names to the values to set them to.
-See webdriver_test_tools.webdriver.actions.form.fill_form_input for values
-to use for different input types</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled">
-<code class="descname">submit_is_enabled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.submit_is_enabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled" title="Permalink to this definition">¶</a></dt>
-<dd><p>Short hand function for checking if the submit button is enabled. Useful
-for forms with JavaScript input validation</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if submit is enabled, False if it’s disabled</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if the modal is displayed, False otherwise</td>
 </tr>
 </tbody>
 </table>
@@ -294,10 +261,10 @@ for forms with JavaScript input validation</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.pageobject.modal.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.modal module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.pageobject.nav.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.nav module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.pageobject.base.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.pageobject.form.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.form module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
