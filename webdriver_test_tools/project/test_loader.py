@@ -10,7 +10,8 @@ def load_project_tests(tests_module, test_module_names=None, test_class_names=No
     project's tests/ directory
 
     :param tests_module: The module object for <test_project>.tests
-    :param test_module_names: (Optional) List of test module names. Only load test cases from a submodule of tests_module with the given names
+    :param test_module_names: (Optional) List of test module names. Only load test cases from a submodule of
+        tests_module with the given names
     :param test_class_names: (Optional) List of test class names. Only load test cases with these names
     :param skip_class_names: (Optional) List of test class names. Skip test cases with these names
 
@@ -32,7 +33,7 @@ def load_webdriver_test_cases(module, test_class_names=None, skip_class_names=No
 
     :param module: The module to load tests from
     :param test_class_names: (Optional) List of test case class names to load. Will load all if unspecified
-    :param test_class_names: (Optional) List of test case class names to skip. Will skip none if unspecified
+    :param skip_class_names: (Optional) List of test case class names to skip. Will skip none if unspecified
 
     :return: A list of test classes loaded from the module
     """
@@ -66,7 +67,7 @@ def _is_valid_case(obj, test_class_names=None, skip_class_names=None):
     if (isinstance(obj, type) and issubclass(obj, WebDriverTestCase) and obj not in parent_classes
             and (skip_class_names is None or obj.__name__ not in skip_class_names)
             and (test_class_names is None or obj.__name__ in test_class_names)
-        ):
+    ):
         return True
     return False
 
@@ -75,8 +76,10 @@ def load_browser_tests(generated_test_cases, test_methods=None, skip_methods=Non
     """Load tests from browser test case classes
 
     :param generated_test_cases: List of generated browser test case classes for a single subclass of WebDriverTestCase
-    :param test_methods: (Optional) List of test method names. If specified, load only these test methods from each browser test case
-    :param skip_methods: (Optional) List of test method names. If specified, do not load these test methods from each browser test case
+    :param test_methods: (Optional) List of test method names. If specified, load only these test methods from each
+        browser test case
+    :param skip_methods: (Optional) List of test method names. If specified, do not load these test methods from each
+        browser test case
 
     :return: A list of loaded tests from the browser test cases
     """
@@ -99,5 +102,3 @@ def load_browser_tests(generated_test_cases, test_methods=None, skip_methods=Non
             if test_method not in skip_methods
         ]
     return browser_tests
-
-

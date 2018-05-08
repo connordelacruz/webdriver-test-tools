@@ -42,7 +42,6 @@ class NavObject(BasePage):
             # Initialize the target page object and return it
             return None if link_tuple[1] is None else link_tuple[1](self.driver)
 
-
     def hover_over_page_link(self, link_map_key):
         """Hover mouse over one of the page links
 
@@ -89,7 +88,8 @@ class CollapsibleNavObject(NavObject):
         :return: True if the nav menu is expanded, False if it's collapsed
         """
         driver = self.driver
-        expanded = test.element_exists(driver, self.MENU_CONTAINER_LOCATOR) and self.find_element(self.MENU_CONTAINER_LOCATOR).is_displayed()
+        expanded = test.element_exists(driver, self.MENU_CONTAINER_LOCATOR) and self.find_element(
+            self.MENU_CONTAINER_LOCATOR).is_displayed()
         return expanded
 
     def click_expand_button(self):

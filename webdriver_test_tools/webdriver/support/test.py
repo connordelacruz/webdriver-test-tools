@@ -25,7 +25,7 @@ def element_exists(driver, element_locator):
     exists = True
     try:
         driver.find_element(*element_locator)
-    except NoSuchElementException as e:
+    except NoSuchElementException:
         exists = False
     return exists
 

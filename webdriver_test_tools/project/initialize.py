@@ -361,7 +361,9 @@ def main(package_name=None, project_title=None):
         initialize_start = True
         initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files, readme_file)
         print(cmd.COLORS['success']('Project initialized.') + '\n')
-        print(cmd.COLORS['emphasize']('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
+        print(cmd.COLORS['emphasize'](
+            'To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name))
+        )
     except KeyboardInterrupt:
         print('')
         if initialize_start:

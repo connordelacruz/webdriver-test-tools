@@ -8,7 +8,6 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
 # Setting form input values
-# TODO: update function names to be consistent (e.g. set_<input type>_value()) and use old names as wrappers for legacy code?
 
 def fill_form_inputs(driver, form_element, input_name_map):
     """Takes a dictionary mapping input names to the desired values and fill out the form accordingly
@@ -86,7 +85,7 @@ def select_radio_input(driver, form_element, name, value):
     :param name: Name attribute of the radio input(s)
     :param value: Value attribute of the radio input to select
     """
-    radio_selector = 'input[type="radio"][name="{}"][value="{}"]'.format(name,value)
+    radio_selector = 'input[type="radio"][name="{}"][value="{}"]'.format(name, value)
     radio_element = form_element.find_element_by_css_selector(radio_selector)
     # Selenium throws an error when trying to click something out of view
     scroll.into_view(driver, radio_element, False)
@@ -194,7 +193,6 @@ def get_form_input_value(input_element):
 
     :return: The value of the input
     """
-    value = None
     # If element tag isn't input, use tag name as input_type (e.g. select)
     input_type = input_element.tag_name if input_element.tag_name != 'input' else input_element.get_attribute('type')
     # figure out the input type, handle appropriately
