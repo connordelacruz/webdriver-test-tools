@@ -1,4 +1,5 @@
-# Functions for test modules
+"""Functions for test project __main__ modules"""
+
 import argparse
 import unittest
 import textwrap
