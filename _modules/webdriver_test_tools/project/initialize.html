@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 0.28.0 documentation</title>
+  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 0.29.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.28
+                0.29
               </div>
             
           
@@ -517,7 +517,9 @@
         <span class="n">initialize_start</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">initialize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">validated_package_name</span><span class="p">,</span> <span class="n">validated_project_title</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="p">,</span> <span class="n">readme_file</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">](</span><span class="s1">&#39;Project initialized.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;emphasize&#39;</span><span class="p">](</span><span class="s1">&#39;To get started, set the SITE_URL for the project in </span><span class="si">{}</span><span class="s1">/config/site.py&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">)))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;emphasize&#39;</span><span class="p">](</span>
+            <span class="s1">&#39;To get started, set the SITE_URL for the project in </span><span class="si">{}</span><span class="s1">/config/site.py&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">))</span>
+        <span class="p">)</span>
     <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">initialize_start</span><span class="p">:</span>
@@ -564,7 +566,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.28.0',
+            VERSION:'0.29.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

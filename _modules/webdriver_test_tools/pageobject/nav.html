@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.nav &mdash; WebDriver Test Tools 0.28.0 documentation</title>
+  <title>webdriver_test_tools.pageobject.nav &mdash; WebDriver Test Tools 0.29.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.28
+                0.29
               </div>
             
           
@@ -198,7 +198,6 @@
             <span class="c1"># Initialize the target page object and return it</span></div>
             <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
 
-
 <div class="viewcode-block" id="NavObject.hover_over_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">hover_over_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Hover mouse over one of the page links</span>
 
@@ -245,7 +244,8 @@
 <span class="sd">        :return: True if the nav menu is expanded, False if it&#39;s collapsed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">driver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span>
-        <span class="n">expanded</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">()</span></div>
+        <span class="n">expanded</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">()</span></div>
         <span class="k">return</span> <span class="n">expanded</span>
 
 <div class="viewcode-block" id="CollapsibleNavObject.click_expand_button"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_expand_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_expand_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -295,7 +295,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.28.0',
+            VERSION:'0.29.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

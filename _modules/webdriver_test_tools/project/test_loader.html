@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_loader &mdash; WebDriver Test Tools 0.28.0 documentation</title>
+  <title>webdriver_test_tools.project.test_loader &mdash; WebDriver Test Tools 0.29.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.28
+                0.29
               </div>
             
           
@@ -166,7 +166,8 @@
 <span class="sd">    project&#39;s tests/ directory</span>
 
 <span class="sd">    :param tests_module: The module object for &lt;test_project&gt;.tests</span>
-<span class="sd">    :param test_module_names: (Optional) List of test module names. Only load test cases from a submodule of tests_module with the given names</span>
+<span class="sd">    :param test_module_names: (Optional) List of test module names. Only load test cases from a submodule of</span>
+<span class="sd">        tests_module with the given names</span>
 <span class="sd">    :param test_class_names: (Optional) List of test class names. Only load test cases with these names</span>
 <span class="sd">    :param skip_class_names: (Optional) List of test class names. Skip test cases with these names</span>
 
@@ -188,7 +189,7 @@
 
 <span class="sd">    :param module: The module to load tests from</span>
 <span class="sd">    :param test_class_names: (Optional) List of test case class names to load. Will load all if unspecified</span>
-<span class="sd">    :param test_class_names: (Optional) List of test case class names to skip. Will skip none if unspecified</span>
+<span class="sd">    :param skip_class_names: (Optional) List of test case class names to skip. Will skip none if unspecified</span>
 
 <span class="sd">    :return: A list of test classes loaded from the module</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -222,7 +223,7 @@
     <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">WebDriverTestCase</span><span class="p">)</span> <span class="ow">and</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">parent_classes</span>
             <span class="ow">and</span> <span class="p">(</span><span class="n">skip_class_names</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_class_names</span><span class="p">)</span>
             <span class="ow">and</span> <span class="p">(</span><span class="n">test_class_names</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">in</span> <span class="n">test_class_names</span><span class="p">)</span>
-        <span class="p">):</span>
+    <span class="p">):</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span>
 
@@ -231,8 +232,10 @@
     <span class="sd">&quot;&quot;&quot;Load tests from browser test case classes</span>
 
 <span class="sd">    :param generated_test_cases: List of generated browser test case classes for a single subclass of WebDriverTestCase</span>
-<span class="sd">    :param test_methods: (Optional) List of test method names. If specified, load only these test methods from each browser test case</span>
-<span class="sd">    :param skip_methods: (Optional) List of test method names. If specified, do not load these test methods from each browser test case</span>
+<span class="sd">    :param test_methods: (Optional) List of test method names. If specified, load only these test methods from each</span>
+<span class="sd">        browser test case</span>
+<span class="sd">    :param skip_methods: (Optional) List of test method names. If specified, do not load these test methods from each</span>
+<span class="sd">        browser test case</span>
 
 <span class="sd">    :return: A list of loaded tests from the browser test cases</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -255,8 +258,6 @@
             <span class="k">if</span> <span class="n">test_method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_methods</span>
         <span class="p">]</span></div>
     <span class="k">return</span> <span class="n">browser_tests</span>
-
-
 </pre></div>
 
            </div>
@@ -291,7 +292,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.28.0',
+            VERSION:'0.29.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

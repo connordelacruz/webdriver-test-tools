@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_factory &mdash; WebDriver Test Tools 0.28.0 documentation</title>
+  <title>webdriver_test_tools.project.test_factory &mdash; WebDriver Test Tools 0.29.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.28
+                0.29
               </div>
             
           
@@ -202,7 +202,8 @@
     <span class="n">browser_tests</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="c1"># Generate test classes for each test case in the list</span>
     <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_case_list</span><span class="p">:</span>
-        <span class="n">generated_tests</span> <span class="o">=</span> <span class="n">generate_browser_test_cases</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">,</span> <span class="n">headless</span><span class="p">)</span>
+        <span class="n">generated_tests</span> <span class="o">=</span> <span class="n">generate_browser_test_cases</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">browser_test_classes</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span>
+                                                      <span class="n">browserstack</span><span class="p">,</span> <span class="n">headless</span><span class="p">)</span>
         <span class="n">test_methods</span> <span class="o">=</span> <span class="n">_get_test_methods</span><span class="p">(</span><span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">)</span>
         <span class="n">skip_methods</span> <span class="o">=</span> <span class="n">_get_test_methods</span><span class="p">(</span><span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span>
         <span class="n">loaded_tests</span> <span class="o">=</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_browser_tests</span><span class="p">(</span><span class="n">generated_tests</span><span class="p">,</span> <span class="n">test_methods</span><span class="p">,</span> <span class="n">skip_methods</span><span class="p">)</span>
@@ -211,7 +212,8 @@
 
 
 <span class="k">def</span> <span class="nf">_get_test_methods</span><span class="p">(</span><span class="n">test_case_name</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Takes test_class_map or skip_class_map and returns the list of methods for the test case or None if no methods were specified for it</span>
+    <span class="sd">&quot;&quot;&quot;Takes test_class_map or skip_class_map and returns the list of methods for the test case or None if no methods</span>
+<span class="sd">    were specified for it</span>
 
 <span class="sd">    :param test_case_name: Name of the test case to check</span>
 <span class="sd">    :param test_class_map: Dictionary mapping test names to a list of methods</span>
@@ -369,7 +371,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.28.0',
+            VERSION:'0.29.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

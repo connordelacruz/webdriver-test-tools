@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.actions.scroll &mdash; WebDriver Test Tools 0.28.0 documentation</title>
+  <title>webdriver_test_tools.webdriver.actions.scroll &mdash; WebDriver Test Tools 0.29.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.28
+                0.29
               </div>
             
           
@@ -154,12 +154,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.webdriver.actions.scroll</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Functions for scrolling elements into view</span>
-
-<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="k">import</span> <span class="n">WebDriverWait</span><span class="p">,</span> <span class="n">Select</span>
-<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="k">import</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">NoSuchElementException</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="k">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for scrolling elements into view&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="into_view"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.scroll.html#webdriver_test_tools.webdriver.actions.scroll.into_view">[docs]</a><span class="k">def</span> <span class="nf">into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">align_to_top</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -167,7 +162,8 @@
 
 <span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param element: WebElement to scroll to</span>
-<span class="sd">    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if False</span>
+<span class="sd">    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom</span>
+<span class="sd">        if False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;arguments[0].scrollIntoView(</span><span class="si">{}</span><span class="s1">);&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">align_to_top</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span></div>
     <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
@@ -177,7 +173,8 @@
 
 <span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param element: WebElement to scroll to and click on</span>
-<span class="sd">    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if False</span>
+<span class="sd">    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if</span>
+<span class="sd">        False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">align_to_top</span><span class="p">)</span></div>
     <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
@@ -191,7 +188,7 @@
 <span class="sd">    :param x: Horizontal scroll coordinate</span>
 <span class="sd">    :param y: Vertical scroll coordinate</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;window.scroll(</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">);&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span></div>
+    <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;window.scroll(</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">);&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
     <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">)</span>
 
 <div class="viewcode-block" id="to_element"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.scroll.html#webdriver_test_tools.webdriver.actions.scroll.to_element">[docs]</a><span class="k">def</span> <span class="nf">to_element</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">align_to_top</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -205,7 +202,8 @@
 <span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param element: WebElement object for the target element</span>
 <span class="sd">    :param offset: (Default = 0) Scroll offset</span>
-<span class="sd">    :param align_to_top: (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the bottom if False</span>
+<span class="sd">    :param align_to_top: (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the</span>
+<span class="sd">        bottom if False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">scroll_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;offsetTop&#39;</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">align_to_top</span><span class="p">:</span>
@@ -223,7 +221,8 @@
 <span class="sd">    :param target_element: WebElement object for the target element</span>
 <span class="sd">    :param fixed_element: WebElement object for the fixed nav</span>
 <span class="sd">    :param additional_offset: (Default = 0) Additional offset from the top</span>
-<span class="sd">    :param align_to_top: (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the bottom if False</span>
+<span class="sd">    :param align_to_top: (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the</span>
+<span class="sd">        bottom if False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">offset</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fixed_element</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="n">additional_offset</span></div>
     <span class="n">to_element</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_element</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">align_to_top</span><span class="p">)</span>
@@ -263,7 +262,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'0.28.0',
+            VERSION:'0.29.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
