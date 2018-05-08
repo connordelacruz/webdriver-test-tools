@@ -8,7 +8,6 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
 # Setting form input values
-# TODO: update function names to be consistent (e.g. set_<input type>_value()) and use old names as wrappers for legacy code?
 
 def fill_form_inputs(driver, form_element, input_name_map):
     """Takes a dictionary mapping input names to the desired values and fill out the form accordingly
