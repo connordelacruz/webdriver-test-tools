@@ -87,11 +87,11 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
         browser_choices = list(set(browser_config.get_browser_names()) | set(browserstack_config.get_browser_names()))
     else:
         browser_choices = list(browser_config.get_browser_names())
-    browser_options_help = format_browser_choices(browser_config, browserstack_config)
+    browser_options_help = _format_browser_choices(browser_config, browserstack_config)
     browser_help = 'Run tests only in the specified browsers.' + browser_options_help
     group.add_argument('-b', '--browser', nargs='+', choices=browser_choices, metavar='<browser>',
                        help=browser_help)
-    headless_options_help = format_headless_browsers(browser_config)
+    headless_options_help = _format_headless_browsers(browser_config)
     headless_help = 'Run tests using headless browsers.' + headless_options_help
     group.add_argument('-H', '--headless', action='store_true', help=headless_help)
     if browserstack_config.ENABLE:
@@ -106,7 +106,7 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     return parser
 
 
-def format_browser_choices(browser_config, browserstack_config):
+def _format_browser_choices(browser_config, browserstack_config):
     """Format the help string for browser choices
 
     If BrowserStack is disabled or doesn't have any browsers enabled that aren't also in
@@ -137,22 +137,22 @@ def format_browser_choices(browser_config, browserstack_config):
     browserstack_set = set(browserstack_config.get_browser_names())
     # If browserstack is disabled or there's no difference in browsers
     if not browserstack_config.ENABLE or local_set == browserstack_set:
-        options = '\nOptions: ' + browser_list_string(browser_config.get_browser_names())
+        options = '\nOptions: ' + _browser_list_string(browser_config.get_browser_names())
     # Else if there is some difference between enabled sets
     else:
         both_set = local_set.intersection(browserstack_set)
         local_only = local_set - browserstack_set
         browserstack_only = browserstack_set - local_set
         if both_set:
-            options += '\nLocal & BrowserStack:\n' + cmd.INDENT + browser_list_string(list(both_set))
+            options += '\nLocal & BrowserStack:\n' + cmd.INDENT + _browser_list_string(list(both_set))
         if local_only:
-            options += '\nLocal Only:\n' + cmd.INDENT + browser_list_string(list(local_only))
+            options += '\nLocal Only:\n' + cmd.INDENT + _browser_list_string(list(local_only))
         if browserstack_only:
-            options += '\nBrowserStack Only:\n' + cmd.INDENT + browser_list_string(list(browserstack_only))
+            options += '\nBrowserStack Only:\n' + cmd.INDENT + _browser_list_string(list(browserstack_only))
     return options
 
 
-def format_headless_browsers(browser_config):
+def _format_headless_browsers(browser_config):
     """Format the help string for compatible browsers in --headless help string
 
     :param browser_config: BrowserConfig class
@@ -164,10 +164,10 @@ def format_headless_browsers(browser_config):
         browser_class.SHORT_NAME for browser_class in Browsers.HEADLESS_COMPATIBLE
         if browser_class.SHORT_NAME in enabled_browsers
     ]
-    return '\nCompatible Browsers:\n' + cmd.INDENT + browser_list_string(browser_names)
+    return '\nCompatible Browsers:\n' + cmd.INDENT + _browser_list_string(browser_names)
 
 
-def browser_list_string(browser_names):
+def _browser_list_string(browser_names):
     """Takes a list of browser names and returns a string representation in the format
     '{browser0,browser1,browser2}'
 
