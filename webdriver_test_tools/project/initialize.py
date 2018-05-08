@@ -1,14 +1,13 @@
 # Used to create a new test package
 
-import glob
+import sys
 import os
 import shutil
 import re
 import jinja2
 
-from webdriver_test_tools import cmd
+from webdriver_test_tools import cmd, version
 from webdriver_test_tools.project import templates
-from webdriver_test_tools.version import __version__, __selenium__
 
 
 # Project creation functions
@@ -224,17 +223,12 @@ def create_file_from_template(template_path, target_path, filename, context):
     render_template_to_file(file_template, context, file_target)
 
 
-def generate_context(test_package, project_title=None, test_tools_version=__version__, selenium_version=__selenium__, version_badge=True):
+def generate_context(test_package, project_title=None, version_badge=True):
     """Returns a jinja context to use for rendering templates
 
     :param test_package: Name of the python test package
     :param project_title: (Default = test_package) Human-readable title for the test
         project. Defaults to the value of test_package if not provided
-    :param test_tools_version: (Optional) Version of webdriver_test_tools to use as
-        install dependency. Defaults to ``webdriver_test_tools.version.__version__``
-    :param selenium_version: (Optional) Version of selenium package used when
-        developing/testing the current version of webdriver_test_tools. Defaults to
-        ``webdriver_test_tools.version.__selenium__``
     :param version_badge: (Default = True) Include "generated using
         webdriver_test_tools <version>" badge on README if True
 
@@ -242,11 +236,12 @@ def generate_context(test_package, project_title=None, test_tools_version=__vers
     """
     if project_title is None:
         project_title = test_package
+    version_info = version.get_version_info()
 
     context = {
             'test_package': test_package,
-            'test_tools_version': test_tools_version,
-            'selenium_version': selenium_version,
+            'test_tools_version': version_info['version'],
+            'selenium_version': version_info['selenium'],
             'project_title': project_title,
             'version_badge': version_badge,
             }
@@ -330,7 +325,7 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
     create_template_files(package_path, context)
 
 
-# TODO: implement optional params
+# TODO: implement optional params (use for optional command line args?)
 def main(package_name=None, project_title=None):
     """Command line dialogs for initializing a test project
 
@@ -341,29 +336,38 @@ def main(package_name=None, project_title=None):
         project title will be skipped and function will continue using this as the
         project title
     """
-    print(cmd.COLORS['title']('webdriver_test_tools {} project initialization'.format(__version__)) + '\n')
-    # Prompt for input if no package name is passed as a parameter
-    print('Enter a name for the test package')
-    print('(use only alphanumeric characters and underscores. Cannot start with a number)')
-    validated_package_name = cmd.prompt('Package name', validate=validate_package_name)
-    # Prompt for optional project title, default to validated_package_name
-    print('(Optional) Enter a human-readable name for the test project')
-    print('(can use alphanumeric characters, spaces, hyphens, and underscores)')
-    validated_project_title = cmd.prompt('Project title', default=validated_package_name,
-                                         validate=validate_project_title)
-    # Ask if gitignore files should be generated
-    print('Create .gitignore files for project root and log directory?')
-    print('(Ignores python cache files, package install files, local driver logs, etc)')
-    gitignore_files = cmd.prompt('Create .gitignore files (y/n)', default='y', validate=cmd.validate_yn)
-    # Ask if README should be generated
-    print('Generate README file?')
-    print('(README contains information on command line usage and directory structure)')
-    readme_file = cmd.prompt('Create README file (y/n)', default='y', validate=cmd.validate_yn)
-    # Create project package
-    print('Creating test project...')
-    initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files, readme_file)
-    print(cmd.COLORS['success']('Project initialized.') + '\n')
-    print(cmd.COLORS['emphasize']('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
+    initialize_start = False
+    try:
+        print(cmd.COLORS['title']('webdriver_test_tools project initialization') + '\n')
+        # Prompt for input if no package name is passed as a parameter
+        print('Enter a name for the test package')
+        print('(use only alphanumeric characters and underscores. Cannot start with a number)')
+        validated_package_name = cmd.prompt('Package name', validate=validate_package_name)
+        # Prompt for optional project title, default to validated_package_name
+        print('(Optional) Enter a human-readable name for the test project')
+        print('(can use alphanumeric characters, spaces, hyphens, and underscores)')
+        validated_project_title = cmd.prompt('Project title', default=validated_package_name,
+                                             validate=validate_project_title)
+        # Ask if gitignore files should be generated
+        print('Create .gitignore files for project root and log directory?')
+        print('(Ignores python cache files, package install files, local driver logs, etc)')
+        gitignore_files = cmd.prompt('Create .gitignore files (y/n)', default='y', validate=cmd.validate_yn)
+        # Ask if README should be generated
+        print('Generate README file?')
+        print('(README contains information on command line usage and directory structure)')
+        readme_file = cmd.prompt('Create README file (y/n)', default='y', validate=cmd.validate_yn)
+        # Create project package
+        print('Creating test project...')
+        initialize_start = True
+        initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files, readme_file)
+        print(cmd.COLORS['success']('Project initialized.') + '\n')
+        print(cmd.COLORS['emphasize']('To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name)))
+    except KeyboardInterrupt:
+        print('')
+        if initialize_start:
+            msg = 'Initialization was cancelled mid-operation.'
+            print(cmd.COLORS['warning'](msg))
+        sys.exit()
 
 
 if __name__ == '__main__':

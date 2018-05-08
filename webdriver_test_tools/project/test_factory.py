@@ -1,12 +1,13 @@
 """Functions for generating test cases"""
 
 import unittest
-from webdriver_test_tools.config import BrowserConfig
+
 from webdriver_test_tools.project import test_loader
-from webdriver_test_tools.classes.webdriver_test_case import WebDriverTestCase, WebDriverMobileTestCase, Browsers
+from webdriver_test_tools.testcase import *
 
 
-def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_class_map=None,
+def generate_browser_test_suite(test_case_list, browser_test_classes=None,
+                                test_class_map=None, skip_class_map=None,
                                 config_module=None, browserstack=False, headless=False):
     """Generates test cases for multiple browsers and returns a TestSuite with all of
     the new tests
@@ -18,6 +19,8 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
         each available browser test case class.
     :param test_class_map: (Optional) Dictionary mapping test case names to a list of
         test functions. If the list is empty, all test functions will be loaded
+    :param skip_class_map: (Optional) Dictionary mapping test case names to a list of
+        test functions. If the list is empty, entire class will be skipped
     :param config_module: (Optional) The module object for <test_project>.config
     :param browserstack: (Default = False) If True, configure generated test cases to
         run on BrowserStack instead of locally. Need to provide `config_module` with
@@ -31,19 +34,35 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None, test_
     # if headless, only use compatible browsers in browser_test_classes
     if headless:
         if browser_test_classes is None:
-            browser_test_classes = Browsers.HEADLESS_COMPATIBLE.copy()
+            browser_test_classes = [
+                browser_test_class for browser_test_class in Browsers.HEADLESS_COMPATIBLE
+                if browser_test_class in config_module.BrowserConfig.get_browser_classes()
+            ]
         else:
             browser_test_classes = [
-                browser_test_class for browser_test_class in browser_test_classes if browser_test_class in Browsers.HEADLESS_COMPATIBLE
+                browser_test_class for browser_test_class in browser_test_classes
+                if browser_test_class in Browsers.HEADLESS_COMPATIBLE
             ]
     browser_tests = []
     # Generate test classes for each test case in the list
     for test_case in test_case_list:
         generated_tests = generate_browser_test_cases(test_case, browser_test_classes, config_module, browserstack, headless)
-        test_methods = None if test_class_map is None or test_case.__name__ not in test_class_map else test_class_map[test_case.__name__]
-        loaded_tests = test_loader.load_browser_tests(generated_tests, test_methods)
+        test_methods = _get_test_methods(test_case.__name__, test_class_map)
+        skip_methods = _get_test_methods(test_case.__name__, skip_class_map)
+        loaded_tests = test_loader.load_browser_tests(generated_tests, test_methods, skip_methods)
         browser_tests.extend(loaded_tests)
     return unittest.TestSuite(browser_tests)
+
+
+def _get_test_methods(test_case_name, test_class_map):
+    """Takes test_class_map or skip_class_map and returns the list of methods for the test case or None if no methods were specified for it
+
+    :param test_case_name: Name of the test case to check
+    :param test_class_map: Dictionary mapping test names to a list of methods
+    """
+    if test_class_map is None or test_case_name not in test_class_map:
+        return None
+    return test_class_map[test_case_name]
 
 
 def generate_browser_test_cases(base_class, browser_test_classes=None, config_module=None,
@@ -64,7 +83,7 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     :return: List of generated test case classes for each browser
     """
     # generate class only for browser_test_class if specified
-    browser_classes = BrowserConfig.BROWSER_TEST_CLASSES.values() if browser_test_classes is None else browser_test_classes
+    browser_classes = config_module.BrowserConfig.get_browser_classes() if browser_test_classes is None else browser_test_classes
     # If this test is for non-mobile only, don't generate tests for subclasses of WebDriverMobileTestCase
     if base_class.SKIP_MOBILE:
         browser_classes = [
@@ -78,7 +97,8 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
     # iterate through a list of browser classes and generate test cases
     # skip browser classes if listed in base_class.SKIP_BROWSERS
     browser_test_cases = [
-        generate_browser_test_case(base_class, browser_class, config_module, browserstack, headless) for browser_class in browser_classes
+        generate_browser_test_case(base_class, browser_class, config_module, browserstack, headless)
+        for browser_class in browser_classes
         if browser_class.SHORT_NAME not in base_class.SKIP_BROWSERS
     ]
     return browser_test_cases

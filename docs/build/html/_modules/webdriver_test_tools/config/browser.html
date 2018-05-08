@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.browser &mdash; WebDriver Test Tools 0.27.0 documentation</title>
+  <title>webdriver_test_tools.config.browser &mdash; WebDriver Test Tools 0.28.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.27
+                0.28
               </div>
             
           
@@ -154,30 +154,103 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.config.browser</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.classes.webdriver_test_case</span> <span class="k">import</span> <span class="o">*</span>
+<span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase.browsers</span> <span class="k">import</span> <span class="o">*</span>
 
 
-<div class="viewcode-block" id="BrowserConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig">[docs]</a><span class="k">class</span> <span class="nc">BrowserConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Configurations for what browsers to generate tests for</span>
+<div class="viewcode-block" id="BrowserConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig">[docs]</a><span class="k">class</span> <span class="nc">BrowserConfig</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Configurations for which browsers to generate tests for</span>
 
-<span class="sd">    :var BrowserConfig.BROWSER_TEST_CLASSES: Dictionary of browser test case classes to</span>
-<span class="sd">        use indexed by the short name for that class (i.e. its command line argument).</span>
-<span class="sd">        Default to Chrome and Firefox since they&#39;re not platform specific</span>
+<span class="sd">    :var BrowserConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.</span>
+<span class="sd">        True enables the browser, False disables it. Defaults to Chrome and</span>
+<span class="sd">        Firefox since they&#39;re not platform specific</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">BROWSER_TEST_CLASSES</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">Browsers</span><span class="o">.</span><span class="n">FIREFOX</span><span class="p">:</span> <span class="n">FirefoxTestCase</span><span class="p">,</span>
-        <span class="n">Browsers</span><span class="o">.</span><span class="n">CHROME</span><span class="p">:</span> <span class="n">ChromeTestCase</span><span class="p">,</span>
-        <span class="c1"># Browsers.SAFARI: SafariTestCase,</span>
-        <span class="c1"># Browsers.IE: IETestCase,</span>
-        <span class="c1"># Browsers.EDGE: EdgeTestCase,</span>
-        <span class="c1"># Browsers.CHROME_MOBILE: ChromeMobileTestCase,</span>
+
+    <span class="n">ENABLED_BROWSERS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Browsers</span><span class="o">.</span><span class="n">FIREFOX</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">Browsers</span><span class="o">.</span><span class="n">CHROME</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">Browsers</span><span class="o">.</span><span class="n">SAFARI</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">Browsers</span><span class="o">.</span><span class="n">IE</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">Browsers</span><span class="o">.</span><span class="n">EDGE</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">Browsers</span><span class="o">.</span><span class="n">CHROME_MOBILE</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">}</span>
 
-<div class="viewcode-block" id="BrowserConfig.Browsers"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig.Browsers">[docs]</a>    <span class="k">class</span> <span class="nc">Browsers</span><span class="p">(</span><span class="n">Browsers</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Attribute that mirrors the content of :class:`webdriver_test_tools.classes.webdriver_test_case.Browsers`</span>
-<span class="sd">        for convenience</span>
+<div class="viewcode-block" id="BrowserConfig.get_browser_classes"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig.get_browser_classes">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_browser_classes</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">browser_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a list of enabled browser classes</span>
+
+<span class="sd">        :param browser_names: (Optional) List of browser names to get classes for</span>
+
+<span class="sd">        :return: List of enabled browser test case classes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">browser_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">browser_names</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ENABLED_BROWSERS</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Use only valid browser names</span>
+            <span class="n">browser_names</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">browser_name</span> <span class="k">for</span> <span class="n">browser_name</span> <span class="ow">in</span> <span class="n">browser_names</span>
+                <span class="k">if</span> <span class="n">browser_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ENABLED_BROWSERS</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="p">]</span>
+        <span class="n">browser_classes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">browser_class</span> <span class="k">for</span> <span class="n">short_name</span><span class="p">,</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">TEST_CLASSES</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">short_name</span> <span class="ow">in</span> <span class="n">browser_names</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ENABLED_BROWSERS</span><span class="p">[</span><span class="n">short_name</span><span class="p">]</span>
+        <span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">browser_classes</span>
+
+<div class="viewcode-block" id="BrowserConfig.get_browser_names"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig.get_browser_names">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_browser_names</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of short names for enabled browser classes</span>
+
+<span class="sd">        :return: List of short names for enabled browser test case classes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">browser_name</span> <span class="k">for</span> <span class="n">browser_name</span><span class="p">,</span> <span class="n">is_enabled</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ENABLED_BROWSERS</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">is_enabled</span></div></div>
+        <span class="p">]</span>
+
+
+<div class="viewcode-block" id="BrowserStackConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig">[docs]</a><span class="k">class</span> <span class="nc">BrowserStackConfig</span><span class="p">(</span><span class="n">BrowserConfig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Global configurations for BrowserStack testing</span>
+
+<span class="sd">    :var BrowserStackConfig.ENABLE: Set to True to enable BrowserStack testing</span>
+<span class="sd">    :var BrowserStackConfig.USERNAME: Account username. Projects will need to override this</span>
+<span class="sd">    :var BrowserStackConfig.ACCESS_KEY: Access key. Projects will need to override this</span>
+<span class="sd">    :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations</span>
+<span class="sd">        `Capabilities reference &lt;https://www.browserstack.com/automate/capabilities#&gt;`__</span>
+<span class="sd">    :var BrowserStackConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.</span>
+<span class="sd">        True enables the browser, False disables it. Defaults to Chrome and</span>
+<span class="sd">        Firefox since they&#39;re not platform specific</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ENABLE</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">USERNAME</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ACCESS_KEY</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">BS_CAPABILITIES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;project&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s1">&#39;browserstack.video&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Methods</span>
+
+<div class="viewcode-block" id="BrowserStackConfig.get_command_executor"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.get_command_executor">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_command_executor</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the command executor URL</span>
+
+<span class="sd">        :return: Command executor URL formatted with USERNAME and ACCESS_KEY</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">USERNAME</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ACCESS_KEY</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;USERNAME or ACCESS_KEY not set in BrowserStackConfig&#39;</span><span class="p">)</span>
+        <span class="n">url_format</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">{USERNAME}</span><span class="s1">:</span><span class="si">{ACCESS_KEY}</span><span class="s1">@hub.browserstack.com:80/wd/hub&#39;</span>
+        <span class="n">command_executor</span> <span class="o">=</span> <span class="n">url_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">USERNAME</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">ACCESS_KEY</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">ACCESS_KEY</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">command_executor</span>
+
+<div class="viewcode-block" id="BrowserStackConfig.add_browserstack_capabilities"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add_browserstack_capabilities</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">desired_capabilities</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update a desired capabilities dictionary to include items from BS_CAPABILITIES</span>
+
+<span class="sd">        :param desired_capabilities: Desired capabilities dictionary to update</span>
 <span class="sd">        &quot;&quot;&quot;</span></div></div>
-        <span class="k">pass</span>
+        <span class="n">desired_capabilities</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">)</span>
 
 </pre></div>
 
@@ -213,7 +286,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.27.0',
+            VERSION:'0.28.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

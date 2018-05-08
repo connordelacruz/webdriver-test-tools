@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>webdriver_test_tools.pageobject.nav module &mdash; WebDriver Test Tools 0.28.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="webdriver_test_tools.pageobject.prototypes module" href="webdriver_test_tools.pageobject.prototypes.html" />
+    <link rel="prev" title="webdriver_test_tools.pageobject.form module" href="webdriver_test_tools.pageobject.form.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.28
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Docs:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.html#module-webdriver_test_tools.pageobject">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#module-webdriver_test_tools">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="webdriver_test_tools.html">webdriver_test_tools API</a> &raquo;</li>
+        
+          <li><a href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.pageobject.nav module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/webdriver_test_tools.pageobject.nav.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-webdriver_test_tools.pageobject.nav">
+<span id="webdriver-test-tools-pageobject-nav-module"></span><h1>webdriver_test_tools.pageobject.nav module<a class="headerlink" href="#module-webdriver_test_tools.pageobject.nav" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.nav.</code><code class="descname">CollapsibleNavObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#CollapsibleNavObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.nav.NavObject</span></code></a></p>
+<p>Subclass of NavObject with additional methods for collapsible nav menus</p>
+<p>In addition to the variables for <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code></a>, the following variables need to
+be defined for collapsible navs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR"><strong>EXPAND_BUTTON_LOCATOR</strong></a> – Locator for the button that expands the nav menu</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR"><strong>COLLAPSE_BUTTON_LOCATOR</strong></a> – Locator for the button that expands the nav menu</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR"><strong>MENU_CONTAINER_LOCATOR</strong></a> – Locator for the collapsing/expanding container of the
+navigation menu</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR">
+<code class="descname">COLLAPSE_BUTTON_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR">
+<code class="descname">EXPAND_BUTTON_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR">
+<code class="descname">MENU_CONTAINER_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_collapse_button">
+<code class="descname">click_collapse_button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#CollapsibleNavObject.click_collapse_button"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_collapse_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Click the button to collapse the nav menu</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_expand_button">
+<code class="descname">click_expand_button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#CollapsibleNavObject.click_expand_button"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_expand_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Click the button to expand the nav menu</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.is_expanded">
+<code class="descname">is_expanded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#CollapsibleNavObject.is_expanded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.is_expanded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the nav menu is expanded</p>
+<p>This method checks if the element located by <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MENU_CONTAINER_LOCATOR</span></code></a>
+exists and is visible. This should be sufficient for many common implementations
+of collapsible navs, but can be overridden if this isn’t a reliable detection
+method for an implementation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if the nav menu is expanded, False if it’s collapsed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="webdriver_test_tools.pageobject.nav.NavObject">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.nav.</code><code class="descname">NavObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.base.BasePage</span></code></a></p>
+<p>Page object prototype for navbars</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP"><strong>LINK_MAP</strong></a> – Maps link text to a tuple containing its locator and the page object
+class for the target page, modal, section, etc (or None if need be).
+Override in subclasses</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP"><strong>HOVER_MAP</strong></a> – Maps link text to a tuple containing its locator and the page
+object class for the menu, dropdown, etc that should appear on hover (or None
+if need be). Override in subclasses</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.fixed" title="webdriver_test_tools.pageobject.nav.NavObject.fixed"><strong>fixed</strong></a> – (Default = True) True if element is a fixed navbar, False otherwise. If
+set to False in a subclass, click_page_link() and hover_over_page_link() will
+scroll the target link into view before interacting with it</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP">
+<code class="descname">HOVER_MAP</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP">
+<code class="descname">LINK_MAP</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.nav.NavObject.click_page_link">
+<code class="descname">click_page_link</code><span class="sig-paren">(</span><em>link_map_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.click_page_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.click_page_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Click one of the page links and return a page object class for the link
+target</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_map_key</strong> – Key into LINK_MAP for the link to click on</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Corresponding page object class for the link target (if applicable)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.pageobject.nav.NavObject.fixed">
+<code class="descname">fixed</code><em class="property"> = True</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.fixed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link">
+<code class="descname">hover_over_page_link</code><span class="sig-paren">(</span><em>link_map_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.hover_over_page_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hover mouse over one of the page links</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_map_key</strong> – Key into HOVER_MAP for the link to hover mouse over</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Corresponding page object class for the hover dropdown/container/etc
+(if applicable)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="webdriver_test_tools.pageobject.prototypes.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.prototypes module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="webdriver_test_tools.pageobject.form.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.form module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.28.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

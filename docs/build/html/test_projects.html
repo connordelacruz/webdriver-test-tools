@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Test Project Overview &mdash; WebDriver Test Tools 0.27.0 documentation</title>
+  <title>Test Project Overview &mdash; WebDriver Test Tools 0.28.0 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.27
+                0.28
               </div>
             
           
@@ -262,16 +262,21 @@ as class variables as well.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>To run specific TestCase classes:</p>
+<p>To run specific test case classes or methods:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span><span class="p">[</span><span class="o">.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span><span class="p">[</span><span class="o">.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">--test</span></code> argument will run all tests in a class if no method is specified
-for it.</p>
-<p><strong>Note:</strong> If the <code class="docutils literal notranslate"><span class="pre">--module</span></code> and <code class="docutils literal notranslate"><span class="pre">--test</span></code> arguments are used together, only
-the specified modules will be searched when looking for the specified test
-classes. If any of the test classes do not exist in any of the specified
-modules, they will be ignored.</p>
+<p>To skip certain test cases or methods:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">skip</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span><span class="p">[</span><span class="o">.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span><span class="p">[</span><span class="o">.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>These arguments can be used together. When combined, they are processed in the
+following order:</p>
+<ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">--module</span></code> reduces the set of tests to those in the specified modules</li>
+<li><code class="docutils literal notranslate"><span class="pre">--test</span></code> reduces the set of tests to the specified classes and methods</li>
+<li><code class="docutils literal notranslate"><span class="pre">--skip</span></code> removes the specified classes and methods from the set of tests</li>
+</ol>
 <div class="section" id="using-specific-browsers">
 <h4><a class="toc-backref" href="#id7">Using Specific Browsers</a><a class="headerlink" href="#using-specific-browsers" title="Permalink to this headline">¶</a></h4>
 <p>To do any of the above in specific browsers rather than running in all available
@@ -458,7 +463,7 @@ use as a starting point when creating new tests.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.27.0',
+            VERSION:'0.28.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

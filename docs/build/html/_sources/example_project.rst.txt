@@ -11,42 +11,47 @@ Initialize the project
 
 First, create a directory for the test project:
 
-::
+.. code-block:: none
 
     mkdir example-project
     cd example-project
 
 Once in the project directory, run the following command to initialize the project:
 
-::
+.. code-block:: none
 
     webdriver_test_tools --init
 
 You will be prompted to enter a name for the test project python package. To be a valid package name, it needs to only use alphanumeric characters and underscores and it cannot start with a number. For this example, we’ll call it ``example_package``. Initializing the project should create the following files and directories:
 
-::
+.. code-block:: none
 
     example-project/
+    ├── README.rst
     ├── example_package/
+    │   ├── __init__.py
+    │   ├── __main__.py
     │   ├── config/
     │   │   ├── __init__.py
     │   │   ├── browser.py
+    │   │   ├── browserstack.py
     │   │   ├── site.py
-    │   │   └── test.py
+    │   │   ├── test.py
+    │   │   └── webdriver.py
     │   ├── data/
+    │   ├── log/
     │   ├── pages/
     │   ├── templates/
     │   │   ├── page_object.py
     │   │   └── test_case.py
-    │   ├── tests/
-    │   │   └── __init__.py
-    │   └── __main__.py
-    ├── README.md
+    │   └── tests/
+    │       └── __init__.py
     └── setup.py
+
 
 After initializing the test project, run:
 
-::
+.. code-block:: none
 
     pip install -e .
 
@@ -86,7 +91,7 @@ After configuring URLs, we’ll want to add a page object for the home
 page of example.com. Copy the template file ``templates/page_object.py``
 to the ``pages/`` directory and name the copied file ``home.py``:
 
-::
+.. code-block:: none
 
     cp example_package/templates/page_object.py example_package/pages/home.py
 
@@ -132,7 +137,7 @@ Creating a new test module
 
 Now that we have a page object for interacting with example.com, we can write a test case. Copy the file ``templates/test_case.py`` to the ``tests/`` directory and name the copied file ``homepage.py``:
 
-::
+.. code-block:: none
 
     cp example_package/templates/test_case.py example_package/tests/homepage.py
 
@@ -169,13 +174,13 @@ We’re going to add 2 test functions:
 
 We should now have everything we need to run our test suite. To verify that the framework is able to detect the tests, run:
 
-::
+.. code-block:: none
 
     python -m example_package --list
 
 This prints a list of test cases and their test methods in the package. The output should look like this:
 
-::
+.. code-block:: none
 
     HomePageTestCase:
        test_more_information_link
@@ -193,13 +198,13 @@ Running the test suite
 
 To run our test suite:
 
-::
+.. code-block:: none
 
     python -m example_package
 
 This will generate new test case classes for Chrome and Firefox based on the test case classes we wrote and run them. If all tests pass, the output should look like this:
 
-::
+.. code-block:: none
 
     (Firefox) Really contrived example test case
         Test that the 'More information...' link goes to the correct URL ... ok
@@ -219,7 +224,7 @@ Optional command line arguments
 
 Test packages can be run with various optional arguments to run a limited set of test cases instead of running the entire suite. To see a list of command line arguments, run:
 
-::
+.. code-block:: none
 
     python -m example_package --help
 
@@ -228,7 +233,7 @@ Running in a specific browser
 
 If we just wanted to run the tests in a specific browser, we can use the ``--browser`` command line argument. For example, if we only wanted to run Firefox test cases:
 
-::
+.. code-block:: none
 
     python -m example_package --browser firefox
 
@@ -237,7 +242,7 @@ Running specific test modules
 
 If we only want to run a specific test module, we can use the ``--module`` command line argument. For example, if we just wanted to run ``tests/homepage.py``:
 
-::
+.. code-block:: none
 
     python -m example_package --module homepage
 
@@ -248,7 +253,7 @@ Running specific test cases or functions
 
 If we only want to run a specific test case or function within a test case, we can use the ``--test`` command line argument. For example, if we just wanted to run HomePageTestCase:
 
-::
+.. code-block:: none
 
     python -m example_package --test HomePageTestCase
 
@@ -256,6 +261,24 @@ Since we only have one test case class in this example, this doesn’t do anythi
 
 If we just wanted to run the ``test_more_information_link`` function:
 
-::
+.. code-block:: none
 
     python -m example_package --test HomePageTestCase.test_more_information_link
+
+Skipping test cases or functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If we wanted to skip a test case or function within a test case, we can use the
+``--skip`` command line argument, which uses the same syntax as ``--test``. For 
+example, if we wanted to run all tests except for the 
+``test_more_information_link`` function:
+
+.. code-block:: none
+
+    python -m example_package --skip HomePageTestCase.test_more_information_link
+
+Again, this isn't particularly interesting since we only have 2 test functions,
+but can be useful in larger test projects.
+
+
+
