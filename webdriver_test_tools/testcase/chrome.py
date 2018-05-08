@@ -34,8 +34,8 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
     CAPABILITIES = DesiredCapabilities.CHROME.copy()
 
     def bs_driver_init(self):
-        """Configures CAPABILITIES['chromeOptions'] for mobile emulation before calling
-        :meth:`super().bs_driver_init() <webdriver_test_tools.testcase.webdriver.bs_driver_init>`
+        """Configures ``CAPABILITIES['chromeOptions']`` for mobile emulation before calling
+        :meth:`super().bs_driver_init() <webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init>`
 
         :return: webdriver.Remote object with the command_executor and
             desired_capabilities parameters set to self.COMMAND_EXECUTOR and

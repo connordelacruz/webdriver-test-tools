@@ -154,12 +154,14 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.config.webdriver</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+
 <span class="kn">import</span> <span class="nn">webdriver_test_tools</span>
-<span class="kn">import</span> <span class="nn">os.path</span>
 
 
-<div class="viewcode-block" id="WebDriverConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig">[docs]</a><span class="k">class</span> <span class="nc">WebDriverConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig">[docs]</a><span class="k">class</span> <span class="nc">WebDriverConfig</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Configurations for webdriver</span>
 
 <span class="sd">    :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the log</span>
@@ -208,7 +210,7 @@
     <span class="n">IE_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">EDGE_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="n">CHROME_MOBILE_EMULATION</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;Pixel 2&quot;</span> <span class="p">}</span>
+    <span class="n">CHROME_MOBILE_EMULATION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;Pixel 2&quot;</span><span class="p">}</span>
     <span class="n">CHROME_HEADLESS_ARGS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--window-size=1920x1080&#39;</span><span class="p">,]</span>
     <span class="n">FIREFOX_HEADLESS_ARGS</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -235,8 +237,9 @@
 <span class="sd">            headless browser</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">service_log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">LOG_PATH</span><span class="p">,</span> <span class="s1">&#39;chromedriver.log&#39;</span><span class="p">)</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_chrome_headless_options</span><span class="p">()</span> <span class="k">if</span> <span class="n">headless</span> <span class="k">else</span> <span class="kc">None</span></div>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_chrome_headless_options</span><span class="p">()</span> <span class="k">if</span> <span class="n">headless</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span></div>
+                                                             <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span>
 
 <div class="viewcode-block" id="WebDriverConfig.get_safari_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_safari_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_safari_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
@@ -267,8 +270,9 @@
         <span class="n">options</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">ChromeOptions</span><span class="p">()</span>
         <span class="n">options</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s2">&quot;mobileEmulation&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_MOBILE_EMULATION</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">headless</span><span class="p">:</span>
-            <span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--headless&#39;</span><span class="p">)</span></div>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--headless&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span></div>
+                                                             <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span>
 
     <span class="c1"># Driver Options</span>
 
