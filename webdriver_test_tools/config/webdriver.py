@@ -16,7 +16,8 @@ class WebDriverConfig:
 
             Documentation says not to mix this with explicit waits and some instability
             was noticed when it was set to 10. Projects can override this if necessary.
-            `Implicit wait documentation <https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits>`__
+            `Implicit wait documentation
+            <https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits>`__
 
     Browser driver initialization arguments:
 
@@ -55,7 +56,7 @@ class WebDriverConfig:
     EDGE_KWARGS = {}
 
     CHROME_MOBILE_EMULATION = {"deviceName": "Pixel 2"}
-    CHROME_HEADLESS_ARGS = ['--window-size=1920x1080',]
+    CHROME_HEADLESS_ARGS = ['--window-size=1920x1080', ]
     FIREFOX_HEADLESS_ARGS = []
 
     # Functions

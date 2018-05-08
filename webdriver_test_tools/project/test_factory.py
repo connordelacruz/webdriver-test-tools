@@ -46,7 +46,8 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None,
     browser_tests = []
     # Generate test classes for each test case in the list
     for test_case in test_case_list:
-        generated_tests = generate_browser_test_cases(test_case, browser_test_classes, config_module, browserstack, headless)
+        generated_tests = generate_browser_test_cases(test_case, browser_test_classes, config_module,
+                                                      browserstack, headless)
         test_methods = _get_test_methods(test_case.__name__, test_class_map)
         skip_methods = _get_test_methods(test_case.__name__, skip_class_map)
         loaded_tests = test_loader.load_browser_tests(generated_tests, test_methods, skip_methods)
@@ -55,7 +56,8 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None,
 
 
 def _get_test_methods(test_case_name, test_class_map):
-    """Takes test_class_map or skip_class_map and returns the list of methods for the test case or None if no methods were specified for it
+    """Takes test_class_map or skip_class_map and returns the list of methods for the test case or None if no methods
+    were specified for it
 
     :param test_case_name: Name of the test case to check
     :param test_class_map: Dictionary mapping test names to a list of methods

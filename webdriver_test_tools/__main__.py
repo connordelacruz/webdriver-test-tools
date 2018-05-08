@@ -7,7 +7,10 @@ from webdriver_test_tools.project import initialize
 
 def get_parser():
     """Returns ArgumentParser object for use with main()"""
-    parser = argparse.ArgumentParser(add_help=False, epilog='For more information, visit <http://connordelacruz.com/webdriver-test-tools/>')
+    parser = argparse.ArgumentParser(
+        add_help=False,
+        epilog='For more information, visit <http://connordelacruz.com/webdriver-test-tools/>'
+    )
     group = parser.add_argument_group('Commands')
     # Argument for initializing
     group.add_argument('-i', '--init', action='store_true',

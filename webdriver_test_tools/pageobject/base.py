@@ -21,7 +21,6 @@ class BasePage(object):
         """
         self.driver = driver
 
-
     def find_element(self, locator):
         """Returns a WebElement object based on the locator tuple passed
 
@@ -33,7 +32,6 @@ class BasePage(object):
         """
         return self.driver.find_element(*locator)
 
-
     def find_elements(self, locator):
         """Returns a list of WebElement objects based on the locator tuple passed
 
@@ -44,4 +42,3 @@ class BasePage(object):
         :rtype: List of WebElement
         """
         return self.driver.find_elements(*locator)
-

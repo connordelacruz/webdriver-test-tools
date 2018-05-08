@@ -19,7 +19,7 @@ def by_element_text(element_text, element_type='*', exact_match=False):
     xpath_format = '//{tag_type}[{select_expr}]'
     select_expression = select_expression_format.format(text=element_text)
     element_xpath = xpath_format.format(tag_type=element_type, select_expr=select_expression)
-    return (By.XPATH, element_xpath)
+    return By.XPATH, element_xpath
 
 
 def input_elements(exclude_buttons=False):
@@ -42,6 +42,6 @@ def input_elements(exclude_buttons=False):
     css_string = 'input,select,textarea'
     if not exclude_buttons:
         css_string += ',button'
-    return (By.CSS_SELECTOR, css_string)
+    return By.CSS_SELECTOR, css_string
 
 
