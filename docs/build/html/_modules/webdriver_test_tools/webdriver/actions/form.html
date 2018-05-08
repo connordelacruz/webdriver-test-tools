@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.actions.form &mdash; WebDriver Test Tools 0.28.0 documentation</title>
+  <title>webdriver_test_tools.webdriver.actions.form &mdash; WebDriver Test Tools 0.29.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.28
+                0.29
               </div>
             
           
@@ -164,7 +164,6 @@
 <span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="k">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
 
 <span class="c1"># Setting form input values</span>
-<span class="c1"># TODO: update function names to be consistent (e.g. set_&lt;input type&gt;_value()) and use old names as wrappers for legacy code?</span>
 
 <div class="viewcode-block" id="fill_form_inputs"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.fill_form_inputs">[docs]</a><span class="k">def</span> <span class="nf">fill_form_inputs</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">input_name_map</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Takes a dictionary mapping input names to the desired values and fill out the form accordingly</span>
@@ -242,7 +241,7 @@
 <span class="sd">    :param name: Name attribute of the radio input(s)</span>
 <span class="sd">    :param value: Value attribute of the radio input to select</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">radio_selector</span> <span class="o">=</span> <span class="s1">&#39;input[type=&quot;radio&quot;][name=&quot;</span><span class="si">{}</span><span class="s1">&quot;][value=&quot;</span><span class="si">{}</span><span class="s1">&quot;]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">radio_selector</span> <span class="o">=</span> <span class="s1">&#39;input[type=&quot;radio&quot;][name=&quot;</span><span class="si">{}</span><span class="s1">&quot;][value=&quot;</span><span class="si">{}</span><span class="s1">&quot;]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
     <span class="n">radio_element</span> <span class="o">=</span> <span class="n">form_element</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="n">radio_selector</span><span class="p">)</span>
     <span class="c1"># Selenium throws an error when trying to click something out of view</span>
     <span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">radio_element</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
@@ -350,7 +349,6 @@
 
 <span class="sd">    :return: The value of the input</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1"># If element tag isn&#39;t input, use tag name as input_type (e.g. select)</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="o">!=</span> <span class="s1">&#39;input&#39;</span> <span class="k">else</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
     <span class="c1"># figure out the input type, handle appropriately</span>
@@ -461,7 +459,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'0.28.0',
+            VERSION:'0.29.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
