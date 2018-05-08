@@ -182,9 +182,8 @@
     <span class="c1"># Parse arguments</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">,</span> <span class="n">package_name</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-    <span class="c1"># get --test and --module args</span>
+    <span class="c1"># get --test, --skip, and --module args</span>
     <span class="n">test_class_map</span> <span class="o">=</span> <span class="n">parse_test_names</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">test</span><span class="p">)</span>
-    <span class="c1"># get --skip</span>
     <span class="n">skip_class_map</span> <span class="o">=</span> <span class="n">parse_test_names</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">skip</span><span class="p">)</span>
     <span class="n">test_module_names</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">module</span>
     <span class="c1"># If --list is specified, print available tests and exit</span>

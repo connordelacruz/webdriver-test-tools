@@ -1,5 +1,4 @@
 from .webdriver import *
-from webdriver_test_tools.config import WebDriverConfig
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
@@ -33,10 +32,20 @@ class ChromeMobileTestCase(WebDriverMobileTestCase):
     DRIVER_NAME = 'Chrome Mobile [Emulated]'
     SHORT_NAME = 'chrome-mobile'
     CAPABILITIES = DesiredCapabilities.CHROME.copy()
-    # Set options for mobile emulation
-    CAPABILITIES['chromeOptions'] = {
-        'mobileEmulation': WebDriverConfig.CHROME_MOBILE_EMULATION,
-    }
+
+    def bs_driver_init(self):
+        """Configures ``CAPABILITIES['chromeOptions']`` for mobile emulation before calling
+        :meth:`super().bs_driver_init() <webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init>`
+
+        :return: webdriver.Remote object with the command_executor and
+            desired_capabilities parameters set to self.COMMAND_EXECUTOR and
+            self.CAPABILITIES respectively.
+        """
+        # Set options for mobile emulation
+        self.CAPABILITIES['chromeOptions'] = {
+            'mobileEmulation': self.WebDriverConfig.CHROME_MOBILE_EMULATION,
+        }
+        return super().bs_driver_init()
 
     def driver_init(self):
         return self.WebDriverConfig.get_chrome_mobile_driver(self.ENABLE_HEADLESS)

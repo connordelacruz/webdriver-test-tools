@@ -3,5 +3,5 @@
 from .site import SiteConfig
 from .test import TestSuiteConfig
 from .webdriver import WebDriverConfig
-from webdriver_test_tools.testcase.config import BrowserConfig, BrowserStackConfig
+from .browser import BrowserConfig, BrowserStackConfig
 

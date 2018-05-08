@@ -1,9 +1,11 @@
 import unittest
 from functools import wraps
+
+from selenium import webdriver
+
 from webdriver_test_tools.config import WebDriverConfig
 from webdriver_test_tools.common import utils
 from webdriver_test_tools.webdriver.support import test
-from selenium import webdriver
 
 
 class WebDriverTestCase(unittest.TestCase):
