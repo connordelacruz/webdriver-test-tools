@@ -193,7 +193,7 @@ device layout.</p>
 <p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/mobile-emulation">Mobile emulation info</a></p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'chrome', 'chromeOptions': {'mobileEmulation': {'deviceName': 'Pixel 2'}}, 'platform': 'ANY', 'version': ''}</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
+<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'chrome', 'platform': 'ANY', 'version': ''}</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -205,6 +205,23 @@ device layout.</p>
 <dt id="webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.SHORT_NAME">
 <code class="descname">SHORT_NAME</code><em class="property"> = 'chrome-mobile'</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.bs_driver_init">
+<code class="descname">bs_driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/chrome.html#ChromeMobileTestCase.bs_driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.bs_driver_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configures <code class="docutils literal notranslate"><span class="pre">CAPABILITIES['chromeOptions']</span></code> for mobile emulation before calling
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">super().bs_driver_init()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">webdriver.Remote object with the command_executor and
+desired_capabilities parameters set to self.COMMAND_EXECUTOR and
+self.CAPABILITIES respectively.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.driver_init">
