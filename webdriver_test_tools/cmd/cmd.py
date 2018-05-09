@@ -71,10 +71,12 @@ def validate_yn(answer):
     return answer in ['y', 'yes']
 
 
-def prompt(text, default=None, validate=validate_nonempty, trailing_newline=True):
+def prompt(text, *description, default=None, validate=validate_nonempty, trailing_newline=True):
     """Prompt the user for input and validate it
 
     :param text: Text to display in prompt
+    :param description: (Optional) Positional arguments after text will be printed once before user is prompted for
+        input. Each argument will be printed on a new line
     :param default: (Optional) default value
     :param validate: (Default = validate_nonempty) Validation function for input
     :param trailing_newline: (Default = True) Print a blank line after receiving user
@@ -82,6 +84,8 @@ def prompt(text, default=None, validate=validate_nonempty, trailing_newline=True
 
     :return: Validated input
     """
+    if description:
+        print(*description, sep='\n')
     prompt_text = '{} [{}]: '.format(text, default) if default is not None else text + ': '
     prompt_text = COLORS['prompt'](PROMPT_PREFIX + prompt_text)
     while True:
