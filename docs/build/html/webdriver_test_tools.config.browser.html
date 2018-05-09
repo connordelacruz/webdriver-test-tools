@@ -255,16 +255,6 @@ Firefox since they’re not platform specific</li>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY">
-<code class="descname">ACCESS_KEY</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES">
-<code class="descname">BS_CAPABILITIES</code><em class="property"> = {'browserstack.video': False, 'project': None}</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
 <dt id="webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE">
 <code class="descname">ENABLE</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -274,19 +264,15 @@ Firefox since they’re not platform specific</li>
 <code class="descname">USERNAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="classmethod">
-<dt id="webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities">
-<em class="property">classmethod </em><code class="descname">add_browserstack_capabilities</code><span class="sig-paren">(</span><em>desired_capabilities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserStackConfig.add_browserstack_capabilities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update a desired capabilities dictionary to include items from BS_CAPABILITIES</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>desired_capabilities</strong> – Desired capabilities dictionary to update</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY">
+<code class="descname">ACCESS_KEY</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES">
+<code class="descname">BS_CAPABILITIES</code><em class="property"> = {'browserstack.video': False, 'project': None}</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.browser.BrowserStackConfig.get_command_executor">
@@ -297,6 +283,20 @@ Firefox since they’re not platform specific</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Command executor URL formatted with USERNAME and ACCESS_KEY</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities">
+<em class="property">classmethod </em><code class="descname">add_browserstack_capabilities</code><span class="sig-paren">(</span><em>desired_capabilities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserStackConfig.add_browserstack_capabilities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a desired capabilities dictionary to include items from BS_CAPABILITIES</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>desired_capabilities</strong> – Desired capabilities dictionary to update</td>
 </tr>
 </tbody>
 </table>

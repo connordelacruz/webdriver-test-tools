@@ -94,22 +94,19 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.html#module-webdriver_test_tools.pageobject">Module contents</a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html#submodules">Submodules</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#module-webdriver_test_tools">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -203,6 +200,11 @@ of this object.</li>
 </tbody>
 </table>
 <dl class="attribute">
+<dt id="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR">
+<code class="descname">MODAL_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR">
 <code class="descname">CLOSE_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -211,24 +213,6 @@ of this object.</li>
 <dt id="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS">
 <code class="descname">MODAL_BODY_CLASS</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR">
-<code class="descname">MODAL_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.pageobject.modal.ModalObject.click_close_button">
-<code class="descname">click_close_button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject.click_close_button"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.click_close_button" title="Permalink to this definition">¶</a></dt>
-<dd><p>Click the modal close button</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body">
-<code class="descname">get_modal_body</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject.get_modal_body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body" title="Permalink to this definition">¶</a></dt>
-<dd><p>If self.MODAL_BODY_CLASS is set to a subclass of BasePage, returns an instance of
-that object. Otherwise, returns None</p>
-</dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.modal.ModalObject.is_displayed">
@@ -246,6 +230,19 @@ method for an implementation</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.modal.ModalObject.click_close_button">
+<code class="descname">click_close_button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject.click_close_button"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.click_close_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Click the modal close button</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body">
+<code class="descname">get_modal_body</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject.get_modal_body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>If self.MODAL_BODY_CLASS is set to a subclass of BasePage, returns an instance of
+that object. Otherwise, returns None</p>
 </dd></dl>
 
 </dd></dl>

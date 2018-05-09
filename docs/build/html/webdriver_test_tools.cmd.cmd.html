@@ -190,13 +190,6 @@
 </tr>
 </tbody>
 </table>
-<dl class="exception">
-<dt id="webdriver_test_tools.cmd.cmd.ValidationError">
-<em class="property">exception </em><code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">ValidationError</code><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#ValidationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.ValidationError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
-<p>Exception raised if input validation fails</p>
-</dd></dl>
-
 <dl class="function">
 <dt id="webdriver_test_tools.cmd.cmd.print_exception">
 <code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">print_exception</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#print_exception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.print_exception" title="Permalink to this definition">¶</a></dt>
@@ -225,30 +218,11 @@
 </table>
 </dd></dl>
 
-<dl class="function">
-<dt id="webdriver_test_tools.cmd.cmd.prompt">
-<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>*description</em>, <em>default=None</em>, <em>validate=&lt;function validate_nonempty&gt;</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prompt the user for input and validate it</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>text</strong> – Text to display in prompt</li>
-<li><strong>description</strong> – (Optional) Positional arguments after text will be printed once before user is prompted for
-input. Each argument will be printed on a new line</li>
-<li><strong>default</strong> – (Optional) default value</li>
-<li><strong>validate</strong> – (Default = validate_nonempty) Validation function for input</li>
-<li><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user
-input and successfully validating</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Validated input</p>
-</td>
-</tr>
-</tbody>
-</table>
+<dl class="exception">
+<dt id="webdriver_test_tools.cmd.cmd.ValidationError">
+<em class="property">exception </em><code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">ValidationError</code><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#ValidationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.ValidationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Exception raised if input validation fails</p>
 </dd></dl>
 
 <dl class="function">
@@ -278,6 +252,32 @@ input and successfully validating</li>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>answer</strong> – User response to y/n prompt</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if user answered yes, False if user answered no</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.cmd.cmd.prompt">
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>*description</em>, <em>default=None</em>, <em>validate=&lt;function validate_nonempty&gt;</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompt the user for input and validate it</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>text</strong> – Text to display in prompt</li>
+<li><strong>description</strong> – (Optional) Positional arguments after text will be printed once before user is prompted for
+input. Each argument will be printed on a new line</li>
+<li><strong>default</strong> – (Optional) default value</li>
+<li><strong>validate</strong> – (Default = validate_nonempty) Validation function for input</li>
+<li><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user
+input and successfully validating</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Validated input</p>
+</td>
 </tr>
 </tbody>
 </table>
