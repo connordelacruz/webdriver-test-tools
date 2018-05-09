@@ -1,3 +1,9 @@
+"""Functions for common command line formatting and procedures
+
+:var cmd.INDENT: Constant for terminal indentation
+:var cmd.COLORS: Color/formatting functions for different types of output
+"""
+
 from blessings import Terminal
 
 # Formatting
@@ -6,10 +12,8 @@ _term = Terminal()
 
 # Prepend to input prompts
 PROMPT_PREFIX = '> '
-# Constant for terminal "indentation"
 INDENT = ' ' * 3
 
-# Color/formatting functions for different types of output
 COLORS = {
     None: str,
     'error': _term.bold_red,
