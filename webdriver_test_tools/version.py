@@ -5,10 +5,7 @@
 :var __selenium__: The version of the selenium package used when developing/testing this
     package.
 """
-
-__version__ = '0.30.0'
-__devstatus__ = 'Development Status :: 2 - Pre-Alpha'
-__selenium__ = '3.11.0'
+from .__about__ import __version__, __devstatus__, __selenium__
 
 
 def get_version_info():
