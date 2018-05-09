@@ -154,7 +154,13 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.cmd.cmd</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">blessings</span> <span class="k">import</span> <span class="n">Terminal</span>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for common command line formatting and procedures</span>
+
+<span class="sd">:var cmd.INDENT: Constant for terminal indentation</span>
+<span class="sd">:var cmd.COLORS: Color/formatting functions for different types of output</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">blessings</span> <span class="k">import</span> <span class="n">Terminal</span>
 
 <span class="c1"># Formatting</span>
 
@@ -162,10 +168,8 @@
 
 <span class="c1"># Prepend to input prompts</span>
 <span class="n">PROMPT_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;&gt; &#39;</span>
-<span class="c1"># Constant for terminal &quot;indentation&quot;</span>
 <span class="n">INDENT</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">3</span>
 
-<span class="c1"># Color/formatting functions for different types of output</span>
 <span class="n">COLORS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kc">None</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="n">_term</span><span class="o">.</span><span class="n">bold_red</span><span class="p">,</span>
