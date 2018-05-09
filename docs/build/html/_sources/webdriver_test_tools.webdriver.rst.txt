@@ -1,6 +1,11 @@
 webdriver\_test\_tools.webdriver package
 ========================================
 
+.. automodule:: webdriver_test_tools.webdriver
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Subpackages
 -----------
 
@@ -16,10 +21,3 @@ Submodules
 
    webdriver_test_tools.webdriver.locate
 
-Module contents
----------------
-
-.. automodule:: webdriver_test_tools.webdriver
-    :members:
-    :undoc-members:
-    :show-inheritance:
