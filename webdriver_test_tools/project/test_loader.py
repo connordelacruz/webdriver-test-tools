@@ -2,6 +2,7 @@
 
 import types
 import unittest
+
 from webdriver_test_tools.testcase import *
 
 

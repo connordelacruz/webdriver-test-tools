@@ -1,6 +1,11 @@
 webdriver\_test\_tools.pageobject package
 =========================================
 
+.. automodule:: webdriver_test_tools.pageobject
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Submodules
 ----------
 
@@ -13,10 +18,3 @@ Submodules
    webdriver_test_tools.pageobject.prototypes
    webdriver_test_tools.pageobject.webpage
 
-Module contents
----------------
-
-.. automodule:: webdriver_test_tools.pageobject
-    :members:
-    :undoc-members:
-    :show-inheritance:

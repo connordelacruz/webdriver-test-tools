@@ -1,6 +1,11 @@
 webdriver\_test\_tools.config package
 =====================================
 
+.. automodule:: webdriver_test_tools.config
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Submodules
 ----------
 
@@ -12,10 +17,3 @@ Submodules
    webdriver_test_tools.config.test
    webdriver_test_tools.config.webdriver
 
-Module contents
----------------
-
-.. automodule:: webdriver_test_tools.config
-    :members:
-    :undoc-members:
-    :show-inheritance:

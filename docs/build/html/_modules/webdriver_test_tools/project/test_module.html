@@ -154,7 +154,8 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.project.test_module</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Functions for test modules</span>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for test project __main__ modules&quot;&quot;&quot;</span>
+
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
@@ -242,11 +243,11 @@
         <span class="n">browser_choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">browserstack_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">()))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">browser_choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
-    <span class="n">browser_options_help</span> <span class="o">=</span> <span class="n">format_browser_choices</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">)</span>
+    <span class="n">browser_options_help</span> <span class="o">=</span> <span class="n">_format_browser_choices</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">)</span>
     <span class="n">browser_help</span> <span class="o">=</span> <span class="s1">&#39;Run tests only in the specified browsers.&#39;</span> <span class="o">+</span> <span class="n">browser_options_help</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="s1">&#39;--browser&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">browser_choices</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;browser&gt;&#39;</span><span class="p">,</span>
                        <span class="n">help</span><span class="o">=</span><span class="n">browser_help</span><span class="p">)</span>
-    <span class="n">headless_options_help</span> <span class="o">=</span> <span class="n">format_headless_browsers</span><span class="p">(</span><span class="n">browser_config</span><span class="p">)</span>
+    <span class="n">headless_options_help</span> <span class="o">=</span> <span class="n">_format_headless_browsers</span><span class="p">(</span><span class="n">browser_config</span><span class="p">)</span>
     <span class="n">headless_help</span> <span class="o">=</span> <span class="s1">&#39;Run tests using headless browsers.&#39;</span> <span class="o">+</span> <span class="n">headless_options_help</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-H&#39;</span><span class="p">,</span> <span class="s1">&#39;--headless&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">headless_help</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">ENABLE</span><span class="p">:</span>
@@ -261,7 +262,7 @@
     <span class="k">return</span> <span class="n">parser</span>
 
 
-<div class="viewcode-block" id="format_browser_choices"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.format_browser_choices">[docs]</a><span class="k">def</span> <span class="nf">format_browser_choices</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_format_browser_choices</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Format the help string for browser choices</span>
 
 <span class="sd">    If BrowserStack is disabled or doesn&#39;t have any browsers enabled that aren&#39;t also in</span>
@@ -292,22 +293,22 @@
     <span class="n">browserstack_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">browserstack_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
     <span class="c1"># If browserstack is disabled or there&#39;s no difference in browsers</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">ENABLE</span> <span class="ow">or</span> <span class="n">local_set</span> <span class="o">==</span> <span class="n">browserstack_set</span><span class="p">:</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Options: &#39;</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Options: &#39;</span> <span class="o">+</span> <span class="n">_browser_list_string</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
     <span class="c1"># Else if there is some difference between enabled sets</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">both_set</span> <span class="o">=</span> <span class="n">local_set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">browserstack_set</span><span class="p">)</span>
         <span class="n">local_only</span> <span class="o">=</span> <span class="n">local_set</span> <span class="o">-</span> <span class="n">browserstack_set</span>
         <span class="n">browserstack_only</span> <span class="o">=</span> <span class="n">browserstack_set</span> <span class="o">-</span> <span class="n">local_set</span>
         <span class="k">if</span> <span class="n">both_set</span><span class="p">:</span>
-            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local &amp; BrowserStack:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">both_set</span><span class="p">))</span>
+            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local &amp; BrowserStack:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">_browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">both_set</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">local_only</span><span class="p">:</span>
-            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local Only:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">local_only</span><span class="p">))</span>
+            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local Only:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">_browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">local_only</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">browserstack_only</span><span class="p">:</span>
-            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">BrowserStack Only:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">browserstack_only</span><span class="p">))</span></div>
+            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">BrowserStack Only:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">_browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">browserstack_only</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">options</span>
 
 
-<div class="viewcode-block" id="format_headless_browsers"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.format_headless_browsers">[docs]</a><span class="k">def</span> <span class="nf">format_headless_browsers</span><span class="p">(</span><span class="n">browser_config</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_format_headless_browsers</span><span class="p">(</span><span class="n">browser_config</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Format the help string for compatible browsers in --headless help string</span>
 
 <span class="sd">    :param browser_config: BrowserConfig class</span>
@@ -318,18 +319,18 @@
     <span class="n">browser_names</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">HEADLESS_COMPATIBLE</span>
         <span class="k">if</span> <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="ow">in</span> <span class="n">enabled_browsers</span>
-    <span class="p">]</span></div>
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Compatible Browsers:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Compatible Browsers:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">_browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="browser_list_string"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.browser_list_string">[docs]</a><span class="k">def</span> <span class="nf">browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Takes a list of browser names and returns a string representation in the format</span>
 <span class="sd">    &#39;{browser0,browser1,browser2}&#39;</span>
 
 <span class="sd">    :param browser_names: List of browser names</span>
 
 <span class="sd">    :return: String representation of the browser name list</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">browser_names</span><span class="p">))</span>
 
 

@@ -94,23 +94,19 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.testcase.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.html#module-webdriver_test_tools.testcase">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.testcase.html#submodules">Submodules</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#module-webdriver_test_tools">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -184,6 +180,39 @@
   <div class="section" id="module-webdriver_test_tools.testcase.chrome">
 <span id="webdriver-test-tools-testcase-chrome-module"></span><h1>webdriver_test_tools.testcase.chrome module<a class="headerlink" href="#module-webdriver_test_tools.testcase.chrome" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
+<dt id="webdriver_test_tools.testcase.chrome.ChromeTestCase">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.chrome.</code><code class="descname">ChromeTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/chrome.html#ChromeTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.testcase.webdriver.WebDriverTestCase</span></code></a></p>
+<p>Implementation of WebDriverTestCase using Chrome webdriver</p>
+<p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Driver download</a></p>
+<p>This driver supports headless browsing:</p>
+<blockquote>
+<div><a class="reference external" href="https://developers.google.com/web/updates/2017/04/headless-chrome">Headless browser info</a></div></blockquote>
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.chrome.ChromeTestCase.DRIVER_NAME">
+<code class="descname">DRIVER_NAME</code><em class="property"> = 'Chrome'</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.chrome.ChromeTestCase.SHORT_NAME">
+<code class="descname">SHORT_NAME</code><em class="property"> = 'chrome'</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.chrome.ChromeTestCase.CAPABILITIES">
+<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'chrome', 'platform': 'ANY', 'version': ''}</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.testcase.chrome.ChromeTestCase.driver_init">
+<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/chrome.html#ChromeTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an initialized WebDriver object. Browser test case classes must
+implement this</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="webdriver_test_tools.testcase.chrome.ChromeMobileTestCase">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.chrome.</code><code class="descname">ChromeMobileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/chrome.html#ChromeMobileTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase</span></code></a></p>
@@ -192,11 +221,6 @@ device layout.</p>
 <p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Driver download</a></p>
 <p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/mobile-emulation">Mobile emulation info</a></p>
 <dl class="attribute">
-<dt id="webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'chrome', 'platform': 'ANY', 'version': ''}</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
 <dt id="webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.DRIVER_NAME">
 <code class="descname">DRIVER_NAME</code><em class="property"> = 'Chrome Mobile [Emulated]'</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -204,6 +228,11 @@ device layout.</p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.SHORT_NAME">
 <code class="descname">SHORT_NAME</code><em class="property"> = 'chrome-mobile'</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.CAPABILITIES">
+<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'chrome', 'platform': 'ANY', 'version': ''}</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -226,39 +255,6 @@ self.CAPABILITIES respectively.</td>
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.driver_init">
 <code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/chrome.html#ChromeMobileTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an initialized WebDriver object. Browser test case classes must
-implement this</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.testcase.chrome.ChromeTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.chrome.</code><code class="descname">ChromeTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/chrome.html#ChromeTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeTestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.testcase.webdriver.WebDriverTestCase</span></code></a></p>
-<p>Implementation of WebDriverTestCase using Chrome webdriver</p>
-<p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Driver download</a></p>
-<p>This driver supports headless browsing:</p>
-<blockquote>
-<div><a class="reference external" href="https://developers.google.com/web/updates/2017/04/headless-chrome">Headless browser info</a></div></blockquote>
-<dl class="attribute">
-<dt id="webdriver_test_tools.testcase.chrome.ChromeTestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = {'browserName': 'chrome', 'platform': 'ANY', 'version': ''}</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.testcase.chrome.ChromeTestCase.DRIVER_NAME">
-<code class="descname">DRIVER_NAME</code><em class="property"> = 'Chrome'</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.testcase.chrome.ChromeTestCase.SHORT_NAME">
-<code class="descname">SHORT_NAME</code><em class="property"> = 'chrome'</em><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.testcase.chrome.ChromeTestCase.driver_init">
-<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/chrome.html#ChromeTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.chrome.ChromeTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an initialized WebDriver object. Browser test case classes must
 implement this</p>
 </dd></dl>

@@ -1,3 +1,5 @@
+"""Browser implementations of :class:`WebDriverTestCase`"""
+
 from .chrome import *
 from .edge import *
 from .firefox import *

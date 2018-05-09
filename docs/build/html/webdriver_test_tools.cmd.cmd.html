@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.common package" href="webdriver_test_tools.common.html" />
+    <link rel="next" title="webdriver_test_tools.config package" href="webdriver_test_tools.config.html" />
     <link rel="prev" title="webdriver_test_tools.cmd package" href="webdriver_test_tools.cmd.html" /> 
 
   
@@ -94,23 +94,19 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.cmd.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.cmd.html#module-webdriver_test_tools.cmd">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#module-webdriver_test_tools">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -183,13 +179,17 @@
             
   <div class="section" id="module-webdriver_test_tools.cmd.cmd">
 <span id="webdriver-test-tools-cmd-cmd-module"></span><h1>webdriver_test_tools.cmd.cmd module<a class="headerlink" href="#module-webdriver_test_tools.cmd.cmd" title="Permalink to this headline">¶</a></h1>
-<dl class="exception">
-<dt id="webdriver_test_tools.cmd.cmd.ValidationError">
-<em class="property">exception </em><code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">ValidationError</code><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#ValidationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.ValidationError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
-<p>Exception raised if input validation fails</p>
-</dd></dl>
-
+<p>Functions for common command line formatting and procedures</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">var cmd.INDENT:</th><td class="field-body">Constant for terminal indentation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">var cmd.COLORS:</th><td class="field-body">Color/formatting functions for different types of output</td>
+</tr>
+</tbody>
+</table>
 <dl class="function">
 <dt id="webdriver_test_tools.cmd.cmd.print_exception">
 <code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">print_exception</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#print_exception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.print_exception" title="Permalink to this definition">¶</a></dt>
@@ -218,28 +218,11 @@
 </table>
 </dd></dl>
 
-<dl class="function">
-<dt id="webdriver_test_tools.cmd.cmd.prompt">
-<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>default=None</em>, <em>validate=&lt;function validate_nonempty&gt;</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prompt the user for input and validate it</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>text</strong> – Text to display in prompt</li>
-<li><strong>default</strong> – (Optional) default value</li>
-<li><strong>validate</strong> – (Default = validate_nonempty) Validation function for input</li>
-<li><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user
-input and successfully validating</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Validated input</p>
-</td>
-</tr>
-</tbody>
-</table>
+<dl class="exception">
+<dt id="webdriver_test_tools.cmd.cmd.ValidationError">
+<em class="property">exception </em><code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">ValidationError</code><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#ValidationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.ValidationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Exception raised if input validation fails</p>
 </dd></dl>
 
 <dl class="function">
@@ -274,6 +257,32 @@ input and successfully validating</li>
 </table>
 </dd></dl>
 
+<dl class="function">
+<dt id="webdriver_test_tools.cmd.cmd.prompt">
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>*description</em>, <em>default=None</em>, <em>validate=&lt;function validate_nonempty&gt;</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompt the user for input and validate it</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>text</strong> – Text to display in prompt</li>
+<li><strong>description</strong> – (Optional) Positional arguments after text will be printed once before user is prompted for
+input. Each argument will be printed on a new line</li>
+<li><strong>default</strong> – (Optional) default value</li>
+<li><strong>validate</strong> – (Default = validate_nonempty) Validation function for input</li>
+<li><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user
+input and successfully validating</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Validated input</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 
@@ -284,7 +293,7 @@ input and successfully validating</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.common.html" class="btn btn-neutral float-right" title="webdriver_test_tools.common package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.config.html" class="btn btn-neutral float-right" title="webdriver_test_tools.config package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="webdriver_test_tools.cmd.html" class="btn btn-neutral" title="webdriver_test_tools.cmd package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

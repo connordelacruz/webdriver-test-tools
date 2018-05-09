@@ -167,10 +167,12 @@ texinfo_documents = [
 
 # -- Extension configuration -------------------------------------------------
 
-# -- Options for autodoc extension ----------------------------------------------
+# -- Options for autodoc extension -------------------------------------------
 
 # TODO: implement and re-work
 # autodoc_default_flags = ['members', 'undoc-members']
+
+autodoc_member_order = 'bysource'
 
 # -- Options for intersphinx extension ---------------------------------------
 

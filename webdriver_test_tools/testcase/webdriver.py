@@ -1,3 +1,49 @@
+"""Base test case classes.
+
+
+Assertion Methods
+-----------------
+
+In addition to the ``unittest.TestCase`` `assertion methods`_, ``WebDriverTestCase``
+has additional assertions:
+
++------------------------------------------+-------------------------------------+
+| Method                                   | Checks That                         |
++==========================================+=====================================+
+| :meth:`assertExists(element_locator)     | Element exists on the page          |
+| <WebDriverTestCase.assertExists>`        |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertNotExists(element_locator)  | Element does not exists on the page |
+| <WebDriverTestCase.assertNotExists>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertInView(element_locator)     | Element is scrolled into view       |
+| <WebDriverTestCase.assertInView>`        |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertNotInView(element_locator)  | Element is not scrolled into view   |
+| <WebDriverTestCase.assertNotInView>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertVisible(element_locator)    | Element is visible                  |
+| <WebDriverTestCase.assertVisible>`       |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertInvisible(element_locator)  | Element is not visible              |
+| <WebDriverTestCase.assertInvisible>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertEnabled(element_locator)    | Element is enabled                  |
+| <WebDriverTestCase.assertEnabled>`       |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertDisabled(element_locator)   | Element is disabled                 |
+| <WebDriverTestCase.assertDisabled>`      |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertUrlChange(expected_url)     | URL matches ``expected_url``        |
+| <WebDriverTestCase.assertUrlChange>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertBaseUrlChange(expected_url) | Base URL (ignoring query strings)   |
+| <WebDriverTestCase.assertBaseUrlChange>` | matches ``expected_url``            |
++------------------------------------------+-------------------------------------+
+
+.. _assertion methods: https://docs.python.org/library/unittest.html#assert-methods
+
+"""
 import unittest
 from functools import wraps
 
@@ -9,7 +55,7 @@ from webdriver_test_tools.webdriver.support import test
 
 
 class WebDriverTestCase(unittest.TestCase):
-    """Base class for web driver test cases
+    """Base class for web driver test cases.
 
     This defines the common setUp() and tearDown() tasks. It does not initialize
     self.driver so will not work on its own. Tests should be written with this as their
@@ -60,6 +106,7 @@ class WebDriverTestCase(unittest.TestCase):
     :var WebDriverTestCase.ENABLE_HEADLESS: (Default = False) If set to True, browser
         implementations with headless browser support will configure their drivers to
         run tests in a headless browser
+
     """
 
     # Instance variables
@@ -127,6 +174,7 @@ class WebDriverTestCase(unittest.TestCase):
         """Fail if element doesn't exist
 
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param msg: (Optional) If specified, used as the error message on failure
         """
         if not test.element_exists(self.driver, element_locator):
             failure_message = 'No elements located using ' + self._locator_string(element_locator)
@@ -137,6 +185,7 @@ class WebDriverTestCase(unittest.TestCase):
         """Fail if element exists
 
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param msg: (Optional) If specified, used as the error message on failure
         """
         if test.element_exists(self.driver, element_locator):
             failure_message = 'Elements located using ' + self._locator_string(element_locator)
@@ -147,6 +196,7 @@ class WebDriverTestCase(unittest.TestCase):
         """Fail if element isn't scrolled into view
 
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param msg: (Optional) If specified, used as the error message on failure
         """
         if not test.in_view_change_test(self.driver, element_locator):
             failure_message = 'Element is not scrolled into view'
@@ -157,6 +207,7 @@ class WebDriverTestCase(unittest.TestCase):
         """Fail if element is scrolled into view
 
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param msg: (Optional) If specified, used as the error message on failure
         """
         if test.in_view_change_test(self.driver, element_locator):
             failure_message = 'Element is scrolled into view'
@@ -167,6 +218,7 @@ class WebDriverTestCase(unittest.TestCase):
         """Fail if element isn't visible
 
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param msg: (Optional) If specified, used as the error message on failure
         """
         if not test.visibility_change_test(self.driver, element_locator):
             failure_message = 'Element is not visible'
@@ -177,6 +229,7 @@ class WebDriverTestCase(unittest.TestCase):
         """Fail if element is visible
 
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param msg: (Optional) If specified, used as the error message on failure
         """
         if not test.visibility_change_test(self.driver, element_locator, test_visible=False):
             failure_message = 'Element is visible'
@@ -187,6 +240,7 @@ class WebDriverTestCase(unittest.TestCase):
         """Fail if element is disabled
 
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param msg: (Optional) If specified, used as the error message on failure
         """
         if not self.driver.find_element(*element_locator).is_enabled():
             failure_message = 'Element is disabled'
@@ -197,6 +251,7 @@ class WebDriverTestCase(unittest.TestCase):
         """Fail if element is enabled
 
         :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param msg: (Optional) If specified, used as the error message on failure
         """
         if self.driver.find_element(*element_locator).is_enabled():
             failure_message = 'Element is enabled'
@@ -211,6 +266,7 @@ class WebDriverTestCase(unittest.TestCase):
         current URL.
 
         :param expected_url: The expected URL
+        :param msg: (Optional) If specified, used as the error message on failure
         """
         if not test.url_change_test(self.driver, expected_url):
             failure_message = 'Current URL = {}, expected URL = {}'.format(self.driver.current_url, expected_url)
@@ -225,6 +281,7 @@ class WebDriverTestCase(unittest.TestCase):
         current URL.
 
         :param expected_url: The expected URL
+        :param msg: (Optional) If specified, used as the error message on failure
         """
         if not test.base_url_change_test(self.driver, expected_url):
             failure_message = 'Current base URL = {}, expected base URL = {}'.format(

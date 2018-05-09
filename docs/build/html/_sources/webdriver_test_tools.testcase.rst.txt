@@ -1,6 +1,11 @@
 webdriver\_test\_tools.testcase package
 =======================================
 
+.. automodule:: webdriver_test_tools.testcase
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Submodules
 ----------
 
@@ -14,10 +19,3 @@ Submodules
    webdriver_test_tools.testcase.safari
    webdriver_test_tools.testcase.webdriver
 
-Module contents
----------------
-
-.. automodule:: webdriver_test_tools.testcase
-    :members:
-    :undoc-members:
-    :show-inheritance:

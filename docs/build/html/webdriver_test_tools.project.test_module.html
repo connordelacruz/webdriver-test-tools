@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.webdriver package" href="webdriver_test_tools.webdriver.html" />
+    <link rel="next" title="webdriver_test_tools.testcase package" href="webdriver_test_tools.testcase.html" />
     <link rel="prev" title="webdriver_test_tools.project.test_loader module" href="webdriver_test_tools.project.test_loader.html" /> 
 
   
@@ -94,23 +94,19 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.project.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.project.html#module-webdriver_test_tools.project">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#module-webdriver_test_tools">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -183,69 +179,22 @@
             
   <div class="section" id="module-webdriver_test_tools.project.test_module">
 <span id="webdriver-test-tools-project-test-module-module"></span><h1>webdriver_test_tools.project.test_module module<a class="headerlink" href="#module-webdriver_test_tools.project.test_module" title="Permalink to this headline">¶</a></h1>
+<p>Functions for test project __main__ modules</p>
 <dl class="function">
-<dt id="webdriver_test_tools.project.test_module.browser_list_string">
-<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">browser_list_string</code><span class="sig-paren">(</span><em>browser_names</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#browser_list_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.browser_list_string" title="Permalink to this definition">¶</a></dt>
-<dd><p>Takes a list of browser names and returns a string representation in the format
-‘{browser0,browser1,browser2}’</p>
+<dt id="webdriver_test_tools.project.test_module.main">
+<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">main</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module=None</em>, <em>package_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to call in test modules if __name__ == ‘__main__’ at run time</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>browser_names</strong> – List of browser names</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">String representation of the browser name list</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.test_module.format_browser_choices">
-<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">format_browser_choices</code><span class="sig-paren">(</span><em>browser_config</em>, <em>browserstack_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#format_browser_choices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.format_browser_choices" title="Permalink to this definition">¶</a></dt>
-<dd><p>Format the help string for browser choices</p>
-<p>If BrowserStack is disabled or doesn’t have any browsers enabled that aren’t also in
-the local browser config, output string will have the following format:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Options: {browser0,browser1}&#39;</span>
-</pre></div>
-</div>
-<p>If BrowserStack is enabled and there are different browsers enabled for local and
-BrowserStack, output string will have the following format:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">Local &amp; BrowserStack: {browser0,browser1}</span>
-<span class="sd">Local Only: {browser2,browser3}</span>
-<span class="sd">BrowserStack Only: {browser4,browser5}</span>
-<span class="sd">&#39;&#39;&#39;</span>
-</pre></div>
-</div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>browser_config</strong> – BrowserConfig class</li>
-<li><strong>browserstack_config</strong> – BrowserStackConfig class</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
+<li><strong>config_module</strong> – (Optional) The module object for &lt;test_project&gt;.config. Will
+use webdriver_test_tools.config if not specified</li>
+<li><strong>package_name</strong> – (Optional) The name of the package (i.e. __package__)</li>
 </ul>
 </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Formatted help string for browser options</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.test_module.format_headless_browsers">
-<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">format_headless_browsers</code><span class="sig-paren">(</span><em>browser_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#format_headless_browsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.format_headless_browsers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Format the help string for compatible browsers in –headless help string</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>browser_config</strong> – BrowserConfig class</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Formatted help string for browser options</td>
 </tr>
 </tbody>
 </table>
@@ -276,6 +225,24 @@ Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified</li>
 </dd></dl>
 
 <dl class="function">
+<dt id="webdriver_test_tools.project.test_module.parse_test_names">
+<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">parse_test_names</code><span class="sig-paren">(</span><em>test_name_args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#parse_test_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.parse_test_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary mapping test case names to a list of test functions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>test_name_args</strong> – The parsed value of the –test or –skip arguments</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None if test_name_args is None, otherwise return a dictionary mapping test
+case names to a list of test functions to run. If list is empty, no specific
+function was given for that class</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="webdriver_test_tools.project.test_module.list_tests">
 <code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">list_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#list_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.list_tests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print a list of available tests</p>
@@ -292,44 +259,6 @@ line argument to parse_test_names()</li>
 line argument to parse_test_names()</li>
 </ul>
 </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.test_module.main">
-<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">main</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module=None</em>, <em>package_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to call in test modules if __name__ == ‘__main__’ at run time</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
-<li><strong>config_module</strong> – (Optional) The module object for &lt;test_project&gt;.config. Will
-use webdriver_test_tools.config if not specified</li>
-<li><strong>package_name</strong> – (Optional) The name of the package (i.e. __package__)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.test_module.parse_test_names">
-<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">parse_test_names</code><span class="sig-paren">(</span><em>test_name_args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#parse_test_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.parse_test_names" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a dictionary mapping test case names to a list of test functions</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>test_name_args</strong> – The parsed value of the –test or –skip arguments</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None if test_name_args is None, otherwise return a dictionary mapping test
-case names to a list of test functions to run. If list is empty, no specific
-function was given for that class</td>
 </tr>
 </tbody>
 </table>
@@ -376,7 +305,7 @@ running headless browsers</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.webdriver.html" class="btn btn-neutral float-right" title="webdriver_test_tools.webdriver package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.testcase.html" class="btn btn-neutral float-right" title="webdriver_test_tools.testcase package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="webdriver_test_tools.project.test_loader.html" class="btn btn-neutral" title="webdriver_test_tools.project.test_loader module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

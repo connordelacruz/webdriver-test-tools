@@ -94,24 +94,20 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.webdriver.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.webdriver.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.webdriver.html#module-webdriver_test_tools.webdriver">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.classes.html">webdriver_test_tools.classes package</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#module-webdriver_test_tools">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -208,28 +204,6 @@ if False</li>
 </dd></dl>
 
 <dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.scroll.into_view_fixed_nav">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">into_view_fixed_nav</code><span class="sig-paren">(</span><em>driver</em>, <em>target_element</em>, <em>fixed_element</em>, <em>additional_offset=0</em>, <em>align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#into_view_fixed_nav"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.into_view_fixed_nav" title="Permalink to this definition">¶</a></dt>
-<dd><p>Scroll an element into view offset by the height of a fixed element so it’s not obstructed</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>target_element</strong> – WebElement object for the target element</li>
-<li><strong>fixed_element</strong> – WebElement object for the fixed nav</li>
-<li><strong>additional_offset</strong> – (Default = 0) Additional offset from the top</li>
-<li><strong>align_to_top</strong> – (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the
-bottom if False</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
 <dt id="webdriver_test_tools.webdriver.actions.scroll.to_and_click">
 <code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">to_and_click</code><span class="sig-paren">(</span><em>driver</em>, <em>element</em>, <em>align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#to_and_click"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.to_and_click" title="Permalink to this definition">¶</a></dt>
 <dd><p>Short hand function for scrolling an element into view and clicking it</p>
@@ -242,6 +216,26 @@ bottom if False</li>
 <li><strong>element</strong> – WebElement to scroll to and click on</li>
 <li><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if
 False</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.webdriver.actions.scroll.to_position">
+<code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">to_position</code><span class="sig-paren">(</span><em>driver</em>, <em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#to_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.to_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll window to the specified x,y coordinates</p>
+<p>Executes JavaScript window.scroll(x,y)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>driver</strong> – Selenium WebDriver object</li>
+<li><strong>x</strong> – Horizontal scroll coordinate</li>
+<li><strong>y</strong> – Vertical scroll coordinate</li>
 </ul>
 </td>
 </tr>
@@ -277,18 +271,20 @@ bottom if False</li>
 </dd></dl>
 
 <dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.scroll.to_position">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">to_position</code><span class="sig-paren">(</span><em>driver</em>, <em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#to_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.to_position" title="Permalink to this definition">¶</a></dt>
-<dd><p>Scroll window to the specified x,y coordinates</p>
-<p>Executes JavaScript window.scroll(x,y)</p>
+<dt id="webdriver_test_tools.webdriver.actions.scroll.into_view_fixed_nav">
+<code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">into_view_fixed_nav</code><span class="sig-paren">(</span><em>driver</em>, <em>target_element</em>, <em>fixed_element</em>, <em>additional_offset=0</em>, <em>align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#into_view_fixed_nav"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.into_view_fixed_nav" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll an element into view offset by the height of a fixed element so it’s not obstructed</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>x</strong> – Horizontal scroll coordinate</li>
-<li><strong>y</strong> – Vertical scroll coordinate</li>
+<li><strong>target_element</strong> – WebElement object for the target element</li>
+<li><strong>fixed_element</strong> – WebElement object for the fixed nav</li>
+<li><strong>additional_offset</strong> – (Default = 0) Additional offset from the top</li>
+<li><strong>align_to_top</strong> – (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the
+bottom if False</li>
 </ul>
 </td>
 </tr>
