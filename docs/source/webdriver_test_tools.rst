@@ -14,7 +14,6 @@ Subpackages
     webdriver_test_tools.data
     webdriver_test_tools.project
     webdriver_test_tools.webdriver
-    webdriver_test_tools.classes
 
 Submodules
 ----------
