@@ -1,3 +1,49 @@
+"""Base test case classes.
+
+
+Assertion Methods
+-----------------
+
+In addition to the ``unittest.TestCase`` `assertion methods`_, ``WebDriverTestCase``
+has additional assertions:
+
++------------------------------------------+-------------------------------------+
+| Method                                   | Checks That                         |
++==========================================+=====================================+
+| :meth:`assertExists(element_locator)     | Element exists on the page          |
+| <WebDriverTestCase.assertExists>`        |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertNotExists(element_locator)  | Element does not exists on the page |
+| <WebDriverTestCase.assertNotExists>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertInView(element_locator)     | Element is scrolled into view       |
+| <WebDriverTestCase.assertInView>`        |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertNotInView(element_locator)  | Element is not scrolled into view   |
+| <WebDriverTestCase.assertNotInView>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertVisible(element_locator)    | Element is visible                  |
+| <WebDriverTestCase.assertVisible>`       |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertInvisible(element_locator)  | Element is not visible              |
+| <WebDriverTestCase.assertInvisible>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertEnabled(element_locator)    | Element is enabled                  |
+| <WebDriverTestCase.assertEnabled>`       |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertDisabled(element_locator)   | Element is disabled                 |
+| <WebDriverTestCase.assertDisabled>`      |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertUrlChange(expected_url)     | URL matches ``expected_url``        |
+| <WebDriverTestCase.assertUrlChange>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertBaseUrlChange(expected_url) | Base URL (ignoring query strings)   |
+| <WebDriverTestCase.assertBaseUrlChange>` | matches ``expected_url``            |
++------------------------------------------+-------------------------------------+
+
+.. _assertion methods: https://docs.python.org/library/unittest.html#assert-methods
+
+"""
 import unittest
 from functools import wraps
 
@@ -9,7 +55,7 @@ from webdriver_test_tools.webdriver.support import test
 
 
 class WebDriverTestCase(unittest.TestCase):
-    """Base class for web driver test cases
+    """Base class for web driver test cases.
 
     This defines the common setUp() and tearDown() tasks. It does not initialize
     self.driver so will not work on its own. Tests should be written with this as their
@@ -60,6 +106,7 @@ class WebDriverTestCase(unittest.TestCase):
     :var WebDriverTestCase.ENABLE_HEADLESS: (Default = False) If set to True, browser
         implementations with headless browser support will configure their drivers to
         run tests in a headless browser
+
     """
 
     # Instance variables

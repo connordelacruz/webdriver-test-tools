@@ -219,7 +219,7 @@
 
 <dl class="function">
 <dt id="webdriver_test_tools.cmd.cmd.prompt">
-<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>default=None</em>, <em>validate=&lt;function validate_nonempty&gt;</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>*description</em>, <em>default=None</em>, <em>validate=&lt;function validate_nonempty&gt;</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prompt the user for input and validate it</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -227,6 +227,8 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>text</strong> – Text to display in prompt</li>
+<li><strong>description</strong> – (Optional) Positional arguments after text will be printed once before user is prompted for
+input. Each argument will be printed on a new line</li>
 <li><strong>default</strong> – (Optional) default value</li>
 <li><strong>validate</strong> – (Default = validate_nonempty) Validation function for input</li>
 <li><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user

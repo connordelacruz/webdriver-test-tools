@@ -182,10 +182,59 @@
             
   <div class="section" id="module-webdriver_test_tools.testcase.webdriver">
 <span id="webdriver-test-tools-testcase-webdriver-module"></span><h1>webdriver_test_tools.testcase.webdriver module<a class="headerlink" href="#module-webdriver_test_tools.testcase.webdriver" title="Permalink to this headline">¶</a></h1>
+<p>Base test case classes.</p>
+<div class="section" id="assertion-methods">
+<h2>Assertion Methods<a class="headerlink" href="#assertion-methods" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code> <a class="reference external" href="https://docs.python.org/library/unittest.html#assert-methods">assertion methods</a>, <code class="docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code>
+has additional assertions:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Checks That</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertExists(element_locator)</span></code></a></td>
+<td>Element exists on the page</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertNotExists(element_locator)</span></code></a></td>
+<td>Element does not exists on the page</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertInView(element_locator)</span></code></a></td>
+<td>Element is scrolled into view</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertNotInView(element_locator)</span></code></a></td>
+<td>Element is not scrolled into view</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertVisible(element_locator)</span></code></a></td>
+<td>Element is visible</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertInvisible(element_locator)</span></code></a></td>
+<td>Element is not visible</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertEnabled(element_locator)</span></code></a></td>
+<td>Element is enabled</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertDisabled(element_locator)</span></code></a></td>
+<td>Element is disabled</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertUrlChange(expected_url)</span></code></a></td>
+<td>URL matches <code class="docutils literal notranslate"><span class="pre">expected_url</span></code></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertBaseUrlChange(expected_url)</span></code></a></td>
+<td>Base URL (ignoring query strings)
+matches <code class="docutils literal notranslate"><span class="pre">expected_url</span></code></td>
+</tr>
+</tbody>
+</table>
 <dl class="class">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="descname">WebDriverTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base class for web driver test cases</p>
+<dd><p>Base class for web driver test cases.</p>
 <p>This defines the common setUp() and tearDown() tasks. It does not initialize
 self.driver so will not work on its own. Tests should be written with this as their
 parent class. Browser-specific implementations of test cases will be generated when
@@ -286,7 +335,11 @@ current URL.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>expected_url</strong> – The expected URL</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>expected_url</strong> – The expected URL</li>
+<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -300,7 +353,11 @@ current URL.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -314,7 +371,11 @@ current URL.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -328,7 +389,11 @@ current URL.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -342,7 +407,11 @@ current URL.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -356,7 +425,11 @@ current URL.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -370,7 +443,11 @@ current URL.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -384,7 +461,11 @@ current URL.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -401,7 +482,11 @@ current URL.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>expected_url</strong> – The expected URL</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>expected_url</strong> – The expected URL</li>
+<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -415,7 +500,11 @@ current URL.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -511,6 +600,7 @@ will only be generated for mobile browsers</p>
 
 </dd></dl>
 
+</div>
 </div>
 
 

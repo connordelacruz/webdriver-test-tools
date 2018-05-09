@@ -154,7 +154,53 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.testcase.webdriver</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span></span><span class="sd">&quot;&quot;&quot;Base test case classes.</span>
+
+
+<span class="sd">Assertion Methods</span>
+<span class="sd">-----------------</span>
+
+<span class="sd">In addition to the ``unittest.TestCase`` `assertion methods`_, ``WebDriverTestCase``</span>
+<span class="sd">has additional assertions:</span>
+
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+<span class="sd">| Method                                   | Checks That                         |</span>
+<span class="sd">+==========================================+=====================================+</span>
+<span class="sd">| :meth:`assertExists(element_locator)     | Element exists on the page          |</span>
+<span class="sd">| &lt;WebDriverTestCase.assertExists&gt;`        |                                     |</span>
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+<span class="sd">| :meth:`assertNotExists(element_locator)  | Element does not exists on the page |</span>
+<span class="sd">| &lt;WebDriverTestCase.assertNotExists&gt;`     |                                     |</span>
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+<span class="sd">| :meth:`assertInView(element_locator)     | Element is scrolled into view       |</span>
+<span class="sd">| &lt;WebDriverTestCase.assertInView&gt;`        |                                     |</span>
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+<span class="sd">| :meth:`assertNotInView(element_locator)  | Element is not scrolled into view   |</span>
+<span class="sd">| &lt;WebDriverTestCase.assertNotInView&gt;`     |                                     |</span>
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+<span class="sd">| :meth:`assertVisible(element_locator)    | Element is visible                  |</span>
+<span class="sd">| &lt;WebDriverTestCase.assertVisible&gt;`       |                                     |</span>
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+<span class="sd">| :meth:`assertInvisible(element_locator)  | Element is not visible              |</span>
+<span class="sd">| &lt;WebDriverTestCase.assertInvisible&gt;`     |                                     |</span>
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+<span class="sd">| :meth:`assertEnabled(element_locator)    | Element is enabled                  |</span>
+<span class="sd">| &lt;WebDriverTestCase.assertEnabled&gt;`       |                                     |</span>
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+<span class="sd">| :meth:`assertDisabled(element_locator)   | Element is disabled                 |</span>
+<span class="sd">| &lt;WebDriverTestCase.assertDisabled&gt;`      |                                     |</span>
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+<span class="sd">| :meth:`assertUrlChange(expected_url)     | URL matches ``expected_url``        |</span>
+<span class="sd">| &lt;WebDriverTestCase.assertUrlChange&gt;`     |                                     |</span>
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+<span class="sd">| :meth:`assertBaseUrlChange(expected_url) | Base URL (ignoring query strings)   |</span>
+<span class="sd">| &lt;WebDriverTestCase.assertBaseUrlChange&gt;` | matches ``expected_url``            |</span>
+<span class="sd">+------------------------------------------+-------------------------------------+</span>
+
+<span class="sd">.. _assertion methods: https://docs.python.org/library/unittest.html#assert-methods</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">wraps</span>
 
 <span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
@@ -165,7 +211,7 @@
 
 
 <div class="viewcode-block" id="WebDriverTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase">[docs]</a><span class="k">class</span> <span class="nc">WebDriverTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for web driver test cases</span>
+    <span class="sd">&quot;&quot;&quot;Base class for web driver test cases.</span>
 
 <span class="sd">    This defines the common setUp() and tearDown() tasks. It does not initialize</span>
 <span class="sd">    self.driver so will not work on its own. Tests should be written with this as their</span>
@@ -216,6 +262,7 @@
 <span class="sd">    :var WebDriverTestCase.ENABLE_HEADLESS: (Default = False) If set to True, browser</span>
 <span class="sd">        implementations with headless browser support will configure their drivers to</span>
 <span class="sd">        run tests in a headless browser</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Instance variables</span>
@@ -283,6 +330,7 @@
         <span class="sd">&quot;&quot;&quot;Fail if element doesn&#39;t exist</span>
 
 <span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;No elements located using &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_locator_string</span><span class="p">(</span><span class="n">element_locator</span><span class="p">)</span>
@@ -293,6 +341,7 @@
         <span class="sd">&quot;&quot;&quot;Fail if element exists</span>
 
 <span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Elements located using &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_locator_string</span><span class="p">(</span><span class="n">element_locator</span><span class="p">)</span>
@@ -303,6 +352,7 @@
         <span class="sd">&quot;&quot;&quot;Fail if element isn&#39;t scrolled into view</span>
 
 <span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">in_view_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is not scrolled into view&#39;</span>
@@ -313,6 +363,7 @@
         <span class="sd">&quot;&quot;&quot;Fail if element is scrolled into view</span>
 
 <span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">in_view_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is scrolled into view&#39;</span>
@@ -323,6 +374,7 @@
         <span class="sd">&quot;&quot;&quot;Fail if element isn&#39;t visible</span>
 
 <span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">visibility_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is not visible&#39;</span>
@@ -333,6 +385,7 @@
         <span class="sd">&quot;&quot;&quot;Fail if element is visible</span>
 
 <span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">visibility_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">test_visible</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is visible&#39;</span>
@@ -343,6 +396,7 @@
         <span class="sd">&quot;&quot;&quot;Fail if element is disabled</span>
 
 <span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">element_locator</span><span class="p">)</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">():</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is disabled&#39;</span>
@@ -353,6 +407,7 @@
         <span class="sd">&quot;&quot;&quot;Fail if element is enabled</span>
 
 <span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">element_locator</span><span class="p">)</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">():</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is enabled&#39;</span>
@@ -367,6 +422,7 @@
 <span class="sd">        current URL.</span>
 
 <span class="sd">        :param expected_url: The expected URL</span>
+<span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">url_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Current URL = </span><span class="si">{}</span><span class="s1">, expected URL = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">current_url</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">)</span>
@@ -381,6 +437,7 @@
 <span class="sd">        current URL.</span>
 
 <span class="sd">        :param expected_url: The expected URL</span>
+<span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">base_url_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Current base URL = </span><span class="si">{}</span><span class="s1">, expected base URL = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
