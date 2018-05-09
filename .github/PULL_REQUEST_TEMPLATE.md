@@ -1,5 +1,10 @@
 ## Pull Request Description
+
+### Overview
 <!-- Describe what this PR changes and the motivation for creating it -->
+
+### Details
+<!-- List out changes and additions made in this pull request -->
 
 <!-- List any issue numbers that this addresses -->
 Fixes # (issue)
