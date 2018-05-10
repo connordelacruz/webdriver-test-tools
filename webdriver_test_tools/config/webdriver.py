@@ -12,6 +12,8 @@ class WebDriverConfig:
 
     :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the log
         subdirectory in the webdriver_test_tools package root directory
+    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory. Defaults
+        to the screenshot subdirectory in the webdriver_test_tools package root directory
     :var WebDriverConfig.IMPLICIT_WAIT: Implicit wait time for webdriver to poll DOM
 
         .. note::
@@ -48,7 +50,6 @@ class WebDriverConfig:
     # Root directory of webdriver_test_tools package
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
     LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
-    # TODO: document and implement (and update source docs to exclude)
     SCREENSHOT_PATH = os.path.join(_PACKAGE_ROOT, 'screenshot')
 
     IMPLICIT_WAIT = 0
@@ -158,7 +159,6 @@ class WebDriverConfig:
 
     @classmethod
     def new_screenshot_file(cls, browser_name, test_name):
-        # TODO: make params optional?
         """Return the full filepath and filename for the screenshot
 
         :param browser_name: Name of the browser (for screenshot filename)
@@ -170,5 +170,4 @@ class WebDriverConfig:
         timestamp = datetime.now().strftime('%Y%m%d-%H%M')
         filename = filename_fmt.format(time=timestamp, browser=browser_name, test=test_name)
         # Validate string characters for file name
-        # TODO: create screenshot directory if it doesn't exist
         return os.path.join(cls.SCREENSHOT_PATH, utils.validate_filename(filename))
