@@ -160,6 +160,7 @@ inside the project directory:
         ├── data/
         ├── log/
         ├── pages/
+        ├── screenshot/
         ├── templates/
         │   ├── page_object.py
         │   └── test_case.py
@@ -222,6 +223,12 @@ pages/
 Page object classes for pages and components. These classes should handle
 locating and interacting with elements on the page. A template page object can
 be found in ``templates/page_object.py``.
+
+screenshot/
+^^^^^^^^^^^
+
+Default output directory for screenshots taken during test execution. This can 
+be changed in ``config/webdriver.py``.
 
 tests/
 ^^^^^^

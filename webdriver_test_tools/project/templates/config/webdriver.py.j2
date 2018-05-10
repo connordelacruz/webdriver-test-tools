@@ -9,12 +9,16 @@ class WebDriverConfig(config.WebDriverConfig):
 
     :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the log
         subdirectory in the webdriver_test_tools package root directory
-    :var WebDriverConfig.LOG_PATH: Implicit wait time for webdriver to poll DOM
+    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory. Defaults
+        to the screenshot subdirectory in the webdriver_test_tools package root directory
+    :var WebDriverConfig.IMPLICIT_WAIT: Implicit wait time for webdriver to poll DOM
+
         .. note::
 
             Documentation says not to mix this with explicit waits and some instability
             was noticed when it was set to 10. Projects can override this if necessary.
-            `Implicit wait documentation <https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits>`__
+            `Implicit wait documentation
+            <https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits>`__
 
     Browser driver initialization arguments:
 
@@ -43,6 +47,7 @@ class WebDriverConfig(config.WebDriverConfig):
 
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath({{test_package}}.__file__))
     LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
+    SCREENSHOT_PATH = os.path.join(_PACKAGE_ROOT, 'screenshot')
 
     # UNCOMMENT TO OVERRIDE DEFAULT CONFIGURATIONS
 

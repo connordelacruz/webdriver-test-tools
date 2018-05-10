@@ -6,5 +6,5 @@ webdriver\_test\_tools.config.webdriver module
     .. autoclass :: WebDriverConfig
         :members:
         :undoc-members:
-        :exclude-members: LOG_PATH
+        :exclude-members: LOG_PATH, SCREENSHOT_PATH
         

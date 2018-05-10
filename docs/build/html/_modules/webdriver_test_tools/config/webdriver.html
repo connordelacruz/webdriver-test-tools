@@ -155,10 +155,12 @@
             
   <h1>Source code for webdriver_test_tools.config.webdriver</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
 
 <span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
 
 <span class="kn">import</span> <span class="nn">webdriver_test_tools</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.common</span> <span class="k">import</span> <span class="n">utils</span>
 
 
 <div class="viewcode-block" id="WebDriverConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig">[docs]</a><span class="k">class</span> <span class="nc">WebDriverConfig</span><span class="p">:</span>
@@ -166,6 +168,8 @@
 
 <span class="sd">    :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the log</span>
 <span class="sd">        subdirectory in the webdriver_test_tools package root directory</span>
+<span class="sd">    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory. Defaults</span>
+<span class="sd">        to the screenshot subdirectory in the webdriver_test_tools package root directory</span>
 <span class="sd">    :var WebDriverConfig.IMPLICIT_WAIT: Implicit wait time for webdriver to poll DOM</span>
 
 <span class="sd">        .. note::</span>
@@ -202,6 +206,7 @@
     <span class="c1"># Root directory of webdriver_test_tools package</span>
     <span class="n">_PACKAGE_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
     <span class="n">LOG_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_PACKAGE_ROOT</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">SCREENSHOT_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_PACKAGE_ROOT</span><span class="p">,</span> <span class="s1">&#39;screenshot&#39;</span><span class="p">)</span>
 
     <span class="n">IMPLICIT_WAIT</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -303,10 +308,25 @@
     <span class="k">def</span> <span class="nf">set_driver_implicit_wait</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns driver with implicit wait time set&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">IMPLICIT_WAIT</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">IMPLICIT_WAIT</span><span class="p">)</span></div></div>
+            <span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">IMPLICIT_WAIT</span><span class="p">)</span></div>
         <span class="k">return</span> <span class="n">driver</span>
 
+    <span class="c1"># Misc</span>
 
+<div class="viewcode-block" id="WebDriverConfig.new_screenshot_file"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">new_screenshot_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">browser_name</span><span class="p">,</span> <span class="n">test_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the full filepath and filename for the screenshot</span>
+
+<span class="sd">        :param browser_name: Name of the browser (for screenshot filename)</span>
+<span class="sd">        :param test_name: Name of the current test (for screenshot filename)</span>
+
+<span class="sd">        :return: Filename for the screenshot</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filename_fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{time}</span><span class="s1">-</span><span class="si">{browser}</span><span class="s1">-</span><span class="si">{test}</span><span class="s1">.png&#39;</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">-%H%M&#39;</span><span class="p">)</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">filename_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">browser</span><span class="o">=</span><span class="n">browser_name</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">test_name</span><span class="p">)</span>
+        <span class="c1"># Validate string characters for file name</span></div></div>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">SCREENSHOT_PATH</span><span class="p">,</span> <span class="n">utils</span><span class="o">.</span><span class="n">validate_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
 </pre></div>
 
            </div>

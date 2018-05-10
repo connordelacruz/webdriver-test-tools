@@ -1,8 +1,10 @@
 import os
+from datetime import datetime
 
 from selenium import webdriver
 
 import webdriver_test_tools
+from webdriver_test_tools.common import utils
 
 
 class WebDriverConfig:
@@ -10,6 +12,8 @@ class WebDriverConfig:
 
     :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the log
         subdirectory in the webdriver_test_tools package root directory
+    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory. Defaults
+        to the screenshot subdirectory in the webdriver_test_tools package root directory
     :var WebDriverConfig.IMPLICIT_WAIT: Implicit wait time for webdriver to poll DOM
 
         .. note::
@@ -46,6 +50,7 @@ class WebDriverConfig:
     # Root directory of webdriver_test_tools package
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
     LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
+    SCREENSHOT_PATH = os.path.join(_PACKAGE_ROOT, 'screenshot')
 
     IMPLICIT_WAIT = 0
 
@@ -150,4 +155,19 @@ class WebDriverConfig:
             driver.implicitly_wait(cls.IMPLICIT_WAIT)
         return driver
 
+    # Misc
 
+    @classmethod
+    def new_screenshot_file(cls, browser_name, test_name):
+        """Return the full filepath and filename for the screenshot
+
+        :param browser_name: Name of the browser (for screenshot filename)
+        :param test_name: Name of the current test (for screenshot filename)
+
+        :return: Filename for the screenshot
+        """
+        filename_fmt = '{time}-{browser}-{test}.png'
+        timestamp = datetime.now().strftime('%Y%m%d-%H%M')
+        filename = filename_fmt.format(time=timestamp, browser=browser_name, test=test_name)
+        # Validate string characters for file name
+        return os.path.join(cls.SCREENSHOT_PATH, utils.validate_filename(filename))
