@@ -365,6 +365,21 @@ class WebDriverTestCase(unittest.TestCase):
 
         return decorator
 
+    @staticmethod
+    def screenshotOnFail():
+        # TODO: document
+        def decorator(assert_method):
+            @wraps(assert_method)
+            def wrapper(self, *args, **kwargs):
+                try:
+                    assert_method(self, *args, **kwargs)
+                except self.failureException as e:
+                    screenshot_file = self.WebDriverConfig.new_screenshot_file(self.SHORT_NAME, self._testMethodName)
+                    self.driver.get_screenshot_as_file(screenshot_file)
+                    raise
+            return wrapper
+        return decorator
+
 
 class WebDriverMobileTestCase(WebDriverTestCase):
     """Base class for mobile web driver test cases
