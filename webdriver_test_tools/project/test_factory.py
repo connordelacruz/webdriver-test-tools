@@ -126,7 +126,7 @@ def generate_browser_test_case(base_class, browser_test_class, config_module=Non
     """
     # Get base class attributes
     base_class_name = base_class.__name__
-    base_class_doc = base_class.__doc__
+    base_class_doc = base_class_name if base_class.__doc__ is None else base_class.__doc__
     base_class_module = base_class.__module__
     # Append the driver name portion of <Driver>TestCase to the class name
     browser_class_suffix = browser_test_class.__name__.replace('TestCase', '')
