@@ -19,10 +19,3 @@ Subpackages
     webdriver_test_tools.testcase
     webdriver_test_tools.webdriver
 
-Submodules
-----------
-
-.. toctree::
-
-   webdriver_test_tools.version
-
