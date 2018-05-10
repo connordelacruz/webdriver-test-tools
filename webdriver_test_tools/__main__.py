@@ -3,7 +3,7 @@
 
 import argparse
 
-from webdriver_test_tools.__about__ import __version__
+from webdriver_test_tools.__about__ import __version__, __documentation__
 from webdriver_test_tools.project import initialize
 
 
@@ -11,7 +11,7 @@ def get_parser():
     """Returns ArgumentParser object for use with main()"""
     parser = argparse.ArgumentParser(
         add_help=False,
-        epilog='For more information, visit <http://connordelacruz.com/webdriver-test-tools/>'
+        epilog='For more information, visit <{}>'.format(__documentation__)
     )
     group = parser.add_argument_group('Commands')
     # Argument for initializing
