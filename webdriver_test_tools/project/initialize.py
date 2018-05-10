@@ -6,7 +6,8 @@ import shutil
 import re
 import jinja2
 
-from webdriver_test_tools import cmd, version
+from webdriver_test_tools import cmd
+from webdriver_test_tools.__about__ import __version__, __selenium__
 from webdriver_test_tools.project import templates
 
 
@@ -236,12 +237,11 @@ def generate_context(test_package, project_title=None, version_badge=True):
     """
     if project_title is None:
         project_title = test_package
-    version_info = version.get_version_info()
 
     context = {
             'test_package': test_package,
-            'test_tools_version': version_info['version'],
-            'selenium_version': version_info['selenium'],
+            'test_tools_version': __version__,
+            'selenium_version': __selenium__,
             'project_title': project_title,
             'version_badge': version_badge,
             }
