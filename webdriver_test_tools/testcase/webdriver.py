@@ -382,7 +382,9 @@ class WebDriverTestCase(unittest.TestCase):
 
         .. note::
 
-            Currently, this function does not take a screenshot for assertions that fail within a subTest.
+            Currently, this method does not take a screenshot for assertions that fail within a subTest.
+            Since subTests are designed to continue test execution if an assertion fails, they don't
+            raise exceptions outside of their context.
         """
         def decorator(test_method):
             @wraps(test_method)
