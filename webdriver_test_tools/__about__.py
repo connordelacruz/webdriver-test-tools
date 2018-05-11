@@ -10,8 +10,7 @@ __title__ = 'webdriver_test_tools'
 __project__ = 'WebDriver Test Tools'
 __summary__ = 'A front-end testing framework using Selenium WebDriver and Python'
 
-# TODO: __version__ = '1.0.0-alpha'
-__version__ = '0.30.0'
+__version__ = '1.0.0-alpha'
 __devstatus__ = 'Development Status :: 3 - Alpha'
 
 __url__ = 'https://github.com/connordelacruz/webdriver-test-tools/'
