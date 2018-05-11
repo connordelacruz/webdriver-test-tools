@@ -34,46 +34,15 @@ methods for most of the tasks we want them to do.
 
 .. todo: explain in a little more detail
 
-.. code-block:: python
-    :caption: util_example/pages/contact.py
+.. literalinclude:: ../example/util-example/util_example/pages/contact.py
+    :caption: pages/contact.py
 
-    from webdriver_test_tools.pageobject import BasePage
-    from webdriver_test_tools.pageobject.prototypes import FormObject, ModalObject
-    from webdriver_test_tools.webdriver import actions, locate
-    from selenium.webdriver.common.by import By
+.. todo: explain methods
 
-
-    class ContactPage(FormObject):
-        # Relative to SiteConfig.BASE_URL
-        PAGE_FILENAME = 'contact.html'
-
-        class Locator:
-            CONTACT_FORM = (By.ID, 'contact-form')
-            SUBMIT = (By.CSS_SELECTOR, 'button[type="submit"]')
-
-        # Attributes used by FormObject methods
-        FORM_LOCATOR = Locator.CONTACT_FORM
-        SUBMIT_LOCATOR = Locator.SUBMIT
-        SUBMIT_SUCCESS_CLASS = SuccessModal
-
-        class Input:
-            FIRST_NAME = 'firstname'
-            LAST_NAME = 'lastname'
-            EMAIL = 'email'
-            MESSAGE = 'message'
-
-
-    class SuccessModal(ModalObject):
-
-        class Locator:
-            SUCCESS_MODAL = (By.ID, 'success-modal')
-            CLOSE_BUTTON = (By.ID, 'close')
-
-        # Attributes used by ModalObject methods
-        MODAL_LOCATOR = Locator.SUCCESS_MODAL
-        CLOSE_LOCATOR = Locator.CLOSE_BUTTON
-
-
+.. literalinclude:: ../example/util-example/util_example/tests/contact.py
+    :caption: tests/contact.py
+    :pyobject: ContactTestCase.test_contact_form
+    
 .. todo: Lead in to next example 
 
 
@@ -87,58 +56,9 @@ Example
 
 .. todo explain example code
 
-.. code-block:: python
-    :caption: util_example/tests/contact.py
-
-    import webdriver_test_tools
-    from webdriver_test_tools.testcase import *
-    from util_example import config
-    from selenium import webdriver
-
-    from util_example.pages.contact import ContactPage
-
-    # Test Case Classes
-
-    class ContactTestCase(WebDriverTestCase):
-        """Tests for the Contact Us page"""
-
-        # URL to go to at the start of each test
-        SITE_URL = config.SiteConfig.BASE_URL + ContactPage.PAGE_FILENAME
-
-        # Helper Functions
-
-        def generate_contact_form_data(self):
-            """Returns a dictionary mapping input names to generated user data"""
-            user = data.RandomUser({'nat': 'us'})
-            msg = data.loremipsum.generate(1, 'short')
-            form_data = {
-                ContactPage.Input.FIRST_NAME: user.get_first_name(),
-                ContactPage.Input.LAST_NAME: user.get_last_name(),
-                ContactPage.Input.EMAIL: user.get_email(),
-                ContactPage.Input.MESSAGE: msg,
-            }
-            return form_data
-
-        # Test Functions
-
-        def test_contact_form(self):
-            """Send message through contact form"""
-
-            with self.subTest('Fill all required fields'):
-                contact_page.fill_form(contact_form_data)
-                # Assert submit is enabled after filling required fields
-                self.assertEnabled(contact_page.SUBMIT_LOCATOR)
-
-            with self.subTest('Submit contact form'):
-                # click_submit() returns a SuccessModal page object
-                success_modal = contact_page.click_submit()
-                # Assert success modal is visible on submit
-                self.assertVisible(success_modal.MODAL_LOCATOR)
-
-            with self.subTest('Close success modal'):
-                success_modal.click_close_button()
-                # Assert success modal is no longer visible
-                self.assertInvisible(success_modal.MODAL_LOCATOR)
+.. literalinclude:: ../example/util-example/util_example/tests/contact.py
+    :caption: tests/contact.py
+    :pyobject: ContactTestCase.generate_contact_form_data
 
 
 Screenshots
