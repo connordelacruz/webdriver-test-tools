@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -282,7 +283,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Get base class attributes</span>
     <span class="n">base_class_name</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__name__</span>
-    <span class="n">base_class_doc</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__doc__</span>
+    <span class="n">base_class_doc</span> <span class="o">=</span> <span class="n">base_class_name</span> <span class="k">if</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__doc__</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__doc__</span>
     <span class="n">base_class_module</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__module__</span>
     <span class="c1"># Append the driver name portion of &lt;Driver&gt;TestCase to the class name</span>
     <span class="n">browser_class_suffix</span> <span class="o">=</span> <span class="n">browser_test_class</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;TestCase&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>

@@ -31,6 +31,8 @@ class ContactTestCase(WebDriverTestCase):
 
     def test_contact_form(self):
         """Send message through contact form"""
+        contact_page = ContactPage(self.driver)
+        contact_form_data = self.generate_contact_form_data()
 
         with self.subTest('Fill all required fields'):
             contact_page.fill_form(contact_form_data)

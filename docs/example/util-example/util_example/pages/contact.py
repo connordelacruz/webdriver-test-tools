@@ -18,6 +18,7 @@ class ContactPage(FormObject):
     SUBMIT_SUCCESS_CLASS = SuccessModal
 
     class Input:
+        """Constants for input names"""
         FIRST_NAME = 'firstname'
         LAST_NAME = 'lastname'
         EMAIL = 'email'

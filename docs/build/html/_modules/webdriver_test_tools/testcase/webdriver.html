@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -538,7 +539,9 @@
 
 <span class="sd">        .. note::</span>
 
-<span class="sd">            Currently, this function does not take a screenshot for assertions that fail within a subTest.</span>
+<span class="sd">            Currently, this method does not take a screenshot for assertions that fail within a subTest.</span>
+<span class="sd">            Since subTests are designed to continue test execution if an assertion fails, they don&#39;t</span>
+<span class="sd">            raise exceptions outside of their context.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">test_method</span><span class="p">):</span>
             <span class="nd">@wraps</span><span class="p">(</span><span class="n">test_method</span><span class="p">)</span>

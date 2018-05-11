@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -595,7 +596,9 @@ Screenshots are saved to the directory configured in <code class="docutils liter
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Currently, this function does not take a screenshot for assertions that fail within a subTest.</p>
+<p class="last">Currently, this method does not take a screenshot for assertions that fail within a subTest.
+Since subTests are designed to continue test execution if an assertion fails, they don’t
+raise exceptions outside of their context.</p>
 </div>
 </dd></dl>
 

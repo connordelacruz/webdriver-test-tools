@@ -3,7 +3,7 @@ from webdriver_test_tools.webdriver import actions
 
 
 class FormObject(BasePage):
-    """Page object prototype for navbars
+    """Page object prototype for forms
 
     :var FORM_LOCATOR: Locator for the form element. Override in subclasses
     :var SUBMIT_LOCATOR: Locator for the submit button. Override in subclasses
