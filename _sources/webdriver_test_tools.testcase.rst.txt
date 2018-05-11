@@ -6,9 +6,6 @@ webdriver\_test\_tools.testcase package
     :undoc-members:
     :show-inheritance:
 
-Submodules
-----------
-
 .. toctree::
 
    webdriver_test_tools.testcase.browsers
