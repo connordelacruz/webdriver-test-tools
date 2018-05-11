@@ -1,7 +1,7 @@
 from datetime import datetime
 
 __all__ = [
-    '__title__', '__project__', '__summary__', '__version__', '__devstatus__',
+    '__title__', '__project__', '__summary__', '__release__', '__version__', '__devstatus__',
     '__url__', '__documentation__', '__download__', '__selenium__',
     '__author__', '__email__', '__license__', '__copyright__',
 ]
@@ -10,7 +10,8 @@ __title__ = 'webdriver_test_tools'
 __project__ = 'WebDriver Test Tools'
 __summary__ = 'A front-end testing framework using Selenium WebDriver and Python'
 
-__version__ = '1.0.0-alpha'
+__release__ = '1.0.0-alpha'
+__version__ = __release__.split('-')[0]
 __devstatus__ = 'Development Status :: 3 - Alpha'
 
 __url__ = 'https://github.com/connordelacruz/webdriver-test-tools/'
