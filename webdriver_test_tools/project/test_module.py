@@ -5,6 +5,7 @@ import unittest
 import textwrap
 
 from webdriver_test_tools import cmd, config
+from webdriver_test_tools.__about__ import __documentation__
 from webdriver_test_tools.testcase import Browsers
 from webdriver_test_tools.project import test_loader, test_factory
 
@@ -59,7 +60,7 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     :return: ArgumentParser for the test package
     """
     description = 'Run the test suite.'
-    epilog = 'For more information, visit <http://connordelacruz.com/webdriver-test-tools/>'
+    epilog = 'For more information, visit <{}>'.format(__documentation__)
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, add_help=False,
                                      prog=package_name, description=description, epilog=epilog)
     # Use default config if module is None or doesn't contain BrowserConfig class

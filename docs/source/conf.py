@@ -20,11 +20,11 @@
 # -- Project information -----------------------------------------------------
 
 # For automatic versioning
-from webdriver_test_tools.version import __version__
+from webdriver_test_tools.__about__ import *
 
-project = 'WebDriver Test Tools'
-copyright = '2018, Connor de la Cruz'
-author = 'Connor de la Cruz'
+project = __project__
+copyright = __copyright__
+author = __author__
 
 # The short X.Y version
 version = '{version[0]}.{version[1]}'.format(version=__version__.split('.'))

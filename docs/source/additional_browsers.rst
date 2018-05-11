@@ -165,6 +165,8 @@ To only use mobile browsers for a test case class, subclass
         ...
 
 
+.. _headless-browsers:
+
 Using headless browsers
 -----------------------
 

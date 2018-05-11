@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -518,7 +519,40 @@
                 <span class="n">test_method</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="n">wrapper</span>
-</div></div>
+</div>
+        <span class="k">return</span> <span class="n">decorator</span>
+
+<div class="viewcode-block" id="WebDriverTestCase.screenshotOnFail"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">screenshotOnFail</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Decorator for test methods that takes a screenshot if an assertion fails.</span>
+<span class="sd">        Screenshots are saved to the directory configured in ``WebDriverConfig.SCREENSHOT_PATH``</span>
+
+<span class="sd">        Usage Example:</span>
+
+<span class="sd">        .. code:: python</span>
+
+<span class="sd">            @WebDriverTestCase.screenshotOnFail()</span>
+<span class="sd">            test_method(self):</span>
+<span class="sd">                ...</span>
+<span class="sd">                self.assertTrue(condition)</span>
+<span class="sd">                ...</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            Currently, this method does not take a screenshot for assertions that fail within a subTest.</span>
+<span class="sd">            Since subTests are designed to continue test execution if an assertion fails, they don&#39;t</span>
+<span class="sd">            raise exceptions outside of their context.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">test_method</span><span class="p">):</span>
+            <span class="nd">@wraps</span><span class="p">(</span><span class="n">test_method</span><span class="p">)</span>
+            <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">screenshot_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">new_screenshot_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SHORT_NAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testMethodName</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get_screenshot_as_file</span><span class="p">(</span><span class="n">screenshot_file</span><span class="p">)</span>
+                    <span class="k">raise</span>
+            <span class="k">return</span> <span class="n">wrapper</span></div></div>
         <span class="k">return</span> <span class="n">decorator</span>
 
 

@@ -1,3 +1,5 @@
+:orphan:
+
 webdriver\_test\_tools.common package
 =====================================
 
@@ -5,9 +7,6 @@ webdriver\_test\_tools.common package
     :members:
     :undoc-members:
     :show-inheritance:
-
-Submodules
-----------
 
 .. toctree::
 

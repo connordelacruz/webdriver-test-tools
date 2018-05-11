@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -162,7 +163,8 @@
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">jinja2</span>
 
-<span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">version</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">cmd</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.__about__</span> <span class="k">import</span> <span class="n">__version__</span><span class="p">,</span> <span class="n">__selenium__</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">templates</span>
 
 
@@ -248,18 +250,24 @@
         <span class="n">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">project_dir</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="create_log_directory"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_log_directory">[docs]</a><span class="k">def</span> <span class="nf">create_log_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates log/ directory and log/.gitignore file</span>
+<div class="viewcode-block" id="create_output_directories"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_output_directories">[docs]</a><span class="k">def</span> <span class="nf">create_output_directories</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates log/ and screenshot/ directories and their .gitignore files</span>
 
 <span class="sd">    :param target_path: The path to the test package directory</span>
-<span class="sd">    :param gitignore_files: (Default = True) Copy template .gitignore file to log</span>
-<span class="sd">        directory if True</span>
+<span class="sd">    :param gitignore_files: (Default = True) Copy template .gitignore files to log/</span>
+<span class="sd">        and screenshot/ directories if True</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
     <span class="n">source_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
-    <span class="n">log_path</span> <span class="o">=</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">gitignore_files</span><span class="p">:</span></div>
-        <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_path</span><span class="p">,</span> <span class="s1">&#39;gitignore&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">log_path</span><span class="p">,</span> <span class="s1">&#39;.gitignore&#39;</span><span class="p">))</span>
+    <span class="n">output_directories</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;log&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;screenshot&#39;</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">output_directories</span><span class="p">:</span>
+        <span class="n">directory_path</span> <span class="o">=</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gitignore_files</span><span class="p">:</span>
+            <span class="c1"># .gitignore files are the same between directories</span></div>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_path</span><span class="p">,</span> <span class="s1">&#39;gitignore&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory_path</span><span class="p">,</span> <span class="s1">&#39;.gitignore&#39;</span><span class="p">))</span>
 
 
 <div class="viewcode-block" id="create_tests_init"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_tests_init">[docs]</a><span class="k">def</span> <span class="nf">create_tests_init</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
@@ -392,12 +400,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">project_title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">project_title</span> <span class="o">=</span> <span class="n">test_package</span>
-    <span class="n">version_info</span> <span class="o">=</span> <span class="n">version</span><span class="o">.</span><span class="n">get_version_info</span><span class="p">()</span>
 
     <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;test_package&#39;</span><span class="p">:</span> <span class="n">test_package</span><span class="p">,</span>
-            <span class="s1">&#39;test_tools_version&#39;</span><span class="p">:</span> <span class="n">version_info</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;selenium_version&#39;</span><span class="p">:</span> <span class="n">version_info</span><span class="p">[</span><span class="s1">&#39;selenium&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;test_tools_version&#39;</span><span class="p">:</span> <span class="n">__version__</span><span class="p">,</span>
+            <span class="s1">&#39;selenium_version&#39;</span><span class="p">:</span> <span class="n">__selenium__</span><span class="p">,</span>
             <span class="s1">&#39;project_title&#39;</span><span class="p">:</span> <span class="n">project_title</span><span class="p">,</span>
             <span class="s1">&#39;version_badge&#39;</span><span class="p">:</span> <span class="n">version_badge</span><span class="p">,</span>
             <span class="p">}</span></div>
@@ -475,7 +482,7 @@
     <span class="c1"># Initialize package files</span>
     <span class="n">create_main_module</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
     <span class="n">create_test_directories</span><span class="p">(</span><span class="n">package_path</span><span class="p">)</span>
-    <span class="n">create_log_directory</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="p">)</span>
+    <span class="n">create_output_directories</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="p">)</span>
     <span class="n">create_tests_init</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
     <span class="n">create_config_files</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
     <span class="n">create_template_files</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>

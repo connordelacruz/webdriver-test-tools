@@ -365,6 +365,39 @@ class WebDriverTestCase(unittest.TestCase):
 
         return decorator
 
+    @staticmethod
+    def screenshotOnFail():
+        """Decorator for test methods that takes a screenshot if an assertion fails.
+        Screenshots are saved to the directory configured in ``WebDriverConfig.SCREENSHOT_PATH``
+
+        Usage Example:
+
+        .. code:: python
+
+            @WebDriverTestCase.screenshotOnFail()
+            test_method(self):
+                ...
+                self.assertTrue(condition)
+                ...
+
+        .. note::
+
+            Currently, this method does not take a screenshot for assertions that fail within a subTest.
+            Since subTests are designed to continue test execution if an assertion fails, they don't
+            raise exceptions outside of their context.
+        """
+        def decorator(test_method):
+            @wraps(test_method)
+            def wrapper(self, *args, **kwargs):
+                try:
+                    test_method(self, *args, **kwargs)
+                except self.failureException as e:
+                    screenshot_file = self.WebDriverConfig.new_screenshot_file(self.SHORT_NAME, self._testMethodName)
+                    self.driver.get_screenshot_as_file(screenshot_file)
+                    raise
+            return wrapper
+        return decorator
+
 
 class WebDriverMobileTestCase(WebDriverTestCase):
     """Base class for mobile web driver test cases

@@ -1,18 +1,23 @@
+import os
+
 from setuptools import setup, find_packages
 
 def readme():
     with open('README.rst') as f:
         return f.read()
 
-# Get __version__, __devstatus__, and __selenium__
-with open('./webdriver_test_tools/version.py') as f:
-    exec(f.read())
+
+# Get metadata
+base_path = os.path.dirname(__file__)
+about = {}
+with open(os.path.join(base_path, 'webdriver_test_tools', '__about__.py')) as f:
+    exec(f.read(), about)
 
 
 # Installation
 
 install_requires = [
-    'selenium>={}'.format(__selenium__),
+    'selenium>={}'.format(about['__selenium__']),
     'colour-runner>=0.0.5',
     'randomuser>=1.4.0',
     'py-loremipsum>=1.0.0',
@@ -44,29 +49,25 @@ Topic :: Software Development :: Testing
 Topic :: Software Development :: Quality Assurance
 Topic :: Utilities
 {}
-'''.format(__devstatus__)
-
-url = 'https://github.com/connordelacruz/webdriver-test-tools/'
-
-download_url = url + 'archive/{}.tar.gz'.format(__version__)
+'''.format(about['__devstatus__'])
 
 project_urls = {
-    'Documentation': 'http://connordelacruz.com/webdriver-test-tools/',
-    'Source': url,
+    'Documentation': about['__documentation__'],
+    'Source': about['__url__'],
 }
 
 
 setup(
-    name='webdriver_test_tools',
-    version=__version__,
-    description='A front-end testing framework using Selenium WebDriver and Python',
+    name=about['__title__'],
+    version=about['__version__'],
+    description=about['__summary__'],
     long_description=readme(),
-    url=url,
-    download_url=download_url,
+    url=about['__url__'],
+    download_url=about['__download__'],
     project_urls=project_urls,
-    author='Connor de la Cruz',
-    author_email='connor.c.delacruz@gmail.com',
-    license='MIT',
+    author=about['__author__'],
+    author_email=about['__email__'],
+    license=about['__license__'],
     classifiers=[x for x in CLASSIFIERS.split("\n") if x],
     packages=find_packages(),
     entry_points=entry_points,

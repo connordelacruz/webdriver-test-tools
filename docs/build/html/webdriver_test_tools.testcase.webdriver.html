@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -106,7 +107,6 @@
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
 </ul>
 </li>
 </ul>
@@ -578,6 +578,27 @@ current URL.</p>
 <span class="n">test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="o">...</span>
 </pre></div>
+</div>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail">
+<em class="property">static </em><code class="descname">screenshotOnFail</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.screenshotOnFail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for test methods that takes a screenshot if an assertion fails.
+Screenshots are saved to the directory configured in <code class="docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_PATH</span></code></p>
+<p>Usage Example:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase</span><span class="o">.</span><span class="n">screenshotOnFail</span><span class="p">()</span>
+<span class="n">test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">condition</span><span class="p">)</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently, this method does not take a screenshot for assertions that fail within a subTest.
+Since subTests are designed to continue test execution if an assertion fails, they don’t
+raise exceptions outside of their context.</p>
 </div>
 </dd></dl>
 

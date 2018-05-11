@@ -6,7 +6,8 @@ import shutil
 import re
 import jinja2
 
-from webdriver_test_tools import cmd, version
+from webdriver_test_tools import cmd
+from webdriver_test_tools.__about__ import __version__, __selenium__
 from webdriver_test_tools.project import templates
 
 
@@ -92,18 +93,24 @@ def create_test_directories(target_path):
         create_directory(target_path, project_dir)
 
 
-def create_log_directory(target_path, gitignore_files=True):
-    """Creates log/ directory and log/.gitignore file
+def create_output_directories(target_path, gitignore_files=True):
+    """Creates log/ and screenshot/ directories and their .gitignore files
 
     :param target_path: The path to the test package directory
-    :param gitignore_files: (Default = True) Copy template .gitignore file to log
-        directory if True
+    :param gitignore_files: (Default = True) Copy template .gitignore files to log/
+        and screenshot/ directories if True
     """
     target_path = os.path.abspath(target_path)
     source_path = templates.log.get_path()
-    log_path = create_directory(target_path, 'log')
-    if gitignore_files:
-        shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(log_path, '.gitignore'))
+    output_directories = [
+        'log',
+        'screenshot'
+    ]
+    for directory in output_directories:
+        directory_path = create_directory(target_path, directory)
+        if gitignore_files:
+            # .gitignore files are the same between directories
+            shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(directory_path, '.gitignore'))
 
 
 def create_tests_init(target_path, context):
@@ -236,12 +243,11 @@ def generate_context(test_package, project_title=None, version_badge=True):
     """
     if project_title is None:
         project_title = test_package
-    version_info = version.get_version_info()
 
     context = {
             'test_package': test_package,
-            'test_tools_version': version_info['version'],
-            'selenium_version': version_info['selenium'],
+            'test_tools_version': __version__,
+            'selenium_version': __selenium__,
             'project_title': project_title,
             'version_badge': version_badge,
             }
@@ -319,7 +325,7 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
     # Initialize package files
     create_main_module(package_path, context)
     create_test_directories(package_path)
-    create_log_directory(package_path, gitignore_files)
+    create_output_directories(package_path, gitignore_files)
     create_tests_init(package_path, context)
     create_config_files(package_path, context)
     create_template_files(package_path, context)

@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -156,6 +157,7 @@
   <h1>Source code for webdriver_test_tools.common.utils</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Various utility methods for webdriver_test_tools submodules&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">urlparse</span>
 
 
@@ -169,6 +171,22 @@
     <span class="n">current</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">current</span><span class="o">.</span><span class="n">scheme</span> <span class="o">+</span> <span class="s1">&#39;://&#39;</span> <span class="o">+</span> <span class="n">current</span><span class="o">.</span><span class="n">netloc</span> <span class="o">+</span> <span class="n">current</span><span class="o">.</span><span class="n">path</span>
 
+<div class="viewcode-block" id="validate_filename"><a class="viewcode-back" href="../../../webdriver_test_tools.common.utils.html#webdriver_test_tools.common.utils.validate_filename">[docs]</a><span class="k">def</span> <span class="nf">validate_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">allow_spaces</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Strips invalid characters from a filename</span>
+
+<span class="sd">    Considers POSIX &quot;fully portable filenames&quot; valid. These include:</span>
+<span class="sd">        A-Z a-z 0-9 ._-</span>
+
+<span class="sd">    Filenames cannot begin with a hyphen.</span>
+
+<span class="sd">    :param filename: The desired file name (without path)</span>
+<span class="sd">    :param allow_spaces: (Default = False) If True, spaces will be considered</span>
+<span class="sd">        valid characters</span>
+
+<span class="sd">    :return: Filename with invalid characters removed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^-|[^\d\w\. -]&#39;</span> <span class="k">if</span> <span class="n">allow_spaces</span> <span class="k">else</span> <span class="sa">r</span><span class="s1">&#39;^-|[^\d\w\.-]&#39;</span></div>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
 </pre></div>
 
            </div>

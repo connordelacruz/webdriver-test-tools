@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -106,7 +107,6 @@
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.html#submodules">Submodules</a></li>
 </ul>
 </li>
 </ul>
@@ -286,17 +286,17 @@ contained</td>
 </dd></dl>
 
 <dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_log_directory">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_log_directory</code><span class="sig-paren">(</span><em>target_path</em>, <em>gitignore_files=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_log_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_log_directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates log/ directory and log/.gitignore file</p>
+<dt id="webdriver_test_tools.project.initialize.create_output_directories">
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_output_directories</code><span class="sig-paren">(</span><em>target_path</em>, <em>gitignore_files=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_output_directories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_output_directories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates log/ and screenshot/ directories and their .gitignore files</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>target_path</strong> – The path to the test package directory</li>
-<li><strong>gitignore_files</strong> – (Default = True) Copy template .gitignore file to log
-directory if True</li>
+<li><strong>gitignore_files</strong> – (Default = True) Copy template .gitignore files to log/
+and screenshot/ directories if True</li>
 </ul>
 </td>
 </tr>
