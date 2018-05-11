@@ -29,7 +29,7 @@ author = __author__
 # The short X.Y version
 version = '{version[0]}.{version[1]}'.format(version=__version__.split('.'))
 # The full version, including alpha/beta/rc tags
-release = __version__
+release = __release__
 
 
 # -- General configuration ---------------------------------------------------
