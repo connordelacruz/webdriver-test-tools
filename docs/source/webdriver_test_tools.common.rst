@@ -8,9 +8,6 @@ webdriver\_test\_tools.common package
     :undoc-members:
     :show-inheritance:
 
-Submodules
-----------
-
 .. toctree::
 
    webdriver_test_tools.common.utils

@@ -6,9 +6,6 @@ webdriver\_test\_tools.pageobject package
     :undoc-members:
     :show-inheritance:
 
-Submodules
-----------
-
 .. toctree::
 
    webdriver_test_tools.pageobject.base
