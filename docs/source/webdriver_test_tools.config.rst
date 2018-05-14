@@ -6,6 +6,9 @@ webdriver\_test\_tools.config package
     :undoc-members:
     :show-inheritance:
 
+Submodules
+----------
+
 .. toctree::
 
    webdriver_test_tools.config.browser
