@@ -1,3 +1,6 @@
+"""
+|release|
+"""
 from . import config
 from . import data
 from . import project
@@ -11,3 +14,4 @@ from .__about__ import (
 __all__ = [
     '__version__', '__author__', '__email__', '__license__', '__copyright__',
 ]
+
