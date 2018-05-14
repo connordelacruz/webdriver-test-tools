@@ -6,7 +6,3 @@ webdriver\_test\_tools.cmd package
     :undoc-members:
     :show-inheritance:
 
-.. toctree::
-
-   webdriver_test_tools.cmd.cmd
-

@@ -6,6 +6,13 @@
     :show-inheritance:
     :noindex:
 
+Modules
+-------
+
+.. toctree::
+
+   webdriver_test_tools.cmd.cmd
+
 """
 from .cmd import *
 
