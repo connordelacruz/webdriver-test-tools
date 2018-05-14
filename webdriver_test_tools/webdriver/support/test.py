@@ -1,9 +1,10 @@
 """Functions for commonly repeated test procedures"""
 
-from webdriver_test_tools.webdriver.support import expected_conditions as customEC
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+from webdriver_test_tools.webdriver.support import expected_conditions as customEC
 
 # TODO: consistent naming conventions
 
@@ -30,6 +31,7 @@ def element_exists(driver, element_locator):
     return exists
 
 
+# TODO: move to expected conditions
 def is_scrolled_into_view(driver, element, fully_in_view=True):
     """Returns True if the element is scrolled into view, False otherwise
 

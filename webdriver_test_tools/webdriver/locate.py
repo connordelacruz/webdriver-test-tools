@@ -1,4 +1,4 @@
-# Utility functions for locating elements
+"""Utility functions for locating elements"""
 
 from selenium.webdriver.common.by import By
 
@@ -23,8 +23,8 @@ def by_element_text(element_text, element_type='*', exact_match=False):
 
 
 def input_elements(exclude_buttons=False):
-    """Return a locator that selects input, select, textarea, and (optionally) button
-    elements
+    """Return a locator that selects ``input``, ``select``, ``textarea``, and (optionally)
+    ``button`` elements
 
     To narrow down results, this is best used on the conainer element where the desired
     inputs are located. E.g.:
