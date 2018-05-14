@@ -25,11 +25,11 @@ class WebDriverConfig:
 
     Browser driver initialization arguments:
 
-    :var WebDriverConfig.FIREFOX_KWARGS: Keyword args for webdriver.Firefox()
-    :var WebDriverConfig.CHROME_KWARGS: Keyword args for webdriver.Chrome()
-    :var WebDriverConfig.SAFARI_KWARGS: Keyword args for webdriver.Safari()
-    :var WebDriverConfig.IE_KWARGS: Keyword args for webdriver.Ie()
-    :var WebDriverConfig.EDGE_KWARGS: Keyword args for webdriver.Edge()
+    :var WebDriverConfig.FIREFOX_KWARGS: Keyword args for ``webdriver.Firefox()``
+    :var WebDriverConfig.CHROME_KWARGS: Keyword args for ``webdriver.Chrome()``
+    :var WebDriverConfig.SAFARI_KWARGS: Keyword args for ``webdriver.Safari()``
+    :var WebDriverConfig.IE_KWARGS: Keyword args for ``webdriver.Ie()``
+    :var WebDriverConfig.EDGE_KWARGS: Keyword args for ``webdriver.Edge()``
 
     .. note::
 
@@ -44,8 +44,10 @@ class WebDriverConfig:
 
     Headless browser configurations:
 
-    :var WebDriverConfig.CHROME_HEADLESS_ARGS: Command line arguments to use in addition to the --headless flag
-    :var WebDriverConfig.FIREFOX_HEADLESS_ARGS: Command line arguments to use in addition to the -headless flag
+    :var WebDriverConfig.CHROME_HEADLESS_ARGS: Command line arguments to use in addition
+        to the ``--headless`` flag
+    :var WebDriverConfig.FIREFOX_HEADLESS_ARGS: Command line arguments to use in addition
+        to the ``-headless`` flag
     """
     # Root directory of webdriver_test_tools package
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
@@ -68,7 +70,7 @@ class WebDriverConfig:
 
     @classmethod
     def get_firefox_driver(cls, headless=False):
-        """Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to
+        """Returns ``webdriver.Firefox`` object using :attr:`FIREFOX_KWARGS` and :attr:`LOG_PATH` to
         initialize
 
         :param headless: (Default = False) If True, configure driver to run a
@@ -80,7 +82,7 @@ class WebDriverConfig:
 
     @classmethod
     def get_chrome_driver(cls, headless=False):
-        """Returns webdriver.Chrome object using CHROME_KWARGS and LOG_PATH to
+        """Returns ``webdriver.Chrome`` object using :attr:`CHROME_KWARGS` and :attr:`LOG_PATH` to
         initialize
 
         :param headless: (Default = False) If True, configure driver to run a
@@ -93,25 +95,25 @@ class WebDriverConfig:
 
     @classmethod
     def get_safari_driver(cls):
-        """Returns webdriver.Safari object using SAFARI_KWARGS to initialize"""
+        """Returns ``webdriver.Safari`` object using :attr:`SAFARI_KWARGS` to initialize"""
         return cls.set_driver_implicit_wait(webdriver.Safari(**cls.SAFARI_KWARGS))
 
     @classmethod
     def get_ie_driver(cls):
-        """Returns webdriver.Ie object using IE_KWARGS and LOG_PATH to initialize"""
+        """Returns ``webdriver.Ie`` object using :attr:`IE_KWARGS` and :attr:`LOG_PATH` to initialize"""
         log_file = os.path.join(cls.LOG_PATH, 'iedriver.log')
         return cls.set_driver_implicit_wait(webdriver.Ie(log_file=log_file, **cls.IE_KWARGS))
 
     @classmethod
     def get_edge_driver(cls):
-        """Returns webdriver.Edge object using EDGE_KWARGS and LOG_PATH to initialize"""
+        """Returns ``webdriver.Edge`` object using :attr:`EDGE_KWARGS` and :attr:`LOG_PATH` to initialize"""
         log_path = os.path.join(cls.LOG_PATH, 'edgedriver.log')
         return cls.set_driver_implicit_wait(webdriver.Edge(log_path=log_path, **cls.EDGE_KWARGS))
 
     @classmethod
     def get_chrome_mobile_driver(cls, headless=False):
-        """Returns webdriver.Chrome object using CHROME_KWARGS, LOG_PATH, and
-        CHROME_MOBILE_EMULATION to initialize
+        """Returns ``webdriver.Chrome`` object using :attr:`CHROME_KWARGS`, :attr:`LOG_PATH`, and
+        :attr:`CHROME_MOBILE_EMULATION` to initialize
 
         :param headless: (Default = False) If True, configure driver to run a
             headless browser

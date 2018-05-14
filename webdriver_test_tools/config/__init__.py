@@ -1,4 +1,4 @@
-"""Default configurations for various items in the test framework
+"""Default configurations for various items in the test framework.
 
 Config Classes
 ==============

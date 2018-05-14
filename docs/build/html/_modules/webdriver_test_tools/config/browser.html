@@ -215,7 +215,7 @@
 <span class="sd">    :var BrowserStackConfig.ENABLE: Set to True to enable BrowserStack testing</span>
 <span class="sd">    :var BrowserStackConfig.USERNAME: Account username. Projects will need to override this</span>
 <span class="sd">    :var BrowserStackConfig.ACCESS_KEY: Access key. Projects will need to override this</span>
-<span class="sd">    :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations</span>
+<span class="sd">    :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations.</span>
 <span class="sd">        `Capabilities reference &lt;https://www.browserstack.com/automate/capabilities#&gt;`__</span>
 <span class="sd">    :var BrowserStackConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.</span>
 <span class="sd">        True enables the browser, False disables it. Defaults to Chrome and</span>
@@ -237,7 +237,7 @@
     <span class="k">def</span> <span class="nf">get_command_executor</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the command executor URL</span>
 
-<span class="sd">        :return: Command executor URL formatted with USERNAME and ACCESS_KEY</span>
+<span class="sd">        :return: Command executor URL formatted with :attr:`USERNAME` and :attr:`ACCESS_KEY`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">USERNAME</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ACCESS_KEY</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;USERNAME or ACCESS_KEY not set in BrowserStackConfig&#39;</span><span class="p">)</span>
@@ -247,7 +247,7 @@
 
 <div class="viewcode-block" id="BrowserStackConfig.add_browserstack_capabilities"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">add_browserstack_capabilities</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">desired_capabilities</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Update a desired capabilities dictionary to include items from BS_CAPABILITIES</span>
+        <span class="sd">&quot;&quot;&quot;Update a desired capabilities dictionary to include items from :attr:`BS_CAPABILITIES`</span>
 
 <span class="sd">        :param desired_capabilities: Desired capabilities dictionary to update</span>
 <span class="sd">        &quot;&quot;&quot;</span></div></div>

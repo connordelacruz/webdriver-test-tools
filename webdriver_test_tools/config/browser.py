@@ -58,7 +58,7 @@ class BrowserStackConfig(BrowserConfig):
     :var BrowserStackConfig.ENABLE: Set to True to enable BrowserStack testing
     :var BrowserStackConfig.USERNAME: Account username. Projects will need to override this
     :var BrowserStackConfig.ACCESS_KEY: Access key. Projects will need to override this
-    :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations
+    :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations.
         `Capabilities reference <https://www.browserstack.com/automate/capabilities#>`__
     :var BrowserStackConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.
         True enables the browser, False disables it. Defaults to Chrome and
@@ -80,7 +80,7 @@ class BrowserStackConfig(BrowserConfig):
     def get_command_executor(cls):
         """Returns the command executor URL
 
-        :return: Command executor URL formatted with USERNAME and ACCESS_KEY
+        :return: Command executor URL formatted with :attr:`USERNAME` and :attr:`ACCESS_KEY`
         """
         if not cls.USERNAME or not cls.ACCESS_KEY:
             raise Exception('USERNAME or ACCESS_KEY not set in BrowserStackConfig')
@@ -90,7 +90,7 @@ class BrowserStackConfig(BrowserConfig):
 
     @classmethod
     def add_browserstack_capabilities(cls, desired_capabilities):
-        """Update a desired capabilities dictionary to include items from BS_CAPABILITIES
+        """Update a desired capabilities dictionary to include items from :attr:`BS_CAPABILITIES`
 
         :param desired_capabilities: Desired capabilities dictionary to update
         """

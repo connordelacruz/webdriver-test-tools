@@ -212,11 +212,11 @@ was noticed when it was set to 10. Projects can override this if necessary.
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS"><strong>WebDriverConfig.FIREFOX_KWARGS</strong></a> – Keyword args for webdriver.Firefox()</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS"><strong>WebDriverConfig.CHROME_KWARGS</strong></a> – Keyword args for webdriver.Chrome()</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS"><strong>WebDriverConfig.SAFARI_KWARGS</strong></a> – Keyword args for webdriver.Safari()</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS"><strong>WebDriverConfig.IE_KWARGS</strong></a> – Keyword args for webdriver.Ie()</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS"><strong>WebDriverConfig.EDGE_KWARGS</strong></a> – Keyword args for webdriver.Edge()</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS"><strong>WebDriverConfig.FIREFOX_KWARGS</strong></a> – Keyword args for <code class="docutils literal notranslate"><span class="pre">webdriver.Firefox()</span></code></li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS"><strong>WebDriverConfig.CHROME_KWARGS</strong></a> – Keyword args for <code class="docutils literal notranslate"><span class="pre">webdriver.Chrome()</span></code></li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS"><strong>WebDriverConfig.SAFARI_KWARGS</strong></a> – Keyword args for <code class="docutils literal notranslate"><span class="pre">webdriver.Safari()</span></code></li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS"><strong>WebDriverConfig.IE_KWARGS</strong></a> – Keyword args for <code class="docutils literal notranslate"><span class="pre">webdriver.Ie()</span></code></li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS"><strong>WebDriverConfig.EDGE_KWARGS</strong></a> – Keyword args for <code class="docutils literal notranslate"><span class="pre">webdriver.Edge()</span></code></li>
 </ul>
 </td>
 </tr>
@@ -244,8 +244,10 @@ options for Chrome</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS"><strong>WebDriverConfig.CHROME_HEADLESS_ARGS</strong></a> – Command line arguments to use in addition to the –headless flag</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS"><strong>WebDriverConfig.FIREFOX_HEADLESS_ARGS</strong></a> – Command line arguments to use in addition to the -headless flag</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS"><strong>WebDriverConfig.CHROME_HEADLESS_ARGS</strong></a> – Command line arguments to use in addition
+to the <code class="docutils literal notranslate"><span class="pre">--headless</span></code> flag</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS"><strong>WebDriverConfig.FIREFOX_HEADLESS_ARGS</strong></a> – Command line arguments to use in addition
+to the <code class="docutils literal notranslate"><span class="pre">-headless</span></code> flag</li>
 </ul>
 </td>
 </tr>
@@ -299,7 +301,7 @@ options for Chrome</td>
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver">
 <em class="property">classmethod </em><code class="descname">get_firefox_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_firefox_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Firefox</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">FIREFOX_KWARGS</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">LOG_PATH</span></code> to
 initialize</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -315,7 +317,7 @@ headless browser</td>
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver">
 <em class="property">classmethod </em><code class="descname">get_chrome_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Chrome object using CHROME_KWARGS and LOG_PATH to
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Chrome</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CHROME_KWARGS</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">LOG_PATH</span></code> to
 initialize</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -331,26 +333,26 @@ headless browser</td>
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_safari_driver">
 <em class="property">classmethod </em><code class="descname">get_safari_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_safari_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_safari_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Safari object using SAFARI_KWARGS to initialize</p>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Safari</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SAFARI_KWARGS</span></code></a> to initialize</p>
 </dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_ie_driver">
 <em class="property">classmethod </em><code class="descname">get_ie_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_ie_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_ie_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Ie object using IE_KWARGS and LOG_PATH to initialize</p>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Ie</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">IE_KWARGS</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">LOG_PATH</span></code> to initialize</p>
 </dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_edge_driver">
 <em class="property">classmethod </em><code class="descname">get_edge_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_edge_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_edge_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Edge object using EDGE_KWARGS and LOG_PATH to initialize</p>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Edge</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">EDGE_KWARGS</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">LOG_PATH</span></code> to initialize</p>
 </dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_mobile_driver">
 <em class="property">classmethod </em><code class="descname">get_chrome_mobile_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_mobile_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_mobile_driver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns webdriver.Chrome object using CHROME_KWARGS, LOG_PATH, and
-CHROME_MOBILE_EMULATION to initialize</p>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Chrome</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CHROME_KWARGS</span></code></a>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">LOG_PATH</span></code>, and
+<a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CHROME_MOBILE_EMULATION</span></code></a> to initialize</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
