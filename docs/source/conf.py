@@ -179,8 +179,8 @@ autodoc_member_order = 'bysource'
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
         'https://docs.python.org/': None,
-        'randomuser': ('http://connordelacruz.com/python-randomuser', None),
-        'loremipsum': ('http://connordelacruz.com/py-loremipsum', None),
+        'randomuser': ('https://connordelacruz.com/python-randomuser', None),
+        'loremipsum': ('https://connordelacruz.com/py-loremipsum', None),
 }
 
 # -- Options for todo extension ----------------------------------------------
