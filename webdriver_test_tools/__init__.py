@@ -1,19 +1,31 @@
-# TODO: split toctree into primary and internal?
+# TODO: Explain subpackage organization (primary vs internal)
+# TODO: Categorize into Framework, Utility, and Internal instead?
+# TODO: document __main__ and __about__?
 """
-|release|
+webdriver_test_tools |release|
 
 Subpackages
------------
+===========
+
+Primary
+-------
+
+.. toctree::
+
+    webdriver_test_tools.config
+    webdriver_test_tools.data
+    webdriver_test_tools.pageobject
+    webdriver_test_tools.testcase
+    webdriver_test_tools.webdriver
+
+Internal
+--------
 
 .. toctree::
 
     webdriver_test_tools.cmd
-    webdriver_test_tools.config
-    webdriver_test_tools.data
-    webdriver_test_tools.pageobject
+    webdriver_test_tools.common
     webdriver_test_tools.project
-    webdriver_test_tools.testcase
-    webdriver_test_tools.webdriver
 
 """
 from . import config
