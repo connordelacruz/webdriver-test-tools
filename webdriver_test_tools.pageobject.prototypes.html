@@ -31,8 +31,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.pageobject.webpage module" href="webdriver_test_tools.pageobject.webpage.html" />
-    <link rel="prev" title="webdriver_test_tools.pageobject.nav module" href="webdriver_test_tools.pageobject.nav.html" /> 
+    <link rel="next" title="webdriver_test_tools.pageobject.form module" href="webdriver_test_tools.pageobject.form.html" />
+    <link rel="prev" title="webdriver_test_tools.pageobject.base module" href="webdriver_test_tools.pageobject.base.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -100,10 +100,10 @@
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.base.html">webdriver_test_tools.pageobject.base module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.pageobject.prototypes module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.form.html">webdriver_test_tools.pageobject.form module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html">webdriver_test_tools.pageobject.modal module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html">webdriver_test_tools.pageobject.nav module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.pageobject.prototypes module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html">webdriver_test_tools.pageobject.webpage module</a></li>
 </ul>
 </li>
@@ -197,7 +197,7 @@ These can be subclassed in test projects if useful.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>PAGE_FILENAME</strong> – File name of the page relative to config.SiteConfig.BASE_URL</td>
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME"><strong>PAGE_FILENAME</strong></a> – File name of the page relative to config.SiteConfig.BASE_URL</td>
 </tr>
 </tbody>
 </table>
@@ -231,13 +231,13 @@ These can be subclassed in test projects if useful.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>LINK_MAP</strong> – Maps link text to a tuple containing its locator and the page object
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP"><strong>LINK_MAP</strong></a> – Maps link text to a tuple containing its locator and the page object
 class for the target page, modal, section, etc (or None if need be).
 Override in subclasses</li>
-<li><strong>HOVER_MAP</strong> – Maps link text to a tuple containing its locator and the page
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP"><strong>HOVER_MAP</strong></a> – Maps link text to a tuple containing its locator and the page
 object class for the menu, dropdown, etc that should appear on hover (or None
 if need be). Override in subclasses</li>
-<li><strong>fixed</strong> – (Default = True) True if element is a fixed navbar, False otherwise. If
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.fixed" title="webdriver_test_tools.pageobject.nav.NavObject.fixed"><strong>fixed</strong></a> – (Default = True) True if element is a fixed navbar, False otherwise. If
 set to False in a subclass, click_page_link() and hover_over_page_link() will
 scroll the target link into view before interacting with it</li>
 </ul>
@@ -300,16 +300,16 @@ target</p>
 <dt>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.nav.</code><code class="descname">CollapsibleNavObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#CollapsibleNavObject"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Subclass of NavObject with additional methods for collapsible nav menus</p>
-<p>In addition to the variables for <code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code>, the following variables need to
+<p>In addition to the variables for <a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code></a>, the following variables need to
 be defined for collapsible navs</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>EXPAND_BUTTON_LOCATOR</strong> – Locator for the button that expands the nav menu</li>
-<li><strong>COLLAPSE_BUTTON_LOCATOR</strong> – Locator for the button that expands the nav menu</li>
-<li><strong>MENU_CONTAINER_LOCATOR</strong> – Locator for the collapsing/expanding container of the
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR"><strong>EXPAND_BUTTON_LOCATOR</strong></a> – Locator for the button that expands the nav menu</li>
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR"><strong>COLLAPSE_BUTTON_LOCATOR</strong></a> – Locator for the button that expands the nav menu</li>
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR"><strong>MENU_CONTAINER_LOCATOR</strong></a> – Locator for the collapsing/expanding container of the
 navigation menu</li>
 </ul>
 </td>
@@ -335,7 +335,7 @@ navigation menu</li>
 <dt>
 <code class="descname">is_expanded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#CollapsibleNavObject.is_expanded"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Check if the nav menu is expanded</p>
-<p>This method checks if the element located by <code class="xref py py-attr docutils literal notranslate"><span class="pre">MENU_CONTAINER_LOCATOR</span></code>
+<p>This method checks if the element located by <a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MENU_CONTAINER_LOCATOR</span></code></a>
 exists and is visible. This should be sufficient for many common implementations
 of collapsible navs, but can be overridden if this isn’t a reliable detection
 method for an implementation</p>
@@ -372,9 +372,9 @@ method for an implementation</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>FORM_LOCATOR</strong> – Locator for the form element. Override in subclasses</li>
-<li><strong>SUBMIT_LOCATOR</strong> – Locator for the submit button. Override in subclasses</li>
-<li><strong>SUBMIT_SUCCESS_CLASS</strong> – (Optional) Page object of modal/webpage/etc that
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><strong>FORM_LOCATOR</strong></a> – Locator for the form element. Override in subclasses</li>
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><strong>SUBMIT_LOCATOR</strong></a> – Locator for the submit button. Override in subclasses</li>
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><strong>SUBMIT_SUCCESS_CLASS</strong></a> – (Optional) Page object of modal/webpage/etc that
 should appear on successful form submission. If subclass set to a subclass of
 BasePage, click_submit() will return an instance of this object.</li>
 </ul>
@@ -471,9 +471,9 @@ that object will be returned</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>MODAL_LOCATOR</strong> – Locator for the modal element. Override in subclasses</li>
-<li><strong>CLOSE_LOCATOR</strong> – Locator for the close button. Override in subclasses</li>
-<li><strong>MODAL_BODY_CLASS</strong> – (Optional) Page object for the contents of the modal body.
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR" title="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR"><strong>MODAL_LOCATOR</strong></a> – Locator for the modal element. Override in subclasses</li>
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR" title="webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR"><strong>CLOSE_LOCATOR</strong></a> – Locator for the close button. Override in subclasses</li>
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS" title="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS"><strong>MODAL_BODY_CLASS</strong></a> – (Optional) Page object for the contents of the modal body.
 If set to a subclass of BasePage, get_modal_body() will return an instance
 of this object.</li>
 </ul>
@@ -500,7 +500,7 @@ of this object.</li>
 <dt>
 <code class="descname">is_displayed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject.is_displayed"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Check if the modal is displayed</p>
-<p>This method checks if the element located by <code class="xref py py-attr docutils literal notranslate"><span class="pre">MODAL_LOCATOR</span></code>
+<p>This method checks if the element located by <a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR" title="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MODAL_LOCATOR</span></code></a>
 exists and is visible. This should be sufficient for many common implementations
 of modals, but can be overridden if this isn’t a reliable detection
 method for an implementation</p>
@@ -540,10 +540,10 @@ that object. Otherwise, returns None</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.pageobject.webpage.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.webpage module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.pageobject.form.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.form module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.pageobject.nav.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.nav module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.pageobject.base.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

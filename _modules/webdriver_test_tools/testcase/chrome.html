@@ -159,7 +159,7 @@
 <span class="kn">from</span> <span class="nn">selenium.webdriver.common.desired_capabilities</span> <span class="k">import</span> <span class="n">DesiredCapabilities</span>
 
 
-<div class="viewcode-block" id="ChromeTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.chrome.ChromeTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="ChromeTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Chrome webdriver</span>
 
 <span class="sd">    `Driver download &lt;https://sites.google.com/a/chromium.org/chromedriver/downloads&gt;`__</span>
@@ -172,13 +172,13 @@
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="n">CAPABILITIES</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">CHROME</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ChromeTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.chrome.ChromeTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
+<div class="viewcode-block" id="ChromeTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_HEADLESS</span><span class="p">)</span>
 
 
 <span class="c1"># Mobile browser emulation</span>
 
-<div class="viewcode-block" id="ChromeMobileTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeMobileTestCase</span><span class="p">(</span><span class="n">WebDriverMobileTestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="ChromeMobileTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeMobileTestCase</span><span class="p">(</span><span class="n">WebDriverMobileTestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Chrome webdriver. Emulates mobile</span>
 <span class="sd">    device layout.</span>
 
@@ -190,7 +190,7 @@
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="s1">&#39;chrome-mobile&#39;</span>
     <span class="n">CAPABILITIES</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">CHROME</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ChromeMobileTestCase.bs_driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.bs_driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">bs_driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ChromeMobileTestCase.bs_driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.bs_driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">bs_driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Configures ``CAPABILITIES[&#39;chromeOptions&#39;]`` for mobile emulation before calling</span>
 <span class="sd">        :meth:`super().bs_driver_init() &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init&gt;`</span>
 
@@ -204,7 +204,7 @@
         <span class="p">}</span></div>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">bs_driver_init</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ChromeMobileTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
+<div class="viewcode-block" id="ChromeMobileTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_mobile_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_HEADLESS</span><span class="p">)</span>
 
 
