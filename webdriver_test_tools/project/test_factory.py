@@ -12,8 +12,9 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None,
     """Generates test cases for multiple browsers and returns a TestSuite with all of
     the new tests
 
-    :param test_case_list: A list of WebDriverTestCase subclasses to generate a test
-        suite for
+    :param test_case_list: A list of :class:`WebDriverTestCase
+        <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
+        subclasses to generate a test suite for
     :param browser_test_classes: (Optional) If specified, only generate tests using the
         browser classes in this list. If not specified, tests will be generated for
         each available browser test case class.
@@ -23,8 +24,9 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None,
         test functions. If the list is empty, entire class will be skipped
     :param config_module: (Optional) The module object for <test_project>.config
     :param browserstack: (Default = False) If True, configure generated test cases to
-        run on BrowserStack instead of locally. Need to provide `config_module` with
-        appropriately configured `BrowserStackConfig` class if set to True
+        run on BrowserStack instead of locally. Need to provide ``config_module`` with
+        appropriately configured :class:`BrowserStackConfig
+        <webdriver_test_tools.config.browser.BrowserStackConfig>` class if set to True
     :param headless: (Default = False) If True, configure driver to run tests in a
         headless browser. Tests will only be generated for drivers that support
         running headless browsers
@@ -56,11 +58,13 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None,
 
 
 def _get_test_methods(test_case_name, test_class_map):
-    """Takes test_class_map or skip_class_map and returns the list of methods for the test case or None if no methods
-    were specified for it
+    """Takes test_class_map or skip_class_map and returns the list of methods for the
+    test case or None if no methods were specified for it
 
     :param test_case_name: Name of the test case to check
     :param test_class_map: Dictionary mapping test names to a list of methods
+
+    :return: List of methods or None if not specified for this test case
     """
     if test_class_map is None or test_case_name not in test_class_map:
         return None
@@ -69,16 +73,20 @@ def _get_test_methods(test_case_name, test_class_map):
 
 def generate_browser_test_cases(base_class, browser_test_classes=None, config_module=None,
                                 browserstack=False, headless=False):
-    """Generate test cases for each browser from a WebDriverTestCase subclass
+    """Generate test cases for each browser from a :class:`WebDriverTestCase
+    <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` subclass
 
-    :param base_class: The WebDriverTestCase subclass to generate test classes for
+    :param base_class: The :class:`WebDriverTestCase
+        <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
+        subclass to generate test classes for
     :param browser_test_classes: (Optional) If specified, only generate tests using the
         browser classes specified in this list. If not specified, tests will be
         generated for each available browser test case class
-    :param config_module: (Optional) The module object for <test_project>.config
+    :param config_module: (Optional) The module object for ``<test_project>.config``
     :param browserstack: (Default = False) If True, configure generated test cases to
-        run on BrowserStack instead of locally. Need to provide `config_module` with
-        appropriately configured `BrowserStackConfig` class if set to True
+        run on BrowserStack instead of locally. Need to provide ``config_module`` with
+        appropriately configured :class:`BrowserStackConfig
+        <webdriver_test_tools.config.browser.BrowserStackConfig>` class if set to True
     :param headless: (Default = False) If True, configure driver to run tests in a
         headless browser
 
@@ -108,20 +116,25 @@ def generate_browser_test_cases(base_class, browser_test_classes=None, config_mo
 
 def generate_browser_test_case(base_class, browser_test_class, config_module=None,
                                browserstack=False, headless=False):
-    """Generates a browser-specific test case class from a generic WebDriverTestCase
+    """Generates a browser-specific test case class from a generic
+    :class:`WebDriverTestCase <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
 
-    :param base_class: WebDriverTestCase containing test functions
-    :param browser_test_class: The driver-specific implementation of WebDriverTestCase
+    :param base_class: :class:`WebDriverTestCase
+        <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
+        containing test functions
+    :param browser_test_class: The driver-specific implementation of :class:`WebDriverTestCase
+        <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
         to generate a test for
-    :param config_module: (Optional) The module object for <test_project>.config
+    :param config_module: (Optional) The module object for ``<test_project>.config``
     :param browserstack: (Default = False) If True, configure generated test cases to
-        run on BrowserStack instead of locally. Need to provide `config_module` with
-        appropriately configured `BrowserStackConfig` class if set to True
+        run on BrowserStack instead of locally. Need to provide ``config_module`` with
+        appropriately configured :class:`BrowserStackConfig
+        <webdriver_test_tools.config.browser.BrowserStackConfig>` class if set to True
     :param headless: (Default = False) If True, configure driver to run tests in a
         headless browser
 
-    :return: Test case class with tests from `base_class` and driver configurations from
-        `browser_test_class`. If `browserstack` is set to True, returned class will have
+    :return: Test case class with tests from ``base_class`` and driver configurations from
+        ``browser_test_class``. If ``browserstack`` is set to True, returned class will have
         appropriate attributes configured for BrowserStack execution
     """
     # Get base class attributes
@@ -154,9 +167,9 @@ def enable_browserstack(browser_test_case, config_module):
 
     :param browser_test_case: Browser test case class to configure for BrowserStack
         usage
-    :param config_module: The module object for <test_project>.config
+    :param config_module: The module object for ``<test_project>.config``
 
-    :return: browser_test_case class with `ENABLE_BS` and `COMMAND_EXECUTOR` attributes
+    :return: browser_test_case class with ``ENABLE_BS`` and ``COMMAND_EXECUTOR`` attributes
         configured appropriately
     """
     # Raise exception if somehow this method was called but BrowserStack is not configured/enabled
@@ -175,7 +188,7 @@ def enable_headless(browser_test_case):
     :param browser_test_case: Browser test case class to configure for BrowserStack
         usage
 
-    :return: browser_test_case class with `ENABLE_HEADLESS` attribute configured
+    :return: ``browser_test_case`` class with ``ENABLE_HEADLESS`` attribute configured
     """
     browser_test_case.ENABLE_HEADLESS = True
     return browser_test_case
