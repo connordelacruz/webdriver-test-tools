@@ -6,9 +6,6 @@ webdriver\_test\_tools.webdriver package
     :undoc-members:
     :show-inheritance:
 
-Subpackages
------------
-
 .. toctree::
 
     webdriver_test_tools.webdriver.locate

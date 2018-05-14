@@ -31,7 +31,6 @@ def element_exists(driver, element_locator):
     return exists
 
 
-# TODO: move to expected conditions
 def is_scrolled_into_view(driver, element, fully_in_view=True):
     """Returns True if the element is scrolled into view, False otherwise
 
