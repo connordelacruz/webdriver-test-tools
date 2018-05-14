@@ -7,12 +7,12 @@ from webdriver_test_tools.testcase import *
 
 
 def load_project_tests(tests_module, test_module_names=None, test_class_names=None, skip_class_names=None):
-    """Returns a list of WebDriverTestCase subclasses from all submodules in a test
-    project's tests/ directory
+    """Returns a list of :class:`WebDriverTestCase <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
+    subclasses from all submodules in a test project's tests/ directory
 
-    :param tests_module: The module object for <test_project>.tests
+    :param tests_module: The module object for ``<test_project>.tests``
     :param test_module_names: (Optional) List of test module names. Only load test cases from a submodule of
-        tests_module with the given names
+        ``tests_module`` with the given names
     :param test_class_names: (Optional) List of test class names. Only load test cases with these names
     :param skip_class_names: (Optional) List of test class names. Skip test cases with these names
 
@@ -30,7 +30,8 @@ def load_project_tests(tests_module, test_module_names=None, test_class_names=No
 
 
 def load_webdriver_test_cases(module, test_class_names=None, skip_class_names=None):
-    """Returns a list of WebDriverTestCase subclasses from a module
+    """Returns a list of :class:`WebDriverTestCase <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
+    subclasses from a module
 
     :param module: The module to load tests from
     :param test_class_names: (Optional) List of test case class names to load. Will load all if unspecified
@@ -52,8 +53,12 @@ def _is_valid_case(obj, test_class_names=None, skip_class_names=None):
 
     Criteria for being a valid test case:
 
-        - Is a class and a subclass of ``WebDriverTestCase``
-        - Is not ``WebDriverTestCase`` or ``WebDriverMobileTestCase``
+        - Is a class and a subclass of :class:`WebDriverTestCase
+          <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
+        - Is not :class:`WebDriverTestCase
+          <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` or
+          :class:`WebDriverMobileTestCase
+          <webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase>`
         - Is not listed in ``skip_class_names`` (if provided)
         - Is listed in ``test_class_names`` (if provided)
 
@@ -76,11 +81,12 @@ def _is_valid_case(obj, test_class_names=None, skip_class_names=None):
 def load_browser_tests(generated_test_cases, test_methods=None, skip_methods=None):
     """Load tests from browser test case classes
 
-    :param generated_test_cases: List of generated browser test case classes for a single subclass of WebDriverTestCase
+    :param generated_test_cases: List of generated browser test case classes for a single subclass of
+        :class:`WebDriverTestCase <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
     :param test_methods: (Optional) List of test method names. If specified, load only these test methods from each
         browser test case
-    :param skip_methods: (Optional) List of test method names. If specified, do not load these test methods from each
-        browser test case
+    :param skip_methods: (Optional) List of test method names. If specified, do not load these test methods from
+        each browser test case
 
     :return: A list of loaded tests from the browser test cases
     """

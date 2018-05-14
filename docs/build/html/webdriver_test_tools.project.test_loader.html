@@ -186,16 +186,16 @@
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_project_tests">
 <code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_project_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em>, <em>test_class_names=None</em>, <em>skip_class_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of WebDriverTestCase subclasses from all submodules in a test
-project’s tests/ directory</p>
+<dd><p>Returns a list of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+subclasses from all submodules in a test project’s tests/ directory</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
+<li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></li>
 <li><strong>test_module_names</strong> – (Optional) List of test module names. Only load test cases from a submodule of
-tests_module with the given names</li>
+<code class="docutils literal notranslate"><span class="pre">tests_module</span></code> with the given names</li>
 <li><strong>test_class_names</strong> – (Optional) List of test class names. Only load test cases with these names</li>
 <li><strong>skip_class_names</strong> – (Optional) List of test class names. Skip test cases with these names</li>
 </ul>
@@ -211,7 +211,8 @@ tests_module with the given names</li>
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_webdriver_test_cases">
 <code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_webdriver_test_cases</code><span class="sig-paren">(</span><em>module</em>, <em>test_class_names=None</em>, <em>skip_class_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_webdriver_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_webdriver_test_cases" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of WebDriverTestCase subclasses from a module</p>
+<dd><p>Returns a list of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+subclasses from a module</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -239,11 +240,12 @@ tests_module with the given names</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>generated_test_cases</strong> – List of generated browser test case classes for a single subclass of WebDriverTestCase</li>
+<li><strong>generated_test_cases</strong> – List of generated browser test case classes for a single subclass of
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a></li>
 <li><strong>test_methods</strong> – (Optional) List of test method names. If specified, load only these test methods from each
 browser test case</li>
-<li><strong>skip_methods</strong> – (Optional) List of test method names. If specified, do not load these test methods from each
-browser test case</li>
+<li><strong>skip_methods</strong> – (Optional) List of test method names. If specified, do not load these test methods from
+each browser test case</li>
 </ul>
 </td>
 </tr>
