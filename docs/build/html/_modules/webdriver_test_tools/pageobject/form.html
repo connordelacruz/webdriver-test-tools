@@ -159,7 +159,7 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver</span> <span class="k">import</span> <span class="n">actions</span>
 
 
-<div class="viewcode-block" id="FormObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject">[docs]</a><span class="k">class</span> <span class="nc">FormObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
+<div class="viewcode-block" id="FormObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.form.FormObject">[docs]</a><span class="k">class</span> <span class="nc">FormObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Page object prototype for forms</span>
 
 <span class="sd">    :var FORM_LOCATOR: Locator for the form element. Override in subclasses</span>
@@ -175,7 +175,7 @@
     <span class="c1"># Optional page object to return on click_submit()</span>
     <span class="n">SUBMIT_SUCCESS_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="FormObject.Input"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.Input">[docs]</a>    <span class="k">class</span> <span class="nc">Input</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="FormObject.Input"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.form.FormObject.Input">[docs]</a>    <span class="k">class</span> <span class="nc">Input</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Subclass used to contain name attributes and select/radio option lists for</span>
 <span class="sd">        inputs</span>
 
@@ -194,7 +194,7 @@
 <span class="sd">        &quot;&quot;&quot;</span></div>
         <span class="k">pass</span>
 
-<div class="viewcode-block" id="FormObject.fill_form"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_form">[docs]</a>    <span class="k">def</span> <span class="nf">fill_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_map</span><span class="p">):</span>
+<div class="viewcode-block" id="FormObject.fill_form"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.form.FormObject.fill_form">[docs]</a>    <span class="k">def</span> <span class="nf">fill_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_map</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fill the form element inputs</span>
 
 <span class="sd">        :param input_map: Dictionary mapping input names to the values to set them to.</span>
@@ -204,7 +204,7 @@
         <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span><span class="p">)</span></div>
         <span class="n">actions</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">fill_form_inputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">input_map</span><span class="p">)</span>
 
-<div class="viewcode-block" id="FormObject.submit_is_enabled"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled">[docs]</a>    <span class="k">def</span> <span class="nf">submit_is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FormObject.submit_is_enabled"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled">[docs]</a>    <span class="k">def</span> <span class="nf">submit_is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Short hand function for checking if the submit button is enabled. Useful</span>
 <span class="sd">        for forms with JavaScript input validation</span>
 
@@ -212,7 +212,7 @@
 <span class="sd">        &quot;&quot;&quot;</span></div>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">()</span>
 
-<div class="viewcode-block" id="FormObject.click_submit"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.click_submit">[docs]</a>    <span class="k">def</span> <span class="nf">click_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FormObject.click_submit"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.form.FormObject.click_submit">[docs]</a>    <span class="k">def</span> <span class="nf">click_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shorthand function for scrolling to the submit button and clicking it.</span>
 
 <span class="sd">        If self.SUBMIT_SUCCESS_CLASS is set to a subclass of BasePage, an instance of</span>
