@@ -193,9 +193,7 @@ def parse_test_names(test_name_args):
     class_map = {}
     for test_name in test_name_args:
         test_name_parts = test_name.split('.')
-        # If test class name is not yet mapped, map it to an empty list
-        if test_name_parts[0] not in class_map.keys():
-            class_map[test_name_parts[0]] = []
+        class_map.setdefault(test_name_parts[0], [])
         # If a function was specified, append it to the list of functions
         if len(test_name_parts) > 1:
             class_map[test_name_parts[0]].append(test_name_parts[1])
@@ -287,3 +285,4 @@ def _get_skip_class_names(skip_class_map):
             class_name for class_name, methods in skip_class_map.items() if not methods
         ]
     return None
+
