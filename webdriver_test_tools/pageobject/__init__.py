@@ -1,4 +1,15 @@
+# TODO: rename subsections?
 """Page object classes.
+
+
+.. autoclass:: webdriver_test_tools.pageobject.base.BasePage
+    :members:
+    :undoc-members:
+    :noindex:
+
+
+Main Modules
+------------
 
 .. toctree::
 
