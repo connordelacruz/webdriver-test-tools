@@ -178,6 +178,7 @@
             
   <div class="section" id="module-webdriver_test_tools.webdriver.locate">
 <span id="webdriver-test-tools-webdriver-locate-module"></span><h1>webdriver_test_tools.webdriver.locate module<a class="headerlink" href="#module-webdriver_test_tools.webdriver.locate" title="Permalink to this headline">¶</a></h1>
+<p>Utility functions for locating elements</p>
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.locate.by_element_text">
 <code class="descclassname">webdriver_test_tools.webdriver.locate.</code><code class="descname">by_element_text</code><span class="sig-paren">(</span><em>element_text</em>, <em>element_type='*'</em>, <em>exact_match=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/locate.html#by_element_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.locate.by_element_text" title="Permalink to this definition">¶</a></dt>
@@ -206,8 +207,8 @@ specified string but may also contain other text.</li>
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.locate.input_elements">
 <code class="descclassname">webdriver_test_tools.webdriver.locate.</code><code class="descname">input_elements</code><span class="sig-paren">(</span><em>exclude_buttons=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/locate.html#input_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.locate.input_elements" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a locator that selects input, select, textarea, and (optionally) button
-elements</p>
+<dd><p>Return a locator that selects <code class="docutils literal notranslate"><span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">textarea</span></code>, and (optionally)
+<code class="docutils literal notranslate"><span class="pre">button</span></code> elements</p>
 <p>To narrow down results, this is best used on the conainer element where the desired
 inputs are located. E.g.:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form_element</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;form-id&#39;</span><span class="p">)</span>
