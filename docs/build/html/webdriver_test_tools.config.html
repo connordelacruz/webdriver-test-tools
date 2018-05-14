@@ -97,6 +97,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">webdriver_test_tools.config package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#config-classes">Config Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.browser.html">webdriver_test_tools.config.browser module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.browserstack.html">webdriver_test_tools.config.browserstack module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.site.html">webdriver_test_tools.config.site module</a></li>
@@ -182,6 +183,409 @@
   <div class="section" id="module-webdriver_test_tools.config">
 <span id="webdriver-test-tools-config-package"></span><h1>webdriver_test_tools.config package<a class="headerlink" href="#module-webdriver_test_tools.config" title="Permalink to this headline">¶</a></h1>
 <p>Default configurations for various items in the test framework</p>
+<div class="section" id="config-classes">
+<h2>Config Classes<a class="headerlink" href="#config-classes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.config.browser.</code><code class="descname">BrowserConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserConfig"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Configurations for which browsers to generate tests for</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS" title="webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS"><strong>BrowserConfig.ENABLED_BROWSERS</strong></a> – Dictionary mapping browser names to a boolean.
+True enables the browser, False disables it. Defaults to Chrome and
+Firefox since they’re not platform specific</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">ENABLED_BROWSERS</code><em class="property"> = {'chrome': True, 'chrome-mobile': False, 'edge': False, 'firefox': True, 'ie': False, 'safari': False}</em></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_browser_classes</code><span class="sig-paren">(</span><em>browser_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserConfig.get_browser_classes"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Get a list of enabled browser classes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>browser_names</strong> – (Optional) List of browser names to get classes for</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of enabled browser test case classes</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_browser_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserConfig.get_browser_names"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns a list of short names for enabled browser classes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of short names for enabled browser test case classes</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.config.browser.</code><code class="descname">BrowserStackConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserStackConfig"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Global configurations for BrowserStack testing</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE" title="webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE"><strong>BrowserStackConfig.ENABLE</strong></a> – Set to True to enable BrowserStack testing</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME" title="webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME"><strong>BrowserStackConfig.USERNAME</strong></a> – Account username. Projects will need to override this</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY" title="webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY"><strong>BrowserStackConfig.ACCESS_KEY</strong></a> – Access key. Projects will need to override this</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES" title="webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES"><strong>BrowserStackConfig.BS_CAPABILITIES</strong></a> – BrowserStack test configurations
+<a class="reference external" href="https://www.browserstack.com/automate/capabilities#">Capabilities reference</a></li>
+<li><strong>BrowserStackConfig.ENABLED_BROWSERS</strong> – Dictionary mapping browser names to a boolean.
+True enables the browser, False disables it. Defaults to Chrome and
+Firefox since they’re not platform specific</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">ENABLE</code><em class="property"> = False</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">USERNAME</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">ACCESS_KEY</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">BS_CAPABILITIES</code><em class="property"> = {'browserstack.video': False, 'project': None}</em></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_command_executor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserStackConfig.get_command_executor"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns the command executor URL</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Command executor URL formatted with USERNAME and ACCESS_KEY</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">add_browserstack_capabilities</code><span class="sig-paren">(</span><em>desired_capabilities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserStackConfig.add_browserstack_capabilities"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Update a desired capabilities dictionary to include items from BS_CAPABILITIES</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>desired_capabilities</strong> – Desired capabilities dictionary to update</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.config.site.</code><code class="descname">SiteConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/site.html#SiteConfig"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Basic class for SiteConfig. Since this is specific to a project, this particular class isn’t implemented,
+but exists to define an interface for the 2 variables that need to be declared in SiteConfig.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="webdriver_test_tools.config.site.html#webdriver_test_tools.config.site.SiteConfig.SITE_URL" title="webdriver_test_tools.config.site.SiteConfig.SITE_URL"><strong>SiteConfig.SITE_URL</strong></a> – URL of the home page</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.site.html#webdriver_test_tools.config.site.SiteConfig.BASE_URL" title="webdriver_test_tools.config.site.SiteConfig.BASE_URL"><strong>SiteConfig.BASE_URL</strong></a> – Base URL for site pages (followed by a ‘/’)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">SITE_URL</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">BASE_URL</code><em class="property"> = ''</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.config.test.</code><code class="descname">TestSuiteConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/test.html#TestSuiteConfig"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Configurations for test suite</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="webdriver_test_tools.config.test.html#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><strong>TestSuiteConfig.RUNNER_CLASS</strong></a> – unittest TestRunner class to use when running
+tests</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.test.html#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS"><strong>TestSuiteConfig.RUNNER_KWARGS</strong></a> – Dictionary mapping parameter names to desired
+values used to initialize the TestRunner</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">RUNNER_CLASS</code></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">colour_runner.runner.ColourTextTestRunner</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">RUNNER_KWARGS</code><em class="property"> = {'verbosity': 2}</em></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_runner</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/test.html#TestSuiteConfig.get_runner"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns RUNNER_CLASS object using RUNNER_KWARGS to initialize</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.config.webdriver.</code><code class="descname">WebDriverConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Configurations for webdriver</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>WebDriverConfig.LOG_PATH</strong> – Path to the log directory. Defaults to the log
+subdirectory in the webdriver_test_tools package root directory</li>
+<li><strong>WebDriverConfig.SCREENSHOT_PATH</strong> – Path to the screenshot directory. Defaults
+to the screenshot subdirectory in the webdriver_test_tools package root directory</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.IMPLICIT_WAIT" title="webdriver_test_tools.config.webdriver.WebDriverConfig.IMPLICIT_WAIT"><strong>WebDriverConfig.IMPLICIT_WAIT</strong></a> – <p>Implicit wait time for webdriver to poll DOM</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Documentation says not to mix this with explicit waits and some instability
+was noticed when it was set to 10. Projects can override this if necessary.
+<a class="reference external" href="https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits">Implicit wait documentation</a></p>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Browser driver initialization arguments:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS"><strong>WebDriverConfig.FIREFOX_KWARGS</strong></a> – Keyword args for webdriver.Firefox()</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS"><strong>WebDriverConfig.CHROME_KWARGS</strong></a> – Keyword args for webdriver.Chrome()</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS"><strong>WebDriverConfig.SAFARI_KWARGS</strong></a> – Keyword args for webdriver.Safari()</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS"><strong>WebDriverConfig.IE_KWARGS</strong></a> – Keyword args for webdriver.Ie()</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS"><strong>WebDriverConfig.EDGE_KWARGS</strong></a> – Keyword args for webdriver.Edge()</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Logging configurations are set when the corresponding <code class="docutils literal notranslate"><span class="pre">get_&lt;browser&gt;_driver()</span></code>
+method is called. This allows for projects to override the <code class="docutils literal notranslate"><span class="pre">LOG_PATH</span></code> variable
+without having to also override all <code class="docutils literal notranslate"><span class="pre">&lt;browser&gt;_KWARGS</span></code> variables as well.</p>
+</div>
+<p>Mobile configurations:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION"><strong>WebDriverConfig.CHROME_MOBILE_EMULATION</strong></a> – Dictionary with ‘mobileEmulation’
+options for Chrome</td>
+</tr>
+</tbody>
+</table>
+<p>Headless browser configurations:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS"><strong>WebDriverConfig.CHROME_HEADLESS_ARGS</strong></a> – Command line arguments to use in addition to the –headless flag</li>
+<li><a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS"><strong>WebDriverConfig.FIREFOX_HEADLESS_ARGS</strong></a> – Command line arguments to use in addition to the -headless flag</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descname">IMPLICIT_WAIT</code><em class="property"> = 0</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">FIREFOX_KWARGS</code><em class="property"> = {}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">CHROME_KWARGS</code><em class="property"> = {}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">SAFARI_KWARGS</code><em class="property"> = {}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">IE_KWARGS</code><em class="property"> = {}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">EDGE_KWARGS</code><em class="property"> = {}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">CHROME_MOBILE_EMULATION</code><em class="property"> = {'deviceName': 'Pixel 2'}</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">CHROME_HEADLESS_ARGS</code><em class="property"> = ['--window-size=1920x1080']</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">FIREFOX_HEADLESS_ARGS</code><em class="property"> = []</em></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_firefox_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_firefox_driver"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns webdriver.Firefox object using FIREFOX_KWARGS and LOG_PATH to
+initialize</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>headless</strong> – (Default = False) If True, configure driver to run a
+headless browser</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_chrome_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_driver"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns webdriver.Chrome object using CHROME_KWARGS and LOG_PATH to
+initialize</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>headless</strong> – (Default = False) If True, configure driver to run a
+headless browser</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_safari_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_safari_driver"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns webdriver.Safari object using SAFARI_KWARGS to initialize</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_ie_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_ie_driver"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns webdriver.Ie object using IE_KWARGS and LOG_PATH to initialize</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_edge_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_edge_driver"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns webdriver.Edge object using EDGE_KWARGS and LOG_PATH to initialize</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">get_chrome_mobile_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_mobile_driver"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns webdriver.Chrome object using CHROME_KWARGS, LOG_PATH, and
+CHROME_MOBILE_EMULATION to initialize</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>headless</strong> – (Default = False) If True, configure driver to run a
+headless browser</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">set_driver_implicit_wait</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.set_driver_implicit_wait"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Returns driver with implicit wait time set</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt>
+<em class="property">classmethod </em><code class="descname">new_screenshot_file</code><span class="sig-paren">(</span><em>browser_name</em>, <em>test_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.new_screenshot_file"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return the full filepath and filename for the screenshot</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>browser_name</strong> – Name of the browser (for screenshot filename)</li>
+<li><strong>test_name</strong> – Name of the current test (for screenshot filename)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Filename for the screenshot</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.config.browser.html">webdriver_test_tools.config.browser module</a></li>

@@ -1,4 +1,49 @@
-"""Browser implementations of :class:`WebDriverTestCase`"""
+"""Browser implementations of :class:`WebDriverTestCase
+<webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`.
+
+Browser Test Case Classes
+=========================
+
+Cross-Platform
+--------------
+
+.. autoclass:: webdriver_test_tools.testcase.chrome.ChromeTestCase
+    :members:
+    :undoc-members:
+    :noindex:
+
+.. autoclass:: webdriver_test_tools.testcase.chrome.ChromeMobileTestCase
+    :members:
+    :undoc-members:
+    :noindex:
+
+.. autoclass:: webdriver_test_tools.testcase.firefox.FirefoxTestCase
+    :members:
+    :undoc-members:
+    :noindex:
+
+Platform-Specific
+-----------------
+
+.. autoclass:: webdriver_test_tools.testcase.edge.EdgeTestCase
+    :members:
+    :undoc-members:
+    :noindex:
+
+.. autoclass:: webdriver_test_tools.testcase.ie.IETestCase
+    :members:
+    :undoc-members:
+    :noindex:
+
+.. autoclass:: webdriver_test_tools.testcase.safari.SafariTestCase
+    :members:
+    :undoc-members:
+    :noindex:
+
+Browser Class Names
+===================
+
+"""
 
 from .chrome import *
 from .edge import *
@@ -6,7 +51,7 @@ from .firefox import *
 from .ie import *
 from .safari import *
 
-class Browsers(object):
+class Browsers:
     """Constants for browser short names
 
     :var Browsers.TEST_CLASSES: Dictionary mapping browser names to their corresponding test classes

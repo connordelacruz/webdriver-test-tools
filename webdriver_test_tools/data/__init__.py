@@ -1,9 +1,12 @@
 """
-The `data` subpackage includes some external packages for generating fake user info and
+The ``data`` subpackage includes some external packages for generating fake user info and
 placeholder text. For more information, see their documentation pages:
 
-    - `randomuser package <http://connordelacruz.com/python-randomuser/>`__
-    - `loremipsum <http://connordelacruz.com/py-loremipsum/>`__
+    - `randomuser package <https://connordelacruz.com/python-randomuser/>`__
+    - `loremipsum <https://connordelacruz.com/py-loremipsum/>`__
+
+Data Utilities
+==============
 
 .. autoclass:: randomuser.RandomUser
     :members:
