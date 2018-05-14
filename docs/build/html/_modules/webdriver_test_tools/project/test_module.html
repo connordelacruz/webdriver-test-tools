@@ -155,7 +155,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.project.test_module</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Functions for test project __main__ modules&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for test project ``__main__`` modules&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
@@ -168,12 +168,12 @@
 
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function to call in test modules if __name__ == &#39;__main__&#39; at run time</span>
+    <span class="sd">&quot;&quot;&quot;Function to call in test modules ``if __name__ == &#39;__main__&#39;`` at run time</span>
 
-<span class="sd">    :param tests_module: The module object for &lt;test_project&gt;.tests</span>
-<span class="sd">    :param config_module: (Optional) The module object for &lt;test_project&gt;.config. Will</span>
-<span class="sd">        use webdriver_test_tools.config if not specified</span>
-<span class="sd">    :param package_name: (Optional) The name of the package (i.e. __package__)</span>
+<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
+<span class="sd">    :param config_module: (Optional) The module object for ``&lt;test_project&gt;.config``. Will</span>
+<span class="sd">        use :mod:`webdriver_test_tools.config` if not specified</span>
+<span class="sd">    :param package_name: (Optional) The name of the package (i.e. ``__package__``)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Fall back on default config module if test doesn&#39;t supply one</span>
     <span class="k">if</span> <span class="n">config_module</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -206,15 +206,20 @@
 
 
 <div class="viewcode-block" id="get_parser"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.get_parser">[docs]</a><span class="k">def</span> <span class="nf">get_parser</span><span class="p">(</span><span class="n">browser_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the ArgumentParser object for use with main()</span>
+    <span class="sd">&quot;&quot;&quot;Returns the ``ArgumentParser`` object for use with ``main()``</span>
 
-<span class="sd">    :param browser_config: (Optional) BrowserConfig class for the project. Defaults to</span>
-<span class="sd">        webdriver_test_tools.config.BrowserConfig if unspecified</span>
-<span class="sd">    :param browserstack_config: (Optional) BrowserStackConfig class for the project.</span>
-<span class="sd">        Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified</span>
-<span class="sd">    :param package_name: (Optional) The name of the package (i.e. __package__)</span>
+<span class="sd">    :param browser_config: (Optional) ``BrowserConfig`` class for the project. Defaults to</span>
+<span class="sd">        :class:`webdriver_test_tools.config.BrowserConfig</span>
+<span class="sd">        &lt;webdriver_test_tools.config.browser.BrowserConfig&gt;`</span>
+<span class="sd">        if unspecified</span>
+<span class="sd">    :param browserstack_config: (Optional) ``BrowserStackConfig`` class for the project.</span>
+<span class="sd">        Defaults to</span>
+<span class="sd">        :class:`webdriver_test_tools.config.BrowserStackConfig</span>
+<span class="sd">        &lt;webdriver_test_tools.config.browser.BrowserStackConfig&gt;`</span>
+<span class="sd">        if unspecified</span>
+<span class="sd">    :param package_name: (Optional) The name of the package (i.e. ``__package__``)</span>
 
-<span class="sd">    :return: ArgumentParser for the test package</span>
+<span class="sd">    :return: ``ArgumentParser`` for the test package</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Run the test suite.&#39;</span>
     <span class="n">epilog</span> <span class="o">=</span> <span class="s1">&#39;For more information, visit &lt;</span><span class="si">{}</span><span class="s1">&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">__documentation__</span><span class="p">)</span>
@@ -311,9 +316,9 @@
 
 
 <span class="k">def</span> <span class="nf">_format_headless_browsers</span><span class="p">(</span><span class="n">browser_config</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Format the help string for compatible browsers in --headless help string</span>
+    <span class="sd">&quot;&quot;&quot;Format the help string for compatible browsers in ``--headless`` argument help string</span>
 
-<span class="sd">    :param browser_config: BrowserConfig class</span>
+<span class="sd">    :param browser_config: :class:`BrowserConfig &lt;webdriver_test_tools.config.browser.BrowserConfig&gt;` class</span>
 
 <span class="sd">    :return: Formatted help string for browser options</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -339,9 +344,9 @@
 <div class="viewcode-block" id="parse_test_names"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.parse_test_names">[docs]</a><span class="k">def</span> <span class="nf">parse_test_names</span><span class="p">(</span><span class="n">test_name_args</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a dictionary mapping test case names to a list of test functions</span>
 
-<span class="sd">    :param test_name_args: The parsed value of the --test or --skip arguments</span>
+<span class="sd">    :param test_name_args: The parsed value of the ``--test`` or ``--skip`` arguments</span>
 
-<span class="sd">    :return: None if test_name_args is None, otherwise return a dictionary mapping test</span>
+<span class="sd">    :return: None if ``test_name_args`` is None, otherwise return a dictionary mapping test</span>
 <span class="sd">        case names to a list of test functions to run. If list is empty, no specific</span>
 <span class="sd">        function was given for that class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -360,12 +365,12 @@
 <div class="viewcode-block" id="list_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.list_tests">[docs]</a><span class="k">def</span> <span class="nf">list_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Print a list of available tests</span>
 
-<span class="sd">    :param tests_module: The module object for &lt;test_project&gt;.tests</span>
-<span class="sd">    :param test_module_names: (Optional) Parsed arg for --module command line argument</span>
-<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for --test command</span>
-<span class="sd">        line argument to parse_test_names()</span>
-<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for --skip command</span>
-<span class="sd">        line argument to parse_test_names()</span>
+<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
+<span class="sd">    :param test_module_names: (Optional) Parsed arg for ``--module`` command line argument</span>
+<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for ``--test`` command</span>
+<span class="sd">        line argument to :func:`parse_test_names()`</span>
+<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip`` command</span>
+<span class="sd">        line argument to :func:`parse_test_names()`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">tests</span> <span class="o">=</span> <span class="n">_load_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
@@ -379,16 +384,16 @@
               <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Run tests using parsed args and project modules</span>
 
-<span class="sd">    :param tests_module: The module object for &lt;test_project&gt;.tests</span>
-<span class="sd">    :param config_module: The module object for &lt;test_project&gt;.config or</span>
-<span class="sd">        webdriver_test_tools.config if not specified</span>
+<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
+<span class="sd">    :param config_module: The module object for ``&lt;test_project&gt;.config`` or</span>
+<span class="sd">        :mod:`webdriver_test_tools.config` if not specified</span>
 <span class="sd">    :param browser_classes: (Optional) List of browser test classes from parsed arg</span>
-<span class="sd">        for --browser command line argument</span>
-<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for --test command</span>
-<span class="sd">        line argument to parse_test_names()</span>
-<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for --skip command</span>
-<span class="sd">        line argument to parse_test_names()</span>
-<span class="sd">    :param test_module_names: (Optional) Parsed arg for --module command line argument</span>
+<span class="sd">        for ``--browser`` command line argument</span>
+<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for ``--test`` command</span>
+<span class="sd">        line argument to :func:`parse_test_names()`</span>
+<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip`` command</span>
+<span class="sd">        line argument to :func:`parse_test_names()`</span>
+<span class="sd">    :param test_module_names: (Optional) Parsed arg for ``--module`` command line argument</span>
 <span class="sd">    :param browserstack: (Default = False) If True, generated test cases should run on</span>
 <span class="sd">        BrowserStack</span>
 <span class="sd">    :param headless: (Default = False) If True, configure driver to run tests in a</span>
