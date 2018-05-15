@@ -12,6 +12,7 @@ This module imports the following classes:
 
 """
 
+from .android import *
 from .chrome import *
 from .edge import *
 from .firefox import *
@@ -26,12 +27,13 @@ class Browsers:
         <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` subclasses that
         support test execution in a headless browser
     """
-    FIREFOX = FirefoxTestCase.SHORT_NAME
+    ANDROID = AndroidTestCase.SHORT_NAME
     CHROME = ChromeTestCase.SHORT_NAME
-    SAFARI = SafariTestCase.SHORT_NAME
-    IE = IETestCase.SHORT_NAME
-    EDGE = EdgeTestCase.SHORT_NAME
     CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
+    EDGE = EdgeTestCase.SHORT_NAME
+    FIREFOX = FirefoxTestCase.SHORT_NAME
+    IE = IETestCase.SHORT_NAME
+    SAFARI = SafariTestCase.SHORT_NAME
     # Map of short names to the browser class
     TEST_CLASSES = {
         FIREFOX: FirefoxTestCase,
@@ -40,6 +42,7 @@ class Browsers:
         IE: IETestCase,
         EDGE: EdgeTestCase,
         CHROME_MOBILE: ChromeMobileTestCase,
+        ANDROID: AndroidTestCase
     }
     # List of browser classes that support headless browsing
     HEADLESS_COMPATIBLE = [
