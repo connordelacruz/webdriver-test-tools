@@ -1,4 +1,4 @@
-"""Load test cases from a project"""
+"""Load test cases from a project."""
 
 import types
 import unittest
