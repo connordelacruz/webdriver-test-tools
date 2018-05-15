@@ -161,7 +161,8 @@
 <div class="viewcode-block" id="WebPageObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject">[docs]</a><span class="k">class</span> <span class="nc">WebPageObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Page object prototype for web pages</span>
 
-<span class="sd">    :var PAGE_FILENAME: File name of the page relative to config.SiteConfig.BASE_URL</span>
+<span class="sd">    :var PAGE_FILENAME: File name of the page relative to</span>
+<span class="sd">        ``&lt;test_package&gt;.config.SiteConfig.BASE_URL``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">PAGE_FILENAME</span> <span class="o">=</span> <span class="kc">None</span>
@@ -172,6 +173,7 @@
 <span class="sd">        :return: Title of the current page</span>
 <span class="sd">        &quot;&quot;&quot;</span></div></div>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span>
+
 </pre></div>
 
            </div>

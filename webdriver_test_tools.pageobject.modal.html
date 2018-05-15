@@ -190,8 +190,9 @@
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR" title="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR"><strong>MODAL_LOCATOR</strong></a> – Locator for the modal element. Override in subclasses</li>
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR" title="webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR"><strong>CLOSE_LOCATOR</strong></a> – Locator for the close button. Override in subclasses</li>
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS" title="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS"><strong>MODAL_BODY_CLASS</strong></a> – (Optional) Page object for the contents of the modal body.
-If set to a subclass of BasePage, get_modal_body() will return an instance
-of this object.</li>
+If set to a subclass of
+<a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>,
+<a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body" title="webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_modal_body()</span></code></a> will return an instance of this object.</li>
 </ul>
 </td>
 </tr>
@@ -239,8 +240,9 @@ method for an implementation</p>
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body">
 <code class="descname">get_modal_body</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject.get_modal_body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body" title="Permalink to this definition">¶</a></dt>
-<dd><p>If self.MODAL_BODY_CLASS is set to a subclass of BasePage, returns an instance of
-that object. Otherwise, returns None</p>
+<dd><p>If <a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS" title="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_BODY_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">self.MODAL_BODY_CLASS</span></code></a> is set to a subclass of
+<a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>,
+returns an instance of that object. Otherwise, returns None</p>
 </dd></dl>
 
 </dd></dl>
