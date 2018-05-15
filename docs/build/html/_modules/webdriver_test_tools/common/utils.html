@@ -155,7 +155,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.common.utils</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Various utility methods for webdriver_test_tools submodules&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Various utility methods for package submodules.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">urlparse</span>
@@ -174,7 +174,10 @@
 <div class="viewcode-block" id="validate_filename"><a class="viewcode-back" href="../../../webdriver_test_tools.common.utils.html#webdriver_test_tools.common.utils.validate_filename">[docs]</a><span class="k">def</span> <span class="nf">validate_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">allow_spaces</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Strips invalid characters from a filename</span>
 
-<span class="sd">    Considers POSIX &quot;fully portable filenames&quot; valid. These include:</span>
+<span class="sd">    Considers `POSIX &quot;fully portable filenames&quot;</span>
+<span class="sd">    &lt;http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_282&gt;`__</span>
+<span class="sd">    valid. These include:</span>
+
 <span class="sd">        A-Z a-z 0-9 ._-</span>
 
 <span class="sd">    Filenames cannot begin with a hyphen.</span>

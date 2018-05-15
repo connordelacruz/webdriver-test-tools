@@ -8,7 +8,7 @@ from webdriver_test_tools.project import initialize
 
 
 def get_parser():
-    """Returns ArgumentParser object for use with main()"""
+    """Returns ``ArgumentParser`` object for use with :func:`main()`"""
     parser = argparse.ArgumentParser(
         add_help=False,
         epilog='For more information, visit <{}>'.format(__documentation__)
@@ -43,3 +43,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

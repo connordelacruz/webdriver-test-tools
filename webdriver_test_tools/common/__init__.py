@@ -1,4 +1,4 @@
-"""Internal utility modules
+"""Internal utility modules.
 
 .. toctree::
 

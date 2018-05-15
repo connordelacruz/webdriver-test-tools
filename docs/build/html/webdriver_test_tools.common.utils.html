@@ -178,7 +178,7 @@
             
   <div class="section" id="module-webdriver_test_tools.common.utils">
 <span id="webdriver-test-tools-common-utils-module"></span><h1>webdriver_test_tools.common.utils module<a class="headerlink" href="#module-webdriver_test_tools.common.utils" title="Permalink to this headline">¶</a></h1>
-<p>Various utility methods for webdriver_test_tools submodules</p>
+<p>Various utility methods for package submodules.</p>
 <dl class="function">
 <dt id="webdriver_test_tools.common.utils.get_base_url">
 <code class="descclassname">webdriver_test_tools.common.utils.</code><code class="descname">get_base_url</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/utils.html#get_base_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.utils.get_base_url" title="Permalink to this definition">¶</a></dt>
@@ -199,10 +199,10 @@
 <dt id="webdriver_test_tools.common.utils.validate_filename">
 <code class="descclassname">webdriver_test_tools.common.utils.</code><code class="descname">validate_filename</code><span class="sig-paren">(</span><em>filename</em>, <em>allow_spaces=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/utils.html#validate_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.utils.validate_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Strips invalid characters from a filename</p>
-<dl class="docutils">
-<dt>Considers POSIX “fully portable filenames” valid. These include:</dt>
-<dd>A-Z a-z 0-9 ._-</dd>
-</dl>
+<p>Considers <a class="reference external" href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_282">POSIX “fully portable filenames”</a>
+valid. These include:</p>
+<blockquote>
+<div>A-Z a-z 0-9 ._-</div></blockquote>
 <p>Filenames cannot begin with a hyphen.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
