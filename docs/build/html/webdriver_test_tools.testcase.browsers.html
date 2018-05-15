@@ -185,7 +185,8 @@
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.chrome.</code><code class="descname">ChromeTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/chrome.html#ChromeTestCase"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Implementation of WebDriverTestCase using Chrome webdriver</p>
+<dd><p>Implementation of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+using Chrome webdriver</p>
 <p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Driver download</a></p>
 <p>This driver supports headless browsing:</p>
 <blockquote>
@@ -217,8 +218,8 @@ implement this.</p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.chrome.</code><code class="descname">ChromeMobileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/chrome.html#ChromeMobileTestCase"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Implementation of WebDriverTestCase using Chrome webdriver. Emulates mobile
-device layout.</p>
+<dd><p>Implementation of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+using Chrome webdriver. Emulates mobile device layout.</p>
 <p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Driver download</a></p>
 <p><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/mobile-emulation">Mobile emulation info</a></p>
 <dl class="attribute">
@@ -246,8 +247,8 @@ device layout.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">webdriver.Remote object with the command_executor and
-desired_capabilities parameters set to self.COMMAND_EXECUTOR and
-self.CAPABILITIES respectively.</td>
+desired_capabilities parameters set to <code class="docutils literal notranslate"><span class="pre">self.COMMAND_EXECUTOR</span></code> and
+<code class="docutils literal notranslate"><span class="pre">self.CAPABILITIES</span></code> respectively.</td>
 </tr>
 </tbody>
 </table>
@@ -265,7 +266,8 @@ implement this.</p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.firefox.</code><code class="descname">FirefoxTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/firefox.html#FirefoxTestCase"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Implementation of WebDriverTestCase using Firefox webdriver</p>
+<dd><p>Implementation of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+using Firefox webdriver</p>
 <p><a class="reference external" href="https://github.com/mozilla/geckodriver/releases">Driver download</a></p>
 <p>This driver supports headless browsing:</p>
 <blockquote>
@@ -300,13 +302,15 @@ implement this.</p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.edge.</code><code class="descname">EdgeTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/edge.html#EdgeTestCase"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Implementation of WebDriverTestCase using Edge webdriver</p>
+<dd><p>Implementation of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+using Edge webdriver</p>
 <p><a class="reference external" href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/">Driver download</a></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">This class is experimental and has not been fully tested. It is disabled by
 default but can be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by
-setting the corresponding value in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.ENABLED_BROWSERS</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+setting the corresponding value in <a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS" title="webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">BrowserConfig.ENABLED_BROWSERS</span></code></a>
+to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </div>
 <dl class="attribute">
 <dt>
@@ -335,13 +339,15 @@ implement this.</p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.ie.</code><code class="descname">IETestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/ie.html#IETestCase"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Implementation of WebDriverTestCase using Internet Explorer webdriver</p>
+<dd><p>Implementation of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+using Internet Explorer webdriver</p>
 <p><a class="reference external" href="https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver">Driver info</a></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">This class is experimental and has not been fully tested. It is disabled by
 default but can be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by
-setting the corresponding value in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.ENABLED_BROWSERS</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+setting the corresponding value in <a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS" title="webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">BrowserConfig.ENABLED_BROWSERS</span></code></a>
+to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </div>
 <dl class="attribute">
 <dt>
@@ -370,13 +376,15 @@ implement this.</p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.safari.</code><code class="descname">SafariTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/safari.html#SafariTestCase"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Implementation of WebDriverTestCase using Safari webdriver</p>
+<dd><p>Implementation of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+using Safari webdriver</p>
 <p><a class="reference external" href="https://webkit.org/blog/6900/webdriver-support-in-safari-10/">Driver info</a></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">This class is experimental and has not been fully tested. It is disabled by
 default but can be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by
-setting the corresponding value in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.ENABLED_BROWSERS</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+setting the corresponding value in <a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS" title="webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">BrowserConfig.ENABLED_BROWSERS</span></code></a>
+to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -429,7 +437,7 @@ implement this.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
 <li><a class="reference internal" href="#webdriver_test_tools.testcase.browsers.Browsers.TEST_CLASSES" title="webdriver_test_tools.testcase.browsers.Browsers.TEST_CLASSES"><strong>Browsers.TEST_CLASSES</strong></a> – Dictionary mapping browser names to their corresponding test classes</li>
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.browsers.Browsers.HEADLESS_COMPATIBLE" title="webdriver_test_tools.testcase.browsers.Browsers.HEADLESS_COMPATIBLE"><strong>Browsers.HEADLESS_COMPATIBLE</strong></a> – List of WebDriverTestCase subclasses that
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.browsers.Browsers.HEADLESS_COMPATIBLE" title="webdriver_test_tools.testcase.browsers.Browsers.HEADLESS_COMPATIBLE"><strong>Browsers.HEADLESS_COMPATIBLE</strong></a> – List of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a> subclasses that
 support test execution in a headless browser</li>
 </ul>
 </td>

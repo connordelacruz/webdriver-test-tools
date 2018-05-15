@@ -55,7 +55,8 @@ class Browsers:
     """Constants for browser short names
 
     :var Browsers.TEST_CLASSES: Dictionary mapping browser names to their corresponding test classes
-    :var Browsers.HEADLESS_COMPATIBLE: List of WebDriverTestCase subclasses that
+    :var Browsers.HEADLESS_COMPATIBLE: List of :class:`WebDriverTestCase
+        <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` subclasses that
         support test execution in a headless browser
     """
     FIREFOX = FirefoxTestCase.SHORT_NAME

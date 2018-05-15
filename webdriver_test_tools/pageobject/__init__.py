@@ -1,4 +1,3 @@
-# TODO: rename subsections?
 """Page object classes.
 
 

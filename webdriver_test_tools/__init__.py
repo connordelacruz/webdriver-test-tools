@@ -1,4 +1,3 @@
-# TODO: document __main__ and __about__?
 """
 webdriver_test_tools |release|
 
