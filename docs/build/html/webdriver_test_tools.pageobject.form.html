@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.pageobject.modal module" href="webdriver_test_tools.pageobject.modal.html" />
-    <link rel="prev" title="webdriver_test_tools.pageobject.base module" href="webdriver_test_tools.pageobject.base.html" /> 
+    <link rel="prev" title="webdriver_test_tools.pageobject.prototypes module" href="webdriver_test_tools.pageobject.prototypes.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -95,21 +95,14 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.base.html">webdriver_test_tools.pageobject.base module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.pageobject.form module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html">webdriver_test_tools.pageobject.modal module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html">webdriver_test_tools.pageobject.nav module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.prototypes.html">webdriver_test_tools.pageobject.prototypes module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html">webdriver_test_tools.pageobject.webpage module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a></li>
 </ul>
 </li>
 </ul>
@@ -198,7 +191,8 @@
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><strong>SUBMIT_LOCATOR</strong></a> – Locator for the submit button. Override in subclasses</li>
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><strong>SUBMIT_SUCCESS_CLASS</strong></a> – (Optional) Page object of modal/webpage/etc that
 should appear on successful form submission. If subclass set to a subclass of
-BasePage, click_submit() will return an instance of this object.</li>
+<a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>,
+<a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="webdriver_test_tools.pageobject.form.FormObject.click_submit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">click_submit()</span></code></a> will return an instance of this object.</li>
 </ul>
 </td>
 </tr>
@@ -253,8 +247,8 @@ inputs</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_map</strong> – Dictionary mapping input names to the values to set them to.
-See webdriver_test_tools.webdriver.actions.form.fill_form_input for values
-to use for different input types</td>
+See <a class="reference internal" href="webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.fill_form_input" title="webdriver_test_tools.webdriver.actions.form.fill_form_input"><code class="xref py py-func docutils literal notranslate"><span class="pre">webdriver_test_tools.webdriver.actions.form.fill_form_input()</span></code></a>
+for values to use for different input types</td>
 </tr>
 </tbody>
 </table>
@@ -279,8 +273,9 @@ for forms with JavaScript input validation</p>
 <dt id="webdriver_test_tools.pageobject.form.FormObject.click_submit">
 <code class="descname">click_submit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.click_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shorthand function for scrolling to the submit button and clicking it.</p>
-<p>If self.SUBMIT_SUCCESS_CLASS is set to a subclass of BasePage, an instance of
-that object will be returned</p>
+<p>If <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">self.SUBMIT_SUCCESS_CLASS</span></code></a> is set to a subclass of
+<a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>,
+an instance of that object will be returned</p>
 </dd></dl>
 
 </dd></dl>
@@ -298,7 +293,7 @@ that object will be returned</p>
         <a href="webdriver_test_tools.pageobject.modal.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.modal module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.pageobject.base.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.pageobject.prototypes.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.prototypes module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -160,7 +160,8 @@
 
 
 <div class="viewcode-block" id="ChromeTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Chrome webdriver</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of :class:`WebDriverTestCase &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
+<span class="sd">    using Chrome webdriver</span>
 
 <span class="sd">    `Driver download &lt;https://sites.google.com/a/chromium.org/chromedriver/downloads&gt;`__</span>
 
@@ -179,8 +180,8 @@
 <span class="c1"># Mobile browser emulation</span>
 
 <div class="viewcode-block" id="ChromeMobileTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeMobileTestCase</span><span class="p">(</span><span class="n">WebDriverMobileTestCase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implementation of WebDriverTestCase using Chrome webdriver. Emulates mobile</span>
-<span class="sd">    device layout.</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of :class:`WebDriverTestCase &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
+<span class="sd">    using Chrome webdriver. Emulates mobile device layout.</span>
 
 <span class="sd">    `Driver download &lt;https://sites.google.com/a/chromium.org/chromedriver/downloads&gt;`__</span>
 
@@ -195,8 +196,8 @@
 <span class="sd">        :meth:`super().bs_driver_init() &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init&gt;`</span>
 
 <span class="sd">        :return: webdriver.Remote object with the command_executor and</span>
-<span class="sd">            desired_capabilities parameters set to self.COMMAND_EXECUTOR and</span>
-<span class="sd">            self.CAPABILITIES respectively.</span>
+<span class="sd">            desired_capabilities parameters set to ``self.COMMAND_EXECUTOR`` and</span>
+<span class="sd">            ``self.CAPABILITIES`` respectively.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Set options for mobile emulation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">CAPABILITIES</span><span class="p">[</span><span class="s1">&#39;chromeOptions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -206,8 +207,6 @@
 
 <div class="viewcode-block" id="ChromeMobileTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_mobile_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_HEADLESS</span><span class="p">)</span>
-
-
 
 </pre></div>
 

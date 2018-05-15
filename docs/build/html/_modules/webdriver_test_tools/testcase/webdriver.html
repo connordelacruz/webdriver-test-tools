@@ -214,27 +214,30 @@
 <div class="viewcode-block" id="WebDriverTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase">[docs]</a><span class="k">class</span> <span class="nc">WebDriverTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for web driver test cases.</span>
 
-<span class="sd">    This defines the common setUp() and tearDown() tasks. It does not initialize</span>
-<span class="sd">    self.driver so will not work on its own. Tests should be written with this as their</span>
-<span class="sd">    parent class. Browser-specific implementations of test cases will be generated when</span>
-<span class="sd">    running tests.</span>
+<span class="sd">    This defines the common ``setUp()`` and ``tearDown()`` tasks as well as WebDriver-related</span>
+<span class="sd">    assertion methods and ``webdriver_test_tools`` framework-related decorator methods.</span>
+<span class="sd">    It does not initialize ``self.driver`` so will not work on its own. Tests should be</span>
+<span class="sd">    written with this as their parent class. Browser-specific implementations of test cases</span>
+<span class="sd">    will be generated when running tests.</span>
 
 <span class="sd">    **Instances of this class will have the following variables:**</span>
 
 <span class="sd">    :var WebDriverTestCase.driver: Selenium WebDriver object</span>
-<span class="sd">    :var WebDriverTestCase.WebDriverConfig: WebDriverConfig class</span>
+<span class="sd">    :var WebDriverTestCase.WebDriverConfig: :class:`WebDriverConfig</span>
+<span class="sd">        &lt;webdriver_test_tools.config.webdriver.WebDriverConfig&gt;` class object</span>
 
 <span class="sd">    **Tests that implement this class override the following variables:**</span>
 
-<span class="sd">    :var WebDriverTestCase.SITE_URL: Go to this URL during setUp(). Tests that implement</span>
+<span class="sd">    :var WebDriverTestCase.SITE_URL: Go to this URL during :meth:`setUp()`. Tests that implement</span>
 <span class="sd">        WebDriverTestCase must set this accordingly.</span>
 <span class="sd">    :var WebDriverTestCase.SKIP_BROWSERS: (Optional) List of browser names to skip test</span>
 <span class="sd">        generation for. This can be useful if a test case class requires functionality</span>
 <span class="sd">        that is not implemented in a certain driver, or if its tests are meant for</span>
-<span class="sd">        specific browsers. Valid browser names are declared in the Browsers class.</span>
+<span class="sd">        specific browsers. Valid browser names are declared in the :class:`Browsers</span>
+<span class="sd">        &lt;webdriver_test_tools.testcase.browsers.Browsers&gt;` class.</span>
 <span class="sd">    :var WebDriverTestCase.SKIP_MOBILE: (Optional) By default, tests will be</span>
-<span class="sd">        generated for all enabled browsers, including mobile. If SKIP_MOBILE is set to</span>
-<span class="sd">        True, don&#39;t generate tests for mobile browsers. This can be helpful if the</span>
+<span class="sd">        generated for all enabled browsers, including mobile. If ``SKIP_MOBILE`` is set to</span>
+<span class="sd">        ``True``, don&#39;t generate tests for mobile browsers. This can be helpful if the</span>
 <span class="sd">        layout changes between desktop and mobile viewports would alter the test</span>
 <span class="sd">        procedures.</span>
 
@@ -247,12 +250,12 @@
 <span class="sd">        being run in</span>
 <span class="sd">    :var WebDriverTestCase.SHORT_NAME: Short name for the driver used for command line</span>
 <span class="sd">        args, skipping, etc. Should be all lowercase with no spaces</span>
-<span class="sd">    :var WebDriverTestCase.CAPABILITIES: The DesiredCapabilities dictionary for the</span>
+<span class="sd">    :var WebDriverTestCase.CAPABILITIES: The ``DesiredCapabilities`` dictionary for the</span>
 <span class="sd">        browser. Used for initializing BrowserStack remote driver</span>
 
 <span class="sd">    **The following attributes are used for running tests on BrowserStack:**</span>
 
-<span class="sd">    :var WebDriverTestCase.ENABLE_BS: (Default = False) If set to True, setUp() will</span>
+<span class="sd">    :var WebDriverTestCase.ENABLE_BS: (Default = False) If set to True, :meth:`setUp()` will</span>
 <span class="sd">        initialize a Remote webdriver instead of a local one and run tests on</span>
 <span class="sd">        BrowserStack</span>
 <span class="sd">    :var WebDriverTestCase.COMMAND_EXECUTOR: Command executor URL. Test generator</span>
@@ -290,9 +293,9 @@
 <div class="viewcode-block" id="WebDriverTestCase.bs_driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">bs_driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize driver for BrowserStack</span>
 
-<span class="sd">        :return: webdriver.Remote object with the command_executor and</span>
-<span class="sd">            desired_capabilities parameters set to self.COMMAND_EXECUTOR and</span>
-<span class="sd">            self.CAPABILITIES respectively.</span>
+<span class="sd">        :return: ``webdriver.Remote`` object with the ``command_executor`` and</span>
+<span class="sd">            ``desired_capabilities`` parameters set to ``self.COMMAND_EXECUTOR``</span>
+<span class="sd">            and ``self.CAPABILITIES`` respectively.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">CAPABILITIES</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_testMethodName</span>
         <span class="k">return</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span><span class="n">command_executor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">COMMAND_EXECUTOR</span><span class="p">,</span></div>
@@ -300,16 +303,17 @@
 
 <div class="viewcode-block" id="WebDriverTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns an initialized WebDriver object. Browser test case classes must</span>
-<span class="sd">        implement this</span>
+<span class="sd">        implement this.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
         <span class="k">pass</span>
 
 <div class="viewcode-block" id="WebDriverTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize driver and call ``self.driver.get(self.SITE_URL)``</span>
 
-<span class="sd">        If self.ENABLE_BS is False, self.driver gets the returned results of</span>
-<span class="sd">        self.DRIVER_INIT(). If self.ENABLE_BS is True, self.driver gets the returned</span>
-<span class="sd">        results of self._bs_driver_init()</span>
+<span class="sd">        If ``self.ENABLE_BS`` is ``False``, ``self.driver`` gets the returned results of</span>
+<span class="sd">        :meth:`self.driver_init() &lt;WebDriverTestCase.driver_init&gt;`. If ``self.ENABLE_BS``</span>
+<span class="sd">        is ``True``, ``self.driver`` gets the returned results of :meth:`self.bs_driver_init()</span>
+<span class="sd">        &lt;WebDriverTestCase.bs_driver_init&gt;`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bs_driver_init</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_BS</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver_init</span><span class="p">()</span></div>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SITE_URL</span><span class="p">)</span>
@@ -323,14 +327,14 @@
     <span class="k">def</span> <span class="nf">_locator_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shorthand for formating locator tuple as a string for failure output</span>
 
-<span class="sd">        :param locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param locator: WebDriver locator tuple in the format ``(By.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s1">&#39;(&quot;</span><span class="si">{0}</span><span class="s1">&quot;, &quot;</span><span class="si">{1}</span><span class="s1">&quot;)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span>
 
 <div class="viewcode-block" id="WebDriverTestCase.assertExists"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists">[docs]</a>    <span class="k">def</span> <span class="nf">assertExists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element doesn&#39;t exist</span>
 
-<span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param element_locator: WebDriver locator tuple in the format ``(By.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
@@ -341,7 +345,7 @@
 <div class="viewcode-block" id="WebDriverTestCase.assertNotExists"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists">[docs]</a>    <span class="k">def</span> <span class="nf">assertNotExists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element exists</span>
 
-<span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param element_locator: WebDriver locator tuple in the format ``(By.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
@@ -352,7 +356,7 @@
 <div class="viewcode-block" id="WebDriverTestCase.assertInView"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView">[docs]</a>    <span class="k">def</span> <span class="nf">assertInView</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element isn&#39;t scrolled into view</span>
 
-<span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param element_locator: WebDriver locator tuple in the format ``(By.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">in_view_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
@@ -363,7 +367,7 @@
 <div class="viewcode-block" id="WebDriverTestCase.assertNotInView"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView">[docs]</a>    <span class="k">def</span> <span class="nf">assertNotInView</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element is scrolled into view</span>
 
-<span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param element_locator: WebDriver locator tuple in the format ``(By.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">in_view_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
@@ -374,7 +378,7 @@
 <div class="viewcode-block" id="WebDriverTestCase.assertVisible"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible">[docs]</a>    <span class="k">def</span> <span class="nf">assertVisible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element isn&#39;t visible</span>
 
-<span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param element_locator: WebDriver locator tuple in the format ``(By.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">visibility_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
@@ -385,7 +389,7 @@
 <div class="viewcode-block" id="WebDriverTestCase.assertInvisible"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible">[docs]</a>    <span class="k">def</span> <span class="nf">assertInvisible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element is visible</span>
 
-<span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param element_locator: WebDriver locator tuple in the format ``(By.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">visibility_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">test_visible</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -396,7 +400,7 @@
 <div class="viewcode-block" id="WebDriverTestCase.assertEnabled"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled">[docs]</a>    <span class="k">def</span> <span class="nf">assertEnabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element is disabled</span>
 
-<span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param element_locator: WebDriver locator tuple in the format ``(By.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">element_locator</span><span class="p">)</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">():</span>
@@ -407,7 +411,7 @@
 <div class="viewcode-block" id="WebDriverTestCase.assertDisabled"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled">[docs]</a>    <span class="k">def</span> <span class="nf">assertDisabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element is enabled</span>
 
-<span class="sd">        :param element_locator: WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</span>
+<span class="sd">        :param element_locator: WebDriver locator tuple in the format ``(By.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) If specified, used as the error message on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">element_locator</span><span class="p">)</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">():</span>
@@ -559,7 +563,7 @@
 <div class="viewcode-block" id="WebDriverMobileTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase">[docs]</a><span class="k">class</span> <span class="nc">WebDriverMobileTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for mobile web driver test cases</span>
 
-<span class="sd">    If a test subclasses WebDriverMobileTestCase instead of WebDriverTestCase, tests</span>
+<span class="sd">    If a test subclasses ``WebDriverMobileTestCase`` instead of ``WebDriverTestCase``, tests</span>
 <span class="sd">    will only be generated for mobile browsers</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
     <span class="n">SKIP_MOBILE</span> <span class="o">=</span> <span class="kc">False</span>

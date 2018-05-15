@@ -9,7 +9,8 @@ class FormObject(BasePage):
     :var SUBMIT_LOCATOR: Locator for the submit button. Override in subclasses
     :var SUBMIT_SUCCESS_CLASS: (Optional) Page object of modal/webpage/etc that
         should appear on successful form submission. If subclass set to a subclass of
-        BasePage, click_submit() will return an instance of this object.
+        :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>`,
+        :meth:`click_submit()` will return an instance of this object.
     """
 
     # Locators
@@ -18,7 +19,7 @@ class FormObject(BasePage):
     # Optional page object to return on click_submit()
     SUBMIT_SUCCESS_CLASS = None
 
-    class Input(object):
+    class Input:
         """Subclass used to contain name attributes and select/radio option lists for
         inputs
 
@@ -41,8 +42,8 @@ class FormObject(BasePage):
         """Fill the form element inputs
 
         :param input_map: Dictionary mapping input names to the values to set them to.
-            See webdriver_test_tools.webdriver.actions.form.fill_form_input for values
-            to use for different input types
+            See :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`
+            for values to use for different input types
         """
         form = self.find_element(self.FORM_LOCATOR)
         actions.form.fill_form_inputs(self.driver, form, input_map)
@@ -58,10 +59,12 @@ class FormObject(BasePage):
     def click_submit(self):
         """Shorthand function for scrolling to the submit button and clicking it.
 
-        If self.SUBMIT_SUCCESS_CLASS is set to a subclass of BasePage, an instance of
-        that object will be returned
+        If :attr:`self.SUBMIT_SUCCESS_CLASS <SUBMIT_SUCCESS_CLASS>` is set to a subclass of
+        :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>`,
+        an instance of that object will be returned
         """
         submit_button = self.find_element(self.SUBMIT_LOCATOR)
         actions.scroll.to_and_click(self.driver, submit_button, False)
         if issubclass(self.SUBMIT_SUCCESS_CLASS, BasePage):
             return self.SUBMIT_SUCCESS_CLASS(self.driver)
+

@@ -95,20 +95,14 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.config.browser module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.browserstack.html">webdriver_test_tools.config.browserstack module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.site.html">webdriver_test_tools.config.site module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.test.html">webdriver_test_tools.config.test module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.webdriver.html">webdriver_test_tools.config.webdriver module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a></li>
 </ul>
 </li>
 </ul>
@@ -248,7 +242,7 @@ Firefox since they’re not platform specific</td>
 <li><a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE" title="webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE"><strong>BrowserStackConfig.ENABLE</strong></a> – Set to True to enable BrowserStack testing</li>
 <li><a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME" title="webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME"><strong>BrowserStackConfig.USERNAME</strong></a> – Account username. Projects will need to override this</li>
 <li><a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY" title="webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY"><strong>BrowserStackConfig.ACCESS_KEY</strong></a> – Access key. Projects will need to override this</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES" title="webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES"><strong>BrowserStackConfig.BS_CAPABILITIES</strong></a> – BrowserStack test configurations
+<li><a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES" title="webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES"><strong>BrowserStackConfig.BS_CAPABILITIES</strong></a> – BrowserStack test configurations.
 <a class="reference external" href="https://www.browserstack.com/automate/capabilities#">Capabilities reference</a></li>
 <li><strong>BrowserStackConfig.ENABLED_BROWSERS</strong> – Dictionary mapping browser names to a boolean.
 True enables the browser, False disables it. Defaults to Chrome and
@@ -286,7 +280,7 @@ Firefox since they’re not platform specific</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Command executor URL formatted with USERNAME and ACCESS_KEY</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Command executor URL formatted with <a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME" title="webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME"><code class="xref py py-attr docutils literal notranslate"><span class="pre">USERNAME</span></code></a> and <a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY" title="webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ACCESS_KEY</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -295,7 +289,7 @@ Firefox since they’re not platform specific</li>
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities">
 <em class="property">classmethod </em><code class="descname">add_browserstack_capabilities</code><span class="sig-paren">(</span><em>desired_capabilities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserStackConfig.add_browserstack_capabilities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update a desired capabilities dictionary to include items from BS_CAPABILITIES</p>
+<dd><p>Update a desired capabilities dictionary to include items from <a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES" title="webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">BS_CAPABILITIES</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

@@ -172,8 +172,9 @@
 <span class="sd">        object class for the menu, dropdown, etc that should appear on hover (or None</span>
 <span class="sd">        if need be). Override in subclasses</span>
 <span class="sd">    :var fixed: (Default = True) True if element is a fixed navbar, False otherwise. If</span>
-<span class="sd">        set to False in a subclass, click_page_link() and hover_over_page_link() will</span>
-<span class="sd">        scroll the target link into view before interacting with it</span>
+<span class="sd">        set to False in a subclass, :meth:`click_page_link()` and</span>
+<span class="sd">        :meth:`hover_over_page_link()` will scroll the target link into view before</span>
+<span class="sd">        interacting with it</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Link maps</span>
@@ -186,7 +187,7 @@
         <span class="sd">&quot;&quot;&quot;Click one of the page links and return a page object class for the link</span>
 <span class="sd">        target</span>
 
-<span class="sd">        :param link_map_key: Key into LINK_MAP for the link to click on</span>
+<span class="sd">        :param link_map_key: Key into :attr:`LINK_MAP` for the link to click on</span>
 
 <span class="sd">        :return: Corresponding page object class for the link target (if applicable)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -202,7 +203,7 @@
 <div class="viewcode-block" id="NavObject.hover_over_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">hover_over_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Hover mouse over one of the page links</span>
 
-<span class="sd">        :param link_map_key: Key into HOVER_MAP for the link to hover mouse over</span>
+<span class="sd">        :param link_map_key: Key into :attr:`HOVER_MAP` for the link to hover mouse over</span>
 
 <span class="sd">        :return: Corresponding page object class for the hover dropdown/container/etc</span>
 <span class="sd">            (if applicable)</span>
@@ -219,7 +220,7 @@
 
 
 <div class="viewcode-block" id="CollapsibleNavObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject">[docs]</a><span class="k">class</span> <span class="nc">CollapsibleNavObject</span><span class="p">(</span><span class="n">NavObject</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Subclass of NavObject with additional methods for collapsible nav menus</span>
+    <span class="sd">&quot;&quot;&quot;Subclass of :class:`NavObject` with additional methods for collapsible nav menus</span>
 
 <span class="sd">    In addition to the variables for :class:`NavObject`, the following variables need to</span>
 <span class="sd">    be defined for collapsible navs</span>
@@ -262,6 +263,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
             <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span></div></div>
         <span class="n">button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+
 </pre></div>
 
            </div>

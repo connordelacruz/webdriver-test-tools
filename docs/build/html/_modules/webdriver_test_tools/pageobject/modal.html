@@ -166,8 +166,9 @@
 <span class="sd">    :var MODAL_LOCATOR: Locator for the modal element. Override in subclasses</span>
 <span class="sd">    :var CLOSE_LOCATOR: Locator for the close button. Override in subclasses</span>
 <span class="sd">    :var MODAL_BODY_CLASS: (Optional) Page object for the contents of the modal body.</span>
-<span class="sd">        If set to a subclass of BasePage, get_modal_body() will return an instance</span>
-<span class="sd">        of this object.</span>
+<span class="sd">        If set to a subclass of</span>
+<span class="sd">        :class:`BasePage &lt;webdriver_test_tools.pageobject.base.BasePage&gt;`,</span>
+<span class="sd">        :meth:`get_modal_body()` will return an instance of this object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Locators</span>
     <span class="n">MODAL_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
@@ -194,10 +195,12 @@
         <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">to_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CLOSE_LOCATOR</span><span class="p">))</span>
 
 <div class="viewcode-block" id="ModalObject.get_modal_body"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body">[docs]</a>    <span class="k">def</span> <span class="nf">get_modal_body</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;If self.MODAL_BODY_CLASS is set to a subclass of BasePage, returns an instance of</span>
-<span class="sd">        that object. Otherwise, returns None</span>
+        <span class="sd">&quot;&quot;&quot;If :attr:`self.MODAL_BODY_CLASS &lt;MODAL_BODY_CLASS&gt;` is set to a subclass of</span>
+<span class="sd">        :class:`BasePage &lt;webdriver_test_tools.pageobject.base.BasePage&gt;`,</span>
+<span class="sd">        returns an instance of that object. Otherwise, returns None</span>
 <span class="sd">        &quot;&quot;&quot;</span></div></div>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODAL_BODY_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span> <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MODAL_BODY_CLASS</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+
 </pre></div>
 
            </div>

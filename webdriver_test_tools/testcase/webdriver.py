@@ -57,27 +57,30 @@ from webdriver_test_tools.webdriver.support import test
 class WebDriverTestCase(unittest.TestCase):
     """Base class for web driver test cases.
 
-    This defines the common setUp() and tearDown() tasks. It does not initialize
-    self.driver so will not work on its own. Tests should be written with this as their
-    parent class. Browser-specific implementations of test cases will be generated when
-    running tests.
+    This defines the common ``setUp()`` and ``tearDown()`` tasks as well as WebDriver-related
+    assertion methods and ``webdriver_test_tools`` framework-related decorator methods.
+    It does not initialize ``self.driver`` so will not work on its own. Tests should be
+    written with this as their parent class. Browser-specific implementations of test cases
+    will be generated when running tests.
 
     **Instances of this class will have the following variables:**
 
     :var WebDriverTestCase.driver: Selenium WebDriver object
-    :var WebDriverTestCase.WebDriverConfig: WebDriverConfig class
+    :var WebDriverTestCase.WebDriverConfig: :class:`WebDriverConfig
+        <webdriver_test_tools.config.webdriver.WebDriverConfig>` class object
 
     **Tests that implement this class override the following variables:**
 
-    :var WebDriverTestCase.SITE_URL: Go to this URL during setUp(). Tests that implement
+    :var WebDriverTestCase.SITE_URL: Go to this URL during :meth:`setUp()`. Tests that implement
         WebDriverTestCase must set this accordingly.
     :var WebDriverTestCase.SKIP_BROWSERS: (Optional) List of browser names to skip test
         generation for. This can be useful if a test case class requires functionality
         that is not implemented in a certain driver, or if its tests are meant for
-        specific browsers. Valid browser names are declared in the Browsers class.
+        specific browsers. Valid browser names are declared in the :class:`Browsers
+        <webdriver_test_tools.testcase.browsers.Browsers>` class.
     :var WebDriverTestCase.SKIP_MOBILE: (Optional) By default, tests will be
-        generated for all enabled browsers, including mobile. If SKIP_MOBILE is set to
-        True, don't generate tests for mobile browsers. This can be helpful if the
+        generated for all enabled browsers, including mobile. If ``SKIP_MOBILE`` is set to
+        ``True``, don't generate tests for mobile browsers. This can be helpful if the
         layout changes between desktop and mobile viewports would alter the test
         procedures.
 
@@ -90,12 +93,12 @@ class WebDriverTestCase(unittest.TestCase):
         being run in
     :var WebDriverTestCase.SHORT_NAME: Short name for the driver used for command line
         args, skipping, etc. Should be all lowercase with no spaces
-    :var WebDriverTestCase.CAPABILITIES: The DesiredCapabilities dictionary for the
+    :var WebDriverTestCase.CAPABILITIES: The ``DesiredCapabilities`` dictionary for the
         browser. Used for initializing BrowserStack remote driver
 
     **The following attributes are used for running tests on BrowserStack:**
 
-    :var WebDriverTestCase.ENABLE_BS: (Default = False) If set to True, setUp() will
+    :var WebDriverTestCase.ENABLE_BS: (Default = False) If set to True, :meth:`setUp()` will
         initialize a Remote webdriver instead of a local one and run tests on
         BrowserStack
     :var WebDriverTestCase.COMMAND_EXECUTOR: Command executor URL. Test generator
@@ -133,9 +136,9 @@ class WebDriverTestCase(unittest.TestCase):
     def bs_driver_init(self):
         """Initialize driver for BrowserStack
 
-        :return: webdriver.Remote object with the command_executor and
-            desired_capabilities parameters set to self.COMMAND_EXECUTOR and
-            self.CAPABILITIES respectively.
+        :return: ``webdriver.Remote`` object with the ``command_executor`` and
+            ``desired_capabilities`` parameters set to ``self.COMMAND_EXECUTOR``
+            and ``self.CAPABILITIES`` respectively.
         """
         self.CAPABILITIES['name'] = self._testMethodName
         return webdriver.Remote(command_executor=self.COMMAND_EXECUTOR,
@@ -143,16 +146,17 @@ class WebDriverTestCase(unittest.TestCase):
 
     def driver_init(self):
         """Returns an initialized WebDriver object. Browser test case classes must
-        implement this
+        implement this.
         """
         pass
 
     def setUp(self):
         """Initialize driver and call ``self.driver.get(self.SITE_URL)``
 
-        If self.ENABLE_BS is False, self.driver gets the returned results of
-        self.DRIVER_INIT(). If self.ENABLE_BS is True, self.driver gets the returned
-        results of self._bs_driver_init()
+        If ``self.ENABLE_BS`` is ``False``, ``self.driver`` gets the returned results of
+        :meth:`self.driver_init() <WebDriverTestCase.driver_init>`. If ``self.ENABLE_BS``
+        is ``True``, ``self.driver`` gets the returned results of :meth:`self.bs_driver_init()
+        <WebDriverTestCase.bs_driver_init>`
         """
         self.driver = self.bs_driver_init() if self.ENABLE_BS else self.driver_init()
         self.driver.get(self.SITE_URL)
@@ -166,14 +170,14 @@ class WebDriverTestCase(unittest.TestCase):
     def _locator_string(self, locator):
         """Shorthand for formating locator tuple as a string for failure output
 
-        :param locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
         """
         return '("{0}", "{1}")'.format(*locator)
 
     def assertExists(self, element_locator, msg=None):
         """Fail if element doesn't exist
 
-        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
         :param msg: (Optional) If specified, used as the error message on failure
         """
         if not test.element_exists(self.driver, element_locator):
@@ -184,7 +188,7 @@ class WebDriverTestCase(unittest.TestCase):
     def assertNotExists(self, element_locator, msg=None):
         """Fail if element exists
 
-        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
         :param msg: (Optional) If specified, used as the error message on failure
         """
         if test.element_exists(self.driver, element_locator):
@@ -195,7 +199,7 @@ class WebDriverTestCase(unittest.TestCase):
     def assertInView(self, element_locator, msg=None):
         """Fail if element isn't scrolled into view
 
-        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
         :param msg: (Optional) If specified, used as the error message on failure
         """
         if not test.in_view_change_test(self.driver, element_locator):
@@ -206,7 +210,7 @@ class WebDriverTestCase(unittest.TestCase):
     def assertNotInView(self, element_locator, msg=None):
         """Fail if element is scrolled into view
 
-        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
         :param msg: (Optional) If specified, used as the error message on failure
         """
         if test.in_view_change_test(self.driver, element_locator):
@@ -217,7 +221,7 @@ class WebDriverTestCase(unittest.TestCase):
     def assertVisible(self, element_locator, msg=None):
         """Fail if element isn't visible
 
-        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
         :param msg: (Optional) If specified, used as the error message on failure
         """
         if not test.visibility_change_test(self.driver, element_locator):
@@ -228,7 +232,7 @@ class WebDriverTestCase(unittest.TestCase):
     def assertInvisible(self, element_locator, msg=None):
         """Fail if element is visible
 
-        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
         :param msg: (Optional) If specified, used as the error message on failure
         """
         if not test.visibility_change_test(self.driver, element_locator, test_visible=False):
@@ -239,7 +243,7 @@ class WebDriverTestCase(unittest.TestCase):
     def assertEnabled(self, element_locator, msg=None):
         """Fail if element is disabled
 
-        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
         :param msg: (Optional) If specified, used as the error message on failure
         """
         if not self.driver.find_element(*element_locator).is_enabled():
@@ -250,7 +254,7 @@ class WebDriverTestCase(unittest.TestCase):
     def assertDisabled(self, element_locator, msg=None):
         """Fail if element is enabled
 
-        :param element_locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
         :param msg: (Optional) If specified, used as the error message on failure
         """
         if self.driver.find_element(*element_locator).is_enabled():
@@ -402,7 +406,7 @@ class WebDriverTestCase(unittest.TestCase):
 class WebDriverMobileTestCase(WebDriverTestCase):
     """Base class for mobile web driver test cases
 
-    If a test subclasses WebDriverMobileTestCase instead of WebDriverTestCase, tests
+    If a test subclasses ``WebDriverMobileTestCase`` instead of ``WebDriverTestCase``, tests
     will only be generated for mobile browsers
     """
     SKIP_MOBILE = False

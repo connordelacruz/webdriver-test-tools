@@ -1,4 +1,4 @@
-"""Functions for test project __main__ modules"""
+"""Functions for test project ``__main__`` modules"""
 
 import argparse
 import unittest
@@ -11,12 +11,12 @@ from webdriver_test_tools.project import test_loader, test_factory
 
 
 def main(tests_module, config_module=None, package_name=None):
-    """Function to call in test modules if __name__ == '__main__' at run time
+    """Function to call in test modules ``if __name__ == '__main__'`` at run time
 
-    :param tests_module: The module object for <test_project>.tests
-    :param config_module: (Optional) The module object for <test_project>.config. Will
-        use webdriver_test_tools.config if not specified
-    :param package_name: (Optional) The name of the package (i.e. __package__)
+    :param tests_module: The module object for ``<test_project>.tests``
+    :param config_module: (Optional) The module object for ``<test_project>.config``. Will
+        use :mod:`webdriver_test_tools.config` if not specified
+    :param package_name: (Optional) The name of the package (i.e. ``__package__``)
     """
     # Fall back on default config module if test doesn't supply one
     if config_module is None:
@@ -49,15 +49,20 @@ def main(tests_module, config_module=None, package_name=None):
 
 
 def get_parser(browser_config=None, browserstack_config=None, package_name=None):
-    """Returns the ArgumentParser object for use with main()
+    """Returns the ``ArgumentParser`` object for use with ``main()``
 
-    :param browser_config: (Optional) BrowserConfig class for the project. Defaults to
-        webdriver_test_tools.config.BrowserConfig if unspecified
-    :param browserstack_config: (Optional) BrowserStackConfig class for the project.
-        Defaults to webdriver_test_tools.config.BrowserStackConfig if unspecified
-    :param package_name: (Optional) The name of the package (i.e. __package__)
+    :param browser_config: (Optional) ``BrowserConfig`` class for the project. Defaults to
+        :class:`webdriver_test_tools.config.BrowserConfig
+        <webdriver_test_tools.config.browser.BrowserConfig>`
+        if unspecified
+    :param browserstack_config: (Optional) ``BrowserStackConfig`` class for the project.
+        Defaults to
+        :class:`webdriver_test_tools.config.BrowserStackConfig
+        <webdriver_test_tools.config.browser.BrowserStackConfig>`
+        if unspecified
+    :param package_name: (Optional) The name of the package (i.e. ``__package__``)
 
-    :return: ArgumentParser for the test package
+    :return: ``ArgumentParser`` for the test package
     """
     description = 'Run the test suite.'
     epilog = 'For more information, visit <{}>'.format(__documentation__)
@@ -154,9 +159,9 @@ def _format_browser_choices(browser_config, browserstack_config):
 
 
 def _format_headless_browsers(browser_config):
-    """Format the help string for compatible browsers in --headless help string
+    """Format the help string for compatible browsers in ``--headless`` argument help string
 
-    :param browser_config: BrowserConfig class
+    :param browser_config: :class:`BrowserConfig <webdriver_test_tools.config.browser.BrowserConfig>` class
 
     :return: Formatted help string for browser options
     """
@@ -182,9 +187,9 @@ def _browser_list_string(browser_names):
 def parse_test_names(test_name_args):
     """Returns a dictionary mapping test case names to a list of test functions
 
-    :param test_name_args: The parsed value of the --test or --skip arguments
+    :param test_name_args: The parsed value of the ``--test`` or ``--skip`` arguments
 
-    :return: None if test_name_args is None, otherwise return a dictionary mapping test
+    :return: None if ``test_name_args`` is None, otherwise return a dictionary mapping test
         case names to a list of test functions to run. If list is empty, no specific
         function was given for that class
     """
@@ -193,9 +198,7 @@ def parse_test_names(test_name_args):
     class_map = {}
     for test_name in test_name_args:
         test_name_parts = test_name.split('.')
-        # If test class name is not yet mapped, map it to an empty list
-        if test_name_parts[0] not in class_map.keys():
-            class_map[test_name_parts[0]] = []
+        class_map.setdefault(test_name_parts[0], [])
         # If a function was specified, append it to the list of functions
         if len(test_name_parts) > 1:
             class_map[test_name_parts[0]].append(test_name_parts[1])
@@ -205,12 +208,12 @@ def parse_test_names(test_name_args):
 def list_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
     """Print a list of available tests
 
-    :param tests_module: The module object for <test_project>.tests
-    :param test_module_names: (Optional) Parsed arg for --module command line argument
-    :param test_class_map: (Optional) Result of passing parsed arg for --test command
-        line argument to parse_test_names()
-    :param skip_class_map: (Optional) Result of passing parsed arg for --skip command
-        line argument to parse_test_names()
+    :param tests_module: The module object for ``<test_project>.tests``
+    :param test_module_names: (Optional) Parsed arg for ``--module`` command line argument
+    :param test_class_map: (Optional) Result of passing parsed arg for ``--test`` command
+        line argument to :func:`parse_test_names()`
+    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip`` command
+        line argument to :func:`parse_test_names()`
     """
     tests = _load_tests(tests_module, test_module_names, test_class_map, skip_class_map)
     for test_class in tests:
@@ -224,16 +227,16 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
               skip_class_map=None, test_module_names=None, browserstack=False, headless=False):
     """Run tests using parsed args and project modules
 
-    :param tests_module: The module object for <test_project>.tests
-    :param config_module: The module object for <test_project>.config or
-        webdriver_test_tools.config if not specified
+    :param tests_module: The module object for ``<test_project>.tests``
+    :param config_module: The module object for ``<test_project>.config`` or
+        :mod:`webdriver_test_tools.config` if not specified
     :param browser_classes: (Optional) List of browser test classes from parsed arg
-        for --browser command line argument
-    :param test_class_map: (Optional) Result of passing parsed arg for --test command
-        line argument to parse_test_names()
-    :param skip_class_map: (Optional) Result of passing parsed arg for --skip command
-        line argument to parse_test_names()
-    :param test_module_names: (Optional) Parsed arg for --module command line argument
+        for ``--browser`` command line argument
+    :param test_class_map: (Optional) Result of passing parsed arg for ``--test`` command
+        line argument to :func:`parse_test_names()`
+    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip`` command
+        line argument to :func:`parse_test_names()`
+    :param test_module_names: (Optional) Parsed arg for ``--module`` command line argument
     :param browserstack: (Default = False) If True, generated test cases should run on
         BrowserStack
     :param headless: (Default = False) If True, configure driver to run tests in a
@@ -287,3 +290,4 @@ def _get_skip_class_names(skip_class_map):
             class_name for class_name, methods in skip_class_map.items() if not methods
         ]
     return None
+

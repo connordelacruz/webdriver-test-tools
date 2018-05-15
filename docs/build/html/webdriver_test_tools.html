@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.cmd package" href="webdriver_test_tools.cmd.html" />
+    <link rel="next" title="webdriver_test_tools.config package" href="webdriver_test_tools.config.html" />
     <link rel="prev" title="BrowserStack Support" href="browserstack.html" /> 
 
   
@@ -95,13 +95,24 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">webdriver_test_tools API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#framework">Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#utilities">Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#internal">Internal</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.__main__.html">webdriver_test_tools.__main__ module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,14 +183,14 @@
             
   <div class="section" id="module-webdriver_test_tools">
 <span id="webdriver-test-tools-api"></span><h1>webdriver_test_tools API<a class="headerlink" href="#module-webdriver_test_tools" title="Permalink to this headline">¶</a></h1>
+<p>webdriver_test_tools 1.0.0-alpha</p>
 <div class="section" id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="framework">
+<h3>Framework<a class="headerlink" href="#framework" title="Permalink to this headline">¶</a></h3>
+<p>Packages used by the unit testing framework.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.cmd.cmd.html">webdriver_test_tools.cmd.cmd module</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.config.browser.html">webdriver_test_tools.config.browser module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.config.browserstack.html">webdriver_test_tools.config.browserstack module</a></li>
@@ -188,14 +199,82 @@
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.config.webdriver.html">webdriver_test_tools.config.webdriver module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.pageobject.base.html">webdriver_test_tools.pageobject.base module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.pageobject.form.html">webdriver_test_tools.pageobject.form module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html">webdriver_test_tools.pageobject.modal module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html">webdriver_test_tools.pageobject.nav module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.pageobject.prototypes.html">webdriver_test_tools.pageobject.prototypes module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html">webdriver_test_tools.pageobject.webpage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.pageobject.html#main-modules">Main Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.base.html">webdriver_test_tools.pageobject.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.prototypes.html">webdriver_test_tools.pageobject.prototypes module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.pageobject.html#prototype-modules">Prototype Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.form.html">webdriver_test_tools.pageobject.form module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html">webdriver_test_tools.pageobject.modal module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html">webdriver_test_tools.pageobject.nav module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html">webdriver_test_tools.pageobject.webpage module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.testcase.html#main-modules">Main Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html">webdriver_test_tools.testcase.webdriver module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#assertion-methods">Assertion Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.browsers.html">webdriver_test_tools.testcase.browsers module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.testcase.html#browser-test-case-modules">Browser Test Case Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.chrome.html">webdriver_test_tools.testcase.chrome module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.edge.html">webdriver_test_tools.testcase.edge module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.firefox.html">webdriver_test_tools.testcase.firefox module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.ie.html">webdriver_test_tools.testcase.ie module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.safari.html">webdriver_test_tools.testcase.safari module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="utilities">
+<h3>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h3>
+<p>Testing utilities.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.data.html#data-utilities">Data Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.webdriver.locate.html">webdriver_test_tools.webdriver.locate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.webdriver.actions.html">webdriver_test_tools.webdriver.actions package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.actions.form.html">webdriver_test_tools.webdriver.actions.form module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.actions.scroll.html">webdriver_test_tools.webdriver.actions.scroll module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.webdriver.support.html">webdriver_test_tools.webdriver.support package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.support.expected_conditions.html">webdriver_test_tools.webdriver.support.expected_conditions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.support.test.html">webdriver_test_tools.webdriver.support.test module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="internal">
+<h3>Internal<a class="headerlink" href="#internal" title="Permalink to this headline">¶</a></h3>
+<p>Internal packages for test generation, project file creation, and command line
+interfaces.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.__main__.html">webdriver_test_tools.__main__ module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.cmd.cmd.html">webdriver_test_tools.cmd.cmd module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.common.utils.html">webdriver_test_tools.common.utils module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a><ul>
@@ -205,37 +284,8 @@
 <li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.project.test_module.html">webdriver_test_tools.project.test_module module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.testcase.browsers.html">webdriver_test_tools.testcase.browsers module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.testcase.chrome.html">webdriver_test_tools.testcase.chrome module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.testcase.edge.html">webdriver_test_tools.testcase.edge module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.testcase.firefox.html">webdriver_test_tools.testcase.firefox module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.testcase.ie.html">webdriver_test_tools.testcase.ie module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.testcase.safari.html">webdriver_test_tools.testcase.safari module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html">webdriver_test_tools.testcase.webdriver module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#assertion-methods">Assertion Methods</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.webdriver.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.actions.html">webdriver_test_tools.webdriver.actions package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.webdriver.actions.form.html">webdriver_test_tools.webdriver.actions.form module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.webdriver.actions.scroll.html">webdriver_test_tools.webdriver.actions.scroll module</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.support.html">webdriver_test_tools.webdriver.support package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.webdriver.support.expected_conditions.html">webdriver_test_tools.webdriver.support.expected_conditions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.webdriver.support.test.html">webdriver_test_tools.webdriver.support.test module</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.locate.html">webdriver_test_tools.webdriver.locate module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+</div>
 </div>
 </div>
 </div>
@@ -248,7 +298,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.cmd.html" class="btn btn-neutral float-right" title="webdriver_test_tools.cmd package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.config.html" class="btn btn-neutral float-right" title="webdriver_test_tools.config package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="browserstack.html" class="btn btn-neutral" title="BrowserStack Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

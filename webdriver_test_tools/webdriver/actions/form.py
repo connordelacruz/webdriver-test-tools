@@ -1,11 +1,12 @@
-# Functions for interacting with forms
+"""Functions for interacting with forms"""
+
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait, Select
 
 from webdriver_test_tools.webdriver import locate
 from webdriver_test_tools.webdriver.actions import scroll
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait, Select
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
-from selenium.webdriver.support import expected_conditions as EC
 
 # Setting form input values
 

@@ -3,7 +3,8 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class FirefoxTestCase(WebDriverTestCase):
-    """Implementation of WebDriverTestCase using Firefox webdriver
+    """Implementation of :class:`WebDriverTestCase <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
+    using Firefox webdriver
 
     `Driver download <https://github.com/mozilla/geckodriver/releases>`__
 

@@ -95,19 +95,15 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.project.initialize.html">webdriver_test_tools.project.initialize module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.project.test_factory module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.project.test_loader.html">webdriver_test_tools.project.test_loader module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.project.test_module.html">webdriver_test_tools.project.test_module module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.__main__.html">webdriver_test_tools.__main__ module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
 </ul>
 </li>
 </ul>
@@ -193,8 +189,8 @@ the new tests</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>test_case_list</strong> – A list of WebDriverTestCase subclasses to generate a test
-suite for</li>
+<li><strong>test_case_list</strong> – A list of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+subclasses to generate a test suite for</li>
 <li><strong>browser_test_classes</strong> – (Optional) If specified, only generate tests using the
 browser classes in this list. If not specified, tests will be generated for
 each available browser test case class.</li>
@@ -202,17 +198,17 @@ each available browser test case class.</li>
 test functions. If the list is empty, all test functions will be loaded</li>
 <li><strong>skip_class_map</strong> – (Optional) Dictionary mapping test case names to a list of
 test functions. If the list is empty, entire class will be skipped</li>
-<li><strong>config_module</strong> – (Optional) The module object for &lt;test_project&gt;.config</li>
+<li><strong>config_module</strong> – (Optional) The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code></li>
 <li><strong>browserstack</strong> – (Default = False) If True, configure generated test cases to
-run on BrowserStack instead of locally. Need to provide <cite>config_module</cite> with
-appropriately configured <cite>BrowserStackConfig</cite> class if set to True</li>
+run on BrowserStack instead of locally. Need to provide <code class="docutils literal notranslate"><span class="pre">config_module</span></code> with
+appropriately configured <a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig" title="webdriver_test_tools.config.browser.BrowserStackConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrowserStackConfig</span></code></a> class if set to True</li>
 <li><strong>headless</strong> – (Default = False) If True, configure driver to run tests in a
 headless browser. Tests will only be generated for drivers that support
 running headless browsers</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">unittest.TestSuite object with generated tests for each browser</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">unittest.TestSuite</span></code> object with generated tests for each browser</p>
 </td>
 </tr>
 </tbody>
@@ -222,20 +218,21 @@ running headless browsers</li>
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_factory.generate_browser_test_cases">
 <code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_cases</code><span class="sig-paren">(</span><em>base_class</em>, <em>browser_test_classes=None</em>, <em>config_module=None</em>, <em>browserstack=False</em>, <em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_cases" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate test cases for each browser from a WebDriverTestCase subclass</p>
+<dd><p>Generate test cases for each browser from a <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a> subclass</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>base_class</strong> – The WebDriverTestCase subclass to generate test classes for</li>
+<li><strong>base_class</strong> – The <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+subclass to generate test classes for</li>
 <li><strong>browser_test_classes</strong> – (Optional) If specified, only generate tests using the
 browser classes specified in this list. If not specified, tests will be
 generated for each available browser test case class</li>
-<li><strong>config_module</strong> – (Optional) The module object for &lt;test_project&gt;.config</li>
+<li><strong>config_module</strong> – (Optional) The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code></li>
 <li><strong>browserstack</strong> – (Default = False) If True, configure generated test cases to
-run on BrowserStack instead of locally. Need to provide <cite>config_module</cite> with
-appropriately configured <cite>BrowserStackConfig</cite> class if set to True</li>
+run on BrowserStack instead of locally. Need to provide <code class="docutils literal notranslate"><span class="pre">config_module</span></code> with
+appropriately configured <a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig" title="webdriver_test_tools.config.browser.BrowserStackConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrowserStackConfig</span></code></a> class if set to True</li>
 <li><strong>headless</strong> – (Default = False) If True, configure driver to run tests in a
 headless browser</li>
 </ul>
@@ -251,27 +248,32 @@ headless browser</li>
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_factory.generate_browser_test_case">
 <code class="descclassname">webdriver_test_tools.project.test_factory.</code><code class="descname">generate_browser_test_case</code><span class="sig-paren">(</span><em>base_class</em>, <em>browser_test_class</em>, <em>config_module=None</em>, <em>browserstack=False</em>, <em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_factory.html#generate_browser_test_case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_factory.generate_browser_test_case" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates a browser-specific test case class from a generic WebDriverTestCase</p>
+<dd><p>Generates a browser-specific test case class from a generic
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>base_class</strong> – WebDriverTestCase containing test functions</li>
-<li><strong>browser_test_class</strong> – The driver-specific implementation of WebDriverTestCase
+<li><strong>base_class</strong> – <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+containing test functions</li>
+<li><strong>browser_test_class</strong> – The driver-specific implementation of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
 to generate a test for</li>
-<li><strong>config_module</strong> – (Optional) The module object for &lt;test_project&gt;.config</li>
+<li><strong>config_module</strong> – (Optional) The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code></li>
 <li><strong>browserstack</strong> – (Default = False) If True, configure generated test cases to
-run on BrowserStack instead of locally. Need to provide <cite>config_module</cite> with
-appropriately configured <cite>BrowserStackConfig</cite> class if set to True</li>
+run on BrowserStack instead of locally. Need to provide <code class="docutils literal notranslate"><span class="pre">config_module</span></code> with
+appropriately configured <a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig" title="webdriver_test_tools.config.browser.BrowserStackConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrowserStackConfig</span></code></a> class if set to True</li>
 <li><strong>headless</strong> – (Default = False) If True, configure driver to run tests in a
 headless browser</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Test case class with tests from <cite>base_class</cite> and driver configurations from
-<cite>browser_test_class</cite>. If <cite>browserstack</cite> is set to True, returned class will have
-appropriate attributes configured for BrowserStack execution</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Test case class with tests from <code class="docutils literal notranslate"><span class="pre">base_class</span></code> and driver configurations from
+<code class="docutils literal notranslate"><span class="pre">browser_test_class</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">browserstack</span></code> is set to True, returned class will have appropriate attributes
+configured for BrowserStack execution.
+If <code class="docutils literal notranslate"><span class="pre">headless</span></code> is set to True, returned class will have appropriate attributes
+configured for headless browser execution.</p>
 </td>
 </tr>
 </tbody>
@@ -289,12 +291,14 @@ appropriate attributes configured for BrowserStack execution</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>browser_test_case</strong> – Browser test case class to configure for BrowserStack
 usage</li>
-<li><strong>config_module</strong> – The module object for &lt;test_project&gt;.config</li>
+<li><strong>config_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code></li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">browser_test_case class with <cite>ENABLE_BS</cite> and <cite>COMMAND_EXECUTOR</cite> attributes
-configured appropriately</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">browser_test_case class with
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ENABLE_BS</span></code></a> and
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">COMMAND_EXECUTOR</span></code></a>
+attributes configured appropriately</p>
 </td>
 </tr>
 </tbody>
@@ -312,7 +316,8 @@ configured appropriately</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>browser_test_case</strong> – Browser test case class to configure for BrowserStack
 usage</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">browser_test_case class with <cite>ENABLE_HEADLESS</cite> attribute configured</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">browser_test_case</span></code> class with <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ENABLE_HEADLESS</span></code></a>
+attribute configured</td>
 </tr>
 </tbody>
 </table>

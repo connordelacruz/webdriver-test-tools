@@ -155,14 +155,15 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.webdriver.actions.form</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Functions for interacting with forms</span>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for interacting with forms&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="k">import</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">NoSuchElementException</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="k">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="k">import</span> <span class="n">WebDriverWait</span><span class="p">,</span> <span class="n">Select</span>
 
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver</span> <span class="k">import</span> <span class="n">locate</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver.actions</span> <span class="k">import</span> <span class="n">scroll</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="k">import</span> <span class="n">WebDriverWait</span><span class="p">,</span> <span class="n">Select</span>
-<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="k">import</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">NoSuchElementException</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="k">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
 
 <span class="c1"># Setting form input values</span>
 

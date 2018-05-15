@@ -1,9 +1,10 @@
 """Functions for commonly repeated test procedures"""
 
-from webdriver_test_tools.webdriver.support import expected_conditions as customEC
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+from webdriver_test_tools.webdriver.support import expected_conditions as customEC
 
 # TODO: consistent naming conventions
 

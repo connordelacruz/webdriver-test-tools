@@ -95,19 +95,15 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.project.initialize.html">webdriver_test_tools.project.initialize module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.project.test_factory.html">webdriver_test_tools.project.test_factory module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.project.test_loader module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.project.test_module.html">webdriver_test_tools.project.test_module module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.__main__.html">webdriver_test_tools.__main__ module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
 </ul>
 </li>
 </ul>
@@ -182,20 +178,20 @@
             
   <div class="section" id="module-webdriver_test_tools.project.test_loader">
 <span id="webdriver-test-tools-project-test-loader-module"></span><h1>webdriver_test_tools.project.test_loader module<a class="headerlink" href="#module-webdriver_test_tools.project.test_loader" title="Permalink to this headline">¶</a></h1>
-<p>Load test cases from a project</p>
+<p>Load test cases from a project.</p>
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_project_tests">
 <code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_project_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em>, <em>test_class_names=None</em>, <em>skip_class_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of WebDriverTestCase subclasses from all submodules in a test
-project’s tests/ directory</p>
+<dd><p>Returns a list of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+subclasses from all submodules in a test project’s tests/ directory</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
+<li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></li>
 <li><strong>test_module_names</strong> – (Optional) List of test module names. Only load test cases from a submodule of
-tests_module with the given names</li>
+<code class="docutils literal notranslate"><span class="pre">tests_module</span></code> with the given names</li>
 <li><strong>test_class_names</strong> – (Optional) List of test class names. Only load test cases with these names</li>
 <li><strong>skip_class_names</strong> – (Optional) List of test class names. Skip test cases with these names</li>
 </ul>
@@ -211,7 +207,8 @@ tests_module with the given names</li>
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_webdriver_test_cases">
 <code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_webdriver_test_cases</code><span class="sig-paren">(</span><em>module</em>, <em>test_class_names=None</em>, <em>skip_class_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_webdriver_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_webdriver_test_cases" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of WebDriverTestCase subclasses from a module</p>
+<dd><p>Returns a list of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
+subclasses from a module</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -239,11 +236,12 @@ tests_module with the given names</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>generated_test_cases</strong> – List of generated browser test case classes for a single subclass of WebDriverTestCase</li>
+<li><strong>generated_test_cases</strong> – List of generated browser test case classes for a single subclass of
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a></li>
 <li><strong>test_methods</strong> – (Optional) List of test method names. If specified, load only these test methods from each
 browser test case</li>
-<li><strong>skip_methods</strong> – (Optional) List of test method names. If specified, do not load these test methods from each
-browser test case</li>
+<li><strong>skip_methods</strong> – (Optional) List of test method names. If specified, do not load these test methods from
+each browser test case</li>
 </ul>
 </td>
 </tr>

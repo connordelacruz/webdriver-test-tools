@@ -155,7 +155,19 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.testcase.browsers</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Browser implementations of :class:`WebDriverTestCase`&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Browser implementations of :class:`WebDriverTestCase</span>
+<span class="sd">&lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`.</span>
+
+<span class="sd">This module imports the following classes:</span>
+
+<span class="sd">    :class:`webdriver_test_tools.testcase.chrome.ChromeTestCase`</span>
+<span class="sd">    :class:`webdriver_test_tools.testcase.chrome.ChromeMobileTestCase`</span>
+<span class="sd">    :class:`webdriver_test_tools.testcase.firefox.FirefoxTestCase`</span>
+<span class="sd">    :class:`webdriver_test_tools.testcase.edge.EdgeTestCase`</span>
+<span class="sd">    :class:`webdriver_test_tools.testcase.ie.IETestCase`</span>
+<span class="sd">    :class:`webdriver_test_tools.testcase.safari.SafariTestCase`</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">.chrome</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">.edge</span> <span class="k">import</span> <span class="o">*</span>
@@ -163,11 +175,12 @@
 <span class="kn">from</span> <span class="nn">.ie</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">.safari</span> <span class="k">import</span> <span class="o">*</span>
 
-<div class="viewcode-block" id="Browsers"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.browsers.Browsers">[docs]</a><span class="k">class</span> <span class="nc">Browsers</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Browsers"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.browsers.Browsers">[docs]</a><span class="k">class</span> <span class="nc">Browsers</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Constants for browser short names</span>
 
 <span class="sd">    :var Browsers.TEST_CLASSES: Dictionary mapping browser names to their corresponding test classes</span>
-<span class="sd">    :var Browsers.HEADLESS_COMPATIBLE: List of WebDriverTestCase subclasses that</span>
+<span class="sd">    :var Browsers.HEADLESS_COMPATIBLE: List of :class:`WebDriverTestCase</span>
+<span class="sd">        &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;` subclasses that</span>
 <span class="sd">        support test execution in a headless browser</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">FIREFOX</span> <span class="o">=</span> <span class="n">FirefoxTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>

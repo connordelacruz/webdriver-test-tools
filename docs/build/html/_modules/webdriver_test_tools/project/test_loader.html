@@ -155,7 +155,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.project.test_loader</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Load test cases from a project&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Load test cases from a project.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">types</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
@@ -164,12 +164,12 @@
 
 
 <div class="viewcode-block" id="load_project_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_project_tests">[docs]</a><span class="k">def</span> <span class="nf">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a list of WebDriverTestCase subclasses from all submodules in a test</span>
-<span class="sd">    project&#39;s tests/ directory</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of :class:`WebDriverTestCase &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
+<span class="sd">    subclasses from all submodules in a test project&#39;s tests/ directory</span>
 
-<span class="sd">    :param tests_module: The module object for &lt;test_project&gt;.tests</span>
+<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
 <span class="sd">    :param test_module_names: (Optional) List of test module names. Only load test cases from a submodule of</span>
-<span class="sd">        tests_module with the given names</span>
+<span class="sd">        ``tests_module`` with the given names</span>
 <span class="sd">    :param test_class_names: (Optional) List of test class names. Only load test cases with these names</span>
 <span class="sd">    :param skip_class_names: (Optional) List of test class names. Skip test cases with these names</span>
 
@@ -187,7 +187,8 @@
 
 
 <div class="viewcode-block" id="load_webdriver_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_webdriver_test_cases">[docs]</a><span class="k">def</span> <span class="nf">load_webdriver_test_cases</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">test_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a list of WebDriverTestCase subclasses from a module</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of :class:`WebDriverTestCase &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
+<span class="sd">    subclasses from a module</span>
 
 <span class="sd">    :param module: The module to load tests from</span>
 <span class="sd">    :param test_class_names: (Optional) List of test case class names to load. Will load all if unspecified</span>
@@ -209,8 +210,12 @@
 
 <span class="sd">    Criteria for being a valid test case:</span>
 
-<span class="sd">        - Is a class and a subclass of ``WebDriverTestCase``</span>
-<span class="sd">        - Is not ``WebDriverTestCase`` or ``WebDriverMobileTestCase``</span>
+<span class="sd">        - Is a class and a subclass of :class:`WebDriverTestCase</span>
+<span class="sd">          &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
+<span class="sd">        - Is not :class:`WebDriverTestCase</span>
+<span class="sd">          &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;` or</span>
+<span class="sd">          :class:`WebDriverMobileTestCase</span>
+<span class="sd">          &lt;webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase&gt;`</span>
 <span class="sd">        - Is not listed in ``skip_class_names`` (if provided)</span>
 <span class="sd">        - Is listed in ``test_class_names`` (if provided)</span>
 
@@ -233,11 +238,12 @@
 <div class="viewcode-block" id="load_browser_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_browser_tests">[docs]</a><span class="k">def</span> <span class="nf">load_browser_tests</span><span class="p">(</span><span class="n">generated_test_cases</span><span class="p">,</span> <span class="n">test_methods</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_methods</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load tests from browser test case classes</span>
 
-<span class="sd">    :param generated_test_cases: List of generated browser test case classes for a single subclass of WebDriverTestCase</span>
+<span class="sd">    :param generated_test_cases: List of generated browser test case classes for a single subclass of</span>
+<span class="sd">        :class:`WebDriverTestCase &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
 <span class="sd">    :param test_methods: (Optional) List of test method names. If specified, load only these test methods from each</span>
 <span class="sd">        browser test case</span>
-<span class="sd">    :param skip_methods: (Optional) List of test method names. If specified, do not load these test methods from each</span>
-<span class="sd">        browser test case</span>
+<span class="sd">    :param skip_methods: (Optional) List of test method names. If specified, do not load these test methods from</span>
+<span class="sd">        each browser test case</span>
 
 <span class="sd">    :return: A list of loaded tests from the browser test cases</span>
 <span class="sd">    &quot;&quot;&quot;</span>

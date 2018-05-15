@@ -161,10 +161,10 @@
 <div class="viewcode-block" id="TestSuiteConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.test.html#webdriver_test_tools.config.test.TestSuiteConfig">[docs]</a><span class="k">class</span> <span class="nc">TestSuiteConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Configurations for test suite</span>
 
-<span class="sd">    :var TestSuiteConfig.RUNNER_CLASS: unittest TestRunner class to use when running</span>
+<span class="sd">    :var TestSuiteConfig.RUNNER_CLASS: ``unittest.TestRunner`` class to use when running</span>
 <span class="sd">        tests</span>
 <span class="sd">    :var TestSuiteConfig.RUNNER_KWARGS: Dictionary mapping parameter names to desired</span>
-<span class="sd">        values used to initialize the TestRunner</span>
+<span class="sd">        values used to initialize the ``TestRunner`` configured in :attr:`RUNNER_CLASS`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Configure test runner</span>
@@ -175,7 +175,7 @@
 
 <div class="viewcode-block" id="TestSuiteConfig.get_runner"><a class="viewcode-back" href="../../../webdriver_test_tools.config.test.html#webdriver_test_tools.config.test.TestSuiteConfig.get_runner">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_runner</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns RUNNER_CLASS object using RUNNER_KWARGS to initialize&quot;&quot;&quot;</span></div></div>
+        <span class="sd">&quot;&quot;&quot;Returns :attr:`RUNNER_CLASS` object using :attr:`RUNNER_KWARGS` to initialize&quot;&quot;&quot;</span></div></div>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">RUNNER_CLASS</span><span class="p">(</span><span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">RUNNER_KWARGS</span><span class="p">)</span>
 
 </pre></div>

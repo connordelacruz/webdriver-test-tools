@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.pageobject.form module" href="webdriver_test_tools.pageobject.form.html" />
+    <link rel="next" title="webdriver_test_tools.pageobject.prototypes module" href="webdriver_test_tools.pageobject.prototypes.html" />
     <link rel="prev" title="webdriver_test_tools.pageobject package" href="webdriver_test_tools.pageobject.html" /> 
 
   
@@ -95,21 +95,14 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.pageobject.base module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.form.html">webdriver_test_tools.pageobject.form module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html">webdriver_test_tools.pageobject.modal module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html">webdriver_test_tools.pageobject.nav module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.prototypes.html">webdriver_test_tools.pageobject.prototypes module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html">webdriver_test_tools.pageobject.webpage module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a></li>
 </ul>
 </li>
 </ul>
@@ -199,7 +192,10 @@ this page object.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">SOME_ELEMENT</span> <span class="pre">=</span> <span class="pre">(By.ID,</span> <span class="pre">'some-element')</span></code></td>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SOME_ELEMENT</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;some-element&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -209,14 +205,20 @@ this page object.</p>
 <dt id="webdriver_test_tools.pageobject.base.BasePage.find_element">
 <code class="descname">find_element</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.find_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage.find_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a WebElement object based on the locator tuple passed</p>
-<p>Shorthand for <code class="docutils literal notranslate"><span class="pre">self.driver.find_element(*locator)</span></code></p>
+<p>Shorthand for:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">WebElement</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The located WebElement</td>
 </tr>
 </tbody>
 </table>
@@ -226,14 +228,20 @@ this page object.</p>
 <dt id="webdriver_test_tools.pageobject.base.BasePage.find_elements">
 <code class="descname">find_elements</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.find_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage.find_elements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of WebElement objects based on the locator tuple passed</p>
-<p>Shorthand for <code class="docutils literal notranslate"><span class="pre">self.driver.find_elements(*locator)</span></code></p>
+<p>Shorthand for :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List of WebElement</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of located WebElements</td>
 </tr>
 </tbody>
 </table>
@@ -251,7 +259,7 @@ this page object.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.pageobject.form.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.form module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.pageobject.prototypes.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.prototypes module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="webdriver_test_tools.pageobject.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

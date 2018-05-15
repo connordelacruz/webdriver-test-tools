@@ -1,4 +1,4 @@
-"""Various utility methods for webdriver_test_tools submodules"""
+"""Various utility methods for package submodules."""
 
 import re
 from urllib.parse import urlparse
@@ -17,7 +17,10 @@ def get_base_url(url):
 def validate_filename(filename, allow_spaces=False):
     """Strips invalid characters from a filename
 
-    Considers POSIX "fully portable filenames" valid. These include:
+    Considers `POSIX "fully portable filenames"
+    <http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_282>`__
+    valid. These include:
+
         A-Z a-z 0-9 ._-
 
     Filenames cannot begin with a hyphen.

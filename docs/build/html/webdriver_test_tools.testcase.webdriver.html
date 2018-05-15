@@ -31,8 +31,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.webdriver package" href="webdriver_test_tools.webdriver.html" />
-    <link rel="prev" title="webdriver_test_tools.testcase.safari module" href="webdriver_test_tools.testcase.safari.html" /> 
+    <link rel="next" title="webdriver_test_tools.testcase.browsers module" href="webdriver_test_tools.testcase.browsers.html" />
+    <link rel="prev" title="webdriver_test_tools.testcase package" href="webdriver_test_tools.testcase.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -95,22 +95,14 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.browsers.html">webdriver_test_tools.testcase.browsers module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.chrome.html">webdriver_test_tools.testcase.chrome module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.edge.html">webdriver_test_tools.testcase.edge module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.firefox.html">webdriver_test_tools.testcase.firefox module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.ie.html">webdriver_test_tools.testcase.ie module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.safari.html">webdriver_test_tools.testcase.safari module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.testcase.webdriver module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a></li>
 </ul>
 </li>
 </ul>
@@ -238,18 +230,19 @@ matches <code class="docutils literal notranslate"><span class="pre">expected_ur
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="descname">WebDriverTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for web driver test cases.</p>
-<p>This defines the common setUp() and tearDown() tasks. It does not initialize
-self.driver so will not work on its own. Tests should be written with this as their
-parent class. Browser-specific implementations of test cases will be generated when
-running tests.</p>
+<p>This defines the common <code class="docutils literal notranslate"><span class="pre">setUp()</span></code> and <code class="docutils literal notranslate"><span class="pre">tearDown()</span></code> tasks as well as WebDriver-related
+assertion methods and <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code> framework-related decorator methods.
+It does not initialize <code class="docutils literal notranslate"><span class="pre">self.driver</span></code> so will not work on its own. Tests should be
+written with this as their parent class. Browser-specific implementations of test cases
+will be generated when running tests.</p>
 <p><strong>Instances of this class will have the following variables:</strong></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>WebDriverTestCase.driver</strong> – Selenium WebDriver object</li>
-<li><strong>WebDriverTestCase.WebDriverConfig</strong> – WebDriverConfig class</li>
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver"><strong>WebDriverTestCase.driver</strong></a> – Selenium WebDriver object</li>
+<li><strong>WebDriverTestCase.WebDriverConfig</strong> – <a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig" title="webdriver_test_tools.config.webdriver.WebDriverConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverConfig</span></code></a> class object</li>
 </ul>
 </td>
 </tr>
@@ -261,15 +254,15 @@ running tests.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>WebDriverTestCase.SITE_URL</strong> – Go to this URL during setUp(). Tests that implement
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL"><strong>WebDriverTestCase.SITE_URL</strong></a> – Go to this URL during <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setUp()</span></code></a>. Tests that implement
 WebDriverTestCase must set this accordingly.</li>
-<li><strong>WebDriverTestCase.SKIP_BROWSERS</strong> – (Optional) List of browser names to skip test
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS"><strong>WebDriverTestCase.SKIP_BROWSERS</strong></a> – (Optional) List of browser names to skip test
 generation for. This can be useful if a test case class requires functionality
 that is not implemented in a certain driver, or if its tests are meant for
-specific browsers. Valid browser names are declared in the Browsers class.</li>
-<li><strong>WebDriverTestCase.SKIP_MOBILE</strong> – (Optional) By default, tests will be
-generated for all enabled browsers, including mobile. If SKIP_MOBILE is set to
-True, don’t generate tests for mobile browsers. This can be helpful if the
+specific browsers. Valid browser names are declared in the <a class="reference internal" href="webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.browsers.Browsers" title="webdriver_test_tools.testcase.browsers.Browsers"><code class="xref py py-class docutils literal notranslate"><span class="pre">Browsers</span></code></a> class.</li>
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE"><strong>WebDriverTestCase.SKIP_MOBILE</strong></a> – (Optional) By default, tests will be
+generated for all enabled browsers, including mobile. If <code class="docutils literal notranslate"><span class="pre">SKIP_MOBILE</span></code> is set to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, don’t generate tests for mobile browsers. This can be helpful if the
 layout changes between desktop and mobile viewports would alter the test
 procedures.</li>
 </ul>
@@ -288,12 +281,12 @@ object for the browser</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>WebDriverTestCase.DRIVER_NAME</strong> – Name of the browser. This is mostly used in the
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME"><strong>WebDriverTestCase.DRIVER_NAME</strong></a> – Name of the browser. This is mostly used in the
 docstrings of generated test classes to indicate what browser the tests are
 being run in</li>
-<li><strong>WebDriverTestCase.SHORT_NAME</strong> – Short name for the driver used for command line
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME"><strong>WebDriverTestCase.SHORT_NAME</strong></a> – Short name for the driver used for command line
 args, skipping, etc. Should be all lowercase with no spaces</li>
-<li><strong>WebDriverTestCase.CAPABILITIES</strong> – The DesiredCapabilities dictionary for the
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES"><strong>WebDriverTestCase.CAPABILITIES</strong></a> – The <code class="docutils literal notranslate"><span class="pre">DesiredCapabilities</span></code> dictionary for the
 browser. Used for initializing BrowserStack remote driver</li>
 </ul>
 </td>
@@ -306,10 +299,10 @@ browser. Used for initializing BrowserStack remote driver</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>WebDriverTestCase.ENABLE_BS</strong> – (Default = False) If set to True, setUp() will
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS"><strong>WebDriverTestCase.ENABLE_BS</strong></a> – (Default = False) If set to True, <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setUp()</span></code></a> will
 initialize a Remote webdriver instead of a local one and run tests on
 BrowserStack</li>
-<li><strong>WebDriverTestCase.COMMAND_EXECUTOR</strong> – Command executor URL. Test generator
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR"><strong>WebDriverTestCase.COMMAND_EXECUTOR</strong></a> – Command executor URL. Test generator
 needs to set this with the configured access key and username</li>
 </ul>
 </td>
@@ -321,12 +314,62 @@ needs to set this with the configured access key and username</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>WebDriverTestCase.ENABLE_HEADLESS</strong> – (Default = False) If set to True, browser
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS"><strong>WebDriverTestCase.ENABLE_HEADLESS</strong></a> – (Default = False) If set to True, browser
 implementations with headless browser support will configure their drivers to
 run tests in a headless browser</td>
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver">
+<code class="descname">driver</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL">
+<code class="descname">SITE_URL</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS">
+<code class="descname">SKIP_BROWSERS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE">
+<code class="descname">SKIP_MOBILE</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME">
+<code class="descname">DRIVER_NAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME">
+<code class="descname">SHORT_NAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS">
+<code class="descname">ENABLE_BS</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR">
+<code class="descname">COMMAND_EXECUTOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES">
+<code class="descname">CAPABILITIES</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS">
+<code class="descname">ENABLE_HEADLESS</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init">
 <code class="descname">bs_driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.bs_driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init" title="Permalink to this definition">¶</a></dt>
@@ -335,9 +378,9 @@ run tests in a headless browser</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">webdriver.Remote object with the command_executor and
-desired_capabilities parameters set to self.COMMAND_EXECUTOR and
-self.CAPABILITIES respectively.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">webdriver.Remote</span></code> object with the <code class="docutils literal notranslate"><span class="pre">command_executor</span></code> and
+<code class="docutils literal notranslate"><span class="pre">desired_capabilities</span></code> parameters set to <code class="docutils literal notranslate"><span class="pre">self.COMMAND_EXECUTOR</span></code>
+and <code class="docutils literal notranslate"><span class="pre">self.CAPABILITIES</span></code> respectively.</td>
 </tr>
 </tbody>
 </table>
@@ -347,16 +390,16 @@ self.CAPABILITIES respectively.</td>
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init">
 <code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an initialized WebDriver object. Browser test case classes must
-implement this</p>
+implement this.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp">
 <code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize driver and call <code class="docutils literal notranslate"><span class="pre">self.driver.get(self.SITE_URL)</span></code></p>
-<p>If self.ENABLE_BS is False, self.driver gets the returned results of
-self.DRIVER_INIT(). If self.ENABLE_BS is True, self.driver gets the returned
-results of self._bs_driver_init()</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">self.ENABLE_BS</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">self.driver</span></code> gets the returned results of
+<a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">self.driver_init()</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">self.ENABLE_BS</span></code>
+is <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">self.driver</span></code> gets the returned results of <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">self.bs_driver_init()</span></code></a></p>
 </dd></dl>
 
 <dl class="method">
@@ -374,7 +417,7 @@ results of self._bs_driver_init()</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
 </ul>
 </td>
@@ -392,7 +435,7 @@ results of self._bs_driver_init()</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
 </ul>
 </td>
@@ -410,7 +453,7 @@ results of self._bs_driver_init()</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
 </ul>
 </td>
@@ -428,7 +471,7 @@ results of self._bs_driver_init()</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
 </ul>
 </td>
@@ -446,7 +489,7 @@ results of self._bs_driver_init()</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
 </ul>
 </td>
@@ -464,7 +507,7 @@ results of self._bs_driver_init()</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
 </ul>
 </td>
@@ -482,7 +525,7 @@ results of self._bs_driver_init()</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
 </ul>
 </td>
@@ -500,7 +543,7 @@ results of self._bs_driver_init()</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</li>
+<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
 </ul>
 </td>
@@ -615,7 +658,7 @@ raise exceptions outside of their context.</p>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="descname">WebDriverMobileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverMobileTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.testcase.webdriver.WebDriverTestCase</span></code></a></p>
 <p>Base class for mobile web driver test cases</p>
-<p>If a test subclasses WebDriverMobileTestCase instead of WebDriverTestCase, tests
+<p>If a test subclasses <code class="docutils literal notranslate"><span class="pre">WebDriverMobileTestCase</span></code> instead of <code class="docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code>, tests
 will only be generated for mobile browsers</p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.SKIP_MOBILE">
@@ -635,10 +678,10 @@ will only be generated for mobile browsers</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.webdriver.html" class="btn btn-neutral float-right" title="webdriver_test_tools.webdriver package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.testcase.browsers.html" class="btn btn-neutral float-right" title="webdriver_test_tools.testcase.browsers module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.testcase.safari.html" class="btn btn-neutral" title="webdriver_test_tools.testcase.safari module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.testcase.html" class="btn btn-neutral" title="webdriver_test_tools.testcase package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

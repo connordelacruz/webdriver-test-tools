@@ -95,20 +95,14 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.browser.html">webdriver_test_tools.config.browser module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.browserstack.html">webdriver_test_tools.config.browserstack module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.site.html">webdriver_test_tools.config.site module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.config.test module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.webdriver.html">webdriver_test_tools.config.webdriver module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a></li>
 </ul>
 </li>
 </ul>
@@ -193,10 +187,10 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><strong>TestSuiteConfig.RUNNER_CLASS</strong></a> – unittest TestRunner class to use when running
+<li><a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><strong>TestSuiteConfig.RUNNER_CLASS</strong></a> – <code class="docutils literal notranslate"><span class="pre">unittest.TestRunner</span></code> class to use when running
 tests</li>
 <li><a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS"><strong>TestSuiteConfig.RUNNER_KWARGS</strong></a> – Dictionary mapping parameter names to desired
-values used to initialize the TestRunner</li>
+values used to initialize the <code class="docutils literal notranslate"><span class="pre">TestRunner</span></code> configured in <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_CLASS</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -216,7 +210,7 @@ values used to initialize the TestRunner</li>
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.test.TestSuiteConfig.get_runner">
 <em class="property">classmethod </em><code class="descname">get_runner</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/test.html#TestSuiteConfig.get_runner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns RUNNER_CLASS object using RUNNER_KWARGS to initialize</p>
+<dd><p>Returns <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_CLASS</span></code></a> object using <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_KWARGS</span></code></a> to initialize</p>
 </dd></dl>
 
 </dd></dl>

@@ -72,4 +72,53 @@ example, to enable test cases for Internet Explorer, set ``Browsers.IE`` to
         }
 
 
+Additional Configurations
+-------------------------
+
+BrowserStack tests support additional configurations using the 
+``BrowserStackConfig.BS_CAPABILITIES`` dictionary. For a list of BrowserStack's 
+configurable capabilities, see their `capabilities documentation 
+<https://www.browserstack.com/automate/capabilities>`__.
+
+
+Rename the Project
+~~~~~~~~~~~~~~~~~~
+
+By default, the project name is set to the test package name. This can be
+reconfigured by setting ``'project'`` to the desired name in ``BrowserStackConfig.BS_CAPABILITIES``:
+
+.. code-block:: python
+    :caption: config/browserstack.py
+    :emphasize-lines: 3
+
+    BS_CAPABILITIES = {
+        ...
+        'project': 'Custom Name',
+        ...
+    }
+
+
+Enabling Video
+~~~~~~~~~~~~~~
+
+Video recording can be enabled for tests run on BrowserStack by setting
+``'browserstack.video'`` to ``True`` in ``BrowserStackConfig.BS_CAPABILITIES``:
+
+.. code-block:: python
+    :caption: config/browserstack.py
+    :emphasize-lines: 3
+
+    BS_CAPABILITIES = {
+        ...
+        'browserstack.video': True,
+        ...
+    }
+
+This config option is set to ``False`` by default as it slows down test 
+execution, but it can be useful to see what's happening while testing.
+
+To view the recorded videos, go to https://www.browserstack.com/automate and
+select the test on the left column.
+
+
 

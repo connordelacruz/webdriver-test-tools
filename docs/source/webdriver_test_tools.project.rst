@@ -6,10 +6,3 @@ webdriver\_test\_tools.project package
     :undoc-members:
     :show-inheritance:
 
-.. toctree::
-
-   webdriver_test_tools.project.initialize
-   webdriver_test_tools.project.test_factory
-   webdriver_test_tools.project.test_loader
-   webdriver_test_tools.project.test_module
-

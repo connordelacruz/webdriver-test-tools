@@ -1,4 +1,4 @@
-# Used to create a new test package
+"""Functions for creating a new test package."""
 
 import sys
 import os

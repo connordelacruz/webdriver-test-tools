@@ -3,7 +3,8 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class SafariTestCase(WebDriverTestCase):
-    """Implementation of WebDriverTestCase using Safari webdriver
+    """Implementation of :class:`WebDriverTestCase <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
+    using Safari webdriver
 
     `Driver info <https://webkit.org/blog/6900/webdriver-support-in-safari-10/>`__
 
@@ -11,7 +12,9 @@ class SafariTestCase(WebDriverTestCase):
 
         This class is experimental and has not been fully tested. It is disabled by
         default but can be enabled in ``<test_package>/config/browser.py`` by
-        setting the corresponding value in ``BrowserConfig.ENABLED_BROWSERS`` to ``True``.
+        setting the corresponding value in :attr:`BrowserConfig.ENABLED_BROWSERS
+        <webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS>`
+        to ``True``.
 
     .. warning::
 

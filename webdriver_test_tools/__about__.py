@@ -15,7 +15,7 @@ __version__ = __release__.split('-')[0]
 __devstatus__ = 'Development Status :: 3 - Alpha'
 
 __url__ = 'https://github.com/connordelacruz/webdriver-test-tools/'
-__documentation__ = 'http://connordelacruz.com/webdriver-test-tools/'
+__documentation__ = 'https://connordelacruz.com/webdriver-test-tools/'
 __download__ = __url__ + 'archive/{}.tar.gz'.format(__version__)
 
 __selenium__ = '3.11.0'

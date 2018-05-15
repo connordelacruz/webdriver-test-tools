@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.pageobject.prototypes module" href="webdriver_test_tools.pageobject.prototypes.html" />
+    <link rel="next" title="webdriver_test_tools.pageobject.webpage module" href="webdriver_test_tools.pageobject.webpage.html" />
     <link rel="prev" title="webdriver_test_tools.pageobject.modal module" href="webdriver_test_tools.pageobject.modal.html" /> 
 
   
@@ -95,21 +95,14 @@
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.data.html">webdriver_test_tools.data package</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.base.html">webdriver_test_tools.pageobject.base module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.form.html">webdriver_test_tools.pageobject.form module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html">webdriver_test_tools.pageobject.modal module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.pageobject.nav module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.prototypes.html">webdriver_test_tools.pageobject.prototypes module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html">webdriver_test_tools.pageobject.webpage module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.webdriver.html">webdriver_test_tools.webdriver package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a></li>
 </ul>
 </li>
 </ul>
@@ -201,8 +194,9 @@ Override in subclasses</li>
 object class for the menu, dropdown, etc that should appear on hover (or None
 if need be). Override in subclasses</li>
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.fixed" title="webdriver_test_tools.pageobject.nav.NavObject.fixed"><strong>fixed</strong></a> – (Default = True) True if element is a fixed navbar, False otherwise. If
-set to False in a subclass, click_page_link() and hover_over_page_link() will
-scroll the target link into view before interacting with it</li>
+set to False in a subclass, <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.click_page_link" title="webdriver_test_tools.pageobject.nav.NavObject.click_page_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">click_page_link()</span></code></a> and
+<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link" title="webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hover_over_page_link()</span></code></a> will scroll the target link into view before
+interacting with it</li>
 </ul>
 </td>
 </tr>
@@ -232,7 +226,7 @@ target</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_map_key</strong> – Key into LINK_MAP for the link to click on</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_map_key</strong> – Key into <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LINK_MAP</span></code></a> for the link to click on</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Corresponding page object class for the link target (if applicable)</td>
 </tr>
@@ -248,7 +242,7 @@ target</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_map_key</strong> – Key into HOVER_MAP for the link to hover mouse over</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_map_key</strong> – Key into <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HOVER_MAP</span></code></a> for the link to hover mouse over</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Corresponding page object class for the hover dropdown/container/etc
 (if applicable)</td>
@@ -263,7 +257,7 @@ target</p>
 <dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.nav.</code><code class="descname">CollapsibleNavObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#CollapsibleNavObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.nav.NavObject</span></code></a></p>
-<p>Subclass of NavObject with additional methods for collapsible nav menus</p>
+<p>Subclass of <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code></a> with additional methods for collapsible nav menus</p>
 <p>In addition to the variables for <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code></a>, the following variables need to
 be defined for collapsible navs</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -337,7 +331,7 @@ method for an implementation</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.pageobject.prototypes.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.prototypes module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.pageobject.webpage.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.webpage module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="webdriver_test_tools.pageobject.modal.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.modal module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -155,7 +155,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.webdriver.locate</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Utility functions for locating elements</span>
+<span></span><span class="sd">&quot;&quot;&quot;Utility functions for locating elements&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
 
@@ -180,8 +180,8 @@
 
 
 <div class="viewcode-block" id="input_elements"><a class="viewcode-back" href="../../../webdriver_test_tools.webdriver.locate.html#webdriver_test_tools.webdriver.locate.input_elements">[docs]</a><span class="k">def</span> <span class="nf">input_elements</span><span class="p">(</span><span class="n">exclude_buttons</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a locator that selects input, select, textarea, and (optionally) button</span>
-<span class="sd">    elements</span>
+    <span class="sd">&quot;&quot;&quot;Return a locator that selects ``input``, ``select``, ``textarea``, and (optionally)</span>
+<span class="sd">    ``button`` elements</span>
 
 <span class="sd">    To narrow down results, this is best used on the conainer element where the desired</span>
 <span class="sd">    inputs are located. E.g.:</span>
