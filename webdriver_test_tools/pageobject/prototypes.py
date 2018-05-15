@@ -6,6 +6,8 @@ These can be subclassed in test projects if useful.
 Prototype Classes
 =================
 
+This module imports the following classes.
+
 .. autoclass:: webdriver_test_tools.pageobject.webpage.WebPageObject
     :members:
     :undoc-members:

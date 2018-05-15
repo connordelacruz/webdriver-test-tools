@@ -1,6 +1,8 @@
 """Page object classes.
 
 
+This module imports the following class.
+
 .. autoclass:: webdriver_test_tools.pageobject.base.BasePage
     :members:
     :undoc-members:

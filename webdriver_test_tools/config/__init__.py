@@ -4,6 +4,8 @@
 Config Classes
 --------------
 
+This module imports the following classes.
+
 .. autoclass:: webdriver_test_tools.config.browser.BrowserConfig
     :members:
     :undoc-members:
