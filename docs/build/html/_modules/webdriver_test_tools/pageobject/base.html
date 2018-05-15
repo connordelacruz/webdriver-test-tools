@@ -158,10 +158,10 @@
 <span></span><span class="c1"># Base class for page objects</span>
 
 
-<div class="viewcode-block" id="BasePage"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.html#webdriver_test_tools.pageobject.base.BasePage">[docs]</a><span class="k">class</span> <span class="nc">BasePage</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="BasePage"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage">[docs]</a><span class="k">class</span> <span class="nc">BasePage</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for page objects&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="BasePage.Locator"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.html#webdriver_test_tools.pageobject.base.BasePage.Locator">[docs]</a>    <span class="k">class</span> <span class="nc">Locator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="BasePage.Locator"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage.Locator">[docs]</a>    <span class="k">class</span> <span class="nc">Locator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;WebDriver locator tuples for any elements that will need to be accessed by</span>
 <span class="sd">        this page object.</span>
 
@@ -180,7 +180,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
 
-<div class="viewcode-block" id="BasePage.find_element"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.html#webdriver_test_tools.pageobject.base.BasePage.find_element">[docs]</a>    <span class="k">def</span> <span class="nf">find_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator</span><span class="p">):</span>
+<div class="viewcode-block" id="BasePage.find_element"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage.find_element">[docs]</a>    <span class="k">def</span> <span class="nf">find_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a WebElement object based on the locator tuple passed</span>
 
 <span class="sd">        Shorthand for:</span>
@@ -196,7 +196,7 @@
 <span class="sd">        &quot;&quot;&quot;</span></div>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span>
 
-<div class="viewcode-block" id="BasePage.find_elements"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.html#webdriver_test_tools.pageobject.base.BasePage.find_elements">[docs]</a>    <span class="k">def</span> <span class="nf">find_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator</span><span class="p">):</span>
+<div class="viewcode-block" id="BasePage.find_elements"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage.find_elements">[docs]</a>    <span class="k">def</span> <span class="nf">find_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a list of WebElement objects based on the locator tuple passed</span>
 
 <span class="sd">        Shorthand for :</span>

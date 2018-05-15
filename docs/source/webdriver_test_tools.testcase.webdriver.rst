@@ -9,4 +9,5 @@ webdriver\_test\_tools.testcase.webdriver module
 
     .. autoclass :: WebDriverTestCase
         :members:
+        :undoc-members:
         :exclude-members: WebDriverConfig
