@@ -34,6 +34,7 @@ interfaces.
 
 .. toctree::
 
+    webdriver_test_tools.__main__
     webdriver_test_tools.cmd
     webdriver_test_tools.common
     webdriver_test_tools.project
