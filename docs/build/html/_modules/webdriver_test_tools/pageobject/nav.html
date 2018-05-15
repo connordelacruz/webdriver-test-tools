@@ -162,7 +162,7 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver.support</span> <span class="k">import</span> <span class="n">test</span>
 
 
-<div class="viewcode-block" id="NavObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.nav.NavObject">[docs]</a><span class="k">class</span> <span class="nc">NavObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
+<div class="viewcode-block" id="NavObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject">[docs]</a><span class="k">class</span> <span class="nc">NavObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Page object prototype for navbars</span>
 
 <span class="sd">    :var LINK_MAP:  Maps link text to a tuple containing its locator and the page object</span>
@@ -183,7 +183,7 @@
     <span class="c1"># Nav attributes</span>
     <span class="n">fixed</span> <span class="o">=</span> <span class="kc">True</span>
 
-<div class="viewcode-block" id="NavObject.click_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.nav.NavObject.click_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">click_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
+<div class="viewcode-block" id="NavObject.click_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.click_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">click_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Click one of the page links and return a page object class for the link</span>
 <span class="sd">        target</span>
 
@@ -200,7 +200,7 @@
             <span class="c1"># Initialize the target page object and return it</span></div>
             <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
 
-<div class="viewcode-block" id="NavObject.hover_over_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">hover_over_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
+<div class="viewcode-block" id="NavObject.hover_over_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">hover_over_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Hover mouse over one of the page links</span>
 
 <span class="sd">        :param link_map_key: Key into :attr:`HOVER_MAP` for the link to hover mouse over</span>
@@ -219,7 +219,7 @@
             <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="CollapsibleNavObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject">[docs]</a><span class="k">class</span> <span class="nc">CollapsibleNavObject</span><span class="p">(</span><span class="n">NavObject</span><span class="p">):</span>
+<div class="viewcode-block" id="CollapsibleNavObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject">[docs]</a><span class="k">class</span> <span class="nc">CollapsibleNavObject</span><span class="p">(</span><span class="n">NavObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Subclass of :class:`NavObject` with additional methods for collapsible nav menus</span>
 
 <span class="sd">    In addition to the variables for :class:`NavObject`, the following variables need to</span>
@@ -235,7 +235,7 @@
     <span class="n">COLLAPSE_BUTTON_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">MENU_CONTAINER_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="CollapsibleNavObject.is_expanded"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.is_expanded">[docs]</a>    <span class="k">def</span> <span class="nf">is_expanded</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CollapsibleNavObject.is_expanded"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.is_expanded">[docs]</a>    <span class="k">def</span> <span class="nf">is_expanded</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check if the nav menu is expanded</span>
 
 <span class="sd">        This method checks if the element located by :attr:`MENU_CONTAINER_LOCATOR`</span>
@@ -250,14 +250,14 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">()</span></div>
         <span class="k">return</span> <span class="n">expanded</span>
 
-<div class="viewcode-block" id="CollapsibleNavObject.click_expand_button"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_expand_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_expand_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CollapsibleNavObject.click_expand_button"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_expand_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_expand_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Click the button to expand the nav menu&quot;&quot;&quot;</span>
         <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EXPAND_BUTTON_LOCATOR</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
             <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span></div>
         <span class="n">button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
 
-<div class="viewcode-block" id="CollapsibleNavObject.click_collapse_button"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_collapse_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_collapse_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CollapsibleNavObject.click_collapse_button"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_collapse_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_collapse_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Click the button to collapse the nav menu&quot;&quot;&quot;</span>
         <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">COLLAPSE_BUTTON_LOCATOR</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>

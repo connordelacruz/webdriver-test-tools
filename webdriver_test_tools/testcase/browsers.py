@@ -1,47 +1,14 @@
 """Browser implementations of :class:`WebDriverTestCase
 <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`.
 
-Browser Test Case Classes
-=========================
+This module imports the following classes:
 
-Cross-Platform
---------------
-
-.. autoclass:: webdriver_test_tools.testcase.chrome.ChromeTestCase
-    :members:
-    :undoc-members:
-    :noindex:
-
-.. autoclass:: webdriver_test_tools.testcase.chrome.ChromeMobileTestCase
-    :members:
-    :undoc-members:
-    :noindex:
-
-.. autoclass:: webdriver_test_tools.testcase.firefox.FirefoxTestCase
-    :members:
-    :undoc-members:
-    :noindex:
-
-Platform-Specific
------------------
-
-.. autoclass:: webdriver_test_tools.testcase.edge.EdgeTestCase
-    :members:
-    :undoc-members:
-    :noindex:
-
-.. autoclass:: webdriver_test_tools.testcase.ie.IETestCase
-    :members:
-    :undoc-members:
-    :noindex:
-
-.. autoclass:: webdriver_test_tools.testcase.safari.SafariTestCase
-    :members:
-    :undoc-members:
-    :noindex:
-
-Browser Class Names
-===================
+    :class:`webdriver_test_tools.testcase.chrome.ChromeTestCase`
+    :class:`webdriver_test_tools.testcase.chrome.ChromeMobileTestCase`
+    :class:`webdriver_test_tools.testcase.firefox.FirefoxTestCase`
+    :class:`webdriver_test_tools.testcase.edge.EdgeTestCase`
+    :class:`webdriver_test_tools.testcase.ie.IETestCase`
+    :class:`webdriver_test_tools.testcase.safari.SafariTestCase`
 
 """
 

@@ -1,13 +1,7 @@
 """
+Functions for common command line formatting and procedures.
 
-.. automodule:: webdriver_test_tools.cmd.cmd
-    :members:
-    :undoc-members:
-    :show-inheritance:
-    :noindex:
-
-Modules
--------
+This module imports * from :mod:`webdriver_test_tools.cmd.cmd`.
 
 .. toctree::
 

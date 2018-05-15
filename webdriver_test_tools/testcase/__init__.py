@@ -1,5 +1,11 @@
 """Web driver test case classes.
 
+This module imports the following classes:
+
+    :class:`webdriver_test_tools.testcase.webdriver.WebDriverTestCase`
+    :class:`webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase`
+    :class:`webdriver_test_tools.testcase.browsers.Browsers`
+
 Main Modules
 ------------
 
@@ -13,6 +19,7 @@ Browser Test Case Modules
 -------------------------
 
 .. toctree::
+
    webdriver_test_tools.testcase.chrome
    webdriver_test_tools.testcase.edge
    webdriver_test_tools.testcase.firefox

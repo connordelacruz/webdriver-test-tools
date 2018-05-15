@@ -1,4 +1,4 @@
-"""Functions for common command line formatting and procedures
+"""Functions for common command line formatting and procedures.
 
 :var cmd.INDENT: Constant for terminal indentation
 :var cmd.COLORS: Color/formatting functions for different types of output

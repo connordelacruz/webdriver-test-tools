@@ -1,40 +1,12 @@
 """Default configurations for various items in the test framework.
 
+This module imports the following classes:
 
-Config Classes
---------------
-
-This module imports the following classes.
-
-.. autoclass:: webdriver_test_tools.config.browser.BrowserConfig
-    :members:
-    :undoc-members:
-    :noindex:
-
-.. autoclass:: webdriver_test_tools.config.browser.BrowserStackConfig
-    :members:
-    :undoc-members:
-    :noindex:
-
-.. autoclass:: webdriver_test_tools.config.site.SiteConfig
-    :members:
-    :undoc-members:
-    :noindex:
-
-.. autoclass:: webdriver_test_tools.config.test.TestSuiteConfig
-    :members:
-    :undoc-members:
-    :noindex:
-
-.. autoclass:: webdriver_test_tools.config.webdriver.WebDriverConfig
-    :members:
-    :undoc-members:
-    :exclude-members: LOG_PATH, SCREENSHOT_PATH
-    :noindex:
-
-
-Config Modules
---------------
+    :class:`webdriver_test_tools.config.browser.BrowserConfig`
+    :class:`webdriver_test_tools.config.browser.BrowserStackConfig`
+    :class:`webdriver_test_tools.config.site.SiteConfig`
+    :class:`webdriver_test_tools.config.test.TestSuiteConfig`
+    :class:`webdriver_test_tools.config.webdriver.WebDriverConfig`
 
 .. toctree::
 
