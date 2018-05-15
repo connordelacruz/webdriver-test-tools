@@ -191,7 +191,8 @@
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><strong>SUBMIT_LOCATOR</strong></a> – Locator for the submit button. Override in subclasses</li>
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><strong>SUBMIT_SUCCESS_CLASS</strong></a> – (Optional) Page object of modal/webpage/etc that
 should appear on successful form submission. If subclass set to a subclass of
-BasePage, click_submit() will return an instance of this object.</li>
+<a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>,
+<a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="webdriver_test_tools.pageobject.form.FormObject.click_submit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">click_submit()</span></code></a> will return an instance of this object.</li>
 </ul>
 </td>
 </tr>
@@ -246,8 +247,8 @@ inputs</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_map</strong> – Dictionary mapping input names to the values to set them to.
-See webdriver_test_tools.webdriver.actions.form.fill_form_input for values
-to use for different input types</td>
+See <a class="reference internal" href="webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.fill_form_input" title="webdriver_test_tools.webdriver.actions.form.fill_form_input"><code class="xref py py-func docutils literal notranslate"><span class="pre">webdriver_test_tools.webdriver.actions.form.fill_form_input()</span></code></a>
+for values to use for different input types</td>
 </tr>
 </tbody>
 </table>
@@ -272,8 +273,9 @@ for forms with JavaScript input validation</p>
 <dt id="webdriver_test_tools.pageobject.form.FormObject.click_submit">
 <code class="descname">click_submit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.click_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shorthand function for scrolling to the submit button and clicking it.</p>
-<p>If self.SUBMIT_SUCCESS_CLASS is set to a subclass of BasePage, an instance of
-that object will be returned</p>
+<p>If <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">self.SUBMIT_SUCCESS_CLASS</span></code></a> is set to a subclass of
+<a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>,
+an instance of that object will be returned</p>
 </dd></dl>
 
 </dd></dl>

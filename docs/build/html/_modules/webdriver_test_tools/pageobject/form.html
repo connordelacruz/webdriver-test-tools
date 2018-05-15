@@ -166,7 +166,8 @@
 <span class="sd">    :var SUBMIT_LOCATOR: Locator for the submit button. Override in subclasses</span>
 <span class="sd">    :var SUBMIT_SUCCESS_CLASS: (Optional) Page object of modal/webpage/etc that</span>
 <span class="sd">        should appear on successful form submission. If subclass set to a subclass of</span>
-<span class="sd">        BasePage, click_submit() will return an instance of this object.</span>
+<span class="sd">        :class:`BasePage &lt;webdriver_test_tools.pageobject.base.BasePage&gt;`,</span>
+<span class="sd">        :meth:`click_submit()` will return an instance of this object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Locators</span>
@@ -175,7 +176,7 @@
     <span class="c1"># Optional page object to return on click_submit()</span>
     <span class="n">SUBMIT_SUCCESS_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="FormObject.Input"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.form.FormObject.Input">[docs]</a>    <span class="k">class</span> <span class="nc">Input</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="FormObject.Input"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.form.FormObject.Input">[docs]</a>    <span class="k">class</span> <span class="nc">Input</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Subclass used to contain name attributes and select/radio option lists for</span>
 <span class="sd">        inputs</span>
 
@@ -198,8 +199,8 @@
         <span class="sd">&quot;&quot;&quot;Fill the form element inputs</span>
 
 <span class="sd">        :param input_map: Dictionary mapping input names to the values to set them to.</span>
-<span class="sd">            See webdriver_test_tools.webdriver.actions.form.fill_form_input for values</span>
-<span class="sd">            to use for different input types</span>
+<span class="sd">            See :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`</span>
+<span class="sd">            for values to use for different input types</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span><span class="p">)</span></div>
         <span class="n">actions</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">fill_form_inputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">input_map</span><span class="p">)</span>
@@ -215,13 +216,15 @@
 <div class="viewcode-block" id="FormObject.click_submit"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.prototypes.html#webdriver_test_tools.pageobject.form.FormObject.click_submit">[docs]</a>    <span class="k">def</span> <span class="nf">click_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shorthand function for scrolling to the submit button and clicking it.</span>
 
-<span class="sd">        If self.SUBMIT_SUCCESS_CLASS is set to a subclass of BasePage, an instance of</span>
-<span class="sd">        that object will be returned</span>
+<span class="sd">        If :attr:`self.SUBMIT_SUCCESS_CLASS &lt;SUBMIT_SUCCESS_CLASS&gt;` is set to a subclass of</span>
+<span class="sd">        :class:`BasePage &lt;webdriver_test_tools.pageobject.base.BasePage&gt;`,</span>
+<span class="sd">        an instance of that object will be returned</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">submit_button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span>
         <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">to_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">submit_button</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">):</span></div></div>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+
 </pre></div>
 
            </div>

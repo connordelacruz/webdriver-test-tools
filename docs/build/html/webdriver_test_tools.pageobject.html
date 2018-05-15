@@ -189,7 +189,10 @@ this page object.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">SOME_ELEMENT</span> <span class="pre">=</span> <span class="pre">(By.ID,</span> <span class="pre">'some-element')</span></code></td>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SOME_ELEMENT</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;some-element&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -199,14 +202,20 @@ this page object.</p>
 <dt>
 <code class="descname">find_element</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.find_element"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Returns a WebElement object based on the locator tuple passed</p>
-<p>Shorthand for <code class="docutils literal notranslate"><span class="pre">self.driver.find_element(*locator)</span></code></p>
+<p>Shorthand for:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">WebElement</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The located WebElement</td>
 </tr>
 </tbody>
 </table>
@@ -216,14 +225,20 @@ this page object.</p>
 <dt>
 <code class="descname">find_elements</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.find_elements"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Returns a list of WebElement objects based on the locator tuple passed</p>
-<p>Shorthand for <code class="docutils literal notranslate"><span class="pre">self.driver.find_elements(*locator)</span></code></p>
+<p>Shorthand for :</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format (By.&lt;attr&gt;, &lt;locator string&gt;)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List of WebElement</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of located WebElements</td>
 </tr>
 </tbody>
 </table>

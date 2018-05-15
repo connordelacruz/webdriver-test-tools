@@ -10,7 +10,9 @@ class BasePage(object):
 
         :Example:
 
-            ``SOME_ELEMENT = (By.ID, 'some-element')``
+            .. code-block:: python
+
+                SOME_ELEMENT = (By.ID, 'some-element')
         """
         pass
 
@@ -24,21 +26,32 @@ class BasePage(object):
     def find_element(self, locator):
         """Returns a WebElement object based on the locator tuple passed
 
-        Shorthand for ``self.driver.find_element(*locator)``
+        Shorthand for:
 
-        :param locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+            .. code-block:: python
 
-        :rtype: WebElement
+                self.driver.find_element(*locator)
+
+        :param locator: WebDriver locator tuple in the format
+            ``(By.<attr>, <locator string>)``
+
+        :return: The located WebElement
         """
         return self.driver.find_element(*locator)
 
     def find_elements(self, locator):
         """Returns a list of WebElement objects based on the locator tuple passed
 
-        Shorthand for ``self.driver.find_elements(*locator)``
+        Shorthand for :
 
-        :param locator: WebDriver locator tuple in the format (By.<attr>, <locator string>)
+            .. code-block:: python
 
-        :rtype: List of WebElement
+                self.driver.find_elements(*locator)
+
+        :param locator: WebDriver locator tuple in the format
+            ``(By.<attr>, <locator string>)``
+
+        :return: List of located WebElements
         """
         return self.driver.find_elements(*locator)
+

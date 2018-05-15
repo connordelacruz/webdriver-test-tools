@@ -15,8 +15,9 @@ class NavObject(BasePage):
         object class for the menu, dropdown, etc that should appear on hover (or None
         if need be). Override in subclasses
     :var fixed: (Default = True) True if element is a fixed navbar, False otherwise. If
-        set to False in a subclass, click_page_link() and hover_over_page_link() will
-        scroll the target link into view before interacting with it
+        set to False in a subclass, :meth:`click_page_link()` and
+        :meth:`hover_over_page_link()` will scroll the target link into view before
+        interacting with it
     """
 
     # Link maps
@@ -29,7 +30,7 @@ class NavObject(BasePage):
         """Click one of the page links and return a page object class for the link
         target
 
-        :param link_map_key: Key into LINK_MAP for the link to click on
+        :param link_map_key: Key into :attr:`LINK_MAP` for the link to click on
 
         :return: Corresponding page object class for the link target (if applicable)
         """
@@ -45,7 +46,7 @@ class NavObject(BasePage):
     def hover_over_page_link(self, link_map_key):
         """Hover mouse over one of the page links
 
-        :param link_map_key: Key into HOVER_MAP for the link to hover mouse over
+        :param link_map_key: Key into :attr:`HOVER_MAP` for the link to hover mouse over
 
         :return: Corresponding page object class for the hover dropdown/container/etc
             (if applicable)
@@ -62,7 +63,7 @@ class NavObject(BasePage):
 
 
 class CollapsibleNavObject(NavObject):
-    """Subclass of NavObject with additional methods for collapsible nav menus
+    """Subclass of :class:`NavObject` with additional methods for collapsible nav menus
 
     In addition to the variables for :class:`NavObject`, the following variables need to
     be defined for collapsible navs
@@ -105,3 +106,4 @@ class CollapsibleNavObject(NavObject):
         if not self.fixed:
             actions.scroll.into_view(self.driver, button)
         button.click()
+
