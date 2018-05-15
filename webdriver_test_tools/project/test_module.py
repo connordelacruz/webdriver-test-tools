@@ -103,7 +103,17 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     if browserstack_config.ENABLE:
         browserstack_help = 'Run tests on BrowserStack instead of locally'
         group.add_argument('-B', '--browserstack', action='store_true', help=browserstack_help)
-    # Misc arguments
+    # Output arguments
+    group = parser.add_argument_group('Output Options')
+    verbosity_help = textwrap.dedent('''\
+                             0 - Final results only
+                             1 - Final results and progress indicator
+                             2 - Full output
+                             ''')
+    # TODO: default?
+    group.add_argument('-v', '--verbosity', type=int, choices=[0, 1, 2], metavar='<level>',
+                       help=verbosity_help)
+    # Command arguments
     group = parser.add_argument_group('Commands')
     help_help = 'Show this help message and exit'
     group.add_argument('-h', '--help', action='help', help=help_help)

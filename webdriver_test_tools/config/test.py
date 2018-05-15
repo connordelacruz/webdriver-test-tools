@@ -16,6 +16,7 @@ class TestSuiteConfig(object):
 
     # Functions
 
+    # TODO: update to handle --verbosity arg
     @classmethod
     def get_runner(cls):
         """Returns :attr:`RUNNER_CLASS` object using :attr:`RUNNER_KWARGS` to initialize"""
