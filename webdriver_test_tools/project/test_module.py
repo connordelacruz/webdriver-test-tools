@@ -14,14 +14,15 @@ def main(tests_module, config_module=None, package_name=None):
     """Function to call in test modules ``if __name__ == '__main__'`` at run time
 
     :param tests_module: The module object for ``<test_project>.tests``
-    :param config_module: (Optional) The module object for ``<test_project>.config``. Will
-        use :mod:`webdriver_test_tools.config` if not specified
+    :param config_module: (Optional) The module object for ``<test_project>.config``.
+        Will use :mod:`webdriver_test_tools.config` if not specified
     :param package_name: (Optional) The name of the package (i.e. ``__package__``)
     """
     # Fall back on default config module if test doesn't supply one
     if config_module is None:
         config_module = config
     # Older projects may not have the BrowserConfig or BrowserStackConfig class
+    # TODO: remove BrowserConfig check
     browser_config = config_module.BrowserConfig if 'BrowserConfig' in dir(config_module) else config.BrowserConfig
     browserstack_config = config_module.BrowserStackConfig if 'BrowserStackConfig' in dir(config_module) else config.BrowserStackConfig
     # Parse arguments
@@ -43,9 +44,13 @@ def main(tests_module, config_module=None, package_name=None):
     browser_config_class = browserstack_config if browserstack else browser_config
     # Handle --browser args
     browser_classes = browser_config_class.get_browser_classes(args.browser)
+    # TODO: make kwargs dict instead to ensure optional arguments are not dependent on position?
+    # Output options
+    verbosity = args.verbosity
     # Run tests using parsed args
-    run_tests(tests_module, config_module, browser_classes, test_class_map, skip_class_map,
-              test_module_names, browserstack, headless)
+    run_tests(tests_module, config_module, browser_classes,
+              test_class_map, skip_class_map, test_module_names,
+              browserstack, headless, verbosity)
 
 
 def get_parser(browser_config=None, browserstack_config=None, package_name=None):
@@ -111,8 +116,8 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
                              2 - Full output
                              ''')
     # TODO: default?
-    group.add_argument('-v', '--verbosity', type=int, choices=[0, 1, 2], metavar='<level>',
-                       help=verbosity_help)
+    group.add_argument('-v', '--verbosity', type=int, choices=[0, 1, 2],
+                       metavar='<level>', help=verbosity_help)
     # Command arguments
     group = parser.add_argument_group('Commands')
     help_help = 'Show this help message and exit'
@@ -233,8 +238,10 @@ def list_tests(tests_module, test_module_names=None, test_class_map=None, skip_c
             print(textwrap.indent(test_case, cmd.INDENT))
 
 
-def run_tests(tests_module, config_module, browser_classes=None, test_class_map=None,
-              skip_class_map=None, test_module_names=None, browserstack=False, headless=False):
+# TODO: update docs
+def run_tests(tests_module, config_module, browser_classes=None,
+              test_class_map=None, skip_class_map=None, test_module_names=None,
+              browserstack=False, headless=False, verbosity=None):
     """Run tests using parsed args and project modules
 
     :param tests_module: The module object for ``<test_project>.tests``
@@ -258,11 +265,12 @@ def run_tests(tests_module, config_module, browser_classes=None, test_class_map=
     # Load WebDriverTestCase subclasses from project tests
     tests = _load_tests(tests_module, test_module_names, test_class_map, skip_class_map)
     # Generate browser test cases from the loaded WebDriverTestCase classes
-    browser_test_suite = test_factory.generate_browser_test_suite(tests, browser_classes,
-                                                                  test_class_map, skip_class_map, config_module,
-                                                                  browserstack, headless)
+    browser_test_suite = test_factory.generate_browser_test_suite(
+        tests, browser_classes, test_class_map, skip_class_map,
+        config_module, browserstack, headless
+    )
     # Get configured test runner and run suite
-    test_runner = config_module.TestSuiteConfig.get_runner()
+    test_runner = config_module.TestSuiteConfig.get_runner(verbosity=verbosity)
     test_runner.run(browser_test_suite)
     # Link to BrowserStack automation dashboard if applicable
     if browserstack:
