@@ -18,39 +18,34 @@ def main(tests_module, config_module=None, package_name=None):
         Will use :mod:`webdriver_test_tools.config` if not specified
     :param package_name: (Optional) The name of the package (i.e. ``__package__``)
     """
-    # Fall back on default config module if test doesn't supply one
     if config_module is None:
         config_module = config
-    # Older projects may not have the BrowserConfig or BrowserStackConfig class
-    browser_config = config_module.BrowserConfig # TODO: remove: if 'BrowserConfig' in dir(config_module) else config.BrowserConfig
+    browser_config = config_module.BrowserConfig
+    # Older projects may not have the BrowserStackConfig class
     browserstack_config = config_module.BrowserStackConfig if 'BrowserStackConfig' in dir(config_module) else config.BrowserStackConfig
     # Parse arguments
-    parser = get_parser(browser_config, browserstack_config, package_name)
-    args = parser.parse_args()
-    # TODO: make kwargs dict instead to ensure optional arguments are not dependent on position?
-    # kwargs = {}
+    args = get_parser(browser_config, browserstack_config, package_name).parse_args()
     # get --test, --skip, and --module args
-    test_class_map = parse_test_names(args.test)
-    skip_class_map = parse_test_names(args.skip)
-    test_module_names = args.module
+    kwargs = {
+        'test_class_map': parse_test_names(args.test),
+        'skip_class_map': parse_test_names(args.skip),
+        'test_module_names': args.module,
+    }
     # If --list is specified, print available tests and exit
     if args.list:
-        list_tests(tests_module, test_module_names, test_class_map, skip_class_map)
+        list_tests(tests_module, **kwargs)
         exit()
-    # handle --browserstack arg if enabled
-    browserstack = 'browserstack' in dir(args) and args.browserstack
-    # handle --headless arg
-    headless = args.headless
-    # Determine what config class to use based on --browserstack arg
-    browser_config_class = browserstack_config if browserstack else browser_config
+    # Parse --browserstack, --headless, and --verbosity args
+    kwargs.update({
+        'browserstack': 'browserstack' in dir(args) and args.browserstack,
+        'headless': args.headless,
+        'verbosity': args.verbosity,
+    })
     # Handle --browser args
-    browser_classes = browser_config_class.get_browser_classes(args.browser)
-    # Output options
-    verbosity = args.verbosity
+    browser_config_class = browserstack_config if kwargs['browserstack'] else browser_config
+    kwargs['browser_classes'] = browser_config_class.get_browser_classes(args.browser)
     # Run tests using parsed args
-    run_tests(tests_module, config_module, browser_classes,
-              test_class_map, skip_class_map, test_module_names,
-              browserstack, headless, verbosity)
+    run_tests(tests_module, config_module, **kwargs)
 
 
 def get_parser(browser_config=None, browserstack_config=None, package_name=None):
@@ -219,15 +214,17 @@ def parse_test_names(test_name_args):
     return class_map
 
 
-def list_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
+def list_tests(tests_module,
+               test_module_names=None, test_class_map=None, skip_class_map=None):
     """Print a list of available tests
 
     :param tests_module: The module object for ``<test_project>.tests``
-    :param test_module_names: (Optional) Parsed arg for ``--module`` command line argument
-    :param test_class_map: (Optional) Result of passing parsed arg for ``--test`` command
-        line argument to :func:`parse_test_names()`
-    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip`` command
-        line argument to :func:`parse_test_names()`
+    :param test_module_names: (Optional) Parsed arg for ``--module`` command line
+        argument
+    :param test_class_map: (Optional) Result of passing parsed arg for ``--test``
+        command line argument to :func:`parse_test_names()`
+    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip``
+        command line argument to :func:`parse_test_names()`
     """
     tests = _load_tests(tests_module, test_module_names, test_class_map, skip_class_map)
     for test_class in tests:
