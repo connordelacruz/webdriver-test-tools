@@ -22,12 +22,13 @@ def main(tests_module, config_module=None, package_name=None):
     if config_module is None:
         config_module = config
     # Older projects may not have the BrowserConfig or BrowserStackConfig class
-    # TODO: remove BrowserConfig check
-    browser_config = config_module.BrowserConfig if 'BrowserConfig' in dir(config_module) else config.BrowserConfig
+    browser_config = config_module.BrowserConfig # TODO: remove: if 'BrowserConfig' in dir(config_module) else config.BrowserConfig
     browserstack_config = config_module.BrowserStackConfig if 'BrowserStackConfig' in dir(config_module) else config.BrowserStackConfig
     # Parse arguments
     parser = get_parser(browser_config, browserstack_config, package_name)
     args = parser.parse_args()
+    # TODO: make kwargs dict instead to ensure optional arguments are not dependent on position?
+    # kwargs = {}
     # get --test, --skip, and --module args
     test_class_map = parse_test_names(args.test)
     skip_class_map = parse_test_names(args.skip)
@@ -44,7 +45,6 @@ def main(tests_module, config_module=None, package_name=None):
     browser_config_class = browserstack_config if browserstack else browser_config
     # Handle --browser args
     browser_classes = browser_config_class.get_browser_classes(args.browser)
-    # TODO: make kwargs dict instead to ensure optional arguments are not dependent on position?
     # Output options
     verbosity = args.verbosity
     # Run tests using parsed args
@@ -115,7 +115,6 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
                              1 - Final results and progress indicator
                              2 - Full output
                              ''')
-    # TODO: default?
     group.add_argument('-v', '--verbosity', type=int, choices=[0, 1, 2],
                        metavar='<level>', help=verbosity_help)
     # Command arguments
@@ -238,7 +237,6 @@ def list_tests(tests_module, test_module_names=None, test_class_map=None, skip_c
             print(textwrap.indent(test_case, cmd.INDENT))
 
 
-# TODO: update docs
 def run_tests(tests_module, config_module, browser_classes=None,
               test_class_map=None, skip_class_map=None, test_module_names=None,
               browserstack=False, headless=False, verbosity=None):
@@ -249,16 +247,18 @@ def run_tests(tests_module, config_module, browser_classes=None,
         :mod:`webdriver_test_tools.config` if not specified
     :param browser_classes: (Optional) List of browser test classes from parsed arg
         for ``--browser`` command line argument
-    :param test_class_map: (Optional) Result of passing parsed arg for ``--test`` command
-        line argument to :func:`parse_test_names()`
-    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip`` command
-        line argument to :func:`parse_test_names()`
-    :param test_module_names: (Optional) Parsed arg for ``--module`` command line argument
+    :param test_class_map: (Optional) Result of passing parsed arg for ``--test``
+        command line argument to :func:`parse_test_names()`
+    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip``
+        command line argument to :func:`parse_test_names()`
+    :param test_module_names: (Optional) Parsed arg for ``--module`` command line
+        argument
     :param browserstack: (Default = False) If True, generated test cases should run on
         BrowserStack
     :param headless: (Default = False) If True, configure driver to run tests in a
         headless browser. Tests will only be generated for drivers that support
         running headless browsers
+    :param verbosity: (Optional) Output verbosity level for the test runner.
     """
     # Enable graceful Ctrl+C handling
     unittest.installHandler()
