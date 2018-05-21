@@ -130,6 +130,10 @@ Where ``<level>`` is one of the following:
 * 1 - Final results and progress indicator
 * 2 - Full output
 
+**Note:** The default output level can be changed in
+``<test_package>/config/test.py`` by setting the ``DEFAULT_VERBOSITY``
+attribute of the ``TestSuiteConfig`` class.
+
 
 List Available Tests
 ~~~~~~~~~~~~~~~~~~~~
