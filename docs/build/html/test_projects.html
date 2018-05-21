@@ -98,6 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#using-specific-browsers">Using Specific Browsers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-headless-browsers">Using Headless Browsers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-output">Configuring Output</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#list-available-tests">List Available Tests</a></li>
@@ -204,22 +205,23 @@
 <li><a class="reference internal" href="#running-tests" id="id6">Running Tests</a><ul>
 <li><a class="reference internal" href="#using-specific-browsers" id="id7">Using Specific Browsers</a></li>
 <li><a class="reference internal" href="#using-headless-browsers" id="id8">Using Headless Browsers</a></li>
+<li><a class="reference internal" href="#configuring-output" id="id9">Configuring Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#list-available-tests" id="id9">List Available Tests</a></li>
+<li><a class="reference internal" href="#list-available-tests" id="id10">List Available Tests</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#project-structure" id="id10">Project Structure</a><ul>
-<li><a class="reference internal" href="#test-project-root-contents" id="id11">Test Project Root Contents</a></li>
-<li><a class="reference internal" href="#test-package-root-contents" id="id12">Test Package Root Contents</a></li>
-<li><a class="reference internal" href="#test-package-directories" id="id13">Test Package Directories</a><ul>
-<li><a class="reference internal" href="#config" id="id14">config/</a></li>
-<li><a class="reference internal" href="#data" id="id15">data/</a></li>
-<li><a class="reference internal" href="#log" id="id16">log/</a></li>
-<li><a class="reference internal" href="#pages" id="id17">pages/</a></li>
-<li><a class="reference internal" href="#screenshot" id="id18">screenshot/</a></li>
-<li><a class="reference internal" href="#tests" id="id19">tests/</a></li>
-<li><a class="reference internal" href="#templates" id="id20">templates/</a></li>
+<li><a class="reference internal" href="#project-structure" id="id11">Project Structure</a><ul>
+<li><a class="reference internal" href="#test-project-root-contents" id="id12">Test Project Root Contents</a></li>
+<li><a class="reference internal" href="#test-package-root-contents" id="id13">Test Package Root Contents</a></li>
+<li><a class="reference internal" href="#test-package-directories" id="id14">Test Package Directories</a><ul>
+<li><a class="reference internal" href="#config" id="id15">config/</a></li>
+<li><a class="reference internal" href="#data" id="id16">data/</a></li>
+<li><a class="reference internal" href="#log" id="id17">log/</a></li>
+<li><a class="reference internal" href="#pages" id="id18">pages/</a></li>
+<li><a class="reference internal" href="#screenshot" id="id19">screenshot/</a></li>
+<li><a class="reference internal" href="#tests" id="id20">tests/</a></li>
+<li><a class="reference internal" href="#templates" id="id21">templates/</a></li>
 </ul>
 </li>
 </ul>
@@ -309,9 +311,23 @@ the following web drivers that support running in a headless environment:</p>
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="configuring-output">
+<h4><a class="toc-backref" href="#id9">Configuring Output</a><a class="headerlink" href="#configuring-output" title="Permalink to this headline">¶</a></h4>
+<p>By default, detailed output is displayed when running tests. To reduce or
+suppress output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">verbosity</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">&lt;level&gt;</span></code> is one of the following:</p>
+<ul class="simple">
+<li>0 - Final results only</li>
+<li>1 - Final results and progress indicator</li>
+<li>2 - Full output</li>
+</ul>
+</div>
 </div>
 <div class="section" id="list-available-tests">
-<h3><a class="toc-backref" href="#id9">List Available Tests</a><a class="headerlink" href="#list-available-tests" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">List Available Tests</a><a class="headerlink" href="#list-available-tests" title="Permalink to this headline">¶</a></h3>
 <p>To print a list of available test classes and methods:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="nb">list</span>
 </pre></div>
@@ -327,7 +343,7 @@ the following web drivers that support running in a headless environment:</p>
 </div>
 </div>
 <div class="section" id="project-structure">
-<h2><a class="toc-backref" href="#id10">Project Structure</a><a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">Project Structure</a><a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span> <span class="pre">--init</span></code> will create the following files and directories
 inside the project directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;project-directory&gt;/
@@ -358,14 +374,14 @@ inside the project directory:</p>
 should be handled by page objects to minimize the need to alter tests whenever
 the HTML is changed.</p>
 <div class="section" id="test-project-root-contents">
-<h3><a class="toc-backref" href="#id11">Test Project Root Contents</a><a class="headerlink" href="#test-project-root-contents" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Test Project Root Contents</a><a class="headerlink" href="#test-project-root-contents" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">setup.py</span></code>: Python package setup file that allows the new test suite to be
 installed as a pip package.</li>
 </ul>
 </div>
 <div class="section" id="test-package-root-contents">
-<h3><a class="toc-backref" href="#id12">Test Package Root Contents</a><a class="headerlink" href="#test-package-root-contents" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">Test Package Root Contents</a><a class="headerlink" href="#test-package-root-contents" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">__main__.py</span></code>: Required to run tests from the command line.</li>
 <li><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>: Empty init file so Python recognizes the directory as a
@@ -373,9 +389,9 @@ package.</li>
 </ul>
 </div>
 <div class="section" id="test-package-directories">
-<h3><a class="toc-backref" href="#id13">Test Package Directories</a><a class="headerlink" href="#test-package-directories" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Test Package Directories</a><a class="headerlink" href="#test-package-directories" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="config">
-<h4><a class="toc-backref" href="#id14">config/</a><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id15">config/</a><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h4>
 <p>Configurations used by test scripts for site URLs, web driver options, and the
 python unittest framework.</p>
 <ul class="simple">
@@ -387,28 +403,28 @@ python unittest framework.</p>
 </ul>
 </div>
 <div class="section" id="data">
-<h4><a class="toc-backref" href="#id15">data/</a><a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id16">data/</a><a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
 <p>Static data for tests that must use specific values (e.g.&nbsp;emails, usernames,
 etc).</p>
 </div>
 <div class="section" id="log">
-<h4><a class="toc-backref" href="#id16">log/</a><a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id17">log/</a><a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h4>
 <p>Default output directory for WebDriver logs. This can be changed in
 <code class="docutils literal notranslate"><span class="pre">config/webdriver.py</span></code>.</p>
 </div>
 <div class="section" id="pages">
-<h4><a class="toc-backref" href="#id17">pages/</a><a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id18">pages/</a><a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h4>
 <p>Page object classes for pages and components. These classes should handle
 locating and interacting with elements on the page. A template page object can
 be found in <code class="docutils literal notranslate"><span class="pre">templates/page_object.py</span></code>.</p>
 </div>
 <div class="section" id="screenshot">
-<h4><a class="toc-backref" href="#id18">screenshot/</a><a class="headerlink" href="#screenshot" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id19">screenshot/</a><a class="headerlink" href="#screenshot" title="Permalink to this headline">¶</a></h4>
 <p>Default output directory for screenshots taken during test execution. This can
 be changed in <code class="docutils literal notranslate"><span class="pre">config/webdriver.py</span></code>.</p>
 </div>
 <div class="section" id="tests">
-<h4><a class="toc-backref" href="#id19">tests/</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id20">tests/</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
 <p>Test case modules. These use page objects to interact with elements and assert
 that the expected behavior occurs. A template test file can be found in
 <code class="docutils literal notranslate"><span class="pre">templates/test_case.py</span></code>.</p>
@@ -416,7 +432,7 @@ that the expected behavior occurs. A template test file can be found in
 the new module so the framework can detect the new test cases.</p>
 </div>
 <div class="section" id="templates">
-<h4><a class="toc-backref" href="#id20">templates/</a><a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id21">templates/</a><a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h4>
 <p>Template files to use as a starting point when writing new test modules or page
 objects.</p>
 <ul class="simple">
