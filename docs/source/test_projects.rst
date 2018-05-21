@@ -114,6 +114,23 @@ the following web drivers that support running in a headless environment:
 .. _headless browsers: https://en.wikipedia.org/wiki/Headless_browser
 
 
+Configuring Output
+^^^^^^^^^^^^^^^^^^
+
+By default, detailed output is displayed when running tests. To reduce or
+suppress output:
+
+::
+
+    python -m <test_package> <args> --verbosity <level>
+
+Where ``<level>`` is one of the following:
+
+* 0 - Final results only
+* 1 - Final results and progress indicator
+* 2 - Full output
+
+
 List Available Tests
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -134,6 +151,7 @@ To only list specific test classes:
 ::
 
     python -m <test_package> --list --test <TestClass> [<TestClass> ...]
+
 
 
 Project Structure
