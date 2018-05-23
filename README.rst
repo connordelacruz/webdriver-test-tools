@@ -154,13 +154,13 @@ directories.
 
 The following documentation goes into detail on test projects:
 
-    - `Test Project Overview`_: Test project setup, configuration, command line
-      usage, and directory structure
+    - `Test Projects`_: Test project setup, configuration, command line usage,
+      and directory structure
     - `Example Test Project`_: Step-by-step tutorial with a simple example test
       project
 
 
-.. _Test Project Overview: https://connordelacruz.com/webdriver-test-tools/test_projects.html
+.. _Test Projects: https://connordelacruz.com/webdriver-test-tools/test_projects.html
 .. _Example Test Project: https://connordelacruz.com/webdriver-test-tools/example_project.html
 
 
@@ -221,8 +221,8 @@ This will generate a new test package with template files and project
 directories.
 
 
-Installation
-------------
+Test Package Installation
+-------------------------
 
 After initializing the test project, run the following command from the project
 root directory:
