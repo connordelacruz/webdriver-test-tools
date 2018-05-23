@@ -21,8 +21,8 @@ This will generate a new test package with template files and project
 directories.
 
 
-Installation
-------------
+Test Package Installation
+-------------------------
 
 After initializing the test project, run the following command from the project
 root directory:
