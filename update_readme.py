@@ -31,7 +31,7 @@ with open(readme_path, 'w') as readme:
                     else:
                         toc_added = True
                 readme.write(line)
-        # Add transition and whitespace between docs
-        readme.write('\n\n----\n\n')
+        # Add whitespace between docs
+        readme.write('\n\n')
 
 
