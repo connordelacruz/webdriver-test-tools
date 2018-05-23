@@ -196,11 +196,13 @@ Please read the `contributing guidelines`_ for details.
 
 
 
+
+----
+
 =====================
 Test Project Overview
 =====================
 
-.. contents::
 
 Setup
 =====
@@ -473,4 +475,7 @@ objects.
   use as a starting point when creating new tests. 
 
 
+
+
+----
 

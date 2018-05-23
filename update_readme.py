@@ -2,12 +2,13 @@
 import os
 
 
+# TODO: handle .. contents:: directives
+
 project_root = os.path.dirname(os.path.abspath(__file__))
 readme_path = os.path.join(project_root, 'README.rst')
 docs_path = os.path.join(project_root, 'docs', 'source')
-# TODO: use README.rst instead
 doc_files = [
-    'framework.rst',
+    'README.rst',
     'test_projects.rst',
 ]
 
@@ -19,7 +20,7 @@ with open(readme_path, 'w') as readme:
         doc_file_path = os.path.join(docs_path, filename)
         with open(doc_file_path) as doc_file:
             readme.write(doc_file.read())
-        # Add sufficient whitespace between docs
-        readme.write('\n')
+        # Add transition and whitespace between docs
+        readme.write('\n\n----\n\n')
 
 
