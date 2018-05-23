@@ -7,3 +7,5 @@ geckodriver.log
 /dist/
 /build/
 /*.egg-info
+# Backup readme generated from update_readme.py
+/README.rst.bak

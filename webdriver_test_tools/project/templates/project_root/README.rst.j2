@@ -7,11 +7,25 @@
 Setup
 =====
 
+Initialization
+--------------
+
+To generate files for a new test suite, change into the desired directory and
+run:
+
+::
+
+    webdriver_test_tools --init
+
+This will generate a new test package with template files and project
+directories.
+
+
 Installation
 ------------
 
-After initializing the test project, change to the root directory of the project
-and run:
+After initializing the test project, run the following command from the project
+root directory:
 
 ::
 
@@ -73,9 +87,9 @@ To skip certain test cases or methods:
 These arguments can be used together. When combined, they are processed in the
 following order:
 
-1. ``--module`` reduces the set of tests to those in the specified modules
-2. ``--test`` reduces the set of tests to the specified classes and methods
-3. ``--skip`` removes the specified classes and methods from the set of tests
+    1. ``--module`` reduces the set of tests to those in the specified modules
+    2. ``--test`` reduces the set of tests to the specified classes and methods
+    3. ``--skip`` removes the specified classes and methods from the set of tests
 
 
 Using Specific Browsers
@@ -127,9 +141,9 @@ suppress output:
 
 Where ``<level>`` is one of the following:
 
-* 0 - Final results only
-* 1 - Final results and progress indicator
-* 2 - Full output
+    * 0 - Final results only
+    * 1 - Final results and progress indicator
+    * 2 - Full output
 
 **Note:** The default output level can be changed in
 ``{{test_package}}/config/test.py`` by setting the ``DEFAULT_VERBOSITY``
