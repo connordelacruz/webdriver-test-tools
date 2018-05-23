@@ -64,8 +64,8 @@ Full documentation for WebDriver Test Tools:
     - `WebDriver Test Tools Docs`_: Framework documentation
     - `webdriver_test_tools Package API`_: Python package API
 
-.. _WebDriver Test Tools Docs: http://connordelacruz.com/webdriver-test-tools/
-.. _webdriver_test_tools Package API: http://connordelacruz.com/webdriver-test-tools/webdriver_test_tools.html
+.. _WebDriver Test Tools Docs: https://connordelacruz.com/webdriver-test-tools/
+.. _webdriver_test_tools Package API: https://connordelacruz.com/webdriver-test-tools/webdriver_test_tools.html
 
 
 Set Up
@@ -94,8 +94,8 @@ default:
 -  `Google Chrome`_
 -  `Firefox`_
 
-These can be disabled in ``<test_package>/config/browser.py`` by commenting out
-the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``. 
+These can be disabled in ``<test_package>/config/browser.py`` by setting the
+corresponding value in ``BrowserConfig.ENABLED_BROWSERS`` to ``False``. 
 
 
 **Platform-Specific**
@@ -106,8 +106,8 @@ The following platform-specific drivers are supported:
 -  `Internet Explorer`_
 -  `Edge`_
 
-These need to be enabled in ``<test_package>/config/browser.py`` by uncommenting
-the corresponding line in ``BrowserConfig.BROWSER_TEST_CLASSES``.
+These need to be enabled in ``<test_package>/config/browser.py`` by setting the
+corresponding value in ``BrowserConfig.ENABLED_BROWSERS`` to ``True``.
 
 .. _Google Chrome: https://sites.google.com/a/chromium.org/chromedriver/downloads
 .. _Firefox: https://github.com/mozilla/geckodriver/releases
@@ -123,8 +123,8 @@ testing:
       browser testing
     - `BrowserStack Support`_: Enabling and configuring testing on BrowserStack
 
-.. _Testing with Additional Browsers: http://connordelacruz.com/webdriver-test-tools/additional_browsers.html
-.. _BrowserStack Support: http://connordelacruz.com/webdriver-test-tools/browserstack.html
+.. _Testing with Additional Browsers: https://connordelacruz.com/webdriver-test-tools/additional_browsers.html
+.. _BrowserStack Support: https://connordelacruz.com/webdriver-test-tools/browserstack.html
 
 
 Installation
@@ -160,8 +160,8 @@ The following documentation goes into detail on test projects:
       project
 
 
-.. _Test Project Overview: http://connordelacruz.com/webdriver-test-tools/test_projects.html
-.. _Example Test Project: http://connordelacruz.com/webdriver-test-tools/example_project.html
+.. _Test Project Overview: https://connordelacruz.com/webdriver-test-tools/test_projects.html
+.. _Example Test Project: https://connordelacruz.com/webdriver-test-tools/example_project.html
 
 
 Command Line Usage
