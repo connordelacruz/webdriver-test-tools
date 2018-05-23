@@ -1,16 +1,31 @@
+=====================
 Test Project Overview
 =====================
 
 .. contents::
 
 Setup
------
+=====
 
-Installation
-~~~~~~~~~~~~
+Initialization
+--------------
 
-After initializing the test project, change to the root directory of the project
-and run:
+To generate files for a new test suite, change into the desired directory and
+run:
+
+::
+
+    webdriver_test_tools --init
+
+This will generate a new test package with template files and project
+directories.
+
+
+Test Package Installation
+-------------------------
+
+After initializing the test project, run the following command from the project
+root directory:
 
 ::
 
@@ -23,7 +38,7 @@ changes are made to the source code.
 
 
 Configuration
-~~~~~~~~~~~~~
+-------------
 
 After initializing a project, the URL of the site to be tested will need to be
 configured. In ``<test_package>/config/site.py``, set the ``SITE_URL`` and
@@ -32,7 +47,7 @@ as class variables as well.
 
 
 Basic Command Line Usage
-------------------------
+========================
 
 For info on command line arguments:
 
@@ -42,7 +57,7 @@ For info on command line arguments:
 
 
 Running Tests
-~~~~~~~~~~~~~
+-------------
 
 To run all tests:
 
@@ -72,13 +87,13 @@ To skip certain test cases or methods:
 These arguments can be used together. When combined, they are processed in the
 following order:
 
-1. ``--module`` reduces the set of tests to those in the specified modules
-2. ``--test`` reduces the set of tests to the specified classes and methods
-3. ``--skip`` removes the specified classes and methods from the set of tests
+    1. ``--module`` reduces the set of tests to those in the specified modules
+    2. ``--test`` reduces the set of tests to the specified classes and methods
+    3. ``--skip`` removes the specified classes and methods from the set of tests
 
 
 Using Specific Browsers
-^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~
 
 To do any of the above in specific browsers rather than running in all available
 browsers, use the ``--browser`` command line argument:
@@ -92,7 +107,7 @@ For a list of options you can specify with ``--browser``, run ``python -m
 
 
 Using Headless Browsers
-^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, tests run using the browser's GUI. While it can be helpful to see
 what's going on during test execution, loading and rendering the browser window
@@ -114,8 +129,29 @@ the following web drivers that support running in a headless environment:
 .. _headless browsers: https://en.wikipedia.org/wiki/Headless_browser
 
 
+Configuring Output
+~~~~~~~~~~~~~~~~~~
+
+By default, detailed output is displayed when running tests. To reduce or
+suppress output:
+
+::
+
+    python -m <test_package> <args> --verbosity <level>
+
+Where ``<level>`` is one of the following:
+
+    * 0 - Final results only
+    * 1 - Final results and progress indicator
+    * 2 - Full output
+
+**Note:** The default output level can be changed in
+``<test_package>/config/test.py`` by setting the ``DEFAULT_VERBOSITY``
+attribute of the ``TestSuiteConfig`` class.
+
+
 List Available Tests
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 To print a list of available test classes and methods:
 
@@ -136,8 +172,9 @@ To only list specific test classes:
     python -m <test_package> --list --test <TestClass> [<TestClass> ...]
 
 
+
 Project Structure
------------------
+=================
 
 ``webdriver_test_tools --init`` will create the following files and directories
 inside the project directory:
@@ -174,14 +211,14 @@ the HTML is changed.
 
 
 Test Project Root Contents
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 * ``setup.py``: Python package setup file that allows the new test suite to be
   installed as a pip package.
 
 
 Test Package Root Contents
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 * ``__main__.py``: Required to run tests from the command line. 
 * ``__init__.py``: Empty init file so Python recognizes the directory as a
@@ -189,10 +226,10 @@ Test Package Root Contents
 
 
 Test Package Directories
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 config/
-^^^^^^^
+~~~~~~~
 
 Configurations used by test scripts for site URLs, web driver options, and the
 python unittest framework.
@@ -206,32 +243,32 @@ python unittest framework.
 
 
 data/
-^^^^^
+~~~~~
 
 Static data for tests that must use specific values (e.g. emails, usernames,
 etc).
 
 log/
-^^^^
+~~~~
 
 Default output directory for WebDriver logs. This can be changed in
 ``config/webdriver.py``.
 
 pages/
-^^^^^^
+~~~~~~
 
 Page object classes for pages and components. These classes should handle
 locating and interacting with elements on the page. A template page object can
 be found in ``templates/page_object.py``.
 
 screenshot/
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Default output directory for screenshots taken during test execution. This can 
 be changed in ``config/webdriver.py``.
 
 tests/
-^^^^^^
+~~~~~~
 
 Test case modules. These use page objects to interact with elements and assert
 that the expected behavior occurs. A template test file can be found in
@@ -241,7 +278,7 @@ When adding new test files, be sure to update ``tests/__init__.py`` to include
 the new module so the framework can detect the new test cases.
 
 templates/
-^^^^^^^^^^
+~~~~~~~~~~
 
 Template files to use as a starting point when writing new test modules or page
 objects.
@@ -250,4 +287,5 @@ objects.
   directory to use as a starting point when creating new page objects.
 * ``test_case.py``: Template test module. Copy to the ``tests/`` directory to
   use as a starting point when creating new tests. 
+
 

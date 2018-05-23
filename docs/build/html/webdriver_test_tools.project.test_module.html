@@ -188,8 +188,8 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></li>
-<li><strong>config_module</strong> – (Optional) The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code>. Will
-use <a class="reference internal" href="webdriver_test_tools.config.html#module-webdriver_test_tools.config" title="webdriver_test_tools.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">webdriver_test_tools.config</span></code></a> if not specified</li>
+<li><strong>config_module</strong> – (Optional) The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code>.
+Will use <a class="reference internal" href="webdriver_test_tools.config.html#module-webdriver_test_tools.config" title="webdriver_test_tools.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">webdriver_test_tools.config</span></code></a> if not specified</li>
 <li><strong>package_name</strong> – (Optional) The name of the package (i.e. <code class="docutils literal notranslate"><span class="pre">__package__</span></code>)</li>
 </ul>
 </td>
@@ -253,11 +253,12 @@ function was given for that class</td>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></li>
-<li><strong>test_module_names</strong> – (Optional) Parsed arg for <code class="docutils literal notranslate"><span class="pre">--module</span></code> command line argument</li>
-<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for <code class="docutils literal notranslate"><span class="pre">--test</span></code> command
-line argument to <a class="reference internal" href="#webdriver_test_tools.project.test_module.parse_test_names" title="webdriver_test_tools.project.test_module.parse_test_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></a></li>
-<li><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for <code class="docutils literal notranslate"><span class="pre">--skip</span></code> command
-line argument to <a class="reference internal" href="#webdriver_test_tools.project.test_module.parse_test_names" title="webdriver_test_tools.project.test_module.parse_test_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></a></li>
+<li><strong>test_module_names</strong> – (Optional) Parsed arg for <code class="docutils literal notranslate"><span class="pre">--module</span></code> command line
+argument</li>
+<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for <code class="docutils literal notranslate"><span class="pre">--test</span></code>
+command line argument to <a class="reference internal" href="#webdriver_test_tools.project.test_module.parse_test_names" title="webdriver_test_tools.project.test_module.parse_test_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></a></li>
+<li><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for <code class="docutils literal notranslate"><span class="pre">--skip</span></code>
+command line argument to <a class="reference internal" href="#webdriver_test_tools.project.test_module.parse_test_names" title="webdriver_test_tools.project.test_module.parse_test_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -267,7 +268,7 @@ line argument to <a class="reference internal" href="#webdriver_test_tools.proje
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_module.run_tests">
-<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">run_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module</em>, <em>browser_classes=None</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em>, <em>test_module_names=None</em>, <em>browserstack=False</em>, <em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#run_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.run_tests" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">run_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module</em>, <em>browser_classes=None</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em>, <em>test_module_names=None</em>, <em>browserstack=False</em>, <em>headless=False</em>, <em>verbosity=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#run_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.run_tests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run tests using parsed args and project modules</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -279,16 +280,18 @@ line argument to <a class="reference internal" href="#webdriver_test_tools.proje
 <a class="reference internal" href="webdriver_test_tools.config.html#module-webdriver_test_tools.config" title="webdriver_test_tools.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">webdriver_test_tools.config</span></code></a> if not specified</li>
 <li><strong>browser_classes</strong> – (Optional) List of browser test classes from parsed arg
 for <code class="docutils literal notranslate"><span class="pre">--browser</span></code> command line argument</li>
-<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for <code class="docutils literal notranslate"><span class="pre">--test</span></code> command
-line argument to <a class="reference internal" href="#webdriver_test_tools.project.test_module.parse_test_names" title="webdriver_test_tools.project.test_module.parse_test_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></a></li>
-<li><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for <code class="docutils literal notranslate"><span class="pre">--skip</span></code> command
-line argument to <a class="reference internal" href="#webdriver_test_tools.project.test_module.parse_test_names" title="webdriver_test_tools.project.test_module.parse_test_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></a></li>
-<li><strong>test_module_names</strong> – (Optional) Parsed arg for <code class="docutils literal notranslate"><span class="pre">--module</span></code> command line argument</li>
+<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for <code class="docutils literal notranslate"><span class="pre">--test</span></code>
+command line argument to <a class="reference internal" href="#webdriver_test_tools.project.test_module.parse_test_names" title="webdriver_test_tools.project.test_module.parse_test_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></a></li>
+<li><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for <code class="docutils literal notranslate"><span class="pre">--skip</span></code>
+command line argument to <a class="reference internal" href="#webdriver_test_tools.project.test_module.parse_test_names" title="webdriver_test_tools.project.test_module.parse_test_names"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></a></li>
+<li><strong>test_module_names</strong> – (Optional) Parsed arg for <code class="docutils literal notranslate"><span class="pre">--module</span></code> command line
+argument</li>
 <li><strong>browserstack</strong> – (Default = False) If True, generated test cases should run on
 BrowserStack</li>
 <li><strong>headless</strong> – (Default = False) If True, configure driver to run tests in a
 headless browser. Tests will only be generated for drivers that support
 running headless browsers</li>
+<li><strong>verbosity</strong> – (Optional) Output verbosity level for the test runner.</li>
 </ul>
 </td>
 </tr>
