@@ -341,3 +341,22 @@ headless browsers:
 For more information and a list of compatible browsers, see 
 :ref:`headless browsers documentation <headless-browsers>`. 
 
+Running tests silently
+^^^^^^^^^^^^^^^^^^^^^^
+
+By default, detailed output is displayed when running tests. If we wanted to
+reduce the output to just a progress bar and the final results while running
+tests:
+
+.. code-block:: none
+
+    python -m example_package --verbosity 1
+
+To suppress output entirely and just get the final results:
+
+.. code-block:: none
+
+    python -m example_package --verbosity 0
+
+
+
