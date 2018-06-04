@@ -10,7 +10,7 @@ __title__ = 'webdriver_test_tools'
 __project__ = 'WebDriver Test Tools'
 __summary__ = 'A front-end testing framework using Selenium WebDriver and Python'
 
-__release__ = '1.1.0-alpha'
+__release__ = '1.2.0-alpha'
 __version__ = __release__.split('-')[0]
 __devstatus__ = 'Development Status :: 3 - Alpha'
 
