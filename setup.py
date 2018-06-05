@@ -6,6 +6,24 @@ def readme():
     with open('README.rst') as f:
         return f.read()
 
+def get_package_data():
+    template_root = 'project/templates/'
+    template_dirs = [
+        'config',
+        'log',
+        'package_root',
+        'project_root',
+        'templates',
+        'tests',
+    ]
+    # Get .j2 template files
+    template_data = [
+        template_root + template_dir + '/*.j2' for template_dir in template_dirs
+    ]
+    return {
+        'webdriver_test_tools': template_data,
+    }
+
 
 # Get metadata
 base_path = os.path.dirname(__file__)
@@ -70,6 +88,7 @@ setup(
     license=about['__license__'],
     classifiers=[x for x in CLASSIFIERS.split("\n") if x],
     packages=find_packages(),
+    package_data=get_package_data(),
     entry_points=entry_points,
     install_requires=install_requires,
 )

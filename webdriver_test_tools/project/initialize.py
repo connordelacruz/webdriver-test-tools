@@ -47,7 +47,7 @@ def create_gitignore(target_path):
     """
     target_path = os.path.abspath(target_path)
     source_path = templates.project_root.get_path()
-    shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(target_path, '.gitignore'))
+    shutil.copy(os.path.join(source_path, 'gitignore.j2'), os.path.join(target_path, '.gitignore'))
 
 
 def create_package_directory(target_path, package_name):
@@ -110,7 +110,7 @@ def create_output_directories(target_path, gitignore_files=True):
         directory_path = create_directory(target_path, directory)
         if gitignore_files:
             # .gitignore files are the same between directories
-            shutil.copy(os.path.join(source_path, 'gitignore'), os.path.join(directory_path, '.gitignore'))
+            shutil.copy(os.path.join(source_path, 'gitignore.j2'), os.path.join(directory_path, '.gitignore'))
 
 
 def create_tests_init(target_path, context):
