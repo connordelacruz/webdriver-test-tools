@@ -272,7 +272,7 @@ def run_tests(tests_module, config_module, browser_classes=None,
     # Link to BrowserStack automation dashboard if applicable
     if browserstack:
         print('', 'See BrowserStack Automation Dashboard for Detailed Results:',
-              'https://www.browserstack.com/automate', sep='\n')
+              'https://automate.browserstack.com', sep='\n')
 
 
 def _load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
