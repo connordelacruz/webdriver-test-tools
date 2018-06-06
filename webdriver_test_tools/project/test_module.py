@@ -101,8 +101,13 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     headless_help = 'Run tests using headless browsers.' + headless_options_help
     group.add_argument('-H', '--headless', action='store_true', help=headless_help)
     if browserstack_config.ENABLE:
+        group = parser.add_argument_group('BrowserStack')
         browserstack_help = 'Run tests on BrowserStack instead of locally'
         group.add_argument('-B', '--browserstack', action='store_true', help=browserstack_help)
+        video_help = 'Record video of tests'
+        # TODO: implement
+        group.add_argument('--video', action='store_true', help=video_help)
+        # TODO: add --build <name>
     # Output arguments
     group = parser.add_argument_group('Output Options')
     verbosity_help = textwrap.dedent('''\
