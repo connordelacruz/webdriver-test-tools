@@ -30,6 +30,10 @@ with open(readme_path, 'w') as readme:
                     # Otherwise add set toc_added to True and finish iteration
                     else:
                         toc_added = True
+                        readme.write(line)
+                        # Add :depth: parameter
+                        readme.write('    :depth: 2\n')
+                        continue
                 readme.write(line)
         # Add whitespace between docs
         readme.write('\n\n')
