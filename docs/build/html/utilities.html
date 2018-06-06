@@ -210,17 +210,16 @@ clicking the close button on the modal. We’ll need to create
 classes for the “Contact Us” page and submission success modal respectively.
 We’ll then need to create <code class="docutils literal notranslate"><span class="pre">tests/contact.py</span></code> with test class
 <code class="docutils literal notranslate"><span class="pre">ContactTestCase</span></code>.</p>
-<p>To save time writing tests, we can use the <a class="reference internal" href="webdriver_test_tools.pageobject.form.html#module-webdriver_test_tools.pageobject.form" title="webdriver_test_tools.pageobject.form"><code class="xref py py-mod docutils literal notranslate"><span class="pre">FormObject</span></code></a> and <a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#module-webdriver_test_tools.pageobject.modal" title="webdriver_test_tools.pageobject.modal"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ModalObject</span></code></a> classes, which have pre-defined methods
+<p>To save time writing tests, we can use the <a class="reference internal" href="webdriver_test_tools.pageobject.form.html#module-webdriver_test_tools.pageobject.form" title="webdriver_test_tools.pageobject.form"><code class="xref py py-mod docutils literal notranslate"><span class="pre">prototypes.FormObject</span></code></a> and <a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#module-webdriver_test_tools.pageobject.modal" title="webdriver_test_tools.pageobject.modal"><code class="xref py py-mod docutils literal notranslate"><span class="pre">prototypes.ModalObject</span></code></a> classes, which have pre-defined methods
 for most of the tasks we want them to do.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">pages/contact.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">BasePage</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject.prototypes</span> <span class="k">import</span> <span class="n">FormObject</span><span class="p">,</span> <span class="n">ModalObject</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver</span> <span class="k">import</span> <span class="n">actions</span><span class="p">,</span> <span class="n">locate</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
 
 
-<span class="k">class</span> <span class="nc">ContactPage</span><span class="p">(</span><span class="n">FormObject</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ContactPage</span><span class="p">(</span><span class="n">prototypes</span><span class="o">.</span><span class="n">FormObject</span><span class="p">):</span>
     <span class="c1"># Relative to SiteConfig.BASE_URL</span>
     <span class="n">PAGE_FILENAME</span> <span class="o">=</span> <span class="s1">&#39;contact.html&#39;</span>
 
@@ -241,7 +240,7 @@ for most of the tasks we want them to do.</p>
         <span class="n">MESSAGE</span> <span class="o">=</span> <span class="s1">&#39;message&#39;</span>
 
 
-<span class="k">class</span> <span class="nc">SuccessModal</span><span class="p">(</span><span class="n">ModalObject</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SuccessModal</span><span class="p">(</span><span class="n">prototypes</span><span class="o">.</span><span class="n">ModalObject</span><span class="p">):</span>
 
     <span class="k">class</span> <span class="nc">Locator</span><span class="p">:</span>
         <span class="n">SUCCESS_MODAL</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;success-modal&#39;</span><span class="p">)</span>

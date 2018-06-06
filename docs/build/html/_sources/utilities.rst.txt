@@ -34,8 +34,8 @@ classes for the "Contact Us" page and submission success modal respectively.
 We'll then need to create ``tests/contact.py`` with test class
 ``ContactTestCase``.
 
-To save time writing tests, we can use the :mod:`FormObject
-<webdriver_test_tools.pageobject.form>` and :mod:`ModalObject
+To save time writing tests, we can use the :mod:`prototypes.FormObject
+<webdriver_test_tools.pageobject.form>` and :mod:`prototypes.ModalObject
 <webdriver_test_tools.pageobject.modal>` classes, which have pre-defined methods
 for most of the tasks we want them to do.
 
