@@ -19,6 +19,7 @@ A front-end testing framework using `Selenium WebDriver`_ and Python.
 
 
 .. contents::
+    :depth: 2
 
 
 Overview

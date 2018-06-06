@@ -1,10 +1,9 @@
-from webdriver_test_tools.pageobject import BasePage
-from webdriver_test_tools.pageobject.prototypes import FormObject, ModalObject
-from webdriver_test_tools.webdriver import actions, locate
 from selenium.webdriver.common.by import By
+from webdriver_test_tools.pageobject import *
+from webdriver_test_tools.webdriver import actions, locate
 
 
-class ContactPage(FormObject):
+class ContactPage(prototypes.FormObject):
     # Relative to SiteConfig.BASE_URL
     PAGE_FILENAME = 'contact.html'
 
@@ -25,7 +24,7 @@ class ContactPage(FormObject):
         MESSAGE = 'message'
 
 
-class SuccessModal(ModalObject):
+class SuccessModal(prototypes.ModalObject):
 
     class Locator:
         SUCCESS_MODAL = (By.ID, 'success-modal')

@@ -9,7 +9,7 @@ class BrowserStackConfig(browserstack.BrowserStackConfig):
     :var BrowserStackConfig.USERNAME: Account username. Required for BrowserStack testing
     :var BrowserStackConfig.ACCESS_KEY: Access key. Required for BrowserStack testing
     :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations
-    :var BrowserConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.
+    :var BrowserStackConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.
         True enables the browser, False disables it. Defaults to Chrome and
         Firefox since they're not platform specific
     """
