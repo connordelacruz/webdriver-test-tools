@@ -35,9 +35,13 @@ def main(tests_module, config_module=None, package_name=None):
     if args.list:
         list_tests(tests_module, **kwargs)
         exit()
-    # Parse --browserstack, --headless, and --verbosity args
+    # TODO: parse browserstack args
+    if 'browserstack' in dir(args):
+        kwargs['browserstack'] = args.browserstack
+        # TODO: update browserstack_config attributes based on CLI overrides
+        # browserstack_config.update_configurations(<<args>>)
+    # Parse --headless and --verbosity args
     kwargs.update({
-        'browserstack': 'browserstack' in dir(args) and args.browserstack,
         'headless': args.headless,
         'verbosity': args.verbosity,
     })
@@ -66,8 +70,10 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     """
     description = 'Run the test suite.'
     epilog = 'For more information, visit <{}>'.format(__documentation__)
-    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, add_help=False,
-                                     prog=package_name, description=description, epilog=epilog)
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawTextHelpFormatter, add_help=False,
+        prog=package_name, description=description, epilog=epilog
+    )
     # Use default config if module is None or doesn't contain BrowserConfig class
     if browser_config is None:
         browser_config = config.BrowserConfig
@@ -105,7 +111,7 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
         browserstack_help = 'Run tests on BrowserStack instead of locally'
         group.add_argument('-B', '--browserstack', action='store_true', help=browserstack_help)
         video_help = 'Record video of tests'
-        # TODO: implement
+        # TODO: --video w/ store_true if default False, --no-video w/ store_false if default True?
         group.add_argument('--video', action='store_true', help=video_help)
         # TODO: add --build <name>
     # Output arguments
@@ -239,6 +245,7 @@ def list_tests(tests_module,
             print(textwrap.indent(test_case, cmd.INDENT))
 
 
+# TODO: update params? docstring?
 def run_tests(tests_module, config_module, browser_classes=None,
               test_class_map=None, skip_class_map=None, test_module_names=None,
               browserstack=False, headless=False, verbosity=None):

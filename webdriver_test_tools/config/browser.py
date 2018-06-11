@@ -96,3 +96,8 @@ class BrowserStackConfig(BrowserConfig):
         """
         desired_capabilities.update(cls.BS_CAPABILITIES)
 
+    # TODO: implement and document
+    @classmethod
+    def update_configurations(cls, capabilities):
+        pass
+
