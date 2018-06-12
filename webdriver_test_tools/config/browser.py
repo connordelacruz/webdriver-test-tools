@@ -96,3 +96,21 @@ class BrowserStackConfig(BrowserConfig):
         """
         desired_capabilities.update(cls.BS_CAPABILITIES)
 
+    @classmethod
+    def update_configurations(cls, **capabilities):
+        """Update BrowserStack configurations at runtime
+
+        :param \**capabilities: Keyword arguments for BrowserStack configurations.
+            Possible arguments include:
+
+                - ``build`` (string) - Name for the group of tests
+                - ``video`` (boolean) - True to enable video recording, False to disable it
+        """
+        caps_map = {
+            'build': 'build',
+            'video': 'browserstack.video',
+        }
+        capabilities = {k: v for k, v in capabilities.items() if k in caps_map}
+        for capability, value in capabilities.items():
+            cls.BS_CAPABILITIES[caps_map[capability]] = value
+

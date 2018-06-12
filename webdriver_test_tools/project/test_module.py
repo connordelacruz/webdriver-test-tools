@@ -35,9 +35,14 @@ def main(tests_module, config_module=None, package_name=None):
     if args.list:
         list_tests(tests_module, **kwargs)
         exit()
-    # Parse --browserstack, --headless, and --verbosity args
+    # Parse browserstack args
+    if 'browserstack' in dir(args):
+        kwargs['browserstack'] = args.browserstack
+        # Update browserstack_config attributes based on CLI overrides
+        if args.browserstack:
+            browserstack_config.update_configurations(build=args.build, video=args.video)
+    # Parse --headless and --verbosity args
     kwargs.update({
-        'browserstack': 'browserstack' in dir(args) and args.browserstack,
         'headless': args.headless,
         'verbosity': args.verbosity,
     })
@@ -66,8 +71,10 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     """
     description = 'Run the test suite.'
     epilog = 'For more information, visit <{}>'.format(__documentation__)
-    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, add_help=False,
-                                     prog=package_name, description=description, epilog=epilog)
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawTextHelpFormatter, add_help=False,
+        prog=package_name, description=description, epilog=epilog
+    )
     # Use default config if module is None or doesn't contain BrowserConfig class
     if browser_config is None:
         browser_config = config.BrowserConfig
@@ -100,9 +107,23 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     headless_options_help = _format_headless_browsers(browser_config)
     headless_help = 'Run tests using headless browsers.' + headless_options_help
     group.add_argument('-H', '--headless', action='store_true', help=headless_help)
+    # BrowserStack arguments
     if browserstack_config.ENABLE:
+        group = parser.add_argument_group('BrowserStack')
         browserstack_help = 'Run tests on BrowserStack instead of locally'
         group.add_argument('-B', '--browserstack', action='store_true', help=browserstack_help)
+        # Build name
+        build_help = 'Set the build name for the group of tests'
+        group.add_argument('--build', metavar='<name>', help=build_help)
+        # Enabling/disabling video recording
+        video_help = 'Record video of tests'
+        group.add_argument('--video', dest='video', action='store_true', help=video_help)
+        no_video_help = 'Disable video recording'
+        group.add_argument('--no-video', dest='video', action='store_false', help=no_video_help)
+        # Set default to the value configured in browserstack_config (or True if not configured)
+        # TODO: move to BrowserStackConfig class method?
+        video_default = True if 'browserstack.video' not in browserstack_config.BS_CAPABILITIES else browserstack_config.BS_CAPABILITIES['browserstack.video']
+        parser.set_defaults(video=video_default)
     # Output arguments
     group = parser.add_argument_group('Output Options')
     verbosity_help = textwrap.dedent('''\
@@ -272,7 +293,7 @@ def run_tests(tests_module, config_module, browser_classes=None,
     # Link to BrowserStack automation dashboard if applicable
     if browserstack:
         print('', 'See BrowserStack Automation Dashboard for Detailed Results:',
-              'https://www.browserstack.com/automate', sep='\n')
+              'https://automate.browserstack.com', sep='\n')
 
 
 def _load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):

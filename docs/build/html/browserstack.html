@@ -98,7 +98,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#configuring-browsers">Configuring Browsers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#additional-configurations">Additional Configurations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#rename-the-project">Rename the Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enabling-video">Enabling Video</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specifying-the-build-name">Specifying the Build Name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enabling-video">Enabling Video</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#command-line-arguments">Command Line Arguments</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -179,7 +183,11 @@
 <li><a class="reference internal" href="#configuring-browsers" id="id8">Configuring Browsers</a></li>
 <li><a class="reference internal" href="#additional-configurations" id="id9">Additional Configurations</a><ul>
 <li><a class="reference internal" href="#rename-the-project" id="id10">Rename the Project</a></li>
-<li><a class="reference internal" href="#enabling-video" id="id11">Enabling Video</a></li>
+<li><a class="reference internal" href="#specifying-the-build-name" id="id11">Specifying the Build Name</a></li>
+<li><a class="reference internal" href="#enabling-video" id="id12">Enabling Video</a><ul>
+<li><a class="reference internal" href="#command-line-arguments" id="id13">Command Line Arguments</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -193,7 +201,7 @@
 <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.ENABLE</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> and set
 <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.USERNAME</span></code> and <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.ACCESS_KEY</span></code> to your
 BrowserStack account username and access key respectively. These values can be
-found on the <a class="reference external" href="https://www.browserstack.com/automate">BrowserStack Automate dashboard</a>.</p>
+found on the <a class="reference external" href="https://automate.browserstack.com">BrowserStack Automate dashboard</a>.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">config/browserstack.py</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BrowserStackConfig</span><span class="p">(</span><span class="n">browserstack</span><span class="o">.</span><span class="n">BrowserStackConfig</span><span class="p">):</span>
@@ -264,8 +272,18 @@ reconfigured by setting <code class="docutils literal notranslate"><span class="
 </div>
 </div>
 </div>
+<div class="section" id="specifying-the-build-name">
+<h3><a class="toc-backref" href="#id11">Specifying the Build Name</a><a class="headerlink" href="#specifying-the-build-name" title="Permalink to this headline">¶</a></h3>
+<p>BrowserStack supports grouping related project tests under a build name. To
+specify the build name for the group of tests being run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">browserstack</span> <span class="o">--</span><span class="n">build</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> Quotation marks must be used for build names containing spaces (e.g.
+<code class="docutils literal notranslate"><span class="pre">--build</span> <span class="pre">'Example</span> <span class="pre">Build'</span></code>).</p>
+</div>
 <div class="section" id="enabling-video">
-<h3><a class="toc-backref" href="#id11">Enabling Video</a><a class="headerlink" href="#enabling-video" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Enabling Video</a><a class="headerlink" href="#enabling-video" title="Permalink to this headline">¶</a></h3>
 <p>Video recording can be enabled for tests run on BrowserStack by setting
 <code class="docutils literal notranslate"><span class="pre">'browserstack.video'</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> in <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig.BS_CAPABILITIES</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
@@ -280,8 +298,21 @@ reconfigured by setting <code class="docutils literal notranslate"><span class="
 </div>
 <p>This config option is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> by default as it slows down test
 execution, but it can be useful to see what’s happening while testing.</p>
-<p>To view the recorded videos, go to <a class="reference external" href="https://www.browserstack.com/automate">https://www.browserstack.com/automate</a> and
+<p>To view the recorded videos, go to <a class="reference external" href="https://automate.browserstack.com">https://automate.browserstack.com</a> and
 select the test on the left column.</p>
+<div class="section" id="command-line-arguments">
+<h4><a class="toc-backref" href="#id13">Command Line Arguments</a><a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h4>
+<p>The video configuration can be overridden by using the <code class="docutils literal notranslate"><span class="pre">--video</span></code> or
+<code class="docutils literal notranslate"><span class="pre">--no-video</span></code> arguments.</p>
+<p>To enable video recording:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">browserstack</span> <span class="o">--</span><span class="n">video</span>
+</pre></div>
+</div>
+<p>To disable video recording:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">browserstack</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">video</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
