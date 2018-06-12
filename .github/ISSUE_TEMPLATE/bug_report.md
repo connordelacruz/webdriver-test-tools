@@ -1,3 +1,9 @@
+---
+name: Bug report
+about: Report a bug with the test framework
+
+---
+
 ## Issue Description
 <!-- Describe issue here -->
 
@@ -34,5 +40,3 @@
 
 ## Additional Information
 <!-- Add any additional information here -->
-
-
