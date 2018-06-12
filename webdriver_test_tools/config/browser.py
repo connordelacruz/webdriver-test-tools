@@ -105,12 +105,12 @@ class BrowserStackConfig(BrowserConfig):
         :param **capabilities: Keyword arguments for BrowserStack configurations.
             Possible arguments include:
 
-                - ``video`` (boolean) - True to enable video recording, False to disable it
                 - ``build`` (string) - Name for the group of tests
+                - ``video`` (boolean) - True to enable video recording, False to disable it
         """
         caps_map = {
-            'video': 'browserstack.video',
             'build': 'build',
+            'video': 'browserstack.video',
         }
         capabilities = {k: v for k, v in capabilities.items() if k in caps_map}
         for capability, value in capabilities.items():

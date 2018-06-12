@@ -39,7 +39,8 @@ def main(tests_module, config_module=None, package_name=None):
     if 'browserstack' in dir(args):
         kwargs['browserstack'] = args.browserstack
         # Update browserstack_config attributes based on CLI overrides
-        browserstack_config.update_configurations(video=args.video)
+        if args.browserstack:
+            browserstack_config.update_configurations(build=args.build, video=args.video)
     # Parse --headless and --verbosity args
     kwargs.update({
         'headless': args.headless,
@@ -110,6 +111,9 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
         group = parser.add_argument_group('BrowserStack')
         browserstack_help = 'Run tests on BrowserStack instead of locally'
         group.add_argument('-B', '--browserstack', action='store_true', help=browserstack_help)
+        # Build name
+        build_help = 'Set the build name for the group of tests'
+        group.add_argument('--build', metavar='<name>', help=build_help)
         # Enabling/disabling video recording
         video_help = 'Record video of tests'
         group.add_argument('--video', dest='video', action='store_true', help=video_help)
@@ -119,7 +123,6 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
         # TODO: move to BrowserStackConfig class method?
         video_default = True if 'browserstack.video' not in browserstack_config.BS_CAPABILITIES else browserstack_config.BS_CAPABILITIES['browserstack.video']
         parser.set_defaults(video=video_default)
-        # TODO: add --build <name>
     # Output arguments
     group = parser.add_argument_group('Output Options')
     verbosity_help = textwrap.dedent('''\
