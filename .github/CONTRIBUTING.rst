@@ -17,8 +17,21 @@ Issue Reporting
   specific as possible
 
 .. _Github Issues: https://github.com/connordelacruz/webdriver-test-tools/issues
-.. _open a new issue: https://github.com/connordelacruz/webdriver-test-tools/issues/new
 .. _Selenium's GitHub Issues: https://github.com/SeleniumHQ/selenium/issues
+.. _open a new issue: https://github.com/connordelacruz/webdriver-test-tools/issues/new?template=bug_report.md
+
+
+Feature Requests
+================
+
+**Before Creating a Feature Request:**
+
+- Check the open `feature requests`_ to see if the feature has already been
+  requested
+- If the feature hasn't already been requested, `open a new feature request`_
+
+.. _feature requests: https://github.com/connordelacruz/webdriver-test-tools/labels/enhancement
+.. _open a new feature request: https://github.com/connordelacruz/webdriver-test-tools/issues/new?template=feature_request.md
 
 
 Pull Requests
