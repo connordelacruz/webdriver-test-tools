@@ -96,8 +96,23 @@ class BrowserStackConfig(BrowserConfig):
         """
         desired_capabilities.update(cls.BS_CAPABILITIES)
 
-    # TODO: implement and document
+    # TODO: add browserstack argparse stuff via a class method?
+
     @classmethod
-    def update_configurations(cls, capabilities):
-        pass
+    def update_configurations(cls, **capabilities):
+        """Update BrowserStack configurations at runtime
+
+        :param **capabilities: Keyword arguments for BrowserStack configurations.
+            Possible arguments include:
+
+                - ``video`` (boolean) - True to enable video recording, False to disable it
+                - ``build`` (string) - Name for the group of tests
+        """
+        caps_map = {
+            'video': 'browserstack.video',
+            'build': 'build',
+        }
+        capabilities = {k: v for k, v in capabilities.items() if k in caps_map}
+        for capability, value in capabilities.items():
+            cls.BS_CAPABILITIES[caps_map[capability]] = value
 

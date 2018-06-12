@@ -35,11 +35,11 @@ def main(tests_module, config_module=None, package_name=None):
     if args.list:
         list_tests(tests_module, **kwargs)
         exit()
-    # TODO: parse browserstack args
+    # Parse browserstack args
     if 'browserstack' in dir(args):
         kwargs['browserstack'] = args.browserstack
-        # TODO: update browserstack_config attributes based on CLI overrides
-        # browserstack_config.update_configurations(<<args>>)
+        # Update browserstack_config attributes based on CLI overrides
+        browserstack_config.update_configurations(video=args.video)
     # Parse --headless and --verbosity args
     kwargs.update({
         'headless': args.headless,
@@ -110,9 +110,15 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
         group = parser.add_argument_group('BrowserStack')
         browserstack_help = 'Run tests on BrowserStack instead of locally'
         group.add_argument('-B', '--browserstack', action='store_true', help=browserstack_help)
+        # Enabling/disabling video recording
         video_help = 'Record video of tests'
-        # TODO: --video w/ store_true if default False, --no-video w/ store_false if default True?
-        group.add_argument('--video', action='store_true', help=video_help)
+        group.add_argument('--video', dest='video', action='store_true', help=video_help)
+        no_video_help = 'Disable video recording'
+        group.add_argument('--no-video', dest='video', action='store_false', help=no_video_help)
+        # Set default to the value configured in browserstack_config (or True if not configured)
+        # TODO: move to BrowserStackConfig class method?
+        video_default = True if 'browserstack.video' not in browserstack_config.BS_CAPABILITIES else browserstack_config.BS_CAPABILITIES['browserstack.video']
+        parser.set_defaults(video=video_default)
         # TODO: add --build <name>
     # Output arguments
     group = parser.add_argument_group('Output Options')
