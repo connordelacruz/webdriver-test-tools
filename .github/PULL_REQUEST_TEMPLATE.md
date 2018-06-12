@@ -23,9 +23,6 @@ Please delete options that don't apply.
 ## Testing
 <!-- Describe how changes were verified -->
 
-
-<!-- Change to "Yes" if you added any test cases to framework unit tests -->
-**Added cases to `webdriver-test-tools/test/`?:** No
 <!-- List which browser drivers PR was tested with (if applicable) -->
 **Tested browsers:** 
 * [ ] Chrome
