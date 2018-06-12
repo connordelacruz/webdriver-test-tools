@@ -100,7 +100,7 @@ class BrowserStackConfig(BrowserConfig):
     def update_configurations(cls, **capabilities):
         """Update BrowserStack configurations at runtime
 
-        :param **capabilities: Keyword arguments for BrowserStack configurations.
+        :param \**capabilities: Keyword arguments for BrowserStack configurations.
             Possible arguments include:
 
                 - ``build`` (string) - Name for the group of tests

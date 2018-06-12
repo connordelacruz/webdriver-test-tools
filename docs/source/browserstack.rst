@@ -13,7 +13,7 @@ Testing with BrowserStack can be configured for a project in
 ``BrowserStackConfig.USERNAME`` and ``BrowserStackConfig.ACCESS_KEY`` to your
 BrowserStack account username and access key respectively. These values can be
 found on the `BrowserStack Automate dashboard
-<https://www.browserstack.com/automate>`__. 
+<https://automate.browserstack.com>`__. 
 
 .. code-block:: python
     :caption: config/browserstack.py
@@ -99,7 +99,18 @@ reconfigured by setting ``'project'`` to the desired name in ``BrowserStackConfi
     }
 
 
-.. todo: document --build 
+Specifying the Build Name
+-------------------------
+
+BrowserStack supports grouping related project tests under a build name. To
+specify the build name for the group of tests being run:
+
+::
+
+    python -m <test_package> <args> --browserstack --build <name>
+
+**Note:** Quotation marks must be used for build names containing spaces (e.g.
+``--build 'Example Build'``).
 
 
 Enabling Video
