@@ -189,7 +189,8 @@ To print the version number:
 Contributing
 ============
 
-Please read the `contributing guidelines`_ for details.
+Please read the `contributing guidelines`_ for details on reporting bugs,
+requesting features, and making contributions to the project.
 
 .. _contributing guidelines: https://github.com/connordelacruz/webdriver-test-tools/blob/master/.github/CONTRIBUTING.rst
 
