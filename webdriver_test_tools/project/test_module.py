@@ -107,6 +107,7 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     headless_options_help = _format_headless_browsers(browser_config)
     headless_help = 'Run tests using headless browsers.' + headless_options_help
     group.add_argument('-H', '--headless', action='store_true', help=headless_help)
+    # BrowserStack arguments
     if browserstack_config.ENABLE:
         group = parser.add_argument_group('BrowserStack')
         browserstack_help = 'Run tests on BrowserStack instead of locally'
@@ -254,7 +255,6 @@ def list_tests(tests_module,
             print(textwrap.indent(test_case, cmd.INDENT))
 
 
-# TODO: update params? docstring?
 def run_tests(tests_module, config_module, browser_classes=None,
               test_class_map=None, skip_class_map=None, test_module_names=None,
               browserstack=False, headless=False, verbosity=None):

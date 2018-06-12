@@ -192,9 +192,14 @@
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
         <span class="n">list_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">exit</span><span class="p">()</span>
-    <span class="c1"># Parse --browserstack, --headless, and --verbosity args</span>
+    <span class="c1"># Parse browserstack args</span>
+    <span class="k">if</span> <span class="s1">&#39;browserstack&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;browserstack&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">browserstack</span>
+        <span class="c1"># Update browserstack_config attributes based on CLI overrides</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">browserstack</span><span class="p">:</span>
+            <span class="n">browserstack_config</span><span class="o">.</span><span class="n">update_configurations</span><span class="p">(</span><span class="n">build</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">build</span><span class="p">,</span> <span class="n">video</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">video</span><span class="p">)</span>
+    <span class="c1"># Parse --headless and --verbosity args</span>
     <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-        <span class="s1">&#39;browserstack&#39;</span><span class="p">:</span> <span class="s1">&#39;browserstack&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">browserstack</span><span class="p">,</span>
         <span class="s1">&#39;headless&#39;</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">headless</span><span class="p">,</span>
         <span class="s1">&#39;verbosity&#39;</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">,</span>
     <span class="p">})</span>
@@ -223,8 +228,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Run the test suite.&#39;</span>
     <span class="n">epilog</span> <span class="o">=</span> <span class="s1">&#39;For more information, visit &lt;</span><span class="si">{}</span><span class="s1">&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">__documentation__</span><span class="p">)</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span> <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                     <span class="n">prog</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">epilog</span><span class="p">)</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span> <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">prog</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">epilog</span>
+    <span class="p">)</span>
     <span class="c1"># Use default config if module is None or doesn&#39;t contain BrowserConfig class</span>
     <span class="k">if</span> <span class="n">browser_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">browser_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">BrowserConfig</span>
@@ -257,9 +264,23 @@
     <span class="n">headless_options_help</span> <span class="o">=</span> <span class="n">_format_headless_browsers</span><span class="p">(</span><span class="n">browser_config</span><span class="p">)</span>
     <span class="n">headless_help</span> <span class="o">=</span> <span class="s1">&#39;Run tests using headless browsers.&#39;</span> <span class="o">+</span> <span class="n">headless_options_help</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-H&#39;</span><span class="p">,</span> <span class="s1">&#39;--headless&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">headless_help</span><span class="p">)</span>
+    <span class="c1"># BrowserStack arguments</span>
     <span class="k">if</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">ENABLE</span><span class="p">:</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;BrowserStack&#39;</span><span class="p">)</span>
         <span class="n">browserstack_help</span> <span class="o">=</span> <span class="s1">&#39;Run tests on BrowserStack instead of locally&#39;</span>
         <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-B&#39;</span><span class="p">,</span> <span class="s1">&#39;--browserstack&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">browserstack_help</span><span class="p">)</span>
+        <span class="c1"># Build name</span>
+        <span class="n">build_help</span> <span class="o">=</span> <span class="s1">&#39;Set the build name for the group of tests&#39;</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--build&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;name&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">build_help</span><span class="p">)</span>
+        <span class="c1"># Enabling/disabling video recording</span>
+        <span class="n">video_help</span> <span class="o">=</span> <span class="s1">&#39;Record video of tests&#39;</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--video&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;video&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">video_help</span><span class="p">)</span>
+        <span class="n">no_video_help</span> <span class="o">=</span> <span class="s1">&#39;Disable video recording&#39;</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--no-video&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;video&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_false&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">no_video_help</span><span class="p">)</span>
+        <span class="c1"># Set default to the value configured in browserstack_config (or True if not configured)</span>
+        <span class="c1"># TODO: move to BrowserStackConfig class method?</span>
+        <span class="n">video_default</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="s1">&#39;browserstack.video&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span> <span class="k">else</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">[</span><span class="s1">&#39;browserstack.video&#39;</span><span class="p">]</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">set_defaults</span><span class="p">(</span><span class="n">video</span><span class="o">=</span><span class="n">video_default</span><span class="p">)</span>
     <span class="c1"># Output arguments</span>
     <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Output Options&#39;</span><span class="p">)</span>
     <span class="n">verbosity_help</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
@@ -429,7 +450,7 @@
     <span class="c1"># Link to BrowserStack automation dashboard if applicable</span>
     <span class="k">if</span> <span class="n">browserstack</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;See BrowserStack Automation Dashboard for Detailed Results:&#39;</span><span class="p">,</span></div>
-              <span class="s1">&#39;https://www.browserstack.com/automate&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+              <span class="s1">&#39;https://automate.browserstack.com&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_load_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>

@@ -96,8 +96,6 @@ class BrowserStackConfig(BrowserConfig):
         """
         desired_capabilities.update(cls.BS_CAPABILITIES)
 
-    # TODO: add browserstack argparse stuff via a class method?
-
     @classmethod
     def update_configurations(cls, **capabilities):
         """Update BrowserStack configurations at runtime

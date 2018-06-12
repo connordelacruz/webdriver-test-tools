@@ -250,8 +250,26 @@
         <span class="sd">&quot;&quot;&quot;Update a desired capabilities dictionary to include items from :attr:`BS_CAPABILITIES`</span>
 
 <span class="sd">        :param desired_capabilities: Desired capabilities dictionary to update</span>
-<span class="sd">        &quot;&quot;&quot;</span></div></div>
+<span class="sd">        &quot;&quot;&quot;</span></div>
         <span class="n">desired_capabilities</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BrowserStackConfig.update_configurations"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.update_configurations">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">update_configurations</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">capabilities</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update BrowserStack configurations at runtime</span>
+
+<span class="sd">        :param **capabilities: Keyword arguments for BrowserStack configurations.</span>
+<span class="sd">            Possible arguments include:</span>
+
+<span class="sd">                - ``build`` (string) - Name for the group of tests</span>
+<span class="sd">                - ``video`` (boolean) - True to enable video recording, False to disable it</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">caps_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;build&#39;</span><span class="p">:</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;video&#39;</span><span class="p">:</span> <span class="s1">&#39;browserstack.video&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">capabilities</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">capabilities</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">caps_map</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">capability</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">capabilities</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></div></div>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">[</span><span class="n">caps_map</span><span class="p">[</span><span class="n">capability</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
 
 </pre></div>
 
