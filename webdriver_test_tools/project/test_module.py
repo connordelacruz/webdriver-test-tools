@@ -47,7 +47,7 @@ def main(tests_module, config_module=None, package_name=None):
         'verbosity': args.verbosity,
     })
     # Handle --browser args
-    browser_config_class = browserstack_config if kwargs['browserstack'] else browser_config
+    browser_config_class = browserstack_config if 'browserstack' in kwargs and kwargs['browserstack'] else browser_config
     kwargs['browser_classes'] = browser_config_class.get_browser_classes(args.browser)
     # Run tests using parsed args
     run_tests(tests_module, config_module, **kwargs)
