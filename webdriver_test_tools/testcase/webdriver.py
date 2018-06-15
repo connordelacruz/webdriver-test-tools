@@ -1,6 +1,8 @@
 """Base test case classes.
 
 
+.. _assertion-methods:
+
 Assertion Methods
 -----------------
 
