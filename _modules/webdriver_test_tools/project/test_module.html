@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 1.5.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 1.6.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.5
+                1.6
               </div>
             
           
@@ -204,7 +204,7 @@
         <span class="s1">&#39;verbosity&#39;</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">,</span>
     <span class="p">})</span>
     <span class="c1"># Handle --browser args</span>
-    <span class="n">browser_config_class</span> <span class="o">=</span> <span class="n">browserstack_config</span> <span class="k">if</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;browserstack&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">browser_config</span>
+    <span class="n">browser_config_class</span> <span class="o">=</span> <span class="n">browserstack_config</span> <span class="k">if</span> <span class="s1">&#39;browserstack&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;browserstack&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">browser_config</span>
     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;browser_classes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">browser_config_class</span><span class="o">.</span><span class="n">get_browser_classes</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">browser</span><span class="p">)</span>
     <span class="c1"># Run tests using parsed args</span></div>
     <span class="n">run_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -518,7 +518,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.5.0-alpha',
+            VERSION:'1.6.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
