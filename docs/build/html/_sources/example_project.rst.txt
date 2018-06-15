@@ -200,8 +200,17 @@ We’re going to add 2 test functions:
     :emphasize-lines: 9-13,15-20
 
 
-**Note:** Test functions need to begin with the prefix ``test_`` in order for
-the python ``unittest`` library to recognize them as tests.
+.. note::
+
+    Test functions need to begin with the prefix ``test_`` in order for
+    the python ``unittest`` library to recognize them as tests.
+
+The method ``WebDriverTestCase.assertUrlChange()`` tests that the current URL
+matches the URL given as a parameter, (waiting a few seconds for the page to
+load before reporting a failure). The ``WebDriverTestCase`` class includes a
+number of additional assertion methods for WebDriver testing. For more
+information, see the :ref:`list of WebDriverTestCase assertion methods
+<assertion-methods>`.
 
 We should now have everything we need to run our test suite. To verify that the
 framework is able to detect the tests, run:
