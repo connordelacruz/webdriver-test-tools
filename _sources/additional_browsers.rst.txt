@@ -181,12 +181,14 @@ To improve performance, tests can be run in `headless browsers`_ using the
 
     python -m <test_package> <args> --headless
 
-**Note:** When using the ``--headless`` argument, tests will only be run with
-the following web drivers that support running in a headless environment:
+.. note::
 
-    * `Chrome <https://developers.google.com/web/updates/2017/04/headless-chrome>`__
-    * Chrome Mobile [Emulated]
-    * `Firefox <https://developer.mozilla.org/en-US/Firefox/Headless_mode>`__
+    When using the ``--headless`` argument, tests will only be run with
+    the following web drivers that support running in a headless environment:
+    
+        * `Chrome <https://developers.google.com/web/updates/2017/04/headless-chrome>`__
+        * Chrome Mobile [Emulated]
+        * `Firefox <https://developer.mozilla.org/en-US/Firefox/Headless_mode>`__
 
 .. _headless browsers: https://en.wikipedia.org/wiki/Headless_browser
 

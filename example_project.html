@@ -464,8 +464,16 @@ step.</p>
 </pre></div>
 </div>
 </div>
-<p><strong>Note:</strong> Test functions need to begin with the prefix <code class="docutils literal notranslate"><span class="pre">test_</span></code> in order for
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Test functions need to begin with the prefix <code class="docutils literal notranslate"><span class="pre">test_</span></code> in order for
 the python <code class="docutils literal notranslate"><span class="pre">unittest</span></code> library to recognize them as tests.</p>
+</div>
+<p>The method <code class="docutils literal notranslate"><span class="pre">WebDriverTestCase.assertUrlChange()</span></code> tests that the current URL
+matches the URL given as a parameter, (waiting a few seconds for the page to
+load before reporting a failure). The <code class="docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code> class includes a
+number of additional assertion methods for WebDriver testing. For more
+information, see the <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#assertion-methods"><span class="std std-ref">list of WebDriverTestCase assertion methods</span></a>.</p>
 <p>We should now have everything we need to run our test suite. To verify that the
 framework is able to detect the tests, run:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --list
