@@ -85,30 +85,27 @@ Drivers
 ~~~~~~~
 
 In order to use Selenium, drivers will need to be installed for any browser
-tests will be run on.
+tests will be run on. Below are currently supported drivers, their default
+enabled/disabled status, and their supported features:
 
-**Cross-Platform**
++----------------------+--------------------+-------------------+---------------+
+| Driver               | Enabled by Default | Headless Browsing | Mobile Layout |
++======================+====================+===================+===============+
+| `Google Chrome`_     | Yes                | Yes               | Yes           |
++----------------------+--------------------+-------------------+---------------+
+| `Firefox`_           | Yes                | Yes               | No            |
++----------------------+--------------------+-------------------+---------------+
+| `Safari`_            | No                 | No                | No            |
++----------------------+--------------------+-------------------+---------------+
+| `Edge`_              | No                 | No                | No            |
++----------------------+--------------------+-------------------+---------------+
+| `Internet Explorer`_ | No                 | No                | No            |
++----------------------+--------------------+-------------------+---------------+
 
-The following cross-platform browser drivers are supported and enabled by
-default:
-
--  `Google Chrome`_
--  `Firefox`_
-
-These can be disabled in ``<test_package>/config/browser.py`` by setting the
-corresponding value in ``BrowserConfig.ENABLED_BROWSERS`` to ``False``. 
-
-
-**Platform-Specific**
-
-The following platform-specific drivers are supported:
-
--  `Safari`_ 
--  `Internet Explorer`_
--  `Edge`_
-
-These need to be enabled in ``<test_package>/config/browser.py`` by setting the
-corresponding value in ``BrowserConfig.ENABLED_BROWSERS`` to ``True``.
+Cross-platform browsers are enabled by default, while platform-specific browsers
+are disabled by default. You can enable or disable drivers in
+``<test_package>/config/browser.py`` by setting the corresponding value in
+``BrowserConfig.ENABLED_BROWSERS`` to ``True`` or ``False``, respectively.
 
 .. _Google Chrome: https://sites.google.com/a/chromium.org/chromedriver/downloads
 .. _Firefox: https://github.com/mozilla/geckodriver/releases
