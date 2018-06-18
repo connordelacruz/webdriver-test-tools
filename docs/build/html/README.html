@@ -258,25 +258,54 @@ found below:</p>
 <div class="section" id="drivers">
 <h4><a class="toc-backref" href="#id8">Drivers</a><a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h4>
 <p>In order to use Selenium, drivers will need to be installed for any browser
-tests will be run on.</p>
-<p><strong>Cross-Platform</strong></p>
-<p>The following cross-platform browser drivers are supported and enabled by
-default:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Google Chrome</a></li>
-<li><a class="reference external" href="https://github.com/mozilla/geckodriver/releases">Firefox</a></li>
-</ul>
-<p>These can be disabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by setting the
-corresponding value in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.ENABLED_BROWSERS</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
-<p><strong>Platform-Specific</strong></p>
-<p>The following platform-specific drivers are supported:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://webkit.org/blog/6900/webdriver-support-in-safari-10/">Safari</a></li>
-<li><a class="reference external" href="https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver">Internet Explorer</a></li>
-<li><a class="reference external" href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/">Edge</a></li>
-</ul>
-<p>These need to be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by setting the
-corresponding value in <code class="docutils literal notranslate"><span class="pre">BrowserConfig.ENABLED_BROWSERS</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+tests will be run on. Below are currently supported drivers, their default
+enabled/disabled status, and their supported features:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="26%" />
+<col width="25%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Driver</th>
+<th class="head">Enabled by Default</th>
+<th class="head">Headless Browsing</th>
+<th class="head">Mobile Layout</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Google Chrome</a></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://github.com/mozilla/geckodriver/releases">Firefox</a></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://webkit.org/blog/6900/webdriver-support-in-safari-10/">Safari</a></td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/">Edge</a></td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver">Internet Explorer</a></td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Cross-platform browsers are enabled by default, while platform-specific browsers
+are disabled by default. You can enable or disable drivers in
+<code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code> by setting the corresponding value in
+<code class="docutils literal notranslate"><span class="pre">BrowserConfig.ENABLED_BROWSERS</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>, respectively.</p>
 <p>The following documentation goes into detail on configuring browsers for
 testing:</p>
 <blockquote>
