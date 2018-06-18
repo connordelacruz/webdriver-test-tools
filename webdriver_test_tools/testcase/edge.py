@@ -8,11 +8,11 @@ class EdgeTestCase(WebDriverTestCase):
 
     `Driver download <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>`_
 
-    .. warning::
+    .. note::
 
-        This class is experimental and has not been fully tested. It is disabled by
-        default but can be enabled in ``<test_package>/config/browser.py`` by
-        setting the corresponding value in :attr:`BrowserConfig.ENABLED_BROWSERS
+        This driver is platform-specific, so it is disabled by default. It can
+        be enabled in ``<test_package>/config/browser.py`` by setting the
+        corresponding value in :attr:`BrowserConfig.ENABLED_BROWSERS
         <webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS>`
         to ``True``.
     """
