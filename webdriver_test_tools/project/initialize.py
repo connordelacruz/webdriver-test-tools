@@ -74,9 +74,7 @@ def create_main_module(target_path, context):
     target_path = os.path.abspath(target_path)
     template_path = templates.package_root.get_path()
     create_file_from_template(template_path, target_path, '__main__.py', context)
-    # "Touch" __init__.py to create an empty file
-    init_path = os.path.join(target_path, '__init__.py')
-    touch(init_path)
+    create_init(target_path)
 
 
 def create_test_directories(target_path):
@@ -90,7 +88,8 @@ def create_test_directories(target_path):
             'pages',
             ]
     for project_dir in project_dirs:
-        create_directory(target_path, project_dir)
+        dir_path = create_directory(target_path, project_dir)
+        create_init(dir_path)
 
 
 def create_output_directories(target_path, gitignore_files=True):
@@ -169,6 +168,17 @@ def touch(filepath):
     :param filepath: Path of the file to touch
     """
     open(filepath, 'a').close()
+
+
+def create_init(target_path):
+    """Create an empty __init__.py file in the target path
+
+    :param target_path: The path to the directory that will contain the new __init__.py
+        file
+    """
+    # "Touch" __init__.py to create an empty file
+    init_path = os.path.join(target_path, '__init__.py')
+    touch(init_path)
 
 
 def create_directory(target_path, directory_name):
