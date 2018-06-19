@@ -392,8 +392,10 @@ inside the project directory:
         │   ├── test.py
         │   └── webdriver.py
         ├── data/
+        │   └── __init__.py
         ├── log/
         ├── pages/
+        │   └── __init__.py
         ├── screenshot/
         ├── templates/
         │   ├── page_object.py
