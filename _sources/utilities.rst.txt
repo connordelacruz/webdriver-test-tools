@@ -1,3 +1,4 @@
+=================
 Testing Utilities
 =================
 
@@ -5,7 +6,7 @@ Testing Utilities
 
 
 Page Object Prototypes
-----------------------
+======================
 
 The ``webdriver_test_tools`` package includes pre-defined subclasses of
 :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>` for common
@@ -18,7 +19,7 @@ prototypes, see the :doc:`full documentation
 
 
 Example
-~~~~~~~
+-------
 
 Suppose we have a "Contact Us" form with form validation that disables the
 submit button until required inputs are filled. When submit is clicked, a modal
@@ -63,7 +64,7 @@ assign ``contact_form_data`` in the above example.
 
 
 Test Data Generation
---------------------
+====================
 
 The ``webdriver_test_tools`` package includes some utility packages for
 generating random user information and placeholder text to use for sample data:
@@ -85,7 +86,7 @@ convenience. To use them, add the following import statement:
 
 
 Example
-~~~~~~~
+-------
 
 Continuing from the above example, we'll add the following method to
 ``ContactTestCase``:
@@ -98,8 +99,33 @@ This method generates random user info and message text and returns a dictionary
 mapping form input names to the corresponding values.
 
 
+Static Test Data
+================
+
+Some tests may require static data for testing (e.g. login info for a registered
+user). These values can be stored in modules inside the ``<test_package>/data/``
+directory to keep them independent of test modules or page objects.
+
+
+Example
+-------
+
+Suppose we have a user registration form that displays an error when registering
+with an email of an existing user. To test this functionality, we'll need to use
+an email that we know is already registered. We can add the following module to
+the ``data/`` directory and import it in our test modules:
+
+.. literalinclude:: ../example/util-example/util_example/data/user.py
+    :caption: data/user.py
+
+We can then import it in our test cases. Since this data is independent of our
+test cases, it can be easily used in other tests (e.g. testing a sign in page).
+Additionally, if the registered user email changes at any point, it can be
+updated in a single place without altering the tests.
+
+
 Screenshots
------------
+===========
 
 The :meth:`WebDriverTestCase.screenshotOnFail()
 <webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail>`
