@@ -19,10 +19,11 @@ def load_project_tests(tests_module, test_module_names=None, test_class_names=No
     :return: A list of test classes from all test modules
     """
     test_list = []
-    tests_module_attributes = dir(tests_module)
+    tests_module_attributes = [
+        attr for attr in dir(tests_module) if attr != 'pkgutil'
+    ]
     if test_module_names is not None:
         tests_module_attributes = [name for name in tests_module_attributes if name in test_module_names]
-    # TODO: skip pkgutil
     for name in tests_module_attributes:
         obj = getattr(tests_module, name)
         if isinstance(obj, types.ModuleType):
