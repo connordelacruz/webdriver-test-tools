@@ -276,9 +276,6 @@ Test case modules. These use page objects to interact with elements and assert
 that the expected behavior occurs. A template test file can be found in
 ``templates/test_case.py``.
 
-When adding new test files, be sure to update ``tests/__init__.py`` to include
-the new module so the framework can detect the new test cases.
-
 templates/
 ~~~~~~~~~~
 

@@ -167,13 +167,6 @@ and name the copied file ``homepage.py``:
 
     cp example_package/templates/test_case.py example_package/tests/homepage.py
 
-Whenever a new test module is created, it needs to be imported in
-``tests/__init__.py`` so the framework can detect it when loading tests.
-
-.. literalinclude:: ../example/example-project/example_package/tests/__init__.py
-    :caption: tests/__init__.py:
-    :emphasize-lines: 2
-
 
 In ``tests/homepage.py``, rename the ``TemplateTestCase`` class to
 ``HomePageTestCase``. Then import the ``HomePage`` class created in the previous
@@ -183,6 +176,12 @@ step.
     :caption: tests/homepage.py:
     :lines: 1-12
     :emphasize-lines: 1,11-12
+
+.. note::
+
+    As of ``webdriver_test_tools`` version 1.7, the ``tests`` subpackage
+    automatically detects new test modules. For test projects created prior to
+    1.7, new test modules need to be imported manually in ``tests/__init__.py``.
 
 
 Adding test functions

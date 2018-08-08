@@ -176,7 +176,9 @@
 <span class="sd">    :return: A list of test classes from all test modules</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">test_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">tests_module_attributes</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="n">tests_module</span><span class="p">)</span>
+    <span class="n">tests_module_attributes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">tests_module</span><span class="p">)</span> <span class="k">if</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s1">&#39;pkgutil&#39;</span>
+    <span class="p">]</span>
     <span class="k">if</span> <span class="n">test_module_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">tests_module_attributes</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tests_module_attributes</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">test_module_names</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tests_module_attributes</span><span class="p">:</span>
