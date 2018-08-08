@@ -22,6 +22,7 @@ def load_project_tests(tests_module, test_module_names=None, test_class_names=No
     tests_module_attributes = dir(tests_module)
     if test_module_names is not None:
         tests_module_attributes = [name for name in tests_module_attributes if name in test_module_names]
+    # TODO: skip pkgutil
     for name in tests_module_attributes:
         obj = getattr(tests_module, name)
         if isinstance(obj, types.ModuleType):
