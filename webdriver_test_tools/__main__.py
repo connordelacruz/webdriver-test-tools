@@ -11,6 +11,7 @@ def get_parser():
     """Returns ``ArgumentParser`` object for use with :func:`main()`"""
     parser = argparse.ArgumentParser(
         add_help=False,
+        description='Aliases: webdriver_test_tools, wtt',
         epilog='For more information, visit <{}>'.format(__documentation__)
     )
     group = parser.add_argument_group('Commands')

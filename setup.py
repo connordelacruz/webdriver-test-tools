@@ -45,7 +45,10 @@ install_requires = [
 ]
 
 entry_points = {
-    'console_scripts': ['webdriver_test_tools = webdriver_test_tools.__main__:main']
+    'console_scripts': [
+        'webdriver_test_tools = webdriver_test_tools.__main__:main',
+        'wtt = webdriver_test_tools.__main__:main',
+    ]
 }
 
 # Metadata
