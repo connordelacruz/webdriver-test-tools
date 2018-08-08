@@ -144,7 +144,7 @@ suite, change into the desired directory and run:
 
 ::
 
-    webdriver_test_tools --init
+    wtt --init
 
 This will generate a new test package with template files and project
 directories.
@@ -168,19 +168,21 @@ For info on command line arguments:
 
 ::
 
-    webdriver_test_tools --help
+    wtt --help
 
 To initialize a new test project in the current directory:
 
 ::
 
-    webdriver_test_tools --init
+    wtt --init
 
 To print the version number:
 
 ::
 
-    webdriver_test_tools --version
+    wtt --version
+
+**Note:** ``wtt`` and ``webdriver_test_tools`` can be used interchangeably.
 
 
 Contributing
