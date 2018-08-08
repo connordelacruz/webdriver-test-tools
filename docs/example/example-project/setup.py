@@ -7,6 +7,6 @@ setup(
         version='0.1.0',
         packages=find_packages(),
         install_requires=[
-            'webdriver-test-tools>=0.27.0',
+            'webdriver-test-tools>=1.7.0',
             'selenium>=3.11.0',
             ])
