@@ -24,6 +24,7 @@ def main(tests_module, config_module=None, package_name=None):
     # Older projects may not have the BrowserStackConfig class
     browserstack_config = config_module.BrowserStackConfig if 'BrowserStackConfig' in dir(config_module) else config.BrowserStackConfig
     # Parse arguments
+    # TODO: Check what command is being called and handle appropriately
     args = get_parser(browser_config, browserstack_config, package_name).parse_args()
     # get --test, --skip, and --module args
     kwargs = {
@@ -69,19 +70,23 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
 
     :return: ``ArgumentParser`` for the test package
     """
-    description = 'Run the test suite.'
+    # Shared epilog
     epilog = 'For more information, visit <{}>'.format(__documentation__)
-    parser = argparse.ArgumentParser(
-        formatter_class=argparse.RawTextHelpFormatter, add_help=False,
-        prog=package_name, description=description, epilog=epilog
-    )
-    # Use default config if module is None or doesn't contain BrowserConfig class
-    if browser_config is None:
-        browser_config = config.BrowserConfig
-    if browserstack_config is None:
-        browserstack_config = config.BrowserStackConfig
+    # Args for adding generic help command
+    help_args = ['-h', '--help',]
+    help_kwargs = {
+        'action': 'help',
+        'help': 'Show this help message and exit',
+    }
+    # Parent parsers
+    # Adds custom --help argument
+    generic_parent_parser = argparse.ArgumentParser(add_help=False)
+    group = generic_parent_parser.add_argument_group('General')
+    group.add_argument(*help_args, **help_kwargs)
+    # Adds --module, --test, and --skip arguments
+    test_parent_parser = argparse.ArgumentParser(add_help=False, parents=[generic_parent_parser])
     # Arguments for specifying what test to run
-    group = parser.add_argument_group('Test Arguments')
+    group = test_parent_parser.add_argument_group('Test Arguments')
     module_help = 'Run only tests in specific test modules'
     group.add_argument('-m', '--module', nargs='+', metavar='<module>', help=module_help)
     test_help = textwrap.dedent('''\
@@ -94,8 +99,34 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
                 Arguments should be in the format <TestCase>[.<method>]
                 ''')
     group.add_argument('-s', '--skip', nargs='+', metavar='<test>', help=skip_help)
+
+    # Top level parser
+    parser = argparse.ArgumentParser(
+        parents=[generic_parent_parser],
+        formatter_class=argparse.RawTextHelpFormatter,
+        add_help=False, prog=package_name, epilog=epilog
+    )
+    # Use default config if module is None or doesn't contain BrowserConfig class
+    if browser_config is None:
+        browser_config = config.BrowserConfig
+    if browserstack_config is None:
+        browserstack_config = config.BrowserStackConfig
+
+    # TODO: Run <command> -h for details
+    subcommand_help = 'Sub-command help'
+    subparsers = parser.add_subparsers(help=subcommand_help)
+
+    # Run command
+    run_description = 'Run the test suite.'
+    run_help = run_description
+    run_parser = subparsers.add_parser(
+        'run', description=run_description, help=run_help,
+        parents=[test_parent_parser],
+        formatter_class=argparse.RawTextHelpFormatter,
+        add_help=False, prog=package_name, epilog=epilog
+    )
     # Arguments for specifying browser to use
-    group = parser.add_argument_group('Browser Arguments')
+    group = run_parser.add_argument_group('Browser Arguments')
     if browserstack_config.ENABLE:
         browser_choices = list(set(browser_config.get_browser_names()) | set(browserstack_config.get_browser_names()))
     else:
@@ -109,7 +140,7 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     group.add_argument('-H', '--headless', action='store_true', help=headless_help)
     # BrowserStack arguments
     if browserstack_config.ENABLE:
-        group = parser.add_argument_group('BrowserStack')
+        group = run_parser.add_argument_group('BrowserStack')
         browserstack_help = 'Run tests on BrowserStack instead of locally'
         group.add_argument('-B', '--browserstack', action='store_true', help=browserstack_help)
         # Build name
@@ -123,9 +154,9 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
         # Set default to the value configured in browserstack_config (or True if not configured)
         # TODO: move to BrowserStackConfig class method?
         video_default = True if 'browserstack.video' not in browserstack_config.BS_CAPABILITIES else browserstack_config.BS_CAPABILITIES['browserstack.video']
-        parser.set_defaults(video=video_default)
+        run_parser.set_defaults(video=video_default)
     # Output arguments
-    group = parser.add_argument_group('Output Options')
+    group = run_parser.add_argument_group('Output Options')
     verbosity_help = textwrap.dedent('''\
                              0 - Final results only
                              1 - Final results and progress indicator
@@ -133,12 +164,17 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
                              ''')
     group.add_argument('-v', '--verbosity', type=int, choices=[0, 1, 2],
                        metavar='<level>', help=verbosity_help)
-    # Command arguments
-    group = parser.add_argument_group('Commands')
-    help_help = 'Show this help message and exit'
-    group.add_argument('-h', '--help', action='help', help=help_help)
-    list_help = 'Print a list of available tests and exit'
-    group.add_argument('-l', '--list', action='store_true', help=list_help)
+
+    # List command
+    list_description = 'Print a list of available tests and exit'
+    list_help = list_description
+    list_parser = subparsers.add_parser(
+        'list', description=list_description, help=list_help,
+        parents=[test_parent_parser],
+        formatter_class=argparse.RawTextHelpFormatter,
+        add_help=False, prog=package_name, epilog=epilog
+    )
+
     return parser
 
 
