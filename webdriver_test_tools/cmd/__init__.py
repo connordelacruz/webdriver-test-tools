@@ -9,5 +9,6 @@ This module imports * from :mod:`webdriver_test_tools.cmd.cmd`.
 
 """
 from .cmd import *
+from . import argparse
 
 

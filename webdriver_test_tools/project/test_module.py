@@ -18,43 +18,19 @@ def main(tests_module, config_module=None, package_name=None):
         Will use :mod:`webdriver_test_tools.config` if not specified
     :param package_name: (Optional) The name of the package (i.e. ``__package__``)
     """
-    if config_module is None:
-        config_module = config
-    browser_config = config_module.BrowserConfig
-    # Older projects may not have the BrowserStackConfig class
-    browserstack_config = config_module.BrowserStackConfig if 'BrowserStackConfig' in dir(config_module) else config.BrowserStackConfig
     # Parse arguments
-    # TODO: Check what command is being called and handle appropriately
-    args = get_parser(browser_config, browserstack_config, package_name).parse_args()
-    # get --test, --skip, and --module args
-    kwargs = {
-        'test_class_map': parse_test_names(args.test),
-        'skip_class_map': parse_test_names(args.skip),
-        'test_module_names': args.module,
-    }
-    # If --list is specified, print available tests and exit
-    if args.list:
-        list_tests(tests_module, **kwargs)
-        exit()
-    # Parse browserstack args
-    if 'browserstack' in dir(args):
-        kwargs['browserstack'] = args.browserstack
-        # Update browserstack_config attributes based on CLI overrides
-        if args.browserstack:
-            browserstack_config.update_configurations(build=args.build, video=args.video)
-    # Parse --headless and --verbosity args
-    kwargs.update({
-        'headless': args.headless,
-        'verbosity': args.verbosity,
-    })
-    # Handle --browser args
-    browser_config_class = browserstack_config if 'browserstack' in kwargs and kwargs['browserstack'] else browser_config
-    kwargs['browser_classes'] = browser_config_class.get_browser_classes(args.browser)
-    # Run tests using parsed args
-    run_tests(tests_module, config_module, **kwargs)
+    # TODO: figure out how to handle optional args when no command is specified
+    args = get_parser(config_module, package_name).parse_args()
+    if args.command == 'list':
+        parse_list_args(tests_module, args)
+    elif args.command == 'run' or args.command is None:
+        parse_run_args(tests_module, config_module, args)
+    else:
+        parser.print_help()
 
 
-def get_parser(browser_config=None, browserstack_config=None, package_name=None):
+# TODO: update params
+def get_parser(config_module=None, package_name=None):
     """Returns the ``ArgumentParser`` object for use with ``main()``
 
     :param browser_config: (Optional) ``BrowserConfig`` class for the project. Defaults to
@@ -80,11 +56,11 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     }
     # Parent parsers
     # Adds custom --help argument
-    generic_parent_parser = argparse.ArgumentParser(add_help=False)
+    generic_parent_parser = cmd.argparse.ArgumentParser(add_help=False)
     group = generic_parent_parser.add_argument_group('General')
     group.add_argument(*help_args, **help_kwargs)
     # Adds --module, --test, and --skip arguments
-    test_parent_parser = argparse.ArgumentParser(add_help=False, parents=[generic_parent_parser])
+    test_parent_parser = cmd.argparse.ArgumentParser(add_help=False, parents=[generic_parent_parser])
     # Arguments for specifying what test to run
     group = test_parent_parser.add_argument_group('Test Arguments')
     module_help = 'Run only tests in specific test modules'
@@ -101,20 +77,17 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
     group.add_argument('-s', '--skip', nargs='+', metavar='<test>', help=skip_help)
 
     # Top level parser
-    parser = argparse.ArgumentParser(
+    parser = cmd.argparse.ArgumentParser(
         parents=[generic_parent_parser],
         formatter_class=argparse.RawTextHelpFormatter,
         add_help=False, prog=package_name, epilog=epilog
     )
-    # Use default config if module is None or doesn't contain BrowserConfig class
-    if browser_config is None:
-        browser_config = config.BrowserConfig
-    if browserstack_config is None:
-        browserstack_config = config.BrowserStackConfig
+    # Get browser config classes
+    browser_config, browserstack_config = get_browser_config_classes(config_module)
 
     # TODO: Run <command> -h for details
     subcommand_help = 'Sub-command help'
-    subparsers = parser.add_subparsers(help=subcommand_help)
+    subparsers = parser.add_subparsers(help=subcommand_help, dest='command')
 
     # Run command
     run_description = 'Run the test suite.'
@@ -174,6 +147,9 @@ def get_parser(browser_config=None, browserstack_config=None, package_name=None)
         formatter_class=argparse.RawTextHelpFormatter,
         add_help=False, prog=package_name, epilog=epilog
     )
+
+    # Set run as the default command parser
+    parser.set_default_subparser('run')
 
     return parser
 
@@ -269,6 +245,57 @@ def parse_test_names(test_name_args):
         if len(test_name_parts) > 1:
             class_map[test_name_parts[0]].append(test_name_parts[1])
     return class_map
+
+
+def parse_test_args(args):
+    # TODO: doc
+    # get --test, --skip, and --module args
+    return {
+        'test_class_map': parse_test_names(args.test),
+        'skip_class_map': parse_test_names(args.skip),
+        'test_module_names': args.module,
+    }
+
+
+def parse_list_args(tests_module, args):
+    # TODO: doc
+    kwargs = parse_test_args(args)
+    list_tests(tests_module, **kwargs)
+
+
+def parse_run_args(tests_module, config_module, args):
+    # TODO: doc
+    kwargs = parse_test_args(args)
+    # Get browser config classes
+    browser_config, browserstack_config = get_browser_config_classes(config_module)
+    # Parse browserstack args
+    if 'browserstack' in dir(args):
+        kwargs['browserstack'] = args.browserstack
+        # Update browserstack_config attributes based on CLI overrides
+        if args.browserstack:
+            browserstack_config.update_configurations(build=args.build, video=args.video)
+    # Parse --headless and --verbosity args
+    kwargs.update({
+        'headless': args.headless,
+        'verbosity': args.verbosity,
+    })
+    # Handle --browser args
+    browser_config_class = browserstack_config if 'browserstack' in kwargs and kwargs['browserstack'] else browser_config
+    kwargs['browser_classes'] = browser_config_class.get_browser_classes(args.browser)
+    # Run tests using parsed args
+    run_tests(tests_module, config_module, **kwargs)
+
+
+def get_browser_config_classes(config_module):
+    # TODO: doc
+    if config_module is None:
+        config_module = config
+    # TODO: set config_module.<Class> instead so this only needs to be called once?
+    # All projects should have a BrowserConfig class, but just in case
+    browser_config = config_module.BrowserConfig if 'BrowserConfig' in dir(config_module) else config.BrowserConfig
+    # Older projects may not have the BrowserStackConfig class
+    browserstack_config = config_module.BrowserStackConfig if 'BrowserStackConfig' in dir(config_module) else config.BrowserStackConfig
+    return browser_config, browserstack_config
 
 
 def list_tests(tests_module,
