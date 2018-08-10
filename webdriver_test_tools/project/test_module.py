@@ -29,18 +29,11 @@ def main(tests_module, config_module=None, package_name=None):
         parser.print_help()
 
 
-# TODO: update params
 def get_parser(config_module=None, package_name=None):
     """Returns the ``ArgumentParser`` object for use with ``main()``
 
-    :param browser_config: (Optional) ``BrowserConfig`` class for the project. Defaults to
-        :class:`webdriver_test_tools.config.BrowserConfig
-        <webdriver_test_tools.config.browser.BrowserConfig>`
-        if unspecified
-    :param browserstack_config: (Optional) ``BrowserStackConfig`` class for the project.
-        Defaults to
-        :class:`webdriver_test_tools.config.BrowserStackConfig
-        <webdriver_test_tools.config.browser.BrowserStackConfig>`
+    :param config_module: (Optional) The module object for ``<test_project>.config``.
+        Will use :mod:`webdriver_test_tools.config` if not specified
         if unspecified
     :param package_name: (Optional) The name of the package (i.e. ``__package__``)
 
@@ -226,6 +219,8 @@ def _browser_list_string(browser_names):
     return '{{{}}}'.format(','.join(browser_names))
 
 
+# Command line argument parsing functions
+
 def parse_test_names(test_name_args):
     """Returns a dictionary mapping test case names to a list of test functions
 
@@ -248,7 +243,13 @@ def parse_test_names(test_name_args):
 
 
 def parse_test_args(args):
-    # TODO: doc
+    """Parse optional arguments for specifying/skipping tests and modules
+
+    :param args: The namespace returned by parser.parse_args()
+
+    :return: A dictionary mapping 'test_class_map', 'skip_class_map', and
+        'test_module_names' to the arguments passed via the command line
+    """
     # get --test, --skip, and --module args
     return {
         'test_class_map': parse_test_names(args.test),
@@ -258,13 +259,23 @@ def parse_test_args(args):
 
 
 def parse_list_args(tests_module, args):
-    # TODO: doc
+    """Parse arguments and run the 'list' command
+
+    :param tests_module: The module object for ``<test_project>.tests``
+    :param args: The namespace returned by parser.parse_args()
+    """
     kwargs = parse_test_args(args)
     list_tests(tests_module, **kwargs)
 
 
 def parse_run_args(tests_module, config_module, args):
-    # TODO: doc
+    """Parse arguments and run the 'run' command
+
+
+    :param tests_module: The module object for ``<test_project>.tests``
+    :param config_module: The module object for ``<test_project>.config``
+    :param args: The namespace returned by parser.parse_args()
+    """
     kwargs = parse_test_args(args)
     # Get browser config classes
     browser_config, browserstack_config = get_browser_config_classes(config_module)
@@ -287,7 +298,21 @@ def parse_run_args(tests_module, config_module, args):
 
 
 def get_browser_config_classes(config_module):
-    # TODO: doc
+    """Get the ``BrowserConfig`` and ``BrowserStackConfig`` classes from a project.
+
+    :param config_module: The module object for ``<test_project>.config``
+
+    :return: Tuple containing:
+
+        - ``config_module.BrowserConfig`` (or
+          :class:`webdriver_test_tools.config.BrowserConfig
+          <webdriver_test_tools.config.browser.BrowserConfig>` if not present in
+          ``config_module``)
+        - ``config_module.BrowserStackConfig`` (or
+          :class:`webdriver_test_tools.config.BrowserStackConfig
+          <webdriver_test_tools.config.browser.BrowserStackConfig>` if not
+          present in ``config_module``)
+    """
     if config_module is None:
         config_module = config
     # TODO: set config_module.<Class> instead so this only needs to be called once?
@@ -297,6 +322,8 @@ def get_browser_config_classes(config_module):
     browserstack_config = config_module.BrowserStackConfig if 'BrowserStackConfig' in dir(config_module) else config.BrowserStackConfig
     return browser_config, browserstack_config
 
+
+# Sub-command functions
 
 def list_tests(tests_module,
                test_module_names=None, test_class_map=None, skip_class_map=None):
