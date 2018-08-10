@@ -5,7 +5,7 @@ import unittest
 import textwrap
 
 from webdriver_test_tools import cmd, config
-from webdriver_test_tools.__about__ import __documentation__
+from webdriver_test_tools.__about__ import __documentation__ # TODO: remove, use cmd.argparse module instead
 from webdriver_test_tools.testcase import Browsers
 from webdriver_test_tools.project import test_loader, test_factory
 
@@ -22,7 +22,7 @@ def main(tests_module, config_module=None, package_name=None):
     # TODO: figure out how to handle optional args when no command is specified
     parser = get_parser(config_module, package_name)
     # Set run as the default command parser
-    parser.set_default_subparser('run', positional_args=1)
+    parser.set_default_subparser('run')
     args = parser.parse_args()
     if args.command == 'list':
         parse_list_args(tests_module, args)

@@ -9,11 +9,13 @@ from webdriver_test_tools.__about__ import __documentation__
 class ArgumentParser(argparse.ArgumentParser):
     """Extended ArgumentParser class with support for default subparser"""
 
-    # TODO: use command as first arg after module
-    def set_default_subparser(self, name, args=None, positional_args=0):
+    def set_default_subparser(self, name, subcommand_arg_position=1):
         """default subparser selection. Call after setup, just before parse_args()
-        :name: is the name of the subparser to call by default
-        :args: (Default: None) If set is the argument list handed to parse_args()
+
+        :param name: is the name of the subparser to call by default
+        :param subcommand_arg_position: (Default: 1) The position where
+            subcommand arguments should be. 0 is the name of the module being
+            run, so should be > 0
 
         Based on: https://stackoverflow.com/a/26379693
         """
@@ -29,19 +31,8 @@ class ArgumentParser(argparse.ArgumentParser):
                     if sp_name in sys.argv[1:]:
                         subparser_found = True
             if not subparser_found:
-                # insert default in last position before global positional
-                # arguments, this implies no global options are specified after
-                # first positional argument
-                if args is None:
-                    # TODO: debug
-                    # print('BEFORE:')
-                    # print(sys.argv)
-                    sys.argv.insert(len(sys.argv) - positional_args, name)
-                    # TODO: debug
-                    # print('\nAFTER:')
-                    # print(sys.argv)
-                else:
-                    args.insert(len(args) - positional_args, name)
+                # insert default in position specified by subcommand_arg_position
+                sys.argv.insert(subcommand_arg_position, name)
 
 
 # Common argparse items
