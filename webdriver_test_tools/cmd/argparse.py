@@ -1,3 +1,4 @@
+"""Extended ArgumentParser class and common argparse utilities"""
 import argparse
 import sys
 
