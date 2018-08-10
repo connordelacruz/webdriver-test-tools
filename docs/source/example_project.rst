@@ -23,7 +23,7 @@ project:
 
 .. code-block:: none
 
-    wtt --init
+    wtt init
 
 You will be prompted to enter a name for the test project python package. To be
 a valid package name, it needs to only use alphanumeric characters and

@@ -145,7 +145,7 @@ suite, change into the desired directory and run:
 
 ::
 
-    wtt --init
+    wtt init
 
 This will generate a new test package with template files and project
 directories.
@@ -165,17 +165,17 @@ The following documentation goes into detail on test projects:
 Command Line Usage
 ==================
 
+To initialize a new test project in the current directory:
+
+::
+
+    wtt init
+
 For info on command line arguments:
 
 ::
 
     wtt --help
-
-To initialize a new test project in the current directory:
-
-::
-
-    wtt --init
 
 To print the version number:
 
@@ -214,7 +214,7 @@ run:
 
 ::
 
-    wtt --init
+    wtt init
 
 This will generate a new test package with template files and project
 directories.
@@ -375,7 +375,7 @@ To only list specific test classes:
 Project Structure
 =================
 
-``wtt --init`` will create the following files and directories
+``wtt init`` will create the following files and directories
 inside the project directory:
 
 ::
