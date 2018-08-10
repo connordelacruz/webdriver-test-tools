@@ -3,29 +3,33 @@
 
 import argparse
 
+from webdriver_test_tools import cmd
 from webdriver_test_tools.__about__ import __version__, __documentation__
 from webdriver_test_tools.project import initialize
 
 
 def get_parser():
     """Returns ``ArgumentParser`` object for use with :func:`main()`"""
+    generic_parent_parser = cmd.argparse.get_generic_parent_parser(include_version=True)
+    wtt_description = 'Aliases: webdriver_test_tools, wtt'
     parser = argparse.ArgumentParser(
-        add_help=False,
-        description='Aliases: webdriver_test_tools, wtt',
-        epilog='For more information, visit <{}>'.format(__documentation__)
+        description=wtt_description, epilog=cmd.argparse.ARGPARSE_EPILOG,
+        parents=[generic_parent_parser], add_help=False
     )
-    group = parser.add_argument_group('Commands')
-    # Argument for initializing
-    # TODO: make init subparser and add options for project name and stuff
-    group.add_argument('-i', '--init', action='store_true',
-                       help='Initialize a new test project in the current directory')
-    group = parser.add_argument_group('General')
-    # Help message
-    group.add_argument('-h', '--help', action='help',
-                       help='Show this help message and exit')
-    # Print version number
-    group.add_argument('-V', '--version', action='store_true',
-                       help='Show version number and exit')
+    subparsers = parser.add_subparsers(
+        title='Commands', dest='command', metavar='<command>'
+    )
+    # init command
+    init_description = 'Initialize a new test project in the current directory'
+    init_help = init_description
+    init_parser = subparsers.add_parser(
+        'init', description=init_description, help=init_help,
+        epilog=cmd.argparse.ARGPARSE_EPILOG,
+        parents=[generic_parent_parser], add_help=False,
+    )
+    # TODO: add init_parser arguments for the stuff used in init prompt
+    # TODO: Legacy --init flag (hidden from help output)
+    # parser.add_argument('-i', '--init', action='store_true', help=argparse.SUPPRESS)
     return parser
 
 
@@ -36,7 +40,7 @@ def main():
     if args.version is not None and args.version:
         print('webdriver_test_tools ' + __version__)
         return
-    if args.init:
+    if args.command == 'init':
         initialize.main()
     # If no arguments were specified, print help
     else:
