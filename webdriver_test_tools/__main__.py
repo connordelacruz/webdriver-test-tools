@@ -16,6 +16,7 @@ def get_parser():
     )
     group = parser.add_argument_group('Commands')
     # Argument for initializing
+    # TODO: make init subparser and add options for project name and stuff
     group.add_argument('-i', '--init', action='store_true',
                        help='Initialize a new test project in the current directory')
     group = parser.add_argument_group('General')

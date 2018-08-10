@@ -20,7 +20,10 @@ def main(tests_module, config_module=None, package_name=None):
     """
     # Parse arguments
     # TODO: figure out how to handle optional args when no command is specified
-    args = get_parser(config_module, package_name).parse_args()
+    parser = get_parser(config_module, package_name)
+    # Set run as the default command parser
+    parser.set_default_subparser('run', positional_args=1)
+    args = parser.parse_args()
     if args.command == 'list':
         parse_list_args(tests_module, args)
     elif args.command == 'run' or args.command is None:
@@ -28,6 +31,8 @@ def main(tests_module, config_module=None, package_name=None):
     else:
         parser.print_help()
 
+
+# Argument parser
 
 def get_parser(config_module=None, package_name=None):
     """Returns the ``ArgumentParser`` object for use with ``main()``
@@ -39,41 +44,17 @@ def get_parser(config_module=None, package_name=None):
 
     :return: ``ArgumentParser`` for the test package
     """
-    # Shared epilog
-    epilog = 'For more information, visit <{}>'.format(__documentation__)
-    # Args for adding generic help command
-    help_args = ['-h', '--help',]
-    help_kwargs = {
-        'action': 'help',
-        'help': 'Show this help message and exit',
-    }
     # Parent parsers
     # Adds custom --help argument
-    generic_parent_parser = cmd.argparse.ArgumentParser(add_help=False)
-    group = generic_parent_parser.add_argument_group('General')
-    group.add_argument(*help_args, **help_kwargs)
+    generic_parent_parser = cmd.argparse.get_generic_parent_parser()
     # Adds --module, --test, and --skip arguments
-    test_parent_parser = cmd.argparse.ArgumentParser(add_help=False, parents=[generic_parent_parser])
-    # Arguments for specifying what test to run
-    group = test_parent_parser.add_argument_group('Test Arguments')
-    module_help = 'Run only tests in specific test modules'
-    group.add_argument('-m', '--module', nargs='+', metavar='<module>', help=module_help)
-    test_help = textwrap.dedent('''\
-                Run specific test case classes or test methods.
-                Arguments should be in the format <TestCase>[.<method>]
-                ''')
-    group.add_argument('-t', '--test', nargs='+', metavar='<test>', help=test_help)
-    skip_help = textwrap.dedent('''\
-                Skip specific test case classes or test methods.
-                Arguments should be in the format <TestCase>[.<method>]
-                ''')
-    group.add_argument('-s', '--skip', nargs='+', metavar='<test>', help=skip_help)
+    test_parent_parser = get_test_parent_parser(parents=[generic_parent_parser])
 
     # Top level parser
     parser = cmd.argparse.ArgumentParser(
         parents=[generic_parent_parser],
         formatter_class=argparse.RawTextHelpFormatter,
-        add_help=False, prog=package_name, epilog=epilog
+        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # Get browser config classes
     browser_config, browserstack_config = get_browser_config_classes(config_module)
@@ -89,7 +70,7 @@ def get_parser(config_module=None, package_name=None):
         'run', description=run_description, help=run_help,
         parents=[test_parent_parser],
         formatter_class=argparse.RawTextHelpFormatter,
-        add_help=False, prog=package_name, epilog=epilog
+        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # Arguments for specifying browser to use
     group = run_parser.add_argument_group('Browser Arguments')
@@ -138,14 +119,43 @@ def get_parser(config_module=None, package_name=None):
         'list', description=list_description, help=list_help,
         parents=[test_parent_parser],
         formatter_class=argparse.RawTextHelpFormatter,
-        add_help=False, prog=package_name, epilog=epilog
+        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
-
-    # Set run as the default command parser
-    parser.set_default_subparser('run')
 
     return parser
 
+
+def get_test_parent_parser(parents=[]):
+    """Returns an :class:`ArgumentParser
+    <webdriver_test_tools.cmd.argparse.ArgumentParser>` with ``--test``,
+    ``--skip``, and ``--module`` arguments
+
+    :param parents: (Optional) List of ``ArgumentParser`` objects to use as
+        parents for the test argument parser
+
+    :return: :class:`ArgumentParser
+        <webdriver_test_tools.cmd.argparse.ArgumentParser>` with ``--test``,
+        ``--skip``, and ``--module`` arguments
+    """
+    # Adds --module, --test, and --skip arguments
+    test_parent_parser = cmd.argparse.ArgumentParser(add_help=False, parents=parents)
+    # Arguments for specifying what test to run
+    group = test_parent_parser.add_argument_group('Test Arguments')
+    module_help = 'Run only tests in specific test modules'
+    group.add_argument('-m', '--module', nargs='+', metavar='<module>', help=module_help)
+    test_help = textwrap.dedent('''\
+                Run specific test case classes or test methods.
+                Arguments should be in the format <TestCase>[.<method>]
+                ''')
+    group.add_argument('-t', '--test', nargs='+', metavar='<test>', help=test_help)
+    skip_help = textwrap.dedent('''\
+                Skip specific test case classes or test methods.
+                Arguments should be in the format <TestCase>[.<method>]
+                ''')
+    group.add_argument('-s', '--skip', nargs='+', metavar='<test>', help=skip_help)
+    return test_parent_parser
+
+# Help text output functions
 
 def _format_browser_choices(browser_config, browserstack_config):
     """Format the help string for browser choices
@@ -345,9 +355,10 @@ def list_tests(tests_module,
             print(textwrap.indent(test_case, cmd.INDENT))
 
 
-def run_tests(tests_module, config_module, browser_classes=None,
-              test_class_map=None, skip_class_map=None, test_module_names=None,
-              browserstack=False, headless=False, verbosity=None):
+def run_tests(tests_module, config_module,
+              browser_classes=None, test_class_map=None, skip_class_map=None,
+              test_module_names=None, browserstack=False, headless=False,
+              verbosity=None):
     """Run tests using parsed args and project modules
 
     :param tests_module: The module object for ``<test_project>.tests``
@@ -385,6 +396,8 @@ def run_tests(tests_module, config_module, browser_classes=None,
         print('', 'See BrowserStack Automation Dashboard for Detailed Results:',
               'https://automate.browserstack.com', sep='\n')
 
+
+# Test loading functions
 
 def _load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
     """Return a list of test classes from a project based on the --module, --test, and --skip arguments
