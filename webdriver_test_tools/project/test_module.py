@@ -5,7 +5,6 @@ import unittest
 import textwrap
 
 from webdriver_test_tools import cmd, config
-from webdriver_test_tools.__about__ import __documentation__ # TODO: remove, use cmd.argparse module instead
 from webdriver_test_tools.testcase import Browsers
 from webdriver_test_tools.project import test_loader, test_factory
 
@@ -19,7 +18,6 @@ def main(tests_module, config_module=None, package_name=None):
     :param package_name: (Optional) The name of the package (i.e. ``__package__``)
     """
     # Parse arguments
-    # TODO: figure out how to handle optional args when no command is specified
     parser = get_parser(config_module, package_name)
     # Set run as the default command parser
     parser.set_default_subparser('run')
@@ -44,6 +42,8 @@ def get_parser(config_module=None, package_name=None):
 
     :return: ``ArgumentParser`` for the test package
     """
+    if package_name is None:
+        package_name = '<test_package>'
     # Parent parsers
     # Adds custom --help argument
     generic_parent_parser = cmd.argparse.get_generic_parent_parser()
@@ -59,12 +59,14 @@ def get_parser(config_module=None, package_name=None):
     # Get browser config classes
     browser_config, browserstack_config = get_browser_config_classes(config_module)
 
-    # TODO: Run <command> -h for details
-    subcommand_help = 'Sub-command help'
-    subparsers = parser.add_subparsers(help=subcommand_help, dest='command')
+    # Subparsers
+    command_desc = 'Run \'{} <command> --help\' for details'.format(package_name)
+    subparsers = parser.add_subparsers(
+        title='Commands', description=command_desc, dest='command'
+    )
 
     # Run command
-    run_description = 'Run the test suite.'
+    run_description = 'Run the test suite'
     run_help = run_description
     run_parser = subparsers.add_parser(
         'run', description=run_description, help=run_help,
