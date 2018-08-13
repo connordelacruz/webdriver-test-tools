@@ -143,23 +143,6 @@ def create_config_files(target_path, context):
         create_file_from_template(template_path, target_path, template_file, context)
 
 
-# TODO: remove
-def create_template_files(target_path, context):
-    """Creates test package template directory and template files
-
-    :param target_path: The path to the test package directory
-    :param context: Jinja context used to render template
-    """
-    target_path = create_directory(os.path.abspath(target_path), 'templates')
-    template_path = templates.templates.get_path()
-    template_files = [
-        'page_object.py',
-        'test_case.py',
-    ]
-    for template_file in template_files:
-        create_file_from_template(template_path, target_path, template_file, context)
-
-
 # Helper functions
 
 def create_init(target_path):
@@ -248,7 +231,6 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
     create_output_directories(package_path, gitignore_files)
     create_tests_init(package_path, context)
     create_config_files(package_path, context)
-    create_template_files(package_path, context)
 
 
 def main():
