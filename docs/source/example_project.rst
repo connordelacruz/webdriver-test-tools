@@ -216,7 +216,7 @@ framework is able to detect the tests, run:
 
 .. code-block:: none
 
-    python -m example_package --list
+    python -m example_package list
 
 This prints a list of test cases and their test methods in the package. The
 output should look like this:

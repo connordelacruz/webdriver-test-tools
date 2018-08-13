@@ -62,7 +62,7 @@ def get_parser(config_module=None, package_name=None):
     # Subparsers
     command_desc = 'Run \'{} <command> --help\' for details'.format(package_name)
     subparsers = parser.add_subparsers(
-        title='Commands', description=command_desc, dest='command'
+        title='Commands', description=command_desc, dest='command', metavar='<command>'
     )
 
     # Run command
