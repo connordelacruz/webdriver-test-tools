@@ -21,6 +21,23 @@ DIRECTORY_MAP = {
 }
 
 
+def validate_file_type(file_type):
+    """Validate file type and return the corresponding template filename and
+    target directory
+
+    :param file_type: The string to validate
+
+    :return: ``(template_file, target_dir)`` where ``template_file`` is the
+        corresponding filename for the template and ``target_dir`` is the
+        corresponding directory where the new file should be placed
+    """
+    file_type = file_type.lower().strip()
+    if file_type not in TEMPLATE_MAP:
+        raise cmd.ValidationError('File type "{}" invalid'.format(file_type))
+    template_file = TEMPLATE_MAP[file_type]
+    target_dir = DIRECTORY_MAP[file_type]
+    return template_file, target_dir
+
 
 def new_file(test_package_path, test_package, file_type, module_name, class_name, description=None):
     """Create a new project file
@@ -33,12 +50,8 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     :param class_name: Name to use for the initial test class
     :param description: (Optional) Description to use in the docstring of the initial class
     """
-    # TODO: extract to validation functions
-    file_type = file_type.lower().strip()
-    if file_type not in TEMPLATE_MAP:
-        raise cmd.ValidationError('File type "{}" invalid'.format(file_type))
-    template_file = TEMPLATE_MAP[file_type]
-    target_path = os.path.join(test_package_path, DIRECTORY_MAP[file_type])
+    template_file, target_dir = validate_file_type(file_type)
+    target_path = os.path.join(test_package_path, target_dir)
     # Validate module_name (and append .py if not already present)
     module_name = cmd.validate_module_filename(module_name)
     # TODO: validate class_name
@@ -52,6 +65,7 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
         'class_name': class_name,
         'description': description,
     }
+    # TODO: make sure this file won't overwrite an existing one
     create_file_from_template(TEMPLATE_PATH, target_path, template_file, context, target_filename=module_name)
 
 # TODO: main function for prompts?
