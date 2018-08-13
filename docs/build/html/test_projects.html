@@ -99,6 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#using-specific-browsers">Using Specific Browsers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-headless-browsers">Using Headless Browsers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-browserstack">Using BrowserStack</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#configuring-output">Configuring Output</a></li>
 </ul>
 </li>
@@ -207,23 +208,24 @@
 <li><a class="reference internal" href="#running-tests" id="id7">Running Tests</a><ul>
 <li><a class="reference internal" href="#using-specific-browsers" id="id8">Using Specific Browsers</a></li>
 <li><a class="reference internal" href="#using-headless-browsers" id="id9">Using Headless Browsers</a></li>
-<li><a class="reference internal" href="#configuring-output" id="id10">Configuring Output</a></li>
+<li><a class="reference internal" href="#using-browserstack" id="id10">Using BrowserStack</a></li>
+<li><a class="reference internal" href="#configuring-output" id="id11">Configuring Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#list-available-tests" id="id11">List Available Tests</a></li>
+<li><a class="reference internal" href="#list-available-tests" id="id12">List Available Tests</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#project-structure" id="id12">Project Structure</a><ul>
-<li><a class="reference internal" href="#test-project-root-contents" id="id13">Test Project Root Contents</a></li>
-<li><a class="reference internal" href="#test-package-root-contents" id="id14">Test Package Root Contents</a></li>
-<li><a class="reference internal" href="#test-package-directories" id="id15">Test Package Directories</a><ul>
-<li><a class="reference internal" href="#config" id="id16">config/</a></li>
-<li><a class="reference internal" href="#data" id="id17">data/</a></li>
-<li><a class="reference internal" href="#log" id="id18">log/</a></li>
-<li><a class="reference internal" href="#pages" id="id19">pages/</a></li>
-<li><a class="reference internal" href="#screenshot" id="id20">screenshot/</a></li>
-<li><a class="reference internal" href="#tests" id="id21">tests/</a></li>
-<li><a class="reference internal" href="#templates" id="id22">templates/</a></li>
+<li><a class="reference internal" href="#project-structure" id="id13">Project Structure</a><ul>
+<li><a class="reference internal" href="#test-project-root-contents" id="id14">Test Project Root Contents</a></li>
+<li><a class="reference internal" href="#test-package-root-contents" id="id15">Test Package Root Contents</a></li>
+<li><a class="reference internal" href="#test-package-directories" id="id16">Test Package Directories</a><ul>
+<li><a class="reference internal" href="#config" id="id17">config/</a></li>
+<li><a class="reference internal" href="#data" id="id18">data/</a></li>
+<li><a class="reference internal" href="#log" id="id19">log/</a></li>
+<li><a class="reference internal" href="#pages" id="id20">pages/</a></li>
+<li><a class="reference internal" href="#screenshot" id="id21">screenshot/</a></li>
+<li><a class="reference internal" href="#tests" id="id22">tests/</a></li>
+<li><a class="reference internal" href="#templates" id="id23">templates/</a></li>
 </ul>
 </li>
 </ul>
@@ -238,7 +240,7 @@
 <h3><a class="toc-backref" href="#id3">Initialization</a><a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
 <p>To generate files for a new test suite, change into the desired directory and
 run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wtt</span> <span class="o">--</span><span class="n">init</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wtt</span> <span class="n">init</span>
 </pre></div>
 </div>
 <p>This will generate a new test package with template files and project
@@ -265,7 +267,13 @@ as class variables as well.</p>
 </div>
 <div class="section" id="basic-command-line-usage">
 <h2><a class="toc-backref" href="#id6">Basic Command Line Usage</a><a class="headerlink" href="#basic-command-line-usage" title="Permalink to this headline">¶</a></h2>
-<p>For info on command line arguments:</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> If no <code class="docutils literal notranslate"><span class="pre">&lt;command&gt;</span></code> is specified, the <code class="docutils literal notranslate"><span class="pre">run</span></code> command will be
+executed by default.</p>
+<p>For info on command line arguments, use the <code class="docutils literal notranslate"><span class="pre">--help</span></code> (or <code class="docutils literal notranslate"><span class="pre">-h</span></code>) argument:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 </div>
@@ -275,15 +283,17 @@ as class variables as well.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>To run all test cases in one or more modules:</p>
+<p>To run all test cases in one or more modules, use the <code class="docutils literal notranslate"><span class="pre">--module</span></code> (or <code class="docutils literal notranslate"><span class="pre">-m</span></code>)
+argument:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>To run specific test case classes or methods:</p>
+<p>To run specific test case classes or methods, use the <code class="docutils literal notranslate"><span class="pre">--test</span></code> (or <code class="docutils literal notranslate"><span class="pre">-t</span></code>)
+argument:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span><span class="p">[</span><span class="o">.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span><span class="p">[</span><span class="o">.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>To skip certain test cases or methods:</p>
+<p>To skip certain test cases or methods, use the <code class="docutils literal notranslate"><span class="pre">--skip</span></code> (or <code class="docutils literal notranslate"><span class="pre">-s</span></code>) argument:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">skip</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span><span class="p">[</span><span class="o">.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span><span class="p">[</span><span class="o">.&lt;</span><span class="n">test_method</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -299,7 +309,7 @@ following order:</p>
 <div class="section" id="using-specific-browsers">
 <h4><a class="toc-backref" href="#id8">Using Specific Browsers</a><a class="headerlink" href="#using-specific-browsers" title="Permalink to this headline">¶</a></h4>
 <p>To do any of the above in specific browsers rather than running in all available
-browsers, use the <code class="docutils literal notranslate"><span class="pre">--browser</span></code> command line argument:</p>
+browsers, use the <code class="docutils literal notranslate"><span class="pre">--browser</span></code> (or <code class="docutils literal notranslate"><span class="pre">-b</span></code>) argument:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">browser</span> <span class="o">&lt;</span><span class="n">browser</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">browser</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -312,7 +322,7 @@ browsers, use the <code class="docutils literal notranslate"><span class="pre">-
 what’s going on during test execution, loading and rendering the browser window
 can be resource-intensive and slows down performance during test execution.</p>
 <p>To improve performance, tests can be run in <a class="reference external" href="https://en.wikipedia.org/wiki/Headless_browser">headless browsers</a> using the
-<code class="docutils literal notranslate"><span class="pre">--headless</span></code> argument:</p>
+<code class="docutils literal notranslate"><span class="pre">--headless</span></code> (or <code class="docutils literal notranslate"><span class="pre">-H</span></code>) argument:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">headless</span>
 </pre></div>
 </div>
@@ -325,10 +335,21 @@ the following web drivers that support running in a headless environment:</p>
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="using-browserstack">
+<h4><a class="toc-backref" href="#id10">Using BrowserStack</a><a class="headerlink" href="#using-browserstack" title="Permalink to this headline">¶</a></h4>
+<p>Test projects can be configured to run tests on <a class="reference external" href="https://www.browserstack.com/">BrowserStack</a>. Once
+BrowserStack support is enabled, tests can be run on BrowserStack using the
+<code class="docutils literal notranslate"><span class="pre">--browserstack</span></code> (or <code class="docutils literal notranslate"><span class="pre">-B</span></code>) argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">browserstack</span>
+</pre></div>
+</div>
+<p>See the documentation on <a class="reference external" href="https://connordelacruz.com/webdriver-test-tools/browserstack.html">BrowserStack Support</a> for more details and setup
+instructions.</p>
+</div>
 <div class="section" id="configuring-output">
-<h4><a class="toc-backref" href="#id10">Configuring Output</a><a class="headerlink" href="#configuring-output" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id11">Configuring Output</a><a class="headerlink" href="#configuring-output" title="Permalink to this headline">¶</a></h4>
 <p>By default, detailed output is displayed when running tests. To reduce or
-suppress output:</p>
+suppress output, use the <code class="docutils literal notranslate"><span class="pre">--verbosity</span></code> (or <code class="docutils literal notranslate"><span class="pre">-v</span></code>) argument:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">verbosity</span> <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -346,24 +367,24 @@ attribute of the <code class="docutils literal notranslate"><span class="pre">Te
 </div>
 </div>
 <div class="section" id="list-available-tests">
-<h3><a class="toc-backref" href="#id11">List Available Tests</a><a class="headerlink" href="#list-available-tests" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">List Available Tests</a><a class="headerlink" href="#list-available-tests" title="Permalink to this headline">¶</a></h3>
 <p>To print a list of available test classes and methods:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="nb">list</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="nb">list</span>
 </pre></div>
 </div>
 <p>To only list test classes from specific modules:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="nb">list</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="nb">list</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>To only list specific test classes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="nb">list</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="nb">list</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="project-structure">
-<h2><a class="toc-backref" href="#id12">Project Structure</a><a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">wtt</span> <span class="pre">--init</span></code> will create the following files and directories
+<h2><a class="toc-backref" href="#id13">Project Structure</a><a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">wtt</span> <span class="pre">init</span></code> will create the following files and directories
 inside the project directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;project-directory&gt;/
 ├── README.rst
@@ -395,14 +416,14 @@ inside the project directory:</p>
 should be handled by page objects to minimize the need to alter tests whenever
 the HTML is changed.</p>
 <div class="section" id="test-project-root-contents">
-<h3><a class="toc-backref" href="#id13">Test Project Root Contents</a><a class="headerlink" href="#test-project-root-contents" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Test Project Root Contents</a><a class="headerlink" href="#test-project-root-contents" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">setup.py</span></code>: Python package setup file that allows the new test suite to be
 installed as a pip package.</li>
 </ul>
 </div>
 <div class="section" id="test-package-root-contents">
-<h3><a class="toc-backref" href="#id14">Test Package Root Contents</a><a class="headerlink" href="#test-package-root-contents" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Test Package Root Contents</a><a class="headerlink" href="#test-package-root-contents" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">__main__.py</span></code>: Required to run tests from the command line.</li>
 <li><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>: Empty init file so Python recognizes the directory as a
@@ -410,9 +431,9 @@ package.</li>
 </ul>
 </div>
 <div class="section" id="test-package-directories">
-<h3><a class="toc-backref" href="#id15">Test Package Directories</a><a class="headerlink" href="#test-package-directories" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Test Package Directories</a><a class="headerlink" href="#test-package-directories" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="config">
-<h4><a class="toc-backref" href="#id16">config/</a><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id17">config/</a><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h4>
 <p>Configurations used by test scripts for site URLs, web driver options, and the
 python unittest framework.</p>
 <ul class="simple">
@@ -424,34 +445,34 @@ python unittest framework.</p>
 </ul>
 </div>
 <div class="section" id="data">
-<h4><a class="toc-backref" href="#id17">data/</a><a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id18">data/</a><a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
 <p>Static data for tests that must use specific values (e.g.&nbsp;emails, usernames,
 etc).</p>
 </div>
 <div class="section" id="log">
-<h4><a class="toc-backref" href="#id18">log/</a><a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id19">log/</a><a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h4>
 <p>Default output directory for WebDriver logs. This can be changed in
 <code class="docutils literal notranslate"><span class="pre">config/webdriver.py</span></code>.</p>
 </div>
 <div class="section" id="pages">
-<h4><a class="toc-backref" href="#id19">pages/</a><a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id20">pages/</a><a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h4>
 <p>Page object classes for pages and components. These classes should handle
 locating and interacting with elements on the page. A template page object can
 be found in <code class="docutils literal notranslate"><span class="pre">templates/page_object.py</span></code>.</p>
 </div>
 <div class="section" id="screenshot">
-<h4><a class="toc-backref" href="#id20">screenshot/</a><a class="headerlink" href="#screenshot" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id21">screenshot/</a><a class="headerlink" href="#screenshot" title="Permalink to this headline">¶</a></h4>
 <p>Default output directory for screenshots taken during test execution. This can
 be changed in <code class="docutils literal notranslate"><span class="pre">config/webdriver.py</span></code>.</p>
 </div>
 <div class="section" id="tests">
-<h4><a class="toc-backref" href="#id21">tests/</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id22">tests/</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
 <p>Test case modules. These use page objects to interact with elements and assert
 that the expected behavior occurs. A template test file can be found in
 <code class="docutils literal notranslate"><span class="pre">templates/test_case.py</span></code>.</p>
 </div>
 <div class="section" id="templates">
-<h4><a class="toc-backref" href="#id22">templates/</a><a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id23">templates/</a><a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h4>
 <p>Template files to use as a starting point when writing new test modules or page
 objects.</p>
 <ul class="simple">
