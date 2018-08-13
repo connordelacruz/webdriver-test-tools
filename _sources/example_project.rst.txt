@@ -23,7 +23,7 @@ project:
 
 .. code-block:: none
 
-    wtt --init
+    wtt init
 
 You will be prompted to enter a name for the test project python package. To be
 a valid package name, it needs to only use alphanumeric characters and
@@ -216,7 +216,7 @@ framework is able to detect the tests, run:
 
 .. code-block:: none
 
-    python -m example_package --list
+    python -m example_package list
 
 This prints a list of test cases and their test methods in the package. The
 output should look like this:
