@@ -135,12 +135,36 @@ def get_parser(config_module=None, package_name=None):
         formatter_class=argparse.RawTextHelpFormatter,
         add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
-    type_help = textwrap.dedent('''\
-                                test - Create a new test module
-                                page - Create a new page object module
-                                ''')
-    new_parser.add_argument('type', choices=['test', 'page'], metavar='<type>',
-                            help=type_help)
+    # New <type> subparsers
+    new_type_desc = 'Run \'{} new <type> --help\' for details'.format(package_name)
+    new_subparsers = new_parser.add_subparsers(
+        title='File Types', description=new_type_desc, dest='type', metavar='<type>'
+    )
+    # New test parser
+    new_test_parent_parser = get_new_parent_parser(
+        parents=[generic_parent_parser], class_metavar='<TestCaseClass>',
+        class_help='Name to use for the initial test case class'
+    )
+    new_test_description='Create a new test module'
+    new_test_help=new_test_description
+    new_subparsers.add_parser(
+        'test', description=new_test_description, help=new_test_help,
+        parents=[new_test_parent_parser],
+        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
+    )
+    # New page object parser
+    new_page_parent_parser = get_new_parent_parser(
+        parents=[generic_parent_parser], class_metavar='<PageObjectClass>',
+        class_help='Name to use for the initial page object class'
+    )
+    new_page_description='Create a new page object module'
+    new_page_help=new_page_description
+    new_page_parser = new_subparsers.add_parser(
+        'page', description=new_page_description, help=new_page_help,
+        parents=[new_page_parent_parser],
+        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
+    )
+    # TODO: add optional --prototype arg with a list of valid page object prototype classes
 
     return parser
 
@@ -174,6 +198,24 @@ def get_test_parent_parser(parents=[]):
                 ''')
     group.add_argument('-s', '--skip', nargs='+', metavar='<test>', help=skip_help)
     return test_parent_parser
+
+
+def get_new_parent_parser(parents=[], class_metavar='<ClassName>',
+                          class_help='Name to use for the initial class'):
+    # TODO: implement and document
+    new_parent_parser = cmd.argparse.ArgumentParser(add_help=False, parents=parents)
+    # Positional arguments
+    module_name_help = 'Filename to use for the new python module'
+    new_parent_parser.add_argument('module_name', metavar='<module_name>',
+                                   help=module_name_help)
+    new_parent_parser.add_argument('class', metavar=class_metavar,
+                                   help=class_help)
+    # Optional arguments
+    description_help='Description for the initial class'
+    new_parent_parser.add_argument('-d', '--description', metavar='<description>',
+                                   help=description_help)
+    return new_parent_parser
+
 
 # Help text output functions
 
