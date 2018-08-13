@@ -3,10 +3,12 @@
 import argparse
 import unittest
 import textwrap
+import os
 
 from webdriver_test_tools import cmd, config
 from webdriver_test_tools.testcase import Browsers
 from webdriver_test_tools.project import test_loader, test_factory
+from webdriver_test_tools.project.new_file import new_file
 
 
 def main(tests_module, config_module=None, package_name=None):
@@ -25,7 +27,8 @@ def main(tests_module, config_module=None, package_name=None):
     if args.command == 'list':
         parse_list_args(tests_module, args)
     elif args.command == 'new':
-        pass # TODO: create new test/page object
+        # TODO: implement
+        parse_new_args(package_name, tests_module, args)
     elif args.command == 'run' or args.command is None:
         parse_run_args(tests_module, config_module, args)
     else:
@@ -129,6 +132,7 @@ def get_parser(config_module=None, package_name=None):
     # TODO: New command
     new_description = 'Create a new test module or page object'
     new_help = new_description
+    # TODO: set prog to <package_name> <command> for subparsers
     new_parser = subparsers.add_parser(
         'new', description=new_description, help=new_help,
         parents=[generic_parent_parser],
@@ -142,8 +146,8 @@ def get_parser(config_module=None, package_name=None):
     )
     # New test parser
     new_test_parent_parser = get_new_parent_parser(
-        parents=[generic_parent_parser], class_metavar='<TestCaseClass>',
-        class_help='Name to use for the initial test case class'
+        parents=[generic_parent_parser], class_name_metavar='<TestCaseClass>',
+        class_name_help='Name to use for the initial test case class'
     )
     new_test_description='Create a new test module'
     new_test_help=new_test_description
@@ -154,8 +158,8 @@ def get_parser(config_module=None, package_name=None):
     )
     # New page object parser
     new_page_parent_parser = get_new_parent_parser(
-        parents=[generic_parent_parser], class_metavar='<PageObjectClass>',
-        class_help='Name to use for the initial page object class'
+        parents=[generic_parent_parser], class_name_metavar='<PageObjectClass>',
+        class_name_help='Name to use for the initial page object class'
     )
     new_page_description='Create a new page object module'
     new_page_help=new_page_description
@@ -200,16 +204,30 @@ def get_test_parent_parser(parents=[]):
     return test_parent_parser
 
 
-def get_new_parent_parser(parents=[], class_metavar='<ClassName>',
-                          class_help='Name to use for the initial class'):
-    # TODO: implement and document
+def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
+                          class_name_help='Name to use for the initial class'):
+    """Returns an :class:`ArgumentParser
+    <webdriver_test_tools.cmd.argparse.ArgumentParser>` with ``<module_name>``,
+    ``<class_name>``, and ``--description`` arguments
+
+    :param parents: (Optional) List of ``ArgumentParser`` objects to use as
+        parents for the test argument parser
+    :param class_name_metavar: (Optional) Metavar to display for the class_name
+        argument
+    :param class_name_help: (Optional) Help text to use for the class_name
+        argument
+
+    :return: :class:`ArgumentParser
+        <webdriver_test_tools.cmd.argparse.ArgumentParser>` with
+        ``<module_name>``, ``<class_name>``, and ``--description`` arguments
+    """
     new_parent_parser = cmd.argparse.ArgumentParser(add_help=False, parents=parents)
     # Positional arguments
     module_name_help = 'Filename to use for the new python module'
     new_parent_parser.add_argument('module_name', metavar='<module_name>',
                                    help=module_name_help)
-    new_parent_parser.add_argument('class', metavar=class_metavar,
-                                   help=class_help)
+    new_parent_parser.add_argument('class_name', metavar=class_name_metavar,
+                                   help=class_name_help)
     # Optional arguments
     description_help='Description for the initial class'
     new_parent_parser.add_argument('-d', '--description', metavar='<description>',
@@ -367,6 +385,12 @@ def parse_run_args(tests_module, config_module, args):
     kwargs['browser_classes'] = browser_config_class.get_browser_classes(args.browser)
     # Run tests using parsed args
     run_tests(tests_module, config_module, **kwargs)
+
+
+def parse_new_args(package_name, tests_module, args):
+    # TODO: doc
+    test_package_path = os.path.dirname(os.path.dirname(tests_module.__file__))
+    new_file(test_package_path, package_name, args.type, args.module_name, args.class_name, args.description)
 
 
 def get_browser_config_classes(config_module):

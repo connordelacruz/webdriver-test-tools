@@ -143,6 +143,7 @@ def create_config_files(target_path, context):
         create_file_from_template(template_path, target_path, template_file, context)
 
 
+# TODO: remove
 def create_template_files(target_path, context):
     """Creates test package template directory and template files
 
