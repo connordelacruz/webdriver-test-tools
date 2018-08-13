@@ -3,7 +3,8 @@ from webdriver_test_tools.pageobject import *
 from webdriver_test_tools.webdriver import actions, locate
 
 
-class TemplatePage(BasePage):
+class {{ class_name }}(BasePage):
+    {% if description %}"""{{ description }}"""{% endif %}
 
     class Locator:
         """WebDriver locator tuples for any elements that will need to be accessed by

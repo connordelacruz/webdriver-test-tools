@@ -27,7 +27,6 @@ def main(tests_module, config_module=None, package_name=None):
     if args.command == 'list':
         parse_list_args(tests_module, args)
     elif args.command == 'new':
-        # TODO: implement
         parse_new_args(package_name, tests_module, args)
     elif args.command == 'run' or args.command is None:
         parse_run_args(tests_module, config_module, args)
@@ -129,10 +128,10 @@ def get_parser(config_module=None, package_name=None):
         add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
 
-    # TODO: New command
+    # New command
     new_description = 'Create a new test module or page object'
     new_help = new_description
-    # TODO: set prog to <package_name> <command> for subparsers
+    # TODO: fix usage output for subparsers
     new_parser = subparsers.add_parser(
         'new', description=new_description, help=new_help,
         parents=[generic_parent_parser],
@@ -361,7 +360,6 @@ def parse_list_args(tests_module, args):
 def parse_run_args(tests_module, config_module, args):
     """Parse arguments and run the 'run' command
 
-
     :param tests_module: The module object for ``<test_project>.tests``
     :param config_module: The module object for ``<test_project>.config``
     :param args: The namespace returned by parser.parse_args()
@@ -388,7 +386,14 @@ def parse_run_args(tests_module, config_module, args):
 
 
 def parse_new_args(package_name, tests_module, args):
-    # TODO: doc
+    """Parse arguments and run the 'new' command
+
+    :param package_name: Name of the test package
+    :param tests_module: The module object for ``<test_project>.tests``. Used
+        to determine the filepath of the package
+    :param args: The namespace returned by parser.parse_args()
+    """
+    # Get package path based on tests_module path
     test_package_path = os.path.dirname(os.path.dirname(tests_module.__file__))
     new_file(test_package_path, package_name, args.type, args.module_name, args.class_name, args.description)
 

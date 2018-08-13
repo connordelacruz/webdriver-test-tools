@@ -5,8 +5,8 @@ from webdriver_test_tools.testcase import *
 from {{ test_package }} import config
 
 
-class TemplateTestCase(WebDriverTestCase):
-    """DESCRIPTION OF TEST CASE HERE"""
+class {{ class_name }}(WebDriverTestCase):
+    {% if description %}"""{{ description }}"""{% endif %}
 
     # URL to go to at the start of each test
     SITE_URL = config.SiteConfig.SITE_URL
