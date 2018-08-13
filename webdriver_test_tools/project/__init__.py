@@ -4,6 +4,7 @@ the test project command line interface.
 .. toctree::
 
    webdriver_test_tools.project.initialize
+   webdriver_test_tools.project.new_file
    webdriver_test_tools.project.test_factory
    webdriver_test_tools.project.test_loader
    webdriver_test_tools.project.test_module
