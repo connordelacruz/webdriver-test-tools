@@ -54,7 +54,8 @@ def validate_description(description):
     return validated_description
 
 
-def new_file(test_package_path, test_package, file_type, module_name, class_name, description=None):
+def new_file(test_package_path, test_package, file_type, module_name, class_name,
+             description=None, force=False):
     """Create a new project file
 
     :param test_package_path: The root directory of the test package
@@ -82,8 +83,9 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
         'class_name': class_name,
         'description': description,
     }
-    # TODO: make sure this file won't overwrite an existing one
-    create_file_from_template(TEMPLATE_PATH, target_path, template_file, context, target_filename=module_name)
+    # TODO: catch exception if file exists and print error message
+    create_file_from_template(TEMPLATE_PATH, target_path, template_file, context,
+                              target_filename=module_name, overwrite=force)
     # TODO: output new file path on success
 
 # TODO: main function for prompts?

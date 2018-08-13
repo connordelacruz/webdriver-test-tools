@@ -231,6 +231,10 @@ def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
     description_help='Description for the initial class'
     new_parent_parser.add_argument('-d', '--description', metavar='<description>',
                                    help=description_help)
+    force_help='Force overwrite if a file with the same name already exists'
+    new_parent_parser.add_argument('-f', '--force', action='store_true', default=False,
+                                   help=force_help)
+
     return new_parent_parser
 
 
@@ -395,7 +399,8 @@ def parse_new_args(package_name, tests_module, args):
     """
     # Get package path based on tests_module path
     test_package_path = os.path.dirname(os.path.dirname(tests_module.__file__))
-    new_file(test_package_path, package_name, args.type, args.module_name, args.class_name, args.description)
+    new_file(test_package_path, package_name, args.type, args.module_name, args.class_name,
+             description=args.description, force=args.force)
 
 
 def get_browser_config_classes(config_module):

@@ -56,8 +56,7 @@ def render_template_to_file(template_path, context, target_path):
         f.write(file_contents)
 
 
-# TODO: overwrite parameter
-def create_file_from_template(template_path, target_path, filename, context, target_filename=None):
+def create_file_from_template(template_path, target_path, filename, context, target_filename=None, overwrite=True):
     """Short hand function that renders a template with the specified filename followed
     by a '.j2' extension from the template path to a file with the specified name in
     the target path
@@ -73,11 +72,17 @@ def create_file_from_template(template_path, target_path, filename, context, tar
     :param target_filename: (Optional) If specified, use a different filename
         for the created file. If not specified, will use the value of
         ``filename``
+    :param overwrite: (Default: True) If False, an exception will be raised
+        when a file with the same name and path already exists
     """
     if target_filename is None:
         target_filename = filename
     file_template = os.path.join(template_path, filename + '.j2')
     file_target = os.path.join(target_path, target_filename)
+    if not overwrite and os.path.exists(file_target):
+        message_format = 'File "{}" already exists'
+        # TODO: raise a custom exception to be handled by calling module
+        raise Exception(message_format.format(file_target))
     render_template_to_file(file_template, context, file_target)
 
 
