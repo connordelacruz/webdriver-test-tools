@@ -56,6 +56,7 @@ def render_template_to_file(template_path, context, target_path):
         f.write(file_contents)
 
 
+# TODO: overwrite parameter
 def create_file_from_template(template_path, target_path, filename, context, target_filename=None):
     """Short hand function that renders a template with the specified filename followed
     by a '.j2' extension from the template path to a file with the specified name in

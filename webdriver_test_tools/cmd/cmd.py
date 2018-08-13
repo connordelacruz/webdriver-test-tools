@@ -100,6 +100,7 @@ def validate_package_name(package_name):
     return validated_package_name
 
 
+# TODO: ensure duplicate validation_warnings don't appear
 def validate_module_filename(module_filename):
     """Removes and replaces characters to ensure a string is a valid python
     module file name
@@ -125,6 +126,31 @@ def validate_module_filename(module_filename):
         message_format = 'Name was changed to {} in order to be a valid python module file'
         print_validation_warning(message_format.format(validated_module_filename))
     return validated_module_filename
+
+
+# TODO: ensure duplicate validation_warnings don't appear
+def validate_class_name(class_name):
+    """Removes and replaces characters to ensure a string is a valid python
+    class name
+
+    :param class_name: The desired classname
+
+    :return: Modified class_name with invalid characters removed/replaced
+    """
+    # TODO: Validate differently than packages?
+    try:
+        validated_class_name = validate_package_name(class_name)
+    except ValidationError as e:
+        raise ValidationError('Please enter a valid class name.')
+    # Alert the user of any changes made in validation
+    if class_name != validated_class_name:
+        message_format = 'Name was changed to {} in order to be a valid python class name'
+        print_validation_warning(message_format.format(validated_class_name))
+    # Print warning if first letter isn't capital
+    # (python is forgiving about class names but convention says it should be camel case)
+    if validated_class_name[0] != validated_class_name[0].upper():
+        print_validation_warning('Warning: Class name should start with a capital letter')
+    return validated_class_name
 
 
 def prompt(text, *description, default=None, validate=validate_nonempty, trailing_newline=True):

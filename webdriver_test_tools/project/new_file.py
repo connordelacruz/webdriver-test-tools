@@ -39,6 +39,21 @@ def validate_file_type(file_type):
     return template_file, target_dir
 
 
+def validate_description(description):
+    """Replaces double quotes with single quotes in class description
+
+    :param description: The desired description string
+
+    :return: Validated description string with double quotes replaced with
+        single quotes
+    """
+    # Replace double quotes with single quotes to avoid breaking the docstring
+    validated_description = description.replace('"', "'")
+    if validated_description != description:
+        print_validation_warning('Replaced double quotes with single quotes in class description')
+    return validated_description
+
+
 def new_file(test_package_path, test_package, file_type, module_name, class_name, description=None):
     """Create a new project file
 
@@ -54,11 +69,13 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     target_path = os.path.join(test_package_path, target_dir)
     # Validate module_name (and append .py if not already present)
     module_name = cmd.validate_module_filename(module_name)
-    # TODO: validate class_name
-    class_name = class_name.strip()
+    # Validate class_name
+    class_name = cmd.validate_class_name(class_name)
+    # Validate class name (if present)
     if description is None:
         description = 'ADD CLASS DESCRIPTION'
-    # TODO: escape quotes in description?
+    else:
+        description = validate_description(description)
     context = {
         'test_package': test_package,
         'module_name': module_name,
@@ -67,6 +84,7 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     }
     # TODO: make sure this file won't overwrite an existing one
     create_file_from_template(TEMPLATE_PATH, target_path, template_file, context, target_filename=module_name)
+    # TODO: output new file path on success
 
 # TODO: main function for prompts?
 
