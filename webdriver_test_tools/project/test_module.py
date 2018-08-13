@@ -24,6 +24,8 @@ def main(tests_module, config_module=None, package_name=None):
     args = parser.parse_args()
     if args.command == 'list':
         parse_list_args(tests_module, args)
+    elif args.command == 'new':
+        pass # TODO: create new test/page object
     elif args.command == 'run' or args.command is None:
         parse_run_args(tests_module, config_module, args)
     else:
@@ -123,6 +125,22 @@ def get_parser(config_module=None, package_name=None):
         formatter_class=argparse.RawTextHelpFormatter,
         add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
+
+    # TODO: New command
+    new_description = 'Create a new test module or page object'
+    new_help = new_description
+    new_parser = subparsers.add_parser(
+        'new', description=new_description, help=new_help,
+        parents=[generic_parent_parser],
+        formatter_class=argparse.RawTextHelpFormatter,
+        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
+    )
+    type_help = textwrap.dedent('''\
+                                test - Create a new test module
+                                page - Create a new page object module
+                                ''')
+    new_parser.add_argument('type', choices=['test', 'page'], metavar='<type>',
+                            help=type_help)
 
     return parser
 
