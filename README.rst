@@ -248,7 +248,17 @@ as class variables as well.
 Basic Command Line Usage
 ========================
 
-For info on command line arguments:
+**Usage:**
+
+::
+
+    python -m <test_package> [-h] <command>
+
+**Note:** If no ``<command>`` is specified, the ``run`` command will be
+executed by default.
+
+
+For info on command line arguments, use the ``--help`` (or ``-h``) argument:
 
 ::
 
@@ -264,19 +274,22 @@ To run all tests:
 
     python -m <test_package>
 
-To run all test cases in one or more modules:
+
+To run all test cases in one or more modules, use the ``--module`` (or ``-m``)
+argument:
 
 ::
 
     python -m <test_package> --module <test_module> [<test_module> ...]
 
-To run specific test case classes or methods:
+To run specific test case classes or methods, use the ``--test`` (or ``-t``)
+argument:
 
 ::
 
     python -m <test_package> --test <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
 
-To skip certain test cases or methods:
+To skip certain test cases or methods, use the ``--skip`` (or ``-s``) argument:
 
 ::
 
@@ -295,7 +308,7 @@ Using Specific Browsers
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 To do any of the above in specific browsers rather than running in all available
-browsers, use the ``--browser`` command line argument:
+browsers, use the ``--browser`` (or ``-b``) argument:
 
 ::
 
@@ -313,7 +326,7 @@ what's going on during test execution, loading and rendering the browser window
 can be resource-intensive and slows down performance during test execution.
 
 To improve performance, tests can be run in `headless browsers`_ using the
-``--headless`` argument:
+``--headless`` (or ``-H``) argument:
 
 ::
 
@@ -328,11 +341,29 @@ the following web drivers that support running in a headless environment:
 .. _headless browsers: https://en.wikipedia.org/wiki/Headless_browser
 
 
+Using BrowserStack
+~~~~~~~~~~~~~~~~~~
+
+Test projects can be configured to run tests on `BrowserStack`_. Once
+BrowserStack support is enabled, tests can be run on BrowserStack using the
+``--browserstack`` (or ``-B``) argument:
+
+::
+
+    python -m <test_package> <args> --browserstack
+
+See the documentation on `BrowserStack Support`_ for more details and setup
+instructions.
+
+.. _BrowserStack: https://www.browserstack.com/
+.. _BrowserStack Support: https://connordelacruz.com/webdriver-test-tools/browserstack.html
+
+
 Configuring Output
 ~~~~~~~~~~~~~~~~~~
 
 By default, detailed output is displayed when running tests. To reduce or
-suppress output:
+suppress output, use the ``--verbosity`` (or ``-v``) argument:
 
 ::
 
@@ -356,19 +387,19 @@ To print a list of available test classes and methods:
 
 ::
 
-    python -m <test_package> --list
+    python -m <test_package> list
 
 To only list test classes from specific modules:
 
 ::
 
-    python -m <test_package> --list --module <test_module> [<test_module> ...]
+    python -m <test_package> list --module <test_module> [<test_module> ...]
 
 To only list specific test classes:
 
 ::
 
-    python -m <test_package> --list --test <TestClass> [<TestClass> ...]
+    python -m <test_package> list --test <TestClass> [<TestClass> ...]
 
 
 
