@@ -4,6 +4,8 @@
 :var cmd.COLORS: Color/formatting functions for different types of output
 """
 
+import re
+import os
 from blessings import Terminal
 
 # Formatting
@@ -73,6 +75,56 @@ def validate_yn(answer):
     if answer not in ['y', 'yes', 'n', 'no']:
         raise ValidationError('Please enter "y" or "n".')
     return answer in ['y', 'yes']
+
+
+def validate_package_name(package_name):
+    """Removes and replaces characters to ensure a string is a valid python package name
+
+    :param package_name: The desired package name
+
+    :return: Modified package_name with whitespaces and hyphens replaced with
+        underscores and all invalid characters removed
+    """
+    # Trim outer whitespace and replace inner whitespace and hyphens with underscore
+    validated_package_name = re.sub(r'\s+|-+', '_', package_name.strip())
+    # Remove non-alphanumeric or _ characters
+    validated_package_name = re.sub(r'[^\w\s]', '', validated_package_name)
+    # Remove leading characters until we hit a letter or underscore
+    validated_package_name = re.sub(r'^[^a-zA-Z_]+', '', validated_package_name)
+    if not validated_package_name:
+        raise ValidationError('Please enter a valid package name.')
+    # Alert user of any changes made in validation
+    if package_name != validated_package_name:
+        message_format = 'Name was changed to {} in order to be a valid python package'
+        print_validation_warning(message_format.format(validated_package_name))
+    return validated_package_name
+
+
+def validate_module_filename(module_filename):
+    """Removes and replaces characters to ensure a string is a valid python
+    module file name
+
+    :param module_filename: The desired module file name. If the .py extension
+        is excluded, it will be appended after validation
+
+    :return: Modified module_filename with whitespaces and hyphens replaced with
+        underscores, all invalid characters removed, and a '.py' extension
+        appended (if necessary)
+    """
+    # Strip .py extension if present
+    validated_module_filename, ext = os.path.splitext(module_filename.strip())
+    try:
+        # Python packages an modules have the same naming conventions
+        validated_module_filename = validate_package_name(validated_module_filename)
+    except ValidationError as e:
+        raise ValidationError('Please enter a valid module name.')
+    # Append .py extension
+    validated_module_filename += '.py'
+    # Alert the user of any changes made in validation
+    if module_filename != validated_module_filename:
+        message_format = 'Name was changed to {} in order to be a valid python module file'
+        print_validation_warning(message_format.format(validated_module_filename))
+    return validated_module_filename
 
 
 def prompt(text, *description, default=None, validate=validate_nonempty, trailing_newline=True):

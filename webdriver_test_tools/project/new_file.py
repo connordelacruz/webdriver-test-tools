@@ -33,13 +33,14 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     :param class_name: Name to use for the initial test class
     :param description: (Optional) Description to use in the docstring of the initial class
     """
+    # TODO: extract to validation functions
     file_type = file_type.lower().strip()
     if file_type not in TEMPLATE_MAP:
         raise cmd.ValidationError('File type "{}" invalid'.format(file_type))
     template_file = TEMPLATE_MAP[file_type]
     target_path = os.path.join(test_package_path, DIRECTORY_MAP[file_type])
-    # TODO: validate module_name (and append .py if not already present)
-    module_name = module_name.strip()
+    # Validate module_name (and append .py if not already present)
+    module_name = cmd.validate_module_filename(module_name)
     # TODO: validate class_name
     class_name = class_name.strip()
     if description is None:

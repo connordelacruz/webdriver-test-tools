@@ -59,7 +59,7 @@ def create_package_directory(target_path, package_name):
     :return: Path to created package directory
     """
     target_path = os.path.abspath(target_path)
-    package_directory = validate_package_name(package_name)
+    package_directory = cmd.validate_package_name(package_name)
     return create_directory(target_path, package_directory)
 
 
@@ -199,29 +199,6 @@ def generate_context(test_package, project_title=None, version_badge=True):
 
 # Prompt validation functions
 
-def validate_package_name(package_name):
-    """Removes and replaces characters to ensure a string is a valid python package name
-
-    :param package_name: The desired package name
-
-    :return: Modified package_name with whitespaces and hyphens replaced with
-        underscores and all invalid characters removed
-    """
-    # Trim outer whitespace and replace inner whitespace and hyphens with underscore
-    validated_package_name = re.sub(r'\s+|-+', '_', package_name.strip())
-    # Remove non-alphanumeric or _ characters
-    validated_package_name = re.sub(r'[^\w\s]', '', validated_package_name)
-    # Remove leading characters until we hit a letter or underscore
-    validated_package_name = re.sub(r'^[^a-zA-Z_]+', '', validated_package_name)
-    if not validated_package_name:
-        raise cmd.ValidationError('Please enter a valid package name.')
-    # Alert user of any changes made in validation
-    if package_name != validated_package_name:
-        message_format = 'Name was changed to {} in order to be a valid python package'
-        cmd.print_validation_warning(message_format.format(validated_package_name))
-    return validated_package_name
-
-
 def validate_project_title(project_title):
     """Sanitizes string to avoid syntax erros when inserting the title into template
     files
@@ -256,7 +233,7 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
         root directory if True
     """
     outer_path = os.path.abspath(target_path)
-    package_name = validate_package_name(package_name)
+    package_name = cmd.validate_package_name(package_name)
     context = generate_context(package_name, project_title)
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
@@ -284,7 +261,7 @@ def main():
             'Package name',
             'Enter a name for the test package',
             '(use only alphanumeric characters and underscores. Cannot start with a number)',
-            validate=validate_package_name)
+            validate=cmd.validate_package_name)
         # Prompt for optional project title, default to validated_package_name
         validated_project_title = cmd.prompt(
             'Project title',
