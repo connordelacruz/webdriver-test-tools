@@ -87,7 +87,6 @@ def _validate_python_identifier(identifier):
 
     :return: Modified identifier with invalid characters removed or replaced
     """
-    # TODO: doc
     # Trim outer whitespace and replace inner whitespace and hyphens with underscore
     validated_identifier = re.sub(r'\s+|-+', '_', identifier.strip())
     # Remove non-alphanumeric or _ characters
