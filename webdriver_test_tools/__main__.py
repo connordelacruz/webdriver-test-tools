@@ -28,8 +28,6 @@ def get_parser():
         parents=[generic_parent_parser], add_help=False,
     )
     # TODO: add init_parser arguments for the stuff used in init prompt
-    # TODO: Legacy --init flag (hidden from help output)
-    # parser.add_argument('-i', '--init', action='store_true', help=argparse.SUPPRESS)
     return parser
 
 
