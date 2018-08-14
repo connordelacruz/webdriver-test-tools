@@ -69,7 +69,7 @@ For info on command line arguments, use the ``--help`` (or ``-h``) argument:
 Creating New Tests
 ------------------
 
-New test modules can be generated using the following command:
+New test modules can be generated using the ``new test`` command:
 
 ::
 
@@ -78,13 +78,28 @@ New test modules can be generated using the following command:
 Where ``<module_name>`` is the filename for the new test and ``<TestCaseClass>``
 is the class name for the test case.
 
-.. TODO: -d and -f arguments
+
+The ``--description`` (or ``-d``) argument can be used to add a description for
+the initial test case class:
+
+::
+
+    python -m {{test_package}} new test <module_name> <TestCaseClass> -d "Test case description"
+
+
+If a test module with the same ``<module_name>`` already exists, ``new test``
+will not overwrite it by default. The ``--force`` (or ``-f``) argument can be
+used to force overwrite existing files:
+
+::
+
+    python -m {{test_package}} new test <module_name> <TestCaseClass> --force
 
 
 Creating New Page Objects
 -------------------------
 
-New page object modules can be generated using the following command:
+New page object modules can be generated using the ``new page`` command:
 
 ::
 
@@ -93,11 +108,40 @@ New page object modules can be generated using the following command:
 Where ``<module_name>`` is the filename for the new module and
 ``<PageObjectClass>`` is the class name for the page object.
 
-.. TODO: -d and -f arguments
+
+The ``--description`` (or ``-d``) argument can be used to add a description for
+the initial page object class:
+
+::
+
+    python -m {{test_package}} new page <module_name> <PageObjectClass> -d "Page object description"
+
+
+If a page module with the same ``<module_name>`` already exists, ``new page``
+will not overwrite it by default. The ``--force`` (or ``-f``) argument can be
+used to force overwrite existing files:
+
+::
+
+    python -m {{test_package}} new page <module_name> <PageObjectClass> --force
 
 
 Running Tests
 -------------
+
+**Usage:**
+
+::
+
+    python -m {{test_package}} run <args>
+
+**Note:** When no commands are provided, the ``run`` command will be executed by
+default, so the following is equivalent:
+
+::
+
+    python -m {{test_package}} <args>
+
 
 To run all tests:
 
@@ -318,7 +362,8 @@ pages/
 ~~~~~~
 
 Page object classes for pages and components. These classes should handle
-locating and interacting with elements on the page. 
+locating and interacting with elements on the page. See `Creating New Page
+Objects`_ for info on generating new page object modules.
 
 screenshot/
 ~~~~~~~~~~~
@@ -330,7 +375,8 @@ tests/
 ~~~~~~
 
 Test case modules. These use page objects to interact with elements and assert
-that the expected behavior occurs.
+that the expected behavior occurs. See `Creating New Tests`_ for info on
+generating new test modules.
 
 {% if version_badge %}
 ----
