@@ -161,6 +161,8 @@
 <span class="sd">:var cmd.COLORS: Color/formatting functions for different types of output</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">blessings</span> <span class="k">import</span> <span class="n">Terminal</span>
 
 <span class="c1"># Formatting</span>
@@ -230,6 +232,82 @@
     <span class="k">if</span> <span class="n">answer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter &quot;y&quot; or &quot;n&quot;.&#39;</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">answer</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="validate_package_name"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_package_name">[docs]</a><span class="k">def</span> <span class="nf">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python package name</span>
+
+<span class="sd">    :param package_name: The desired package name</span>
+
+<span class="sd">    :return: Modified package_name with whitespaces and hyphens replaced with</span>
+<span class="sd">        underscores and all invalid characters removed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Trim outer whitespace and replace inner whitespace and hyphens with underscore</span>
+    <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+|-+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="c1"># Remove non-alphanumeric or _ characters</span>
+    <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">validated_package_name</span><span class="p">)</span>
+    <span class="c1"># Remove leading characters until we hit a letter or underscore</span>
+    <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[^a-zA-Z_]+&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">validated_package_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">validated_package_name</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid package name.&#39;</span><span class="p">)</span>
+    <span class="c1"># Alert user of any changes made in validation</span>
+    <span class="k">if</span> <span class="n">package_name</span> <span class="o">!=</span> <span class="n">validated_package_name</span><span class="p">:</span>
+        <span class="n">message_format</span> <span class="o">=</span> <span class="s1">&#39;Name was changed to </span><span class="si">{}</span><span class="s1"> in order to be a valid python package&#39;</span>
+        <span class="n">print_validation_warning</span><span class="p">(</span><span class="n">message_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">validated_package_name</span>
+
+
+<span class="c1"># TODO: ensure duplicate validation_warnings don&#39;t appear</span>
+<div class="viewcode-block" id="validate_module_filename"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_module_filename">[docs]</a><span class="k">def</span> <span class="nf">validate_module_filename</span><span class="p">(</span><span class="n">module_filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python</span>
+<span class="sd">    module file name</span>
+
+<span class="sd">    :param module_filename: The desired module file name. If the .py extension</span>
+<span class="sd">        is excluded, it will be appended after validation</span>
+
+<span class="sd">    :return: Modified module_filename with whitespaces and hyphens replaced with</span>
+<span class="sd">        underscores, all invalid characters removed, and a &#39;.py&#39; extension</span>
+<span class="sd">        appended (if necessary)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Strip .py extension if present</span>
+    <span class="n">validated_module_filename</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">module_filename</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Python packages an modules have the same naming conventions</span>
+        <span class="n">validated_module_filename</span> <span class="o">=</span> <span class="n">validate_package_name</span><span class="p">(</span><span class="n">validated_module_filename</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid module name.&#39;</span><span class="p">)</span>
+    <span class="c1"># Append .py extension</span>
+    <span class="n">validated_module_filename</span> <span class="o">+=</span> <span class="s1">&#39;.py&#39;</span>
+    <span class="c1"># Alert the user of any changes made in validation</span>
+    <span class="k">if</span> <span class="n">module_filename</span> <span class="o">!=</span> <span class="n">validated_module_filename</span><span class="p">:</span>
+        <span class="n">message_format</span> <span class="o">=</span> <span class="s1">&#39;Name was changed to </span><span class="si">{}</span><span class="s1"> in order to be a valid python module file&#39;</span>
+        <span class="n">print_validation_warning</span><span class="p">(</span><span class="n">message_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_module_filename</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">validated_module_filename</span>
+
+
+<span class="c1"># TODO: ensure duplicate validation_warnings don&#39;t appear</span>
+<div class="viewcode-block" id="validate_class_name"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_class_name">[docs]</a><span class="k">def</span> <span class="nf">validate_class_name</span><span class="p">(</span><span class="n">class_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python</span>
+<span class="sd">    class name</span>
+
+<span class="sd">    :param class_name: The desired classname</span>
+
+<span class="sd">    :return: Modified class_name with invalid characters removed/replaced</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: Validate differently than packages?</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">validated_class_name</span> <span class="o">=</span> <span class="n">validate_package_name</span><span class="p">(</span><span class="n">class_name</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid class name.&#39;</span><span class="p">)</span>
+    <span class="c1"># Alert the user of any changes made in validation</span>
+    <span class="k">if</span> <span class="n">class_name</span> <span class="o">!=</span> <span class="n">validated_class_name</span><span class="p">:</span>
+        <span class="n">message_format</span> <span class="o">=</span> <span class="s1">&#39;Name was changed to </span><span class="si">{}</span><span class="s1"> in order to be a valid python class name&#39;</span>
+        <span class="n">print_validation_warning</span><span class="p">(</span><span class="n">message_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_class_name</span><span class="p">))</span>
+    <span class="c1"># Print warning if first letter isn&#39;t capital</span>
+    <span class="c1"># (python is forgiving about class names but convention says it should be camel case)</span>
+    <span class="k">if</span> <span class="n">validated_class_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">validated_class_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span>
+        <span class="n">print_validation_warning</span><span class="p">(</span><span class="s1">&#39;Warning: Class name should start with a capital letter&#39;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">validated_class_name</span>
 
 
 <div class="viewcode-block" id="prompt"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.prompt">[docs]</a><span class="k">def</span> <span class="nf">prompt</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="o">*</span><span class="n">description</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate_nonempty</span><span class="p">,</span> <span class="n">trailing_newline</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>

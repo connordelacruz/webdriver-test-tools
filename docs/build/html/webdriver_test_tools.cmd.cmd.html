@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.common package" href="webdriver_test_tools.common.html" />
+    <link rel="next" title="webdriver_test_tools.cmd.argparse module" href="webdriver_test_tools.cmd.argparse.html" />
     <link rel="prev" title="webdriver_test_tools.cmd package" href="webdriver_test_tools.cmd.html" /> 
 
   
@@ -257,6 +257,60 @@
 </dd></dl>
 
 <dl class="function">
+<dt id="webdriver_test_tools.cmd.cmd.validate_package_name">
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">validate_package_name</code><span class="sig-paren">(</span><em>package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#validate_package_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.validate_package_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes and replaces characters to ensure a string is a valid python package name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package_name</strong> – The desired package name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified package_name with whitespaces and hyphens replaced with
+underscores and all invalid characters removed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.cmd.cmd.validate_module_filename">
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">validate_module_filename</code><span class="sig-paren">(</span><em>module_filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#validate_module_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.validate_module_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes and replaces characters to ensure a string is a valid python
+module file name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module_filename</strong> – The desired module file name. If the .py extension
+is excluded, it will be appended after validation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified module_filename with whitespaces and hyphens replaced with
+underscores, all invalid characters removed, and a ‘.py’ extension
+appended (if necessary)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.cmd.cmd.validate_class_name">
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">validate_class_name</code><span class="sig-paren">(</span><em>class_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#validate_class_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.validate_class_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes and replaces characters to ensure a string is a valid python
+class name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_name</strong> – The desired classname</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified class_name with invalid characters removed/replaced</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="webdriver_test_tools.cmd.cmd.prompt">
 <code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>*description</em>, <em>default=None</em>, <em>validate=&lt;function validate_nonempty&gt;</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prompt the user for input and validate it</p>
@@ -292,7 +346,7 @@ input and successfully validating</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.common.html" class="btn btn-neutral float-right" title="webdriver_test_tools.common package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.cmd.argparse.html" class="btn btn-neutral float-right" title="webdriver_test_tools.cmd.argparse module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="webdriver_test_tools.cmd.html" class="btn btn-neutral" title="webdriver_test_tools.cmd package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

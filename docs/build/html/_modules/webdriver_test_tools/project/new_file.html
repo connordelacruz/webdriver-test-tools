@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>webdriver_test_tools.project.new_file &mdash; WebDriver Test Tools 1.7.1-alpha documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.project.new_file</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for webdriver_test_tools.project.new_file</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for creating a new test/page module.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">cmd</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.common.files</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">templates</span>
+
+
+<span class="n">TEST_TYPE</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
+<span class="n">PAGE_TYPE</span> <span class="o">=</span> <span class="s1">&#39;page&#39;</span>
+
+<span class="n">TEMPLATE_PATH</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
+<span class="c1">#: Maps file type to corresponding template file</span>
+<span class="n">TEMPLATE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">TEST_TYPE</span><span class="p">:</span> <span class="s1">&#39;test_case.py&#39;</span><span class="p">,</span>
+    <span class="n">PAGE_TYPE</span><span class="p">:</span> <span class="s1">&#39;page_object.py&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="c1">#: Maps file type to corresponding subdirectory in a test package</span>
+<span class="n">DIRECTORY_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">TEST_TYPE</span><span class="p">:</span> <span class="s1">&#39;tests&#39;</span><span class="p">,</span>
+    <span class="n">PAGE_TYPE</span><span class="p">:</span> <span class="s1">&#39;pages&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="validate_file_type"><a class="viewcode-back" href="../../../webdriver_test_tools.project.new_file.html#webdriver_test_tools.project.new_file.validate_file_type">[docs]</a><span class="k">def</span> <span class="nf">validate_file_type</span><span class="p">(</span><span class="n">file_type</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Validate file type and return the corresponding template filename and</span>
+<span class="sd">    target directory</span>
+
+<span class="sd">    :param file_type: The string to validate</span>
+
+<span class="sd">    :return: ``(template_file, target_dir)`` where ``template_file`` is the</span>
+<span class="sd">        corresponding filename for the template and ``target_dir`` is the</span>
+<span class="sd">        corresponding directory where the new file should be placed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_type</span> <span class="o">=</span> <span class="n">file_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">file_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">TEMPLATE_MAP</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">cmd</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;File type &quot;</span><span class="si">{}</span><span class="s1">&quot; invalid&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_type</span><span class="p">))</span>
+    <span class="n">template_file</span> <span class="o">=</span> <span class="n">TEMPLATE_MAP</span><span class="p">[</span><span class="n">file_type</span><span class="p">]</span>
+    <span class="n">target_dir</span> <span class="o">=</span> <span class="n">DIRECTORY_MAP</span><span class="p">[</span><span class="n">file_type</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="n">template_file</span><span class="p">,</span> <span class="n">target_dir</span>
+
+
+<div class="viewcode-block" id="validate_description"><a class="viewcode-back" href="../../../webdriver_test_tools.project.new_file.html#webdriver_test_tools.project.new_file.validate_description">[docs]</a><span class="k">def</span> <span class="nf">validate_description</span><span class="p">(</span><span class="n">description</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Replaces double quotes with single quotes in class description</span>
+
+<span class="sd">    :param description: The desired description string</span>
+
+<span class="sd">    :return: Validated description string with double quotes replaced with</span>
+<span class="sd">        single quotes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Replace double quotes with single quotes to avoid breaking the docstring</span>
+    <span class="n">validated_description</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">validated_description</span> <span class="o">!=</span> <span class="n">description</span><span class="p">:</span>
+        <span class="n">print_validation_warning</span><span class="p">(</span><span class="s1">&#39;Replaced double quotes with single quotes in class description&#39;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">validated_description</span>
+
+
+<div class="viewcode-block" id="new_file"><a class="viewcode-back" href="../../../webdriver_test_tools.project.new_file.html#webdriver_test_tools.project.new_file.new_file">[docs]</a><span class="k">def</span> <span class="nf">new_file</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">test_package</span><span class="p">,</span> <span class="n">file_type</span><span class="p">,</span> <span class="n">module_name</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span>
+             <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a new project file</span>
+
+<span class="sd">    :param test_package_path: The root directory of the test package</span>
+<span class="sd">    :param test_package: The python package name of the test package</span>
+<span class="sd">    :param file_type: The type of file to create. Valid file types are stored</span>
+<span class="sd">        as global variables with the _TYPE suffix</span>
+<span class="sd">    :param module_name: Filename to use for the new python module</span>
+<span class="sd">    :param class_name: Name to use for the initial test class</span>
+<span class="sd">    :param description: (Optional) Description to use in the docstring of the initial class</span>
+<span class="sd">    :param force: (Default: False) If True, force overwrite if a file with the</span>
+<span class="sd">        same name already exists</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">template_file</span><span class="p">,</span> <span class="n">target_dir</span> <span class="o">=</span> <span class="n">validate_file_type</span><span class="p">(</span><span class="n">file_type</span><span class="p">)</span>
+    <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">)</span>
+    <span class="c1"># Validate module_name (and append .py if not already present)</span>
+    <span class="n">module_name</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">validate_module_filename</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+    <span class="c1"># Validate class_name</span>
+    <span class="n">class_name</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">validate_class_name</span><span class="p">(</span><span class="n">class_name</span><span class="p">)</span>
+    <span class="c1"># Validate description name (if present)</span>
+    <span class="k">if</span> <span class="n">description</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="n">validate_description</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;test_package&#39;</span><span class="p">:</span> <span class="n">test_package</span><span class="p">,</span>
+        <span class="s1">&#39;module_name&#39;</span><span class="p">:</span> <span class="n">module_name</span><span class="p">,</span>
+        <span class="s1">&#39;class_name&#39;</span><span class="p">:</span> <span class="n">class_name</span><span class="p">,</span>
+        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">new_file_path</span> <span class="o">=</span> <span class="n">create_file_from_template</span><span class="p">(</span>
+            <span class="n">TEMPLATE_PATH</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">template_file</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span>
+            <span class="n">target_filename</span><span class="o">=</span><span class="n">module_name</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="n">force</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">FileUtilError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">cmd</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="c1"># Output new file path on success</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">](</span><span class="s1">&#39;File created:&#39;</span><span class="p">))</span></div>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">](</span><span class="n">new_file_path</span><span class="p">))</span>
+
+<span class="c1"># TODO: main function for prompts?</span>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.7.1-alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
