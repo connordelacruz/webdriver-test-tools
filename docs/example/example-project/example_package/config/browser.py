@@ -3,7 +3,7 @@ from webdriver_test_tools.config import browser
 
 
 class BrowserConfig(browser.BrowserConfig):
-    """Configurations for what browsers to generate tests for
+    """Configurations for which browsers to generate tests for
 
     :var BrowserConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.
         True enables the browser, False disables it. Defaults to Chrome and

@@ -28,10 +28,37 @@ project:
 You will be prompted to enter a name for the test project python package. To be
 a valid package name, it needs to only use alphanumeric characters and
 underscores and it cannot start with a number. For this example, we’ll call it
-``example_package``. Initializing the project should create the following files
-and directories:
+``example_package``:
 
 .. code-block:: none
+    :caption: Project creation prompt
+    :emphasize-lines: 3,7,11,15
+
+    Enter a name for the test package
+    (use only alphanumeric characters and underscores. Cannot start with a number)
+    > Package name: example_package
+    
+    (Optional) Enter a human-readable name for the test project
+    (can use alphanumeric characters, spaces, hyphens, and underscores)
+    > Project title [example_package]: Example Test Project
+    
+    Create .gitignore files for project root and log directory?
+    (Ignores python cache files, package install files, local driver logs, etc)
+    > Create .gitignore files (y/n) [y]:
+    
+    Generate README file?
+    (README contains information on command line usage and directory structure)
+    > Create README file (y/n) [y]:
+    
+    Creating test project...
+    Project initialized.
+    
+    To get started, set the SITE_URL for the project in example_package/config/site.py 
+    
+Initializing the project should create the following files and directories:
+
+.. code-block:: none
+    :caption: Example project file structure
 
     example-project/
     ├── README.rst
@@ -46,11 +73,11 @@ and directories:
     │   │   ├── test.py
     │   │   └── webdriver.py
     │   ├── data/
+    │   │   └── __init__.py
     │   ├── log/
     │   ├── pages/
-    │   ├── templates/
-    │   │   ├── page_object.py
-    │   │   └── test_case.py
+    │   │   └── __init__.py
+    │   ├── screenshot/
     │   └── tests/
     │       └── __init__.py
     └── setup.py
@@ -102,14 +129,15 @@ should be handled by page objects to minimize the need to alter tests whenever
 the HTML is changed.
 
 After configuring URLs, we’ll want to add a page object for the home
-page of example.com. Copy the template file ``templates/page_object.py``
-to the ``pages/`` directory and name the copied file ``home.py``:
+page of example.com. Run the following command to create a new page object
+module:
 
 .. code-block:: none
 
-    cp example_package/templates/page_object.py example_package/pages/home.py
+    python -m example_package new page home HomePage
 
-In ``pages/home.py``, rename the ``TemplatePage`` class to ``HomePage``.
+This will create the file ``pages/home.py`` with a page object class
+``HomePage``.
 
 
 Locating page elements
@@ -160,22 +188,22 @@ Creating a new test module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that we have a page object for interacting with example.com, we can write a
-test case. Copy the file ``templates/test_case.py`` to the ``tests/`` directory
-and name the copied file ``homepage.py``:
+test case. Run the following command to create a new test module:
 
 .. code-block:: none
 
-    cp example_package/templates/test_case.py example_package/tests/homepage.py
+    python -m example_package new test home HomePageTestCase -d "Really contrived example test case"
 
+This will create the file ``tests/home.py`` with a test case class
+``HomePageTestCase``. The ``-d`` argument is used to add a description to the
+test case's docstring.
 
-In ``tests/homepage.py``, rename the ``TemplateTestCase`` class to
-``HomePageTestCase``. Then import the ``HomePage`` class created in the previous
-step.
+In ``tests/home.py``, import the ``HomePage`` class created in the previous step.
 
-.. literalinclude:: ../example/example-project/example_package/tests/homepage.py
-    :caption: tests/homepage.py:
-    :lines: 1-12
-    :emphasize-lines: 1,11-12
+.. literalinclude:: ../example/example-project/example_package/tests/home.py
+    :caption: tests/home.py:
+    :lines: 1-10
+    :emphasize-lines: 6
 
 .. note::
 
@@ -193,9 +221,9 @@ We’re going to add 2 test functions:
 2. Click the ‘More information…’ link and assert that the URL matches
    ``SiteConfig.INFO_URL``
 
-.. literalinclude:: ../example/example-project/example_package/tests/homepage.py
-    :caption: tests/homepage.py:
-    :lines: 11-
+.. literalinclude:: ../example/example-project/example_package/tests/home.py
+    :caption: tests/home.py:
+    :lines: 9-
     :emphasize-lines: 9-13,15-20
 
 
@@ -271,7 +299,7 @@ arguments, run:
 
 .. code-block:: none
 
-    python -m example_package --help
+    python -m example_package run --help
 
 Running in a specific browser
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -289,11 +317,11 @@ Running specific test modules
 
 If we only want to run a specific test module, we can use the ``--module``
 command line argument. For example, if we just wanted to run
-``tests/homepage.py``:
+``tests/home.py``:
 
 .. code-block:: none
 
-    python -m example_package --module homepage
+    python -m example_package --module home
 
 Since we only have one test module in this example, this doesn’t do anything
 different than normal, but this can be useful in test projects with multiple

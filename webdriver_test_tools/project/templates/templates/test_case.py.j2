@@ -6,7 +6,7 @@ from {{ test_package }} import config
 
 
 class {{ class_name }}(WebDriverTestCase):
-    {% if description %}"""{{ description }}"""{% endif %}
+    """{% if description %}{{ description }}{% else %}ADD CLASS DESCRIPTION{% endif %}"""
 
     # URL to go to at the start of each test
     SITE_URL = config.SiteConfig.SITE_URL

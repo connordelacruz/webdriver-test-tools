@@ -74,10 +74,8 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     module_name = cmd.validate_module_filename(module_name)
     # Validate class_name
     class_name = cmd.validate_class_name(class_name)
-    # Validate class name (if present)
-    if description is None:
-        description = 'ADD CLASS DESCRIPTION'
-    else:
+    # Validate description name (if present)
+    if description is not None:
         description = validate_description(description)
     context = {
         'test_package': test_package,
