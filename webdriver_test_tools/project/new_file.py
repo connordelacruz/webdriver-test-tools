@@ -50,7 +50,7 @@ def validate_description(description):
     # Replace double quotes with single quotes to avoid breaking the docstring
     validated_description = description.replace('"', "'")
     if validated_description != description:
-        print_validation_warning('Replaced double quotes with single quotes in class description')
+        cmd.print_info('Replaced double quotes with single quotes in class description')
     return validated_description
 
 
@@ -88,8 +88,8 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
         target_filename=module_name, overwrite=force
     )
     # Output new file path on success
-    print(cmd.COLORS['success']('File created:'))
-    print(cmd.COLORS['success'](new_file_path))
+    print(cmd.COLORS['success']('\nFile created.'))
+    print(new_file_path)
 
 # TODO: main function for prompts?
 

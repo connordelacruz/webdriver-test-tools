@@ -197,8 +197,10 @@ def validate_project_title(project_title):
         raise cmd.ValidationError('Please enter a valid project title.')
     # Alert user of any changes made in validation
     if project_title != validated_project_title:
-        message_format = 'Title was changed to {} to avoid syntax errors.'
-        cmd.print_validation_warning(message_format.format(validated_project_title))
+        cmd.print_validation_change(
+            '"{0}" was changed to "{1}" to avoid syntax errors',
+            project_title, validated_project_title
+        )
     return validated_project_title
 
 

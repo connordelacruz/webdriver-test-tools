@@ -57,10 +57,10 @@ def get_generic_parent_parser(include_version=False):
     generic_parent_parser = ArgumentParser(add_help=False)
     group = generic_parent_parser.add_argument_group('General')
     group.add_argument('-h', '--help', action='help',
-                           help='Show this help message and exit')
+                       help='Show this help message and exit')
     if include_version:
         group.add_argument('-V', '--version', action='store_true',
-                               help='Show version number and exit')
+                           help='Show version number and exit')
     return generic_parent_parser
 
 

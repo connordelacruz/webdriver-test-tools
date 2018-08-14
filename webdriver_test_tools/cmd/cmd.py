@@ -21,6 +21,7 @@ COLORS = {
     'error': _term.bold_red,
     'warning': _term.yellow,
     'success': _term.green,
+    'info': _term.cyan,
     'prompt': _term.magenta,
     'title': _term.blue,
     'emphasize': _term.bold,
@@ -37,12 +38,20 @@ def print_exception(e):
     print(COLORS['error'](str(e)))
 
 
-def print_validation_warning(text):
-    """Format and print a warning message when user input was modified in a prompt validation function
+def print_warning(text):
+    """Format and print a warning message
 
-    :param text: Warning message to print. Should indicate what was changed to make user input valid
+    :param text: Warning message to print
     """
     print(COLORS['warning'](text))
+
+
+def print_info(text):
+    """Format and print info message
+
+    :param text: Info message to print
+    """
+    print(COLORS['info'](text))
 
 
 # User Input
@@ -50,6 +59,24 @@ def print_validation_warning(text):
 class ValidationError(Exception):
     """Exception raised if input validation fails"""
     pass
+
+
+def print_validation_change(message_format, original, changed):
+    """Inform the user of changes to their input during validation.
+    Used to keep output format consistent
+
+    :param message_format: A format string with 2 positional fields, one for
+        the original value and one for the altered value. These fields should
+        be surrounded with double quotes for better readability.
+
+        .. example::
+
+            '"{0}" changed to "{1}" for compatibility'
+
+    :param original: The original user input
+    :param changed: The input after being altered
+    """
+    print_info(message_format.format(original, changed))
 
 
 def validate_nonempty(text):
@@ -112,34 +139,43 @@ def validate_package_name(package_name):
         raise ValidationError('Please enter a valid package name.')
     # Alert user of any changes made in validation
     if package_name != validated_package_name:
-        message_format = 'Name was changed to {} in order to be a valid python package'
-        print_validation_warning(message_format.format(validated_package_name))
+        print_validation_change(
+            '"{0}" was changed to "{1}" in order to be a valid python package',
+            package_name, validated_package_name
+        )
     return validated_package_name
 
 
-def validate_module_filename(module_filename):
+def validate_module_filename(module_filename, suppress_ext_change=True):
     """Removes and replaces characters to ensure a string is a valid python
     module file name
 
     :param module_filename: The desired module file name. If the .py extension
         is excluded, it will be appended after validation
+    :param suppress_ext_change: (Default: True) If False, print message when
+        appending .py extension to file name. Suppressed by default, as the
+        user shouldn't typically be required to append .py themselves
 
     :return: Modified module_filename with whitespaces and hyphens replaced with
         underscores, all invalid characters removed, and a '.py' extension
         appended (if necessary)
     """
     # Strip .py extension if present
-    validated_module_filename, ext = os.path.splitext(module_filename.strip())
+    module_name, ext = os.path.splitext(module_filename.strip())
     try:
-        validated_module_filename = _validate_python_identifier(validated_module_filename)
+        validated_module_name = _validate_python_identifier(module_name)
     except ValidationError as e:
         raise ValidationError('Please enter a valid module name.')
-    # Append .py extension
-    validated_module_filename += '.py'
     # Alert the user of any changes made in validation
-    if module_filename != validated_module_filename:
-        message_format = 'Name was changed to {} in order to be a valid python module file'
-        print_validation_warning(message_format.format(validated_module_filename))
+    if module_name != validated_module_name:
+        print_validation_change(
+            '"{0}" was changed to "{1}" in order to be a valid python module file',
+            module_name, validated_module_name
+        )
+    # Append .py extension
+    validated_module_filename = validated_module_name + '.py'
+    if ext != '.py' and not suppress_ext_change:
+        print_info('Added .py extension for filename')
     return validated_module_filename
 
 
@@ -147,7 +183,7 @@ def validate_class_name(class_name):
     """Removes and replaces characters to ensure a string is a valid python
     class name
 
-    :param class_name: The desired classname
+    :param class_name: The desired class name
 
     :return: Modified class_name with invalid characters removed/replaced
     """
@@ -158,12 +194,14 @@ def validate_class_name(class_name):
         raise ValidationError('Please enter a valid class name.')
     # Alert the user of any changes made in validation
     if class_name != validated_class_name:
-        message_format = 'Name was changed to {} in order to be a valid python class name'
-        print_validation_warning(message_format.format(validated_class_name))
+        print_validation_change(
+            '"{0}" was changed to "{1}" in order to be a valid python class name',
+            class_name, validated_class_name
+        )
     # Print warning if first letter isn't capital
     # (python is forgiving about class names but convention says it should be camel case)
     if validated_class_name[0] != validated_class_name[0].upper():
-        print_validation_warning('Warning: Class name should start with a capital letter')
+        print_warning('Warning: Class name should start with a capital letter')
     return validated_class_name
 
 

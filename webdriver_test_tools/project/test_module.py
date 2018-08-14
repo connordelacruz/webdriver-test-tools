@@ -402,6 +402,7 @@ def parse_new_args(package_name, tests_module, args):
         new_file(test_package_path, package_name, args.type, args.module_name, args.class_name,
                  description=args.description, force=args.force)
     except Exception as e:
+        print('')
         cmd.print_exception(e)
 
 
