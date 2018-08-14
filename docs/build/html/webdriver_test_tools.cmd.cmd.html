@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.cmd.cmd module &mdash; WebDriver Test Tools 1.7.1-alpha documentation</title>
+  <title>webdriver_test_tools.cmd.cmd module &mdash; WebDriver Test Tools 2.0.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.7
+                2.0
               </div>
             
           
@@ -204,14 +204,28 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="webdriver_test_tools.cmd.cmd.print_validation_warning">
-<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">print_validation_warning</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#print_validation_warning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.print_validation_warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Format and print a warning message when user input was modified in a prompt validation function</p>
+<dt id="webdriver_test_tools.cmd.cmd.print_warning">
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">print_warning</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#print_warning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.print_warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format and print a warning message</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> – Warning message to print. Should indicate what was changed to make user input valid</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> – Warning message to print</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.cmd.cmd.print_info">
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">print_info</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#print_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.print_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format and print info message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> – Info message to print</td>
 </tr>
 </tbody>
 </table>
@@ -222,6 +236,32 @@
 <em class="property">exception </em><code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">ValidationError</code><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#ValidationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.ValidationError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 <p>Exception raised if input validation fails</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.cmd.cmd.print_validation_change">
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">print_validation_change</code><span class="sig-paren">(</span><em>message_format</em>, <em>original</em>, <em>changed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#print_validation_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.print_validation_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inform the user of changes to their input during validation.
+Used to keep output format consistent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>message_format</strong> – <p>A format string with 2 positional fields, one for
+the original value and one for the altered value. These fields should
+be surrounded with double quotes for better readability.</p>
+<p>example:</p>
+<blockquote>
+<div>’”{0}” changed to “{1}” for compatibility’</div></blockquote>
+</li>
+<li><strong>original</strong> – The original user input</li>
+<li><strong>changed</strong> – The input after being altered</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -275,19 +315,26 @@ underscores and all invalid characters removed</td>
 
 <dl class="function">
 <dt id="webdriver_test_tools.cmd.cmd.validate_module_filename">
-<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">validate_module_filename</code><span class="sig-paren">(</span><em>module_filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#validate_module_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.validate_module_filename" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">validate_module_filename</code><span class="sig-paren">(</span><em>module_filename</em>, <em>suppress_ext_change=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#validate_module_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.validate_module_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes and replaces characters to ensure a string is a valid python
 module file name</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module_filename</strong> – The desired module file name. If the .py extension
-is excluded, it will be appended after validation</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>module_filename</strong> – The desired module file name. If the .py extension
+is excluded, it will be appended after validation</li>
+<li><strong>suppress_ext_change</strong> – (Default: True) If False, print message when
+appending .py extension to file name. Suppressed by default, as the
+user shouldn’t typically be required to append .py themselves</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified module_filename with whitespaces and hyphens replaced with
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Modified module_filename with whitespaces and hyphens replaced with
 underscores, all invalid characters removed, and a ‘.py’ extension
-appended (if necessary)</td>
+appended (if necessary)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -302,7 +349,7 @@ class name</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_name</strong> – The desired classname</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_name</strong> – The desired class name</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified class_name with invalid characters removed/replaced</td>
 </tr>
@@ -380,7 +427,7 @@ input and successfully validating</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.7.1-alpha',
+            VERSION:'2.0.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

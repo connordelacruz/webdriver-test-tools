@@ -69,7 +69,7 @@ def print_validation_change(message_format, original, changed):
         the original value and one for the altered value. These fields should
         be surrounded with double quotes for better readability.
 
-        .. example::
+        example:
 
             '"{0}" changed to "{1}" for compatibility'
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.new_file &mdash; WebDriver Test Tools 1.7.1-alpha documentation</title>
+  <title>webdriver_test_tools.project.new_file &mdash; WebDriver Test Tools 2.0.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.7
+                2.0
               </div>
             
           
@@ -207,7 +207,7 @@
     <span class="c1"># Replace double quotes with single quotes to avoid breaking the docstring</span>
     <span class="n">validated_description</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">validated_description</span> <span class="o">!=</span> <span class="n">description</span><span class="p">:</span>
-        <span class="n">print_validation_warning</span><span class="p">(</span><span class="s1">&#39;Replaced double quotes with single quotes in class description&#39;</span><span class="p">)</span></div>
+        <span class="n">cmd</span><span class="o">.</span><span class="n">print_info</span><span class="p">(</span><span class="s1">&#39;Replaced double quotes with single quotes in class description&#39;</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">validated_description</span>
 
 
@@ -245,8 +245,8 @@
         <span class="n">target_filename</span><span class="o">=</span><span class="n">module_name</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="n">force</span>
     <span class="p">)</span>
     <span class="c1"># Output new file path on success</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">](</span><span class="s1">&#39;File created:&#39;</span><span class="p">))</span></div>
-    <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">](</span><span class="n">new_file_path</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">](</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">File created.&#39;</span><span class="p">))</span></div>
+    <span class="nb">print</span><span class="p">(</span><span class="n">new_file_path</span><span class="p">)</span>
 
 <span class="c1"># TODO: main function for prompts?</span>
 
@@ -284,7 +284,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.7.1-alpha',
+            VERSION:'2.0.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
