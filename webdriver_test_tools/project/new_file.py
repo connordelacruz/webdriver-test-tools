@@ -83,13 +83,10 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
         'class_name': class_name,
         'description': description,
     }
-    try:
-        new_file_path = create_file_from_template(
-            TEMPLATE_PATH, target_path, template_file, context,
-            target_filename=module_name, overwrite=force
-        )
-    except FileUtilError as e:
-        cmd.print_exception(e)
+    new_file_path = create_file_from_template(
+        TEMPLATE_PATH, target_path, template_file, context,
+        target_filename=module_name, overwrite=force
+    )
     # Output new file path on success
     print(cmd.COLORS['success']('File created:'))
     print(cmd.COLORS['success'](new_file_path))

@@ -77,6 +77,28 @@ def validate_yn(answer):
     return answer in ['y', 'yes']
 
 
+def _validate_python_identifier(identifier):
+    """Removes and replaces characters and returns a valid python identifier
+
+    Python identifiers include letters, numbers, and underscores and cannot
+    begin with a number
+
+    :param identifier: The desired identifier string
+
+    :return: Modified identifier with invalid characters removed or replaced
+    """
+    # TODO: doc
+    # Trim outer whitespace and replace inner whitespace and hyphens with underscore
+    validated_identifier = re.sub(r'\s+|-+', '_', identifier.strip())
+    # Remove non-alphanumeric or _ characters
+    validated_identifier = re.sub(r'[^\w\s]', '', validated_identifier)
+    # Remove leading characters until we hit a letter or underscore
+    validated_identifier = re.sub(r'^[^a-zA-Z_]+', '', validated_identifier)
+    if not validated_identifier:
+        raise ValidationError('Please enter a valid python identifier.')
+    return validated_identifier
+
+
 def validate_package_name(package_name):
     """Removes and replaces characters to ensure a string is a valid python package name
 
@@ -85,13 +107,9 @@ def validate_package_name(package_name):
     :return: Modified package_name with whitespaces and hyphens replaced with
         underscores and all invalid characters removed
     """
-    # Trim outer whitespace and replace inner whitespace and hyphens with underscore
-    validated_package_name = re.sub(r'\s+|-+', '_', package_name.strip())
-    # Remove non-alphanumeric or _ characters
-    validated_package_name = re.sub(r'[^\w\s]', '', validated_package_name)
-    # Remove leading characters until we hit a letter or underscore
-    validated_package_name = re.sub(r'^[^a-zA-Z_]+', '', validated_package_name)
-    if not validated_package_name:
+    try:
+        validated_package_name = _validate_python_identifier(package_name)
+    except ValidationError as e:
         raise ValidationError('Please enter a valid package name.')
     # Alert user of any changes made in validation
     if package_name != validated_package_name:
@@ -100,7 +118,6 @@ def validate_package_name(package_name):
     return validated_package_name
 
 
-# TODO: ensure duplicate validation_warnings don't appear
 def validate_module_filename(module_filename):
     """Removes and replaces characters to ensure a string is a valid python
     module file name
@@ -115,8 +132,7 @@ def validate_module_filename(module_filename):
     # Strip .py extension if present
     validated_module_filename, ext = os.path.splitext(module_filename.strip())
     try:
-        # Python packages an modules have the same naming conventions
-        validated_module_filename = validate_package_name(validated_module_filename)
+        validated_module_filename = _validate_python_identifier(validated_module_filename)
     except ValidationError as e:
         raise ValidationError('Please enter a valid module name.')
     # Append .py extension
@@ -128,7 +144,6 @@ def validate_module_filename(module_filename):
     return validated_module_filename
 
 
-# TODO: ensure duplicate validation_warnings don't appear
 def validate_class_name(class_name):
     """Removes and replaces characters to ensure a string is a valid python
     class name
@@ -139,7 +154,7 @@ def validate_class_name(class_name):
     """
     # TODO: Validate differently than packages?
     try:
-        validated_class_name = validate_package_name(class_name)
+        validated_class_name = _validate_python_identifier(class_name)
     except ValidationError as e:
         raise ValidationError('Please enter a valid class name.')
     # Alert the user of any changes made in validation

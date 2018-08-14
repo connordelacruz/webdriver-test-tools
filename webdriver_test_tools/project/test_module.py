@@ -398,8 +398,11 @@ def parse_new_args(package_name, tests_module, args):
     """
     # Get package path based on tests_module path
     test_package_path = os.path.dirname(os.path.dirname(tests_module.__file__))
-    new_file(test_package_path, package_name, args.type, args.module_name, args.class_name,
-             description=args.description, force=args.force)
+    try:
+        new_file(test_package_path, package_name, args.type, args.module_name, args.class_name,
+                 description=args.description, force=args.force)
+    except Exception as e:
+        cmd.print_exception(e)
 
 
 def get_browser_config_classes(config_module):
