@@ -76,7 +76,7 @@ def get_parser(config_module=None, package_name=None):
         'run', description=run_description, help=run_help,
         parents=[test_parent_parser],
         formatter_class=argparse.RawTextHelpFormatter,
-        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # Arguments for specifying browser to use
     group = run_parser.add_argument_group('Browser Arguments')
@@ -125,18 +125,17 @@ def get_parser(config_module=None, package_name=None):
         'list', description=list_description, help=list_help,
         parents=[test_parent_parser],
         formatter_class=argparse.RawTextHelpFormatter,
-        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
 
     # New command
     new_description = 'Create a new test module or page object'
     new_help = new_description
-    # TODO: fix usage output for subparsers
     new_parser = subparsers.add_parser(
         'new', description=new_description, help=new_help,
         parents=[generic_parent_parser],
         formatter_class=argparse.RawTextHelpFormatter,
-        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # New <type> subparsers
     new_type_desc = 'Run \'{} new <type> --help\' for details'.format(package_name)
@@ -153,7 +152,7 @@ def get_parser(config_module=None, package_name=None):
     new_subparsers.add_parser(
         'test', description=new_test_description, help=new_test_help,
         parents=[new_test_parent_parser],
-        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # New page object parser
     new_page_parent_parser = get_new_parent_parser(
@@ -165,7 +164,7 @@ def get_parser(config_module=None, package_name=None):
     new_page_parser = new_subparsers.add_parser(
         'page', description=new_page_description, help=new_page_help,
         parents=[new_page_parent_parser],
-        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # TODO: add optional --prototype arg with a list of valid page object prototype classes
 
