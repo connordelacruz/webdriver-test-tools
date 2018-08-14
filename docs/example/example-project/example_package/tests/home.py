@@ -1,12 +1,10 @@
-from example_package.pages.home import HomePage
-
+from selenium import webdriver
 import webdriver_test_tools
 from webdriver_test_tools.testcase import *
+
 from example_package import config
-from selenium import webdriver
+from example_package.pages.home import HomePage
 
-
-# Test Case Classes
 
 class HomePageTestCase(WebDriverTestCase):
     """Really contrived example test case"""

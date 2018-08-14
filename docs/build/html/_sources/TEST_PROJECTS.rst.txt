@@ -66,6 +66,66 @@ For info on command line arguments, use the ``--help`` (or ``-h``) argument:
     python -m <test_package> --help
 
 
+Creating New Tests
+------------------
+
+New test modules can be generated using the ``new test`` command:
+
+::
+
+    python -m <test_package> new test <module_name> <TestCaseClass>
+
+Where ``<module_name>`` is the filename for the new test and ``<TestCaseClass>``
+is the class name for the test case.
+
+
+The ``--description`` (or ``-d``) argument can be used to add a description for
+the initial test case class:
+
+::
+
+    python -m <test_package> new test <module_name> <TestCaseClass> -d "Test case description"
+
+
+If a test module with the same ``<module_name>`` already exists, ``new test``
+will not overwrite it by default. The ``--force`` (or ``-f``) argument can be
+used to force overwrite existing files:
+
+::
+
+    python -m <test_package> new test <module_name> <TestCaseClass> --force
+
+
+Creating New Page Objects
+-------------------------
+
+New page object modules can be generated using the ``new page`` command:
+
+::
+
+    python -m <test_package> new page <module_name> <PageObjectClass>
+
+Where ``<module_name>`` is the filename for the new module and
+``<PageObjectClass>`` is the class name for the page object.
+
+
+The ``--description`` (or ``-d``) argument can be used to add a description for
+the initial page object class:
+
+::
+
+    python -m <test_package> new page <module_name> <PageObjectClass> -d "Page object description"
+
+
+If a page module with the same ``<module_name>`` already exists, ``new page``
+will not overwrite it by default. The ``--force`` (or ``-f``) argument can be
+used to force overwrite existing files:
+
+::
+
+    python -m <test_package> new page <module_name> <PageObjectClass> --force
+
+
 Running Tests
 -------------
 
@@ -231,9 +291,6 @@ inside the project directory:
         ├── pages/
         │   └── __init__.py
         ├── screenshot/
-        ├── templates/
-        │   ├── page_object.py
-        │   └── test_case.py
         └── tests/
             └── __init__.py
 
@@ -291,8 +348,8 @@ pages/
 ~~~~~~
 
 Page object classes for pages and components. These classes should handle
-locating and interacting with elements on the page. A template page object can
-be found in ``templates/page_object.py``.
+locating and interacting with elements on the page. See `Creating New Page
+Objects`_ for info on generating new page object modules.
 
 screenshot/
 ~~~~~~~~~~~
@@ -304,18 +361,7 @@ tests/
 ~~~~~~
 
 Test case modules. These use page objects to interact with elements and assert
-that the expected behavior occurs. A template test file can be found in
-``templates/test_case.py``.
-
-templates/
-~~~~~~~~~~
-
-Template files to use as a starting point when writing new test modules or page
-objects.
-
-* ``page_object.py``: Template for page objects. Copy to the ``pages/``
-  directory to use as a starting point when creating new page objects.
-* ``test_case.py``: Template test module. Copy to the ``tests/`` directory to
-  use as a starting point when creating new tests. 
+that the expected behavior occurs. See `Creating New Tests`_ for info on
+generating new test modules.
 
 

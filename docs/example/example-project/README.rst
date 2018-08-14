@@ -1,16 +1,31 @@
+====================
 Example Test Project
 ====================
 
 .. contents::
 
 Setup
------
+=====
 
-Installation
-~~~~~~~~~~~~
+Initialization
+--------------
 
-After initializing the test project, change to the root directory of the project
-and run:
+To generate files for a new test suite, change into the desired directory and
+run:
+
+::
+
+    wtt init
+
+This will generate a new test package with template files and project
+directories.
+
+
+Test Package Installation
+-------------------------
+
+After initializing the test project, run the following command from the project
+root directory:
 
 ::
 
@@ -23,7 +38,7 @@ changes are made to the source code.
 
 
 Configuration
-~~~~~~~~~~~~~
+-------------
 
 After initializing a project, the URL of the site to be tested will need to be
 configured. In ``example_package/config/site.py``, set the ``SITE_URL`` and
@@ -32,17 +47,87 @@ as class variables as well.
 
 
 Basic Command Line Usage
-------------------------
+========================
 
-For info on command line arguments:
+**Usage:**
+
+::
+
+    python -m example_package [-h] <command>
+
+**Note:** If no ``<command>`` is specified, the ``run`` command will be
+executed by default.
+
+
+For info on command line arguments, use the ``--help`` (or ``-h``) argument:
 
 ::
 
     python -m example_package --help
 
 
+Creating New Tests
+------------------
+
+New test modules can be generated using the ``new test`` command:
+
+::
+
+    python -m example_package new test <module_name> <TestCaseClass>
+
+Where ``<module_name>`` is the filename for the new test and ``<TestCaseClass>``
+is the class name for the test case.
+
+
+The ``--description`` (or ``-d``) argument can be used to add a description for
+the initial test case class:
+
+::
+
+    python -m example_package new test <module_name> <TestCaseClass> -d "Test case description"
+
+
+If a test module with the same ``<module_name>`` already exists, ``new test``
+will not overwrite it by default. The ``--force`` (or ``-f``) argument can be
+used to force overwrite existing files:
+
+::
+
+    python -m example_package new test <module_name> <TestCaseClass> --force
+
+
+Creating New Page Objects
+-------------------------
+
+New page object modules can be generated using the ``new page`` command:
+
+::
+
+    python -m example_package new page <module_name> <PageObjectClass>
+
+Where ``<module_name>`` is the filename for the new module and
+``<PageObjectClass>`` is the class name for the page object.
+
+
+The ``--description`` (or ``-d``) argument can be used to add a description for
+the initial page object class:
+
+::
+
+    python -m example_package new page <module_name> <PageObjectClass> -d "Page object description"
+
+
+If a page module with the same ``<module_name>`` already exists, ``new page``
+will not overwrite it by default. The ``--force`` (or ``-f``) argument can be
+used to force overwrite existing files:
+
+::
+
+    python -m example_package new page <module_name> <PageObjectClass> --force
+
+
 Running Tests
-~~~~~~~~~~~~~
+-------------
 
 To run all tests:
 
@@ -50,32 +135,41 @@ To run all tests:
 
     python -m example_package
 
-To run all test cases in one or more modules:
+
+To run all test cases in one or more modules, use the ``--module`` (or ``-m``)
+argument:
 
 ::
 
     python -m example_package --module <test_module> [<test_module> ...]
 
-To run specific TestCase classes:
+To run specific test case classes or methods, use the ``--test`` (or ``-t``)
+argument:
 
 ::
 
     python -m example_package --test <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
 
-The ``--test`` argument will run all tests in a class if no method is specified
-for it.
+To skip certain test cases or methods, use the ``--skip`` (or ``-s``) argument:
 
-**Note:** If the ``--module`` and ``--test`` arguments are used together, only
-the specified modules will be searched when looking for the specified test
-classes. If any of the test classes do not exist in any of the specified
-modules, they will be ignored.
+::
+
+    python -m example_package --skip <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
+
+
+These arguments can be used together. When combined, they are processed in the
+following order:
+
+    1. ``--module`` reduces the set of tests to those in the specified modules
+    2. ``--test`` reduces the set of tests to the specified classes and methods
+    3. ``--skip`` removes the specified classes and methods from the set of tests
 
 
 Using Specific Browsers
-^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~
 
 To do any of the above in specific browsers rather than running in all available
-browsers, use the ``--browser`` command line argument:
+browsers, use the ``--browser`` (or ``-b``) argument:
 
 ::
 
@@ -86,14 +180,14 @@ example_package --help``.
 
 
 Using Headless Browsers
-^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, tests run using the browser's GUI. While it can be helpful to see
 what's going on during test execution, loading and rendering the browser window
 can be resource-intensive and slows down performance during test execution.
 
 To improve performance, tests can be run in `headless browsers`_ using the
-``--headless`` argument:
+``--headless`` (or ``-H``) argument:
 
 ::
 
@@ -108,32 +202,72 @@ the following web drivers that support running in a headless environment:
 .. _headless browsers: https://en.wikipedia.org/wiki/Headless_browser
 
 
+Using BrowserStack
+~~~~~~~~~~~~~~~~~~
+
+Test projects can be configured to run tests on `BrowserStack`_. Once
+BrowserStack support is enabled, tests can be run on BrowserStack using the
+``--browserstack`` (or ``-B``) argument:
+
+::
+
+    python -m example_package <args> --browserstack
+
+See the documentation on `BrowserStack Support`_ for more details and setup
+instructions.
+
+.. _BrowserStack: https://www.browserstack.com/
+.. _BrowserStack Support: https://connordelacruz.com/webdriver-test-tools/browserstack.html
+
+
+Configuring Output
+~~~~~~~~~~~~~~~~~~
+
+By default, detailed output is displayed when running tests. To reduce or
+suppress output, use the ``--verbosity`` (or ``-v``) argument:
+
+::
+
+    python -m example_package <args> --verbosity <level>
+
+Where ``<level>`` is one of the following:
+
+    * 0 - Final results only
+    * 1 - Final results and progress indicator
+    * 2 - Full output
+
+**Note:** The default output level can be changed in
+``example_package/config/test.py`` by setting the ``DEFAULT_VERBOSITY``
+attribute of the ``TestSuiteConfig`` class.
+
+
 List Available Tests
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 To print a list of available test classes and methods:
 
 ::
 
-    python -m example_package --list
+    python -m example_package list
 
 To only list test classes from specific modules:
 
 ::
 
-    python -m example_package --list --module <test_module> [<test_module> ...]
+    python -m example_package list --module <test_module> [<test_module> ...]
 
 To only list specific test classes:
 
 ::
 
-    python -m example_package --list --test <TestClass> [<TestClass> ...]
+    python -m example_package list --test <TestClass> [<TestClass> ...]
+
 
 
 Project Structure
------------------
+=================
 
-``webdriver_test_tools --init`` will create the following files and directories
+``wtt init`` will create the following files and directories
 inside the project directory:
 
 ::
@@ -152,11 +286,11 @@ inside the project directory:
         │   ├── test.py
         │   └── webdriver.py
         ├── data/
+        │   └── __init__.py
         ├── log/
         ├── pages/
-        ├── templates/
-        │   ├── page_object.py
-        │   └── test_case.py
+        │   └── __init__.py
+        ├── screenshot/
         └── tests/
             └── __init__.py
 
@@ -167,14 +301,14 @@ the HTML is changed.
 
 
 Test Project Root Contents
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 * ``setup.py``: Python package setup file that allows the new test suite to be
   installed as a pip package.
 
 
 Test Package Root Contents
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 * ``__main__.py``: Required to run tests from the command line. 
 * ``__init__.py``: Empty init file so Python recognizes the directory as a
@@ -182,10 +316,10 @@ Test Package Root Contents
 
 
 Test Package Directories
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 config/
-^^^^^^^
+~~~~~~~
 
 Configurations used by test scripts for site URLs, web driver options, and the
 python unittest framework.
@@ -199,50 +333,43 @@ python unittest framework.
 
 
 data/
-^^^^^
+~~~~~
 
 Static data for tests that must use specific values (e.g. emails, usernames,
 etc).
 
 log/
-^^^^
+~~~~
 
 Default output directory for WebDriver logs. This can be changed in
 ``config/webdriver.py``.
 
 pages/
-^^^^^^
+~~~~~~
 
 Page object classes for pages and components. These classes should handle
-locating and interacting with elements on the page. A template page object can
-be found in ``templates/page_object.py``.
+locating and interacting with elements on the page. See `Creating New Page
+Objects`_ for info on generating new page object modules.
+
+screenshot/
+~~~~~~~~~~~
+
+Default output directory for screenshots taken during test execution. This can 
+be changed in ``config/webdriver.py``.
 
 tests/
-^^^^^^
+~~~~~~
 
 Test case modules. These use page objects to interact with elements and assert
-that the expected behavior occurs. A template test file can be found in
-``templates/test_case.py``.
-
-When adding new test files, be sure to update ``tests/__init__.py`` to include
-the new module so the framework can detect the new test cases.
-
-templates/
-^^^^^^^^^^
-
-Template files to use as a starting point when writing new test modules or page
-objects.
-
-* ``page_object.py``: Template for page objects. Copy to the ``pages/``
-  directory to use as a starting point when creating new page objects.
-* ``test_case.py``: Template test module. Copy to the ``tests/`` directory to
-  use as a starting point when creating new tests. 
+that the expected behavior occurs. See `Creating New Tests`_ for info on
+generating new test modules.
 
 
 ----
 
 |webdriver_test_tools|
 
-.. |webdriver_test_tools| image:: https://img.shields.io/badge/generated%20using-webdriver__test__tools%200.27.0-blue.svg?style=for-the-badge
-    :alt: webdriver_test_tools 0.27.0
+.. |webdriver_test_tools| image:: https://img.shields.io/badge/generated%20using-webdriver__test__tools%201.7.1-blue.svg?style=for-the-badge
+    :alt: webdriver_test_tools 1.7.1
+
 

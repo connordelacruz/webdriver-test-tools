@@ -4,6 +4,8 @@
 :var cmd.COLORS: Color/formatting functions for different types of output
 """
 
+import re
+import os
 from blessings import Terminal
 
 # Formatting
@@ -73,6 +75,96 @@ def validate_yn(answer):
     if answer not in ['y', 'yes', 'n', 'no']:
         raise ValidationError('Please enter "y" or "n".')
     return answer in ['y', 'yes']
+
+
+def _validate_python_identifier(identifier):
+    """Removes and replaces characters and returns a valid python identifier
+
+    Python identifiers include letters, numbers, and underscores and cannot
+    begin with a number
+
+    :param identifier: The desired identifier string
+
+    :return: Modified identifier with invalid characters removed or replaced
+    """
+    # Trim outer whitespace and replace inner whitespace and hyphens with underscore
+    validated_identifier = re.sub(r'\s+|-+', '_', identifier.strip())
+    # Remove non-alphanumeric or _ characters
+    validated_identifier = re.sub(r'[^\w\s]', '', validated_identifier)
+    # Remove leading characters until we hit a letter or underscore
+    validated_identifier = re.sub(r'^[^a-zA-Z_]+', '', validated_identifier)
+    if not validated_identifier:
+        raise ValidationError('Please enter a valid python identifier.')
+    return validated_identifier
+
+
+def validate_package_name(package_name):
+    """Removes and replaces characters to ensure a string is a valid python package name
+
+    :param package_name: The desired package name
+
+    :return: Modified package_name with whitespaces and hyphens replaced with
+        underscores and all invalid characters removed
+    """
+    try:
+        validated_package_name = _validate_python_identifier(package_name)
+    except ValidationError as e:
+        raise ValidationError('Please enter a valid package name.')
+    # Alert user of any changes made in validation
+    if package_name != validated_package_name:
+        message_format = 'Name was changed to {} in order to be a valid python package'
+        print_validation_warning(message_format.format(validated_package_name))
+    return validated_package_name
+
+
+def validate_module_filename(module_filename):
+    """Removes and replaces characters to ensure a string is a valid python
+    module file name
+
+    :param module_filename: The desired module file name. If the .py extension
+        is excluded, it will be appended after validation
+
+    :return: Modified module_filename with whitespaces and hyphens replaced with
+        underscores, all invalid characters removed, and a '.py' extension
+        appended (if necessary)
+    """
+    # Strip .py extension if present
+    validated_module_filename, ext = os.path.splitext(module_filename.strip())
+    try:
+        validated_module_filename = _validate_python_identifier(validated_module_filename)
+    except ValidationError as e:
+        raise ValidationError('Please enter a valid module name.')
+    # Append .py extension
+    validated_module_filename += '.py'
+    # Alert the user of any changes made in validation
+    if module_filename != validated_module_filename:
+        message_format = 'Name was changed to {} in order to be a valid python module file'
+        print_validation_warning(message_format.format(validated_module_filename))
+    return validated_module_filename
+
+
+def validate_class_name(class_name):
+    """Removes and replaces characters to ensure a string is a valid python
+    class name
+
+    :param class_name: The desired classname
+
+    :return: Modified class_name with invalid characters removed/replaced
+    """
+    # TODO: Validate differently than packages?
+    try:
+        validated_class_name = _validate_python_identifier(class_name)
+    except ValidationError as e:
+        raise ValidationError('Please enter a valid class name.')
+    # Alert the user of any changes made in validation
+    if class_name != validated_class_name:
+        message_format = 'Name was changed to {} in order to be a valid python class name'
+        print_validation_warning(message_format.format(validated_class_name))
+    # Print warning if first letter isn't capital
+    # (python is forgiving about class names but convention says it should be camel case)
+    if validated_class_name[0] != validated_class_name[0].upper():
+        print_validation_warning('Warning: Class name should start with a capital letter')
+    return validated_class_name
 
 
 def prompt(text, *description, default=None, validate=validate_nonempty, trailing_newline=True):

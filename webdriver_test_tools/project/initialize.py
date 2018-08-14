@@ -4,9 +4,9 @@ import sys
 import os
 import shutil
 import re
-import jinja2
 
 from webdriver_test_tools import cmd
+from webdriver_test_tools.common.files import *
 from webdriver_test_tools.__about__ import __version__, __selenium__
 from webdriver_test_tools.project import templates
 
@@ -59,7 +59,7 @@ def create_package_directory(target_path, package_name):
     :return: Path to created package directory
     """
     target_path = os.path.abspath(target_path)
-    package_directory = validate_package_name(package_name)
+    package_directory = cmd.validate_package_name(package_name)
     return create_directory(target_path, package_directory)
 
 
@@ -143,32 +143,7 @@ def create_config_files(target_path, context):
         create_file_from_template(template_path, target_path, template_file, context)
 
 
-def create_template_files(target_path, context):
-    """Creates test package template directory and template files
-
-    :param target_path: The path to the test package directory
-    :param context: Jinja context used to render template
-    """
-    target_path = create_directory(os.path.abspath(target_path), 'templates')
-    template_path = templates.templates.get_path()
-    template_files = [
-        'page_object.py',
-        'test_case.py',
-    ]
-    for template_file in template_files:
-        create_file_from_template(template_path, target_path, template_file, context)
-
-
 # Helper functions
-
-def touch(filepath):
-    """'Touch' a file. Creates an empty file if it doesn't exist, leaves existing files
-    unchanged
-
-    :param filepath: Path of the file to touch
-    """
-    open(filepath, 'a').close()
-
 
 def create_init(target_path):
     """Create an empty __init__.py file in the target path
@@ -179,65 +154,6 @@ def create_init(target_path):
     # "Touch" __init__.py to create an empty file
     init_path = os.path.join(target_path, '__init__.py')
     touch(init_path)
-
-
-def create_directory(target_path, directory_name):
-    """Creates a directory in the target path if it doesn't already exist
-
-    :param target_path: The path to the directory that will contain the new one
-    :param directory_name: The name of the directory to create in the target path
-
-    :return: The path to the newly created (or already existing) directory
-    """
-    path = os.path.join(target_path, directory_name)
-    if not os.path.exists(path):
-        os.makedirs(path)
-    return path
-
-
-def render_template(template_path, context):
-    """Returns the rendered contents of a jinja template
-
-    :param template_path: The path to the jinja template
-    :param context: Jinja context used to render template
-
-    :return: Results of rendering jinja template
-    """
-    path, filename = os.path.split(template_path)
-    return jinja2.Environment(
-        loader=jinja2.FileSystemLoader(path or './')
-    ).get_template(filename).render(context)
-
-
-def render_template_to_file(template_path, context, target_path):
-    """Writes rendered jinja template to a file
-
-    :param template_path: The path to the jinja template
-    :param context: Jinja context used to render template
-    :param target_path: File path to write the rendered template to
-    """
-    with open(target_path, 'w') as f:
-        file_contents = render_template(template_path, context)
-        f.write(file_contents)
-
-
-def create_file_from_template(template_path, target_path, filename, context):
-    """Short hand function that renders a template with the specified filename followed
-    by a '.j2' extension from the template path to a file with the specified name in
-    the target path
-
-    The use of '.j2' as a file extension is to distinguish templates from package
-    modules.
-
-    :param template_path: Path to template directory
-    :param target_path: Path to target directory
-    :param filename: Name of the template file. Will be used as the filename for the
-        rendered file written to the target directory
-    :param context: Jinja context used to render template
-    """
-    file_template = os.path.join(template_path, filename + '.j2')
-    file_target = os.path.join(target_path, filename)
-    render_template_to_file(file_template, context, file_target)
 
 
 def generate_context(test_package, project_title=None, version_badge=True):
@@ -265,29 +181,6 @@ def generate_context(test_package, project_title=None, version_badge=True):
 
 
 # Prompt validation functions
-
-def validate_package_name(package_name):
-    """Removes and replaces characters to ensure a string is a valid python package name
-
-    :param package_name: The desired package name
-
-    :return: Modified package_name with whitespaces and hyphens replaced with
-        underscores and all invalid characters removed
-    """
-    # Trim outer whitespace and replace inner whitespace and hyphens with underscore
-    validated_package_name = re.sub(r'\s+|-+', '_', package_name.strip())
-    # Remove non-alphanumeric or _ characters
-    validated_package_name = re.sub(r'[^\w\s]', '', validated_package_name)
-    # Remove leading characters until we hit a letter or underscore
-    validated_package_name = re.sub(r'^[^a-zA-Z_]+', '', validated_package_name)
-    if not validated_package_name:
-        raise cmd.ValidationError('Please enter a valid package name.')
-    # Alert user of any changes made in validation
-    if package_name != validated_package_name:
-        message_format = 'Name was changed to {} in order to be a valid python package'
-        cmd.print_validation_warning(message_format.format(validated_package_name))
-    return validated_package_name
-
 
 def validate_project_title(project_title):
     """Sanitizes string to avoid syntax erros when inserting the title into template
@@ -323,7 +216,7 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
         root directory if True
     """
     outer_path = os.path.abspath(target_path)
-    package_name = validate_package_name(package_name)
+    package_name = cmd.validate_package_name(package_name)
     context = generate_context(package_name, project_title)
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
@@ -338,7 +231,6 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
     create_output_directories(package_path, gitignore_files)
     create_tests_init(package_path, context)
     create_config_files(package_path, context)
-    create_template_files(package_path, context)
 
 
 def main():
@@ -351,7 +243,7 @@ def main():
             'Package name',
             'Enter a name for the test package',
             '(use only alphanumeric characters and underscores. Cannot start with a number)',
-            validate=validate_package_name)
+            validate=cmd.validate_package_name)
         # Prompt for optional project title, default to validated_package_name
         validated_project_title = cmd.prompt(
             'Project title',

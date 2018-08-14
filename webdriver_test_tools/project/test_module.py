@@ -3,10 +3,12 @@
 import argparse
 import unittest
 import textwrap
+import os
 
 from webdriver_test_tools import cmd, config
 from webdriver_test_tools.testcase import Browsers
 from webdriver_test_tools.project import test_loader, test_factory
+from webdriver_test_tools.project.new_file import new_file
 
 
 def main(tests_module, config_module=None, package_name=None):
@@ -24,6 +26,8 @@ def main(tests_module, config_module=None, package_name=None):
     args = parser.parse_args()
     if args.command == 'list':
         parse_list_args(tests_module, args)
+    elif args.command == 'new':
+        parse_new_args(package_name, tests_module, args)
     elif args.command == 'run' or args.command is None:
         parse_run_args(tests_module, config_module, args)
     else:
@@ -72,7 +76,7 @@ def get_parser(config_module=None, package_name=None):
         'run', description=run_description, help=run_help,
         parents=[test_parent_parser],
         formatter_class=argparse.RawTextHelpFormatter,
-        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # Arguments for specifying browser to use
     group = run_parser.add_argument_group('Browser Arguments')
@@ -121,8 +125,48 @@ def get_parser(config_module=None, package_name=None):
         'list', description=list_description, help=list_help,
         parents=[test_parent_parser],
         formatter_class=argparse.RawTextHelpFormatter,
-        add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
+
+    # New command
+    new_description = 'Create a new test module or page object'
+    new_help = new_description
+    new_parser = subparsers.add_parser(
+        'new', description=new_description, help=new_help,
+        parents=[generic_parent_parser],
+        formatter_class=argparse.RawTextHelpFormatter,
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
+    )
+    # New <type> subparsers
+    new_type_desc = 'Run \'{} new <type> --help\' for details'.format(package_name)
+    new_subparsers = new_parser.add_subparsers(
+        title='File Types', description=new_type_desc, dest='type', metavar='<type>'
+    )
+    # New test parser
+    new_test_parent_parser = get_new_parent_parser(
+        parents=[generic_parent_parser], class_name_metavar='<TestCaseClass>',
+        class_name_help='Name to use for the initial test case class'
+    )
+    new_test_description='Create a new test module'
+    new_test_help=new_test_description
+    new_subparsers.add_parser(
+        'test', description=new_test_description, help=new_test_help,
+        parents=[new_test_parent_parser],
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
+    )
+    # New page object parser
+    new_page_parent_parser = get_new_parent_parser(
+        parents=[generic_parent_parser], class_name_metavar='<PageObjectClass>',
+        class_name_help='Name to use for the initial page object class'
+    )
+    new_page_description='Create a new page object module'
+    new_page_help=new_page_description
+    new_page_parser = new_subparsers.add_parser(
+        'page', description=new_page_description, help=new_page_help,
+        parents=[new_page_parent_parser],
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
+    )
+    # TODO: add optional --prototype arg with a list of valid page object prototype classes
 
     return parser
 
@@ -156,6 +200,42 @@ def get_test_parent_parser(parents=[]):
                 ''')
     group.add_argument('-s', '--skip', nargs='+', metavar='<test>', help=skip_help)
     return test_parent_parser
+
+
+def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
+                          class_name_help='Name to use for the initial class'):
+    """Returns an :class:`ArgumentParser
+    <webdriver_test_tools.cmd.argparse.ArgumentParser>` with ``<module_name>``,
+    ``<class_name>``, and ``--description`` arguments
+
+    :param parents: (Optional) List of ``ArgumentParser`` objects to use as
+        parents for the test argument parser
+    :param class_name_metavar: (Optional) Metavar to display for the class_name
+        argument
+    :param class_name_help: (Optional) Help text to use for the class_name
+        argument
+
+    :return: :class:`ArgumentParser
+        <webdriver_test_tools.cmd.argparse.ArgumentParser>` with
+        ``<module_name>``, ``<class_name>``, and ``--description`` arguments
+    """
+    new_parent_parser = cmd.argparse.ArgumentParser(add_help=False, parents=parents)
+    # Positional arguments
+    module_name_help = 'Filename to use for the new python module'
+    new_parent_parser.add_argument('module_name', metavar='<module_name>',
+                                   help=module_name_help)
+    new_parent_parser.add_argument('class_name', metavar=class_name_metavar,
+                                   help=class_name_help)
+    # Optional arguments
+    description_help='Description for the initial class'
+    new_parent_parser.add_argument('-d', '--description', metavar='<description>',
+                                   help=description_help)
+    force_help='Force overwrite if a file with the same name already exists'
+    new_parent_parser.add_argument('-f', '--force', action='store_true', default=False,
+                                   help=force_help)
+
+    return new_parent_parser
+
 
 # Help text output functions
 
@@ -283,7 +363,6 @@ def parse_list_args(tests_module, args):
 def parse_run_args(tests_module, config_module, args):
     """Parse arguments and run the 'run' command
 
-
     :param tests_module: The module object for ``<test_project>.tests``
     :param config_module: The module object for ``<test_project>.config``
     :param args: The namespace returned by parser.parse_args()
@@ -307,6 +386,23 @@ def parse_run_args(tests_module, config_module, args):
     kwargs['browser_classes'] = browser_config_class.get_browser_classes(args.browser)
     # Run tests using parsed args
     run_tests(tests_module, config_module, **kwargs)
+
+
+def parse_new_args(package_name, tests_module, args):
+    """Parse arguments and run the 'new' command
+
+    :param package_name: Name of the test package
+    :param tests_module: The module object for ``<test_project>.tests``. Used
+        to determine the filepath of the package
+    :param args: The namespace returned by parser.parse_args()
+    """
+    # Get package path based on tests_module path
+    test_package_path = os.path.dirname(os.path.dirname(tests_module.__file__))
+    try:
+        new_file(test_package_path, package_name, args.type, args.module_name, args.class_name,
+                 description=args.description, force=args.force)
+    except Exception as e:
+        cmd.print_exception(e)
 
 
 def get_browser_config_classes(config_module):
