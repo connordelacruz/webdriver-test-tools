@@ -233,7 +233,7 @@
         <span class="s1">&#39;run&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">run_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">run_help</span><span class="p">,</span>
         <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">test_parent_parser</span><span class="p">],</span>
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span>
-        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
+        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
     <span class="c1"># Arguments for specifying browser to use</span>
     <span class="n">group</span> <span class="o">=</span> <span class="n">run_parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Browser Arguments&#39;</span><span class="p">)</span>
@@ -282,18 +282,17 @@
         <span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">list_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">list_help</span><span class="p">,</span>
         <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">test_parent_parser</span><span class="p">],</span>
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span>
-        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
+        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
 
     <span class="c1"># New command</span>
     <span class="n">new_description</span> <span class="o">=</span> <span class="s1">&#39;Create a new test module or page object&#39;</span>
     <span class="n">new_help</span> <span class="o">=</span> <span class="n">new_description</span>
-    <span class="c1"># TODO: fix usage output for subparsers</span>
     <span class="n">new_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
         <span class="s1">&#39;new&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">new_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">new_help</span><span class="p">,</span>
         <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">generic_parent_parser</span><span class="p">],</span>
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span>
-        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
+        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
     <span class="c1"># New &lt;type&gt; subparsers</span>
     <span class="n">new_type_desc</span> <span class="o">=</span> <span class="s1">&#39;Run </span><span class="se">\&#39;</span><span class="si">{}</span><span class="s1"> new &lt;type&gt; --help</span><span class="se">\&#39;</span><span class="s1"> for details&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
@@ -310,7 +309,7 @@
     <span class="n">new_subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
         <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">new_test_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">new_test_help</span><span class="p">,</span>
         <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">new_test_parent_parser</span><span class="p">],</span>
-        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
+        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
     <span class="c1"># New page object parser</span>
     <span class="n">new_page_parent_parser</span> <span class="o">=</span> <span class="n">get_new_parent_parser</span><span class="p">(</span>
@@ -322,7 +321,7 @@
     <span class="n">new_page_parser</span> <span class="o">=</span> <span class="n">new_subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
         <span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">new_page_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">new_page_help</span><span class="p">,</span>
         <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">new_page_parent_parser</span><span class="p">],</span>
-        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
+        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
     <span class="c1"># TODO: add optional --prototype arg with a list of valid page object prototype classes</span>
 </div>
@@ -556,8 +555,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Get package path based on tests_module path</span>
     <span class="n">test_package_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">tests_module</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
-    <span class="n">new_file</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">module_name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span></div>
-             <span class="n">description</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">force</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">new_file</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">module_name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span>
+                 <span class="n">description</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">force</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span></div>
+        <span class="n">cmd</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="get_browser_config_classes"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.get_browser_config_classes">[docs]</a><span class="k">def</span> <span class="nf">get_browser_config_classes</span><span class="p">(</span><span class="n">config_module</span><span class="p">):</span>
