@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 1.7.1-alpha documentation</title>
+  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 2.0.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.7
+                2.0
               </div>
             
           
@@ -354,8 +354,10 @@
         <span class="k">raise</span> <span class="n">cmd</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid project title.&#39;</span><span class="p">)</span>
     <span class="c1"># Alert user of any changes made in validation</span>
     <span class="k">if</span> <span class="n">project_title</span> <span class="o">!=</span> <span class="n">validated_project_title</span><span class="p">:</span>
-        <span class="n">message_format</span> <span class="o">=</span> <span class="s1">&#39;Title was changed to </span><span class="si">{}</span><span class="s1"> to avoid syntax errors.&#39;</span>
-        <span class="n">cmd</span><span class="o">.</span><span class="n">print_validation_warning</span><span class="p">(</span><span class="n">message_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_project_title</span><span class="p">))</span></div>
+        <span class="n">cmd</span><span class="o">.</span><span class="n">print_validation_change</span><span class="p">(</span>
+            <span class="s1">&#39;&quot;</span><span class="si">{0}</span><span class="s1">&quot; was changed to &quot;</span><span class="si">{1}</span><span class="s1">&quot; to avoid syntax errors&#39;</span><span class="p">,</span>
+            <span class="n">project_title</span><span class="p">,</span> <span class="n">validated_project_title</span>
+        <span class="p">)</span></div>
     <span class="k">return</span> <span class="n">validated_project_title</span>
 
 
@@ -473,7 +475,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.7.1-alpha',
+            VERSION:'2.0.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
