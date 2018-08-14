@@ -241,6 +241,33 @@ parents for the test argument parser</td>
 </dd></dl>
 
 <dl class="function">
+<dt id="webdriver_test_tools.project.test_module.get_new_parent_parser">
+<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">get_new_parent_parser</code><span class="sig-paren">(</span><em>parents=[]</em>, <em>class_name_metavar='&lt;ClassName&gt;'</em>, <em>class_name_help='Name to use for the initial class'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#get_new_parent_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.get_new_parent_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an <a class="reference internal" href="webdriver_test_tools.cmd.argparse.html#webdriver_test_tools.cmd.argparse.ArgumentParser" title="webdriver_test_tools.cmd.argparse.ArgumentParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code></a> with <code class="docutils literal notranslate"><span class="pre">&lt;module_name&gt;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&lt;class_name&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">--description</span></code> arguments</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parents</strong> – (Optional) List of <code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code> objects to use as
+parents for the test argument parser</li>
+<li><strong>class_name_metavar</strong> – (Optional) Metavar to display for the class_name
+argument</li>
+<li><strong>class_name_help</strong> – (Optional) Help text to use for the class_name
+argument</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference internal" href="webdriver_test_tools.cmd.argparse.html#webdriver_test_tools.cmd.argparse.ArgumentParser" title="webdriver_test_tools.cmd.argparse.ArgumentParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code></a> with
+<code class="docutils literal notranslate"><span class="pre">&lt;module_name&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;class_name&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">--description</span></code> arguments</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="webdriver_test_tools.project.test_module.parse_test_names">
 <code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">parse_test_names</code><span class="sig-paren">(</span><em>test_name_args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#parse_test_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.parse_test_names" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a dictionary mapping test case names to a list of test functions</p>
@@ -304,6 +331,26 @@ function was given for that class</td>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></li>
 <li><strong>config_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code></li>
+<li><strong>args</strong> – The namespace returned by parser.parse_args()</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.test_module.parse_new_args">
+<code class="descclassname">webdriver_test_tools.project.test_module.</code><code class="descname">parse_new_args</code><span class="sig-paren">(</span><em>package_name</em>, <em>tests_module</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_module.html#parse_new_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_module.parse_new_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse arguments and run the ‘new’ command</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>package_name</strong> – Name of the test package</li>
+<li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code>. Used
+to determine the filepath of the package</li>
 <li><strong>args</strong> – The namespace returned by parser.parse_args()</li>
 </ul>
 </td>

@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>webdriver_test_tools.project.new_file module &mdash; WebDriver Test Tools 1.7.1-alpha documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="webdriver_test_tools.project.test_factory module" href="webdriver_test_tools.project.test_factory.html" />
+    <link rel="prev" title="webdriver_test_tools.project.initialize module" href="webdriver_test_tools.project.initialize.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Docs:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.__main__.html">webdriver_test_tools.__main__ module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="webdriver_test_tools.html">webdriver_test_tools API</a> &raquo;</li>
+        
+          <li><a href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.project.new_file module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/webdriver_test_tools.project.new_file.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-webdriver_test_tools.project.new_file">
+<span id="webdriver-test-tools-project-new-file-module"></span><h1>webdriver_test_tools.project.new_file module<a class="headerlink" href="#module-webdriver_test_tools.project.new_file" title="Permalink to this headline">¶</a></h1>
+<p>Functions for creating a new test/page module.</p>
+<dl class="data">
+<dt id="webdriver_test_tools.project.new_file.TEMPLATE_MAP">
+<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">TEMPLATE_MAP</code><em class="property"> = {'page': 'page_object.py', 'test': 'test_case.py'}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.TEMPLATE_MAP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps file type to corresponding template file</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="webdriver_test_tools.project.new_file.DIRECTORY_MAP">
+<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">DIRECTORY_MAP</code><em class="property"> = {'page': 'pages', 'test': 'tests'}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.DIRECTORY_MAP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps file type to corresponding subdirectory in a test package</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.new_file.validate_file_type">
+<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">validate_file_type</code><span class="sig-paren">(</span><em>file_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/new_file.html#validate_file_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.new_file.validate_file_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate file type and return the corresponding template filename and
+target directory</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_type</strong> – The string to validate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">(template_file,</span> <span class="pre">target_dir)</span></code> where <code class="docutils literal notranslate"><span class="pre">template_file</span></code> is the
+corresponding filename for the template and <code class="docutils literal notranslate"><span class="pre">target_dir</span></code> is the
+corresponding directory where the new file should be placed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.new_file.validate_description">
+<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">validate_description</code><span class="sig-paren">(</span><em>description</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/new_file.html#validate_description"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.new_file.validate_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces double quotes with single quotes in class description</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>description</strong> – The desired description string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Validated description string with double quotes replaced with
+single quotes</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.new_file.new_file">
+<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">new_file</code><span class="sig-paren">(</span><em>test_package_path</em>, <em>test_package</em>, <em>file_type</em>, <em>module_name</em>, <em>class_name</em>, <em>description=None</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/new_file.html#new_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.new_file.new_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new project file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>test_package_path</strong> – The root directory of the test package</li>
+<li><strong>test_package</strong> – The python package name of the test package</li>
+<li><strong>file_type</strong> – The type of file to create. Valid file types are stored
+as global variables with the _TYPE suffix</li>
+<li><strong>module_name</strong> – Filename to use for the new python module</li>
+<li><strong>class_name</strong> – Name to use for the initial test class</li>
+<li><strong>description</strong> – (Optional) Description to use in the docstring of the initial class</li>
+<li><strong>force</strong> – (Default: False) If True, force overwrite if a file with the
+same name already exists</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="webdriver_test_tools.project.test_factory.html" class="btn btn-neutral float-right" title="webdriver_test_tools.project.test_factory module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="webdriver_test_tools.project.initialize.html" class="btn btn-neutral" title="webdriver_test_tools.project.initialize module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.7.1-alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
