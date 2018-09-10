@@ -236,7 +236,7 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
 
 
 # TODO: take parsed args, validate and skip prompts
-def main():
+def main(package_name=None, project_title=None, no_gitignore=None, no_readme=None):
     """Command line dialogs for initializing a test project"""
     initialize_start = False
     try:
