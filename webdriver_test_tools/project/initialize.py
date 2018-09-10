@@ -236,9 +236,17 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
 
 
 # TODO: take parsed args, validate and skip prompts
-def main(package_name=None, project_title=None, no_gitignore=None, no_readme=None):
+def main(package_name=None, project_title=None, gitignore=None, readme=None):
     """Command line dialogs for initializing a test project"""
     initialize_start = False
+    # Handle any optional arguments
+    if package_name is not None:
+        # project_title defaults to package_name if not specified
+        if project_title is None:
+            project_title = package_name
+        # gitignore and readme default to True if not otherwise specified
+        gitignore = 'y' if gitignore is None or gitignore else 'n'
+        readme = 'y' if readme is None or readme else 'n'
     try:
         print(cmd.COLORS['title']('webdriver_test_tools project initialization') + '\n')
         # Prompt for input if no package name is passed as a parameter
@@ -246,25 +254,33 @@ def main(package_name=None, project_title=None, no_gitignore=None, no_readme=Non
             'Package name',
             'Enter a name for the test package',
             '(use only alphanumeric characters and underscores. Cannot start with a number)',
-            validate=cmd.validate_package_name)
+            validate=cmd.validate_package_name,
+            parsed_input=package_name
+        )
         # Prompt for optional project title, default to validated_package_name
         validated_project_title = cmd.prompt(
             'Project title',
             '(Optional) Enter a human-readable name for the test project',
             '(can use alphanumeric characters, spaces, hyphens, and underscores)',
-            default=validated_package_name, validate=validate_project_title)
+            default=validated_package_name, validate=validate_project_title,
+            parsed_input=project_title
+        )
         # Ask if gitignore files should be generated
         gitignore_files = cmd.prompt(
             'Create .gitignore files (y/n)',
             'Create .gitignore files for project root and log directory?',
             '(Ignores python cache files, package install files, local driver logs, etc)',
-            default='y', validate=cmd.validate_yn)
+            default='y', validate=cmd.validate_yn,
+            parsed_input=gitignore
+        )
         # Ask if README should be generated
         readme_file = cmd.prompt(
             'Create README file (y/n)',
             'Generate README file?',
             '(README contains information on command line usage and directory structure)',
-            default='y', validate=cmd.validate_yn)
+            default='y', validate=cmd.validate_yn,
+            parsed_input=readme
+        )
         # Create project package
         print('Creating test project...')
         initialize_start = True

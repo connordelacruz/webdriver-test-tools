@@ -29,7 +29,7 @@ def get_parser():
         parents=[generic_parent_parser], add_help=False,
     )
     # Positional Arguments
-    positional_args_description=''
+    positional_args_description='' # TODO
     positional_args = init_parser.add_argument_group(
         'Positional Arguments', positional_args_description
     )
@@ -52,12 +52,12 @@ def get_parser():
     )
     no_gitignore_help = 'Do not create .gitignore files for project root and log directory'
     optional_args.add_argument(
-        '--no-gitignore', action='store_true', default=None,
+        '--no-gitignore', action='store_false', default=None,
         help=no_gitignore_help
     )
     no_readme_help = 'Do not generate README file with usage info'
     optional_args.add_argument(
-        '--no-readme', action='store_true', default=None,
+        '--no-readme', action='store_false', default=None,
         help=no_readme_help
     )
     return parser
@@ -71,7 +71,10 @@ def main():
         print('webdriver_test_tools ' + __version__)
         return
     if args.command == 'init':
-        initialize.main()
+        initialize.main(
+            package_name=args.package_name, project_title=args.project_title,
+            gitignore=args.no_gitignore, readme=args.no_readme
+        )
     # If no arguments were specified, print help
     else:
         parser.print_help()

@@ -94,10 +94,15 @@ def validate_nonempty(text):
 def validate_yn(answer):
     """Validate y/n prompts
 
-    :param answer: User response to y/n prompt
+    :param answer: User response to y/n prompt. If a boolean value is passed
+        (e.g. if a prompt received parsed_input=True), it is treated as a y/n
+        answer and considered valid input
 
     :return: True if user answered yes, False if user answered no
     """
+    # Convert True/False values to y/n if passed
+    if isinstance(answer, bool):
+        answer = 'y' if answer else 'n'
     answer = answer.lower().strip()
     if answer not in ['y', 'yes', 'n', 'no']:
         raise ValidationError('Please enter "y" or "n".')
@@ -205,8 +210,9 @@ def validate_class_name(class_name):
     return validated_class_name
 
 
-# TODO: Take optional param for input passed before prompt, validate and skip prompt or show error based on results
-def prompt(text, *description, default=None, validate=validate_nonempty, trailing_newline=True):
+# TODO: Rename parsed_input to something more helpful?
+def prompt(text, *description, default=None, validate=validate_nonempty,
+           parsed_input=None, trailing_newline=True):
     """Prompt the user for input and validate it
 
     :param text: Text to display in prompt
@@ -214,11 +220,27 @@ def prompt(text, *description, default=None, validate=validate_nonempty, trailin
         input. Each argument will be printed on a new line
     :param default: (Optional) default value
     :param validate: (Default = validate_nonempty) Validation function for input
+    :param parsed_input: (Default = None) If ``parsed_input`` is set to
+        something other than ``None``, parser will attempt to validate it. If
+        validation is successful, the input prompt will be skipped and the
+        validated value of ``parsed_input`` will be returned. This allows for
+        input to be passed through command line arguments, but still prompt the
+        user in the event that it can't be validated
     :param trailing_newline: (Default = True) Print a blank line after receiving user
         input and successfully validating
 
     :return: Validated input
     """
+    # Attempt to bypass prompt if parsed_input is not None
+    if parsed_input is not None:
+        try:
+            val = validate(parsed_input)
+        except ValidationError as e:
+            print_exception(e)
+        else:
+            # If no errors were raised, return validated input
+            return val
+    # Input prompt
     if description:
         print(*description, sep='\n')
     prompt_text = '{} [{}]: '.format(text, default) if default is not None else text + ': '
