@@ -29,10 +29,7 @@ def get_parser():
         parents=[generic_parent_parser], add_help=False,
     )
     # Positional Arguments
-    positional_args_description='' # TODO
-    positional_args = init_parser.add_argument_group(
-        'Positional Arguments', positional_args_description
-    )
+    positional_args = init_parser.add_argument_group('Positional Arguments')
     package_name_help = 'Name for the new test package \
         (alphanumeric characters and underscores only. Cannot start with a number)'
     positional_args.add_argument(

@@ -235,9 +235,31 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
     create_config_files(package_path, context)
 
 
-# TODO: take parsed args, validate and skip prompts
 def main(package_name=None, project_title=None, gitignore=None, readme=None):
-    """Command line dialogs for initializing a test project"""
+    """Command line dialogs for initializing a test project
+
+    This method accepts arguments for each of its prompts. ``package_name`` is
+    the only argument required to create the package, so this method will
+    attempt to bypass input prompts if it's set to something other than
+    ``None``.
+
+    If ``package_name`` is ``None`` but one or more of the other parameters are
+    not ``None``, this method will attempt to bypass their corresponding input
+    prompts if the value passed as a parameter is valid.
+
+    :param package_name: (Optional) The name of the test package. If valid, the
+        user won't be prompted for input and this will be used instead
+    :param project_title: (Optional) A human-readable name for the test project.
+        If valid, the user won't be prompted for input and this will be used
+        instead. If ``project_title`` is set to ``None`` but ``package_name`` is
+        valid, ``package_name`` will be used as the project title
+    :param gitignore: (Optional) If ``False``, .gitignore files will not be
+        created during initialization. If ``gitignore`` is set to ``None`` but
+        ``package_name`` is valid, .gitignore files will be created by default
+    :param readme: (Optional) If ``False``, README file will not be generated
+        during initialization. If ``readme`` is set to ``None`` but
+        ``package_name`` is valid, README file will be created by default
+    """
     initialize_start = False
     # Handle any optional arguments
     if package_name is not None:
