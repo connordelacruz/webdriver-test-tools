@@ -270,7 +270,7 @@ def main(package_name=None, project_title=None, gitignore=None, readme=None):
         gitignore = 'y' if gitignore is None or gitignore else 'n'
         readme = 'y' if readme is None or readme else 'n'
     try:
-        print(cmd.COLORS['title']('webdriver_test_tools project initialization') + '\n')
+        print(cmd.COLORS['title']('Test Project Initialization') + '\n')
         # Prompt for input if no package name is passed as a parameter
         validated_package_name = cmd.prompt(
             'Package name',
@@ -308,6 +308,7 @@ def main(package_name=None, project_title=None, gitignore=None, readme=None):
         initialize_start = True
         initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files, readme_file)
         print(cmd.COLORS['success']('Project initialized.') + '\n')
+        # TODO: Update epilog with info on 'new test' and 'new page' commands (and remove emphasis?)
         print(cmd.COLORS['emphasize'](
             'To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name))
         )
