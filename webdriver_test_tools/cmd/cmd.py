@@ -91,8 +91,42 @@ def validate_nonempty(text):
     return text
 
 
+# TODO: rename to avoid confusion?
 def validate_choice(choices, shorthand_choices={}, error_msg=None):
-    # TODO: doc
+    """Returns a validation function for input with specific choice options
+
+    :param choices: A list of **lowercase** strings the user can choose from
+    :param shorthand_choices: (Optional) A dictionary mapping short hand
+        answers to options in ``choices``. If user answers prompt with one of
+        the keys in ``shorthand_choices``, the validation function will treat
+        their answer as ``shorthand_choices[answer]``.
+
+        The following example values would allow 'y' and 'n' to be accepted as
+        'yes' and 'no', respectively:
+
+            .. code-block:: python
+
+                choices = ['yes', 'no']
+                shorthand_choices = {
+                    'y': 'yes',
+                    'n': 'no',
+                }
+                validate_yes_no = validate_choice(choices, shorthand_choices)
+                # Both of the following return 'yes'
+                result0 = validate_yes_no('yes')
+                result1 = validate_yes_no('y')
+
+    :param error_msg: (Optional) Custom validation error message. By default,
+        validation errors will have the message:
+
+            ``'Please select a valid choice: [<choices>]'``
+
+        where ``<choices>`` is a comma separated representation of the values
+        in ``choices``.
+
+    :return: A validation function that accepts a string and returns the
+        corresponding item from ``choices`` if the string is valid
+    """
     if error_msg is None:
         error_msg = 'Please select a valid choice: [{}]'.format(', '.join(choices))
     def val(answer):
