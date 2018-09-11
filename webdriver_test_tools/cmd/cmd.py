@@ -91,6 +91,20 @@ def validate_nonempty(text):
     return text
 
 
+def validate_choice(choices, shorthand_choices={}, error_msg=None):
+    # TODO: doc
+    if error_msg is None:
+        error_msg = 'Please select a valid choice: [{}]'.format(', '.join(choices))
+    def val(answer):
+        answer = answer.lower().strip()
+        if answer in shorthand_choices:
+            answer = shorthand_choices[answer]
+        if answer not in choices:
+            raise ValidationError(error_msg)
+        return answer
+    return val
+
+
 def validate_yn(answer):
     """Validate y/n prompts
 
@@ -100,9 +114,9 @@ def validate_yn(answer):
 
     :return: True if user answered yes, False if user answered no
     """
-    # Convert True/False values to y/n if passed
+    # If a boolean value was passed, return it
     if isinstance(answer, bool):
-        answer = 'y' if answer else 'n'
+        return answer
     answer = answer.lower().strip()
     if answer not in ['y', 'yes', 'n', 'no']:
         raise ValidationError('Please enter "y" or "n".')

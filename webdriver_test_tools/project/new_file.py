@@ -21,6 +21,7 @@ DIRECTORY_MAP = {
 }
 
 
+# TODO: convert to cmd.validate_choice?
 def validate_file_type(file_type):
     """Validate file type and return the corresponding template filename and
     target directory
@@ -42,11 +43,16 @@ def validate_file_type(file_type):
 def validate_description(description):
     """Replaces double quotes with single quotes in class description
 
+    If the description is ``None`` or an empty string, this function considers
+    it valid and returns ``None``
+
     :param description: The desired description string
 
     :return: Validated description string with double quotes replaced with
-        single quotes
+        single quotes or ``None`` if the description is empty
     """
+    if description is None or description == '':
+        return None
     # Replace double quotes with single quotes to avoid breaking the docstring
     validated_description = description.replace('"', "'")
     if validated_description != description:
@@ -70,13 +76,13 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     """
     template_file, target_dir = validate_file_type(file_type)
     target_path = os.path.join(test_package_path, target_dir)
+    # TODO: use main() as entry point, assume any input will be validated before new_file() call
     # Validate module_name (and append .py if not already present)
     module_name = cmd.validate_module_filename(module_name)
     # Validate class_name
     class_name = cmd.validate_class_name(class_name)
-    # Validate description name (if present)
-    if description is not None:
-        description = validate_description(description)
+    # Validate description name (None is considered valid)
+    description = validate_description(description)
     context = {
         'test_package': test_package,
         'module_name': module_name,
@@ -91,5 +97,45 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     print(cmd.COLORS['success']('\nFile created.'))
     print(new_file_path)
 
+
 # TODO: main function for prompts?
+
+def main(test_package_path, test_package,
+         file_type=None, module_name=None, class_name=None,
+         description=None, force=False):
+    # TODO: doc
+    # TODO: add Ctrl + C handling from initialize.main()?
+
+    # TODO: this already exists
+    _validate_file_type = cmd.validate_choice(
+        ['test','page'], shorthand_choices={'t': 'test', 'p': 'page'}
+    )
+    validated_file_type = cmd.prompt(
+        '[t]est/[p]age',
+        'Create a new test case or page object?',
+        validate=_validate_file_type,
+        parsed_input=file_type
+    )
+    validated_module_name = cmd.prompt(
+        'Module file name',
+        'Enter a file name for the new {} module'.format(validated_file_type),
+        validate=cmd.validate_module_filename,
+        parsed_input=module_name
+    )
+    class_type = 'test case' if file_type == 'test' else 'page object'
+    validated_class_name = cmd.prompt(
+        '{} class name'.format(class_type.capitalize()),
+        'Enter a name for the initial {} class'.format(class_type),
+        validate=cmd.validate_class_name,
+        parsed_input=class_name
+    )
+    validated_description = cmd.prompt(
+        'Description',
+        '(Optional) Enter description of the new {} class'.format(class_type),
+        validate=validate_description,
+        default='',
+        parsed_input=description
+    )
+    # TODO: pass to new_file()
+
 
