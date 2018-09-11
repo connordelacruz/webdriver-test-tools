@@ -39,7 +39,7 @@ def get_parser():
     project_title_help = '(Optional) Friendly name for the test project. \
         Defaults to the value of <package_name> if not provided'
     positional_args.add_argument(
-        'project_title', metavar='<Project Title>', nargs='?', default=None,
+        'project_title', metavar='<"Project Title">', nargs='?', default=None,
         help=project_title_help
     )
     # Optional Arguments
