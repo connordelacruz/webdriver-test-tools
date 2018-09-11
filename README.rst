@@ -169,7 +169,20 @@ To initialize a new test project in the current directory:
 
 ::
 
-    wtt init
+    wtt init [<package_name>] [<"Project Title">] [--no-gitignore] [--no-readme]
+
+Where:
+
+- ``<package_name>``: Name for the new test package. (alphanumeric characters
+  and underscores only. Cannot start with a number)
+- ``<"Project Title">``: (Optional) Friendly name for the test project. Defaults
+  to the value of <package_name> if not provided
+- ``--no-gitignore``: Do not create .gitignore files for project root and log
+  directory
+- ``--no-readme``: Do not generate README file with usage info
+
+If no arguments are provided, a prompt will walk you through project
+initialization.
 
 For info on command line arguments:
 

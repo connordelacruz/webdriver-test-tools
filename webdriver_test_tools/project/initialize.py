@@ -235,42 +235,86 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
     create_config_files(package_path, context)
 
 
-def main():
-    """Command line dialogs for initializing a test project"""
+def main(package_name=None, project_title=None, gitignore=None, readme=None):
+    """Command line dialogs for initializing a test project
+
+    This method accepts arguments for each of its prompts. ``package_name`` is
+    the only argument required to create the package, so this method will
+    attempt to bypass input prompts if it's set to something other than
+    ``None``.
+
+    If ``package_name`` is ``None`` but one or more of the other parameters are
+    not ``None``, this method will attempt to bypass their corresponding input
+    prompts if the value passed as a parameter is valid.
+
+    :param package_name: (Optional) The name of the test package. If valid, the
+        user won't be prompted for input and this will be used instead
+    :param project_title: (Optional) A human-readable name for the test project.
+        If valid, the user won't be prompted for input and this will be used
+        instead. If ``project_title`` is set to ``None`` but ``package_name`` is
+        valid, ``package_name`` will be used as the project title
+    :param gitignore: (Optional) If ``False``, .gitignore files will not be
+        created during initialization. If ``gitignore`` is set to ``None`` but
+        ``package_name`` is valid, .gitignore files will be created by default
+    :param readme: (Optional) If ``False``, README file will not be generated
+        during initialization. If ``readme`` is set to ``None`` but
+        ``package_name`` is valid, README file will be created by default
+    """
     initialize_start = False
+    # Handle any optional arguments
+    if package_name is not None:
+        # project_title defaults to package_name if not specified
+        if project_title is None:
+            project_title = package_name
+        # gitignore and readme default to True if not otherwise specified
+        gitignore = 'y' if gitignore is None or gitignore else 'n'
+        readme = 'y' if readme is None or readme else 'n'
     try:
-        print(cmd.COLORS['title']('webdriver_test_tools project initialization') + '\n')
+        print(cmd.COLORS['title']('Test Project Initialization') + '\n')
         # Prompt for input if no package name is passed as a parameter
         validated_package_name = cmd.prompt(
             'Package name',
             'Enter a name for the test package',
             '(use only alphanumeric characters and underscores. Cannot start with a number)',
-            validate=cmd.validate_package_name)
+            validate=cmd.validate_package_name,
+            parsed_input=package_name
+        )
         # Prompt for optional project title, default to validated_package_name
         validated_project_title = cmd.prompt(
             'Project title',
             '(Optional) Enter a human-readable name for the test project',
             '(can use alphanumeric characters, spaces, hyphens, and underscores)',
-            default=validated_package_name, validate=validate_project_title)
+            default=validated_package_name, validate=validate_project_title,
+            parsed_input=project_title
+        )
         # Ask if gitignore files should be generated
         gitignore_files = cmd.prompt(
             'Create .gitignore files (y/n)',
             'Create .gitignore files for project root and log directory?',
             '(Ignores python cache files, package install files, local driver logs, etc)',
-            default='y', validate=cmd.validate_yn)
+            default='y', validate=cmd.validate_yn,
+            parsed_input=gitignore
+        )
         # Ask if README should be generated
         readme_file = cmd.prompt(
             'Create README file (y/n)',
             'Generate README file?',
             '(README contains information on command line usage and directory structure)',
-            default='y', validate=cmd.validate_yn)
+            default='y', validate=cmd.validate_yn,
+            parsed_input=readme
+        )
         # Create project package
         print('Creating test project...')
         initialize_start = True
         initialize(os.getcwd(), validated_package_name, validated_project_title, gitignore_files, readme_file)
         print(cmd.COLORS['success']('Project initialized.') + '\n')
-        print(cmd.COLORS['emphasize'](
-            'To get started, set the SITE_URL for the project in {}/config/site.py'.format(validated_package_name))
+        print(
+            'To get started, set the SITE_URL for the project in {}/config/site.py\n'.format(validated_package_name),
+            'To create a new test, run:',
+            cmd.INDENT + 'python -m {} new test <module_name> <TestCaseClass>\n'.format(validated_package_name),
+            'To create a new page object, run:',
+            cmd.INDENT + 'python -m {} new page <module_name> <PageObjectClass>\n'.format(validated_package_name),
+            cmd.argparse.ARGPARSE_EPILOG, sep='\n'
         )
     except KeyboardInterrupt:
         print('')
