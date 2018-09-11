@@ -210,7 +210,6 @@ def validate_class_name(class_name):
     return validated_class_name
 
 
-# TODO: Rename parsed_input to something more helpful?
 def prompt(text, *description, default=None, validate=validate_nonempty,
            parsed_input=None, trailing_newline=True):
     """Prompt the user for input and validate it
