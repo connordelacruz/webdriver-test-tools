@@ -16,8 +16,9 @@ def get_parser():
         description=wtt_description, epilog=cmd.argparse.ARGPARSE_EPILOG,
         parents=[generic_parent_parser], add_help=False
     )
+    command_desc = 'Run \'{} <command> --help\' for details'.format(parser.prog)
     subparsers = parser.add_subparsers(
-        title='Commands', dest='command', metavar='<command>'
+        title='Commands', description=command_desc, dest='command', metavar='<command>'
     )
     # init command
     init_description = 'Initialize a new test project in the current directory. \
