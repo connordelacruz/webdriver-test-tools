@@ -60,6 +60,8 @@ def validate_description(description):
     return validated_description
 
 
+# Main methods
+
 def new_file(test_package_path, test_package, file_type, module_name, class_name,
              description=None, force=False):
     """Create a new project file
@@ -103,10 +105,43 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
 def main(test_package_path, test_package,
          file_type=None, module_name=None, class_name=None,
          description=None, force=False):
-    # TODO: doc
-    # TODO: add Ctrl + C handling from initialize.main()?
+    """Command line dialogs for creating a new file
 
-    # TODO: this already exists
+    This method accepts optional arguments for each of its prompts. If these
+    are set to something other than ``None``, their corresponding input prompts
+    will be skipped unless validation for that parameter fails.
+
+    ``file_type``, ``module_name``, and ``class_name`` are the 3 values
+    required to create a new file. If these are all set to something other than
+    ``None``, this method will default to an empty ``description`` unless one
+    is provided.
+
+    ``force`` is the only optional parameter that does not have a prompt. It
+    will default to ``False`` unless the ``--force`` flag is used when calling
+    this method.
+
+    :param test_package_path: The root directory of the test package
+    :param test_package: The python package name of the test package
+    :param file_type: (Optional) The type of file to create. If valid, the user
+        won't be prompted for input and this will be used instead. Valid file
+        types are stored as global variables with the _TYPE suffix
+    :param module_name: (Optional) Filename to use for the new python module.
+        If valid, the user won't be prompted for input and this will be used
+        instead
+    :param class_name: (Optional) Name to use for the initial test class.
+        If valid, the user won't be prompted for input and this will be used
+        instead
+    :param description: (Optional) Description to use in the docstring of the
+        initial class. User will only be prompted for a description if one or
+        more of the positional arguments (``file_type``, ``module_name``, and
+        ``class_name``) are set to ``None``
+    :param force: (Default: False) If True, force overwrite if a file with the
+        same name already exists
+    """
+    # TODO: add Ctrl + C handling from initialize.main()?
+    # if module_name and class_name are set, use defaults for description and force
+    if module_name and class_name and description is None:
+        description = ''
     _validate_file_type = cmd.validate_choice(
         ['test','page'], shorthand_choices={'t': 'test', 'p': 'page'}
     )
@@ -122,7 +157,7 @@ def main(test_package_path, test_package,
         validate=cmd.validate_module_filename,
         parsed_input=module_name
     )
-    class_type = 'test case' if file_type == 'test' else 'page object'
+    class_type = 'test case' if validated_file_type == 'test' else 'page object'
     validated_class_name = cmd.prompt(
         '{} class name'.format(class_type.capitalize()),
         'Enter a name for the initial {} class'.format(class_type),
@@ -136,6 +171,12 @@ def main(test_package_path, test_package,
         default='',
         parsed_input=description
     )
-    # TODO: pass to new_file()
+
+    new_file(
+        test_package_path, test_package,
+        file_type=validated_file_type, module_name=validated_module_name,
+        class_name=validated_class_name, description=validated_description,
+        force=force
+    )
 
 

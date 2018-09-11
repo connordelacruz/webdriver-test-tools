@@ -7,8 +7,7 @@ import os
 
 from webdriver_test_tools import cmd, config
 from webdriver_test_tools.testcase import Browsers
-from webdriver_test_tools.project import test_loader, test_factory
-from webdriver_test_tools.project.new_file import new_file
+from webdriver_test_tools.project import test_loader, test_factory, new_file
 
 
 def main(tests_module, config_module=None, package_name=None):
@@ -222,13 +221,13 @@ def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
     new_parent_parser = cmd.argparse.ArgumentParser(add_help=False, parents=parents)
     # Positional arguments
     module_name_help = 'Filename to use for the new python module'
-    new_parent_parser.add_argument('module_name', metavar='<module_name>',
+    new_parent_parser.add_argument('module_name', metavar='<module_name>', nargs='?', default=None,
                                    help=module_name_help)
-    new_parent_parser.add_argument('class_name', metavar=class_name_metavar,
+    new_parent_parser.add_argument('class_name', metavar=class_name_metavar, nargs='?', default=None,
                                    help=class_name_help)
     # Optional arguments
     description_help='Description for the initial class'
-    new_parent_parser.add_argument('-d', '--description', metavar='<description>',
+    new_parent_parser.add_argument('-d', '--description', metavar='<description>', default=None,
                                    help=description_help)
     force_help='Force overwrite if a file with the same name already exists'
     new_parent_parser.add_argument('-f', '--force', action='store_true', default=False,
@@ -399,8 +398,14 @@ def parse_new_args(package_name, tests_module, args):
     # Get package path based on tests_module path
     test_package_path = os.path.dirname(os.path.dirname(tests_module.__file__))
     try:
-        new_file(test_package_path, package_name, args.type, args.module_name, args.class_name,
-                 description=args.description, force=args.force)
+        # Account for event where user doesn't provide positional args for 'new' command
+        if args.type is None:
+            new_file.main(test_package_path, package_name)
+        else:
+            new_file.main(
+                test_package_path, package_name, args.type, args.module_name,
+                args.class_name, description=args.description, force=args.force
+            )
     except Exception as e:
         print('')
         cmd.print_exception(e)
