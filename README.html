@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>WebDriver Test Tools &mdash; WebDriver Test Tools 2.0.0-alpha documentation</title>
+  <title>WebDriver Test Tools &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.0
+                2.1
               </div>
             
           
@@ -349,9 +349,21 @@ project</li>
 <div class="section" id="command-line-usage">
 <h2><a class="toc-backref" href="#id11">Command Line Usage</a><a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
 <p>To initialize a new test project in the current directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wtt</span> <span class="n">init</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wtt</span> <span class="n">init</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">package_name</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="s2">&quot;Project Title&quot;</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">gitignore</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">readme</span><span class="p">]</span>
 </pre></div>
 </div>
+<p>Where:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">&lt;package_name&gt;</span></code>: Name for the new test package. (alphanumeric characters
+and underscores only. Cannot start with a number)</li>
+<li><code class="docutils literal notranslate"><span class="pre">&lt;&quot;Project</span> <span class="pre">Title&quot;&gt;</span></code>: (Optional) Friendly name for the test project. Defaults
+to the value of &lt;package_name&gt; if not provided</li>
+<li><code class="docutils literal notranslate"><span class="pre">--no-gitignore</span></code>: Do not create .gitignore files for project root and log
+directory</li>
+<li><code class="docutils literal notranslate"><span class="pre">--no-readme</span></code>: Do not generate README file with usage info</li>
+</ul>
+<p>If no arguments are provided, a prompt will walk you through project
+initialization.</p>
 <p>For info on command line arguments:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wtt</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
@@ -411,7 +423,7 @@ requesting features, and making contributions to the project.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.0.0-alpha',
+            VERSION:'2.1.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.initialize module &mdash; WebDriver Test Tools 2.0.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.initialize module &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.0
+                2.1
               </div>
             
           
@@ -422,8 +422,37 @@ root directory if True</li>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.main">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.main" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">main</code><span class="sig-paren">(</span><em>package_name=None</em>, <em>project_title=None</em>, <em>gitignore=None</em>, <em>readme=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Command line dialogs for initializing a test project</p>
+<p>This method accepts arguments for each of its prompts. <code class="docutils literal notranslate"><span class="pre">package_name</span></code> is
+the only argument required to create the package, so this method will
+attempt to bypass input prompts if it’s set to something other than
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">package_name</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> but one or more of the other parameters are
+not <code class="docutils literal notranslate"><span class="pre">None</span></code>, this method will attempt to bypass their corresponding input
+prompts if the value passed as a parameter is valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>package_name</strong> – (Optional) The name of the test package. If valid, the
+user won’t be prompted for input and this will be used instead</li>
+<li><strong>project_title</strong> – (Optional) A human-readable name for the test project.
+If valid, the user won’t be prompted for input and this will be used
+instead. If <code class="docutils literal notranslate"><span class="pre">project_title</span></code> is set to <code class="docutils literal notranslate"><span class="pre">None</span></code> but <code class="docutils literal notranslate"><span class="pre">package_name</span></code> is
+valid, <code class="docutils literal notranslate"><span class="pre">package_name</span></code> will be used as the project title</li>
+<li><strong>gitignore</strong> – (Optional) If <code class="docutils literal notranslate"><span class="pre">False</span></code>, .gitignore files will not be
+created during initialization. If <code class="docutils literal notranslate"><span class="pre">gitignore</span></code> is set to <code class="docutils literal notranslate"><span class="pre">None</span></code> but
+<code class="docutils literal notranslate"><span class="pre">package_name</span></code> is valid, .gitignore files will be created by default</li>
+<li><strong>readme</strong> – (Optional) If <code class="docutils literal notranslate"><span class="pre">False</span></code>, README file will not be generated
+during initialization. If <code class="docutils literal notranslate"><span class="pre">readme</span></code> is set to <code class="docutils literal notranslate"><span class="pre">None</span></code> but
+<code class="docutils literal notranslate"><span class="pre">package_name</span></code> is valid, README file will be created by default</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -470,7 +499,7 @@ root directory if True</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.0.0-alpha',
+            VERSION:'2.1.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

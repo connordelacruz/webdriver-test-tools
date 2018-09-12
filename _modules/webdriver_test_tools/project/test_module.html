@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 2.0.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.0
+                2.1
               </div>
             
           
@@ -164,8 +164,7 @@
 
 <span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">config</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase</span> <span class="k">import</span> <span class="n">Browsers</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">test_factory</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.project.new_file</span> <span class="k">import</span> <span class="n">new_file</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">test_factory</span><span class="p">,</span> <span class="n">new_file</span>
 
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -286,6 +285,7 @@
     <span class="p">)</span>
 
     <span class="c1"># New command</span>
+    <span class="c1"># TODO: add info on no args to description or help</span>
     <span class="n">new_description</span> <span class="o">=</span> <span class="s1">&#39;Create a new test module or page object&#39;</span>
     <span class="n">new_help</span> <span class="o">=</span> <span class="n">new_description</span>
     <span class="n">new_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
@@ -379,13 +379,13 @@
     <span class="n">new_parent_parser</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="n">parents</span><span class="p">)</span>
     <span class="c1"># Positional arguments</span>
     <span class="n">module_name_help</span> <span class="o">=</span> <span class="s1">&#39;Filename to use for the new python module&#39;</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;module_name&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;module_name&gt;&#39;</span><span class="p">,</span>
+    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;module_name&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;module_name&gt;&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">help</span><span class="o">=</span><span class="n">module_name_help</span><span class="p">)</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;class_name&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="n">class_name_metavar</span><span class="p">,</span>
+    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;class_name&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="n">class_name_metavar</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">help</span><span class="o">=</span><span class="n">class_name_help</span><span class="p">)</span>
     <span class="c1"># Optional arguments</span>
     <span class="n">description_help</span><span class="o">=</span><span class="s1">&#39;Description for the initial class&#39;</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--description&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;description&gt;&#39;</span><span class="p">,</span>
+    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--description&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;description&gt;&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">help</span><span class="o">=</span><span class="n">description_help</span><span class="p">)</span>
     <span class="n">force_help</span><span class="o">=</span><span class="s1">&#39;Force overwrite if a file with the same name already exists&#39;</span>
     <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--force&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -556,8 +556,14 @@
     <span class="c1"># Get package path based on tests_module path</span>
     <span class="n">test_package_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">tests_module</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">new_file</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">module_name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span>
-                 <span class="n">description</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">force</span><span class="p">)</span>
+        <span class="c1"># Account for event where user doesn&#39;t provide positional args for &#39;new&#39; command</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">new_file</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_file</span><span class="o">.</span><span class="n">main</span><span class="p">(</span>
+                <span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">module_name</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">force</span>
+            <span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div>
         <span class="n">cmd</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -720,7 +726,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.0.0-alpha',
+            VERSION:'2.1.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
