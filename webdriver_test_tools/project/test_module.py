@@ -1,6 +1,6 @@
 """Functions for test project ``__main__`` modules"""
 
-import argparse
+from argparse import RawTextHelpFormatter
 
 from webdriver_test_tools import cmd
 from webdriver_test_tools.project.cmd.common import get_test_parent_parser
@@ -52,7 +52,7 @@ def get_parser(config_module=None, package_name=None):
     # Top level parser
     parser = cmd.argparse.ArgumentParser(
         parents=[generic_parent_parser],
-        formatter_class=argparse.RawTextHelpFormatter,
+        formatter_class=RawTextHelpFormatter,
         add_help=False, prog=package_name, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # Subparsers

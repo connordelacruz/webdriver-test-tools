@@ -1,6 +1,6 @@
-import argparse
 import textwrap
 import unittest
+from argparse import RawTextHelpFormatter
 
 from webdriver_test_tools import cmd, config
 from webdriver_test_tools.project import test_factory
@@ -9,7 +9,7 @@ from webdriver_test_tools.testcase import Browsers
 
 
 def add_run_subparser(subparsers, config_module=None, parents=[],
-                      formatter_class=argparse.RawTextHelpFormatter):
+                      formatter_class=RawTextHelpFormatter):
     """Add subparser for the ``<test_package> run`` command
 
     :param subparsers: ``argparse._SubParsersAction`` object for the test package ArgumentParser (i.e. the object

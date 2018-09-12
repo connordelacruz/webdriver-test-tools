@@ -1,13 +1,13 @@
-import argparse
 import textwrap
 import unittest
+from argparse import RawTextHelpFormatter
 
 from webdriver_test_tools import cmd
 from webdriver_test_tools.project.cmd.common import parse_test_args, load_tests
 
 
 def add_list_subparser(subparsers, parents=[],
-                       formatter_class=argparse.RawTextHelpFormatter):
+                       formatter_class=RawTextHelpFormatter):
     """Add subparser for the ``<test_package> list`` command
 
     :param subparsers: ``argparse._SubParsersAction`` object for the test package ArgumentParser (i.e. the object

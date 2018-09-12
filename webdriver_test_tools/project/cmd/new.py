@@ -1,15 +1,17 @@
-import argparse
 import os
+from argparse import RawTextHelpFormatter
 
 from webdriver_test_tools import cmd
 from webdriver_test_tools.project import new_file
 
 
-def add_new_subparser(subparsers):
+def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
     """Add subparser for the ``<test_package> new`` command
 
     :param subparsers: ``argparse._SubParsersAction`` object for the test package ArgumentParser (i.e. the object
         returned by the ``add_subparsers()`` method)
+    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class to use for the ``formatter_class``
+        parameter
 
     :return: ``argparse.ArgumentParser`` object for the newly added ``new`` subparser
     """
@@ -21,7 +23,7 @@ def add_new_subparser(subparsers):
     new_parser = subparsers.add_parser(
         'new', description=new_description, help=new_help,
         parents=[generic_parent_parser],
-        formatter_class=argparse.RawTextHelpFormatter,
+        formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # New <type> subparsers
