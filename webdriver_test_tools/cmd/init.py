@@ -81,6 +81,7 @@ def validate_project_title(project_title):
     return validated_project_title
 
 
+# TODO: just take parsed args as parameter (so __main__ doesn't need to know about implementation)
 def main(package_name=None, project_title=None, gitignore=None, readme=None):
     """Command line dialogs for initializing a test project
 

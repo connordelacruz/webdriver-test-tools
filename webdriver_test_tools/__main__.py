@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """webdriver_test_tools command line interface"""
-from webdriver_test_tools.cmd import init
+from webdriver_test_tools.cmd import init, version
 from webdriver_test_tools.common import cmd
-from webdriver_test_tools.__about__ import __version__
 
 
 def get_parser():
@@ -27,9 +26,8 @@ def main():
     parser = get_parser()
     args = parser.parse_args()
     if args.version is not None and args.version:
-        print('webdriver_test_tools ' + __version__)
-        return
-    if args.command == 'init':
+        version.main()
+    elif args.command == 'init':
         init.main(
             package_name=args.package_name, project_title=args.project_title,
             gitignore=args.no_gitignore, readme=args.no_readme
