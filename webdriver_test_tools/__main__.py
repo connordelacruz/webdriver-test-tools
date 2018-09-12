@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """webdriver_test_tools command line interface"""
 
-import argparse
-
 from webdriver_test_tools.common import cmd
 from webdriver_test_tools.__about__ import __version__
 from webdriver_test_tools.project import initialize
@@ -12,15 +10,15 @@ def get_parser():
     """Returns ``ArgumentParser`` object for use with :func:`main()`"""
     generic_parent_parser = cmd.argparse.get_generic_parent_parser(include_version=True)
     wtt_description = 'Aliases: webdriver_test_tools, wtt'
-    parser = argparse.ArgumentParser(
+    parser = cmd.argparse.ArgumentParser(
         description=wtt_description, epilog=cmd.argparse.ARGPARSE_EPILOG,
         parents=[generic_parent_parser], add_help=False
     )
+    # Subparsers
     command_desc = 'Run \'{} <command> --help\' for details'.format(parser.prog)
     subparsers = parser.add_subparsers(
         title='Commands', description=command_desc, dest='command', metavar='<command>'
     )
-    # init command
     init_parser = add_init_subparser(subparsers, parents=[generic_parent_parser])
     return parser
 
