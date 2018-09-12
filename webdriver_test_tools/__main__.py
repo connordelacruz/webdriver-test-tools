@@ -4,7 +4,7 @@
 import argparse
 
 from webdriver_test_tools.common import cmd
-from webdriver_test_tools.__about__ import __version__, __documentation__
+from webdriver_test_tools.__about__ import __version__
 from webdriver_test_tools.project import initialize
 
 
@@ -21,13 +21,26 @@ def get_parser():
         title='Commands', description=command_desc, dest='command', metavar='<command>'
     )
     # init command
+    init_parser = add_init_subparser(subparsers, parents=[generic_parent_parser])
+    return parser
+
+
+def add_init_subparser(subparsers, parents=[]):
+    """Add subparser for the ``wtt init`` command
+
+    :param subparsers: ``argparse._SubParsersAction`` object for the ``wtt`` ArgumentParser (i.e. the object
+        returned by the ``add_subparsers()`` method)
+    :param parents: (Default: ``[]``) Parent parsers for the init subparser
+
+    :return: ``argparse.ArgumentParser`` object for the newly added ``init`` subparser
+    """
     init_description = 'Initialize a new test project in the current directory. \
         If no arguments are provided, a prompt will walk you through project initialization.'
     init_help = init_description
     init_parser = subparsers.add_parser(
         'init', description=init_description, help=init_help,
         epilog=cmd.argparse.ARGPARSE_EPILOG,
-        parents=[generic_parent_parser], add_help=False,
+        parents=parents, add_help=False,
     )
     # Positional Arguments
     positional_args = init_parser.add_argument_group('Positional Arguments')
@@ -44,7 +57,7 @@ def get_parser():
         help=project_title_help
     )
     # Optional Arguments
-    optional_args_description='Override default behaviour when initializing a project from the command line.'
+    optional_args_description = 'Override default behaviour when initializing a project from the command line.'
     optional_args = init_parser.add_argument_group(
         'Options', optional_args_description
     )
@@ -58,7 +71,7 @@ def get_parser():
         '--no-readme', action='store_false', default=None,
         help=no_readme_help
     )
-    return parser
+    return init_parser
 
 
 def main():
