@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.new_file module &mdash; WebDriver Test Tools 2.0.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.new_file module &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.0
+                2.1
               </div>
             
           
@@ -214,6 +214,8 @@ corresponding directory where the new file should be placed</td>
 <dt id="webdriver_test_tools.project.new_file.validate_description">
 <code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">validate_description</code><span class="sig-paren">(</span><em>description</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/new_file.html#validate_description"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.new_file.validate_description" title="Permalink to this definition">¶</a></dt>
 <dd><p>Replaces double quotes with single quotes in class description</p>
+<p>If the description is <code class="docutils literal notranslate"><span class="pre">None</span></code> or an empty string, this function considers
+it valid and returns <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -221,7 +223,7 @@ corresponding directory where the new file should be placed</td>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>description</strong> – The desired description string</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Validated description string with double quotes replaced with
-single quotes</td>
+single quotes or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the description is empty</td>
 </tr>
 </tbody>
 </table>
@@ -231,11 +233,13 @@ single quotes</td>
 <dt id="webdriver_test_tools.project.new_file.new_file">
 <code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">new_file</code><span class="sig-paren">(</span><em>test_package_path</em>, <em>test_package</em>, <em>file_type</em>, <em>module_name</em>, <em>class_name</em>, <em>description=None</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/new_file.html#new_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.new_file.new_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new project file</p>
+<p>This method assumes parameters have been validated. <a class="reference internal" href="#webdriver_test_tools.project.new_file.main" title="webdriver_test_tools.project.new_file.main"><code class="xref py py-func docutils literal notranslate"><span class="pre">main()</span></code></a> handles input validation
+before calling this function</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>test_package_path</strong> – The root directory of the test package</li>
 <li><strong>test_package</strong> – The python package name of the test package</li>
 <li><strong>file_type</strong> – The type of file to create. Valid file types are stored
@@ -243,6 +247,52 @@ as global variables with the _TYPE suffix</li>
 <li><strong>module_name</strong> – Filename to use for the new python module</li>
 <li><strong>class_name</strong> – Name to use for the initial test class</li>
 <li><strong>description</strong> – (Optional) Description to use in the docstring of the initial class</li>
+<li><strong>force</strong> – (Default: False) If True, force overwrite if a file with the
+same name already exists</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Path of the new file</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.new_file.main">
+<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">main</code><span class="sig-paren">(</span><em>test_package_path</em>, <em>test_package</em>, <em>file_type=None</em>, <em>module_name=None</em>, <em>class_name=None</em>, <em>description=None</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/new_file.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.new_file.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Command line dialogs for creating a new file</p>
+<p>This method accepts optional arguments for each of its prompts. If these
+are set to something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>, their corresponding input prompts
+will be skipped unless validation for that parameter fails.</p>
+<p><code class="docutils literal notranslate"><span class="pre">file_type</span></code>, <code class="docutils literal notranslate"><span class="pre">module_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">class_name</span></code> are the 3 values
+required to create a new file. If these are all set to something other than
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, this method will default to an empty <code class="docutils literal notranslate"><span class="pre">description</span></code> unless one
+is provided.</p>
+<p><code class="docutils literal notranslate"><span class="pre">force</span></code> is the only optional parameter that does not have a prompt. It
+will default to <code class="docutils literal notranslate"><span class="pre">False</span></code> unless the <code class="docutils literal notranslate"><span class="pre">--force</span></code> flag is used when calling
+this method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>test_package_path</strong> – The root directory of the test package</li>
+<li><strong>test_package</strong> – The python package name of the test package</li>
+<li><strong>file_type</strong> – (Optional) The type of file to create. If valid, the user
+won’t be prompted for input and this will be used instead. Valid file
+types are stored as global variables with the _TYPE suffix</li>
+<li><strong>module_name</strong> – (Optional) Filename to use for the new python module.
+If valid, the user won’t be prompted for input and this will be used
+instead</li>
+<li><strong>class_name</strong> – (Optional) Name to use for the initial test class.
+If valid, the user won’t be prompted for input and this will be used
+instead</li>
+<li><strong>description</strong> – (Optional) Description to use in the docstring of the
+initial class. User will only be prompted for a description if one or
+more of the positional arguments (<code class="docutils literal notranslate"><span class="pre">file_type</span></code>, <code class="docutils literal notranslate"><span class="pre">module_name</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">class_name</span></code>) are set to <code class="docutils literal notranslate"><span class="pre">None</span></code></li>
 <li><strong>force</strong> – (Default: False) If True, force overwrite if a file with the
 same name already exists</li>
 </ul>
@@ -296,7 +346,7 @@ same name already exists</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.0.0-alpha',
+            VERSION:'2.1.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

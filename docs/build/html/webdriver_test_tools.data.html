@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.data package &mdash; WebDriver Test Tools 2.0.0-alpha documentation</title>
+  <title>webdriver_test_tools.data package &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.0
+                2.1
               </div>
             
           
@@ -541,25 +541,56 @@ instead of connecting once for each user and increasing load on both ends.</p>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Constants for the <code class="docutils literal notranslate"><span class="pre">paragraph_length</span></code> parameter in generate()</p>
 <dl class="attribute">
+<dt id="loremipsum.ParagraphLength.OPTIONS">
+<code class="descname">OPTIONS</code><em class="property"> = ['short', 'medium', 'long', 'verylong']</em><a class="headerlink" href="#loremipsum.ParagraphLength.OPTIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of values for paragraph lengths. Used internally.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="loremipsum.ParagraphLength.SHORT">
-<code class="descname">SHORT</code><em class="property"> = 'short'</em><a class="headerlink" href="#loremipsum.ParagraphLength.SHORT" title="Permalink to this definition">¶</a></dt>
+<code class="descname">SHORT</code><em class="property"> = 0</em><a class="headerlink" href="#loremipsum.ParagraphLength.SHORT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="loremipsum.ParagraphLength.MEDIUM">
-<code class="descname">MEDIUM</code><em class="property"> = 'medium'</em><a class="headerlink" href="#loremipsum.ParagraphLength.MEDIUM" title="Permalink to this definition">¶</a></dt>
+<code class="descname">MEDIUM</code><em class="property"> = 1</em><a class="headerlink" href="#loremipsum.ParagraphLength.MEDIUM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="loremipsum.ParagraphLength.LONG">
-<code class="descname">LONG</code><em class="property"> = 'long'</em><a class="headerlink" href="#loremipsum.ParagraphLength.LONG" title="Permalink to this definition">¶</a></dt>
+<code class="descname">LONG</code><em class="property"> = 2</em><a class="headerlink" href="#loremipsum.ParagraphLength.LONG" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="loremipsum.ParagraphLength.VERY_LONG">
-<code class="descname">VERY_LONG</code><em class="property"> = 'verylong'</em><a class="headerlink" href="#loremipsum.ParagraphLength.VERY_LONG" title="Permalink to this definition">¶</a></dt>
+<code class="descname">VERY_LONG</code><em class="property"> = 3</em><a class="headerlink" href="#loremipsum.ParagraphLength.VERY_LONG" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="classmethod">
+<dt id="loremipsum.ParagraphLength.get_option">
+<em class="property">classmethod </em><code class="descname">get_option</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/loremipsum.html#ParagraphLength.get_option"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#loremipsum.ParagraphLength.get_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the string value that corresponds to the constants declared
+in this class. Used internally.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> – One of the constants declared in this class
+(<code class="docutils literal notranslate"><span class="pre">SHORT</span></code>, <code class="docutils literal notranslate"><span class="pre">MEDIUM</span></code>, <code class="docutils literal notranslate"><span class="pre">LONG</span></code>, <code class="docutils literal notranslate"><span class="pre">VERY_LONG</span></code>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The corresponding string value for the loripsum.net API or
+None if the index is invalid</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="data">
+<dt id="loremipsum.HTML_OPTIONS">
+<code class="descclassname">loremipsum.</code><code class="descname">HTML_OPTIONS</code><em class="property"> = ['decorate', 'link', 'ul', 'ol', 'dl', 'bq', 'code', 'headers']</em><a class="headerlink" href="#loremipsum.HTML_OPTIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Valid keys for html_options</p>
 </dd></dl>
 
 <dl class="function">
@@ -573,10 +604,11 @@ instead of connecting once for each user and increasing load on both ends.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>paragraph_count</strong> – (Optional) The number of paragraphs to generate. If
-unspecified, API defaults to 3</li>
+unspecified, API defaults to 4</li>
 <li><strong>paragraph_length</strong> – (Optional) The average length of a paragraph. Possible
-values are declared as attributes in <code class="docutils literal notranslate"><span class="pre">LoremIpsum.ParagraphLength</span></code>. If
-unspecified, API defaults to ‘long’</li>
+values are declared as attributes in <code class="docutils literal notranslate"><span class="pre">loremipsum.ParagraphLength</span></code>
+(<code class="docutils literal notranslate"><span class="pre">SHORT</span></code>, <code class="docutils literal notranslate"><span class="pre">MEDIUM</span></code>, <code class="docutils literal notranslate"><span class="pre">LONG</span></code>, <code class="docutils literal notranslate"><span class="pre">VERY_LONG</span></code>). If unspecified, API
+defaults to ‘long’</li>
 <li><strong>allcaps</strong> – (Default = False) Use ALL CAPS</li>
 <li><strong>prude</strong> – (Default = False) Prude version. From the API documentation:
 “The original text contains a few instances of words like ‘sex’ or ‘homo’.
@@ -611,6 +643,18 @@ in generated text. If True, leave trailing new lines in.</li>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="function">
+<dt id="loremipsum.main">
+<code class="descclassname">loremipsum.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/loremipsum.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#loremipsum.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints generated text using parsed args</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="loremipsum.copy">
+<code class="descclassname">loremipsum.</code><code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/loremipsum.html#copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#loremipsum.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies generated text using parsed args to clipboard</p>
 </dd></dl>
 
 </div>
@@ -658,7 +702,7 @@ in generated text. If True, leave trailing new lines in.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.0.0-alpha',
+            VERSION:'2.1.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

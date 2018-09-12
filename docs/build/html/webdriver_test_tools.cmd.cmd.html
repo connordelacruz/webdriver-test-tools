@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.cmd.cmd module &mdash; WebDriver Test Tools 2.0.0-alpha documentation</title>
+  <title>webdriver_test_tools.cmd.cmd module &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.0
+                2.1
               </div>
             
           
@@ -281,6 +281,54 @@ be surrounded with double quotes for better readability.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="webdriver_test_tools.cmd.cmd.validate_choice">
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">validate_choice</code><span class="sig-paren">(</span><em>choices</em>, <em>shorthand_choices={}</em>, <em>error_msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#validate_choice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.validate_choice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a validation function for input with specific choice options</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>choices</strong> – A list of <strong>lowercase</strong> strings the user can choose from</li>
+<li><strong>shorthand_choices</strong> – <p>(Optional) A dictionary mapping short hand
+answers to options in <code class="docutils literal notranslate"><span class="pre">choices</span></code>. If user answers prompt with one of
+the keys in <code class="docutils literal notranslate"><span class="pre">shorthand_choices</span></code>, the validation function will treat
+their answer as <code class="docutils literal notranslate"><span class="pre">shorthand_choices[answer]</span></code>.</p>
+<p>The following example values would allow ‘y’ and ‘n’ to be accepted as
+‘yes’ and ‘no’, respectively:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">]</span>
+<span class="n">shorthand_choices</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">validate_yes_no</span> <span class="o">=</span> <span class="n">validate_choice</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="n">shorthand_choices</span><span class="p">)</span>
+<span class="c1"># Both of the following return &#39;yes&#39;</span>
+<span class="n">result0</span> <span class="o">=</span> <span class="n">validate_yes_no</span><span class="p">(</span><span class="s1">&#39;yes&#39;</span><span class="p">)</span>
+<span class="n">result1</span> <span class="o">=</span> <span class="n">validate_yes_no</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><strong>error_msg</strong> – <p>(Optional) Custom validation error message. By default,
+validation errors will have the message:</p>
+<blockquote>
+<div><code class="docutils literal notranslate"><span class="pre">'Please</span> <span class="pre">select</span> <span class="pre">a</span> <span class="pre">valid</span> <span class="pre">choice:</span> <span class="pre">[&lt;choices&gt;]'</span></code></div></blockquote>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;choices&gt;</span></code> is a comma separated representation of the values
+in <code class="docutils literal notranslate"><span class="pre">choices</span></code>.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A validation function that accepts a string and returns the
+corresponding item from <code class="docutils literal notranslate"><span class="pre">choices</span></code> if the string is valid</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="webdriver_test_tools.cmd.cmd.validate_yn">
 <code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">validate_yn</code><span class="sig-paren">(</span><em>answer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#validate_yn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.validate_yn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validate y/n prompts</p>
@@ -288,7 +336,9 @@ be surrounded with double quotes for better readability.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>answer</strong> – User response to y/n prompt</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>answer</strong> – User response to y/n prompt. If a boolean value is passed
+(e.g. if a prompt received parsed_input=True), it is treated as a y/n
+answer and considered valid input</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if user answered yes, False if user answered no</td>
 </tr>
@@ -359,7 +409,7 @@ class name</p>
 
 <dl class="function">
 <dt id="webdriver_test_tools.cmd.cmd.prompt">
-<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>*description</em>, <em>default=None</em>, <em>validate=&lt;function validate_nonempty&gt;</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.cmd.cmd.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>*description</em>, <em>default=None</em>, <em>validate=&lt;function validate_nonempty&gt;</em>, <em>parsed_input=None</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prompt the user for input and validate it</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -371,6 +421,12 @@ class name</p>
 input. Each argument will be printed on a new line</li>
 <li><strong>default</strong> – (Optional) default value</li>
 <li><strong>validate</strong> – (Default = validate_nonempty) Validation function for input</li>
+<li><strong>parsed_input</strong> – (Default = None) If <code class="docutils literal notranslate"><span class="pre">parsed_input</span></code> is set to
+something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>, parser will attempt to validate it. If
+validation is successful, the input prompt will be skipped and the
+validated value of <code class="docutils literal notranslate"><span class="pre">parsed_input</span></code> will be returned. This allows for
+input to be passed through command line arguments, but still prompt the
+user in the event that it can’t be validated</li>
 <li><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user
 input and successfully validating</li>
 </ul>
@@ -427,7 +483,7 @@ input and successfully validating</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.0.0-alpha',
+            VERSION:'2.1.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

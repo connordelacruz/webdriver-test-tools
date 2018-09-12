@@ -128,6 +128,7 @@ def get_parser(config_module=None, package_name=None):
     )
 
     # New command
+    # TODO: add info on no args to description or help
     new_description = 'Create a new test module or page object'
     new_help = new_description
     new_parser = subparsers.add_parser(

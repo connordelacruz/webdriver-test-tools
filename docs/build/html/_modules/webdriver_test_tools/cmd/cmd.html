@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.cmd.cmd &mdash; WebDriver Test Tools 2.0.0-alpha documentation</title>
+  <title>webdriver_test_tools.cmd.cmd &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.0
+                2.1
               </div>
             
           
@@ -248,13 +248,66 @@
     <span class="k">return</span> <span class="n">text</span>
 
 
+<span class="c1"># TODO: rename to avoid confusion?</span>
+<div class="viewcode-block" id="validate_choice"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_choice">[docs]</a><span class="k">def</span> <span class="nf">validate_choice</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="n">shorthand_choices</span><span class="o">=</span><span class="p">{},</span> <span class="n">error_msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a validation function for input with specific choice options</span>
+
+<span class="sd">    :param choices: A list of **lowercase** strings the user can choose from</span>
+<span class="sd">    :param shorthand_choices: (Optional) A dictionary mapping short hand</span>
+<span class="sd">        answers to options in ``choices``. If user answers prompt with one of</span>
+<span class="sd">        the keys in ``shorthand_choices``, the validation function will treat</span>
+<span class="sd">        their answer as ``shorthand_choices[answer]``.</span>
+
+<span class="sd">        The following example values would allow &#39;y&#39; and &#39;n&#39; to be accepted as</span>
+<span class="sd">        &#39;yes&#39; and &#39;no&#39;, respectively:</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                choices = [&#39;yes&#39;, &#39;no&#39;]</span>
+<span class="sd">                shorthand_choices = {</span>
+<span class="sd">                    &#39;y&#39;: &#39;yes&#39;,</span>
+<span class="sd">                    &#39;n&#39;: &#39;no&#39;,</span>
+<span class="sd">                }</span>
+<span class="sd">                validate_yes_no = validate_choice(choices, shorthand_choices)</span>
+<span class="sd">                # Both of the following return &#39;yes&#39;</span>
+<span class="sd">                result0 = validate_yes_no(&#39;yes&#39;)</span>
+<span class="sd">                result1 = validate_yes_no(&#39;y&#39;)</span>
+
+<span class="sd">    :param error_msg: (Optional) Custom validation error message. By default,</span>
+<span class="sd">        validation errors will have the message:</span>
+
+<span class="sd">            ``&#39;Please select a valid choice: [&lt;choices&gt;]&#39;``</span>
+
+<span class="sd">        where ``&lt;choices&gt;`` is a comma separated representation of the values</span>
+<span class="sd">        in ``choices``.</span>
+
+<span class="sd">    :return: A validation function that accepts a string and returns the</span>
+<span class="sd">        corresponding item from ``choices`` if the string is valid</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">error_msg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;Please select a valid choice: [</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">choices</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">val</span><span class="p">(</span><span class="n">answer</span><span class="p">):</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">answer</span> <span class="ow">in</span> <span class="n">shorthand_choices</span><span class="p">:</span>
+            <span class="n">answer</span> <span class="o">=</span> <span class="n">shorthand_choices</span><span class="p">[</span><span class="n">answer</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">answer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">choices</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">answer</span></div>
+    <span class="k">return</span> <span class="n">val</span>
+
+
 <div class="viewcode-block" id="validate_yn"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_yn">[docs]</a><span class="k">def</span> <span class="nf">validate_yn</span><span class="p">(</span><span class="n">answer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Validate y/n prompts</span>
 
-<span class="sd">    :param answer: User response to y/n prompt</span>
+<span class="sd">    :param answer: User response to y/n prompt. If a boolean value is passed</span>
+<span class="sd">        (e.g. if a prompt received parsed_input=True), it is treated as a y/n</span>
+<span class="sd">        answer and considered valid input</span>
 
 <span class="sd">    :return: True if user answered yes, False if user answered no</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># If a boolean value was passed, return it</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">answer</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">answer</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">answer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter &quot;y&quot; or &quot;n&quot;.&#39;</span><span class="p">)</span></div>
@@ -362,7 +415,8 @@
     <span class="k">return</span> <span class="n">validated_class_name</span>
 
 
-<div class="viewcode-block" id="prompt"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.prompt">[docs]</a><span class="k">def</span> <span class="nf">prompt</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="o">*</span><span class="n">description</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate_nonempty</span><span class="p">,</span> <span class="n">trailing_newline</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="prompt"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.prompt">[docs]</a><span class="k">def</span> <span class="nf">prompt</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="o">*</span><span class="n">description</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate_nonempty</span><span class="p">,</span>
+           <span class="n">parsed_input</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trailing_newline</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Prompt the user for input and validate it</span>
 
 <span class="sd">    :param text: Text to display in prompt</span>
@@ -370,11 +424,27 @@
 <span class="sd">        input. Each argument will be printed on a new line</span>
 <span class="sd">    :param default: (Optional) default value</span>
 <span class="sd">    :param validate: (Default = validate_nonempty) Validation function for input</span>
+<span class="sd">    :param parsed_input: (Default = None) If ``parsed_input`` is set to</span>
+<span class="sd">        something other than ``None``, parser will attempt to validate it. If</span>
+<span class="sd">        validation is successful, the input prompt will be skipped and the</span>
+<span class="sd">        validated value of ``parsed_input`` will be returned. This allows for</span>
+<span class="sd">        input to be passed through command line arguments, but still prompt the</span>
+<span class="sd">        user in the event that it can&#39;t be validated</span>
 <span class="sd">    :param trailing_newline: (Default = True) Print a blank line after receiving user</span>
 <span class="sd">        input and successfully validating</span>
 
 <span class="sd">    :return: Validated input</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Attempt to bypass prompt if parsed_input is not None</span>
+    <span class="k">if</span> <span class="n">parsed_input</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">validate</span><span class="p">(</span><span class="n">parsed_input</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If no errors were raised, return validated input</span>
+            <span class="k">return</span> <span class="n">val</span>
+    <span class="c1"># Input prompt</span>
     <span class="k">if</span> <span class="n">description</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">description</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">prompt_text</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> [</span><span class="si">{}</span><span class="s1">]: &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span> <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span>
@@ -427,7 +497,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.0.0-alpha',
+            VERSION:'2.1.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

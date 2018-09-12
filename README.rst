@@ -285,7 +285,16 @@ New tests and page objects can be generated using the ``new`` command:
 
 ::
 
-    python -m <test_package> new
+    python -m <test_package> new [<type>] [<module_name>] [<ClassName>] [-d
+    <description>] [-f]
+
+Where:
+
+- ``<type>``: The type of file to create (``test`` or ``page``)
+- ``<module_name>``: Filename to use for the new python module
+- ``<ClassName>``: Name to use for the initial class
+- ``<description>``: (Optional) Description for the initial class
+- ``-f``: (Optional) Force overwrite if a file with the same name already exists
 
 If no arguments are provided, a prompt will walk you through generating the new
 file. Alternatively, you can skip the prompts by using the arguments shown in
