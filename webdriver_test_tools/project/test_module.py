@@ -8,6 +8,7 @@ import os
 # TODO: clean up imports
 from webdriver_test_tools import cmd, config
 from webdriver_test_tools.project.cmd.common import get_test_parent_parser, parse_test_args, load_tests
+from webdriver_test_tools.project.cmd.list import add_list_subparser, parse_list_args
 from webdriver_test_tools.testcase import Browsers
 from webdriver_test_tools.project import test_factory, new_file
 
@@ -120,14 +121,7 @@ def get_parser(config_module=None, package_name=None):
                        metavar='<level>', help=verbosity_help)
 
     # List command
-    list_description = 'Print a list of available tests and exit'
-    list_help = list_description
-    list_parser = subparsers.add_parser(
-        'list', description=list_description, help=list_help,
-        parents=[test_parent_parser],
-        formatter_class=argparse.RawTextHelpFormatter,
-        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
-    )
+    list_parser = add_list_subparser(subparsers, parents=[test_parent_parser])
 
     # New command
     # TODO: add info on no args to description or help
@@ -286,33 +280,6 @@ def _browser_list_string(browser_names):
 
 # Command line argument parsing functions
 
-
-# TODO: move to cmd.list
-def add_list_subparser(subparsers, parents=[],
-                       formatter_class=argparse.RawTextHelpFormatter):
-    # TODO: doc
-    list_description = 'Print a list of available tests and exit'
-    list_help = list_description
-    list_parser = subparsers.add_parser(
-        'list', description=list_description, help=list_help,
-        parents=parents, # TODO: always use test_parent_parser?
-        formatter_class=formatter_class,
-        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
-    )
-    return list_parser
-
-
-# TODO: move to cmd.list
-def parse_list_args(tests_module, args):
-    """Parse arguments and run the 'list' command
-
-    :param tests_module: The module object for ``<test_project>.tests``
-    :param args: The namespace returned by parser.parse_args()
-    """
-    kwargs = parse_test_args(args)
-    list_tests(tests_module, **kwargs)
-
-
 # TODO: move to cmd.run
 def parse_run_args(tests_module, config_module, args):
     """Parse arguments and run the 'run' command
@@ -395,27 +362,6 @@ def get_browser_config_classes(config_module):
 
 
 # Sub-command functions
-
-# TODO: move to cmd.list
-def list_tests(tests_module,
-               test_module_names=None, test_class_map=None, skip_class_map=None):
-    """Print a list of available tests
-
-    :param tests_module: The module object for ``<test_project>.tests``
-    :param test_module_names: (Optional) Parsed arg for ``--module`` command line
-        argument
-    :param test_class_map: (Optional) Result of passing parsed arg for ``--test``
-        command line argument to :func:`parse_test_names()`
-    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip``
-        command line argument to :func:`parse_test_names()`
-    """
-    tests = load_tests(tests_module, test_module_names, test_class_map, skip_class_map)
-    for test_class in tests:
-        print(cmd.COLORS['title'](test_class.__name__) + ':')
-        test_cases = unittest.loader.getTestCaseNames(test_class, 'test')
-        for test_case in test_cases:
-            print(textwrap.indent(test_case, cmd.INDENT))
-
 
 # TODO: move to cmd.run
 def run_tests(tests_module, config_module,
