@@ -278,8 +278,22 @@ For info on command line arguments, use the ``--help`` (or ``-h``) argument:
     python -m <test_package> --help
 
 
+Creating New Project Files
+--------------------------
+
+New tests and page objects can be generated using the ``new`` command:
+
+::
+
+    python -m <test_package> new
+
+If no arguments are provided, a prompt will walk you through generating the new
+file. Alternatively, you can skip the prompts by using the arguments shown in
+the following sections.
+
+
 Creating New Tests
-------------------
+~~~~~~~~~~~~~~~~~~
 
 New test modules can be generated using the ``new test`` command:
 
@@ -309,7 +323,7 @@ used to force overwrite existing files:
 
 
 Creating New Page Objects
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 New page object modules can be generated using the ``new page`` command:
 
