@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """webdriver_test_tools command line interface"""
-
+from webdriver_test_tools.cmd import init
 from webdriver_test_tools.common import cmd
 from webdriver_test_tools.__about__ import __version__
-from webdriver_test_tools.project import initialize
 
 
 def get_parser():
@@ -19,57 +18,8 @@ def get_parser():
     subparsers = parser.add_subparsers(
         title='Commands', description=command_desc, dest='command', metavar='<command>'
     )
-    init_parser = add_init_subparser(subparsers, parents=[generic_parent_parser])
+    init_parser = init.add_init_subparser(subparsers, parents=[generic_parent_parser])
     return parser
-
-
-def add_init_subparser(subparsers, parents=[]):
-    """Add subparser for the ``wtt init`` command
-
-    :param subparsers: ``argparse._SubParsersAction`` object for the ``wtt`` ArgumentParser (i.e. the object
-        returned by the ``add_subparsers()`` method)
-    :param parents: (Default: ``[]``) Parent parsers for the init subparser
-
-    :return: ``argparse.ArgumentParser`` object for the newly added ``init`` subparser
-    """
-    init_description = 'Initialize a new test project in the current directory. \
-        If no arguments are provided, a prompt will walk you through project initialization.'
-    init_help = init_description
-    init_parser = subparsers.add_parser(
-        'init', description=init_description, help=init_help,
-        epilog=cmd.argparse.ARGPARSE_EPILOG,
-        parents=parents, add_help=False,
-    )
-    # Positional Arguments
-    positional_args = init_parser.add_argument_group('Positional Arguments')
-    package_name_help = 'Name for the new test package \
-        (alphanumeric characters and underscores only. Cannot start with a number)'
-    positional_args.add_argument(
-        'package_name', metavar='<package_name>', nargs='?', default=None,
-        help=package_name_help
-    )
-    project_title_help = '(Optional) Friendly name for the test project. \
-        Defaults to the value of <package_name> if not provided'
-    positional_args.add_argument(
-        'project_title', metavar='<"Project Title">', nargs='?', default=None,
-        help=project_title_help
-    )
-    # Optional Arguments
-    optional_args_description = 'Override default behaviour when initializing a project from the command line.'
-    optional_args = init_parser.add_argument_group(
-        'Options', optional_args_description
-    )
-    no_gitignore_help = 'Do not create .gitignore files for project root and log directory'
-    optional_args.add_argument(
-        '--no-gitignore', action='store_false', default=None,
-        help=no_gitignore_help
-    )
-    no_readme_help = 'Do not generate README file with usage info'
-    optional_args.add_argument(
-        '--no-readme', action='store_false', default=None,
-        help=no_readme_help
-    )
-    return init_parser
 
 
 def main():
@@ -80,7 +30,7 @@ def main():
         print('webdriver_test_tools ' + __version__)
         return
     if args.command == 'init':
-        initialize.main(
+        init.main(
             package_name=args.package_name, project_title=args.project_title,
             gitignore=args.no_gitignore, readme=args.no_readme
         )

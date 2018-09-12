@@ -40,6 +40,7 @@ def validate_file_type(file_type):
     return template_file, target_dir
 
 
+# TODO: move to project.cmd.new
 def validate_description(description):
     """Replaces double quotes with single quotes in class description
 
@@ -96,6 +97,7 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     )
 
 
+# TODO: move to project.cmd.new
 def main(test_package_path, test_package,
          file_type=None, module_name=None, class_name=None,
          description=None, force=False):
