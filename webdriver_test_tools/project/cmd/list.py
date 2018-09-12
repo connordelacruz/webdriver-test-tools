@@ -22,7 +22,7 @@ def add_list_subparser(subparsers, parents=[],
     list_help = list_description
     list_parser = subparsers.add_parser(
         'list', description=list_description, help=list_help,
-        parents=parents, # TODO: always use test_parent_parser
+        parents=parents,  # TODO: always use test_parent_parser?
         formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
