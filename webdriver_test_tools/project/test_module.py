@@ -171,6 +171,7 @@ def get_parser(config_module=None, package_name=None):
     return parser
 
 
+# TODO: move to cmd.common
 def get_test_parent_parser(parents=[]):
     """Returns an :class:`ArgumentParser
     <webdriver_test_tools.cmd.argparse.ArgumentParser>` with ``--test``,
@@ -202,6 +203,7 @@ def get_test_parent_parser(parents=[]):
     return test_parent_parser
 
 
+# TODO: move to cmd.new
 def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
                           class_name_help='Name to use for the initial class'):
     """Returns an :class:`ArgumentParser
@@ -238,6 +240,7 @@ def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
 
 
 # Help text output functions
+# TODO: move all to cmd.run
 
 def _format_browser_choices(browser_config, browserstack_config):
     """Format the help string for browser choices
@@ -313,6 +316,7 @@ def _browser_list_string(browser_names):
 
 # Command line argument parsing functions
 
+# TODO: move to cmd.common
 def parse_test_names(test_name_args):
     """Returns a dictionary mapping test case names to a list of test functions
 
@@ -334,6 +338,7 @@ def parse_test_names(test_name_args):
     return class_map
 
 
+# TODO: move to cmd.common
 def parse_test_args(args):
     """Parse optional arguments for specifying/skipping tests and modules
 
@@ -350,6 +355,22 @@ def parse_test_args(args):
     }
 
 
+# TODO: move to cmd.list
+def add_list_subparser(subparsers, parents=[],
+                       formatter_class=argparse.RawTextHelpFormatter):
+    # TODO: doc
+    list_description = 'Print a list of available tests and exit'
+    list_help = list_description
+    list_parser = subparsers.add_parser(
+        'list', description=list_description, help=list_help,
+        parents=parents, # TODO: always use test_parent_parser?
+        formatter_class=formatter_class,
+        add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
+    )
+    return list_parser
+
+
+# TODO: move to cmd.list
 def parse_list_args(tests_module, args):
     """Parse arguments and run the 'list' command
 
@@ -360,6 +381,7 @@ def parse_list_args(tests_module, args):
     list_tests(tests_module, **kwargs)
 
 
+# TODO: move to cmd.run
 def parse_run_args(tests_module, config_module, args):
     """Parse arguments and run the 'run' command
 
@@ -388,6 +410,7 @@ def parse_run_args(tests_module, config_module, args):
     run_tests(tests_module, config_module, **kwargs)
 
 
+# TODO: move to cmd.new
 def parse_new_args(package_name, tests_module, args):
     """Parse arguments and run the 'new' command
 
@@ -412,6 +435,7 @@ def parse_new_args(package_name, tests_module, args):
         cmd.print_exception(e)
 
 
+# TODO: move to cmd.run
 def get_browser_config_classes(config_module):
     """Get the ``BrowserConfig`` and ``BrowserStackConfig`` classes from a project.
 
@@ -440,6 +464,7 @@ def get_browser_config_classes(config_module):
 
 # Sub-command functions
 
+# TODO: move to cmd.list
 def list_tests(tests_module,
                test_module_names=None, test_class_map=None, skip_class_map=None):
     """Print a list of available tests
@@ -460,6 +485,7 @@ def list_tests(tests_module,
             print(textwrap.indent(test_case, cmd.INDENT))
 
 
+# TODO: move to cmd.run
 def run_tests(tests_module, config_module,
               browser_classes=None, test_class_map=None, skip_class_map=None,
               test_module_names=None, browserstack=False, headless=False,
@@ -504,6 +530,7 @@ def run_tests(tests_module, config_module,
 
 # Test loading functions
 
+# TODO: move to cmd.common
 def _load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
     """Return a list of test classes from a project based on the --module, --test, and --skip arguments
 
@@ -521,6 +548,7 @@ def _load_tests(tests_module, test_module_names=None, test_class_map=None, skip_
     return test_loader.load_project_tests(tests_module, test_module_names, test_class_names, skip_class_names)
 
 
+# TODO: move to cmd.common
 def _get_skip_class_names(skip_class_map):
     """Returns list of classes to skip
 
