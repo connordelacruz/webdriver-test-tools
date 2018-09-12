@@ -5,7 +5,7 @@ import os
 import shutil
 import re
 
-from webdriver_test_tools import cmd
+from webdriver_test_tools.common import cmd
 from webdriver_test_tools.common.files import *
 from webdriver_test_tools.__about__ import __version__, __selenium__
 from webdriver_test_tools.project import templates

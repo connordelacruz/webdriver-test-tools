@@ -1,7 +1,7 @@
 import os
 from argparse import RawTextHelpFormatter
 
-from webdriver_test_tools import cmd
+from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project import new_file
 
 

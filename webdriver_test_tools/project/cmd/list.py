@@ -2,7 +2,7 @@ import textwrap
 import unittest
 from argparse import RawTextHelpFormatter
 
-from webdriver_test_tools import cmd
+from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project.cmd.common import parse_test_args, load_tests
 
 
