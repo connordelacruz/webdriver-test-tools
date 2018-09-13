@@ -143,6 +143,7 @@ def validate_description(description):
     return validated_description
 
 
+# TODO: just take test package params and args object
 def main(test_package_path, test_package,
          file_type=None, module_name=None, class_name=None,
          description=None, force=False):

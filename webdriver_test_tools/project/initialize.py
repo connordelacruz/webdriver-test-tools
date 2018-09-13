@@ -182,6 +182,7 @@ def generate_context(test_package, project_title=None, version_badge=True):
 
 # Main methods
 
+# TODO: assume arguments have already been validated since init.main() is the only entry point
 def initialize(target_path, package_name, project_title, gitignore_files=True, readme_file=True):
     """Initializes new project package
 
