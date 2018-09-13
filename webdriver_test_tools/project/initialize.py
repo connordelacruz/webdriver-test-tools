@@ -2,7 +2,6 @@
 
 import shutil
 
-from webdriver_test_tools.common import cmd  # TODO: remove usages, assume input was validated
 from webdriver_test_tools.common.files import *
 from webdriver_test_tools.__about__ import __version__, __selenium__
 from webdriver_test_tools.project import templates
@@ -51,13 +50,11 @@ def create_package_directory(target_path, package_name):
     """Creates package directory for test project
 
     :param target_path: The path to the outer directory where initialize was called
-    :param package_name: The desired name of the package (will be validated)
+    :param package_name: The desired name of the package
 
     :return: Path to created package directory
     """
-    target_path = os.path.abspath(target_path)
-    package_directory = cmd.validate_package_name(package_name)
-    return create_directory(target_path, package_directory)
+    return create_directory(os.path.abspath(target_path), package_name)
 
 
 # Package Root
@@ -177,12 +174,6 @@ def generate_context(test_package, project_title=None, version_badge=True):
     return context
 
 
-# Prompt validation functions
-
-
-# Main methods
-
-# TODO: assume arguments have already been validated since init.main() is the only entry point
 def initialize(target_path, package_name, project_title, gitignore_files=True, readme_file=True):
     """Initializes new project package
 
@@ -195,7 +186,6 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
         root directory if True
     """
     outer_path = os.path.abspath(target_path)
-    package_name = cmd.validate_package_name(package_name)
     context = generate_context(package_name, project_title)
     # Initialize files in the outer directory
     create_setup_file(outer_path, context)
