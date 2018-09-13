@@ -2,7 +2,7 @@ import textwrap
 import unittest
 from argparse import RawTextHelpFormatter
 
-from webdriver_test_tools import cmd
+from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project.cmd.common import parse_test_args, load_tests
 
 
@@ -57,3 +57,4 @@ def list_tests(tests_module,
         test_cases = unittest.loader.getTestCaseNames(test_class, 'test')
         for test_case in test_cases:
             print(textwrap.indent(test_case, cmd.INDENT))
+

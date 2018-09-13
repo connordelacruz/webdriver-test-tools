@@ -2,7 +2,7 @@
 
 from argparse import RawTextHelpFormatter
 
-from webdriver_test_tools import cmd
+from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project.cmd.common import get_test_parent_parser
 from webdriver_test_tools.project.cmd.run import add_run_subparser, parse_run_args
 from webdriver_test_tools.project.cmd.list import add_list_subparser, parse_list_args
