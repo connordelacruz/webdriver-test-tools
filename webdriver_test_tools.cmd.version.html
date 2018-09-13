@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.cmd.argparse module &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
+  <title>webdriver_test_tools.cmd.version module &mdash; WebDriver Test Tools 2.1.1-alpha documentation</title>
   
 
   
@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.common package" href="webdriver_test_tools.common.html" />
-    <link rel="prev" title="webdriver_test_tools.cmd.cmd module" href="webdriver_test_tools.cmd.cmd.html" /> 
+    <link rel="prev" title="webdriver_test_tools.cmd.init module" href="webdriver_test_tools.cmd.init.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -157,13 +157,13 @@
         
           <li><a href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a> &raquo;</li>
         
-      <li>webdriver_test_tools.cmd.argparse module</li>
+      <li>webdriver_test_tools.cmd.version module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/webdriver_test_tools.cmd.argparse.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/webdriver_test_tools.cmd.version.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -176,61 +176,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-webdriver_test_tools.cmd.argparse">
-<span id="webdriver-test-tools-cmd-argparse-module"></span><h1>webdriver_test_tools.cmd.argparse module<a class="headerlink" href="#module-webdriver_test_tools.cmd.argparse" title="Permalink to this headline">¶</a></h1>
-<p>Extended ArgumentParser class and common argparse utilities</p>
-<dl class="class">
-<dt id="webdriver_test_tools.cmd.argparse.ArgumentParser">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.cmd.argparse.</code><code class="descname">ArgumentParser</code><span class="sig-paren">(</span><em>prog=None</em>, <em>usage=None</em>, <em>description=None</em>, <em>epilog=None</em>, <em>parents=[]</em>, <em>formatter_class=&lt;class 'argparse.HelpFormatter'&gt;</em>, <em>prefix_chars='-'</em>, <em>fromfile_prefix_chars=None</em>, <em>argument_default=None</em>, <em>conflict_handler='error'</em>, <em>add_help=True</em>, <em>allow_abbrev=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/argparse.html#ArgumentParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.argparse.ArgumentParser" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code></a></p>
-<p>Extended ArgumentParser class with support for default subparser</p>
-<dl class="method">
-<dt id="webdriver_test_tools.cmd.argparse.ArgumentParser.set_default_subparser">
-<code class="descname">set_default_subparser</code><span class="sig-paren">(</span><em>name</em>, <em>subcommand_arg_position=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/argparse.html#ArgumentParser.set_default_subparser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.argparse.ArgumentParser.set_default_subparser" title="Permalink to this definition">¶</a></dt>
-<dd><p>default subparser selection. Call after setup, just before parse_args()</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> – is the name of the subparser to call by default</li>
-<li><strong>subcommand_arg_position</strong> – (Default: 1) The position where
-subcommand arguments should be. 0 is the name of the module being
-run, so should be &gt; 0</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Based on: <a class="reference external" href="https://stackoverflow.com/a/26379693">https://stackoverflow.com/a/26379693</a></p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="data">
-<dt id="webdriver_test_tools.cmd.argparse.ARGPARSE_EPILOG">
-<code class="descclassname">webdriver_test_tools.cmd.argparse.</code><code class="descname">ARGPARSE_EPILOG</code><em class="property"> = 'For more information, visit &lt;https://connordelacruz.com/webdriver-test-tools/&gt;'</em><a class="headerlink" href="#webdriver_test_tools.cmd.argparse.ARGPARSE_EPILOG" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generic “for more information” argument parser epilog</p>
-</dd></dl>
+  <div class="section" id="module-webdriver_test_tools.cmd.version">
+<span id="webdriver-test-tools-cmd-version-module"></span><h1>webdriver_test_tools.cmd.version module<a class="headerlink" href="#module-webdriver_test_tools.cmd.version" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="webdriver_test_tools.cmd.version.main">
+<code class="descclassname">webdriver_test_tools.cmd.version.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/version.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.version.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
-<dt id="webdriver_test_tools.cmd.argparse.get_generic_parent_parser">
-<code class="descclassname">webdriver_test_tools.cmd.argparse.</code><code class="descname">get_generic_parent_parser</code><span class="sig-paren">(</span><em>include_version=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/argparse.html#get_generic_parent_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.argparse.get_generic_parent_parser" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a generic <a class="reference internal" href="#webdriver_test_tools.cmd.argparse.ArgumentParser" title="webdriver_test_tools.cmd.argparse.ArgumentParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code></a> with <code class="docutils literal notranslate"><span class="pre">--help</span></code> and
-(optionally) <code class="docutils literal notranslate"><span class="pre">--version</span></code> arguments</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>include_version</strong> – (Default: False) If True, include <code class="docutils literal notranslate"><span class="pre">--version</span></code>
-argument</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Generic <a class="reference internal" href="#webdriver_test_tools.cmd.argparse.ArgumentParser" title="webdriver_test_tools.cmd.argparse.ArgumentParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code></a> with a ‘General’
-argument group with <code class="docutils literal notranslate"><span class="pre">--help</span></code> and (optionally) <code class="docutils literal notranslate"><span class="pre">--version</span></code> arguments</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+<dt id="webdriver_test_tools.cmd.version.get_version">
+<code class="descclassname">webdriver_test_tools.cmd.version.</code><code class="descname">get_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/version.html#get_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.version.get_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -245,7 +201,7 @@ argument group with <code class="docutils literal notranslate"><span class="pre"
         <a href="webdriver_test_tools.common.html" class="btn btn-neutral float-right" title="webdriver_test_tools.common package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.cmd.cmd.html" class="btn btn-neutral" title="webdriver_test_tools.cmd.cmd module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.cmd.init.html" class="btn btn-neutral" title="webdriver_test_tools.cmd.init module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -276,7 +232,7 @@ argument group with <code class="docutils literal notranslate"><span class="pre"
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.1.0-alpha',
+            VERSION:'2.1.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

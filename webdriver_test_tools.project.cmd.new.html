@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>webdriver_test_tools.project.cmd.new module &mdash; WebDriver Test Tools 2.1.1-alpha documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="webdriver_test_tools.project.cmd.run module" href="webdriver_test_tools.project.cmd.run.html" />
+    <link rel="prev" title="webdriver_test_tools.project.cmd.list module" href="webdriver_test_tools.project.cmd.list.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Docs:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.__main__.html">webdriver_test_tools.__main__ module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="webdriver_test_tools.html">webdriver_test_tools API</a> &raquo;</li>
+        
+          <li><a href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a> &raquo;</li>
+        
+          <li><a href="webdriver_test_tools.project.cmd.html">webdriver_test_tools.project.cmd package</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.project.cmd.new module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/webdriver_test_tools.project.cmd.new.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-webdriver_test_tools.project.cmd.new">
+<span id="webdriver-test-tools-project-cmd-new-module"></span><h1>webdriver_test_tools.project.cmd.new module<a class="headerlink" href="#module-webdriver_test_tools.project.cmd.new" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="webdriver_test_tools.project.cmd.new.main">
+<code class="descclassname">webdriver_test_tools.project.cmd.new.</code><code class="descname">main</code><span class="sig-paren">(</span><em>test_package_path</em>, <em>test_package</em>, <em>file_type=None</em>, <em>module_name=None</em>, <em>class_name=None</em>, <em>description=None</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/new.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.new.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Command line dialogs for creating a new file</p>
+<p>This method accepts optional arguments for each of its prompts. If these
+are set to something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>, their corresponding input prompts
+will be skipped unless validation for that parameter fails.</p>
+<p><code class="docutils literal notranslate"><span class="pre">file_type</span></code>, <code class="docutils literal notranslate"><span class="pre">module_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">class_name</span></code> are the 3 values
+required to create a new file. If these are all set to something other than
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, this method will default to an empty <code class="docutils literal notranslate"><span class="pre">description</span></code> unless one
+is provided.</p>
+<p><code class="docutils literal notranslate"><span class="pre">force</span></code> is the only optional parameter that does not have a prompt. It
+will default to <code class="docutils literal notranslate"><span class="pre">False</span></code> unless the <code class="docutils literal notranslate"><span class="pre">--force</span></code> flag is used when calling
+this method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>test_package_path</strong> – The root directory of the test package</li>
+<li><strong>test_package</strong> – The python package name of the test package</li>
+<li><strong>file_type</strong> – (Optional) The type of file to create. If valid, the user
+won’t be prompted for input and this will be used instead. Valid file
+types are stored as global variables with the _TYPE suffix</li>
+<li><strong>module_name</strong> – (Optional) Filename to use for the new python module.
+If valid, the user won’t be prompted for input and this will be used
+instead</li>
+<li><strong>class_name</strong> – (Optional) Name to use for the initial test class.
+If valid, the user won’t be prompted for input and this will be used
+instead</li>
+<li><strong>description</strong> – (Optional) Description to use in the docstring of the
+initial class. User will only be prompted for a description if one or
+more of the positional arguments (<code class="docutils literal notranslate"><span class="pre">file_type</span></code>, <code class="docutils literal notranslate"><span class="pre">module_name</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">class_name</span></code>) are set to <code class="docutils literal notranslate"><span class="pre">None</span></code></li>
+<li><strong>force</strong> – (Default: False) If True, force overwrite if a file with the
+same name already exists</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.cmd.new.add_new_subparser">
+<code class="descclassname">webdriver_test_tools.project.cmd.new.</code><code class="descname">add_new_subparser</code><span class="sig-paren">(</span><em>subparsers</em>, <em>formatter_class=&lt;class 'argparse.RawTextHelpFormatter'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/new.html#add_new_subparser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.new.add_new_subparser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add subparser for the <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;</span> <span class="pre">new</span></code> command</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the test package ArgumentParser (i.e. the object
+returned by the <code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</li>
+<li><strong>formatter_class</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">argparse.RawTextHelpFormatter</span></code>) Class to use for the <code class="docutils literal notranslate"><span class="pre">formatter_class</span></code>
+parameter</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code> object for the newly added <code class="docutils literal notranslate"><span class="pre">new</span></code> subparser</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.cmd.new.get_new_parent_parser">
+<code class="descclassname">webdriver_test_tools.project.cmd.new.</code><code class="descname">get_new_parent_parser</code><span class="sig-paren">(</span><em>parents=[]</em>, <em>class_name_metavar='&lt;ClassName&gt;'</em>, <em>class_name_help='Name to use for the initial class'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/new.html#get_new_parent_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.new.get_new_parent_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code> with <code class="docutils literal notranslate"><span class="pre">&lt;module_name&gt;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&lt;class_name&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">--description</span></code> arguments</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parents</strong> – (Optional) List of <code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code> objects to use as
+parents for the test argument parser</li>
+<li><strong>class_name_metavar</strong> – (Optional) Metavar to display for the class_name
+argument</li>
+<li><strong>class_name_help</strong> – (Optional) Help text to use for the class_name
+argument</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code> with
+<code class="docutils literal notranslate"><span class="pre">&lt;module_name&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;class_name&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">--description</span></code> arguments</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.cmd.new.parse_new_args">
+<code class="descclassname">webdriver_test_tools.project.cmd.new.</code><code class="descname">parse_new_args</code><span class="sig-paren">(</span><em>package_name</em>, <em>tests_module</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/new.html#parse_new_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.new.parse_new_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse arguments and run the ‘new’ command</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>package_name</strong> – Name of the test package</li>
+<li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code>. Used
+to determine the filepath of the package</li>
+<li><strong>args</strong> – The namespace returned by parser.parse_args()</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.cmd.new.validate_description">
+<code class="descclassname">webdriver_test_tools.project.cmd.new.</code><code class="descname">validate_description</code><span class="sig-paren">(</span><em>description</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/new.html#validate_description"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.new.validate_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces double quotes with single quotes in class description</p>
+<p>If the description is <code class="docutils literal notranslate"><span class="pre">None</span></code> or an empty string, this function considers
+it valid and returns <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>description</strong> – The desired description string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Validated description string with double quotes replaced with
+single quotes or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the description is empty</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="webdriver_test_tools.project.cmd.run.html" class="btn btn-neutral float-right" title="webdriver_test_tools.project.cmd.run module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="webdriver_test_tools.project.cmd.list.html" class="btn btn-neutral" title="webdriver_test_tools.project.cmd.list module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.1.1-alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

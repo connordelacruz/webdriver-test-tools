@@ -8,12 +8,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.cmd.argparse &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
+  <title>webdriver_test_tools.common.cmd.argparse &mdash; WebDriver Test Tools 2.1.1-alpha documentation</title>
   
 
   
   
-    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
   
   
   
@@ -27,13 +27,13 @@
   
 
   
-    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
 
   
-  <script src="../../../_static/js/modernizr.min.js"></script>
+  <script src="../../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> WebDriver Test Tools
+            <a href="../../../../index.html" class="icon icon-home"> WebDriver Test Tools
           
 
           
@@ -66,7 +66,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -85,13 +85,13 @@
             
               <p class="caption"><span class="caption-text">Docs:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">WebDriver Test Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../test_projects.html">Test Project Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
             
@@ -106,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">WebDriver Test Tools</a>
+          <a href="../../../../index.html">WebDriver Test Tools</a>
         
       </nav>
 
@@ -135,11 +135,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
-      <li>webdriver_test_tools.cmd.argparse</li>
+      <li>webdriver_test_tools.common.cmd.argparse</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -154,7 +154,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for webdriver_test_tools.cmd.argparse</h1><div class="highlight"><pre>
+  <h1>Source code for webdriver_test_tools.common.cmd.argparse</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Extended ArgumentParser class and common argparse utilities&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -164,10 +164,10 @@
 
 <span class="c1"># Extended ArgumentParser class</span>
 
-<div class="viewcode-block" id="ArgumentParser"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.argparse.html#webdriver_test_tools.cmd.argparse.ArgumentParser">[docs]</a><span class="k">class</span> <span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">):</span>
+<div class="viewcode-block" id="ArgumentParser"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.argparse.html#webdriver_test_tools.common.cmd.argparse.ArgumentParser">[docs]</a><span class="k">class</span> <span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Extended ArgumentParser class with support for default subparser&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ArgumentParser.set_default_subparser"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.argparse.html#webdriver_test_tools.cmd.argparse.ArgumentParser.set_default_subparser">[docs]</a>    <span class="k">def</span> <span class="nf">set_default_subparser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">subcommand_arg_position</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="ArgumentParser.set_default_subparser"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.argparse.html#webdriver_test_tools.common.cmd.argparse.ArgumentParser.set_default_subparser">[docs]</a>    <span class="k">def</span> <span class="nf">set_default_subparser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">subcommand_arg_position</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;default subparser selection. Call after setup, just before parse_args()</span>
 
 <span class="sd">        :param name: is the name of the subparser to call by default</span>
@@ -199,7 +199,7 @@
 <span class="n">ARGPARSE_EPILOG</span> <span class="o">=</span> <span class="s1">&#39;For more information, visit &lt;</span><span class="si">{}</span><span class="s1">&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">__documentation__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="get_generic_parent_parser"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.argparse.html#webdriver_test_tools.cmd.argparse.get_generic_parent_parser">[docs]</a><span class="k">def</span> <span class="nf">get_generic_parent_parser</span><span class="p">(</span><span class="n">include_version</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="get_generic_parent_parser"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.argparse.html#webdriver_test_tools.common.cmd.argparse.get_generic_parent_parser">[docs]</a><span class="k">def</span> <span class="nf">get_generic_parent_parser</span><span class="p">(</span><span class="n">include_version</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a generic :class:`ArgumentParser</span>
 <span class="sd">    &lt;webdriver_test_tools.cmd.argparse.ArgumentParser&gt;` with ``--help`` and</span>
 <span class="sd">    (optionally) ``--version`` arguments</span>
@@ -254,8 +254,8 @@
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'2.1.0-alpha',
+            URL_ROOT:'../../../../',
+            VERSION:'2.1.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -263,15 +263,15 @@
             SOURCELINK_SUFFIX: '.txt'
         };
     </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
 
   
 
   
   
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
   
 
   <script type="text/javascript">

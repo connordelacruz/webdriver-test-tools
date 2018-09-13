@@ -8,12 +8,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.cmd.cmd &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
+  <title>webdriver_test_tools.common.cmd.cmd &mdash; WebDriver Test Tools 2.1.1-alpha documentation</title>
   
 
   
   
-    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
   
   
   
@@ -27,13 +27,13 @@
   
 
   
-    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
 
   
-  <script src="../../../_static/js/modernizr.min.js"></script>
+  <script src="../../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> WebDriver Test Tools
+            <a href="../../../../index.html" class="icon icon-home"> WebDriver Test Tools
           
 
           
@@ -66,7 +66,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -85,13 +85,13 @@
             
               <p class="caption"><span class="caption-text">Docs:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">WebDriver Test Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../test_projects.html">Test Project Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
             
@@ -106,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">WebDriver Test Tools</a>
+          <a href="../../../../index.html">WebDriver Test Tools</a>
         
       </nav>
 
@@ -135,11 +135,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
-      <li>webdriver_test_tools.cmd.cmd</li>
+      <li>webdriver_test_tools.common.cmd.cmd</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -154,12 +154,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for webdriver_test_tools.cmd.cmd</h1><div class="highlight"><pre>
+  <h1>Source code for webdriver_test_tools.common.cmd.cmd</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Functions for common command line formatting and procedures.</span>
 
 <span class="sd">:var cmd.INDENT: Constant for terminal indentation</span>
 <span class="sd">:var cmd.COLORS: Color/formatting functions for different types of output</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># TODO: rename to something less confusing than cmd.cmd</span>
 
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -187,7 +188,7 @@
 
 <span class="c1"># Printing</span>
 
-<div class="viewcode-block" id="print_exception"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.print_exception">[docs]</a><span class="k">def</span> <span class="nf">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<div class="viewcode-block" id="print_exception"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.print_exception">[docs]</a><span class="k">def</span> <span class="nf">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Format and print the string representation of an exception</span>
 
 <span class="sd">    :param e: The exception to print</span>
@@ -195,7 +196,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">](</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)))</span>
 
 
-<div class="viewcode-block" id="print_warning"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.print_warning">[docs]</a><span class="k">def</span> <span class="nf">print_warning</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<div class="viewcode-block" id="print_warning"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.print_warning">[docs]</a><span class="k">def</span> <span class="nf">print_warning</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Format and print a warning message</span>
 
 <span class="sd">    :param text: Warning message to print</span>
@@ -203,7 +204,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;warning&#39;</span><span class="p">](</span><span class="n">text</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="print_info"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.print_info">[docs]</a><span class="k">def</span> <span class="nf">print_info</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<div class="viewcode-block" id="print_info"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.print_info">[docs]</a><span class="k">def</span> <span class="nf">print_info</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Format and print info message</span>
 
 <span class="sd">    :param text: Info message to print</span>
@@ -213,12 +214,12 @@
 
 <span class="c1"># User Input</span>
 
-<div class="viewcode-block" id="ValidationError"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.ValidationError">[docs]</a><span class="k">class</span> <span class="nc">ValidationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="ValidationError"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.ValidationError">[docs]</a><span class="k">class</span> <span class="nc">ValidationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Exception raised if input validation fails&quot;&quot;&quot;</span></div>
     <span class="k">pass</span>
 
 
-<div class="viewcode-block" id="print_validation_change"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.print_validation_change">[docs]</a><span class="k">def</span> <span class="nf">print_validation_change</span><span class="p">(</span><span class="n">message_format</span><span class="p">,</span> <span class="n">original</span><span class="p">,</span> <span class="n">changed</span><span class="p">):</span>
+<div class="viewcode-block" id="print_validation_change"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.print_validation_change">[docs]</a><span class="k">def</span> <span class="nf">print_validation_change</span><span class="p">(</span><span class="n">message_format</span><span class="p">,</span> <span class="n">original</span><span class="p">,</span> <span class="n">changed</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Inform the user of changes to their input during validation.</span>
 <span class="sd">    Used to keep output format consistent</span>
 
@@ -236,7 +237,7 @@
     <span class="n">print_info</span><span class="p">(</span><span class="n">message_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">changed</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="validate_nonempty"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_nonempty">[docs]</a><span class="k">def</span> <span class="nf">validate_nonempty</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<div class="viewcode-block" id="validate_nonempty"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.validate_nonempty">[docs]</a><span class="k">def</span> <span class="nf">validate_nonempty</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Input validation function. Raises ValidationError if text is empty</span>
 
 <span class="sd">    :param text: Text to validate</span>
@@ -249,7 +250,7 @@
 
 
 <span class="c1"># TODO: rename to avoid confusion?</span>
-<div class="viewcode-block" id="validate_choice"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_choice">[docs]</a><span class="k">def</span> <span class="nf">validate_choice</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="n">shorthand_choices</span><span class="o">=</span><span class="p">{},</span> <span class="n">error_msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="validate_choice"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.validate_choice">[docs]</a><span class="k">def</span> <span class="nf">validate_choice</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="n">shorthand_choices</span><span class="o">=</span><span class="p">{},</span> <span class="n">error_msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a validation function for input with specific choice options</span>
 
 <span class="sd">    :param choices: A list of **lowercase** strings the user can choose from</span>
@@ -296,7 +297,7 @@
     <span class="k">return</span> <span class="n">val</span>
 
 
-<div class="viewcode-block" id="validate_yn"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_yn">[docs]</a><span class="k">def</span> <span class="nf">validate_yn</span><span class="p">(</span><span class="n">answer</span><span class="p">):</span>
+<div class="viewcode-block" id="validate_yn"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.validate_yn">[docs]</a><span class="k">def</span> <span class="nf">validate_yn</span><span class="p">(</span><span class="n">answer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Validate y/n prompts</span>
 
 <span class="sd">    :param answer: User response to y/n prompt. If a boolean value is passed</span>
@@ -335,7 +336,7 @@
     <span class="k">return</span> <span class="n">validated_identifier</span>
 
 
-<div class="viewcode-block" id="validate_package_name"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_package_name">[docs]</a><span class="k">def</span> <span class="nf">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">):</span>
+<div class="viewcode-block" id="validate_package_name"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.validate_package_name">[docs]</a><span class="k">def</span> <span class="nf">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python package name</span>
 
 <span class="sd">    :param package_name: The desired package name</span>
@@ -356,7 +357,7 @@
     <span class="k">return</span> <span class="n">validated_package_name</span>
 
 
-<div class="viewcode-block" id="validate_module_filename"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_module_filename">[docs]</a><span class="k">def</span> <span class="nf">validate_module_filename</span><span class="p">(</span><span class="n">module_filename</span><span class="p">,</span> <span class="n">suppress_ext_change</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="validate_module_filename"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.validate_module_filename">[docs]</a><span class="k">def</span> <span class="nf">validate_module_filename</span><span class="p">(</span><span class="n">module_filename</span><span class="p">,</span> <span class="n">suppress_ext_change</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python</span>
 <span class="sd">    module file name</span>
 
@@ -389,7 +390,7 @@
     <span class="k">return</span> <span class="n">validated_module_filename</span>
 
 
-<div class="viewcode-block" id="validate_class_name"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.validate_class_name">[docs]</a><span class="k">def</span> <span class="nf">validate_class_name</span><span class="p">(</span><span class="n">class_name</span><span class="p">):</span>
+<div class="viewcode-block" id="validate_class_name"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.validate_class_name">[docs]</a><span class="k">def</span> <span class="nf">validate_class_name</span><span class="p">(</span><span class="n">class_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python</span>
 <span class="sd">    class name</span>
 
@@ -397,7 +398,7 @@
 
 <span class="sd">    :return: Modified class_name with invalid characters removed/replaced</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Validate differently than packages?</span>
+    <span class="c1"># TODO: Validate differently than packages? (e.g. &#39;class name&#39; -&gt; &#39;ClassName&#39;?)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">validated_class_name</span> <span class="o">=</span> <span class="n">_validate_python_identifier</span><span class="p">(</span><span class="n">class_name</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -415,7 +416,7 @@
     <span class="k">return</span> <span class="n">validated_class_name</span>
 
 
-<div class="viewcode-block" id="prompt"><a class="viewcode-back" href="../../../webdriver_test_tools.cmd.cmd.html#webdriver_test_tools.cmd.cmd.prompt">[docs]</a><span class="k">def</span> <span class="nf">prompt</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="o">*</span><span class="n">description</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate_nonempty</span><span class="p">,</span>
+<div class="viewcode-block" id="prompt"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.prompt">[docs]</a><span class="k">def</span> <span class="nf">prompt</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="o">*</span><span class="n">description</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate_nonempty</span><span class="p">,</span>
            <span class="n">parsed_input</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trailing_newline</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Prompt the user for input and validate it</span>
 
@@ -496,8 +497,8 @@
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'2.1.0-alpha',
+            URL_ROOT:'../../../../',
+            VERSION:'2.1.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -505,15 +506,15 @@
             SOURCELINK_SUFFIX: '.txt'
         };
     </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
 
   
 
   
   
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
   
 
   <script type="text/javascript">

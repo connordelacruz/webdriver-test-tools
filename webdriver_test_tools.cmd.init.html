@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>webdriver_test_tools.cmd.init module &mdash; WebDriver Test Tools 2.1.1-alpha documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="webdriver_test_tools.cmd.version module" href="webdriver_test_tools.cmd.version.html" />
+    <link rel="prev" title="webdriver_test_tools.cmd package" href="webdriver_test_tools.cmd.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Docs:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#utilities">Utilities</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#internal">Internal</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.__main__.html">webdriver_test_tools.__main__ module</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.common.html">webdriver_test_tools.common package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.project.html">webdriver_test_tools.project package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="webdriver_test_tools.html">webdriver_test_tools API</a> &raquo;</li>
+        
+          <li><a href="webdriver_test_tools.cmd.html">webdriver_test_tools.cmd package</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.cmd.init module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/webdriver_test_tools.cmd.init.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-webdriver_test_tools.cmd.init">
+<span id="webdriver-test-tools-cmd-init-module"></span><h1>webdriver_test_tools.cmd.init module<a class="headerlink" href="#module-webdriver_test_tools.cmd.init" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="webdriver_test_tools.cmd.init.main">
+<code class="descclassname">webdriver_test_tools.cmd.init.</code><code class="descname">main</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/init.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.init.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Command line dialogs for initializing a test project</p>
+<p>This method takes the parsed command line arguments as a parameter. It’s
+assumed that the <code class="docutils literal notranslate"><span class="pre">init</span></code> subparser was added to the <code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code>
+object via the <a class="reference internal" href="#webdriver_test_tools.cmd.init.add_init_subparser" title="webdriver_test_tools.cmd.init.add_init_subparser"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_init_subparser()</span></code></a> method before parsing.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">init</span></code> subparser has optional arguments for each of this method’s
+prompts. <code class="docutils literal notranslate"><span class="pre">package_name</span></code> is the only argument required to create the
+package, so this method will attempt to bypass input prompts if it’s set to
+something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">package_name</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> but one or more of the other parameters are
+not <code class="docutils literal notranslate"><span class="pre">None</span></code>, this method will attempt to bypass their corresponding input
+prompts if the value passed as a parameter is valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> – The <code class="docutils literal notranslate"><span class="pre">Namespace</span></code> object returned by <code class="docutils literal notranslate"><span class="pre">parser.parse_args()</span></code>.
+It is assumed that the <code class="docutils literal notranslate"><span class="pre">init</span></code> subparser was added to the
+<code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code> that returned this <code class="docutils literal notranslate"><span class="pre">Namespace</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.cmd.init.add_init_subparser">
+<code class="descclassname">webdriver_test_tools.cmd.init.</code><code class="descname">add_init_subparser</code><span class="sig-paren">(</span><em>subparsers</em>, <em>parents=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/init.html#add_init_subparser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.init.add_init_subparser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add subparser for the <code class="docutils literal notranslate"><span class="pre">wtt</span> <span class="pre">init</span></code> command</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the <code class="docutils literal notranslate"><span class="pre">wtt</span></code> ArgumentParser (i.e. the object
+returned by the <code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</li>
+<li><strong>parents</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">[]</span></code>) Parent parsers for the init subparser</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code> object for the newly added <code class="docutils literal notranslate"><span class="pre">init</span></code> subparser</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.cmd.init.validate_project_title">
+<code class="descclassname">webdriver_test_tools.cmd.init.</code><code class="descname">validate_project_title</code><span class="sig-paren">(</span><em>project_title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/init.html#validate_project_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.init.validate_project_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sanitizes string to avoid syntax errors when inserting the title into template
+files</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>project_title</strong> – The desired project title</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modifed project_title with only alphanumeric characters, spaces,
+underscores, and hyphens</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="webdriver_test_tools.cmd.version.html" class="btn btn-neutral float-right" title="webdriver_test_tools.cmd.version module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="webdriver_test_tools.cmd.html" class="btn btn-neutral" title="webdriver_test_tools.cmd package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.1.1-alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
