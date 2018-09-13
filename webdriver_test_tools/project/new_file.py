@@ -1,6 +1,5 @@
 """Functions for creating a new test/page module."""
 
-from webdriver_test_tools.common import cmd  # TODO: remove usages, assume input was validated
 from webdriver_test_tools.common.files import *
 from webdriver_test_tools.project import templates
 
@@ -20,26 +19,6 @@ DIRECTORY_MAP = {
     PAGE_TYPE: 'pages',
 }
 
-
-def validate_file_type(file_type):
-    """Validate file type and return the corresponding template filename and
-    target directory
-
-    :param file_type: The string to validate
-
-    :return: ``(template_file, target_dir)`` where ``template_file`` is the
-        corresponding filename for the template and ``target_dir`` is the
-        corresponding directory where the new file should be placed
-    """
-    file_type = file_type.lower().strip()
-    if file_type not in TEMPLATE_MAP:
-        raise cmd.ValidationError('File type "{}" invalid'.format(file_type))
-    template_file = TEMPLATE_MAP[file_type]
-    target_dir = DIRECTORY_MAP[file_type]
-    return template_file, target_dir
-
-
-# Main Method
 
 def new_file(test_package_path, test_package, file_type, module_name, class_name,
              description=None, force=False):
@@ -61,8 +40,8 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
 
     :return: Path of the new file
     """
-    template_file, target_dir = validate_file_type(file_type)
-    target_path = os.path.join(test_package_path, target_dir)
+    template_file = TEMPLATE_MAP[file_type]
+    target_path = os.path.join(test_package_path, DIRECTORY_MAP[file_type])
     context = {
         'test_package': test_package,
         'module_name': module_name,

@@ -177,6 +177,10 @@ def generate_context(test_package, project_title=None, version_badge=True):
 def initialize(target_path, package_name, project_title, gitignore_files=True, readme_file=True):
     """Initializes new project package
 
+    This method assumes parameters have been validated. :func:`main()
+    <webdriver_test_tools.cmd.init.main()>` handles input validation
+    before calling this function
+
     :param target_path: Path to directory that will contain test package
     :param package_name: Name of the test package to create (will be validated)
     :param project_title: Human readable title of the test project.
