@@ -3,6 +3,7 @@
 :var cmd.INDENT: Constant for terminal indentation
 :var cmd.COLORS: Color/formatting functions for different types of output
 """
+# TODO: rename to something less confusing than cmd.cmd
 
 import re
 import os

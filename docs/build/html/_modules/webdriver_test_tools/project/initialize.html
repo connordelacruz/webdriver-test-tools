@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 2.1.1-alpha documentation</title>
   
 
   
@@ -157,12 +157,8 @@
   <h1>Source code for webdriver_test_tools.project.initialize</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Functions for creating a new test package.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
-<span class="kn">import</span> <span class="nn">re</span>
 
-<span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">cmd</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.common.files</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.__about__</span> <span class="k">import</span> <span class="n">__version__</span><span class="p">,</span> <span class="n">__selenium__</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">templates</span>
@@ -211,13 +207,11 @@
     <span class="sd">&quot;&quot;&quot;Creates package directory for test project</span>
 
 <span class="sd">    :param target_path: The path to the outer directory where initialize was called</span>
-<span class="sd">    :param package_name: The desired name of the package (will be validated)</span>
+<span class="sd">    :param package_name: The desired name of the package</span>
 
 <span class="sd">    :return: Path to created package directory</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
-    <span class="n">package_directory</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_directory</span><span class="p">)</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+    <span class="k">return</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">),</span> <span class="n">package_name</span><span class="p">)</span>
 
 
 <span class="c1"># Package Root</span>
@@ -337,34 +331,12 @@
     <span class="k">return</span> <span class="n">context</span>
 
 
-<span class="c1"># Prompt validation functions</span>
-
-<div class="viewcode-block" id="validate_project_title"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.validate_project_title">[docs]</a><span class="k">def</span> <span class="nf">validate_project_title</span><span class="p">(</span><span class="n">project_title</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Sanitizes string to avoid syntax erros when inserting the title into template</span>
-<span class="sd">    files</span>
-
-<span class="sd">    :param project_title: The desired project title</span>
-
-<span class="sd">    :return: Modifed project_title with only alphanumeric characters, spaces,</span>
-<span class="sd">        underscores, and hyphens</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Trim outer whitespace and remove that aren&#39;t alphanumeric or an underscore/hyphen</span>
-    <span class="n">validated_project_title</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s-]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">project_title</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">validated_project_title</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">cmd</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid project title.&#39;</span><span class="p">)</span>
-    <span class="c1"># Alert user of any changes made in validation</span>
-    <span class="k">if</span> <span class="n">project_title</span> <span class="o">!=</span> <span class="n">validated_project_title</span><span class="p">:</span>
-        <span class="n">cmd</span><span class="o">.</span><span class="n">print_validation_change</span><span class="p">(</span>
-            <span class="s1">&#39;&quot;</span><span class="si">{0}</span><span class="s1">&quot; was changed to &quot;</span><span class="si">{1}</span><span class="s1">&quot; to avoid syntax errors&#39;</span><span class="p">,</span>
-            <span class="n">project_title</span><span class="p">,</span> <span class="n">validated_project_title</span>
-        <span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">validated_project_title</span>
-
-
-<span class="c1"># Main methods</span>
-
 <div class="viewcode-block" id="initialize"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.initialize">[docs]</a><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">project_title</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readme_file</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Initializes new project package</span>
+
+<span class="sd">    This method assumes parameters have been validated. :func:`main()</span>
+<span class="sd">    &lt;webdriver_test_tools.cmd.init.main()&gt;` handles input validation</span>
+<span class="sd">    before calling this function</span>
 
 <span class="sd">    :param target_path: Path to directory that will contain test package</span>
 <span class="sd">    :param package_name: Name of the test package to create (will be validated)</span>
@@ -375,7 +347,6 @@
 <span class="sd">        root directory if True</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">outer_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
-    <span class="n">package_name</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">validate_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">generate_context</span><span class="p">(</span><span class="n">package_name</span><span class="p">,</span> <span class="n">project_title</span><span class="p">)</span>
     <span class="c1"># Initialize files in the outer directory</span>
     <span class="n">create_setup_file</span><span class="p">(</span><span class="n">outer_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
@@ -390,101 +361,6 @@
     <span class="n">create_output_directories</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="p">)</span>
     <span class="n">create_tests_init</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
     <span class="n">create_config_files</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">project_title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gitignore</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">readme</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Command line dialogs for initializing a test project</span>
-
-<span class="sd">    This method accepts arguments for each of its prompts. ``package_name`` is</span>
-<span class="sd">    the only argument required to create the package, so this method will</span>
-<span class="sd">    attempt to bypass input prompts if it&#39;s set to something other than</span>
-<span class="sd">    ``None``.</span>
-
-<span class="sd">    If ``package_name`` is ``None`` but one or more of the other parameters are</span>
-<span class="sd">    not ``None``, this method will attempt to bypass their corresponding input</span>
-<span class="sd">    prompts if the value passed as a parameter is valid.</span>
-
-<span class="sd">    :param package_name: (Optional) The name of the test package. If valid, the</span>
-<span class="sd">        user won&#39;t be prompted for input and this will be used instead</span>
-<span class="sd">    :param project_title: (Optional) A human-readable name for the test project.</span>
-<span class="sd">        If valid, the user won&#39;t be prompted for input and this will be used</span>
-<span class="sd">        instead. If ``project_title`` is set to ``None`` but ``package_name`` is</span>
-<span class="sd">        valid, ``package_name`` will be used as the project title</span>
-<span class="sd">    :param gitignore: (Optional) If ``False``, .gitignore files will not be</span>
-<span class="sd">        created during initialization. If ``gitignore`` is set to ``None`` but</span>
-<span class="sd">        ``package_name`` is valid, .gitignore files will be created by default</span>
-<span class="sd">    :param readme: (Optional) If ``False``, README file will not be generated</span>
-<span class="sd">        during initialization. If ``readme`` is set to ``None`` but</span>
-<span class="sd">        ``package_name`` is valid, README file will be created by default</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">initialize_start</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="c1"># Handle any optional arguments</span>
-    <span class="k">if</span> <span class="n">package_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># project_title defaults to package_name if not specified</span>
-        <span class="k">if</span> <span class="n">project_title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">project_title</span> <span class="o">=</span> <span class="n">package_name</span>
-        <span class="c1"># gitignore and readme default to True if not otherwise specified</span>
-        <span class="n">gitignore</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span> <span class="k">if</span> <span class="n">gitignore</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">gitignore</span> <span class="k">else</span> <span class="s1">&#39;n&#39;</span>
-        <span class="n">readme</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span> <span class="k">if</span> <span class="n">readme</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">readme</span> <span class="k">else</span> <span class="s1">&#39;n&#39;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">](</span><span class="s1">&#39;Test Project Initialization&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="c1"># Prompt for input if no package name is passed as a parameter</span>
-        <span class="n">validated_package_name</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span>
-            <span class="s1">&#39;Package name&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;Enter a name for the test package&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;(use only alphanumeric characters and underscores. Cannot start with a number)&#39;</span><span class="p">,</span>
-            <span class="n">validate</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">validate_package_name</span><span class="p">,</span>
-            <span class="n">parsed_input</span><span class="o">=</span><span class="n">package_name</span>
-        <span class="p">)</span>
-        <span class="c1"># Prompt for optional project title, default to validated_package_name</span>
-        <span class="n">validated_project_title</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span>
-            <span class="s1">&#39;Project title&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;(Optional) Enter a human-readable name for the test project&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;(can use alphanumeric characters, spaces, hyphens, and underscores)&#39;</span><span class="p">,</span>
-            <span class="n">default</span><span class="o">=</span><span class="n">validated_package_name</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate_project_title</span><span class="p">,</span>
-            <span class="n">parsed_input</span><span class="o">=</span><span class="n">project_title</span>
-        <span class="p">)</span>
-        <span class="c1"># Ask if gitignore files should be generated</span>
-        <span class="n">gitignore_files</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span>
-            <span class="s1">&#39;Create .gitignore files (y/n)&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;Create .gitignore files for project root and log directory?&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;(Ignores python cache files, package install files, local driver logs, etc)&#39;</span><span class="p">,</span>
-            <span class="n">default</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">validate_yn</span><span class="p">,</span>
-            <span class="n">parsed_input</span><span class="o">=</span><span class="n">gitignore</span>
-        <span class="p">)</span>
-        <span class="c1"># Ask if README should be generated</span>
-        <span class="n">readme_file</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span>
-            <span class="s1">&#39;Create README file (y/n)&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;Generate README file?&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;(README contains information on command line usage and directory structure)&#39;</span><span class="p">,</span>
-            <span class="n">default</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">validate_yn</span><span class="p">,</span>
-            <span class="n">parsed_input</span><span class="o">=</span><span class="n">readme</span>
-        <span class="p">)</span>
-        <span class="c1"># Create project package</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Creating test project...&#39;</span><span class="p">)</span>
-        <span class="n">initialize_start</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">initialize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">validated_package_name</span><span class="p">,</span> <span class="n">validated_project_title</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="p">,</span> <span class="n">readme_file</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">](</span><span class="s1">&#39;Project initialized.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="s1">&#39;To get started, set the SITE_URL for the project in </span><span class="si">{}</span><span class="s1">/config/site.py</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">),</span>
-            <span class="s1">&#39;To create a new test, run:&#39;</span><span class="p">,</span>
-            <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="s1">&#39;python -m </span><span class="si">{}</span><span class="s1"> new test &lt;module_name&gt; &lt;TestCaseClass&gt;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">),</span>
-            <span class="s1">&#39;To create a new page object, run:&#39;</span><span class="p">,</span>
-            <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="s1">&#39;python -m </span><span class="si">{}</span><span class="s1"> new page &lt;module_name&gt; &lt;PageObjectClass&gt;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validated_package_name</span><span class="p">),</span>
-            <span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-        <span class="p">)</span>
-    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">initialize_start</span><span class="p">:</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Initialization was cancelled mid-operation.&#39;</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;warning&#39;</span><span class="p">](</span><span class="n">msg</span><span class="p">))</span></div>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-
-
 </pre></div>
 
            </div>
@@ -519,7 +395,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.1.0-alpha',
+            VERSION:'2.1.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 2.1.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.test_module &mdash; WebDriver Test Tools 2.1.1-alpha documentation</title>
   
 
   
@@ -157,14 +157,13 @@
   <h1>Source code for webdriver_test_tools.project.test_module</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Functions for test project ``__main__`` modules&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">import</span> <span class="nn">textwrap</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="k">import</span> <span class="n">RawTextHelpFormatter</span>
 
-<span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">config</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase</span> <span class="k">import</span> <span class="n">Browsers</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">test_factory</span><span class="p">,</span> <span class="n">new_file</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.common</span> <span class="k">import</span> <span class="n">cmd</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.project.cmd.common</span> <span class="k">import</span> <span class="n">get_test_parent_parser</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.project.cmd.run</span> <span class="k">import</span> <span class="n">add_run_subparser</span><span class="p">,</span> <span class="n">parse_run_args</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.project.cmd.list</span> <span class="k">import</span> <span class="n">add_list_subparser</span><span class="p">,</span> <span class="n">parse_list_args</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.project.cmd.new</span> <span class="k">import</span> <span class="n">add_new_subparser</span><span class="p">,</span> <span class="n">parse_new_args</span>
 
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -190,7 +189,7 @@
         <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
 
 
-<span class="c1"># Argument parser</span>
+<span class="c1"># Argument Parser</span>
 
 <div class="viewcode-block" id="get_parser"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.get_parser">[docs]</a><span class="k">def</span> <span class="nf">get_parser</span><span class="p">(</span><span class="n">config_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">package_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the ``ArgumentParser`` object for use with ``main()``</span>
@@ -209,489 +208,21 @@
     <span class="n">generic_parent_parser</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">get_generic_parent_parser</span><span class="p">()</span>
     <span class="c1"># Adds --module, --test, and --skip arguments</span>
     <span class="n">test_parent_parser</span> <span class="o">=</span> <span class="n">get_test_parent_parser</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">generic_parent_parser</span><span class="p">])</span>
-
     <span class="c1"># Top level parser</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
         <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">generic_parent_parser</span><span class="p">],</span>
-        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span>
+        <span class="n">formatter_class</span><span class="o">=</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span>
         <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
-    <span class="c1"># Get browser config classes</span>
-    <span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span> <span class="o">=</span> <span class="n">get_browser_config_classes</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span>
-
     <span class="c1"># Subparsers</span>
     <span class="n">command_desc</span> <span class="o">=</span> <span class="s1">&#39;Run </span><span class="se">\&#39;</span><span class="si">{}</span><span class="s1"> &lt;command&gt; --help</span><span class="se">\&#39;</span><span class="s1"> for details&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
     <span class="n">subparsers</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span>
         <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Commands&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">command_desc</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;command&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;command&gt;&#39;</span>
     <span class="p">)</span>
-
-    <span class="c1"># Run command</span>
-    <span class="n">run_description</span> <span class="o">=</span> <span class="s1">&#39;Run the test suite&#39;</span>
-    <span class="n">run_help</span> <span class="o">=</span> <span class="n">run_description</span>
-    <span class="n">run_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
-        <span class="s1">&#39;run&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">run_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">run_help</span><span class="p">,</span>
-        <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">test_parent_parser</span><span class="p">],</span>
-        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span>
-        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
-    <span class="p">)</span>
-    <span class="c1"># Arguments for specifying browser to use</span>
-    <span class="n">group</span> <span class="o">=</span> <span class="n">run_parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Browser Arguments&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">ENABLE</span><span class="p">:</span>
-        <span class="n">browser_choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">browserstack_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">()))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">browser_choices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
-    <span class="n">browser_options_help</span> <span class="o">=</span> <span class="n">_format_browser_choices</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">)</span>
-    <span class="n">browser_help</span> <span class="o">=</span> <span class="s1">&#39;Run tests only in the specified browsers.&#39;</span> <span class="o">+</span> <span class="n">browser_options_help</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="s1">&#39;--browser&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">browser_choices</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;browser&gt;&#39;</span><span class="p">,</span>
-                       <span class="n">help</span><span class="o">=</span><span class="n">browser_help</span><span class="p">)</span>
-    <span class="n">headless_options_help</span> <span class="o">=</span> <span class="n">_format_headless_browsers</span><span class="p">(</span><span class="n">browser_config</span><span class="p">)</span>
-    <span class="n">headless_help</span> <span class="o">=</span> <span class="s1">&#39;Run tests using headless browsers.&#39;</span> <span class="o">+</span> <span class="n">headless_options_help</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-H&#39;</span><span class="p">,</span> <span class="s1">&#39;--headless&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">headless_help</span><span class="p">)</span>
-    <span class="c1"># BrowserStack arguments</span>
-    <span class="k">if</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">ENABLE</span><span class="p">:</span>
-        <span class="n">group</span> <span class="o">=</span> <span class="n">run_parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;BrowserStack&#39;</span><span class="p">)</span>
-        <span class="n">browserstack_help</span> <span class="o">=</span> <span class="s1">&#39;Run tests on BrowserStack instead of locally&#39;</span>
-        <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-B&#39;</span><span class="p">,</span> <span class="s1">&#39;--browserstack&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">browserstack_help</span><span class="p">)</span>
-        <span class="c1"># Build name</span>
-        <span class="n">build_help</span> <span class="o">=</span> <span class="s1">&#39;Set the build name for the group of tests&#39;</span>
-        <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--build&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;name&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">build_help</span><span class="p">)</span>
-        <span class="c1"># Enabling/disabling video recording</span>
-        <span class="n">video_help</span> <span class="o">=</span> <span class="s1">&#39;Record video of tests&#39;</span>
-        <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--video&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;video&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">video_help</span><span class="p">)</span>
-        <span class="n">no_video_help</span> <span class="o">=</span> <span class="s1">&#39;Disable video recording&#39;</span>
-        <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--no-video&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;video&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_false&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">no_video_help</span><span class="p">)</span>
-        <span class="c1"># Set default to the value configured in browserstack_config (or True if not configured)</span>
-        <span class="c1"># TODO: move to BrowserStackConfig class method?</span>
-        <span class="n">video_default</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="s1">&#39;browserstack.video&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span> <span class="k">else</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">[</span><span class="s1">&#39;browserstack.video&#39;</span><span class="p">]</span>
-        <span class="n">run_parser</span><span class="o">.</span><span class="n">set_defaults</span><span class="p">(</span><span class="n">video</span><span class="o">=</span><span class="n">video_default</span><span class="p">)</span>
-    <span class="c1"># Output arguments</span>
-    <span class="n">group</span> <span class="o">=</span> <span class="n">run_parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Output Options&#39;</span><span class="p">)</span>
-    <span class="n">verbosity_help</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
-<span class="s1">                             0 - Final results only</span>
-<span class="s1">                             1 - Final results and progress indicator</span>
-<span class="s1">                             2 - Full output</span>
-<span class="s1">                             &#39;&#39;&#39;</span><span class="p">)</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbosity&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-                       <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;level&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">verbosity_help</span><span class="p">)</span>
-
-    <span class="c1"># List command</span>
-    <span class="n">list_description</span> <span class="o">=</span> <span class="s1">&#39;Print a list of available tests and exit&#39;</span>
-    <span class="n">list_help</span> <span class="o">=</span> <span class="n">list_description</span>
-    <span class="n">list_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
-        <span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">list_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">list_help</span><span class="p">,</span>
-        <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">test_parent_parser</span><span class="p">],</span>
-        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span>
-        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
-    <span class="p">)</span>
-
-    <span class="c1"># New command</span>
-    <span class="c1"># TODO: add info on no args to description or help</span>
-    <span class="n">new_description</span> <span class="o">=</span> <span class="s1">&#39;Create a new test module or page object&#39;</span>
-    <span class="n">new_help</span> <span class="o">=</span> <span class="n">new_description</span>
-    <span class="n">new_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
-        <span class="s1">&#39;new&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">new_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">new_help</span><span class="p">,</span>
-        <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">generic_parent_parser</span><span class="p">],</span>
-        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawTextHelpFormatter</span><span class="p">,</span>
-        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
-    <span class="p">)</span>
-    <span class="c1"># New &lt;type&gt; subparsers</span>
-    <span class="n">new_type_desc</span> <span class="o">=</span> <span class="s1">&#39;Run </span><span class="se">\&#39;</span><span class="si">{}</span><span class="s1"> new &lt;type&gt; --help</span><span class="se">\&#39;</span><span class="s1"> for details&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
-    <span class="n">new_subparsers</span> <span class="o">=</span> <span class="n">new_parser</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span>
-        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;File Types&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">new_type_desc</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;type&gt;&#39;</span>
-    <span class="p">)</span>
-    <span class="c1"># New test parser</span>
-    <span class="n">new_test_parent_parser</span> <span class="o">=</span> <span class="n">get_new_parent_parser</span><span class="p">(</span>
-        <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">generic_parent_parser</span><span class="p">],</span> <span class="n">class_name_metavar</span><span class="o">=</span><span class="s1">&#39;&lt;TestCaseClass&gt;&#39;</span><span class="p">,</span>
-        <span class="n">class_name_help</span><span class="o">=</span><span class="s1">&#39;Name to use for the initial test case class&#39;</span>
-    <span class="p">)</span>
-    <span class="n">new_test_description</span><span class="o">=</span><span class="s1">&#39;Create a new test module&#39;</span>
-    <span class="n">new_test_help</span><span class="o">=</span><span class="n">new_test_description</span>
-    <span class="n">new_subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
-        <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">new_test_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">new_test_help</span><span class="p">,</span>
-        <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">new_test_parent_parser</span><span class="p">],</span>
-        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
-    <span class="p">)</span>
-    <span class="c1"># New page object parser</span>
-    <span class="n">new_page_parent_parser</span> <span class="o">=</span> <span class="n">get_new_parent_parser</span><span class="p">(</span>
-        <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">generic_parent_parser</span><span class="p">],</span> <span class="n">class_name_metavar</span><span class="o">=</span><span class="s1">&#39;&lt;PageObjectClass&gt;&#39;</span><span class="p">,</span>
-        <span class="n">class_name_help</span><span class="o">=</span><span class="s1">&#39;Name to use for the initial page object class&#39;</span>
-    <span class="p">)</span>
-    <span class="n">new_page_description</span><span class="o">=</span><span class="s1">&#39;Create a new page object module&#39;</span>
-    <span class="n">new_page_help</span><span class="o">=</span><span class="n">new_page_description</span>
-    <span class="n">new_page_parser</span> <span class="o">=</span> <span class="n">new_subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
-        <span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">new_page_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">new_page_help</span><span class="p">,</span>
-        <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">new_page_parent_parser</span><span class="p">],</span>
-        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
-    <span class="p">)</span>
-    <span class="c1"># TODO: add optional --prototype arg with a list of valid page object prototype classes</span>
-</div>
+    <span class="n">run_parser</span> <span class="o">=</span> <span class="n">add_run_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">test_parent_parser</span><span class="p">])</span>
+    <span class="n">list_parser</span> <span class="o">=</span> <span class="n">add_list_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">test_parent_parser</span><span class="p">])</span>
+    <span class="n">new_parser</span> <span class="o">=</span> <span class="n">add_new_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">)</span></div>
     <span class="k">return</span> <span class="n">parser</span>
-
-
-<div class="viewcode-block" id="get_test_parent_parser"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.get_test_parent_parser">[docs]</a><span class="k">def</span> <span class="nf">get_test_parent_parser</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="p">[]):</span>
-    <span class="sd">&quot;&quot;&quot;Returns an :class:`ArgumentParser</span>
-<span class="sd">    &lt;webdriver_test_tools.cmd.argparse.ArgumentParser&gt;` with ``--test``,</span>
-<span class="sd">    ``--skip``, and ``--module`` arguments</span>
-
-<span class="sd">    :param parents: (Optional) List of ``ArgumentParser`` objects to use as</span>
-<span class="sd">        parents for the test argument parser</span>
-
-<span class="sd">    :return: :class:`ArgumentParser</span>
-<span class="sd">        &lt;webdriver_test_tools.cmd.argparse.ArgumentParser&gt;` with ``--test``,</span>
-<span class="sd">        ``--skip``, and ``--module`` arguments</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Adds --module, --test, and --skip arguments</span>
-    <span class="n">test_parent_parser</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="n">parents</span><span class="p">)</span>
-    <span class="c1"># Arguments for specifying what test to run</span>
-    <span class="n">group</span> <span class="o">=</span> <span class="n">test_parent_parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Test Arguments&#39;</span><span class="p">)</span>
-    <span class="n">module_help</span> <span class="o">=</span> <span class="s1">&#39;Run only tests in specific test modules&#39;</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--module&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;module&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">module_help</span><span class="p">)</span>
-    <span class="n">test_help</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
-<span class="s1">                Run specific test case classes or test methods.</span>
-<span class="s1">                Arguments should be in the format &lt;TestCase&gt;[.&lt;method&gt;]</span>
-<span class="s1">                &#39;&#39;&#39;</span><span class="p">)</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--test&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;test&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">test_help</span><span class="p">)</span>
-    <span class="n">skip_help</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
-<span class="s1">                Skip specific test case classes or test methods.</span>
-<span class="s1">                Arguments should be in the format &lt;TestCase&gt;[.&lt;method&gt;]</span>
-<span class="s1">                &#39;&#39;&#39;</span><span class="p">)</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--skip&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;test&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">skip_help</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">test_parent_parser</span>
-
-
-<div class="viewcode-block" id="get_new_parent_parser"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.get_new_parent_parser">[docs]</a><span class="k">def</span> <span class="nf">get_new_parent_parser</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="p">[],</span> <span class="n">class_name_metavar</span><span class="o">=</span><span class="s1">&#39;&lt;ClassName&gt;&#39;</span><span class="p">,</span>
-                          <span class="n">class_name_help</span><span class="o">=</span><span class="s1">&#39;Name to use for the initial class&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns an :class:`ArgumentParser</span>
-<span class="sd">    &lt;webdriver_test_tools.cmd.argparse.ArgumentParser&gt;` with ``&lt;module_name&gt;``,</span>
-<span class="sd">    ``&lt;class_name&gt;``, and ``--description`` arguments</span>
-
-<span class="sd">    :param parents: (Optional) List of ``ArgumentParser`` objects to use as</span>
-<span class="sd">        parents for the test argument parser</span>
-<span class="sd">    :param class_name_metavar: (Optional) Metavar to display for the class_name</span>
-<span class="sd">        argument</span>
-<span class="sd">    :param class_name_help: (Optional) Help text to use for the class_name</span>
-<span class="sd">        argument</span>
-
-<span class="sd">    :return: :class:`ArgumentParser</span>
-<span class="sd">        &lt;webdriver_test_tools.cmd.argparse.ArgumentParser&gt;` with</span>
-<span class="sd">        ``&lt;module_name&gt;``, ``&lt;class_name&gt;``, and ``--description`` arguments</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">new_parent_parser</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="n">parents</span><span class="p">)</span>
-    <span class="c1"># Positional arguments</span>
-    <span class="n">module_name_help</span> <span class="o">=</span> <span class="s1">&#39;Filename to use for the new python module&#39;</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;module_name&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;module_name&gt;&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                   <span class="n">help</span><span class="o">=</span><span class="n">module_name_help</span><span class="p">)</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;class_name&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="n">class_name_metavar</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                   <span class="n">help</span><span class="o">=</span><span class="n">class_name_help</span><span class="p">)</span>
-    <span class="c1"># Optional arguments</span>
-    <span class="n">description_help</span><span class="o">=</span><span class="s1">&#39;Description for the initial class&#39;</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--description&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;description&gt;&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                   <span class="n">help</span><span class="o">=</span><span class="n">description_help</span><span class="p">)</span>
-    <span class="n">force_help</span><span class="o">=</span><span class="s1">&#39;Force overwrite if a file with the same name already exists&#39;</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--force&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                   <span class="n">help</span><span class="o">=</span><span class="n">force_help</span><span class="p">)</span>
-</div>
-    <span class="k">return</span> <span class="n">new_parent_parser</span>
-
-
-<span class="c1"># Help text output functions</span>
-
-<span class="k">def</span> <span class="nf">_format_browser_choices</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Format the help string for browser choices</span>
-
-<span class="sd">    If BrowserStack is disabled or doesn&#39;t have any browsers enabled that aren&#39;t also in</span>
-<span class="sd">    the local browser config, output string will have the following format:</span>
-
-<span class="sd">    .. code:: python</span>
-
-<span class="sd">        &#39;\\nOptions: {browser0,browser1}&#39;</span>
-
-<span class="sd">    If BrowserStack is enabled and there are different browsers enabled for local and</span>
-<span class="sd">    BrowserStack, output string will have the following format:</span>
-
-<span class="sd">    .. code:: python</span>
-
-<span class="sd">        &#39;&#39;&#39;</span>
-<span class="sd">        Local &amp; BrowserStack: {browser0,browser1}</span>
-<span class="sd">        Local Only: {browser2,browser3}</span>
-<span class="sd">        BrowserStack Only: {browser4,browser5}</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-
-<span class="sd">    :param browser_config: BrowserConfig class</span>
-<span class="sd">    :param browserstack_config: BrowserStackConfig class</span>
-
-<span class="sd">    :return: Formatted help string for browser options</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="n">local_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
-    <span class="n">browserstack_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">browserstack_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
-    <span class="c1"># If browserstack is disabled or there&#39;s no difference in browsers</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">browserstack_config</span><span class="o">.</span><span class="n">ENABLE</span> <span class="ow">or</span> <span class="n">local_set</span> <span class="o">==</span> <span class="n">browserstack_set</span><span class="p">:</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Options: &#39;</span> <span class="o">+</span> <span class="n">_browser_list_string</span><span class="p">(</span><span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">())</span>
-    <span class="c1"># Else if there is some difference between enabled sets</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">both_set</span> <span class="o">=</span> <span class="n">local_set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">browserstack_set</span><span class="p">)</span>
-        <span class="n">local_only</span> <span class="o">=</span> <span class="n">local_set</span> <span class="o">-</span> <span class="n">browserstack_set</span>
-        <span class="n">browserstack_only</span> <span class="o">=</span> <span class="n">browserstack_set</span> <span class="o">-</span> <span class="n">local_set</span>
-        <span class="k">if</span> <span class="n">both_set</span><span class="p">:</span>
-            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local &amp; BrowserStack:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">_browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">both_set</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">local_only</span><span class="p">:</span>
-            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Local Only:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">_browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">local_only</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">browserstack_only</span><span class="p">:</span>
-            <span class="n">options</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">BrowserStack Only:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">_browser_list_string</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">browserstack_only</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">options</span>
-
-
-<span class="k">def</span> <span class="nf">_format_headless_browsers</span><span class="p">(</span><span class="n">browser_config</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Format the help string for compatible browsers in ``--headless`` argument help string</span>
-
-<span class="sd">    :param browser_config: :class:`BrowserConfig &lt;webdriver_test_tools.config.browser.BrowserConfig&gt;` class</span>
-
-<span class="sd">    :return: Formatted help string for browser options</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">enabled_browsers</span> <span class="o">=</span> <span class="n">browser_config</span><span class="o">.</span><span class="n">get_browser_names</span><span class="p">()</span>
-    <span class="n">browser_names</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="k">for</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">HEADLESS_COMPATIBLE</span>
-        <span class="k">if</span> <span class="n">browser_class</span><span class="o">.</span><span class="n">SHORT_NAME</span> <span class="ow">in</span> <span class="n">enabled_browsers</span>
-    <span class="p">]</span>
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Compatible Browsers:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="n">_browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Takes a list of browser names and returns a string representation in the format</span>
-<span class="sd">    &#39;{browser0,browser1,browser2}&#39;</span>
-
-<span class="sd">    :param browser_names: List of browser names</span>
-
-<span class="sd">    :return: String representation of the browser name list</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">browser_names</span><span class="p">))</span>
-
-
-<span class="c1"># Command line argument parsing functions</span>
-
-<div class="viewcode-block" id="parse_test_names"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.parse_test_names">[docs]</a><span class="k">def</span> <span class="nf">parse_test_names</span><span class="p">(</span><span class="n">test_name_args</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a dictionary mapping test case names to a list of test functions</span>
-
-<span class="sd">    :param test_name_args: The parsed value of the ``--test`` or ``--skip`` arguments</span>
-
-<span class="sd">    :return: None if ``test_name_args`` is None, otherwise return a dictionary mapping test</span>
-<span class="sd">        case names to a list of test functions to run. If list is empty, no specific</span>
-<span class="sd">        function was given for that class</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">test_name_args</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">None</span>
-    <span class="n">class_map</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">test_name</span> <span class="ow">in</span> <span class="n">test_name_args</span><span class="p">:</span>
-        <span class="n">test_name_parts</span> <span class="o">=</span> <span class="n">test_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-        <span class="n">class_map</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[])</span>
-        <span class="c1"># If a function was specified, append it to the list of functions</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">class_map</span><span class="p">[</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
-    <span class="k">return</span> <span class="n">class_map</span>
-
-
-<div class="viewcode-block" id="parse_test_args"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.parse_test_args">[docs]</a><span class="k">def</span> <span class="nf">parse_test_args</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Parse optional arguments for specifying/skipping tests and modules</span>
-
-<span class="sd">    :param args: The namespace returned by parser.parse_args()</span>
-
-<span class="sd">    :return: A dictionary mapping &#39;test_class_map&#39;, &#39;skip_class_map&#39;, and</span>
-<span class="sd">        &#39;test_module_names&#39; to the arguments passed via the command line</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># get --test, --skip, and --module args</span>
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="s1">&#39;test_class_map&#39;</span><span class="p">:</span> <span class="n">parse_test_names</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">test</span><span class="p">),</span>
-        <span class="s1">&#39;skip_class_map&#39;</span><span class="p">:</span> <span class="n">parse_test_names</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">skip</span><span class="p">),</span>
-        <span class="s1">&#39;test_module_names&#39;</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">module</span><span class="p">,</span></div>
-    <span class="p">}</span>
-
-
-<div class="viewcode-block" id="parse_list_args"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.parse_list_args">[docs]</a><span class="k">def</span> <span class="nf">parse_list_args</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Parse arguments and run the &#39;list&#39; command</span>
-
-<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
-<span class="sd">    :param args: The namespace returned by parser.parse_args()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">kwargs</span> <span class="o">=</span> <span class="n">parse_test_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
-    <span class="n">list_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="parse_run_args"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.parse_run_args">[docs]</a><span class="k">def</span> <span class="nf">parse_run_args</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Parse arguments and run the &#39;run&#39; command</span>
-
-<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
-<span class="sd">    :param config_module: The module object for ``&lt;test_project&gt;.config``</span>
-<span class="sd">    :param args: The namespace returned by parser.parse_args()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">kwargs</span> <span class="o">=</span> <span class="n">parse_test_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="c1"># Get browser config classes</span>
-    <span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span> <span class="o">=</span> <span class="n">get_browser_config_classes</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span>
-    <span class="c1"># Parse browserstack args</span>
-    <span class="k">if</span> <span class="s1">&#39;browserstack&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;browserstack&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">browserstack</span>
-        <span class="c1"># Update browserstack_config attributes based on CLI overrides</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">browserstack</span><span class="p">:</span>
-            <span class="n">browserstack_config</span><span class="o">.</span><span class="n">update_configurations</span><span class="p">(</span><span class="n">build</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">build</span><span class="p">,</span> <span class="n">video</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">video</span><span class="p">)</span>
-    <span class="c1"># Parse --headless and --verbosity args</span>
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-        <span class="s1">&#39;headless&#39;</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">headless</span><span class="p">,</span>
-        <span class="s1">&#39;verbosity&#39;</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">verbosity</span><span class="p">,</span>
-    <span class="p">})</span>
-    <span class="c1"># Handle --browser args</span>
-    <span class="n">browser_config_class</span> <span class="o">=</span> <span class="n">browserstack_config</span> <span class="k">if</span> <span class="s1">&#39;browserstack&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;browserstack&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">browser_config</span>
-    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;browser_classes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">browser_config_class</span><span class="o">.</span><span class="n">get_browser_classes</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">browser</span><span class="p">)</span>
-    <span class="c1"># Run tests using parsed args</span></div>
-    <span class="n">run_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="parse_new_args"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.parse_new_args">[docs]</a><span class="k">def</span> <span class="nf">parse_new_args</span><span class="p">(</span><span class="n">package_name</span><span class="p">,</span> <span class="n">tests_module</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Parse arguments and run the &#39;new&#39; command</span>
-
-<span class="sd">    :param package_name: Name of the test package</span>
-<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``. Used</span>
-<span class="sd">        to determine the filepath of the package</span>
-<span class="sd">    :param args: The namespace returned by parser.parse_args()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Get package path based on tests_module path</span>
-    <span class="n">test_package_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">tests_module</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Account for event where user doesn&#39;t provide positional args for &#39;new&#39; command</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">new_file</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">new_file</span><span class="o">.</span><span class="n">main</span><span class="p">(</span>
-                <span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">module_name</span><span class="p">,</span>
-                <span class="n">args</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">force</span>
-            <span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div>
-        <span class="n">cmd</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="get_browser_config_classes"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.get_browser_config_classes">[docs]</a><span class="k">def</span> <span class="nf">get_browser_config_classes</span><span class="p">(</span><span class="n">config_module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get the ``BrowserConfig`` and ``BrowserStackConfig`` classes from a project.</span>
-
-<span class="sd">    :param config_module: The module object for ``&lt;test_project&gt;.config``</span>
-
-<span class="sd">    :return: Tuple containing:</span>
-
-<span class="sd">        - ``config_module.BrowserConfig`` (or</span>
-<span class="sd">          :class:`webdriver_test_tools.config.BrowserConfig</span>
-<span class="sd">          &lt;webdriver_test_tools.config.browser.BrowserConfig&gt;` if not present in</span>
-<span class="sd">          ``config_module``)</span>
-<span class="sd">        - ``config_module.BrowserStackConfig`` (or</span>
-<span class="sd">          :class:`webdriver_test_tools.config.BrowserStackConfig</span>
-<span class="sd">          &lt;webdriver_test_tools.config.browser.BrowserStackConfig&gt;` if not</span>
-<span class="sd">          present in ``config_module``)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">config_module</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">config_module</span> <span class="o">=</span> <span class="n">config</span>
-    <span class="c1"># TODO: set config_module.&lt;Class&gt; instead so this only needs to be called once?</span>
-    <span class="c1"># All projects should have a BrowserConfig class, but just in case</span>
-    <span class="n">browser_config</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserConfig</span> <span class="k">if</span> <span class="s1">&#39;BrowserConfig&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">BrowserConfig</span>
-    <span class="c1"># Older projects may not have the BrowserStackConfig class</span>
-    <span class="n">browserstack_config</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">BrowserStackConfig</span> <span class="k">if</span> <span class="s1">&#39;BrowserStackConfig&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">BrowserStackConfig</span></div>
-    <span class="k">return</span> <span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span>
-
-
-<span class="c1"># Sub-command functions</span>
-
-<div class="viewcode-block" id="list_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.list_tests">[docs]</a><span class="k">def</span> <span class="nf">list_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span>
-               <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Print a list of available tests</span>
-
-<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
-<span class="sd">    :param test_module_names: (Optional) Parsed arg for ``--module`` command line</span>
-<span class="sd">        argument</span>
-<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for ``--test``</span>
-<span class="sd">        command line argument to :func:`parse_test_names()`</span>
-<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip``</span>
-<span class="sd">        command line argument to :func:`parse_test_names()`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">tests</span> <span class="o">=</span> <span class="n">_load_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">](</span><span class="n">test_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
-        <span class="n">test_cases</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">getTestCaseNames</span><span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span></div>
-            <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span><span class="p">))</span>
-
-
-<div class="viewcode-block" id="run_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_module.html#webdriver_test_tools.project.test_module.run_tests">[docs]</a><span class="k">def</span> <span class="nf">run_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span>
-              <span class="n">browser_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-              <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">browserstack</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-              <span class="n">verbosity</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Run tests using parsed args and project modules</span>
-
-<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
-<span class="sd">    :param config_module: The module object for ``&lt;test_project&gt;.config`` or</span>
-<span class="sd">        :mod:`webdriver_test_tools.config` if not specified</span>
-<span class="sd">    :param browser_classes: (Optional) List of browser test classes from parsed arg</span>
-<span class="sd">        for ``--browser`` command line argument</span>
-<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for ``--test``</span>
-<span class="sd">        command line argument to :func:`parse_test_names()`</span>
-<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip``</span>
-<span class="sd">        command line argument to :func:`parse_test_names()`</span>
-<span class="sd">    :param test_module_names: (Optional) Parsed arg for ``--module`` command line</span>
-<span class="sd">        argument</span>
-<span class="sd">    :param browserstack: (Default = False) If True, generated test cases should run on</span>
-<span class="sd">        BrowserStack</span>
-<span class="sd">    :param headless: (Default = False) If True, configure driver to run tests in a</span>
-<span class="sd">        headless browser. Tests will only be generated for drivers that support</span>
-<span class="sd">        running headless browsers</span>
-<span class="sd">    :param verbosity: (Optional) Output verbosity level for the test runner.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Enable graceful Ctrl+C handling</span>
-    <span class="n">unittest</span><span class="o">.</span><span class="n">installHandler</span><span class="p">()</span>
-    <span class="c1"># Load WebDriverTestCase subclasses from project tests</span>
-    <span class="n">tests</span> <span class="o">=</span> <span class="n">_load_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span>
-    <span class="c1"># Generate browser test cases from the loaded WebDriverTestCase classes</span>
-    <span class="n">browser_test_suite</span> <span class="o">=</span> <span class="n">test_factory</span><span class="o">.</span><span class="n">generate_browser_test_suite</span><span class="p">(</span>
-        <span class="n">tests</span><span class="p">,</span> <span class="n">browser_classes</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">,</span>
-        <span class="n">config_module</span><span class="p">,</span> <span class="n">browserstack</span><span class="p">,</span> <span class="n">headless</span>
-    <span class="p">)</span>
-    <span class="c1"># Get configured test runner and run suite</span>
-    <span class="n">test_runner</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">TestSuiteConfig</span><span class="o">.</span><span class="n">get_runner</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
-    <span class="n">test_runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">browser_test_suite</span><span class="p">)</span>
-    <span class="c1"># Link to BrowserStack automation dashboard if applicable</span>
-    <span class="k">if</span> <span class="n">browserstack</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;See BrowserStack Automation Dashboard for Detailed Results:&#39;</span><span class="p">,</span></div>
-              <span class="s1">&#39;https://automate.browserstack.com&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
-
-<span class="c1"># Test loading functions</span>
-
-<span class="k">def</span> <span class="nf">_load_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a list of test classes from a project based on the --module, --test, and --skip arguments</span>
-
-<span class="sd">    :param tests_module: The module object for &lt;test_project&gt;.tests</span>
-<span class="sd">    :param test_module_names: (Optional) Parsed arg for --module command line argument</span>
-<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for --test command</span>
-<span class="sd">        line argument to parse_test_names()</span>
-<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for --skip command</span>
-<span class="sd">        line argument to parse_test_names()</span>
-
-<span class="sd">    :return: List of test classes</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">test_class_names</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">test_class_map</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">test_class_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-    <span class="n">skip_class_names</span> <span class="o">=</span> <span class="n">_get_skip_class_names</span><span class="p">(</span><span class="n">skip_class_map</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_get_skip_class_names</span><span class="p">(</span><span class="n">skip_class_map</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns list of classes to skip</span>
-
-<span class="sd">    Returned list only contains names of classes where all methods are skipped.</span>
-<span class="sd">    If skip_class_map is None, returns None</span>
-
-<span class="sd">    :param skip_class_map: Result of passing parsed arg for --skip command line argument to parse_test_names()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">skip_class_map</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="n">class_name</span> <span class="k">for</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">methods</span> <span class="ow">in</span> <span class="n">skip_class_map</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">methods</span>
-        <span class="p">]</span>
-    <span class="k">return</span> <span class="kc">None</span>
-
 </pre></div>
 
            </div>
@@ -726,7 +257,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.1.0-alpha',
+            VERSION:'2.1.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

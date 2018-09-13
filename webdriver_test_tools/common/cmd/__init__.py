@@ -1,12 +1,12 @@
 """
 Functions for common command line formatting and procedures.
 
-This module imports * from :mod:`webdriver_test_tools.cmd.cmd`.
+This module imports * from :mod:`webdriver_test_tools.common.cmd.cmd`.
 
 .. toctree::
 
-   webdriver_test_tools.cmd.cmd
-   webdriver_test_tools.cmd.argparse
+   webdriver_test_tools.common.cmd.cmd
+   webdriver_test_tools.common.cmd.argparse
 
 """
 from .cmd import *
