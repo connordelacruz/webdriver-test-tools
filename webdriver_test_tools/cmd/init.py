@@ -81,32 +81,32 @@ def validate_project_title(project_title):
     return validated_project_title
 
 
-# TODO: just take parsed args as parameter (so __main__ doesn't need to know about implementation)
-def main(package_name=None, project_title=None, gitignore=None, readme=None):
+def main(args):
     """Command line dialogs for initializing a test project
 
-    This method accepts arguments for each of its prompts. ``package_name`` is
-    the only argument required to create the package, so this method will
-    attempt to bypass input prompts if it's set to something other than
-    ``None``.
+    This method takes the parsed command line arguments as a parameter. It's
+    assumed that the ``init`` subparser was added to the ``ArgumentParser``
+    object via the :func:`add_init_subparser()` method before parsing.
+
+    The ``init`` subparser has optional arguments for each of this method's
+    prompts. ``package_name`` is the only argument required to create the
+    package, so this method will attempt to bypass input prompts if it's set to
+    something other than ``None``.
 
     If ``package_name`` is ``None`` but one or more of the other parameters are
     not ``None``, this method will attempt to bypass their corresponding input
     prompts if the value passed as a parameter is valid.
 
-    :param package_name: (Optional) The name of the test package. If valid, the
-        user won't be prompted for input and this will be used instead
-    :param project_title: (Optional) A human-readable name for the test project.
-        If valid, the user won't be prompted for input and this will be used
-        instead. If ``project_title`` is set to ``None`` but ``package_name`` is
-        valid, ``package_name`` will be used as the project title
-    :param gitignore: (Optional) If ``False``, .gitignore files will not be
-        created during initialization. If ``gitignore`` is set to ``None`` but
-        ``package_name`` is valid, .gitignore files will be created by default
-    :param readme: (Optional) If ``False``, README file will not be generated
-        during initialization. If ``readme`` is set to ``None`` but
-        ``package_name`` is valid, README file will be created by default
+    :param args: The ``Namespace`` object returned by ``parser.parse_args()``.
+        It is assumed that the ``init`` subparser was added to the
+        ``ArgumentParser`` that returned this ``Namespace``
     """
+    # Retrieve values from args
+    package_name=args.package_name
+    project_title=args.project_title
+    gitignore=args.no_gitignore
+    readme=args.no_readme
+    # For Ctrl + C handling
     initialize_start = False
     # Handle any optional arguments
     if package_name is not None:
@@ -169,3 +169,4 @@ def main(package_name=None, project_title=None, gitignore=None, readme=None):
             msg = 'Initialization was cancelled mid-operation.'
             print(cmd.COLORS['warning'](msg))
         sys.exit()
+

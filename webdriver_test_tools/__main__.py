@@ -28,10 +28,7 @@ def main():
     if args.version is not None and args.version:
         version.main()
     elif args.command == 'init':
-        init.main(
-            package_name=args.package_name, project_title=args.project_title,
-            gitignore=args.no_gitignore, readme=args.no_readme
-        )
+        init.main(args)
     # If no arguments were specified, print help
     else:
         parser.print_help()
