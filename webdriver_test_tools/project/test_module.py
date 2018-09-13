@@ -32,6 +32,8 @@ def main(tests_module, config_module=None, package_name=None):
         parser.print_help()
 
 
+# Argument Parser
+
 def get_parser(config_module=None, package_name=None):
     """Returns the ``ArgumentParser`` object for use with ``main()``
 

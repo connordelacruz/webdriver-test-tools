@@ -240,7 +240,7 @@ def validate_class_name(class_name):
 
     :return: Modified class_name with invalid characters removed/replaced
     """
-    # TODO: Validate differently than packages?
+    # TODO: Validate differently than packages? (e.g. 'class name' -> 'ClassName'?)
     try:
         validated_class_name = _validate_python_identifier(class_name)
     except ValidationError as e:

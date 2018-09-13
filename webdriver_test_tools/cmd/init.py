@@ -6,81 +6,6 @@ from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project.initialize import initialize
 
 
-# Subparser
-
-def add_init_subparser(subparsers, parents=[]):
-    """Add subparser for the ``wtt init`` command
-
-    :param subparsers: ``argparse._SubParsersAction`` object for the ``wtt`` ArgumentParser (i.e. the object
-        returned by the ``add_subparsers()`` method)
-    :param parents: (Default: ``[]``) Parent parsers for the init subparser
-
-    :return: ``argparse.ArgumentParser`` object for the newly added ``init`` subparser
-    """
-    init_description = 'Initialize a new test project in the current directory. \
-        If no arguments are provided, a prompt will walk you through project initialization.'
-    init_help = init_description
-    init_parser = subparsers.add_parser(
-        'init', description=init_description, help=init_help,
-        epilog=cmd.argparse.ARGPARSE_EPILOG,
-        parents=parents, add_help=False,
-    )
-    # Positional Arguments
-    positional_args = init_parser.add_argument_group('Positional Arguments')
-    package_name_help = 'Name for the new test package \
-        (alphanumeric characters and underscores only. Cannot start with a number)'
-    positional_args.add_argument(
-        'package_name', metavar='<package_name>', nargs='?', default=None,
-        help=package_name_help
-    )
-    project_title_help = '(Optional) Friendly name for the test project. \
-        Defaults to the value of <package_name> if not provided'
-    positional_args.add_argument(
-        'project_title', metavar='<"Project Title">', nargs='?', default=None,
-        help=project_title_help
-    )
-    # Optional Arguments
-    optional_args_description = 'Override default behaviour when initializing a project from the command line.'
-    optional_args = init_parser.add_argument_group(
-        'Options', optional_args_description
-    )
-    no_gitignore_help = 'Do not create .gitignore files for project root and log directory'
-    optional_args.add_argument(
-        '--no-gitignore', action='store_false', default=None,
-        help=no_gitignore_help
-    )
-    no_readme_help = 'Do not generate README file with usage info'
-    optional_args.add_argument(
-        '--no-readme', action='store_false', default=None,
-        help=no_readme_help
-    )
-    return init_parser
-
-
-# User Input Prompts
-
-def validate_project_title(project_title):
-    """Sanitizes string to avoid syntax errors when inserting the title into template
-    files
-
-    :param project_title: The desired project title
-
-    :return: Modifed project_title with only alphanumeric characters, spaces,
-        underscores, and hyphens
-    """
-    # Trim outer whitespace and remove that aren't alphanumeric or an underscore/hyphen
-    validated_project_title = re.sub(r'[^\w\s-]', '', project_title.strip())
-    if not validated_project_title:
-        raise cmd.ValidationError('Please enter a valid project title.')
-    # Alert user of any changes made in validation
-    if project_title != validated_project_title:
-        cmd.print_validation_change(
-            '"{0}" was changed to "{1}" to avoid syntax errors',
-            project_title, validated_project_title
-        )
-    return validated_project_title
-
-
 def main(args):
     """Command line dialogs for initializing a test project
 
@@ -169,4 +94,79 @@ def main(args):
             msg = 'Initialization was cancelled mid-operation.'
             print(cmd.COLORS['warning'](msg))
         sys.exit()
+
+
+# Subparser
+
+def add_init_subparser(subparsers, parents=[]):
+    """Add subparser for the ``wtt init`` command
+
+    :param subparsers: ``argparse._SubParsersAction`` object for the ``wtt`` ArgumentParser (i.e. the object
+        returned by the ``add_subparsers()`` method)
+    :param parents: (Default: ``[]``) Parent parsers for the init subparser
+
+    :return: ``argparse.ArgumentParser`` object for the newly added ``init`` subparser
+    """
+    init_description = 'Initialize a new test project in the current directory. \
+        If no arguments are provided, a prompt will walk you through project initialization.'
+    init_help = init_description
+    init_parser = subparsers.add_parser(
+        'init', description=init_description, help=init_help,
+        epilog=cmd.argparse.ARGPARSE_EPILOG,
+        parents=parents, add_help=False,
+    )
+    # Positional Arguments
+    positional_args = init_parser.add_argument_group('Positional Arguments')
+    package_name_help = 'Name for the new test package \
+        (alphanumeric characters and underscores only. Cannot start with a number)'
+    positional_args.add_argument(
+        'package_name', metavar='<package_name>', nargs='?', default=None,
+        help=package_name_help
+    )
+    project_title_help = '(Optional) Friendly name for the test project. \
+        Defaults to the value of <package_name> if not provided'
+    positional_args.add_argument(
+        'project_title', metavar='<"Project Title">', nargs='?', default=None,
+        help=project_title_help
+    )
+    # Optional Arguments
+    optional_args_description = 'Override default behaviour when initializing a project from the command line.'
+    optional_args = init_parser.add_argument_group(
+        'Options', optional_args_description
+    )
+    no_gitignore_help = 'Do not create .gitignore files for project root and log directory'
+    optional_args.add_argument(
+        '--no-gitignore', action='store_false', default=None,
+        help=no_gitignore_help
+    )
+    no_readme_help = 'Do not generate README file with usage info'
+    optional_args.add_argument(
+        '--no-readme', action='store_false', default=None,
+        help=no_readme_help
+    )
+    return init_parser
+
+
+# User Input Prompts
+
+def validate_project_title(project_title):
+    """Sanitizes string to avoid syntax errors when inserting the title into template
+    files
+
+    :param project_title: The desired project title
+
+    :return: Modifed project_title with only alphanumeric characters, spaces,
+        underscores, and hyphens
+    """
+    # Trim outer whitespace and remove that aren't alphanumeric or an underscore/hyphen
+    validated_project_title = re.sub(r'[^\w\s-]', '', project_title.strip())
+    if not validated_project_title:
+        raise cmd.ValidationError('Please enter a valid project title.')
+    # Alert user of any changes made in validation
+    if project_title != validated_project_title:
+        cmd.print_validation_change(
+            '"{0}" was changed to "{1}" to avoid syntax errors',
+            project_title, validated_project_title
+        )
+    return validated_project_title
 

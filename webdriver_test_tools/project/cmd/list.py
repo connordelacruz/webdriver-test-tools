@@ -29,6 +29,8 @@ def add_list_subparser(subparsers, parents=[],
     return list_parser
 
 
+# Argument parsing functions
+
 def parse_list_args(tests_module, args):
     """Parse arguments and run the 'list' command
 
@@ -57,4 +59,3 @@ def list_tests(tests_module,
         test_cases = unittest.loader.getTestCaseNames(test_class, 'test')
         for test_case in test_cases:
             print(textwrap.indent(test_case, cmd.INDENT))
-
