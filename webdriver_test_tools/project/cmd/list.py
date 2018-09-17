@@ -20,6 +20,7 @@ def add_list_subparser(subparsers, parents=[],
     """
     list_description = 'Print a list of available tests and exit'
     list_help = list_description
+    # TODO: aliases=['ls']
     list_parser = subparsers.add_parser(
         'list', description=list_description, help=list_help,
         parents=parents,  # TODO: always use test_parent_parser?
