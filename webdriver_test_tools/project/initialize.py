@@ -71,6 +71,8 @@ def create_main_module(target_path, context):
     create_init(target_path)
 
 
+# TODO: remove data/ from created directories and update docs
+# TODO: update docstring, references in docs
 def create_test_directories(target_path):
     """Creates base directories for test writing that are initially empty (data/ and pages/)
 
