@@ -194,8 +194,8 @@
         <span class="c1"># Previous version of the class used strings instead of a list</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">index</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">OPTIONS</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">index</span>
-        <span class="k">else</span><span class="p">:</span></div></div>
-            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div></div>
 
 
 <span class="c1">#: Valid keys for html_options</span>
@@ -281,8 +281,8 @@
         <span class="p">]</span>
         <span class="n">request_args</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">valid_html_options</span><span class="p">)</span>
     <span class="n">request_url</span> <span class="o">=</span> <span class="n">_request_url_string</span><span class="p">(</span><span class="n">request_args</span><span class="p">)</span>
-    <span class="n">placeholder_text</span> <span class="o">=</span> <span class="n">_generate</span><span class="p">(</span><span class="n">request_url</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">placeholder_text</span> <span class="k">if</span> <span class="n">trailing_newlines</span> <span class="k">else</span> <span class="n">placeholder_text</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+    <span class="n">placeholder_text</span> <span class="o">=</span> <span class="n">_generate</span><span class="p">(</span><span class="n">request_url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">placeholder_text</span> <span class="k">if</span> <span class="n">trailing_newlines</span> <span class="k">else</span> <span class="n">placeholder_text</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
 
 
 <span class="c1"># Command Line Functions</span>
@@ -324,8 +324,8 @@
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../webdriver_test_tools.data.html#loremipsum.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Prints generated text using parsed args&quot;&quot;&quot;</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Generate &quot;Lorem ipsum&quot; text&#39;</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">_parser</span><span class="p">(</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></div>
-    <span class="nb">print</span><span class="p">(</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">args</span><span class="p">)))</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">_parser</span><span class="p">(</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">args</span><span class="p">)))</span></div>
 
 <div class="viewcode-block" id="copy"><a class="viewcode-back" href="../webdriver_test_tools.data.html#loremipsum.copy">[docs]</a><span class="k">def</span> <span class="nf">copy</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Copies generated text using parsed args to clipboard&quot;&quot;&quot;</span>
@@ -336,8 +336,8 @@
         <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">pyperclip</span><span class="o">.</span><span class="n">PyperclipException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="s1">&#39;Generated text:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span></div>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Generated text copied to clipboard.&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Generated text copied to clipboard.&#39;</span><span class="p">)</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -356,7 +356,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -389,6 +389,7 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
 
   
 

@@ -181,8 +181,8 @@
 <span class="sd">        different inputs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Iterate through input_name_map</span>
-    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">input_name_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></div>
-        <span class="n">fill_form_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">input_name_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">fill_form_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="fill_form_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.fill_form_input">[docs]</a><span class="k">def</span> <span class="nf">fill_form_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Takes the name and value of a form input and determines what type it is to fill</span>
@@ -228,8 +228,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">select_multiple_options</span><span class="p">(</span><span class="n">input_element</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
     <span class="c1"># Other input types (text, file, etc)</span>
-    <span class="k">else</span><span class="p">:</span></div>
-        <span class="n">fill_field_input</span><span class="p">(</span><span class="n">input_element</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fill_field_input</span><span class="p">(</span><span class="n">input_element</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="select_radio_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.select_radio_input">[docs]</a><span class="k">def</span> <span class="nf">select_radio_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -246,8 +246,8 @@
     <span class="n">radio_selector</span> <span class="o">=</span> <span class="s1">&#39;input[type=&quot;radio&quot;][name=&quot;</span><span class="si">{}</span><span class="s1">&quot;][value=&quot;</span><span class="si">{}</span><span class="s1">&quot;]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
     <span class="n">radio_element</span> <span class="o">=</span> <span class="n">form_element</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="n">radio_selector</span><span class="p">)</span>
     <span class="c1"># Selenium throws an error when trying to click something out of view</span>
-    <span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">radio_element</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
-    <span class="n">radio_element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+    <span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">radio_element</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">radio_element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="toggle_checkbox_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.toggle_checkbox_input">[docs]</a><span class="k">def</span> <span class="nf">toggle_checkbox_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">checkbox_element</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Set the checked state of a checkbox input</span>
@@ -275,8 +275,8 @@
             <span class="n">label_css</span> <span class="o">=</span> <span class="s1">&#39;label[for=&quot;</span><span class="si">{}</span><span class="s1">&quot;]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">checkbox_id</span><span class="p">)</span>
             <span class="n">element_label</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="n">label_css</span><span class="p">)</span>
             <span class="c1"># Selenium throws an error when trying to click something out of view</span>
-            <span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_label</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
-            <span class="n">element_label</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+            <span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_label</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">element_label</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="fill_field_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.fill_field_input">[docs]</a><span class="k">def</span> <span class="nf">fill_field_input</span><span class="p">(</span><span class="n">input_element</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">clear_current_value</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fill an input that is normally typed into (e.g. inputs of type text, password,</span>
@@ -288,8 +288,8 @@
 <span class="sd">        in the input before entering the new one</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">clear_current_value</span><span class="p">:</span>
-        <span class="n">input_element</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
-    <span class="n">input_element</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">input_element</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">input_element</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="select_option"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.select_option">[docs]</a><span class="k">def</span> <span class="nf">select_option</span><span class="p">(</span><span class="n">select_element</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Select an option in a select element</span>
@@ -297,8 +297,8 @@
 <span class="sd">    :param select_element: WebElement for the select input</span>
 <span class="sd">    :param value: Value of the option to select</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">select_element</span><span class="p">)</span></div>
-    <span class="n">select</span><span class="o">.</span><span class="n">select_by_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">select_element</span><span class="p">)</span>
+    <span class="n">select</span><span class="o">.</span><span class="n">select_by_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="select_multiple_options"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.select_multiple_options">[docs]</a><span class="k">def</span> <span class="nf">select_multiple_options</span><span class="p">(</span><span class="n">select_element</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">clear_current_selection</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Select options in a multiple select element</span>
@@ -311,8 +311,8 @@
     <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">select_element</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">clear_current_selection</span><span class="p">:</span>
         <span class="n">select</span><span class="o">.</span><span class="n">deselect_all</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span></div>
-        <span class="n">select</span><span class="o">.</span><span class="n">select_by_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="n">select</span><span class="o">.</span><span class="n">select_by_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 
 <span class="c1"># Retrieving form input values</span>
@@ -337,8 +337,8 @@
     <span class="k">for</span> <span class="n">input_element</span> <span class="ow">in</span> <span class="n">input_elements</span><span class="p">:</span>
         <span class="n">value</span> <span class="o">=</span> <span class="n">get_form_input_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">input_map</span><span class="p">[</span><span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">value</span></div>
-    <span class="k">return</span> <span class="n">input_map</span>
+            <span class="n">input_map</span><span class="p">[</span><span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">input_map</span></div>
 
 
 <div class="viewcode-block" id="get_form_input_value"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_form_input_value">[docs]</a><span class="k">def</span> <span class="nf">get_form_input_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">):</span>
@@ -370,8 +370,8 @@
             <span class="n">value</span> <span class="o">=</span> <span class="n">get_select_multiple_values</span><span class="p">(</span><span class="n">input_element</span><span class="p">)</span>
     <span class="c1"># Other input types (text, file, etc)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">get_field_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">value</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">get_field_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span></div>
 
 
 <div class="viewcode-block" id="get_radio_value"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_radio_value">[docs]</a><span class="k">def</span> <span class="nf">get_radio_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">):</span>
@@ -381,8 +381,8 @@
 
 <span class="sd">    :return: The value attribute of the radio button if input_element is selected, None</span>
 <span class="sd">        if it&#39;s not selected</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
-    <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="get_checkbox_value"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_checkbox_value">[docs]</a><span class="k">def</span> <span class="nf">get_checkbox_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">):</span>
@@ -391,8 +391,8 @@
 <span class="sd">    :param input_element: WebElement for the input</span>
 
 <span class="sd">    :return: True if element is checked, False if it&#39;s unchecked</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
-    <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="get_field_value"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_field_value">[docs]</a><span class="k">def</span> <span class="nf">get_field_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">):</span>
@@ -401,8 +401,8 @@
 <span class="sd">    :param input_element: WebElement for the input</span>
 
 <span class="sd">    :return: Value of the input</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
-    <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_select_value"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_select_value">[docs]</a><span class="k">def</span> <span class="nf">get_select_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">):</span>
@@ -411,8 +411,8 @@
 <span class="sd">    :param input_element: WebElement for the input</span>
 
 <span class="sd">    :return: The value attribute of the selected option</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
-    <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_select_multiple_values"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_select_multiple_values">[docs]</a><span class="k">def</span> <span class="nf">get_select_multiple_values</span><span class="p">(</span><span class="n">input_element</span><span class="p">):</span>
@@ -422,8 +422,8 @@
 
 <span class="sd">    :return: List containing the value attribute of the selected options</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">input_element</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="p">[</span><span class="n">option</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">select</span><span class="o">.</span><span class="n">all_selected_options</span><span class="p">]</span>
+    <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">input_element</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">option</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">select</span><span class="o">.</span><span class="n">all_selected_options</span><span class="p">]</span></div>
 
 
 
@@ -439,7 +439,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -472,6 +472,7 @@
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
 
   
 

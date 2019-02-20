@@ -254,9 +254,9 @@ contained</td>
 </dd></dl>
 
 <dl class="function">
-<dt id="webdriver_test_tools.project.initialize.create_main_module">
-<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_main_module</code><span class="sig-paren">(</span><em>target_path</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_main_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_main_module" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates __main__.py and __init__.py modules for test package</p>
+<dt id="webdriver_test_tools.project.initialize.create_package_root_modules">
+<code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_package_root_modules</code><span class="sig-paren">(</span><em>target_path</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_package_root_modules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_package_root_modules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates __main__.py, __init__.py, and data.py modules for test package</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -274,7 +274,8 @@ contained</td>
 <dl class="function">
 <dt id="webdriver_test_tools.project.initialize.create_test_directories">
 <code class="descclassname">webdriver_test_tools.project.initialize.</code><code class="descname">create_test_directories</code><span class="sig-paren">(</span><em>target_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/initialize.html#create_test_directories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.initialize.create_test_directories" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates base directories for test writing that are initially empty (data/ and pages/)</p>
+<dd><p>Creates base directories for test writing that are initially empty.</p>
+<p>As of version 2.2.0, this method only creates the pages/ directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -426,7 +427,7 @@ root directory if True</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -459,6 +460,7 @@ root directory if True</li>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
 
   
 

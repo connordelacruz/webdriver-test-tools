@@ -173,8 +173,8 @@
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="n">CAPABILITIES</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">CHROME</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<div class="viewcode-block" id="ChromeTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_HEADLESS</span><span class="p">)</span>
+<div class="viewcode-block" id="ChromeTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_HEADLESS</span><span class="p">)</span></div></div>
 
 
 <span class="c1"># Mobile browser emulation</span>
@@ -202,11 +202,11 @@
         <span class="c1"># Set options for mobile emulation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">CAPABILITIES</span><span class="p">[</span><span class="s1">&#39;chromeOptions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;mobileEmulation&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">CHROME_MOBILE_EMULATION</span><span class="p">,</span>
-        <span class="p">}</span></div>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">bs_driver_init</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">bs_driver_init</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ChromeMobileTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div></div>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_mobile_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_HEADLESS</span><span class="p">)</span>
+<div class="viewcode-block" id="ChromeMobileTestCase.driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">get_chrome_mobile_driver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_HEADLESS</span><span class="p">)</span></div></div>
 
 </pre></div>
 
@@ -220,7 +220,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -253,6 +253,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
 
   
 

@@ -184,8 +184,8 @@
     <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tests_module_attributes</span><span class="p">:</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">):</span>
-            <span class="n">test_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">load_webdriver_test_cases</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="p">))</span></div>
-    <span class="k">return</span> <span class="n">test_list</span>
+            <span class="n">test_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">load_webdriver_test_cases</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">test_list</span></div>
 
 
 <div class="viewcode-block" id="load_webdriver_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_webdriver_test_cases">[docs]</a><span class="k">def</span> <span class="nf">load_webdriver_test_cases</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">test_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -203,8 +203,8 @@
         <span class="n">obj</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="c1"># Load class if it subclasses WebDriverTestCase (but don&#39;t load WebDriverTestCase itself)</span>
         <span class="k">if</span> <span class="n">_is_valid_case</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="p">):</span>
-            <span class="n">test_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">test_list</span>
+            <span class="n">test_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">test_list</span></div>
 
 
 <span class="k">def</span> <span class="nf">_is_valid_case</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">test_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -266,8 +266,8 @@
             <span class="k">for</span> <span class="n">browser_test_case</span> <span class="ow">in</span> <span class="n">generated_test_cases</span>
             <span class="k">for</span> <span class="n">test_method</span> <span class="ow">in</span> <span class="n">loader</span><span class="o">.</span><span class="n">getTestCaseNames</span><span class="p">(</span><span class="n">browser_test_case</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">test_method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_methods</span>
-        <span class="p">]</span></div>
-    <span class="k">return</span> <span class="n">browser_tests</span>
+        <span class="p">]</span>
+    <span class="k">return</span> <span class="n">browser_tests</span></div>
 </pre></div>
 
            </div>
@@ -280,7 +280,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -313,6 +313,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
 
   
 

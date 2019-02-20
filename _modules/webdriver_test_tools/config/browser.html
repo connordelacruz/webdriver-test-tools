@@ -194,8 +194,8 @@
         <span class="n">browser_classes</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">browser_class</span> <span class="k">for</span> <span class="n">short_name</span><span class="p">,</span> <span class="n">browser_class</span> <span class="ow">in</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">TEST_CLASSES</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">short_name</span> <span class="ow">in</span> <span class="n">browser_names</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ENABLED_BROWSERS</span><span class="p">[</span><span class="n">short_name</span><span class="p">]</span>
-        <span class="p">]</span></div>
-        <span class="k">return</span> <span class="n">browser_classes</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="n">browser_classes</span></div>
 
 <div class="viewcode-block" id="BrowserConfig.get_browser_names"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig.get_browser_names">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_browser_names</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
@@ -205,8 +205,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span>
             <span class="n">browser_name</span> <span class="k">for</span> <span class="n">browser_name</span><span class="p">,</span> <span class="n">is_enabled</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ENABLED_BROWSERS</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">is_enabled</span></div></div>
-        <span class="p">]</span>
+            <span class="k">if</span> <span class="n">is_enabled</span>
+        <span class="p">]</span></div></div>
 
 
 <div class="viewcode-block" id="BrowserStackConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig">[docs]</a><span class="k">class</span> <span class="nc">BrowserStackConfig</span><span class="p">(</span><span class="n">BrowserConfig</span><span class="p">):</span>
@@ -242,16 +242,16 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">USERNAME</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ACCESS_KEY</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;USERNAME or ACCESS_KEY not set in BrowserStackConfig&#39;</span><span class="p">)</span>
         <span class="n">url_format</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">{USERNAME}</span><span class="s1">:</span><span class="si">{ACCESS_KEY}</span><span class="s1">@hub.browserstack.com:80/wd/hub&#39;</span>
-        <span class="n">command_executor</span> <span class="o">=</span> <span class="n">url_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">USERNAME</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">ACCESS_KEY</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">ACCESS_KEY</span><span class="p">)</span></div>
-        <span class="k">return</span> <span class="n">command_executor</span>
+        <span class="n">command_executor</span> <span class="o">=</span> <span class="n">url_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">USERNAME</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">ACCESS_KEY</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">ACCESS_KEY</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">command_executor</span></div>
 
 <div class="viewcode-block" id="BrowserStackConfig.add_browserstack_capabilities"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">add_browserstack_capabilities</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">desired_capabilities</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update a desired capabilities dictionary to include items from :attr:`BS_CAPABILITIES`</span>
 
 <span class="sd">        :param desired_capabilities: Desired capabilities dictionary to update</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
-        <span class="n">desired_capabilities</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">desired_capabilities</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BrowserStackConfig.update_configurations"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.update_configurations">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">update_configurations</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">capabilities</span><span class="p">):</span>
@@ -268,8 +268,8 @@
             <span class="s1">&#39;video&#39;</span><span class="p">:</span> <span class="s1">&#39;browserstack.video&#39;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">capabilities</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">capabilities</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">caps_map</span><span class="p">}</span>
-        <span class="k">for</span> <span class="n">capability</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">capabilities</span><span class="o">.</span><span class="n">items</span><span class="p">():</span></div></div>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">[</span><span class="n">caps_map</span><span class="p">[</span><span class="n">capability</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">for</span> <span class="n">capability</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">capabilities</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">BS_CAPABILITIES</span><span class="p">[</span><span class="n">caps_map</span><span class="p">[</span><span class="n">capability</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span></div></div>
 
 </pre></div>
 
@@ -283,7 +283,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -316,6 +316,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
 
   
 

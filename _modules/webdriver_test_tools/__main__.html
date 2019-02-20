@@ -174,8 +174,8 @@
     <span class="n">subparsers</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span>
         <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Commands&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">command_desc</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;command&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;command&gt;&#39;</span>
     <span class="p">)</span>
-    <span class="n">init_parser</span> <span class="o">=</span> <span class="n">init</span><span class="o">.</span><span class="n">add_init_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">generic_parent_parser</span><span class="p">])</span></div>
-    <span class="k">return</span> <span class="n">parser</span>
+    <span class="n">init_parser</span> <span class="o">=</span> <span class="n">init</span><span class="o">.</span><span class="n">add_init_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">generic_parent_parser</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">parser</span></div>
 
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../webdriver_test_tools.__main__.html#webdriver_test_tools.__main__.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
@@ -187,8 +187,8 @@
     <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;init&#39;</span><span class="p">:</span>
         <span class="n">init</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
     <span class="c1"># If no arguments were specified, print help</span>
-    <span class="k">else</span><span class="p">:</span></div>
-        <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -206,7 +206,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -239,6 +239,7 @@
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
 
   
 

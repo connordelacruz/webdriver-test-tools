@@ -308,8 +308,7 @@ inside the project directory:
         │   ├── site.py
         │   ├── test.py
         │   └── webdriver.py
-        ├── data/
-        │   └── __init__.py
+        ├── data.py
         ├── log/
         ├── pages/
         │   └── __init__.py
@@ -336,6 +335,8 @@ Test Package Root Contents
 * ``__main__.py``: Required to run tests from the command line. 
 * ``__init__.py``: Empty init file so Python recognizes the directory as a
   package.
+* ``data.py``: Module for storing static data for tests that must use specific
+  values (e.g. emails, usernames, etc).
 
 
 Test Package Directories
@@ -353,13 +354,6 @@ python unittest framework.
 * ``site.py``: Configure URLs used for testing.
 * ``test.py``: Configure the ``unittest.TestRunner`` class.
 * ``webdriver.py``: Configure WebDrivers and log output directory.
-
-
-data/
-~~~~~
-
-Static data for tests that must use specific values (e.g. emails, usernames,
-etc).
 
 log/
 ~~~~

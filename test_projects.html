@@ -116,7 +116,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#test-package-root-contents">Test Package Root Contents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test-package-directories">Test Package Directories</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#config">config/</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#data">data/</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#log">log/</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pages">pages/</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#screenshot">screenshot/</a></li>
@@ -229,11 +228,10 @@
 <li><a class="reference internal" href="#test-package-root-contents" id="id18">Test Package Root Contents</a></li>
 <li><a class="reference internal" href="#test-package-directories" id="id19">Test Package Directories</a><ul>
 <li><a class="reference internal" href="#config" id="id20">config/</a></li>
-<li><a class="reference internal" href="#data" id="id21">data/</a></li>
-<li><a class="reference internal" href="#log" id="id22">log/</a></li>
-<li><a class="reference internal" href="#pages" id="id23">pages/</a></li>
-<li><a class="reference internal" href="#screenshot" id="id24">screenshot/</a></li>
-<li><a class="reference internal" href="#tests" id="id25">tests/</a></li>
+<li><a class="reference internal" href="#log" id="id21">log/</a></li>
+<li><a class="reference internal" href="#pages" id="id22">pages/</a></li>
+<li><a class="reference internal" href="#screenshot" id="id23">screenshot/</a></li>
+<li><a class="reference internal" href="#tests" id="id24">tests/</a></li>
 </ul>
 </li>
 </ul>
@@ -466,8 +464,7 @@ inside the project directory:</p>
     │   ├── site.py
     │   ├── test.py
     │   └── webdriver.py
-    ├── data/
-    │   └── __init__.py
+    ├── data.py
     ├── log/
     ├── pages/
     │   └── __init__.py
@@ -492,6 +489,8 @@ installed as a pip package.</li>
 <li><code class="docutils literal notranslate"><span class="pre">__main__.py</span></code>: Required to run tests from the command line.</li>
 <li><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>: Empty init file so Python recognizes the directory as a
 package.</li>
+<li><code class="docutils literal notranslate"><span class="pre">data.py</span></code>: Module for storing static data for tests that must use specific
+values (e.g. emails, usernames, etc).</li>
 </ul>
 </div>
 <div class="section" id="test-package-directories">
@@ -508,29 +507,24 @@ python unittest framework.</p>
 <li><code class="docutils literal notranslate"><span class="pre">webdriver.py</span></code>: Configure WebDrivers and log output directory.</li>
 </ul>
 </div>
-<div class="section" id="data">
-<h4><a class="toc-backref" href="#id21">data/</a><a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
-<p>Static data for tests that must use specific values (e.g.&nbsp;emails, usernames,
-etc).</p>
-</div>
 <div class="section" id="log">
-<h4><a class="toc-backref" href="#id22">log/</a><a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id21">log/</a><a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h4>
 <p>Default output directory for WebDriver logs. This can be changed in
 <code class="docutils literal notranslate"><span class="pre">config/webdriver.py</span></code>.</p>
 </div>
 <div class="section" id="pages">
-<h4><a class="toc-backref" href="#id23">pages/</a><a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id22">pages/</a><a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h4>
 <p>Page object classes for pages and components. These classes should handle
 locating and interacting with elements on the page. See <a class="reference internal" href="#creating-new-page-objects">Creating New Page
 Objects</a> for info on generating new page object modules.</p>
 </div>
 <div class="section" id="screenshot">
-<h4><a class="toc-backref" href="#id24">screenshot/</a><a class="headerlink" href="#screenshot" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id23">screenshot/</a><a class="headerlink" href="#screenshot" title="Permalink to this headline">¶</a></h4>
 <p>Default output directory for screenshots taken during test execution. This can
 be changed in <code class="docutils literal notranslate"><span class="pre">config/webdriver.py</span></code>.</p>
 </div>
 <div class="section" id="tests">
-<h4><a class="toc-backref" href="#id25">tests/</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id24">tests/</a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
 <p>Test case modules. These use page objects to interact with elements and assert
 that the expected behavior occurs. See <a class="reference internal" href="#creating-new-tests">Creating New Tests</a> for info on
 generating new test modules.</p>
@@ -559,7 +553,7 @@ generating new test modules.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -592,6 +586,7 @@ generating new test modules.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
 
   
 
