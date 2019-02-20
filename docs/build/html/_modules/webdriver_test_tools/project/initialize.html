@@ -176,8 +176,8 @@
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
-    <span class="n">template_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">project_root</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span></div>
-    <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">template_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">project_root</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
+    <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="create_readme"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_readme">[docs]</a><span class="k">def</span> <span class="nf">create_readme</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
@@ -188,8 +188,8 @@
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
-    <span class="n">template_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">project_root</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span></div>
-    <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;README.rst&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">template_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">project_root</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
+    <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;README.rst&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="create_gitignore"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_gitignore">[docs]</a><span class="k">def</span> <span class="nf">create_gitignore</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
@@ -199,8 +199,8 @@
 <span class="sd">        contained</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
-    <span class="n">source_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">project_root</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span></div>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_path</span><span class="p">,</span> <span class="s1">&#39;gitignore.j2&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;.gitignore&#39;</span><span class="p">))</span>
+    <span class="n">source_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">project_root</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_path</span><span class="p">,</span> <span class="s1">&#39;gitignore.j2&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;.gitignore&#39;</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="create_package_directory"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_package_directory">[docs]</a><span class="k">def</span> <span class="nf">create_package_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
@@ -210,37 +210,41 @@
 <span class="sd">    :param package_name: The desired name of the package</span>
 
 <span class="sd">    :return: Path to created package directory</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
-    <span class="k">return</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">),</span> <span class="n">package_name</span><span class="p">)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">),</span> <span class="n">package_name</span><span class="p">)</span></div>
 
 
 <span class="c1"># Package Root</span>
 
-<div class="viewcode-block" id="create_main_module"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_main_module">[docs]</a><span class="k">def</span> <span class="nf">create_main_module</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates __main__.py and __init__.py modules for test package</span>
+<div class="viewcode-block" id="create_package_root_modules"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_package_root_modules">[docs]</a><span class="k">def</span> <span class="nf">create_package_root_modules</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates __main__.py, __init__.py, and data.py modules for test package</span>
 
 <span class="sd">    :param target_path: The path to the test package directory</span>
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">template_modules</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;__main__.py&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;data.py&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
     <span class="n">template_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">package_root</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
-    <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;__main__.py&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
-    <span class="n">create_init</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
+    <span class="c1"># Create template modules</span>
+    <span class="k">for</span> <span class="n">template_module</span> <span class="ow">in</span> <span class="n">template_modules</span><span class="p">:</span>
+        <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">template_module</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="c1"># Create __init__.py</span>
+    <span class="n">create_init</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="create_test_directories"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_test_directories">[docs]</a><span class="k">def</span> <span class="nf">create_test_directories</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates base directories for test writing that are initially empty (data/ and pages/)</span>
+    <span class="sd">&quot;&quot;&quot;Creates base directories for test writing that are initially empty.</span>
+
+<span class="sd">    As of version 2.2.0, this method only creates the pages/ directory.</span>
 
 <span class="sd">    :param target_path: The path to the test package directory</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
-    <span class="n">project_dirs</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s1">&#39;data&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;pages&#39;</span><span class="p">,</span>
-            <span class="p">]</span>
-    <span class="k">for</span> <span class="n">project_dir</span> <span class="ow">in</span> <span class="n">project_dirs</span><span class="p">:</span>
-        <span class="n">dir_path</span> <span class="o">=</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">project_dir</span><span class="p">)</span></div>
-        <span class="n">create_init</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span>
+    <span class="n">dir_path</span> <span class="o">=</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;pages&#39;</span><span class="p">)</span>
+    <span class="n">create_init</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="create_output_directories"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_output_directories">[docs]</a><span class="k">def</span> <span class="nf">create_output_directories</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -259,8 +263,8 @@
     <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">output_directories</span><span class="p">:</span>
         <span class="n">directory_path</span> <span class="o">=</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">gitignore_files</span><span class="p">:</span>
-            <span class="c1"># .gitignore files are the same between directories</span></div>
-            <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_path</span><span class="p">,</span> <span class="s1">&#39;gitignore.j2&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory_path</span><span class="p">,</span> <span class="s1">&#39;.gitignore&#39;</span><span class="p">))</span>
+            <span class="c1"># .gitignore files are the same between directories</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_path</span><span class="p">,</span> <span class="s1">&#39;gitignore.j2&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory_path</span><span class="p">,</span> <span class="s1">&#39;.gitignore&#39;</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="create_tests_init"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_tests_init">[docs]</a><span class="k">def</span> <span class="nf">create_tests_init</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
@@ -270,8 +274,8 @@
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">create_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">),</span> <span class="s1">&#39;tests&#39;</span><span class="p">)</span>
-    <span class="n">template_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span></div>
-    <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;__init__.py&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">template_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
+    <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;__init__.py&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="create_config_files"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_config_files">[docs]</a><span class="k">def</span> <span class="nf">create_config_files</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
@@ -290,8 +294,8 @@
         <span class="s1">&#39;test.py&#39;</span><span class="p">,</span>
         <span class="s1">&#39;webdriver.py&#39;</span><span class="p">,</span>
     <span class="p">]</span>
-    <span class="k">for</span> <span class="n">template_file</span> <span class="ow">in</span> <span class="n">template_files</span><span class="p">:</span></div>
-        <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">template_file</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">template_file</span> <span class="ow">in</span> <span class="n">template_files</span><span class="p">:</span>
+        <span class="n">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">template_file</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
 
 
 <span class="c1"># Helper functions</span>
@@ -303,8 +307,8 @@
 <span class="sd">        file</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># &quot;Touch&quot; __init__.py to create an empty file</span>
-    <span class="n">init_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;__init__.py&#39;</span><span class="p">)</span></div>
-    <span class="n">touch</span><span class="p">(</span><span class="n">init_path</span><span class="p">)</span>
+    <span class="n">init_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;__init__.py&#39;</span><span class="p">)</span>
+    <span class="n">touch</span><span class="p">(</span><span class="n">init_path</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="generate_context"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.generate_context">[docs]</a><span class="k">def</span> <span class="nf">generate_context</span><span class="p">(</span><span class="n">test_package</span><span class="p">,</span> <span class="n">project_title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version_badge</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -327,8 +331,8 @@
             <span class="s1">&#39;selenium_version&#39;</span><span class="p">:</span> <span class="n">__selenium__</span><span class="p">,</span>
             <span class="s1">&#39;project_title&#39;</span><span class="p">:</span> <span class="n">project_title</span><span class="p">,</span>
             <span class="s1">&#39;version_badge&#39;</span><span class="p">:</span> <span class="n">version_badge</span><span class="p">,</span>
-            <span class="p">}</span></div>
-    <span class="k">return</span> <span class="n">context</span>
+            <span class="p">}</span>
+    <span class="k">return</span> <span class="n">context</span></div>
 
 
 <div class="viewcode-block" id="initialize"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.initialize">[docs]</a><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">project_title</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readme_file</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -356,11 +360,11 @@
         <span class="n">create_gitignore</span><span class="p">(</span><span class="n">outer_path</span><span class="p">)</span>
     <span class="n">package_path</span> <span class="o">=</span> <span class="n">create_package_directory</span><span class="p">(</span><span class="n">outer_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">)</span>
     <span class="c1"># Initialize package files</span>
-    <span class="n">create_main_module</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">create_package_root_modules</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
     <span class="n">create_test_directories</span><span class="p">(</span><span class="n">package_path</span><span class="p">)</span>
     <span class="n">create_output_directories</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="p">)</span>
-    <span class="n">create_tests_init</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
-    <span class="n">create_config_files</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">create_tests_init</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">create_config_files</span><span class="p">(</span><span class="n">package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
@@ -373,7 +377,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -406,6 +410,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
 
   
 

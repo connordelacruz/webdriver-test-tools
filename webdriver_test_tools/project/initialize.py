@@ -59,31 +59,35 @@ def create_package_directory(target_path, package_name):
 
 # Package Root
 
-def create_main_module(target_path, context):
-    """Creates __main__.py and __init__.py modules for test package
+def create_package_root_modules(target_path, context):
+    """Creates __main__.py, __init__.py, and data.py modules for test package
 
     :param target_path: The path to the test package directory
     :param context: Jinja context used to render template
     """
+    template_modules = [
+        '__main__.py',
+        'data.py',
+    ]
     target_path = os.path.abspath(target_path)
     template_path = templates.package_root.get_path()
-    create_file_from_template(template_path, target_path, '__main__.py', context)
+    # Create template modules
+    for template_module in template_modules:
+        create_file_from_template(template_path, target_path, template_module, context)
+    # Create __init__.py
     create_init(target_path)
 
 
 def create_test_directories(target_path):
-    """Creates base directories for test writing that are initially empty (data/ and pages/)
+    """Creates base directories for test writing that are initially empty.
+
+    As of version 2.2.0, this method only creates the pages/ directory.
 
     :param target_path: The path to the test package directory
     """
     target_path = os.path.abspath(target_path)
-    project_dirs = [
-            'data',
-            'pages',
-            ]
-    for project_dir in project_dirs:
-        dir_path = create_directory(target_path, project_dir)
-        create_init(dir_path)
+    dir_path = create_directory(target_path, 'pages')
+    create_init(dir_path)
 
 
 def create_output_directories(target_path, gitignore_files=True):
@@ -199,7 +203,7 @@ def initialize(target_path, package_name, project_title, gitignore_files=True, r
         create_gitignore(outer_path)
     package_path = create_package_directory(outer_path, package_name)
     # Initialize package files
-    create_main_module(package_path, context)
+    create_package_root_modules(package_path, context)
     create_test_directories(package_path)
     create_output_directories(package_path, gitignore_files)
     create_tests_init(package_path, context)

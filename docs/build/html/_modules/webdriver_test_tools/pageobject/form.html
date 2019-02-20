@@ -192,8 +192,8 @@
 <span class="sd">                        &#39;value2&#39;,</span>
 <span class="sd">                ]</span>
 
-<span class="sd">        &quot;&quot;&quot;</span></div>
-        <span class="k">pass</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="FormObject.fill_form"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_form">[docs]</a>    <span class="k">def</span> <span class="nf">fill_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_map</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fill the form element inputs</span>
@@ -202,16 +202,16 @@
 <span class="sd">            See :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`</span>
 <span class="sd">            for values to use for different input types</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span><span class="p">)</span></div>
-        <span class="n">actions</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">fill_form_inputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">input_map</span><span class="p">)</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span><span class="p">)</span>
+        <span class="n">actions</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">fill_form_inputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">input_map</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FormObject.submit_is_enabled"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled">[docs]</a>    <span class="k">def</span> <span class="nf">submit_is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Short hand function for checking if the submit button is enabled. Useful</span>
 <span class="sd">        for forms with JavaScript input validation</span>
 
 <span class="sd">        :return: True if submit is enabled, False if it&#39;s disabled</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="FormObject.click_submit"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.click_submit">[docs]</a>    <span class="k">def</span> <span class="nf">click_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shorthand function for scrolling to the submit button and clicking it.</span>
@@ -222,8 +222,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">submit_button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span>
         <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">to_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">submit_button</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">):</span></div></div>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_SUCCESS_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span></div></div>
 
 </pre></div>
 
@@ -237,7 +237,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -270,6 +270,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
 
   
 

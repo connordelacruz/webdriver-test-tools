@@ -103,8 +103,8 @@ Static Test Data
 ================
 
 Some tests may require static data for testing (e.g. login info for a registered
-user). These values can be stored in modules inside the ``<test_package>/data/``
-directory to keep them independent of test modules or page objects.
+user). These values can be stored in inside the ``<test_package>/data.py``
+module to keep them independent of test modules or page objects.
 
 
 Example
@@ -112,11 +112,11 @@ Example
 
 Suppose we have a user registration form that displays an error when registering
 with an email of an existing user. To test this functionality, we'll need to use
-an email that we know is already registered. We can add the following module to
-the ``data/`` directory and import it in our test modules:
+an email that we know is already registered. We can add the following value to
+the ``data`` module and import it in our test modules:
 
-.. literalinclude:: ../example/util-example/util_example/data/user.py
-    :caption: data/user.py
+.. literalinclude:: ../example/util-example/util_example/data.py
+    :caption: data.py
 
 We can then import it in our test cases. Since this data is independent of our
 test cases, it can be easily used in other tests (e.g. testing a sign in page).

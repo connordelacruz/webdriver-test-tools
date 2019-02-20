@@ -187,19 +187,19 @@
 <span class="sd">        :return: True if the modal is displayed, False otherwise</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">driver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span>
-        <span class="n">displayed</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODAL_LOCATOR</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MODAL_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">()</span></div>
-        <span class="k">return</span> <span class="n">displayed</span>
+        <span class="n">displayed</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODAL_LOCATOR</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MODAL_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">displayed</span></div>
 
 <div class="viewcode-block" id="ModalObject.click_close_button"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.click_close_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_close_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Click the modal close button&quot;&quot;&quot;</span></div>
-        <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">to_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CLOSE_LOCATOR</span><span class="p">))</span>
+        <span class="sd">&quot;&quot;&quot;Click the modal close button&quot;&quot;&quot;</span>
+        <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">to_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CLOSE_LOCATOR</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="ModalObject.get_modal_body"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body">[docs]</a>    <span class="k">def</span> <span class="nf">get_modal_body</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;If :attr:`self.MODAL_BODY_CLASS &lt;MODAL_BODY_CLASS&gt;` is set to a subclass of</span>
 <span class="sd">        :class:`BasePage &lt;webdriver_test_tools.pageobject.base.BasePage&gt;`,</span>
 <span class="sd">        returns an instance of that object. Otherwise, returns None</span>
-<span class="sd">        &quot;&quot;&quot;</span></div></div>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODAL_BODY_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span> <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MODAL_BODY_CLASS</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODAL_BODY_CLASS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span> <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MODAL_BODY_CLASS</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div></div>
 
 </pre></div>
 
@@ -213,7 +213,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -246,6 +246,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
 
   
 

@@ -177,13 +177,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">list_description</span> <span class="o">=</span> <span class="s1">&#39;Print a list of available tests and exit&#39;</span>
     <span class="n">list_help</span> <span class="o">=</span> <span class="n">list_description</span>
+    <span class="c1"># TODO: aliases=[&#39;ls&#39;]</span>
     <span class="n">list_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
         <span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">list_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">list_help</span><span class="p">,</span>
         <span class="n">parents</span><span class="o">=</span><span class="n">parents</span><span class="p">,</span>  <span class="c1"># TODO: always use test_parent_parser?</span>
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">formatter_class</span><span class="p">,</span>
         <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
-    <span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">list_parser</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">list_parser</span></div>
 
 
 <span class="c1"># Argument parsing functions</span>
@@ -194,8 +195,8 @@
 <span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
 <span class="sd">    :param args: The namespace returned by parser.parse_args()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">kwargs</span> <span class="o">=</span> <span class="n">parse_test_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
-    <span class="n">list_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="n">parse_test_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">list_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="list_tests"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.list.html#webdriver_test_tools.project.cmd.list.list_tests">[docs]</a><span class="k">def</span> <span class="nf">list_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span>
@@ -214,8 +215,8 @@
     <span class="k">for</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">](</span><span class="n">test_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
         <span class="n">test_cases</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">getTestCaseNames</span><span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span></div>
-            <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span><span class="p">))</span></div>
 </pre></div>
 
            </div>
@@ -228,7 +229,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -261,6 +262,7 @@
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
 
   
 
