@@ -72,8 +72,7 @@ Initializing the project should create the following files and directories:
     │   │   ├── site.py
     │   │   ├── test.py
     │   │   └── webdriver.py
-    │   ├── data/
-    │   │   └── __init__.py
+    │   ├── data.py
     │   ├── log/
     │   ├── pages/
     │   │   └── __init__.py
