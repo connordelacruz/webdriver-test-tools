@@ -249,8 +249,8 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">initialize_start</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Initialization was cancelled mid-operation.&#39;</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;warning&#39;</span><span class="p">](</span><span class="n">msg</span><span class="p">))</span></div>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;warning&#39;</span><span class="p">](</span><span class="n">msg</span><span class="p">))</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
 
 
 <span class="c1"># Subparser</span>
@@ -300,8 +300,8 @@
     <span class="n">optional_args</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s1">&#39;--no-readme&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_false&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="n">no_readme_help</span>
-    <span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">init_parser</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">init_parser</span></div>
 
 
 <span class="c1"># User Input Prompts</span>
@@ -324,8 +324,8 @@
         <span class="n">cmd</span><span class="o">.</span><span class="n">print_validation_change</span><span class="p">(</span>
             <span class="s1">&#39;&quot;</span><span class="si">{0}</span><span class="s1">&quot; was changed to &quot;</span><span class="si">{1}</span><span class="s1">&quot; to avoid syntax errors&#39;</span><span class="p">,</span>
             <span class="n">project_title</span><span class="p">,</span> <span class="n">validated_project_title</span>
-        <span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">validated_project_title</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">validated_project_title</span></div>
 
 </pre></div>
 
@@ -339,7 +339,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -372,6 +372,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
 
   
 

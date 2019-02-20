@@ -166,8 +166,8 @@
 <span class="sd">    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom</span>
 <span class="sd">        if False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;arguments[0].scrollIntoView(</span><span class="si">{}</span><span class="s1">);&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">align_to_top</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span></div>
-    <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
+    <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;arguments[0].scrollIntoView(</span><span class="si">{}</span><span class="s1">);&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">align_to_top</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="to_and_click"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.scroll.html#webdriver_test_tools.webdriver.actions.scroll.to_and_click">[docs]</a><span class="k">def</span> <span class="nf">to_and_click</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">align_to_top</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Short hand function for scrolling an element into view and clicking it</span>
@@ -177,8 +177,8 @@
 <span class="sd">    :param align_to_top: (Default = True) Aligns element to top of scrollable parent if True, aligns it to the bottom if</span>
 <span class="sd">        False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">align_to_top</span><span class="p">)</span></div>
-    <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+    <span class="n">into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">align_to_top</span><span class="p">)</span>
+    <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="to_position"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.scroll.html#webdriver_test_tools.webdriver.actions.scroll.to_position">[docs]</a><span class="k">def</span> <span class="nf">to_position</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Scroll window to the specified x,y coordinates</span>
@@ -189,8 +189,8 @@
 <span class="sd">    :param x: Horizontal scroll coordinate</span>
 <span class="sd">    :param y: Vertical scroll coordinate</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;window.scroll(</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">);&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
-    <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">)</span>
+    <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;window.scroll(</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">);&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="to_element"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.scroll.html#webdriver_test_tools.webdriver.actions.scroll.to_element">[docs]</a><span class="k">def</span> <span class="nf">to_element</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">align_to_top</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Vertically scroll to an element with an optional offset</span>
@@ -212,8 +212,8 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;return window.innerHeight;&#39;</span>
         <span class="n">viewport_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">))</span>
-        <span class="n">scroll_y</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="n">viewport_height</span> <span class="o">+</span> <span class="n">offset</span></div>
-    <span class="n">to_position</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scroll_y</span><span class="p">)</span>
+        <span class="n">scroll_y</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="n">viewport_height</span> <span class="o">+</span> <span class="n">offset</span>
+    <span class="n">to_position</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scroll_y</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="into_view_fixed_nav"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.scroll.html#webdriver_test_tools.webdriver.actions.scroll.into_view_fixed_nav">[docs]</a><span class="k">def</span> <span class="nf">into_view_fixed_nav</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_element</span><span class="p">,</span> <span class="n">fixed_element</span><span class="p">,</span> <span class="n">additional_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">align_to_top</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Scroll an element into view offset by the height of a fixed element so it&#39;s not obstructed</span>
@@ -225,8 +225,8 @@
 <span class="sd">    :param align_to_top: (Default = True) Aligns element to the top of scrollable parent if True, aligns it to the</span>
 <span class="sd">        bottom if False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">offset</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fixed_element</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="n">additional_offset</span></div>
-    <span class="n">to_element</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_element</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">align_to_top</span><span class="p">)</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fixed_element</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="n">additional_offset</span>
+    <span class="n">to_element</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_element</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">align_to_top</span><span class="p">)</span></div>
 
 
 </pre></div>
@@ -241,7 +241,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -274,6 +274,7 @@
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
 
   
 

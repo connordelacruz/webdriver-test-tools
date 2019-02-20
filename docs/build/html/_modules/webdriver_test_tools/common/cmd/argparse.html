@@ -189,8 +189,8 @@
                     <span class="k">if</span> <span class="n">sp_name</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
                         <span class="n">subparser_found</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">subparser_found</span><span class="p">:</span>
-                <span class="c1"># insert default in position specified by subcommand_arg_position</span></div></div>
-                <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">subcommand_arg_position</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                <span class="c1"># insert default in position specified by subcommand_arg_position</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">subcommand_arg_position</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div></div>
 
 
 <span class="c1"># Common argparse items</span>
@@ -217,8 +217,8 @@
                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Show this help message and exit&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">include_version</span><span class="p">:</span>
         <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-V&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
-                           <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Show version number and exit&#39;</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">generic_parent_parser</span>
+                           <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Show version number and exit&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">generic_parent_parser</span></div>
 
 
 </pre></div>
@@ -233,7 +233,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -266,6 +266,7 @@
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
 
   
 

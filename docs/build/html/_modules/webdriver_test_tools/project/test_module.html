@@ -185,8 +185,8 @@
         <span class="n">parse_new_args</span><span class="p">(</span><span class="n">package_name</span><span class="p">,</span> <span class="n">tests_module</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;run&#39;</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">parse_run_args</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span></div>
-        <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span></div>
 
 
 <span class="c1"># Argument Parser</span>
@@ -221,8 +221,8 @@
     <span class="p">)</span>
     <span class="n">run_parser</span> <span class="o">=</span> <span class="n">add_run_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">test_parent_parser</span><span class="p">])</span>
     <span class="n">list_parser</span> <span class="o">=</span> <span class="n">add_list_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">test_parent_parser</span><span class="p">])</span>
-    <span class="n">new_parser</span> <span class="o">=</span> <span class="n">add_new_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">parser</span>
+    <span class="n">new_parser</span> <span class="o">=</span> <span class="n">add_new_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span></div>
 </pre></div>
 
            </div>
@@ -235,7 +235,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -268,6 +268,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
 
   
 

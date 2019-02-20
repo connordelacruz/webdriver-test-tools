@@ -163,8 +163,8 @@
 <span class="c1"># Exceptions</span>
 
 <div class="viewcode-block" id="FileUtilError"><a class="viewcode-back" href="../../../webdriver_test_tools.common.files.html#webdriver_test_tools.common.files.FileUtilError">[docs]</a><span class="k">class</span> <span class="nc">FileUtilError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Exception raised if utility functions fail&quot;&quot;&quot;</span></div>
-    <span class="k">pass</span>
+    <span class="sd">&quot;&quot;&quot;Exception raised if utility functions fail&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
 
 <span class="c1"># File utility functions</span>
 
@@ -173,8 +173,8 @@
 <span class="sd">    unchanged</span>
 
 <span class="sd">    :param filepath: Path of the file to touch</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
-    <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="create_directory"><a class="viewcode-back" href="../../../webdriver_test_tools.common.files.html#webdriver_test_tools.common.files.create_directory">[docs]</a><span class="k">def</span> <span class="nf">create_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">directory_name</span><span class="p">):</span>
@@ -187,8 +187,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">directory_name</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">path</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span></div>
 
 
 <span class="c1"># Template utility functions</span>
@@ -203,8 +203,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">path</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">template_path</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">jinja2</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span>
-        <span class="n">loader</span><span class="o">=</span><span class="n">jinja2</span><span class="o">.</span><span class="n">FileSystemLoader</span><span class="p">(</span><span class="n">path</span> <span class="ow">or</span> <span class="s1">&#39;./&#39;</span><span class="p">)</span></div>
-    <span class="p">)</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+        <span class="n">loader</span><span class="o">=</span><span class="n">jinja2</span><span class="o">.</span><span class="n">FileSystemLoader</span><span class="p">(</span><span class="n">path</span> <span class="ow">or</span> <span class="s1">&#39;./&#39;</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="render_template_to_file"><a class="viewcode-back" href="../../../webdriver_test_tools.common.files.html#webdriver_test_tools.common.files.render_template_to_file">[docs]</a><span class="k">def</span> <span class="nf">render_template_to_file</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">target_path</span><span class="p">):</span>
@@ -215,8 +215,8 @@
 <span class="sd">    :param target_path: File path to write the rendered template to</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">file_contents</span> <span class="o">=</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_contents</span><span class="p">)</span>
+        <span class="n">file_contents</span> <span class="o">=</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_contents</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="create_file_from_template"><a class="viewcode-back" href="../../../webdriver_test_tools.common.files.html#webdriver_test_tools.common.files.create_file_from_template">[docs]</a><span class="k">def</span> <span class="nf">create_file_from_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span>
@@ -248,8 +248,8 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">overwrite</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file_target</span><span class="p">):</span>
         <span class="n">message_format</span> <span class="o">=</span> <span class="s1">&#39;File &quot;</span><span class="si">{}</span><span class="s1">&quot; already exists&#39;</span>
         <span class="k">raise</span> <span class="n">FileUtilError</span><span class="p">(</span><span class="n">message_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_target</span><span class="p">))</span>
-    <span class="n">render_template_to_file</span><span class="p">(</span><span class="n">file_template</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">file_target</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">file_target</span>
+    <span class="n">render_template_to_file</span><span class="p">(</span><span class="n">file_template</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">file_target</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">file_target</span></div>
 
 
 </pre></div>
@@ -264,7 +264,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -297,6 +297,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
 
   
 

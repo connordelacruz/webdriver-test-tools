@@ -190,8 +190,8 @@
 <span class="s1">                Skip specific test case classes or test methods.</span>
 <span class="s1">                Arguments should be in the format &lt;TestCase&gt;[.&lt;method&gt;]</span>
 <span class="s1">                &#39;&#39;&#39;</span><span class="p">)</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--skip&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;test&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">skip_help</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">test_parent_parser</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--skip&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;test&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">skip_help</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">test_parent_parser</span></div>
 
 
 <span class="c1"># Test Parsing Functions</span>
@@ -213,8 +213,8 @@
         <span class="n">class_map</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[])</span>
         <span class="c1"># If a function was specified, append it to the list of functions</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">class_map</span><span class="p">[</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
-    <span class="k">return</span> <span class="n">class_map</span>
+            <span class="n">class_map</span><span class="p">[</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">class_map</span></div>
 
 
 <div class="viewcode-block" id="parse_test_args"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.common.html#webdriver_test_tools.project.cmd.common.parse_test_args">[docs]</a><span class="k">def</span> <span class="nf">parse_test_args</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
@@ -229,8 +229,8 @@
     <span class="k">return</span> <span class="p">{</span>
         <span class="s1">&#39;test_class_map&#39;</span><span class="p">:</span> <span class="n">parse_test_names</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">test</span><span class="p">),</span>
         <span class="s1">&#39;skip_class_map&#39;</span><span class="p">:</span> <span class="n">parse_test_names</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">skip</span><span class="p">),</span>
-        <span class="s1">&#39;test_module_names&#39;</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">module</span><span class="p">,</span></div>
-    <span class="p">}</span>
+        <span class="s1">&#39;test_module_names&#39;</span><span class="p">:</span> <span class="n">args</span><span class="o">.</span><span class="n">module</span><span class="p">,</span>
+    <span class="p">}</span></div>
 
 
 <span class="c1"># Test Loading Functions</span>
@@ -248,8 +248,8 @@
 <span class="sd">    :return: List of test classes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">test_class_names</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">test_class_map</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">test_class_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-    <span class="n">skip_class_names</span> <span class="o">=</span> <span class="n">get_skip_class_names</span><span class="p">(</span><span class="n">skip_class_map</span><span class="p">)</span></div>
-    <span class="k">return</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="p">)</span>
+    <span class="n">skip_class_names</span> <span class="o">=</span> <span class="n">get_skip_class_names</span><span class="p">(</span><span class="n">skip_class_map</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_skip_class_names"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.common.html#webdriver_test_tools.project.cmd.common.get_skip_class_names">[docs]</a><span class="k">def</span> <span class="nf">get_skip_class_names</span><span class="p">(</span><span class="n">skip_class_map</span><span class="p">):</span>
@@ -263,8 +263,8 @@
     <span class="k">if</span> <span class="n">skip_class_map</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span>
             <span class="n">class_name</span> <span class="k">for</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">methods</span> <span class="ow">in</span> <span class="n">skip_class_map</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">methods</span>
-        <span class="p">]</span></div>
-    <span class="k">return</span> <span class="kc">None</span>
+        <span class="p">]</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
 </pre></div>
 
            </div>
@@ -277,7 +277,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz.
 
     </p>
   </div>
@@ -310,6 +310,7 @@
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
 
   
 
