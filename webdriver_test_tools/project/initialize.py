@@ -78,7 +78,6 @@ def create_package_root_modules(target_path, context):
     create_init(target_path)
 
 
-# TODO: update references in docs
 def create_test_directories(target_path):
     """Creates base directories for test writing that are initially empty.
 
