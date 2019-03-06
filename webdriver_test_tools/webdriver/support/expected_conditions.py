@@ -5,7 +5,6 @@ from webdriver_test_tools.common import utils
 
 
 # TODO: add inverse conditions for each? at least for consistency
-# TODO: make class names consistent with selenium's absurd naming conventions
 
 # Expected Condition Classes
 
@@ -53,8 +52,7 @@ class element_to_be_disabled:
         return not driver.find_element(*self.locator).is_enabled()
 
 
-# TODO: element_to_be_in_view? naming conventions for EC are weird
-class element_is_in_view:
+class element_to_be_in_view:
     """Custom wait condition for WebDriverWait() that uses JavaScript to check
     if an element is scrolled into view
     """

@@ -38,7 +38,7 @@ def in_view_change_test(driver, target_locator, wait_timeout=10):
 
     :return: True if target is scrolled into view before timeout, False otherwise
     """
-    in_view_checker = customEC.element_is_in_view(target_locator)
+    in_view_checker = customEC.element_to_be_in_view(target_locator)
     return expected_condition_test(driver, in_view_checker, wait_timeout)
 
 
