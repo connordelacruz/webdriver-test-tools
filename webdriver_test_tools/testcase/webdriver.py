@@ -176,16 +176,12 @@ class WebDriverTestCase(unittest.TestCase):
         """
         return '("{0}", "{1}")'.format(*locator)
 
-    # TODO: make sure assertions use methods that wrap expected condition classes
-    # TODO: add optional wait_timeout param to assertions
-    # TODO: update docstrings to include wait_timeout
-
     def assertExists(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element doesn't exist
 
         :param element_locator: webdriver locator tuple in the format
             ``(by.<attr>, <locator string>)``
-        :param msg: (optional) if specified, used as the error message on
+        :param msg: (Optional) if specified, used as the error message on
             failure
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
@@ -200,7 +196,7 @@ class WebDriverTestCase(unittest.TestCase):
 
         :param element_locator: webdriver locator tuple in the format
             ``(by.<attr>, <locator string>)``
-        :param msg: (optional) if specified, used as the error message on
+        :param msg: (Optional) if specified, used as the error message on
             failure
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
@@ -215,7 +211,7 @@ class WebDriverTestCase(unittest.TestCase):
 
         :param element_locator: webdriver locator tuple in the format
             ``(by.<attr>, <locator string>)``
-        :param msg: (optional) if specified, used as the error message on
+        :param msg: (Optional) if specified, used as the error message on
             failure
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
@@ -230,7 +226,7 @@ class WebDriverTestCase(unittest.TestCase):
 
         :param element_locator: webdriver locator tuple in the format
             ``(by.<attr>, <locator string>)``
-        :param msg: (optional) if specified, used as the error message on
+        :param msg: (Optional) if specified, used as the error message on
             failure
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
@@ -245,7 +241,7 @@ class WebDriverTestCase(unittest.TestCase):
 
         :param element_locator: webdriver locator tuple in the format
             ``(by.<attr>, <locator string>)``
-        :param msg: (optional) if specified, used as the error message on
+        :param msg: (Optional) if specified, used as the error message on
             failure
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
@@ -260,7 +256,7 @@ class WebDriverTestCase(unittest.TestCase):
 
         :param element_locator: webdriver locator tuple in the format
             ``(by.<attr>, <locator string>)``
-        :param msg: (optional) if specified, used as the error message on
+        :param msg: (Optional) if specified, used as the error message on
             failure
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
@@ -270,26 +266,32 @@ class WebDriverTestCase(unittest.TestCase):
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    # TODO: wait_timeout
     def assertEnabled(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element is disabled
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if not self.driver.find_element(*element_locator).is_enabled():
+        if not test.element_enabled_test(self.driver, element_locator, test_enabled=True, wait_timeout=wait_timeout):
             failure_message = 'Element is disabled'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    # TODO: wait_timeout
     def assertDisabled(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element is enabled
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if self.driver.find_element(*element_locator).is_enabled():
+        if not test.element_enabled_test(self.driver, element_locator, test_enabled=False, wait_timeout=wait_timeout):
             failure_message = 'Element is enabled'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
@@ -302,7 +304,7 @@ class WebDriverTestCase(unittest.TestCase):
         not match the current URL.
 
         :param expected_url: The expected URL
-        :param msg: (optional) if specified, used as the error message on
+        :param msg: (Optional) if specified, used as the error message on
             failure
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
@@ -323,7 +325,7 @@ class WebDriverTestCase(unittest.TestCase):
         not match the current URL.
 
         :param expected_url: The expected URL
-        :param msg: (optional) if specified, used as the error message on
+        :param msg: (Optional) if specified, used as the error message on
             failure
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
