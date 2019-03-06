@@ -146,3 +146,22 @@ def base_url_change_test(driver, expected_url, wait_timeout=10):
     url_checker = customEC.base_url_to_be(expected_url)
     return expected_condition_test(driver, url_checker, wait_timeout)
 
+
+def element_exists_test(driver, target_locator, test_exists=True, wait_timeout=10):
+    """Expected condition test for element existence changes (e.g. element that
+    gets added/removed dynamically)
+
+    :param driver: Selenium WebDriver object
+    :param target_locator: Tuple in the format (by,selector) used to locate target
+    :param test_exists: (Default = True) An optional variable describing what
+        the existence change is supposed to be. If True, test if the target does
+        exist. If False, test if the target no longer exists
+    :param wait_timeout: (Default = 10) Number of seconds to wait for expected
+        conditions to occur before timing out
+
+    :return: True if the existence of the target changes as expected, False
+        otherwise
+    """
+    exists_checker = customEC.element_to_exist(target_locator) if test_exists else customEC.element_to_not_exist(target_locator)
+    return expected_condition_test(driver, exists_checker, wait_timeout)
+

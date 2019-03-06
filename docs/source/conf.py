@@ -177,6 +177,7 @@ autodoc_member_order = 'bysource'
 # -- Options for intersphinx extension ---------------------------------------
 
 # Example configuration for intersphinx: refer to the Python standard library.
+# TODO: add selenium
 intersphinx_mapping = {
         'https://docs.python.org/': None,
         'randomuser': ('https://connordelacruz.com/python-randomuser', None),

@@ -18,6 +18,7 @@ __url__ = 'https://github.com/connordelacruz/webdriver-test-tools/'
 __documentation__ = 'https://connordelacruz.com/webdriver-test-tools/'
 __download__ = __url__ + 'archive/{}.tar.gz'.format(__version__)
 
+# TODO: look into upgrading
 __selenium__ = '3.11.0'
 
 __author__ = 'Connor de la Cruz'

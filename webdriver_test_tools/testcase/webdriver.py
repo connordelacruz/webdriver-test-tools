@@ -176,31 +176,36 @@ class WebDriverTestCase(unittest.TestCase):
         """
         return '("{0}", "{1}")'.format(*locator)
 
-
     # TODO: make sure assertions use methods that wrap expected condition classes
     # TODO: add optional wait_timeout param to assertions
     # TODO: update docstrings to include wait_timeout
 
-    # TODO: wait_timeout
-    def assertExists(self, element_locator, msg=None):
+    def assertExists(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element doesn't exist
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if not test.element_exists(self.driver, element_locator):
+        if not test.element_exists_test(self.driver, element_locator, test_exists=True, wait_timeout=wait_timeout):
             failure_message = 'No elements located using ' + self._locator_string(element_locator)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    # TODO: wait_timeout
-    def assertNotExists(self, element_locator, msg=None):
+    def assertNotExists(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element exists
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if test.element_exists(self.driver, element_locator):
+        if not test.element_exists_test(self.driver, element_locator, test_exists=False, wait_timeout=wait_timeout):
             failure_message = 'Elements located using ' + self._locator_string(element_locator)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
@@ -266,7 +271,7 @@ class WebDriverTestCase(unittest.TestCase):
             raise self.failureException(msg)
 
     # TODO: wait_timeout
-    def assertEnabled(self, element_locator, msg=None):
+    def assertEnabled(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element is disabled
 
         :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
@@ -278,7 +283,7 @@ class WebDriverTestCase(unittest.TestCase):
             raise self.failureException(msg)
 
     # TODO: wait_timeout
-    def assertDisabled(self, element_locator, msg=None):
+    def assertDisabled(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element is enabled
 
         :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
