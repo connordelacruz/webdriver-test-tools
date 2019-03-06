@@ -4,6 +4,9 @@ from . import test
 from webdriver_test_tools.common import utils
 
 
+# TODO: add expected conditions for all basic tests that don't have one
+
+
 class element_is_in_view(object):
     """Custom wait condition for WebDriverWait() that uses JavaScript to check if an
     element is scrolled into view

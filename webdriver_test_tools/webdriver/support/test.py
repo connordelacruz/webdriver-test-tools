@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_test_tools.webdriver.support import expected_conditions as customEC
 
 # TODO: consistent naming conventions
+# TODO: split up low level tests, expected condition tests into different modules and refactor
 
 
 # Element Tests
