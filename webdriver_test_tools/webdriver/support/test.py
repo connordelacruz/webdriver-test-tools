@@ -6,8 +6,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from webdriver_test_tools.webdriver.support import expected_conditions as customEC
 
-# TODO: consistent naming conventions
-# TODO: split up low level tests, expected condition tests into different modules and refactor
 
 # Expected Condition Tests
 
@@ -92,9 +90,7 @@ def base_url_change_test(driver, expected_url, wait_timeout=10):
     return expected_condition_test(driver, url_checker, wait_timeout)
 
 
-# TODO: make these names consistent with other tests
-
-def element_exists_test(driver, target_locator, test_exists=True, wait_timeout=10):
+def existence_change_test(driver, target_locator, test_exists=True, wait_timeout=10):
     """Expected condition test for element existence changes (e.g. element that
     gets added/removed dynamically)
 
@@ -113,8 +109,17 @@ def element_exists_test(driver, target_locator, test_exists=True, wait_timeout=1
     return expected_condition_test(driver, exists_checker, wait_timeout)
 
 
-def element_enabled_test(driver, target_locator, test_enabled=True, wait_timeout=10):
-    # TODO: doc
+def enabled_state_change_test(driver, target_locator, test_enabled=True, wait_timeout=10):
+    """Expected condition test for element enabled/disabled state changes
+
+    :param driver: Selenium WebDriver object
+    :param target_locator: Tuple in the format (by,selector) used to locate target
+    :param test_enabled: (Default = True) An optional variable describing what
+        the enabled/disabled state change is supposed to be. If True, test if
+        the target is enabled. If False, test if the target is disabled
+    :param wait_timeout: (Default = 10) Number of seconds to wait for expected
+        conditions to occur before timing out
+    """
     enabled_checker = customEC.element_to_be_enabled(target_locator) if test_enabled else customEC.element_to_be_disabled(target_locator)
     return expected_condition_test(driver, enabled_checker, wait_timeout)
 

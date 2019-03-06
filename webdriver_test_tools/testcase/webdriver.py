@@ -43,6 +43,12 @@ has additional assertions:
 | <WebDriverTestCase.assertBaseUrlChange>` | matches ``expected_url``            |
 +------------------------------------------+-------------------------------------+
 
+Each of these assertion methods accepts the following optional keyword arguments:
+
+- ``msg``: If specified, used as the error message on failure
+- ``wait_timeout``: (Default = 10) Number of seconds to wait for expected
+  conditions to occur before test fails
+
 .. _assertion methods: https://docs.python.org/library/unittest.html#assert-methods
 
 """
@@ -186,7 +192,7 @@ class WebDriverTestCase(unittest.TestCase):
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
         """
-        if not test.element_exists_test(self.driver, element_locator, test_exists=True, wait_timeout=wait_timeout):
+        if not test.existence_change_test(self.driver, element_locator, test_exists=True, wait_timeout=wait_timeout):
             failure_message = 'No elements located using ' + self._locator_string(element_locator)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
@@ -201,7 +207,7 @@ class WebDriverTestCase(unittest.TestCase):
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
         """
-        if not test.element_exists_test(self.driver, element_locator, test_exists=False, wait_timeout=wait_timeout):
+        if not test.existence_change_test(self.driver, element_locator, test_exists=False, wait_timeout=wait_timeout):
             failure_message = 'Elements located using ' + self._locator_string(element_locator)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
@@ -276,7 +282,7 @@ class WebDriverTestCase(unittest.TestCase):
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
         """
-        if not test.element_enabled_test(self.driver, element_locator, test_enabled=True, wait_timeout=wait_timeout):
+        if not test.enabled_state_change_test(self.driver, element_locator, test_enabled=True, wait_timeout=wait_timeout):
             failure_message = 'Element is disabled'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
@@ -291,7 +297,7 @@ class WebDriverTestCase(unittest.TestCase):
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
         """
-        if not test.element_enabled_test(self.driver, element_locator, test_enabled=False, wait_timeout=wait_timeout):
+        if not test.enabled_state_change_test(self.driver, element_locator, test_enabled=False, wait_timeout=wait_timeout):
             failure_message = 'Element is enabled'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
