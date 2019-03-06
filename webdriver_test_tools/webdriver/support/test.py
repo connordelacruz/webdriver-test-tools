@@ -1,6 +1,6 @@
 """Functions for commonly repeated test procedures"""
 
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -9,62 +9,7 @@ from webdriver_test_tools.webdriver.support import expected_conditions as custom
 # TODO: consistent naming conventions
 # TODO: split up low level tests, expected condition tests into different modules and refactor
 
-
-# Element Tests
-
-def element_exists(driver, element_locator):
-    """Returns True if the element exists, False if not
-
-    This function is just a wrapper that catches the NoSuchElementException thrown by
-    driver.find_element() and returns a boolean based on whether the exception occurred.
-    Used for test assertions.
-
-    :param driver: Selenium WebDriver object
-    :param element_locator: Tuple in the format (by,selector) used to locate target
-
-    :return: True if the element exists, False if not
-    """
-    exists = True
-    try:
-        driver.find_element(*element_locator)
-    except NoSuchElementException:
-        exists = False
-    return exists
-
-
-def is_scrolled_into_view(driver, element, fully_in_view=True):
-    """Returns True if the element is scrolled into view, False otherwise
-
-    Currently, Selenium doesn't offer a means of getting an element's location relative
-    to the viewport, so using JavaScript to determine whether the element is visible
-    within the viewport.
-
-    :param driver: Selenium WebDriver object
-    :param element: WebElement for the element to check
-    :param fully_in_view: (Default = True) If True, check that the element is fully in
-        view and not cut off. If False, check that it's at least partially in view
-
-    :return: True if the element is scrolled into view, False otherwise
-    """
-    # the JavaScript used to check if the element is in view.
-    script_string = '''
-    return function(el, strict) {
-        var rect = el.getBoundingClientRect();
-        var elemTop = rect.top;
-        var elemBottom = rect.bottom;
-
-        if (strict)
-            var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
-        else
-            isVisible = elemTop < window.innerHeight && elemBottom >= 0;
-        return isVisible;
-    }(arguments[0],arguments[1])
-    '''
-    return driver.execute_script(script_string, element, fully_in_view)
-
-
 # Expected Condition Tests
-# TODO: extract these to another module?
 
 def expected_condition_test(driver, ec_object, wait_timeout=10):
     """Test for an expected condition until wait timeout is reached
