@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.support.test &mdash; WebDriver Test Tools 2.2.0-alpha documentation</title>
+  <title>webdriver_test_tools.webdriver.support.test &mdash; WebDriver Test Tools 2.3.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.2
+                2.3
               </div>
             
           
@@ -157,70 +157,14 @@
   <h1>Source code for webdriver_test_tools.webdriver.support.test</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Functions for commonly repeated test procedures&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="k">import</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">NoSuchElementException</span>
+<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="k">import</span> <span class="n">TimeoutException</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="k">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="k">import</span> <span class="n">WebDriverWait</span>
 
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver.support</span> <span class="k">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">customEC</span>
 
-<span class="c1"># TODO: consistent naming conventions</span>
-
-
-<span class="c1"># Element Tests</span>
-
-<div class="viewcode-block" id="element_exists"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.element_exists">[docs]</a><span class="k">def</span> <span class="nf">element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns True if the element exists, False if not</span>
-
-<span class="sd">    This function is just a wrapper that catches the NoSuchElementException thrown by</span>
-<span class="sd">    driver.find_element() and returns a boolean based on whether the exception occurred.</span>
-<span class="sd">    Used for test assertions.</span>
-
-<span class="sd">    :param driver: Selenium WebDriver object</span>
-<span class="sd">    :param element_locator: Tuple in the format (by,selector) used to locate target</span>
-
-<span class="sd">    :return: True if the element exists, False if not</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">exists</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">element_locator</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
-        <span class="n">exists</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">return</span> <span class="n">exists</span></div>
-
-
-<div class="viewcode-block" id="is_scrolled_into_view"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.is_scrolled_into_view">[docs]</a><span class="k">def</span> <span class="nf">is_scrolled_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">fully_in_view</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns True if the element is scrolled into view, False otherwise</span>
-
-<span class="sd">    Currently, Selenium doesn&#39;t offer a means of getting an element&#39;s location relative</span>
-<span class="sd">    to the viewport, so using JavaScript to determine whether the element is visible</span>
-<span class="sd">    within the viewport.</span>
-
-<span class="sd">    :param driver: Selenium WebDriver object</span>
-<span class="sd">    :param element: WebElement for the element to check</span>
-<span class="sd">    :param fully_in_view: (Default = True) If True, check that the element is fully in</span>
-<span class="sd">        view and not cut off. If False, check that it&#39;s at least partially in view</span>
-
-<span class="sd">    :return: True if the element is scrolled into view, False otherwise</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># the JavaScript used to check if the element is in view.</span>
-    <span class="n">script_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">    return function(el, strict) {</span>
-<span class="s1">        var rect = el.getBoundingClientRect();</span>
-<span class="s1">        var elemTop = rect.top;</span>
-<span class="s1">        var elemBottom = rect.bottom;</span>
-
-<span class="s1">        if (strict)</span>
-<span class="s1">            var isVisible = (elemTop &gt;= 0) &amp;&amp; (elemBottom &lt;= window.innerHeight);</span>
-<span class="s1">        else</span>
-<span class="s1">            isVisible = elemTop &lt; window.innerHeight &amp;&amp; elemBottom &gt;= 0;</span>
-<span class="s1">        return isVisible;</span>
-<span class="s1">    }(arguments[0],arguments[1])</span>
-<span class="s1">    &#39;&#39;&#39;</span>
-    <span class="k">return</span> <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">script_string</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">fully_in_view</span><span class="p">)</span></div>
-
 
 <span class="c1"># Expected Condition Tests</span>
-<span class="c1"># TODO: extract these to another module?</span>
 
 <div class="viewcode-block" id="expected_condition_test"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.expected_condition_test">[docs]</a><span class="k">def</span> <span class="nf">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">ec_object</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Test for an expected condition until wait timeout is reached</span>
@@ -251,7 +195,7 @@
 
 <span class="sd">    :return: True if target is scrolled into view before timeout, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">in_view_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">element_is_in_view</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span>
+    <span class="n">in_view_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">element_to_be_in_view</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">in_view_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
 
 
@@ -302,6 +246,40 @@
     <span class="n">url_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">base_url_to_be</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="existence_change_test"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.existence_change_test">[docs]</a><span class="k">def</span> <span class="nf">existence_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">test_exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Expected condition test for element existence changes (e.g. element that</span>
+<span class="sd">    gets added/removed dynamically)</span>
+
+<span class="sd">    :param driver: Selenium WebDriver object</span>
+<span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate target</span>
+<span class="sd">    :param test_exists: (Default = True) An optional variable describing what</span>
+<span class="sd">        the existence change is supposed to be. If True, test if the target does</span>
+<span class="sd">        exist. If False, test if the target no longer exists</span>
+<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected</span>
+<span class="sd">        conditions to occur before timing out</span>
+
+<span class="sd">    :return: True if the existence of the target changes as expected, False</span>
+<span class="sd">        otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">exists_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">element_to_exist</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span> <span class="k">if</span> <span class="n">test_exists</span> <span class="k">else</span> <span class="n">customEC</span><span class="o">.</span><span class="n">element_to_not_exist</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">exists_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="enabled_state_change_test"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.enabled_state_change_test">[docs]</a><span class="k">def</span> <span class="nf">enabled_state_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">test_enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Expected condition test for element enabled/disabled state changes</span>
+
+<span class="sd">    :param driver: Selenium WebDriver object</span>
+<span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate target</span>
+<span class="sd">    :param test_enabled: (Default = True) An optional variable describing what</span>
+<span class="sd">        the enabled/disabled state change is supposed to be. If True, test if</span>
+<span class="sd">        the target is enabled. If False, test if the target is disabled</span>
+<span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected</span>
+<span class="sd">        conditions to occur before timing out</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">enabled_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">element_to_be_enabled</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span> <span class="k">if</span> <span class="n">test_enabled</span> <span class="k">else</span> <span class="n">customEC</span><span class="o">.</span><span class="n">element_to_be_disabled</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">enabled_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
+
 </pre></div>
 
            </div>
@@ -336,7 +314,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.2.0-alpha',
+            VERSION:'2.3.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
