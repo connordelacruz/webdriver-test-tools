@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.support.expected_conditions module &mdash; WebDriver Test Tools 2.2.0-alpha documentation</title>
+  <title>webdriver_test_tools.webdriver.support.expected_conditions module &mdash; WebDriver Test Tools 2.3.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.2
+                2.3
               </div>
             
           
@@ -180,20 +180,53 @@
 <span id="webdriver-test-tools-webdriver-support-expected-conditions-module"></span><h1>webdriver_test_tools.webdriver.support.expected_conditions module<a class="headerlink" href="#module-webdriver_test_tools.webdriver.support.expected_conditions" title="Permalink to this headline">¶</a></h1>
 <p>Custom expected condition classes</p>
 <dl class="class">
-<dt id="webdriver_test_tools.webdriver.support.expected_conditions.element_is_in_view">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.webdriver.support.expected_conditions.</code><code class="descname">element_is_in_view</code><span class="sig-paren">(</span><em>locator</em>, <em>fully_in_view=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/expected_conditions.html#element_is_in_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.expected_conditions.element_is_in_view" title="Permalink to this definition">¶</a></dt>
+<dt id="webdriver_test_tools.webdriver.support.expected_conditions.element_to_exist">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.webdriver.support.expected_conditions.</code><code class="descname">element_to_exist</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/expected_conditions.html#element_to_exist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.expected_conditions.element_to_exist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Custom wait condition for WebDriverWait() that uses JavaScript to check if an
-element is scrolled into view</p>
+<p>Custom wait condition for WebdriverWait() that checks if an element
+exists</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="webdriver_test_tools.webdriver.support.expected_conditions.element_to_not_exist">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.webdriver.support.expected_conditions.</code><code class="descname">element_to_not_exist</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/expected_conditions.html#element_to_not_exist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.expected_conditions.element_to_not_exist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Custom wait condition for WebdriverWait() that checks if an element
+does not exists</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="webdriver_test_tools.webdriver.support.expected_conditions.element_to_be_enabled">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.webdriver.support.expected_conditions.</code><code class="descname">element_to_be_enabled</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/expected_conditions.html#element_to_be_enabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.expected_conditions.element_to_be_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Custom wait condition for WebdriverWait() that checks if an element
+is enabled</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="webdriver_test_tools.webdriver.support.expected_conditions.element_to_be_disabled">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.webdriver.support.expected_conditions.</code><code class="descname">element_to_be_disabled</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/expected_conditions.html#element_to_be_disabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.expected_conditions.element_to_be_disabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Custom wait condition for WebdriverWait() that checks if an element
+is disabled</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="webdriver_test_tools.webdriver.support.expected_conditions.element_to_be_in_view">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.webdriver.support.expected_conditions.</code><code class="descname">element_to_be_in_view</code><span class="sig-paren">(</span><em>locator</em>, <em>fully_in_view=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/expected_conditions.html#element_to_be_in_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.expected_conditions.element_to_be_in_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Custom wait condition for WebDriverWait() that uses JavaScript to check
+if an element is scrolled into view</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="webdriver_test_tools.webdriver.support.expected_conditions.base_url_to_be">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.webdriver.support.expected_conditions.</code><code class="descname">base_url_to_be</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/expected_conditions.html#base_url_to_be"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.expected_conditions.base_url_to_be" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>An expectation for checking the current url, ignoring query strings (i.e. strips
-‘?’ and everything after it and only looks at the base URL)</p>
-<p>url is the expected URL, which must be an exact match with the current base URL</p>
+<p>An expectation for checking the current url, ignoring query strings
+(i.e. strips ‘?’ and everything after it and only looks at the base URL)</p>
+<p>url is the expected URL, which must be an exact match with the current base
+URL</p>
 <p>returns True if the base URL matches, false otherwise</p>
 </dd></dl>
 
@@ -241,7 +274,7 @@ element is scrolled into view</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.2.0-alpha',
+            VERSION:'2.3.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
