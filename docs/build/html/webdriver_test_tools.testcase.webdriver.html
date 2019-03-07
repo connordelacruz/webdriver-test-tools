@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.testcase.webdriver module &mdash; WebDriver Test Tools 2.2.0-alpha documentation</title>
+  <title>webdriver_test_tools.testcase.webdriver module &mdash; WebDriver Test Tools 2.3.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.2
+                2.3
               </div>
             
           
@@ -226,6 +226,12 @@ matches <code class="docutils literal notranslate"><span class="pre">expected_ur
 </tr>
 </tbody>
 </table>
+<p>Each of these assertion methods accepts the following optional keyword arguments:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">msg</span></code>: If specified, used as the error message on failure</li>
+<li><code class="docutils literal notranslate"><span class="pre">wait_timeout</span></code>: (Default = 10) Number of seconds to wait for expected
+conditions to occur before test fails</li>
+</ul>
 <dl class="class">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="descname">WebDriverTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="Permalink to this definition">¶</a></dt>
@@ -410,15 +416,19 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists">
-<code class="descname">assertExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element doesn’t exist</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+<li><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
+<li><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
+expected conditions to occur before test fails</li>
 </ul>
 </td>
 </tr>
@@ -428,15 +438,19 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists">
-<code class="descname">assertNotExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertNotExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element exists</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+<li><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
+<li><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
+expected conditions to occur before test fails</li>
 </ul>
 </td>
 </tr>
@@ -446,15 +460,19 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView">
-<code class="descname">assertInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element isn’t scrolled into view</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+<li><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
+<li><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
+expected conditions to occur before test fails</li>
 </ul>
 </td>
 </tr>
@@ -464,15 +482,19 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView">
-<code class="descname">assertNotInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertNotInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is scrolled into view</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+<li><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
+<li><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
+expected conditions to occur before test fails</li>
 </ul>
 </td>
 </tr>
@@ -482,15 +504,19 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible">
-<code class="descname">assertVisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertVisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertVisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertVisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element isn’t visible</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+<li><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
+<li><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
+expected conditions to occur before test fails</li>
 </ul>
 </td>
 </tr>
@@ -500,15 +526,19 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible">
-<code class="descname">assertInvisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInvisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertInvisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInvisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is visible</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+<li><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
+<li><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
+expected conditions to occur before test fails</li>
 </ul>
 </td>
 </tr>
@@ -518,15 +548,19 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled">
-<code class="descname">assertEnabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertEnabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertEnabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertEnabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is disabled</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+<li><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
+<li><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
+expected conditions to occur before test fails</li>
 </ul>
 </td>
 </tr>
@@ -536,15 +570,19 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled">
-<code class="descname">assertDisabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertDisabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertDisabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertDisabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is enabled</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – WebDriver locator tuple in the format <code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+<li><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
+<li><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
+expected conditions to occur before test fails</li>
 </ul>
 </td>
 </tr>
@@ -554,18 +592,21 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange">
-<code class="descname">assertUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if the URL doesn’t match the expected URL.</p>
-<p>Assertion uses webdriver_test_tools.test.url_change_test() using the default 10
-second wait timeout before determining that expected_url does not match the
-current URL.</p>
+<p>Assertion uses webdriver_test_tools.test.url_change_test() using the
+specified <code class="docutils literal notranslate"><span class="pre">wait_timeout</span></code> before determining that expected_url does
+not match the current URL.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>expected_url</strong> – The expected URL</li>
-<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+<li><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
+expected conditions to occur before test fails</li>
 </ul>
 </td>
 </tr>
@@ -575,18 +616,22 @@ current URL.</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange">
-<code class="descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fail if the URL (ignoring query strings) doesn’t match the expected URL.</p>
-<p>Assertion uses webdriver_test_tools.test.url_change_test() using the default 10
-second wait timeout before determining that expected_url does not match the
-current URL.</p>
+<code class="descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fail if the URL (ignoring query strings) doesn’t match the expected
+URL.</p>
+<p>Assertion uses webdriver_test_tools.test.url_change_test() using the
+specified <code class="docutils literal notranslate"><span class="pre">wait_timeout</span></code> before determining that expected_url does
+not match the current URL.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>expected_url</strong> – The expected URL</li>
-<li><strong>msg</strong> – (Optional) If specified, used as the error message on failure</li>
+<li><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</li>
+<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
+expected conditions to occur before test fails</li>
 </ul>
 </td>
 </tr>
@@ -712,7 +757,7 @@ will only be generated for mobile browsers</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.2.0-alpha',
+            VERSION:'2.3.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

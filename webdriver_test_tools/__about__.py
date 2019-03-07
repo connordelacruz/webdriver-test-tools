@@ -10,7 +10,7 @@ __title__ = 'webdriver_test_tools'
 __project__ = 'WebDriver Test Tools'
 __summary__ = 'A front-end testing framework using Selenium WebDriver and Python'
 
-__release__ = '2.2.0-alpha'
+__release__ = '2.3.0-alpha'
 __version__ = __release__.split('-')[0]
 __devstatus__ = 'Development Status :: 3 - Alpha'
 
@@ -18,6 +18,7 @@ __url__ = 'https://github.com/connordelacruz/webdriver-test-tools/'
 __documentation__ = 'https://connordelacruz.com/webdriver-test-tools/'
 __download__ = __url__ + 'archive/{}.tar.gz'.format(__version__)
 
+# TODO: look into upgrading
 __selenium__ = '3.11.0'
 
 __author__ = 'Connor de la Cruz'

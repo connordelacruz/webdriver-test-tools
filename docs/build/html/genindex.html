@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; WebDriver Test Tools 2.2.0-alpha documentation</title>
+  <title>Index &mdash; WebDriver Test Tools 2.3.0-alpha documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                2.2
+                2.3
               </div>
             
           
@@ -405,9 +405,15 @@
 </li>
       <li><a href="webdriver_test_tools.testcase.edge.html#webdriver_test_tools.testcase.edge.EdgeTestCase">EdgeTestCase (class in webdriver_test_tools.testcase.edge)</a>
 </li>
-      <li><a href="webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.element_exists">element_exists() (in module webdriver_test_tools.webdriver.support.test)</a>
+      <li><a href="webdriver_test_tools.webdriver.support.expected_conditions.html#webdriver_test_tools.webdriver.support.expected_conditions.element_to_be_disabled">element_to_be_disabled (class in webdriver_test_tools.webdriver.support.expected_conditions)</a>
 </li>
-      <li><a href="webdriver_test_tools.webdriver.support.expected_conditions.html#webdriver_test_tools.webdriver.support.expected_conditions.element_is_in_view">element_is_in_view (class in webdriver_test_tools.webdriver.support.expected_conditions)</a>
+      <li><a href="webdriver_test_tools.webdriver.support.expected_conditions.html#webdriver_test_tools.webdriver.support.expected_conditions.element_to_be_enabled">element_to_be_enabled (class in webdriver_test_tools.webdriver.support.expected_conditions)</a>
+</li>
+      <li><a href="webdriver_test_tools.webdriver.support.expected_conditions.html#webdriver_test_tools.webdriver.support.expected_conditions.element_to_be_in_view">element_to_be_in_view (class in webdriver_test_tools.webdriver.support.expected_conditions)</a>
+</li>
+      <li><a href="webdriver_test_tools.webdriver.support.expected_conditions.html#webdriver_test_tools.webdriver.support.expected_conditions.element_to_exist">element_to_exist (class in webdriver_test_tools.webdriver.support.expected_conditions)</a>
+</li>
+      <li><a href="webdriver_test_tools.webdriver.support.expected_conditions.html#webdriver_test_tools.webdriver.support.expected_conditions.element_to_not_exist">element_to_not_exist (class in webdriver_test_tools.webdriver.support.expected_conditions)</a>
 </li>
       <li><a href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE">ENABLE (webdriver_test_tools.config.browser.BrowserStackConfig attribute)</a>
 </li>
@@ -422,6 +428,10 @@
       <li><a href="webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.enable_headless">enable_headless() (in module webdriver_test_tools.project.test_factory)</a>
 </li>
       <li><a href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS">ENABLED_BROWSERS (webdriver_test_tools.config.browser.BrowserConfig attribute)</a>
+</li>
+      <li><a href="webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.enabled_state_change_test">enabled_state_change_test() (in module webdriver_test_tools.webdriver.support.test)</a>
+</li>
+      <li><a href="webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.existence_change_test">existence_change_test() (in module webdriver_test_tools.webdriver.support.test)</a>
 </li>
       <li><a href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR">EXPAND_BUTTON_LOCATOR (webdriver_test_tools.pageobject.nav.CollapsibleNavObject attribute)</a>
 </li>
@@ -629,10 +639,10 @@
 </li>
       <li><a href="webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.in_view_change_test">in_view_change_test() (in module webdriver_test_tools.webdriver.support.test)</a>
 </li>
-      <li><a href="webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.initialize">initialize() (in module webdriver_test_tools.project.initialize)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.initialize">initialize() (in module webdriver_test_tools.project.initialize)</a>
+</li>
       <li><a href="webdriver_test_tools.webdriver.locate.html#webdriver_test_tools.webdriver.locate.input_elements">input_elements() (in module webdriver_test_tools.webdriver.locate)</a>
 </li>
       <li><a href="webdriver_test_tools.webdriver.actions.scroll.html#webdriver_test_tools.webdriver.actions.scroll.into_view">into_view() (in module webdriver_test_tools.webdriver.actions.scroll)</a>
@@ -642,8 +652,6 @@
       <li><a href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.is_displayed">is_displayed() (webdriver_test_tools.pageobject.modal.ModalObject method)</a>
 </li>
       <li><a href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.is_expanded">is_expanded() (webdriver_test_tools.pageobject.nav.CollapsibleNavObject method)</a>
-</li>
-      <li><a href="webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.is_scrolled_into_view">is_scrolled_into_view() (in module webdriver_test_tools.webdriver.support.test)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1100,7 +1108,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.2.0-alpha',
+            VERSION:'2.3.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
