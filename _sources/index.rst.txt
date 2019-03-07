@@ -7,6 +7,7 @@ WebDriver Test Tools
     
    README
    test_projects
+   installation
    example_project
    additional_browsers
    utilities
