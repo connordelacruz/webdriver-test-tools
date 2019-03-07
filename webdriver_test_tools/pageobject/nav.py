@@ -1,8 +1,8 @@
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 
 from webdriver_test_tools.pageobject import BasePage
 from webdriver_test_tools.webdriver import actions
-from webdriver_test_tools.webdriver.support import test
 
 
 class NavObject(BasePage):
@@ -88,9 +88,10 @@ class CollapsibleNavObject(NavObject):
 
         :return: True if the nav menu is expanded, False if it's collapsed
         """
-        driver = self.driver
-        expanded = test.element_exists(driver, self.MENU_CONTAINER_LOCATOR) and self.find_element(
-            self.MENU_CONTAINER_LOCATOR).is_displayed()
+        try:
+            expanded = self.find_element(self.MENU_CONTAINER_LOCATOR).is_displayed()
+        except NoSuchElementException:
+            expanded = False
         return expanded
 
     def click_expand_button(self):

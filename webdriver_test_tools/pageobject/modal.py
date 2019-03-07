@@ -1,6 +1,7 @@
+from selenium.common.exceptions import NoSuchElementException
+
 from webdriver_test_tools.pageobject import BasePage
 from webdriver_test_tools.webdriver import actions
-from webdriver_test_tools.webdriver.support import test
 
 
 class ModalObject(BasePage):
@@ -29,8 +30,10 @@ class ModalObject(BasePage):
 
         :return: True if the modal is displayed, False otherwise
         """
-        driver = self.driver
-        displayed = test.element_exists(driver, self.MODAL_LOCATOR) and self.find_element(self.MODAL_LOCATOR).is_displayed()
+        try:
+            displayed = self.find_element(self.MODAL_LOCATOR).is_displayed()
+        except NoSuchElementException:
+            displayed = False
         return displayed
 
     def click_close_button(self):

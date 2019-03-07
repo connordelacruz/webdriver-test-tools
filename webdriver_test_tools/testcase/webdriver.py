@@ -43,6 +43,12 @@ has additional assertions:
 | <WebDriverTestCase.assertBaseUrlChange>` | matches ``expected_url``            |
 +------------------------------------------+-------------------------------------+
 
+Each of these assertion methods accepts the following optional keyword arguments:
+
+- ``msg``: If specified, used as the error message on failure
+- ``wait_timeout``: (Default = 10) Number of seconds to wait for expected
+  conditions to occur before test fails
+
 .. _assertion methods: https://docs.python.org/library/unittest.html#assert-methods
 
 """
@@ -176,122 +182,164 @@ class WebDriverTestCase(unittest.TestCase):
         """
         return '("{0}", "{1}")'.format(*locator)
 
-    def assertExists(self, element_locator, msg=None):
+    def assertExists(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element doesn't exist
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if not test.element_exists(self.driver, element_locator):
+        if not test.existence_change_test(self.driver, element_locator, test_exists=True, wait_timeout=wait_timeout):
             failure_message = 'No elements located using ' + self._locator_string(element_locator)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    def assertNotExists(self, element_locator, msg=None):
+    def assertNotExists(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element exists
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if test.element_exists(self.driver, element_locator):
+        if not test.existence_change_test(self.driver, element_locator, test_exists=False, wait_timeout=wait_timeout):
             failure_message = 'Elements located using ' + self._locator_string(element_locator)
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    def assertInView(self, element_locator, msg=None):
+    def assertInView(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element isn't scrolled into view
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if not test.in_view_change_test(self.driver, element_locator):
+        if not test.in_view_change_test(self.driver, element_locator, wait_timeout=wait_timeout):
             failure_message = 'Element is not scrolled into view'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    def assertNotInView(self, element_locator, msg=None):
+    def assertNotInView(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element is scrolled into view
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if test.in_view_change_test(self.driver, element_locator):
+        if test.in_view_change_test(self.driver, element_locator, wait_timeout=wait_timeout):
             failure_message = 'Element is scrolled into view'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    def assertVisible(self, element_locator, msg=None):
+    def assertVisible(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element isn't visible
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if not test.visibility_change_test(self.driver, element_locator):
+        if not test.visibility_change_test(self.driver, element_locator, wait_timeout=wait_timeout):
             failure_message = 'Element is not visible'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    def assertInvisible(self, element_locator, msg=None):
+    def assertInvisible(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element is visible
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if not test.visibility_change_test(self.driver, element_locator, test_visible=False):
+        if not test.visibility_change_test(self.driver, element_locator, test_visible=False, wait_timeout=wait_timeout):
             failure_message = 'Element is visible'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    def assertEnabled(self, element_locator, msg=None):
+    def assertEnabled(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element is disabled
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if not self.driver.find_element(*element_locator).is_enabled():
+        if not test.enabled_state_change_test(self.driver, element_locator, test_enabled=True, wait_timeout=wait_timeout):
             failure_message = 'Element is disabled'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    def assertDisabled(self, element_locator, msg=None):
+    def assertDisabled(self, element_locator, msg=None, wait_timeout=10):
         """Fail if element is enabled
 
-        :param element_locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param element_locator: webdriver locator tuple in the format
+            ``(by.<attr>, <locator string>)``
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if self.driver.find_element(*element_locator).is_enabled():
+        if not test.enabled_state_change_test(self.driver, element_locator, test_enabled=False, wait_timeout=wait_timeout):
             failure_message = 'Element is enabled'
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    def assertUrlChange(self, expected_url, msg=None):
+    def assertUrlChange(self, expected_url, msg=None, wait_timeout=10):
         """Fail if the URL doesn't match the expected URL.
 
-        Assertion uses webdriver_test_tools.test.url_change_test() using the default 10
-        second wait timeout before determining that expected_url does not match the
-        current URL.
+        Assertion uses webdriver_test_tools.test.url_change_test() using the
+        specified ``wait_timeout`` before determining that expected_url does
+        not match the current URL.
 
         :param expected_url: The expected URL
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if not test.url_change_test(self.driver, expected_url):
-            failure_message = 'Current URL = {}, expected URL = {}'.format(self.driver.current_url, expected_url)
+        if not test.url_change_test(self.driver, expected_url, wait_timeout=wait_timeout):
+            failure_message = 'Current URL = {}, expected URL = {}'.format(
+                self.driver.current_url, expected_url
+            )
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    def assertBaseUrlChange(self, expected_url, msg=None):
-        """Fail if the URL (ignoring query strings) doesn't match the expected URL.
+    def assertBaseUrlChange(self, expected_url, msg=None, wait_timeout=10):
+        """Fail if the URL (ignoring query strings) doesn't match the expected
+        URL.
 
-        Assertion uses webdriver_test_tools.test.url_change_test() using the default 10
-        second wait timeout before determining that expected_url does not match the
-        current URL.
+        Assertion uses webdriver_test_tools.test.url_change_test() using the
+        specified ``wait_timeout`` before determining that expected_url does
+        not match the current URL.
 
         :param expected_url: The expected URL
-        :param msg: (Optional) If specified, used as the error message on failure
+        :param msg: (Optional) if specified, used as the error message on
+            failure
+        :param wait_timeout: (Default = 10) Number of seconds to wait for
+            expected conditions to occur before test fails
         """
-        if not test.base_url_change_test(self.driver, expected_url):
+        if not test.base_url_change_test(self.driver, expected_url, wait_timeout=wait_timeout):
             failure_message = 'Current base URL = {}, expected base URL = {}'.format(
-                utils.get_base_url(self.driver.current_url), expected_url)
+                utils.get_base_url(self.driver.current_url), expected_url
+            )
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
