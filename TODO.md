@@ -2,16 +2,9 @@
 # Installation
 
 * Add full installation doc
-* `brew install chromedriver geckodriver`
+* How to install drivers w/ `brew`
 
-## Troubleshooting
+# Example
 
-### General
-
-* `brew doctor`?
-
-
-### chromedriver
-
-* `brew install cask chromedriver`
+* Use `new` command prompts instead of flags?
 
