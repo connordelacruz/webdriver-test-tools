@@ -54,7 +54,15 @@ underscores and it cannot start with a number. For this example, we’ll call it
     Project initialized.
     
     To get started, set the SITE_URL for the project in example_package/config/site.py 
-    
+
+    To create a new test, run:
+       python -m example_package new test <module_name> <TestCaseClass>
+
+    To create a new page object, run:
+       python -m example_package new page <module_name> <PageObjectClass>
+
+    For more information, visit <https://connordelacruz.com/webdriver-test-tools/>
+
 Initializing the project should create the following files and directories:
 
 .. code-block:: none
@@ -90,6 +98,11 @@ After initializing the test project, run:
 
 Installing with the ``-e`` flag will update the package automatically when
 changes are made to the source code.
+
+.. note::
+
+   If you don't want to install test project packages, you can still run them
+   from the project root directory using ``python -m <test_package>``.
 
 
 Configure site URLs
@@ -133,10 +146,34 @@ module:
 
 .. code-block:: none
 
-    python -m example_package new page home HomePage
+    python -m example_package new page
 
-This will create the file ``pages/home.py`` with a page object class
-``HomePage``.
+You will be prompted to enter a name for the new module, a class name for the
+new page object, and an optional description for the page object. We'll call the
+new page module ``home`` and the new page object class ``HomePage``:
+
+.. code-block:: none
+   :caption: New page object prompt
+   :emphasize-lines: 2,5,8
+
+   Enter a file name for the new page module
+   > Module file name: home
+   
+   Enter a name for the initial page object class
+   > Page object class name: HomePage
+   
+   (Optional) Enter description of the new page object class
+   > Description []:
+
+This will create the file ``example_package/pages/home.py``.
+
+.. note::
+
+   For more information on the ``new page`` command, run:
+
+   ::
+
+      python -m example_package new page --help
 
 
 Locating page elements
@@ -161,8 +198,10 @@ text. Add ``HEADING`` and ``INFO_LINK`` variables to the ``Locator`` subclass:
     :emphasize-lines: 7-8
 
 
-The utility function ``locate.by_element_text()`` returns an XPATH locator for
-elements with the specified text.
+.. note::
+
+   The utility function ``locate.by_element_text()`` returns an XPATH locator
+   for elements with the specified text.
 
 
 Interacting with page elements
@@ -176,8 +215,10 @@ For our example tests, we’ll want to look at the heading text and click on the
     :pyobject: HomePage
     :emphasize-lines: 12-14,16-18
 
-The ``BasePage`` method ``self.find_element(locator)`` is shorthand for
-``self.driver.find_element(*locator)``. 
+.. note::
+
+   The ``BasePage`` method ``self.find_element(locator)`` is shorthand for
+   ``self.driver.find_element(*locator)``. 
 
 
 Add a test
@@ -191,28 +232,50 @@ test case. Run the following command to create a new test module:
 
 .. code-block:: none
 
-    python -m example_package new test home HomePageTestCase -d "Really contrived example test case"
+    python -m example_package new test
 
-This will create the file ``tests/home.py`` with a test case class
-``HomePageTestCase``. The ``-d`` argument is used to add a description to the
-test case's docstring.
+You will be prompted to enter a name for the new module, a class name for the
+test case, and an optional description for the test case class. We'll call the
+new test module ``home`` and the new test case class ``HomePageTestCase`` with
+the description **"Really contrived example test case"**:
 
-In ``tests/home.py``, import the ``HomePage`` class created in the previous step.
+.. code-block:: none
+   :caption: New test prompt
+   :emphasize-lines: 2,5,8
+
+   Enter a file name for the new test module
+   > Module file name: home
+   
+   Enter a name for the initial test case class
+   > Test case class name: HomePageTestCase
+   
+   (Optional) Enter description of the new test case class
+   > Description []: Really contrived example test case
+
+This will create the file ``example_package/tests/home.py``.
+
+.. note::
+
+   For more information on the ``new test`` command, run:
+
+   ::
+
+      python -m example_package new test --help
+
+
+Adding test functions
+~~~~~~~~~~~~~~~~~~~~~
+
+So far we have created a page object for the home page and an empty test case
+for home page tests. Now we're going to add some test functions to
+``HomePageTestCase``.
+
+In ``tests/home.py``, import the ``HomePage`` class we created:
 
 .. literalinclude:: ../example/example-project/example_package/tests/home.py
     :caption: tests/home.py:
     :lines: 1-10
     :emphasize-lines: 6
-
-.. note::
-
-    As of ``webdriver_test_tools`` version 1.7, the ``tests`` subpackage
-    automatically detects new test modules. For test projects created prior to
-    1.7, new test modules need to be imported manually in ``tests/__init__.py``.
-
-
-Adding test functions
-~~~~~~~~~~~~~~~~~~~~~
 
 We’re going to add 2 test functions:
 

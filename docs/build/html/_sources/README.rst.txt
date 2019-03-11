@@ -77,11 +77,13 @@ Prerequisites
 Python
 ~~~~~~
 
--  python 3+
--  pip
+-  Python 3.4+
+-  pip (included by default with Python 3.4+)
 
 Drivers
 ~~~~~~~
+
+.. _driver-table:
 
 In order to use Selenium, drivers will need to be installed for any browser
 tests will be run on. Below are currently supported drivers, their default
