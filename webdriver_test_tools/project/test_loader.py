@@ -24,6 +24,22 @@ def load_project_tests(tests_module,
     :return: A list of test classes from all test modules
     """
     test_list = []
+    for test_module in _get_test_modules(tests_module, test_module_names):
+        test_list.extend(
+            load_webdriver_test_cases(test_module, test_class_names, skip_class_names)
+        )
+    return test_list
+
+
+def _get_test_modules(tests_module, test_module_names=None):
+    """Returns a list of submodules in a test project's tests/ directory
+
+    :param tests_module: The module object for ``<test_project>.tests``
+    :param test_module_names: (Optional) List of test module names. Only load
+        test cases from a submodule of ``tests_module`` with the given names
+
+    :return: A list of test modules
+    """
     # Get a list of all attributes from tests_module (skipping pkgutil)
     tests_module_attributes = [
         attr for attr in dir(tests_module) if attr != 'pkgutil'
@@ -33,15 +49,12 @@ def load_project_tests(tests_module,
         tests_module_attributes = [
             name for name in tests_module_attributes if name in test_module_names
         ]
-    # Iterate through attributes
-    for name in tests_module_attributes:
-        obj = getattr(tests_module, name)
-        # If obj is a module, extend test_list with the results of load_webdriver_test_cases()
-        if isinstance(obj, types.ModuleType):
-            test_list.extend(
-                load_webdriver_test_cases(obj, test_class_names, skip_class_names)
-            )
-    return test_list
+    # Return list of valid submodules of tests_module
+    return [
+        attr for attr in [
+            getattr(tests_module, name) for name in tests_module_attributes
+        ] if isinstance(attr, types.ModuleType)
+    ]
 
 
 # TODO: get full class list first, then filter
@@ -60,8 +73,8 @@ def load_webdriver_test_cases(module,
     :return: A list of test classes loaded from the module
     """
     return [
-        getattr(module, name) for name in dir(module)
-        if _is_valid_case(getattr(module, name), test_class_names, skip_class_names)
+        attr for attr in [getattr(module, name) for name in dir(module)]
+        if _is_valid_case(attr, test_class_names, skip_class_names)
     ]
 
 
