@@ -24,6 +24,7 @@ def get_test_parent_parser(parents=[]):
     group = test_parent_parser.add_argument_group('Test Arguments')
     module_help = 'Run only tests in specific test modules'
     group.add_argument('-m', '--module', nargs='+', metavar='<module>', help=module_help)
+    # TODO: Update help text to document wildcard support
     test_help = textwrap.dedent('''\
                 Run specific test case classes or test methods.
                 Arguments should be in the format <TestCase>[.<method>]
@@ -52,6 +53,7 @@ def parse_test_names(test_name_args):
         return None
     class_map = {}
     for test_name in test_name_args:
+        # Split <module>.[<function>]
         test_name_parts = test_name.split('.')
         class_map.setdefault(test_name_parts[0], [])
         # If a function was specified, append it to the list of functions
@@ -92,7 +94,9 @@ def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_c
     """
     test_class_names = None if test_class_map is None else test_class_map.keys()
     skip_class_names = get_skip_class_names(skip_class_map)
-    return test_loader.load_project_tests(tests_module, test_module_names, test_class_names, skip_class_names)
+    return test_loader.load_project_tests(
+        tests_module, test_module_names, test_class_names, skip_class_names
+    )
 
 
 def get_skip_class_names(skip_class_map):
@@ -108,3 +112,4 @@ def get_skip_class_names(skip_class_map):
             class_name for class_name, methods in skip_class_map.items() if not methods
         ]
     return None
+

@@ -6,6 +6,7 @@ import unittest
 from webdriver_test_tools.testcase import *
 
 
+# TODO: wildcard support
 def load_project_tests(tests_module, test_module_names=None, test_class_names=None, skip_class_names=None):
     """Returns a list of :class:`WebDriverTestCase <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
     subclasses from all submodules in a test project's tests/ directory
@@ -23,11 +24,15 @@ def load_project_tests(tests_module, test_module_names=None, test_class_names=No
         attr for attr in dir(tests_module) if attr != 'pkgutil'
     ]
     if test_module_names is not None:
-        tests_module_attributes = [name for name in tests_module_attributes if name in test_module_names]
+        tests_module_attributes = [
+            name for name in tests_module_attributes if name in test_module_names
+        ]
     for name in tests_module_attributes:
         obj = getattr(tests_module, name)
         if isinstance(obj, types.ModuleType):
-            test_list.extend(load_webdriver_test_cases(obj, test_class_names, skip_class_names))
+            test_list.extend(
+                load_webdriver_test_cases(obj, test_class_names, skip_class_names)
+            )
     return test_list
 
 
