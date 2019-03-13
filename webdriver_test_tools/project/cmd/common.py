@@ -53,6 +53,7 @@ def parse_test_names(test_name_args):
         return None
     class_map = {}
     for test_name in test_name_args:
+        # TODO: figure out how this should work with wildcards
         # Split <module>.[<function>]
         test_name_parts = test_name.split('.')
         class_map.setdefault(test_name_parts[0], [])

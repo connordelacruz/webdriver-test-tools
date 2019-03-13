@@ -29,6 +29,7 @@ def load_project_tests(tests_module,
     """
     test_module_list = _get_test_modules(tests_module, test_module_names)
     test_case_list = _get_test_cases(test_module_list)
+    # TODO: remove below
     # for test_module in _get_test_modules(tests_module, test_module_names):
     #     test_case_list.extend(
     #         load_webdriver_test_cases(test_module, test_class_names, skip_class_names)
@@ -89,7 +90,17 @@ def _get_test_cases(test_module_list):
 
 
 def _filter_test_cases(test_case_list, test_class_names=None, skip_class_names=None):
-    # TODO: doc and implement
+    """Returns a list of test cases filtered by --test and --skip arguments
+
+    :param test_case_list: List of test case classes to filter
+    :param test_class_names: (Optional) List of test case class names to load.
+        Will load all if unspecified
+    :param skip_class_names: (Optional) List of test case class names to skip.
+        Will skip none if unspecified
+
+    :return: List of test case classes filtered based on the --test/--skip
+        arguments
+    """
     # TODO: merge steps into a single regex
     # Reduce set of tests to the specified classes (if applicable)
     if test_class_names is not None:
