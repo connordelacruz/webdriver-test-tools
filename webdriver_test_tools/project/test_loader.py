@@ -1,12 +1,16 @@
 """Load test cases from a project."""
 
+import fnmatch
+import re
 import types
 import unittest
 
 from webdriver_test_tools.testcase import *
 
+# TODO: make sure module is organized
 
-# TODO: wildcard support
+# TODO: Update docs
+# TODO: Ensure that changes don't break function stuff
 def load_project_tests(tests_module,
                        test_module_names=None, test_class_names=None, skip_class_names=None):
     """Returns a list of :class:`WebDriverTestCase
@@ -23,12 +27,13 @@ def load_project_tests(tests_module,
 
     :return: A list of test classes from all test modules
     """
-    test_list = []
-    for test_module in _get_test_modules(tests_module, test_module_names):
-        test_list.extend(
-            load_webdriver_test_cases(test_module, test_class_names, skip_class_names)
-        )
-    return test_list
+    test_module_list = _get_test_modules(tests_module, test_module_names)
+    test_case_list = _get_test_cases(test_module_list)
+    # for test_module in _get_test_modules(tests_module, test_module_names):
+    #     test_case_list.extend(
+    #         load_webdriver_test_cases(test_module, test_class_names, skip_class_names)
+    #     )
+    return _filter_test_cases(test_case_list, test_class_names, skip_class_names)
 
 
 def _get_test_modules(tests_module, test_module_names=None):
@@ -57,7 +62,47 @@ def _get_test_modules(tests_module, test_module_names=None):
     ]
 
 
-# TODO: get full class list first, then filter
+def _get_module_test_cases(module):
+    """Returns a list of valid test cases from a test module
+
+    :param module: Test module to retrieve test cases from
+
+    :return: List of valid test cases from a test module
+    """
+    return [
+        attr for attr in [getattr(module, name) for name in dir(module)]
+        if _is_valid_case(attr)
+    ]
+
+
+def _get_test_cases(test_module_list):
+    """Returns a list of valid test cases from a list of test modules
+
+    :param test_module_list: List of test modules to retrieve test cases from
+
+    :return: List of valid test cases from the test modules
+    """
+    test_case_list = []
+    for module in test_module_list:
+        test_case_list.extend(_get_module_test_cases(module))
+    return test_case_list
+
+
+def _filter_test_cases(test_case_list, test_class_names=None, skip_class_names=None):
+    # TODO: doc and implement
+    # TODO: merge steps into a single regex
+    # Reduce set of tests to the specified classes (if applicable)
+    if test_class_names is not None:
+        expr = '|'.join(fnmatch.translate(p) for p in test_class_names)
+        test_case_list = [test_case for test_case in test_case_list if re.match(expr, test_case.__name__)]
+    # Remove skipped classes (if applicable)
+    if skip_class_names is not None:
+        expr = '|'.join(fnmatch.translate(p) for p in skip_class_names)
+        test_case_list = [test_case for test_case in test_case_list if not re.match(expr, test_case.__name__)]
+    return test_case_list
+
+
+# TODO: re-work? remove?
 def load_webdriver_test_cases(module,
                               test_class_names=None, skip_class_names=None):
     """Returns a list of :class:`WebDriverTestCase
@@ -78,6 +123,7 @@ def load_webdriver_test_cases(module,
     ]
 
 
+# TODO: only check if obj meets test case criteria?
 def _is_valid_case(obj, test_class_names=None, skip_class_names=None):
     """Returns True if ``obj`` is a valid test case
 
