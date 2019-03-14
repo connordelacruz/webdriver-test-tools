@@ -24,15 +24,17 @@ def get_test_parent_parser(parents=[]):
     group = test_parent_parser.add_argument_group('Test Arguments')
     module_help = 'Run only tests in specific test modules'
     group.add_argument('-m', '--module', nargs='+', metavar='<module>', help=module_help)
-    # TODO: Update help text to document wildcard support
+    # TODO: Better wildcard support help?
     test_help = textwrap.dedent('''\
                 Run specific test case classes or test methods.
                 Arguments should be in the format <TestCase>[.<method>]
+                (Wildcards supported)
                 ''')
     group.add_argument('-t', '--test', nargs='+', metavar='<test>', help=test_help)
     skip_help = textwrap.dedent('''\
                 Skip specific test case classes or test methods.
                 Arguments should be in the format <TestCase>[.<method>]
+                (Wildcards supported)
                 ''')
     group.add_argument('-s', '--skip', nargs='+', metavar='<test>', help=skip_help)
     return test_parent_parser

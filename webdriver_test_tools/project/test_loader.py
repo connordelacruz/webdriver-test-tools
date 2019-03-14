@@ -180,7 +180,6 @@ def filter_test_cases(test_case_list,
     :return: List of test case classes filtered based on the --test/--skip
         arguments
     """
-    # TODO: merge steps into a single regex
     # Reduce set of tests to the specified classes (if applicable)
     if test_class_map is not None:
         expr = '|'.join(fnmatch.translate(p) for p in test_class_map)
