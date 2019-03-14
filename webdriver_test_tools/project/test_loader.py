@@ -7,23 +7,30 @@ import unittest
 
 from webdriver_test_tools.testcase import *
 
-# TODO: make sure module is organized
 
-# TODO: Update docs
-# TODO: Take class maps, implement update_class_maps
 def load_project_tests(tests_module,
                        test_module_names=None, test_class_map=None, skip_class_map=None):
     """Returns a list of :class:`WebDriverTestCase
     <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` subclasses
     from all submodules in a test project's tests/ directory
 
+    If ``test_class_map`` or ``skip_class_map`` contain wildcards in any of
+    their keys, those will be expanded into keys for each test class name that
+    matches, altering the original dictionaries as a side effect.
+
     :param tests_module: The module object for ``<test_project>.tests``
     :param test_module_names: (Optional) List of test module names. Only load
         test cases from a submodule of ``tests_module`` with the given names
-    :param test_class_map: (Optional) List of test class names. Only load
-        test cases with these names
-    :param skip_class_map: (Optional) List of test class names. Skip test
-        cases with these names
+    :param test_class_map: (Optional) Dictionary mapping test class names (or
+        wildcard strings) to a list of method names or an empty list if the
+        whole class should be run. Only load test cases that match the keys in
+        this dictionary
+    :param skip_class_map: (Optional) Dictionary mapping test class names (or
+        wildcard strings) to a list of method names or an empty list if the
+        whole class should be skipped. Skip test cases that match the keys in
+        this dictionary if they're mapped to an empty list. If one or more
+        methods are specified to skip, it's possible that there are more
+        methods in the class that should be run
 
     :return: A list of test classes from all test modules
     """
@@ -33,11 +40,7 @@ def load_project_tests(tests_module,
     test_class_map, skip_class_map = expand_wildcard_class_names(
         test_case_list, test_class_map, skip_class_map
     )
-    # TODO: remove below
-    # for test_module in _get_test_modules(tests_module, test_module_names):
-    #     test_case_list.extend(
-    #         load_webdriver_test_cases(test_module, test_class_names, skip_class_names)
-    #     )
+    # Filter list of test cases based on class maps
     return filter_test_cases(test_case_list, test_class_map, skip_class_map)
 
 
@@ -67,19 +70,6 @@ def get_test_modules(tests_module, test_module_names=None):
     ]
 
 
-def _get_module_test_cases(module):
-    """Returns a list of valid test cases from a test module
-
-    :param module: Test module to retrieve test cases from
-
-    :return: List of valid test cases from a test module
-    """
-    return [
-        attr for attr in [getattr(module, name) for name in dir(module)]
-        if _is_valid_case(attr)
-    ]
-
-
 def get_test_cases(test_module_list):
     """Returns a list of valid test cases from a list of test modules
 
@@ -93,16 +83,70 @@ def get_test_cases(test_module_list):
     return test_case_list
 
 
+def _get_module_test_cases(module):
+    """Returns a list of valid test cases from a test module
+
+    :param module: Test module to retrieve test cases from
+
+    :return: List of valid test cases from a test module
+    """
+    return [
+        attr for attr in [getattr(module, name) for name in dir(module)]
+        if _is_valid_case(attr)
+    ]
+
+
+def expand_wildcard_class_names(test_case_list, test_class_map=None, skip_class_map=None):
+    """Update any entries in test_class_map and skip_class_map with wildcards
+    as keys
+
+    Adds keys for each matching class name mapped to the same method lists from
+    the wildcard key, then removes all wildcard keys after expanding
+
+    :param test_case_list: List of all test cases at this point
+    :param test_class_map: (Optional) Dictionary mapping test class names (or
+        wildcard strings) to a list of method names or an empty list if the
+        whole class should be run
+    :param skip_class_map: (Optional) Dictionary mapping test class names (or
+        wildcard strings) to a list of method names or an empty list if the
+        whole class should be skipped
+
+    :return: The modified test_class_map and skip_class_map as a tuple. Either
+        map may be set to ``None`` if expanding wildcards caused the map to be
+        empty (i.e. it was all wildcards and none of them matched any test
+        cases)
+    """
+    if test_class_map is not None:
+        test_class_map = _expand_wildcard_class_map_keys(test_case_list, test_class_map)
+    if skip_class_map is not None:
+        skip_class_map = _expand_wildcard_class_map_keys(test_case_list, skip_class_map)
+    # Entries should be updated anyway, so this return value shouldn't be necessary
+    return test_class_map, skip_class_map
+
+
 def _expand_wildcard_class_map_keys(test_case_list, test_class_map):
-    # TODO: doc and implement
+    """Updates any entries in a test class map with wildcards as keys
+
+    Adds keys for each matching class name mapped to the same method lists from
+    the wildcard key, then removes all wildcard keys after expanding
+
+    :param test_case_list: List of all test cases at this point
+    :param test_class_map: Dictionary mapping test class names (or wildcard
+        strings) to a list of method names
+
+    :return: The modified test_class_map or ``None`` if the updated map is
+        empty (i.e. it was all wildcards and none of them matched any test
+        cases)
+    """
     # Get list of wildcard keys
     wildcard_names = [key for key in test_class_map if '*' in key]
     # Temporary map of class names to the class
     class_name_map = {
         test_case.__name__: test_case for test_case in test_case_list
     }
-    # Temporary map used to update the original after going through the wildcards.
-    # The keys to this one will be the matching class names mapped to the appropriate method lists
+    # Temporary map used to update the original after going through the
+    # wildcards. The keys to this one will be the matching class names mapped
+    # to the appropriate method lists
     updated_class_map = {}
     for wildcard_name in wildcard_names:
         matching_names = fnmatch.filter(class_name_map, wildcard_name)
@@ -115,22 +159,14 @@ def _expand_wildcard_class_map_keys(test_case_list, test_class_map):
         test_class_map.pop(wildcard_name)
     # Update original map with temp dictionary
     test_class_map.update(updated_class_map)
+    # If none of the wild card entries matched any tests and the updated map is
+    # empty, set it to None
+    if not test_class_map:
+        test_class_map = None
     # Entries should be updated anyway, so this return value shouldn't be necessary
     return test_class_map
 
 
-def expand_wildcard_class_names(test_case_list, test_class_map=None, skip_class_map=None):
-    # TODO: doc and implement
-    if test_class_map is not None:
-        test_class_map = _expand_wildcard_class_map_keys(test_case_list, test_class_map)
-    if skip_class_map is not None:
-        skip_class_map = _expand_wildcard_class_map_keys(test_case_list, skip_class_map)
-    # Entries should be updated anyway, so this return value shouldn't be necessary
-    return test_class_map, skip_class_map
-
-
-# TODO: take class maps, update docs
-# TODO: only update maps if wildcard is found on one of the keys?
 def filter_test_cases(test_case_list,
                       test_class_map=None, skip_class_map=None):
     """Returns a list of test cases filtered by --test and --skip arguments
@@ -160,13 +196,15 @@ def filter_test_cases(test_case_list,
 
 
 def _get_skip_class_names(skip_class_map):
-    """Returns list of classes to skip
+    """Returns list of class names to skip
 
     Returned list only contains names of classes where all methods are skipped.
     If skip_class_map is None, returns None
 
     :param skip_class_map: Result of passing parsed arg for --skip command line
         argument to parse_test_names()
+
+    :return: List of class names to skip
     """
     if skip_class_map:
         return [
@@ -175,29 +213,7 @@ def _get_skip_class_names(skip_class_map):
     return None
 
 
-# TODO: re-work? remove?
-def load_webdriver_test_cases(module,
-                              test_class_names=None, skip_class_names=None):
-    """Returns a list of :class:`WebDriverTestCase
-    <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` subclasses
-    from a module
-
-    :param module: The module to load tests from
-    :param test_class_names: (Optional) List of test case class names to load.
-        Will load all if unspecified
-    :param skip_class_names: (Optional) List of test case class names to skip.
-        Will skip none if unspecified
-
-    :return: A list of test classes loaded from the module
-    """
-    return [
-        attr for attr in [getattr(module, name) for name in dir(module)]
-        if _is_valid_case(attr, test_class_names, skip_class_names)
-    ]
-
-
-# TODO: only check if obj meets test case criteria?
-def _is_valid_case(obj, test_class_names=None, skip_class_names=None):
+def _is_valid_case(obj):
     """Returns True if ``obj`` is a valid test case
 
     Criteria for being a valid test case:
@@ -208,20 +224,16 @@ def _is_valid_case(obj, test_class_names=None, skip_class_names=None):
           <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` or
           :class:`WebDriverMobileTestCase
           <webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase>`
-        - Is not listed in ``skip_class_names`` (if provided)
-        - Is listed in ``test_class_names`` (if provided)
 
     :param obj: The object to validate
-    :param test_class_names: (Optional) Names of test classes to run
-    :param skip_class_names: (Optional) Names of test classes to skip
 
     :return: True if ``obj`` is a valid test case, False if not
     """
     parent_classes = [WebDriverTestCase, WebDriverMobileTestCase]
     # Load class if it subclasses WebDriverTestCase (but don't load WebDriverTestCase itself)
-    return (isinstance(obj, type) and issubclass(obj, WebDriverTestCase) and obj not in parent_classes
-            and (skip_class_names is None or obj.__name__ not in skip_class_names)
-            and (test_class_names is None or obj.__name__ in test_class_names))
+    return (isinstance(obj, type)
+            and issubclass(obj, WebDriverTestCase)
+            and obj not in parent_classes)
 
 
 # TODO: wildcard support for test functions

@@ -81,7 +81,6 @@ def parse_test_args(args):
 
 # Test Loading Functions
 
-# TODO: parameter for updating class maps?
 def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
     """Return a list of test classes from a project based on the --module, --test, and --skip arguments
 
