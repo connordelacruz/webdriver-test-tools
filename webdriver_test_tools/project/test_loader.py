@@ -97,8 +97,8 @@ def _get_module_test_cases(module):
 
 
 def expand_wildcard_class_names(test_case_list, test_class_map=None, skip_class_map=None):
-    """Update any entries in test_class_map and skip_class_map with wildcards
-    as keys
+    """Update any entries in ``test_class_map`` and ``skip_class_map`` with
+    wildcards as keys
 
     Adds keys for each matching class name mapped to the same method lists from
     the wildcard key, then removes all wildcard keys after expanding
@@ -111,10 +111,10 @@ def expand_wildcard_class_names(test_case_list, test_class_map=None, skip_class_
         wildcard strings) to a list of method names or an empty list if the
         whole class should be skipped
 
-    :return: The modified test_class_map and skip_class_map as a tuple. Either
-        map may be set to ``None`` if expanding wildcards caused the map to be
-        empty (i.e. it was all wildcards and none of them matched any test
-        cases)
+    :return: The modified ``test_class_map`` and ``skip_class_map`` as a tuple.
+        Either map may be set to ``None`` if expanding wildcards caused the map
+        to be empty (i.e. it was all wildcards and none of them matched any
+        test cases)
     """
     if test_class_map is not None:
         test_class_map = _expand_wildcard_class_map_keys(test_case_list, test_class_map)
@@ -134,7 +134,7 @@ def _expand_wildcard_class_map_keys(test_case_list, test_class_map):
     :param test_class_map: Dictionary mapping test class names (or wildcard
         strings) to a list of method names
 
-    :return: The modified test_class_map or ``None`` if the updated map is
+    :return: The modified ``test_class_map`` or ``None`` if the updated map is
         empty (i.e. it was all wildcards and none of them matched any test
         cases)
     """
@@ -236,24 +236,30 @@ def _is_valid_case(obj):
             and obj not in parent_classes)
 
 
-# TODO: update docstring
-#  wildcard support for test functions
 def load_browser_tests(base_class, generated_test_cases,
                        test_methods=None, skip_methods=None):
     """Load tests from browser test case classes
 
+    :param base_class: The base test case class that the generated test cases
+        are based on. Used to expand any wildcards in ``test_methods`` or
+        ``skip_methods`` to valid test methods
     :param generated_test_cases: List of generated browser test case classes
         for a single subclass of :class:`WebDriverTestCase
         <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
-    :param test_methods: (Optional) List of test method names. If specified,
-        load only these test methods from each browser test case
-    :param skip_methods: (Optional) List of test method names. If specified, do
-        not load these test methods from each browser test case
+    :param test_methods: (Optional) List of test method names (or wildcard
+        strings). If specified, load only these test methods from each browser
+        test case
+    :param skip_methods: (Optional) List of test method names (or wildcard
+        strings). If specified, do not load these test methods from each
+        browser test case
 
     :return: A list of loaded tests from the browser test cases
     """
+    loader = unittest.TestLoader()
     # Expand any wildcard methods prior to loading
-    test_methods, skip_methods = expand_wildcard_method_names(base_class, test_methods, skip_methods)
+    test_methods, skip_methods = expand_wildcard_method_names(
+        loader, base_class, test_methods, skip_methods
+    )
     if skip_methods is None:
         skip_methods = []
     # If test_methods is not None and is not empty, load only the specified test methods
@@ -265,7 +271,6 @@ def load_browser_tests(base_class, generated_test_cases,
         ]
     # Else load all test methods from each
     else:
-        loader = unittest.TestLoader()
         browser_tests = [
             browser_test_case(test_method)
             for browser_test_case in generated_test_cases
@@ -275,26 +280,57 @@ def load_browser_tests(base_class, generated_test_cases,
     return browser_tests
 
 
-# TODO: debug
-def expand_wildcard_method_names(base_class, test_methods=None, skip_methods=None):
-    # TODO: doc
+def expand_wildcard_method_names(loader, base_class, test_methods=None, skip_methods=None):
+    """Update any entries in ``test_methods`` and ``skip_methods`` with wildcards
+
+    Adds list entries for matching methods in ``base_class``, then removes all
+    wildcard entries after expanding. Additionally, any duplicate
+    entries in the list after wildcard expansion will be removed so the same
+    test method isn't run multiple times
+
+    :param loader: ``unittest.TestLoader`` object. Used to list all test
+        methods from ``base_class``
+    :param base_class: The base test case class. Used to get a list of all test
+        methods when searching for matches
+    :param test_methods: (Optional) List of test method names (or wildcard
+        strings) to run
+    :param skip_methods: (Optional) List of test method names (or wildcard
+        strings) to skip
+
+    :return: The modified ``test_methods`` and ``skip_methods`` as a tuple.
+        Either of these may be set to ``None`` if expanding wildcards caused
+        the list to be empty (i.e. it was all wildcards and none of them
+        matched any test methods)
+    """
+    # List of test methods in the base class
+    base_class_methods = loader.getTestCaseNames(base_class)
     if test_methods is not None:
-        test_methods = _expand_wildcard_method_list_items(base_class, test_methods)
+        test_methods = _expand_wildcard_method_list_items(base_class_methods, test_methods)
+        # TODO: if test_methods is None after expansion, should the test be run at all?
     if skip_methods is not None:
-        skip_methods = _expand_wildcard_method_list_items(base_class, skip_methods)
+        skip_methods = _expand_wildcard_method_list_items(base_class_methods, skip_methods)
     # Entries should be updated anyway, so this return value shouldn't be necessary
     return test_methods, skip_methods
 
 
-def _expand_wildcard_method_list_items(base_class, test_methods):
-    # TODO: doc
+def _expand_wildcard_method_list_items(base_class_methods, test_methods):
+    """Updates any entries in a test/skip method list with wildcards
+
+    Adds list entries for each test method that matches a wildcard entry, then
+    removes all wildcard entries after expanding. Additionally, any duplicate
+    entries in the list after wildcard expansion will be removed so the same
+    test method isn't run multiple times
+
+    :param base_class_methods: List of all test methods in the test case class
+        (i.e. result of loader.getTestCaseNames())
+    :param test_methods: List of test case method names (or wildcard strings)
+
+    :return: The modified ``test_methods`` list or ``None`` if the updated list
+        is empty (i.e. it was all wildcards and none of them matched any test
+        methods)
+    """
     # Get list of wildcard test methods
     wildcard_methods = [method for method in test_methods]
-    # List of test methods in the base class
-    base_class_methods = [
-        attr for attr in dir(base_class)
-        if callable(getattr(base_class, attr)) and attr.startswith('test_')
-    ]
     # Temporary list of matching test methods used to update the original
     updated_test_methods = []
     for wildcard_method in wildcard_methods:
