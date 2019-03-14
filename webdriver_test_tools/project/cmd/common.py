@@ -81,6 +81,7 @@ def parse_test_args(args):
 
 # Test Loading Functions
 
+# TODO: parameter for updating class maps?
 def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
     """Return a list of test classes from a project based on the --module, --test, and --skip arguments
 
@@ -93,24 +94,8 @@ def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_c
 
     :return: List of test classes
     """
-    test_class_names = None if test_class_map is None else test_class_map.keys()
-    skip_class_names = get_skip_class_names(skip_class_map)
     return test_loader.load_project_tests(
-        tests_module, test_module_names, test_class_names, skip_class_names
+        tests_module, test_module_names, test_class_map, skip_class_map
     )
 
-
-def get_skip_class_names(skip_class_map):
-    """Returns list of classes to skip
-
-    Returned list only contains names of classes where all methods are skipped.
-    If skip_class_map is None, returns None
-
-    :param skip_class_map: Result of passing parsed arg for --skip command line argument to parse_test_names()
-    """
-    if skip_class_map:
-        return [
-            class_name for class_name, methods in skip_class_map.items() if not methods
-        ]
-    return None
 
