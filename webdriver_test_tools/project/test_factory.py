@@ -53,19 +53,21 @@ def generate_browser_test_suite(test_case_list, browser_test_classes=None,
                                                       browserstack, headless)
         test_methods = _get_test_methods(test_case.__name__, test_class_map)
         skip_methods = _get_test_methods(test_case.__name__, skip_class_map)
-        loaded_tests = test_loader.load_browser_tests(generated_tests, test_methods, skip_methods)
+        loaded_tests = test_loader.load_browser_tests(
+            test_case, generated_tests, test_methods, skip_methods
+        )
         browser_tests.extend(loaded_tests)
     return unittest.TestSuite(browser_tests)
 
 
 def _get_test_methods(test_case_name, test_class_map):
     """Takes ``test_class_map`` or ``skip_class_map`` and returns the list of methods for the
-    test case or None if no methods were specified for it
+    test case or ``None`` if no methods were specified for it
 
     :param test_case_name: Name of the test case to check
     :param test_class_map: Dictionary mapping test names to a list of methods
 
-    :return: List of methods or None if not specified for this test case
+    :return: List of methods or ``None`` if not specified for this test case
     """
     if test_class_map is None or test_case_name not in test_class_map:
         return None

@@ -236,8 +236,9 @@ def _is_valid_case(obj):
             and obj not in parent_classes)
 
 
-# TODO: wildcard support for test functions
-def load_browser_tests(generated_test_cases,
+# TODO: update docstring
+#  wildcard support for test functions
+def load_browser_tests(base_class, generated_test_cases,
                        test_methods=None, skip_methods=None):
     """Load tests from browser test case classes
 
@@ -251,6 +252,8 @@ def load_browser_tests(generated_test_cases,
 
     :return: A list of loaded tests from the browser test cases
     """
+    # Expand any wildcard methods prior to loading
+    test_methods, skip_methods = expand_wildcard_method_names(base_class, test_methods, skip_methods)
     if skip_methods is None:
         skip_methods = []
     # If test_methods is not None and is not empty, load only the specified test methods
@@ -270,4 +273,42 @@ def load_browser_tests(generated_test_cases,
             if test_method not in skip_methods
         ]
     return browser_tests
+
+
+# TODO: debug
+def expand_wildcard_method_names(base_class, test_methods=None, skip_methods=None):
+    # TODO: doc
+    if test_methods is not None:
+        test_methods = _expand_wildcard_method_list_items(base_class, test_methods)
+    if skip_methods is not None:
+        skip_methods = _expand_wildcard_method_list_items(base_class, skip_methods)
+    # Entries should be updated anyway, so this return value shouldn't be necessary
+    return test_methods, skip_methods
+
+
+def _expand_wildcard_method_list_items(base_class, test_methods):
+    # TODO: doc
+    # Get list of wildcard test methods
+    wildcard_methods = [method for method in test_methods]
+    # List of test methods in the base class
+    base_class_methods = [
+        attr for attr in dir(base_class)
+        if callable(getattr(base_class, attr)) and attr.startswith('test_')
+    ]
+    # Temporary list of matching test methods used to update the original
+    updated_test_methods = []
+    for wildcard_method in wildcard_methods:
+        matching_methods = fnmatch.filter(base_class_methods, wildcard_method)
+        # Update temporary list with matching test methods
+        updated_test_methods.extend(matching_methods)
+        # Remove wildcard name from original list after finishing
+        test_methods.remove(wildcard_method)
+    # Update original list
+    test_methods.extend(updated_test_methods)
+    # Remove duplicate entries (convert from a list to a dict and back)
+    test_methods = list(dict.fromkeys(test_methods))
+    # If none of the wildcard entries matched any test methods and the updated list is empty, set it to None
+    if not test_methods:
+        test_methods = None
+    return test_methods
 
