@@ -19,24 +19,28 @@ def get_test_parent_parser(parents=[]):
         ``--skip``, and ``--module`` arguments
     """
     # Adds --module, --test, and --skip arguments
-    test_parent_parser = cmd.argparse.ArgumentParser(add_help=False, parents=parents)
+    test_parent_parser = cmd.argparse.ArgumentParser(add_help=False,
+                                                     parents=parents)
     # Arguments for specifying what test to run
     group = test_parent_parser.add_argument_group('Test Arguments')
     module_help = 'Run only tests in specific test modules'
-    group.add_argument('-m', '--module', nargs='+', metavar='<module>', help=module_help)
+    group.add_argument('-m', '--module', nargs='+', metavar='<module>',
+                       help=module_help)
     # TODO: Better wildcard support help?
     test_help = textwrap.dedent('''\
                 Run specific test case classes or test methods.
                 Arguments should be in the format <TestCase>[.<method>]
                 (Wildcards supported)
                 ''')
-    group.add_argument('-t', '--test', nargs='+', metavar='<test>', help=test_help)
+    group.add_argument('-t', '--test', nargs='+', metavar='<test>',
+                       help=test_help)
     skip_help = textwrap.dedent('''\
                 Skip specific test case classes or test methods.
                 Arguments should be in the format <TestCase>[.<method>]
                 (Wildcards supported)
                 ''')
-    group.add_argument('-s', '--skip', nargs='+', metavar='<test>', help=skip_help)
+    group.add_argument('-s', '--skip', nargs='+', metavar='<test>',
+                       help=skip_help)
     return test_parent_parser
 
 
@@ -45,11 +49,12 @@ def get_test_parent_parser(parents=[]):
 def parse_test_names(test_name_args):
     """Returns a dictionary mapping test case names to a list of test functions
 
-    :param test_name_args: The parsed value of the ``--test`` or ``--skip`` arguments
+    :param test_name_args: The parsed value of the ``--test`` or ``--skip``
+        arguments
 
-    :return: None if ``test_name_args`` is None, otherwise return a dictionary mapping test
-        case names to a list of test functions to run. If list is empty, no specific
-        function was given for that class
+    :return: None if ``test_name_args`` is None, otherwise return a dictionary
+        mapping test case names to a list of test functions to run. If list is
+        empty, no specific function was given for that class
     """
     if test_name_args is None:
         return None
@@ -83,14 +88,16 @@ def parse_test_args(args):
 # Test Loading Functions
 
 def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
-    """Return a list of test classes from a project based on the --module, --test, and --skip arguments
+    """Return a list of test classes from a project based on the --module,
+    --test, and --skip arguments
 
     :param tests_module: The module object for <test_project>.tests
-    :param test_module_names: (Optional) Parsed arg for --module command line argument
-    :param test_class_map: (Optional) Result of passing parsed arg for --test command
-        line argument to parse_test_names()
-    :param skip_class_map: (Optional) Result of passing parsed arg for --skip command
-        line argument to parse_test_names()
+    :param test_module_names: (Optional) Parsed arg for --module command line
+        argument
+    :param test_class_map: (Optional) Result of passing parsed arg for --test
+        command line argument to parse_test_names()
+    :param skip_class_map: (Optional) Result of passing parsed arg for --skip
+        command line argument to parse_test_names()
 
     :return: List of test classes
     """
