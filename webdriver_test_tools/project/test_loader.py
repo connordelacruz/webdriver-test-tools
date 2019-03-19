@@ -358,7 +358,6 @@ def expand_wildcard_method_names(loader, base_class, test_methods=None, skip_met
     """
     # List of test methods in the base class
     base_class_methods = loader.getTestCaseNames(base_class)
-    # TODO: move to end of method skip_methods can be validated?
     if test_methods:
         test_methods = _expand_wildcard_method_list_items(base_class_methods, test_methods)
         # If test_methods evaluates to False after expansion, then there were
