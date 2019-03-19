@@ -18,7 +18,6 @@ class TestMethodsNotFoundException(TestLoaderException):
     """Exception raised if no test methods matching the specified criteria were
     found in a test case class
     """
-    # TODO: take test case class and method list and print those in the message?
     pass
 
 
@@ -26,7 +25,6 @@ class TestCasesNotFoundException(TestLoaderException):
     """Exception raised if no test cases matching the specified criteria are
     found
     """
-    # TODO: take module names and class maps and print those in the message?
     pass
 
 
@@ -120,7 +118,6 @@ def _get_module_test_cases(module):
     ]
 
 
-# TODO: document exceptions?
 def expand_wildcard_class_names(test_case_list, test_class_map=None, skip_class_map=None):
     """Update any entries in ``test_class_map`` and ``skip_class_map`` with
     wildcards as keys
@@ -140,6 +137,13 @@ def expand_wildcard_class_names(test_case_list, test_class_map=None, skip_class_
         Either map may be set to ``None`` if expanding wildcards caused the map
         to be empty (i.e. it was all wildcards and none of them matched any
         test cases)
+
+    :raises TestCasesNotFoundException: if ``test_class_map`` was not empty
+        before wildcard expansion but is empty after. This is to override the
+        default behavior of running all tests if ``test_class_map`` is empty,
+        because presumably the user wanted to only run a specific subset of
+        tests (otherwise ``test_class_map`` would have been empty to begin
+        with)
     """
     if test_class_map:
         test_class_map = _expand_wildcard_class_map_keys(test_case_list, test_class_map)
@@ -273,7 +277,6 @@ def _is_valid_case(obj):
             and obj not in parent_classes)
 
 
-# TODO: document exception handling?
 def load_browser_tests(base_class, generated_test_cases,
                        test_methods=None, skip_methods=None):
     """Load tests from browser test case classes
@@ -302,7 +305,7 @@ def load_browser_tests(base_class, generated_test_cases,
     except TestMethodsNotFoundException as e:
         # test_methods was not empty prior to wildcard expansion and was empty after,
         # so don't generate browser test cases
-        # TODO: print warning
+        # TODO: print warning?
         return []
     if skip_methods is None:
         skip_methods = []
@@ -324,7 +327,6 @@ def load_browser_tests(base_class, generated_test_cases,
     return browser_tests
 
 
-# TODO: document exception
 def expand_wildcard_method_names(loader, base_class, test_methods=None, skip_methods=None):
     """Update any entries in ``test_methods`` and ``skip_methods`` with wildcards
 
@@ -346,6 +348,13 @@ def expand_wildcard_method_names(loader, base_class, test_methods=None, skip_met
         Either of these may be set to ``None`` if expanding wildcards caused
         the list to be empty (i.e. it was all wildcards and none of them
         matched any test methods)
+
+    :raises TestMethodsNotFoundException: if ``test_methods`` was not empty
+        before wildcard expansion but is empty after. This is to override the
+        default behavior of running all test methods if ``test_methods`` is
+        empty, because presumably the user wanted to only run a specific subset
+        of tests (otherwise ``test_methods`` would have been empty to begin
+        with)
     """
     # List of test methods in the base class
     base_class_methods = loader.getTestCaseNames(base_class)
