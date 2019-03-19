@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Example Project &mdash; WebDriver Test Tools 2.3.0-alpha documentation</title>
+  <title>Example Project &mdash; WebDriver Test Tools 2.4.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.3
+                2.4
               </div>
             
           
@@ -642,6 +642,24 @@ cases.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --test HomePageTestCase.test_more_information_link
 </pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--test</span></code> argument also supports wildcards in both the test case class and
+method names. For example, if we wanted to run all test case classes beginning
+with the word <code class="docutils literal notranslate"><span class="pre">Home</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --test Home*
+</pre></div>
+</div>
+<p>Or if we wanted to run all methods in <code class="docutils literal notranslate"><span class="pre">HomePageTestCase</span></code> containing the word
+<code class="docutils literal notranslate"><span class="pre">page</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --test HomePageTestCase.*page*
+</pre></div>
+</div>
+<p>Or if we wanted to run all test methods ending with the word <code class="docutils literal notranslate"><span class="pre">link</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --test *.*_link
+</pre></div>
+</div>
+<p>Obviously this isn’t particularly useful in our simple example, but can allow
+for a lot more control in larger test projects without needing to type out long
+lists of test cases and methods.</p>
 </div>
 <div class="section" id="skipping-test-cases-or-functions">
 <h4><a class="toc-backref" href="#id27">Skipping test cases or functions</a><a class="headerlink" href="#skipping-test-cases-or-functions" title="Permalink to this headline">¶</a></h4>
@@ -650,6 +668,12 @@ cases.</p>
 example, if we wanted to run all tests except for the
 <code class="docutils literal notranslate"><span class="pre">test_more_information_link</span></code> function:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --skip HomePageTestCase.test_more_information_link
+</pre></div>
+</div>
+<p>Like the <code class="docutils literal notranslate"><span class="pre">--test</span></code> argument, <code class="docutils literal notranslate"><span class="pre">--skip</span></code> also supports wildcards in class and
+method names. E.g. if we wanted to skip all methods in all test cases that
+contain the word <code class="docutils literal notranslate"><span class="pre">page</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m example_package --skip *.*page*
 </pre></div>
 </div>
 <p>Again, this isn’t particularly interesting since we only have 2 test functions,
@@ -725,7 +749,7 @@ tests:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.3.0-alpha',
+            VERSION:'2.4.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

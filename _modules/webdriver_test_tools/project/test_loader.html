@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_loader &mdash; WebDriver Test Tools 2.3.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.test_loader &mdash; WebDriver Test Tools 2.4.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.3
+                2.4
               </div>
             
           
@@ -158,57 +158,261 @@
   <h1>Source code for webdriver_test_tools.project.test_loader</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Load test cases from a project.&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">fnmatch</span>
+<span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">types</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase</span> <span class="k">import</span> <span class="o">*</span>
 
+<span class="c1"># Exceptions</span>
 
-<div class="viewcode-block" id="load_project_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_project_tests">[docs]</a><span class="k">def</span> <span class="nf">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a list of :class:`WebDriverTestCase &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
-<span class="sd">    subclasses from all submodules in a test project&#39;s tests/ directory</span>
+<div class="viewcode-block" id="TestLoaderException"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.TestLoaderException">[docs]</a><span class="k">class</span> <span class="nc">TestLoaderException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base exception class for the test_loader module&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="TestMethodsNotFoundException"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.TestMethodsNotFoundException">[docs]</a><span class="k">class</span> <span class="nc">TestMethodsNotFoundException</span><span class="p">(</span><span class="n">TestLoaderException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Exception raised if no test methods matching the specified criteria were</span>
+<span class="sd">    found in a test case class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="TestCasesNotFoundException"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.TestCasesNotFoundException">[docs]</a><span class="k">class</span> <span class="nc">TestCasesNotFoundException</span><span class="p">(</span><span class="n">TestLoaderException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Exception raised if no test cases matching the specified criteria are</span>
+<span class="sd">    found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<span class="c1"># Loader Methods</span>
+
+<div class="viewcode-block" id="load_project_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_project_tests">[docs]</a><span class="k">def</span> <span class="nf">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span>
+                       <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of :class:`WebDriverTestCase</span>
+<span class="sd">    &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;` subclasses</span>
+<span class="sd">    from all submodules in a test project&#39;s tests/ directory</span>
+
+<span class="sd">    If ``test_class_map`` or ``skip_class_map`` contain wildcards in any of</span>
+<span class="sd">    their keys, those will be expanded into keys for each test class name that</span>
+<span class="sd">    matches, altering the original dictionaries as a side effect.</span>
 
 <span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
-<span class="sd">    :param test_module_names: (Optional) List of test module names. Only load test cases from a submodule of</span>
-<span class="sd">        ``tests_module`` with the given names</span>
-<span class="sd">    :param test_class_names: (Optional) List of test class names. Only load test cases with these names</span>
-<span class="sd">    :param skip_class_names: (Optional) List of test class names. Skip test cases with these names</span>
+<span class="sd">    :param test_module_names: (Optional) List of test module names. Only load</span>
+<span class="sd">        test cases from a submodule of ``tests_module`` with the given names</span>
+<span class="sd">    :param test_class_map: (Optional) Dictionary mapping test class names (or</span>
+<span class="sd">        wildcard strings) to a list of method names or an empty list if the</span>
+<span class="sd">        whole class should be run. Only load test cases that match the keys in</span>
+<span class="sd">        this dictionary</span>
+<span class="sd">    :param skip_class_map: (Optional) Dictionary mapping test class names (or</span>
+<span class="sd">        wildcard strings) to a list of method names or an empty list if the</span>
+<span class="sd">        whole class should be skipped. Skip test cases that match the keys in</span>
+<span class="sd">        this dictionary if they&#39;re mapped to an empty list. If one or more</span>
+<span class="sd">        methods are specified to skip, it&#39;s possible that there are more</span>
+<span class="sd">        methods in the class that should be run</span>
 
 <span class="sd">    :return: A list of test classes from all test modules</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">test_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">test_module_list</span> <span class="o">=</span> <span class="n">get_test_modules</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">)</span>
+    <span class="n">test_case_list</span> <span class="o">=</span> <span class="n">get_test_cases</span><span class="p">(</span><span class="n">test_module_list</span><span class="p">)</span>
+    <span class="c1"># Expand any wildcard keys in class maps prior to filtering</span>
+    <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span> <span class="o">=</span> <span class="n">expand_wildcard_class_names</span><span class="p">(</span>
+        <span class="n">test_case_list</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span>
+    <span class="p">)</span>
+    <span class="c1"># Filter list of test cases based on class maps</span>
+    <span class="k">return</span> <span class="n">filter_test_cases</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_test_modules"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.get_test_modules">[docs]</a><span class="k">def</span> <span class="nf">get_test_modules</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of submodules in a test project&#39;s tests/ directory</span>
+
+<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
+<span class="sd">    :param test_module_names: (Optional) List of test module names. Only load</span>
+<span class="sd">        test cases from a submodule of ``tests_module`` with the given names</span>
+
+<span class="sd">    :return: A list of test modules</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get a list of all attributes from tests_module (skipping pkgutil)</span>
     <span class="n">tests_module_attributes</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">tests_module</span><span class="p">)</span> <span class="k">if</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s1">&#39;pkgutil&#39;</span>
     <span class="p">]</span>
+    <span class="c1"># Filter attributes based on test_module_names (if provided)</span>
     <span class="k">if</span> <span class="n">test_module_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">tests_module_attributes</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tests_module_attributes</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">test_module_names</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tests_module_attributes</span><span class="p">:</span>
-        <span class="n">obj</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">):</span>
-            <span class="n">test_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">load_webdriver_test_cases</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">test_list</span></div>
+        <span class="n">tests_module_attributes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tests_module_attributes</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">test_module_names</span>
+        <span class="p">]</span>
+    <span class="c1"># Return list of valid submodules of tests_module</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tests_module_attributes</span>
+        <span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">)</span>
+    <span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="load_webdriver_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_webdriver_test_cases">[docs]</a><span class="k">def</span> <span class="nf">load_webdriver_test_cases</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">test_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a list of :class:`WebDriverTestCase &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
-<span class="sd">    subclasses from a module</span>
+<div class="viewcode-block" id="get_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.get_test_cases">[docs]</a><span class="k">def</span> <span class="nf">get_test_cases</span><span class="p">(</span><span class="n">test_module_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of valid test cases from a list of test modules</span>
 
-<span class="sd">    :param module: The module to load tests from</span>
-<span class="sd">    :param test_class_names: (Optional) List of test case class names to load. Will load all if unspecified</span>
-<span class="sd">    :param skip_class_names: (Optional) List of test case class names to skip. Will skip none if unspecified</span>
+<span class="sd">    :param test_module_list: List of test modules to retrieve test cases from</span>
 
-<span class="sd">    :return: A list of test classes loaded from the module</span>
+<span class="sd">    :return: List of valid test cases from the test modules</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">test_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">module</span><span class="p">):</span>
-        <span class="n">obj</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="c1"># Load class if it subclasses WebDriverTestCase (but don&#39;t load WebDriverTestCase itself)</span>
-        <span class="k">if</span> <span class="n">_is_valid_case</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="p">):</span>
-            <span class="n">test_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">test_list</span></div>
+    <span class="n">test_case_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">test_module_list</span><span class="p">:</span>
+        <span class="n">test_case_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">_get_module_test_cases</span><span class="p">(</span><span class="n">module</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">test_case_list</span></div>
 
 
-<span class="k">def</span> <span class="nf">_is_valid_case</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">test_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_get_module_test_cases</span><span class="p">(</span><span class="n">module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of valid test cases from a test module</span>
+
+<span class="sd">    :param module: Test module to retrieve test cases from</span>
+
+<span class="sd">    :return: List of valid test cases from a test module</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">module</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">_is_valid_case</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+    <span class="p">]</span>
+
+
+<div class="viewcode-block" id="expand_wildcard_class_names"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.expand_wildcard_class_names">[docs]</a><span class="k">def</span> <span class="nf">expand_wildcard_class_names</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update any entries in ``test_class_map`` and ``skip_class_map`` with</span>
+<span class="sd">    wildcards as keys</span>
+
+<span class="sd">    Adds keys for each matching class name mapped to the same method lists from</span>
+<span class="sd">    the wildcard key, then removes all wildcard keys after expanding</span>
+
+<span class="sd">    :param test_case_list: List of all test cases at this point</span>
+<span class="sd">    :param test_class_map: (Optional) Dictionary mapping test class names (or</span>
+<span class="sd">        wildcard strings) to a list of method names or an empty list if the</span>
+<span class="sd">        whole class should be run</span>
+<span class="sd">    :param skip_class_map: (Optional) Dictionary mapping test class names (or</span>
+<span class="sd">        wildcard strings) to a list of method names or an empty list if the</span>
+<span class="sd">        whole class should be skipped</span>
+
+<span class="sd">    :return: The modified ``test_class_map`` and ``skip_class_map`` as a tuple.</span>
+<span class="sd">        Either map may be set to ``None`` if expanding wildcards caused the map</span>
+<span class="sd">        to be empty (i.e. it was all wildcards and none of them matched any</span>
+<span class="sd">        test cases)</span>
+
+<span class="sd">    :raises TestCasesNotFoundException: if ``test_class_map`` was not empty</span>
+<span class="sd">        before wildcard expansion but is empty after. This is to override the</span>
+<span class="sd">        default behavior of running all tests if ``test_class_map`` is empty,</span>
+<span class="sd">        because presumably the user wanted to only run a specific subset of</span>
+<span class="sd">        tests (otherwise ``test_class_map`` would have been empty to begin</span>
+<span class="sd">        with)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">test_class_map</span><span class="p">:</span>
+        <span class="n">test_class_map</span> <span class="o">=</span> <span class="n">_expand_wildcard_class_map_keys</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">)</span>
+        <span class="c1"># If test_class_map evaluates to False after expansion, then there were</span>
+        <span class="c1"># wildcard keys specified and none of them matched. The default</span>
+        <span class="c1"># behaviour for an empty test_class_map is to run all tests, but</span>
+        <span class="c1"># presumably the user wanted to limit this to a subset since the</span>
+        <span class="c1"># specified 1 or more test cases</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">test_class_map</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">TestCasesNotFoundException</span><span class="p">(</span>
+                <span class="s1">&#39;No valid test case classes found after wildcard expansion&#39;</span>
+            <span class="p">)</span>
+    <span class="k">if</span> <span class="n">skip_class_map</span><span class="p">:</span>
+        <span class="n">skip_class_map</span> <span class="o">=</span> <span class="n">_expand_wildcard_class_map_keys</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span>
+    <span class="c1"># Entries should be updated anyway, so this return value shouldn&#39;t be necessary</span>
+    <span class="k">return</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span></div>
+
+
+<span class="k">def</span> <span class="nf">_expand_wildcard_class_map_keys</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Updates any entries in a test class map with wildcards as keys</span>
+
+<span class="sd">    Adds keys for each matching class name mapped to the same method lists from</span>
+<span class="sd">    the wildcard key, then removes all wildcard keys after expanding</span>
+
+<span class="sd">    :param test_case_list: List of all test cases at this point</span>
+<span class="sd">    :param test_class_map: Dictionary mapping test class names (or wildcard</span>
+<span class="sd">        strings) to a list of method names</span>
+
+<span class="sd">    :return: The modified ``test_class_map`` or ``None`` if the updated map is</span>
+<span class="sd">        empty (i.e. it was all wildcards and none of them matched any test</span>
+<span class="sd">        cases)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get list of wildcard keys</span>
+    <span class="n">wildcard_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">test_class_map</span> <span class="k">if</span> <span class="s1">&#39;*&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">]</span>
+    <span class="c1"># Temporary map of class names to the class</span>
+    <span class="n">class_name_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span> <span class="n">test_case</span> <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_case_list</span>
+    <span class="p">}</span>
+    <span class="c1"># Temporary map used to update the original after going through the</span>
+    <span class="c1"># wildcards. The keys to this one will be the matching class names mapped</span>
+    <span class="c1"># to the appropriate method lists</span>
+    <span class="n">updated_class_map</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">wildcard_name</span> <span class="ow">in</span> <span class="n">wildcard_names</span><span class="p">:</span>
+        <span class="n">matching_names</span> <span class="o">=</span> <span class="n">fnmatch</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">class_name_map</span><span class="p">,</span> <span class="n">wildcard_name</span><span class="p">)</span>
+        <span class="c1"># Update temporary map with matching classname: method list from wildcard entry</span>
+        <span class="n">updated_class_map</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="n">matching_name</span><span class="p">:</span> <span class="p">[</span><span class="n">method</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">test_class_map</span><span class="p">[</span><span class="n">wildcard_name</span><span class="p">]]</span>
+            <span class="k">for</span> <span class="n">matching_name</span> <span class="ow">in</span> <span class="n">matching_names</span>
+        <span class="p">})</span>
+        <span class="c1"># Pop wildcard name from original map after finishing</span>
+        <span class="n">test_class_map</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">wildcard_name</span><span class="p">)</span>
+    <span class="c1"># If any matching names are existing keys, copy those method lists</span>
+    <span class="n">existing_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">updated_class_map</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">test_class_map</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">existing_key</span> <span class="ow">in</span> <span class="n">existing_keys</span><span class="p">:</span>
+        <span class="n">updated_class_map</span><span class="p">[</span><span class="n">existing_key</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">test_class_map</span><span class="p">[</span><span class="n">existing_key</span><span class="p">])</span>
+    <span class="c1"># Update original map with temp dictionary</span>
+    <span class="n">test_class_map</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">updated_class_map</span><span class="p">)</span>
+    <span class="c1"># If none of the wild card entries matched any tests and the updated map is</span>
+    <span class="c1"># empty, set it to None</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">test_class_map</span><span class="p">:</span>
+        <span class="n">test_class_map</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># Entries should be updated anyway, so this return value shouldn&#39;t be necessary</span>
+    <span class="k">return</span> <span class="n">test_class_map</span>
+
+
+<div class="viewcode-block" id="filter_test_cases"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.filter_test_cases">[docs]</a><span class="k">def</span> <span class="nf">filter_test_cases</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span>
+                      <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of test cases filtered by --test and --skip arguments</span>
+
+<span class="sd">    :param test_case_list: List of test case classes to filter</span>
+<span class="sd">    :param test_class_map: (Optional) List of test case class names to load.</span>
+<span class="sd">        Will load all if unspecified</span>
+<span class="sd">    :param skip_class_map: (Optional) List of test case class names to skip.</span>
+<span class="sd">        Will skip none if unspecified</span>
+
+<span class="sd">    :return: List of test case classes filtered based on the --test/--skip</span>
+<span class="sd">        arguments</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Reduce set of tests to the specified classes (if applicable)</span>
+    <span class="k">if</span> <span class="n">test_class_map</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fnmatch</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">test_class_map</span><span class="p">)</span>
+        <span class="n">test_case_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_case</span> <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_case_list</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)]</span>
+    <span class="c1"># Remove skipped classes (if applicable)</span>
+    <span class="c1"># Only filter classes with no function lists</span>
+    <span class="c1"># (these are the ones that should be skipped entirely)</span>
+    <span class="n">skip_class_names</span> <span class="o">=</span> <span class="n">_get_skip_class_names</span><span class="p">(</span><span class="n">skip_class_map</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">skip_class_names</span><span class="p">:</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fnmatch</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">skip_class_names</span><span class="p">)</span>
+        <span class="n">test_case_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_case</span> <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_case_list</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">test_case</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">test_case_list</span></div>
+
+
+<span class="k">def</span> <span class="nf">_get_skip_class_names</span><span class="p">(</span><span class="n">skip_class_map</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns list of class names to skip</span>
+
+<span class="sd">    Returned list only contains names of classes where all methods are skipped.</span>
+<span class="sd">    If skip_class_map is None, returns None</span>
+
+<span class="sd">    :param skip_class_map: Result of passing parsed arg for --skip command line</span>
+<span class="sd">        argument to parse_test_names()</span>
+
+<span class="sd">    :return: List of class names to skip</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">skip_class_map</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">class_name</span> <span class="k">for</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">methods</span> <span class="ow">in</span> <span class="n">skip_class_map</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">methods</span>
+        <span class="p">]</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">_is_valid_case</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns True if ``obj`` is a valid test case</span>
 
 <span class="sd">    Criteria for being a valid test case:</span>
@@ -219,37 +423,48 @@
 <span class="sd">          &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;` or</span>
 <span class="sd">          :class:`WebDriverMobileTestCase</span>
 <span class="sd">          &lt;webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase&gt;`</span>
-<span class="sd">        - Is not listed in ``skip_class_names`` (if provided)</span>
-<span class="sd">        - Is listed in ``test_class_names`` (if provided)</span>
 
 <span class="sd">    :param obj: The object to validate</span>
-<span class="sd">    :param test_class_names: (Optional) Names of test classes to run</span>
-<span class="sd">    :param skip_class_names: (Optional) Names of test classes to skip</span>
 
 <span class="sd">    :return: True if ``obj`` is a valid test case, False if not</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parent_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">WebDriverTestCase</span><span class="p">,</span> <span class="n">WebDriverMobileTestCase</span><span class="p">]</span>
     <span class="c1"># Load class if it subclasses WebDriverTestCase (but don&#39;t load WebDriverTestCase itself)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">WebDriverTestCase</span><span class="p">)</span> <span class="ow">and</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">parent_classes</span>
-            <span class="ow">and</span> <span class="p">(</span><span class="n">skip_class_names</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_class_names</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="p">(</span><span class="n">test_class_names</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">in</span> <span class="n">test_class_names</span><span class="p">)</span>
-    <span class="p">):</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">WebDriverTestCase</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">parent_classes</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="load_browser_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_browser_tests">[docs]</a><span class="k">def</span> <span class="nf">load_browser_tests</span><span class="p">(</span><span class="n">generated_test_cases</span><span class="p">,</span> <span class="n">test_methods</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_methods</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="load_browser_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_browser_tests">[docs]</a><span class="k">def</span> <span class="nf">load_browser_tests</span><span class="p">(</span><span class="n">base_class</span><span class="p">,</span> <span class="n">generated_test_cases</span><span class="p">,</span>
+                       <span class="n">test_methods</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_methods</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Load tests from browser test case classes</span>
 
-<span class="sd">    :param generated_test_cases: List of generated browser test case classes for a single subclass of</span>
-<span class="sd">        :class:`WebDriverTestCase &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
-<span class="sd">    :param test_methods: (Optional) List of test method names. If specified, load only these test methods from each</span>
+<span class="sd">    :param base_class: The base test case class that the generated test cases</span>
+<span class="sd">        are based on. Used to expand any wildcards in ``test_methods`` or</span>
+<span class="sd">        ``skip_methods`` to valid test methods</span>
+<span class="sd">    :param generated_test_cases: List of generated browser test case classes</span>
+<span class="sd">        for a single subclass of :class:`WebDriverTestCase</span>
+<span class="sd">        &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
+<span class="sd">    :param test_methods: (Optional) List of test method names (or wildcard</span>
+<span class="sd">        strings). If specified, load only these test methods from each browser</span>
+<span class="sd">        test case</span>
+<span class="sd">    :param skip_methods: (Optional) List of test method names (or wildcard</span>
+<span class="sd">        strings). If specified, do not load these test methods from each</span>
 <span class="sd">        browser test case</span>
-<span class="sd">    :param skip_methods: (Optional) List of test method names. If specified, do not load these test methods from</span>
-<span class="sd">        each browser test case</span>
 
 <span class="sd">    :return: A list of loaded tests from the browser test cases</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span>
+    <span class="c1"># Expand any wildcard methods prior to loading</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">test_methods</span><span class="p">,</span> <span class="n">skip_methods</span> <span class="o">=</span> <span class="n">expand_wildcard_method_names</span><span class="p">(</span>
+            <span class="n">loader</span><span class="p">,</span> <span class="n">base_class</span><span class="p">,</span> <span class="n">test_methods</span><span class="p">,</span> <span class="n">skip_methods</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">TestMethodsNotFoundException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># test_methods was not empty prior to wildcard expansion and was empty after,</span>
+        <span class="c1"># so don&#39;t generate browser test cases</span>
+        <span class="c1"># TODO: print warning?</span>
+        <span class="k">return</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">skip_methods</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">skip_methods</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="c1"># If test_methods is not None and is not empty, load only the specified test methods</span>
@@ -261,7 +476,6 @@
         <span class="p">]</span>
     <span class="c1"># Else load all test methods from each</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">loader</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span>
         <span class="n">browser_tests</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">browser_test_case</span><span class="p">(</span><span class="n">test_method</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">browser_test_case</span> <span class="ow">in</span> <span class="n">generated_test_cases</span>
@@ -269,6 +483,91 @@
             <span class="k">if</span> <span class="n">test_method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_methods</span>
         <span class="p">]</span>
     <span class="k">return</span> <span class="n">browser_tests</span></div>
+
+
+<div class="viewcode-block" id="expand_wildcard_method_names"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.expand_wildcard_method_names">[docs]</a><span class="k">def</span> <span class="nf">expand_wildcard_method_names</span><span class="p">(</span><span class="n">loader</span><span class="p">,</span> <span class="n">base_class</span><span class="p">,</span> <span class="n">test_methods</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_methods</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update any entries in ``test_methods`` and ``skip_methods`` with wildcards</span>
+
+<span class="sd">    Adds list entries for matching methods in ``base_class``, then removes all</span>
+<span class="sd">    wildcard entries after expanding. Additionally, any duplicate</span>
+<span class="sd">    entries in the list after wildcard expansion will be removed so the same</span>
+<span class="sd">    test method isn&#39;t run multiple times</span>
+
+<span class="sd">    :param loader: ``unittest.TestLoader`` object. Used to list all test</span>
+<span class="sd">        methods from ``base_class``</span>
+<span class="sd">    :param base_class: The base test case class. Used to get a list of all test</span>
+<span class="sd">        methods when searching for matches</span>
+<span class="sd">    :param test_methods: (Optional) List of test method names (or wildcard</span>
+<span class="sd">        strings) to run</span>
+<span class="sd">    :param skip_methods: (Optional) List of test method names (or wildcard</span>
+<span class="sd">        strings) to skip</span>
+
+<span class="sd">    :return: The modified ``test_methods`` and ``skip_methods`` as a tuple.</span>
+<span class="sd">        Either of these may be set to ``None`` if expanding wildcards caused</span>
+<span class="sd">        the list to be empty (i.e. it was all wildcards and none of them</span>
+<span class="sd">        matched any test methods)</span>
+
+<span class="sd">    :raises TestMethodsNotFoundException: if ``test_methods`` was not empty</span>
+<span class="sd">        before wildcard expansion but is empty after. This is to override the</span>
+<span class="sd">        default behavior of running all test methods if ``test_methods`` is</span>
+<span class="sd">        empty, because presumably the user wanted to only run a specific subset</span>
+<span class="sd">        of tests (otherwise ``test_methods`` would have been empty to begin</span>
+<span class="sd">        with)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># List of test methods in the base class</span>
+    <span class="n">base_class_methods</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">getTestCaseNames</span><span class="p">(</span><span class="n">base_class</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">test_methods</span><span class="p">:</span>
+        <span class="n">test_methods</span> <span class="o">=</span> <span class="n">_expand_wildcard_method_list_items</span><span class="p">(</span><span class="n">base_class_methods</span><span class="p">,</span> <span class="n">test_methods</span><span class="p">)</span>
+        <span class="c1"># If test_methods evaluates to False after expansion, then there were</span>
+        <span class="c1"># wildcard methods specified and none of them matched. The default</span>
+        <span class="c1"># behavior for an empty test_methods list is to run all methods, but</span>
+        <span class="c1"># presumably the user wanted to limit this to a subset since they</span>
+        <span class="c1"># specified 1 or more methods</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">test_methods</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">TestMethodsNotFoundException</span><span class="p">(</span>
+                <span class="s1">&#39;No valid test methods found after test wildcard expansion for </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+            <span class="p">)</span>
+    <span class="k">if</span> <span class="n">skip_methods</span><span class="p">:</span>
+        <span class="n">skip_methods</span> <span class="o">=</span> <span class="n">_expand_wildcard_method_list_items</span><span class="p">(</span><span class="n">base_class_methods</span><span class="p">,</span> <span class="n">skip_methods</span><span class="p">)</span>
+    <span class="c1"># Entries should be updated anyway, so this return value shouldn&#39;t be necessary</span>
+    <span class="k">return</span> <span class="n">test_methods</span><span class="p">,</span> <span class="n">skip_methods</span></div>
+
+
+<span class="k">def</span> <span class="nf">_expand_wildcard_method_list_items</span><span class="p">(</span><span class="n">base_class_methods</span><span class="p">,</span> <span class="n">test_methods</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Updates any entries in a test/skip method list with wildcards</span>
+
+<span class="sd">    Adds list entries for each test method that matches a wildcard entry, then</span>
+<span class="sd">    removes all wildcard entries after expanding. Additionally, any duplicate</span>
+<span class="sd">    entries in the list after wildcard expansion will be removed so the same</span>
+<span class="sd">    test method isn&#39;t run multiple times</span>
+
+<span class="sd">    :param base_class_methods: List of all test methods in the test case class</span>
+<span class="sd">        (i.e. result of loader.getTestCaseNames())</span>
+<span class="sd">    :param test_methods: List of test case method names (or wildcard strings)</span>
+
+<span class="sd">    :return: The modified ``test_methods`` list or ``None`` if the updated list</span>
+<span class="sd">        is empty (i.e. it was all wildcards and none of them matched any test</span>
+<span class="sd">        methods)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get list of wildcard test methods</span>
+    <span class="n">wildcard_methods</span> <span class="o">=</span> <span class="p">[</span><span class="n">method</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">test_methods</span><span class="p">]</span>
+    <span class="c1"># Temporary list of matching test methods used to update the original</span>
+    <span class="n">updated_test_methods</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">wildcard_method</span> <span class="ow">in</span> <span class="n">wildcard_methods</span><span class="p">:</span>
+        <span class="n">matching_methods</span> <span class="o">=</span> <span class="n">fnmatch</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">base_class_methods</span><span class="p">,</span> <span class="n">wildcard_method</span><span class="p">)</span>
+        <span class="c1"># Update temporary list with matching test methods</span>
+        <span class="n">updated_test_methods</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">matching_methods</span><span class="p">)</span>
+        <span class="c1"># Remove wildcard name from original list after finishing</span>
+        <span class="n">test_methods</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">wildcard_method</span><span class="p">)</span>
+    <span class="c1"># Update original list</span>
+    <span class="n">test_methods</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">updated_test_methods</span><span class="p">)</span>
+    <span class="c1"># Remove duplicate entries (convert from a list to a dict and back)</span>
+    <span class="n">test_methods</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">test_methods</span><span class="p">))</span>
+    <span class="c1"># If none of the wildcard entries matched any test methods and the updated list is empty, set it to None</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">test_methods</span><span class="p">:</span>
+        <span class="n">test_methods</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">test_methods</span>
+
 </pre></div>
 
            </div>
@@ -303,7 +602,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.3.0-alpha',
+            VERSION:'2.4.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

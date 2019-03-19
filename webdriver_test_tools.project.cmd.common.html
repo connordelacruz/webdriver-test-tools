@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.cmd.common module &mdash; WebDriver Test Tools 2.3.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.cmd.common module &mdash; WebDriver Test Tools 2.4.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.3
+                2.4
               </div>
             
           
@@ -89,6 +89,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="README.html">WebDriver Test Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
@@ -207,11 +208,12 @@ parents for the test argument parser</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>test_name_args</strong> – The parsed value of the <code class="docutils literal notranslate"><span class="pre">--test</span></code> or <code class="docutils literal notranslate"><span class="pre">--skip</span></code> arguments</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>test_name_args</strong> – The parsed value of the <code class="docutils literal notranslate"><span class="pre">--test</span></code> or <code class="docutils literal notranslate"><span class="pre">--skip</span></code>
+arguments</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None if <code class="docutils literal notranslate"><span class="pre">test_name_args</span></code> is None, otherwise return a dictionary mapping test
-case names to a list of test functions to run. If list is empty, no specific
-function was given for that class</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None if <code class="docutils literal notranslate"><span class="pre">test_name_args</span></code> is None, otherwise return a dictionary
+mapping test case names to a list of test functions to run. If list is
+empty, no specific function was given for that class</td>
 </tr>
 </tbody>
 </table>
@@ -237,39 +239,28 @@ function was given for that class</td>
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.common.load_tests">
 <code class="descclassname">webdriver_test_tools.project.cmd.common.</code><code class="descname">load_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/common.html#load_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.common.load_tests" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of test classes from a project based on the –module, –test, and –skip arguments</p>
+<dd><p>Return a list of test classes from a project based on the –module,
+–test, and –skip arguments</p>
+<p>If a <code class="xref py py-exc docutils literal notranslate"><span class="pre">TestCasesNotFoundException</span></code> is
+raised when trying to load tests, the error message will be printed and
+<a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exit" title="(in Python v3.7)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exit()</span></code></a> will be called, ending execution</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
-<li><strong>test_module_names</strong> – (Optional) Parsed arg for –module command line argument</li>
-<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for –test command
-line argument to parse_test_names()</li>
-<li><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for –skip command
-line argument to parse_test_names()</li>
+<li><strong>test_module_names</strong> – (Optional) Parsed arg for –module command line
+argument</li>
+<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for –test
+command line argument to parse_test_names()</li>
+<li><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for –skip
+command line argument to parse_test_names()</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">List of test classes</p>
 </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.cmd.common.get_skip_class_names">
-<code class="descclassname">webdriver_test_tools.project.cmd.common.</code><code class="descname">get_skip_class_names</code><span class="sig-paren">(</span><em>skip_class_map</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/common.html#get_skip_class_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.common.get_skip_class_names" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns list of classes to skip</p>
-<p>Returned list only contains names of classes where all methods are skipped.
-If skip_class_map is None, returns None</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>skip_class_map</strong> – Result of passing parsed arg for –skip command line argument to parse_test_names()</td>
 </tr>
 </tbody>
 </table>
@@ -319,7 +310,7 @@ If skip_class_map is None, returns None</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.3.0-alpha',
+            VERSION:'2.4.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
