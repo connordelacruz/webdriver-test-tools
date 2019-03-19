@@ -191,6 +191,10 @@ def _expand_wildcard_class_map_keys(test_case_list, test_class_map):
         })
         # Pop wildcard name from original map after finishing
         test_class_map.pop(wildcard_name)
+    # If any matching names are existing keys, copy those method lists
+    existing_keys = [key for key in updated_class_map if key in test_class_map]
+    for existing_key in existing_keys:
+        updated_class_map[existing_key].extend(test_class_map[existing_key])
     # Update original map with temp dictionary
     test_class_map.update(updated_class_map)
     # If none of the wild card entries matched any tests and the updated map is
