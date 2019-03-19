@@ -88,10 +88,14 @@ def parse_test_args(args):
 
 # Test Loading Functions
 
-# TODO: document exception handling
 def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
     """Return a list of test classes from a project based on the --module,
     --test, and --skip arguments
+
+    If a :exc:`TestCasesNotFoundException
+    <webdriver_test_tools.projects.test_loader.TestCasesNotFoundException>` is
+    raised when trying to load tests, the error message will be printed and
+    :func:`sys.exit` will be called, ending execution
 
     :param tests_module: The module object for <test_project>.tests
     :param test_module_names: (Optional) Parsed arg for --module command line
