@@ -223,10 +223,10 @@ def filter_test_cases(test_case_list,
         expr = '|'.join(fnmatch.translate(p) for p in test_class_map)
         test_case_list = [test_case for test_case in test_case_list if re.match(expr, test_case.__name__)]
     # Remove skipped classes (if applicable)
-    if skip_class_map is not None:
-        # Only filter classes with no function lists
-        # (these are the ones that should be skipped entirely)
-        skip_class_names = _get_skip_class_names(skip_class_map)
+    # Only filter classes with no function lists
+    # (these are the ones that should be skipped entirely)
+    skip_class_names = _get_skip_class_names(skip_class_map)
+    if skip_class_names:
         expr = '|'.join(fnmatch.translate(p) for p in skip_class_names)
         test_case_list = [test_case for test_case in test_case_list if not re.match(expr, test_case.__name__)]
     return test_case_list
