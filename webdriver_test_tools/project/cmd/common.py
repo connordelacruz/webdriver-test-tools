@@ -1,3 +1,4 @@
+import sys
 import textwrap
 
 from webdriver_test_tools.common import cmd
@@ -87,6 +88,7 @@ def parse_test_args(args):
 
 # Test Loading Functions
 
+# TODO: document exception handling
 def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
     """Return a list of test classes from a project based on the --module,
     --test, and --skip arguments
@@ -101,8 +103,13 @@ def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_c
 
     :return: List of test classes
     """
-    return test_loader.load_project_tests(
-        tests_module, test_module_names, test_class_map, skip_class_map
-    )
+    try:
+        return test_loader.load_project_tests(
+            tests_module, test_module_names, test_class_map, skip_class_map
+        )
+    except test_loader.TestCasesNotFoundException as e:
+        print('')
+        cmd.print_exception(e)
+        sys.exit()
 
 

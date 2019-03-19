@@ -7,6 +7,30 @@ import unittest
 
 from webdriver_test_tools.testcase import *
 
+# Exceptions
+
+class TestLoaderException(Exception):
+    """Base exception class for the test_loader module"""
+    pass
+
+
+class TestMethodsNotFoundException(TestLoaderException):
+    """Exception raised if no test methods matching the specified criteria were
+    found in a test case class
+    """
+    # TODO: take test case class and method list and print those in the message?
+    pass
+
+
+class TestCasesNotFoundException(TestLoaderException):
+    """Exception raised if no test cases matching the specified criteria are
+    found
+    """
+    # TODO: take module names and class maps and print those in the message?
+    pass
+
+
+# Loader Methods
 
 def load_project_tests(tests_module,
                        test_module_names=None, test_class_map=None, skip_class_map=None):
@@ -96,6 +120,7 @@ def _get_module_test_cases(module):
     ]
 
 
+# TODO: document exceptions?
 def expand_wildcard_class_names(test_case_list, test_class_map=None, skip_class_map=None):
     """Update any entries in ``test_class_map`` and ``skip_class_map`` with
     wildcards as keys
@@ -116,9 +141,18 @@ def expand_wildcard_class_names(test_case_list, test_class_map=None, skip_class_
         to be empty (i.e. it was all wildcards and none of them matched any
         test cases)
     """
-    if test_class_map is not None:
+    if test_class_map:
         test_class_map = _expand_wildcard_class_map_keys(test_case_list, test_class_map)
-    if skip_class_map is not None:
+        # If test_class_map evaluates to False after expansion, then there were
+        # wildcard keys specified and none of them matched. The default
+        # behaviour for an empty test_class_map is to run all tests, but
+        # presumably the user wanted to limit this to a subset since the
+        # specified 1 or more test cases
+        if not test_class_map:
+            raise TestCasesNotFoundException(
+                'No valid test case classes found after wildcard expansion'
+            )
+    if skip_class_map:
         skip_class_map = _expand_wildcard_class_map_keys(test_case_list, skip_class_map)
     # Entries should be updated anyway, so this return value shouldn't be necessary
     return test_class_map, skip_class_map
@@ -235,6 +269,7 @@ def _is_valid_case(obj):
             and obj not in parent_classes)
 
 
+# TODO: document exception handling?
 def load_browser_tests(base_class, generated_test_cases,
                        test_methods=None, skip_methods=None):
     """Load tests from browser test case classes
@@ -256,9 +291,15 @@ def load_browser_tests(base_class, generated_test_cases,
     """
     loader = unittest.TestLoader()
     # Expand any wildcard methods prior to loading
-    test_methods, skip_methods = expand_wildcard_method_names(
-        loader, base_class, test_methods, skip_methods
-    )
+    try:
+        test_methods, skip_methods = expand_wildcard_method_names(
+            loader, base_class, test_methods, skip_methods
+        )
+    except TestMethodsNotFoundException as e:
+        # test_methods was not empty prior to wildcard expansion and was empty after,
+        # so don't generate browser test cases
+        # TODO: print warning
+        return []
     if skip_methods is None:
         skip_methods = []
     # If test_methods is not None and is not empty, load only the specified test methods
@@ -279,6 +320,7 @@ def load_browser_tests(base_class, generated_test_cases,
     return browser_tests
 
 
+# TODO: document exception
 def expand_wildcard_method_names(loader, base_class, test_methods=None, skip_methods=None):
     """Update any entries in ``test_methods`` and ``skip_methods`` with wildcards
 
@@ -303,10 +345,19 @@ def expand_wildcard_method_names(loader, base_class, test_methods=None, skip_met
     """
     # List of test methods in the base class
     base_class_methods = loader.getTestCaseNames(base_class)
-    if test_methods is not None:
+    # TODO: move to end of method skip_methods can be validated?
+    if test_methods:
         test_methods = _expand_wildcard_method_list_items(base_class_methods, test_methods)
-        # TODO: if test_methods is None after expansion, should the test be run at all?
-    if skip_methods is not None:
+        # If test_methods evaluates to False after expansion, then there were
+        # wildcard methods specified and none of them matched. The default
+        # behavior for an empty test_methods list is to run all methods, but
+        # presumably the user wanted to limit this to a subset since they
+        # specified 1 or more methods
+        if not test_methods:
+            raise TestMethodsNotFoundException(
+                'No valid test methods found after test wildcard expansion for {}'.format(base_class.__name__)
+            )
+    if skip_methods:
         skip_methods = _expand_wildcard_method_list_items(base_class_methods, skip_methods)
     # Entries should be updated anyway, so this return value shouldn't be necessary
     return test_methods, skip_methods
