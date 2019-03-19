@@ -152,12 +152,18 @@ used to force overwrite existing files:
 Running Tests
 -------------
 
+Basic Usage
+~~~~~~~~~~~
+
 To run all tests:
 
 ::
 
     python -m <test_package>
 
+
+Running Specific Tests
+~~~~~~~~~~~~~~~~~~~~~~
 
 To run all test cases in one or more modules, use the ``--module`` (or ``-m``)
 argument:
@@ -179,6 +185,9 @@ To skip certain test cases or methods, use the ``--skip`` (or ``-s``) argument:
 
     python -m <test_package> --skip <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
 
+
+The ``--test`` and ``--skip`` arguments both support wildcards (``*``) in class
+and method names.
 
 These arguments can be used together. When combined, they are processed in the
 following order:

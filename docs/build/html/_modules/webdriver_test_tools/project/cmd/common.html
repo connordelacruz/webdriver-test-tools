@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.cmd.common &mdash; WebDriver Test Tools 2.3.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.cmd.common &mdash; WebDriver Test Tools 2.4.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.3
+                2.4
               </div>
             
           
@@ -156,7 +156,8 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.project.cmd.common</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">textwrap</span>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
 
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.common</span> <span class="k">import</span> <span class="n">cmd</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_loader</span>
@@ -177,21 +178,27 @@
 <span class="sd">        ``--skip``, and ``--module`` arguments</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Adds --module, --test, and --skip arguments</span>
-    <span class="n">test_parent_parser</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="n">parents</span><span class="p">)</span>
+    <span class="n">test_parent_parser</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                     <span class="n">parents</span><span class="o">=</span><span class="n">parents</span><span class="p">)</span>
     <span class="c1"># Arguments for specifying what test to run</span>
     <span class="n">group</span> <span class="o">=</span> <span class="n">test_parent_parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Test Arguments&#39;</span><span class="p">)</span>
     <span class="n">module_help</span> <span class="o">=</span> <span class="s1">&#39;Run only tests in specific test modules&#39;</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--module&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;module&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">module_help</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--module&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;module&gt;&#39;</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="n">module_help</span><span class="p">)</span>
     <span class="n">test_help</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
 <span class="s1">                Run specific test case classes or test methods.</span>
 <span class="s1">                Arguments should be in the format &lt;TestCase&gt;[.&lt;method&gt;]</span>
+<span class="s1">                (Supports wildcards in class and method names)</span>
 <span class="s1">                &#39;&#39;&#39;</span><span class="p">)</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--test&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;test&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">test_help</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--test&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;test&gt;&#39;</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="n">test_help</span><span class="p">)</span>
     <span class="n">skip_help</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
 <span class="s1">                Skip specific test case classes or test methods.</span>
 <span class="s1">                Arguments should be in the format &lt;TestCase&gt;[.&lt;method&gt;]</span>
+<span class="s1">                (Supports wildcards in class and method names)</span>
 <span class="s1">                &#39;&#39;&#39;</span><span class="p">)</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--skip&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;test&gt;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">skip_help</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--skip&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;test&gt;&#39;</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="n">skip_help</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">test_parent_parser</span></div>
 
 
@@ -200,16 +207,18 @@
 <div class="viewcode-block" id="parse_test_names"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.common.html#webdriver_test_tools.project.cmd.common.parse_test_names">[docs]</a><span class="k">def</span> <span class="nf">parse_test_names</span><span class="p">(</span><span class="n">test_name_args</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a dictionary mapping test case names to a list of test functions</span>
 
-<span class="sd">    :param test_name_args: The parsed value of the ``--test`` or ``--skip`` arguments</span>
+<span class="sd">    :param test_name_args: The parsed value of the ``--test`` or ``--skip``</span>
+<span class="sd">        arguments</span>
 
-<span class="sd">    :return: None if ``test_name_args`` is None, otherwise return a dictionary mapping test</span>
-<span class="sd">        case names to a list of test functions to run. If list is empty, no specific</span>
-<span class="sd">        function was given for that class</span>
+<span class="sd">    :return: None if ``test_name_args`` is None, otherwise return a dictionary</span>
+<span class="sd">        mapping test case names to a list of test functions to run. If list is</span>
+<span class="sd">        empty, no specific function was given for that class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">test_name_args</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="n">class_map</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">test_name</span> <span class="ow">in</span> <span class="n">test_name_args</span><span class="p">:</span>
+        <span class="c1"># Split &lt;module&gt;.[&lt;function&gt;]</span>
         <span class="n">test_name_parts</span> <span class="o">=</span> <span class="n">test_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
         <span class="n">class_map</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">test_name_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[])</span>
         <span class="c1"># If a function was specified, append it to the list of functions</span>
@@ -237,35 +246,34 @@
 <span class="c1"># Test Loading Functions</span>
 
 <div class="viewcode-block" id="load_tests"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.common.html#webdriver_test_tools.project.cmd.common.load_tests">[docs]</a><span class="k">def</span> <span class="nf">load_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a list of test classes from a project based on the --module, --test, and --skip arguments</span>
+    <span class="sd">&quot;&quot;&quot;Return a list of test classes from a project based on the --module,</span>
+<span class="sd">    --test, and --skip arguments</span>
+
+<span class="sd">    If a :exc:`TestCasesNotFoundException</span>
+<span class="sd">    &lt;webdriver_test_tools.projects.test_loader.TestCasesNotFoundException&gt;` is</span>
+<span class="sd">    raised when trying to load tests, the error message will be printed and</span>
+<span class="sd">    :func:`sys.exit` will be called, ending execution</span>
 
 <span class="sd">    :param tests_module: The module object for &lt;test_project&gt;.tests</span>
-<span class="sd">    :param test_module_names: (Optional) Parsed arg for --module command line argument</span>
-<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for --test command</span>
-<span class="sd">        line argument to parse_test_names()</span>
-<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for --skip command</span>
-<span class="sd">        line argument to parse_test_names()</span>
+<span class="sd">    :param test_module_names: (Optional) Parsed arg for --module command line</span>
+<span class="sd">        argument</span>
+<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for --test</span>
+<span class="sd">        command line argument to parse_test_names()</span>
+<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for --skip</span>
+<span class="sd">        command line argument to parse_test_names()</span>
 
 <span class="sd">    :return: List of test classes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">test_class_names</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">test_class_map</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">test_class_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-    <span class="n">skip_class_names</span> <span class="o">=</span> <span class="n">get_skip_class_names</span><span class="p">(</span><span class="n">skip_class_map</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_names</span><span class="p">,</span> <span class="n">skip_class_names</span><span class="p">)</span></div>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_project_tests</span><span class="p">(</span>
+            <span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">TestCasesNotFoundException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">cmd</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="get_skip_class_names"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.common.html#webdriver_test_tools.project.cmd.common.get_skip_class_names">[docs]</a><span class="k">def</span> <span class="nf">get_skip_class_names</span><span class="p">(</span><span class="n">skip_class_map</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns list of classes to skip</span>
-
-<span class="sd">    Returned list only contains names of classes where all methods are skipped.</span>
-<span class="sd">    If skip_class_map is None, returns None</span>
-
-<span class="sd">    :param skip_class_map: Result of passing parsed arg for --skip command line argument to parse_test_names()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">skip_class_map</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="n">class_name</span> <span class="k">for</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">methods</span> <span class="ow">in</span> <span class="n">skip_class_map</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">methods</span>
-        <span class="p">]</span>
-    <span class="k">return</span> <span class="kc">None</span></div>
 </pre></div>
 
            </div>
@@ -300,7 +308,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.3.0-alpha',
+            VERSION:'2.4.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

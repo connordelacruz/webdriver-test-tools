@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_loader module &mdash; WebDriver Test Tools 2.3.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.test_loader module &mdash; WebDriver Test Tools 2.4.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.3
+                2.4
               </div>
             
           
@@ -180,21 +180,55 @@
   <div class="section" id="module-webdriver_test_tools.project.test_loader">
 <span id="webdriver-test-tools-project-test-loader-module"></span><h1>webdriver_test_tools.project.test_loader module<a class="headerlink" href="#module-webdriver_test_tools.project.test_loader" title="Permalink to this headline">¶</a></h1>
 <p>Load test cases from a project.</p>
+<dl class="exception">
+<dt id="webdriver_test_tools.project.test_loader.TestLoaderException">
+<em class="property">exception </em><code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">TestLoaderException</code><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#TestLoaderException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.TestLoaderException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Base exception class for the test_loader module</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="webdriver_test_tools.project.test_loader.TestMethodsNotFoundException">
+<em class="property">exception </em><code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">TestMethodsNotFoundException</code><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#TestMethodsNotFoundException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.TestMethodsNotFoundException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.project.test_loader.TestLoaderException" title="webdriver_test_tools.project.test_loader.TestLoaderException"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.project.test_loader.TestLoaderException</span></code></a></p>
+<p>Exception raised if no test methods matching the specified criteria were
+found in a test case class</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="webdriver_test_tools.project.test_loader.TestCasesNotFoundException">
+<em class="property">exception </em><code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">TestCasesNotFoundException</code><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#TestCasesNotFoundException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.TestCasesNotFoundException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.project.test_loader.TestLoaderException" title="webdriver_test_tools.project.test_loader.TestLoaderException"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.project.test_loader.TestLoaderException</span></code></a></p>
+<p>Exception raised if no test cases matching the specified criteria are
+found</p>
+</dd></dl>
+
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_project_tests">
-<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_project_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em>, <em>test_class_names=None</em>, <em>skip_class_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
-subclasses from all submodules in a test project’s tests/ directory</p>
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_project_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a> subclasses
+from all submodules in a test project’s tests/ directory</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">test_class_map</span></code> or <code class="docutils literal notranslate"><span class="pre">skip_class_map</span></code> contain wildcards in any of
+their keys, those will be expanded into keys for each test class name that
+matches, altering the original dictionaries as a side effect.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></li>
-<li><strong>test_module_names</strong> – (Optional) List of test module names. Only load test cases from a submodule of
-<code class="docutils literal notranslate"><span class="pre">tests_module</span></code> with the given names</li>
-<li><strong>test_class_names</strong> – (Optional) List of test class names. Only load test cases with these names</li>
-<li><strong>skip_class_names</strong> – (Optional) List of test class names. Skip test cases with these names</li>
+<li><strong>test_module_names</strong> – (Optional) List of test module names. Only load
+test cases from a submodule of <code class="docutils literal notranslate"><span class="pre">tests_module</span></code> with the given names</li>
+<li><strong>test_class_map</strong> – (Optional) Dictionary mapping test class names (or
+wildcard strings) to a list of method names or an empty list if the
+whole class should be run. Only load test cases that match the keys in
+this dictionary</li>
+<li><strong>skip_class_map</strong> – (Optional) Dictionary mapping test class names (or
+wildcard strings) to a list of method names or an empty list if the
+whole class should be skipped. Skip test cases that match the keys in
+this dictionary if they’re mapped to an empty list. If one or more
+methods are specified to skip, it’s possible that there are more
+methods in the class that should be run</li>
 </ul>
 </td>
 </tr>
@@ -206,22 +240,102 @@ subclasses from all submodules in a test project’s tests/ directory</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="webdriver_test_tools.project.test_loader.load_webdriver_test_cases">
-<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_webdriver_test_cases</code><span class="sig-paren">(</span><em>module</em>, <em>test_class_names=None</em>, <em>skip_class_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_webdriver_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_webdriver_test_cases" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>
-subclasses from a module</p>
+<dt id="webdriver_test_tools.project.test_loader.get_test_modules">
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">get_test_modules</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#get_test_modules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.get_test_modules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of submodules in a test project’s tests/ directory</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>module</strong> – The module to load tests from</li>
-<li><strong>test_class_names</strong> – (Optional) List of test case class names to load. Will load all if unspecified</li>
-<li><strong>skip_class_names</strong> – (Optional) List of test case class names to skip. Will skip none if unspecified</li>
+<li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></li>
+<li><strong>test_module_names</strong> – (Optional) List of test module names. Only load
+test cases from a submodule of <code class="docutils literal notranslate"><span class="pre">tests_module</span></code> with the given names</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of test classes loaded from the module</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of test modules</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.test_loader.get_test_cases">
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">get_test_cases</code><span class="sig-paren">(</span><em>test_module_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#get_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.get_test_cases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of valid test cases from a list of test modules</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>test_module_list</strong> – List of test modules to retrieve test cases from</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of valid test cases from the test modules</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.test_loader.expand_wildcard_class_names">
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">expand_wildcard_class_names</code><span class="sig-paren">(</span><em>test_case_list</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#expand_wildcard_class_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.expand_wildcard_class_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update any entries in <code class="docutils literal notranslate"><span class="pre">test_class_map</span></code> and <code class="docutils literal notranslate"><span class="pre">skip_class_map</span></code> with
+wildcards as keys</p>
+<p>Adds keys for each matching class name mapped to the same method lists from
+the wildcard key, then removes all wildcard keys after expanding</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>test_case_list</strong> – List of all test cases at this point</li>
+<li><strong>test_class_map</strong> – (Optional) Dictionary mapping test class names (or
+wildcard strings) to a list of method names or an empty list if the
+whole class should be run</li>
+<li><strong>skip_class_map</strong> – (Optional) Dictionary mapping test class names (or
+wildcard strings) to a list of method names or an empty list if the
+whole class should be skipped</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The modified <code class="docutils literal notranslate"><span class="pre">test_class_map</span></code> and <code class="docutils literal notranslate"><span class="pre">skip_class_map</span></code> as a tuple.
+Either map may be set to <code class="docutils literal notranslate"><span class="pre">None</span></code> if expanding wildcards caused the map
+to be empty (i.e. it was all wildcards and none of them matched any
+test cases)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#webdriver_test_tools.project.test_loader.TestCasesNotFoundException" title="webdriver_test_tools.project.test_loader.TestCasesNotFoundException"><strong>TestCasesNotFoundException</strong></a> – if <code class="docutils literal notranslate"><span class="pre">test_class_map</span></code> was not empty
+before wildcard expansion but is empty after. This is to override the
+default behavior of running all tests if <code class="docutils literal notranslate"><span class="pre">test_class_map</span></code> is empty,
+because presumably the user wanted to only run a specific subset of
+tests (otherwise <code class="docutils literal notranslate"><span class="pre">test_class_map</span></code> would have been empty to begin
+with)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.test_loader.filter_test_cases">
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">filter_test_cases</code><span class="sig-paren">(</span><em>test_case_list</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#filter_test_cases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.filter_test_cases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of test cases filtered by –test and –skip arguments</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>test_case_list</strong> – List of test case classes to filter</li>
+<li><strong>test_class_map</strong> – (Optional) List of test case class names to load.
+Will load all if unspecified</li>
+<li><strong>skip_class_map</strong> – (Optional) List of test case class names to skip.
+Will skip none if unspecified</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">List of test case classes filtered based on the –test/–skip
+arguments</p>
 </td>
 </tr>
 </tbody>
@@ -230,23 +344,70 @@ subclasses from a module</p>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_browser_tests">
-<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_browser_tests</code><span class="sig-paren">(</span><em>generated_test_cases</em>, <em>test_methods=None</em>, <em>skip_methods=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_browser_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_browser_tests" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">load_browser_tests</code><span class="sig-paren">(</span><em>base_class</em>, <em>generated_test_cases</em>, <em>test_methods=None</em>, <em>skip_methods=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_browser_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_browser_tests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load tests from browser test case classes</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>generated_test_cases</strong> – List of generated browser test case classes for a single subclass of
-<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a></li>
-<li><strong>test_methods</strong> – (Optional) List of test method names. If specified, load only these test methods from each
+<li><strong>base_class</strong> – The base test case class that the generated test cases
+are based on. Used to expand any wildcards in <code class="docutils literal notranslate"><span class="pre">test_methods</span></code> or
+<code class="docutils literal notranslate"><span class="pre">skip_methods</span></code> to valid test methods</li>
+<li><strong>generated_test_cases</strong> – List of generated browser test case classes
+for a single subclass of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a></li>
+<li><strong>test_methods</strong> – (Optional) List of test method names (or wildcard
+strings). If specified, load only these test methods from each browser
+test case</li>
+<li><strong>skip_methods</strong> – (Optional) List of test method names (or wildcard
+strings). If specified, do not load these test methods from each
 browser test case</li>
-<li><strong>skip_methods</strong> – (Optional) List of test method names. If specified, do not load these test methods from
-each browser test case</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list of loaded tests from the browser test cases</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.project.test_loader.expand_wildcard_method_names">
+<code class="descclassname">webdriver_test_tools.project.test_loader.</code><code class="descname">expand_wildcard_method_names</code><span class="sig-paren">(</span><em>loader</em>, <em>base_class</em>, <em>test_methods=None</em>, <em>skip_methods=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#expand_wildcard_method_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.expand_wildcard_method_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update any entries in <code class="docutils literal notranslate"><span class="pre">test_methods</span></code> and <code class="docutils literal notranslate"><span class="pre">skip_methods</span></code> with wildcards</p>
+<p>Adds list entries for matching methods in <code class="docutils literal notranslate"><span class="pre">base_class</span></code>, then removes all
+wildcard entries after expanding. Additionally, any duplicate
+entries in the list after wildcard expansion will be removed so the same
+test method isn’t run multiple times</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>loader</strong> – <code class="docutils literal notranslate"><span class="pre">unittest.TestLoader</span></code> object. Used to list all test
+methods from <code class="docutils literal notranslate"><span class="pre">base_class</span></code></li>
+<li><strong>base_class</strong> – The base test case class. Used to get a list of all test
+methods when searching for matches</li>
+<li><strong>test_methods</strong> – (Optional) List of test method names (or wildcard
+strings) to run</li>
+<li><strong>skip_methods</strong> – (Optional) List of test method names (or wildcard
+strings) to skip</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The modified <code class="docutils literal notranslate"><span class="pre">test_methods</span></code> and <code class="docutils literal notranslate"><span class="pre">skip_methods</span></code> as a tuple.
+Either of these may be set to <code class="docutils literal notranslate"><span class="pre">None</span></code> if expanding wildcards caused
+the list to be empty (i.e. it was all wildcards and none of them
+matched any test methods)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#webdriver_test_tools.project.test_loader.TestMethodsNotFoundException" title="webdriver_test_tools.project.test_loader.TestMethodsNotFoundException"><strong>TestMethodsNotFoundException</strong></a> – if <code class="docutils literal notranslate"><span class="pre">test_methods</span></code> was not empty
+before wildcard expansion but is empty after. This is to override the
+default behavior of running all test methods if <code class="docutils literal notranslate"><span class="pre">test_methods</span></code> is
+empty, because presumably the user wanted to only run a specific subset
+of tests (otherwise <code class="docutils literal notranslate"><span class="pre">test_methods</span></code> would have been empty to begin
+with)</p>
 </td>
 </tr>
 </tbody>
@@ -297,7 +458,7 @@ each browser test case</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.3.0-alpha',
+            VERSION:'2.4.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
