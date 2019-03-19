@@ -410,17 +410,50 @@ If we just wanted to run the ``test_more_information_link`` function:
 
     python -m example_package --test HomePageTestCase.test_more_information_link
 
+The ``--test`` argument also supports wildcards in both the test case class and
+method names. For example, if we wanted to run all test case classes beginning
+with the word ``Home``:
+
+.. code-block:: none
+
+   python -m example_package --test Home*
+
+Or if we wanted to run all methods in ``HomePageTestCase`` containing the word
+``page``:
+
+.. code-block:: none
+
+   python -m example_package --test HomePageTestCase.*page*
+
+Or if we wanted to run all test methods ending with the word ``link``:
+
+.. code-block:: none
+
+   python -m example_package --test *.*_link
+
+Obviously this isn't particularly useful in our simple example, but can allow
+for a lot more control in larger test projects without needing to type out long
+lists of test cases and methods.
+
 Skipping test cases or functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If we wanted to skip a test case or function within a test case, we can use the
 ``--skip`` command line argument, which uses the same syntax as ``--test``. For 
-example, if we wanted to run all tests except for the 
+example, if we wanted to run all tests except for the
 ``test_more_information_link`` function:
 
 .. code-block:: none
 
     python -m example_package --skip HomePageTestCase.test_more_information_link
+
+Like the ``--test`` argument, ``--skip`` also supports wildcards in class and
+method names. E.g. if we wanted to skip all methods in all test cases that
+contain the word ``page``:
+
+.. code-block:: none
+
+    python -m example_package --skip *.*page*
 
 Again, this isn't particularly interesting since we only have 2 test functions,
 but can be useful in larger test projects.
