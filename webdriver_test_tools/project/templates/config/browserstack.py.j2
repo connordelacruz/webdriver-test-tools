@@ -8,20 +8,24 @@ class BrowserStackConfig(browserstack.BrowserStackConfig):
 
     # Required Configurations
 
-    #: (Default = False) Set to True to enable BrowserStack testing
+    # (Default = False) Set to True to enable BrowserStack testing
     ENABLE = False
-    # TODO: Explain environment variables
-    #: Account username. Required for BrowserStack testing
+
+    # Account username. Required for BrowserStack testing.
+    # Uses the value of BROWSERSTACK_USERNAME environment variable by default
     USERNAME = os.getenv('BROWSERSTACK_USERNAME', '')
-    #: Access key. Required for BrowserStack testing
+
+    # Access key. Required for BrowserStack testing.
+    # Uses the value of BROWSERSTACK_ACCESS_KEY environment variable by 
+    # default
     ACCESS_KEY = os.getenv('BROWSERSTACK_ACCESS_KEY', '')
 
 
     # Browsers
 
-    #: Dictionary mapping browser names to a boolean. True enables the browser,
-    #: False disables it. Defaults to Chrome and Firefox since they're not
-    #: platform specific
+    # Dictionary mapping browser names to a boolean. True enables the browser,
+    # False disables it. Defaults to Chrome and Firefox since they're not
+    # platform specific
     ENABLED_BROWSERS = {
         Browsers.FIREFOX: True,
         Browsers.CHROME: True,
@@ -34,7 +38,7 @@ class BrowserStackConfig(browserstack.BrowserStackConfig):
 
     # Advanced Configurations
 
-    #: BrowserStack test configurations
+    # BrowserStack test configurations
     BS_CAPABILITIES = {
         'project': '{{ test_package }}',
         'browserstack.video': False,
