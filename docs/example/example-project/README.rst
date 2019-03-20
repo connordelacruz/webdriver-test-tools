@@ -66,8 +66,31 @@ For info on command line arguments, use the ``--help`` (or ``-h``) argument:
     python -m example_package --help
 
 
+Creating New Project Files
+--------------------------
+
+New tests and page objects can be generated using the ``new`` command:
+
+::
+
+    python -m example_package new [<type>] [<module_name>] [<ClassName>] [-d
+    <description>] [-f]
+
+Where:
+
+- ``<type>``: The type of file to create (``test`` or ``page``)
+- ``<module_name>``: Filename to use for the new python module
+- ``<ClassName>``: Name to use for the initial class
+- ``<description>``: (Optional) Description for the initial class
+- ``-f``: (Optional) Force overwrite if a file with the same name already exists
+
+If no arguments are provided, a prompt will walk you through generating the new
+file. Alternatively, you can skip the prompts by using the arguments shown in
+the following sections.
+
+
 Creating New Tests
-------------------
+~~~~~~~~~~~~~~~~~~
 
 New test modules can be generated using the ``new test`` command:
 
@@ -97,7 +120,7 @@ used to force overwrite existing files:
 
 
 Creating New Page Objects
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 New page object modules can be generated using the ``new page`` command:
 
@@ -129,12 +152,18 @@ used to force overwrite existing files:
 Running Tests
 -------------
 
+Basic Usage
+~~~~~~~~~~~
+
 To run all tests:
 
 ::
 
     python -m example_package
 
+
+Running Specific Tests
+~~~~~~~~~~~~~~~~~~~~~~
 
 To run all test cases in one or more modules, use the ``--module`` (or ``-m``)
 argument:
@@ -156,6 +185,9 @@ To skip certain test cases or methods, use the ``--skip`` (or ``-s``) argument:
 
     python -m example_package --skip <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
 
+
+The ``--test`` and ``--skip`` arguments both support wildcards (``*``) in class
+and method names.
 
 These arguments can be used together. When combined, they are processed in the
 following order:
@@ -285,8 +317,7 @@ inside the project directory:
         │   ├── site.py
         │   ├── test.py
         │   └── webdriver.py
-        ├── data/
-        │   └── __init__.py
+        ├── data.py
         ├── log/
         ├── pages/
         │   └── __init__.py
@@ -313,6 +344,8 @@ Test Package Root Contents
 * ``__main__.py``: Required to run tests from the command line. 
 * ``__init__.py``: Empty init file so Python recognizes the directory as a
   package.
+* ``data.py``: Module for storing static data for tests that must use specific
+  values (e.g. emails, usernames, etc).
 
 
 Test Package Directories
@@ -330,13 +363,6 @@ python unittest framework.
 * ``site.py``: Configure URLs used for testing.
 * ``test.py``: Configure the ``unittest.TestRunner`` class.
 * ``webdriver.py``: Configure WebDrivers and log output directory.
-
-
-data/
-~~~~~
-
-Static data for tests that must use specific values (e.g. emails, usernames,
-etc).
 
 log/
 ~~~~
@@ -369,7 +395,7 @@ generating new test modules.
 
 |webdriver_test_tools|
 
-.. |webdriver_test_tools| image:: https://img.shields.io/badge/generated%20using-webdriver__test__tools%201.7.1-blue.svg?style=for-the-badge
-    :alt: webdriver_test_tools 1.7.1
+.. |webdriver_test_tools| image:: https://img.shields.io/badge/generated%20using-webdriver__test__tools%202.5.0-blue.svg?style=for-the-badge
+    :alt: webdriver_test_tools 2.5.0
 
 
