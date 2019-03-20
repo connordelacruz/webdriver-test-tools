@@ -117,7 +117,7 @@ For this example, we’ll use `example.com <https://www.example.com/>`__.
 .. literalinclude:: ../example/example-project/example_package/config/site.py
     :caption: config/site.py:
     :lines: 1-12
-    :emphasize-lines: 10-11
+    :emphasize-lines: 7,9
 
 
 We’ll be testing that clicking a link takes us to an external page, so we’ll add
