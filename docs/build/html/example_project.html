@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Example Project &mdash; WebDriver Test Tools 2.4.0-alpha documentation</title>
+  <title>Example Project &mdash; WebDriver Test Tools 2.5.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.4
+                2.5
               </div>
             
           
@@ -324,14 +324,14 @@ configured. In <code class="docutils literal notranslate"><span class="pre">exam
 
 
 <span class="k">class</span> <span class="nc">SiteConfig</span><span class="p">(</span><span class="n">site</span><span class="o">.</span><span class="n">SiteConfig</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;URL configurations for a site</span>
-
-<span class="sd">    :var SiteConfig.SITE_URL: URL of the home page</span>
-<span class="sd">    :var SiteConfig.BASE_URL: Base URL for site pages (followed by a &#39;/&#39;)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;URL configurations for a site&quot;&quot;&quot;</span>
+    <span class="c1"># URL of the home page</span>
 <span class="hll">    <span class="n">SITE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://example.com&#39;</span>
-</span><span class="hll">    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="n">SITE_URL</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
-</span>    <span class="c1"># DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE</span>
+</span>    <span class="c1"># Base URL for site pages (followed by a &#39;/&#39;)</span>
+<span class="hll">    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="n">SITE_URL</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
+</span>
+    <span class="c1"># DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE</span>
+
 </pre></div>
 </div>
 </div>
@@ -343,14 +343,14 @@ another variable <code class="docutils literal notranslate"><span class="pre">IN
 
 
 <span class="k">class</span> <span class="nc">SiteConfig</span><span class="p">(</span><span class="n">site</span><span class="o">.</span><span class="n">SiteConfig</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;URL configurations for a site</span>
-
-<span class="sd">    :var SiteConfig.SITE_URL: URL of the home page</span>
-<span class="sd">    :var SiteConfig.BASE_URL: Base URL for site pages (followed by a &#39;/&#39;)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;URL configurations for a site&quot;&quot;&quot;</span>
+    <span class="c1"># URL of the home page</span>
     <span class="n">SITE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://example.com&#39;</span>
+    <span class="c1"># Base URL for site pages (followed by a &#39;/&#39;)</span>
     <span class="n">BASE_URL</span> <span class="o">=</span> <span class="n">SITE_URL</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
+
     <span class="c1"># DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE</span>
+
 <span class="hll">    <span class="c1"># URL linked to by the &#39;More Information&#39; link on example.com</span>
 </span><span class="hll">    <span class="n">INFO_URL</span> <span class="o">=</span> <span class="s1">&#39;https://www.iana.org/domains/reserved&#39;</span>
 </span></pre></div>
@@ -749,7 +749,7 @@ tests:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.4.0-alpha',
+            VERSION:'2.5.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

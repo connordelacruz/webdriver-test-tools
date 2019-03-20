@@ -8,21 +8,56 @@ Enabling BrowserStack support
 =============================
 
 Testing with BrowserStack can be configured for a project in
-``<test_package>/config/browserstack.py``. To enable BrowserStack support, set
-``BrowserStackConfig.ENABLE`` to ``True`` and set
-``BrowserStackConfig.USERNAME`` and ``BrowserStackConfig.ACCESS_KEY`` to your
-BrowserStack account username and access key respectively. These values can be
-found on the `BrowserStack Automate dashboard
-<https://automate.browserstack.com>`__. 
+``<test_package>/config/browserstack.py``. To enable BrowserStack support, first
+set ``BrowserStackConfig.ENABLE`` to ``True``: 
 
 .. code-block:: python
     :caption: config/browserstack.py
+    :emphasize-lines: 2
 
     class BrowserStackConfig(browserstack.BrowserStackConfig):
         ENABLE = True
-        USERNAME = 'EXAMPLE'
-        ACCESS_KEY = 'EXAMPLEKEY'
+        USERNAME = os.getenv('BROWSERSTACK_USERNAME', '')
+        ACCESS_KEY = os.getenv('BROWSERSTACK_ACCESS_KEY', '')
 
+
+Next, you'll need to set the following environment variables on your machine:
+
+   - ``BROWSERSTACK_USERNAME``: BrowserStack account username
+   - ``BROWSERSTACK_ACCESS_KEY``: The access key for the above account
+
+Both of these values can be found on the `BrowserStack Automate dashboard
+<https://automate.browserstack.com>`__. You can add the following to your
+``.bashrc`` file (replacing ``{USERNAME}`` and ``{ACCESS_KEY}`` with the actual
+values):
+
+.. code-block:: bash
+
+   export BROWSERSTACK_USERNAME='{USERNAME}'
+   export BROWSERSTACK_ACCESS_KEY='{ACCESS_KEY}'
+
+.. note::
+
+   Prior to ``webdriver_test_tools`` 2.5.0, the default ``browserstack.py``
+   generated with ``wtt init`` was set up to store the values of
+   ``BrowserStackConfig.USERNAME`` and ``BrowserStackConfig.ACCESS_KEY`` as
+   string literals, rather than retrieving those values from environment
+   variables. If for whatever reason you don't want to use environment variables
+   for these values, you can just set assign them directly:
+
+   .. code-block:: python
+      :caption: config/browserstack.py
+      :emphasize-lines: 3,4
+
+       class BrowserStackConfig(browserstack.BrowserStackConfig):
+           ENABLE = True
+           USERNAME = '{USERNAME}'
+           ACCESS_KEY = '{ACCESS_KEY}'
+
+   However, it is not recommended to store credentials in a way that might be
+   visible to users who should not have access, so using environment variables
+   would be a more secure approach.
+   
 
 Running tests with BrowserStack
 ===============================
