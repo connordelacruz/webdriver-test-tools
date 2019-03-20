@@ -10,6 +10,7 @@ class BrowserStackConfig(browserstack.BrowserStackConfig):
 
     #: (Default = False) Set to True to enable BrowserStack testing
     ENABLE = False
+    # TODO: Explain environment variables
     #: Account username. Required for BrowserStack testing
     USERNAME = os.getenv('BROWSERSTACK_USERNAME', '')
     #: Access key. Required for BrowserStack testing
