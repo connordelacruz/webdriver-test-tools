@@ -72,14 +72,40 @@ class base_url_to_be:
     url is the expected URL, which must be an exact match with the current base
     URL
 
+    Optionally accepts the parameter ``ignore_trailing_slash`` (default: True),
+    which will strip any trailing '/' from the expected URL and current base
+    URL before comparing
+
     returns True if the base URL matches, false otherwise
     """
-    def __init__(self, url):
+
+    def __init__(self, url, ignore_trailing_slash=True):
         self.url = url
+        self.ignore_trailing_slash = ignore_trailing_slash
 
     def __call__(self, driver):
         base_url = utils.get_base_url(driver.current_url)
-        return self.url == base_url
+        expected_url = self.url
+        if self.ignore_trailing_slash:
+            expected_url, base_url = self._handle_trailing_slashes(base_url)
+        return expected_url == base_url
+
+    def _handle_trailing_slashes(self, base_url):
+        """Utility function to strip trailing '/' from the expected URL and
+        current base URL
+
+        :param base_url: The current URL with any query strings stripped
+
+        :return: A tuple with (``self.url``, ``base_url``) with any trailing
+            '/' removed
+        """
+        return (self._strip_trailing_slash(self.url),
+                self._strip_trailing_slash(base_url))
+
+    def _strip_trailing_slash(self, url):
+        if url.endswith('/'):
+            url = url[:-1]
+        return url
 
 
 # Helper Methods

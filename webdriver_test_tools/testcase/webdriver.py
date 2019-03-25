@@ -49,6 +49,9 @@ Each of these assertion methods accepts the following optional keyword arguments
 - ``wait_timeout``: (Default = 10) Number of seconds to wait for expected
   conditions to occur before test fails
 
+Some assertions have other optional keyword arguments specific to what they are
+testing. For details, check the documentation for :class:`WebDriverTestCase`.
+
 .. _assertion methods: https://docs.python.org/library/unittest.html#assert-methods
 
 """
@@ -322,7 +325,7 @@ class WebDriverTestCase(unittest.TestCase):
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
-    def assertBaseUrlChange(self, expected_url, msg=None, wait_timeout=10):
+    def assertBaseUrlChange(self, expected_url, ignore_trailing_slash=True, msg=None, wait_timeout=10):
         """Fail if the URL (ignoring query strings) doesn't match the expected
         URL.
 
@@ -331,12 +334,15 @@ class WebDriverTestCase(unittest.TestCase):
         not match the current URL.
 
         :param expected_url: The expected URL
+        :param ignore_trailing_slash: (Default = True) If True, ignore trailing
+            '/' in the expected url and current base URL when comparing
         :param msg: (Optional) if specified, used as the error message on
             failure
         :param wait_timeout: (Default = 10) Number of seconds to wait for
             expected conditions to occur before test fails
         """
-        if not test.base_url_change_test(self.driver, expected_url, wait_timeout=wait_timeout):
+        if not test.base_url_change_test(self.driver, expected_url,
+                                         ignore_trailing_slash=ignore_trailing_slash, wait_timeout=wait_timeout):
             failure_message = 'Current base URL = {}, expected base URL = {}'.format(
                 utils.get_base_url(self.driver.current_url), expected_url
             )
