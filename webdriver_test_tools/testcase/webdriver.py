@@ -322,6 +322,7 @@ class WebDriverTestCase(unittest.TestCase):
             msg = self._formatMessage(msg, failure_message)
             raise self.failureException(msg)
 
+    # TODO: ignore_trailing_slash
     def assertBaseUrlChange(self, expected_url, msg=None, wait_timeout=10):
         """Fail if the URL (ignoring query strings) doesn't match the expected
         URL.

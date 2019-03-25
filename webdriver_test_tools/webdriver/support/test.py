@@ -75,19 +75,20 @@ def url_change_test(driver, expected_url, wait_timeout=10):
     return expected_condition_test(driver, url_checker, wait_timeout)
 
 
-# TODO: ignore_trailing_slash
-def base_url_change_test(driver, expected_url, wait_timeout=10):
+def base_url_change_test(driver, expected_url, ignore_trailing_slash=True, wait_timeout=10):
     """Expected condition test for URL change. Ignores query strings in current url
 
     :param driver: Selenium WebDriver object
     :param expected_url: The expected base URL
+    :param ignore_trailing_slash: (Default = True) If True, ignore trailing '/'
+        in the expected url and current base URL when comparing
     :param wait_timeout: (Default = 10) Number of seconds to wait for expected
         conditions to occur before timing out
 
     :return: True if the current URL (ignoring query strings) matches the expected URL
         before timeout, False otherwise
     """
-    url_checker = customEC.base_url_to_be(expected_url)
+    url_checker = customEC.base_url_to_be(expected_url, ignore_trailing_slash=ignore_trailing_slash)
     return expected_condition_test(driver, url_checker, wait_timeout)
 
 

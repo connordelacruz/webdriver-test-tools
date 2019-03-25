@@ -65,13 +65,16 @@ class element_to_be_in_view:
         return _is_scrolled_into_view(driver, element, self.fully_in_view)
 
 
-# TODO: update docs
 class base_url_to_be:
     """An expectation for checking the current url, ignoring query strings
     (i.e. strips '?' and everything after it and only looks at the base URL)
 
     url is the expected URL, which must be an exact match with the current base
     URL
+
+    Optionally accepts the parameter ``ignore_trailing_slash`` (default: True),
+    which will strip any trailing '/' from the expected URL and current base
+    URL before comparing
 
     returns True if the base URL matches, false otherwise
     """
@@ -88,7 +91,14 @@ class base_url_to_be:
         return expected_url == base_url
 
     def _handle_trailing_slashes(self, base_url):
-        # TODO: doc
+        """Utility function to strip trailing '/' from the expected URL and
+        current base URL
+
+        :param base_url: The current URL with any query strings stripped
+
+        :return: A tuple with (``self.url``, ``base_url``) with any trailing
+            '/' removed
+        """
         return (self._strip_trailing_slash(self.url),
                 self._strip_trailing_slash(base_url))
 
