@@ -65,6 +65,7 @@ class element_to_be_in_view:
         return _is_scrolled_into_view(driver, element, self.fully_in_view)
 
 
+# TODO: update docs
 class base_url_to_be:
     """An expectation for checking the current url, ignoring query strings
     (i.e. strips '?' and everything after it and only looks at the base URL)
@@ -74,12 +75,27 @@ class base_url_to_be:
 
     returns True if the base URL matches, false otherwise
     """
-    def __init__(self, url):
+
+    def __init__(self, url, ignore_trailing_slash=True):
         self.url = url
+        self.ignore_trailing_slash = ignore_trailing_slash
 
     def __call__(self, driver):
         base_url = utils.get_base_url(driver.current_url)
-        return self.url == base_url
+        expected_url = self.url
+        if self.ignore_trailing_slash:
+            expected_url, base_url = self._handle_trailing_slashes(base_url)
+        return expected_url == base_url
+
+    def _handle_trailing_slashes(self, base_url):
+        # TODO: doc
+        return (self._strip_trailing_slash(self.url),
+                self._strip_trailing_slash(base_url))
+
+    def _strip_trailing_slash(self, url):
+        if url.endswith('/'):
+            url = url[:-1]
+        return url
 
 
 # Helper Methods

@@ -75,6 +75,7 @@ def url_change_test(driver, expected_url, wait_timeout=10):
     return expected_condition_test(driver, url_checker, wait_timeout)
 
 
+# TODO: ignore_trailing_slash
 def base_url_change_test(driver, expected_url, wait_timeout=10):
     """Expected condition test for URL change. Ignores query strings in current url
 

@@ -14,6 +14,7 @@ def get_base_url(url):
     current = urlparse(url)
     return current.scheme + '://' + current.netloc + current.path
 
+
 def validate_filename(filename, allow_spaces=False):
     """Strips invalid characters from a filename
 
@@ -33,3 +34,4 @@ def validate_filename(filename, allow_spaces=False):
     """
     regex = r'^-|[^\d\w\. -]' if allow_spaces else r'^-|[^\d\w\.-]'
     return re.sub(regex, '', filename)
+
