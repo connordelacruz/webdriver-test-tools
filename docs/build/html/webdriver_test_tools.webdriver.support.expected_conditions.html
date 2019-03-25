@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.support.expected_conditions module &mdash; WebDriver Test Tools 2.5.0-alpha documentation</title>
+  <title>webdriver_test_tools.webdriver.support.expected_conditions module &mdash; WebDriver Test Tools 2.5.1-alpha documentation</title>
   
 
   
@@ -222,12 +222,15 @@ if an element is scrolled into view</p>
 
 <dl class="class">
 <dt id="webdriver_test_tools.webdriver.support.expected_conditions.base_url_to_be">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.webdriver.support.expected_conditions.</code><code class="descname">base_url_to_be</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/expected_conditions.html#base_url_to_be"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.expected_conditions.base_url_to_be" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.webdriver.support.expected_conditions.</code><code class="descname">base_url_to_be</code><span class="sig-paren">(</span><em>url</em>, <em>ignore_trailing_slash=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/expected_conditions.html#base_url_to_be"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.expected_conditions.base_url_to_be" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>An expectation for checking the current url, ignoring query strings
 (i.e. strips ‘?’ and everything after it and only looks at the base URL)</p>
 <p>url is the expected URL, which must be an exact match with the current base
 URL</p>
+<p>Optionally accepts the parameter <code class="docutils literal notranslate"><span class="pre">ignore_trailing_slash</span></code> (default: True),
+which will strip any trailing ‘/’ from the expected URL and current base
+URL before comparing</p>
 <p>returns True if the base URL matches, false otherwise</p>
 </dd></dl>
 
@@ -275,7 +278,7 @@ URL</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.5.0-alpha',
+            VERSION:'2.5.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

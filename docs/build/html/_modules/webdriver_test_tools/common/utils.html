@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.common.utils &mdash; WebDriver Test Tools 2.5.0-alpha documentation</title>
+  <title>webdriver_test_tools.common.utils &mdash; WebDriver Test Tools 2.5.1-alpha documentation</title>
   
 
   
@@ -172,6 +172,7 @@
     <span class="n">current</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">current</span><span class="o">.</span><span class="n">scheme</span> <span class="o">+</span> <span class="s1">&#39;://&#39;</span> <span class="o">+</span> <span class="n">current</span><span class="o">.</span><span class="n">netloc</span> <span class="o">+</span> <span class="n">current</span><span class="o">.</span><span class="n">path</span></div>
 
+
 <div class="viewcode-block" id="validate_filename"><a class="viewcode-back" href="../../../webdriver_test_tools.common.utils.html#webdriver_test_tools.common.utils.validate_filename">[docs]</a><span class="k">def</span> <span class="nf">validate_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">allow_spaces</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Strips invalid characters from a filename</span>
 
@@ -191,6 +192,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^-|[^\d\w\. -]&#39;</span> <span class="k">if</span> <span class="n">allow_spaces</span> <span class="k">else</span> <span class="sa">r</span><span class="s1">&#39;^-|[^\d\w\.-]&#39;</span>
     <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></div>
+
 </pre></div>
 
            </div>
@@ -225,7 +227,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.5.0-alpha',
+            VERSION:'2.5.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

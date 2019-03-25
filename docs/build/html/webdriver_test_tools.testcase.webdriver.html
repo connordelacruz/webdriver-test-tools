@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.testcase.webdriver module &mdash; WebDriver Test Tools 2.5.0-alpha documentation</title>
+  <title>webdriver_test_tools.testcase.webdriver module &mdash; WebDriver Test Tools 2.5.1-alpha documentation</title>
   
 
   
@@ -233,6 +233,8 @@ matches <code class="docutils literal notranslate"><span class="pre">expected_ur
 <li><code class="docutils literal notranslate"><span class="pre">wait_timeout</span></code>: (Default = 10) Number of seconds to wait for expected
 conditions to occur before test fails</li>
 </ul>
+<p>Some assertions have other optional keyword arguments specific to what they are
+testing. For details, check the documentation for <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>.</p>
 <dl class="class">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="descname">WebDriverTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="Permalink to this definition">¶</a></dt>
@@ -617,7 +619,7 @@ expected conditions to occur before test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange">
-<code class="descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>ignore_trailing_slash=True</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if the URL (ignoring query strings) doesn’t match the expected
 URL.</p>
 <p>Assertion uses webdriver_test_tools.test.url_change_test() using the
@@ -629,6 +631,8 @@ not match the current URL.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>expected_url</strong> – The expected URL</li>
+<li><strong>ignore_trailing_slash</strong> – (Default = True) If True, ignore trailing
+‘/’ in the expected url and current base URL when comparing</li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
 <li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
@@ -758,7 +762,7 @@ will only be generated for mobile browsers</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.5.0-alpha',
+            VERSION:'2.5.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
