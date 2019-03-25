@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.testcase.webdriver &mdash; WebDriver Test Tools 2.5.0-alpha documentation</title>
+  <title>webdriver_test_tools.testcase.webdriver &mdash; WebDriver Test Tools 2.5.1-alpha documentation</title>
   
 
   
@@ -206,6 +206,9 @@
 <span class="sd">- ``msg``: If specified, used as the error message on failure</span>
 <span class="sd">- ``wait_timeout``: (Default = 10) Number of seconds to wait for expected</span>
 <span class="sd">  conditions to occur before test fails</span>
+
+<span class="sd">Some assertions have other optional keyword arguments specific to what they are</span>
+<span class="sd">testing. For details, check the documentation for :class:`WebDriverTestCase`.</span>
 
 <span class="sd">.. _assertion methods: https://docs.python.org/library/unittest.html#assert-methods</span>
 
@@ -480,7 +483,7 @@
             <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">failure_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertBaseUrlChange"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange">[docs]</a>    <span class="k">def</span> <span class="nf">assertBaseUrlChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertBaseUrlChange"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange">[docs]</a>    <span class="k">def</span> <span class="nf">assertBaseUrlChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">ignore_trailing_slash</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if the URL (ignoring query strings) doesn&#39;t match the expected</span>
 <span class="sd">        URL.</span>
 
@@ -489,12 +492,15 @@
 <span class="sd">        not match the current URL.</span>
 
 <span class="sd">        :param expected_url: The expected URL</span>
+<span class="sd">        :param ignore_trailing_slash: (Default = True) If True, ignore trailing</span>
+<span class="sd">            &#39;/&#39; in the expected url and current base URL when comparing</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
 <span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
 <span class="sd">            expected conditions to occur before test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">base_url_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">base_url_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span>
+                                         <span class="n">ignore_trailing_slash</span><span class="o">=</span><span class="n">ignore_trailing_slash</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Current base URL = </span><span class="si">{}</span><span class="s1">, expected base URL = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">utils</span><span class="o">.</span><span class="n">get_base_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">current_url</span><span class="p">),</span> <span class="n">expected_url</span>
             <span class="p">)</span>
@@ -654,7 +660,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.5.0-alpha',
+            VERSION:'2.5.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
