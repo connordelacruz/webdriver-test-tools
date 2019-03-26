@@ -11,12 +11,11 @@ PAGE_TYPE = 'page'
 
 TEMPLATE_PATH = templates.templates.get_path()
 
-# TODO: figure out how prototype templates factor in
 #: Maps file type to corresponding template file
 TEMPLATE_MAP = {
     TEST_TYPE: 'test_case.py',
     # TODO: find a cleaner way of doing this?
-    PAGE_TYPE: 'page_object/base_page.py',
+    PAGE_TYPE: 'page_object/',
 }
 
 # Prototype names
@@ -29,7 +28,7 @@ PROTOTYPE_NAMES = [
 # TODO: doc and implement
 PAGE_OBJECT_TEMPLATE_MAP = {
     '': 'base_page.py',
-    'form': 'form_object.py',
+    FORM_PROTOTYPE: 'form_object.py',
     # TODO:
 }
 
@@ -61,13 +60,15 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
 
     :return: Path of the new file
     """
-    # TODO: re-work for new setup
     template_file = TEMPLATE_MAP[file_type]
+    # If this is a page, determine which template in page_object/ to use
+    if file_type == PAGE_TYPE:
+        # Default to empty string (base_page.py)
+        prototype = kwargs.get('prototype', '')
+        template_file = os.path.join(
+            template_file, PAGE_OBJECT_TEMPLATE_MAP[prototype]
+        )
     target_path = os.path.join(test_package_path, DIRECTORY_MAP[file_type])
-    # TODO: TESTING
-    if kwargs and 'prototype' in kwargs:
-        print('Prototype:',kwargs['prototype'])
-    # TODO: does context need to be different for prototypes?
     context = {
         'test_package': test_package,
         'module_name': module_name,
