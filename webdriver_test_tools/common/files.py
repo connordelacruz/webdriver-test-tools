@@ -45,6 +45,7 @@ def render_template(template_path, context):
     :return: Results of rendering jinja template
     """
     path, filename = os.path.split(template_path)
+    # TODO: set trim_blocks and lstrip_blocks
     return jinja2.Environment(
         loader=jinja2.FileSystemLoader(path or './')
     ).get_template(filename).render(context)
