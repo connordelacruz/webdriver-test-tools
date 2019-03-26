@@ -90,7 +90,9 @@ def main(test_package_path, test_package, args):
         # Arguments for page-specific prompts
         kwargs = {}
         if validated_file_type == new_file.PAGE_TYPE:
-            prototype = getattr(args, 'prototype', '' if minimum_required_args else None)
+            prototype = getattr(args, 'prototype', None)
+            if prototype is None and minimum_required_args:
+                prototype = ''
             _prototype_choices = [name for name in new_file.PROTOTYPE_NAMES]
             # Allow for numeric shorthand answers (starting at 1)
             _prototype_shorthands = {
