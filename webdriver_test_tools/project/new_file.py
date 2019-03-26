@@ -28,7 +28,7 @@ PROTOTYPE_NAMES = [
 
 # TODO: doc and implement
 PAGE_OBJECT_TEMPLATE_MAP = {
-    'base': 'base_page.py',
+    '': 'base_page.py',
     'form': 'form_object.py',
     # TODO:
 }
@@ -61,6 +61,7 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
 
     :return: Path of the new file
     """
+    # TODO: re-work for new setup
     template_file = TEMPLATE_MAP[file_type]
     target_path = os.path.join(test_package_path, DIRECTORY_MAP[file_type])
     # TODO: TESTING

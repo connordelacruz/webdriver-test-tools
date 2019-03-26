@@ -90,17 +90,22 @@ def main(test_package_path, test_package, args):
         # Arguments for page-specific prompts
         kwargs = {}
         if validated_file_type == new_file.PAGE_TYPE:
-            prototype = '' if args.prototype is None and minimum_required_args else args.prototype
-            # TODO: Better help text?
-            # TODO: only if module_name and class_name weren't both specified
+            prototype = getattr(args, 'prototype', '' if minimum_required_args else None)
             _prototype_choices = [name for name in new_file.PROTOTYPE_NAMES]
+            # Allow for numeric shorthand answers (starting at 1)
+            _prototype_shorthands = {
+                str(ind + 1): choice for ind, choice in enumerate(_prototype_choices)
+            }
             # Allow empty string since this is an optional parameter
             _prototype_choices.append('')
-            _validate_prototype = cmd.validate_choice(_prototype_choices)
+            _validate_prototype = cmd.validate_choice(
+                _prototype_choices, shorthand_choices=_prototype_shorthands
+            )
+            # TODO: Better help text?
             kwargs['prototype'] = cmd.prompt(
                 'Page object prototype',
                 '(Optional) Select a page object prototype to subclass:',
-                *[cmd.INDENT + name for name in new_file.PROTOTYPE_NAMES],
+                *[cmd.INDENT + '[{}] {}'.format(i, name) for i, name in _prototype_shorthands.items()],
                 validate=_validate_prototype,
                 default='',
                 parsed_input=prototype
