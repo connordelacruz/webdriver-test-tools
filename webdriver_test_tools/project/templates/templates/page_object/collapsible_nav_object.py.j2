@@ -1,0 +1,15 @@
+{% extends "nav_object.py.j2" %}
+
+{% block parent_class %}prototypes.CollapsibleNavObject{% endblock %}
+
+{% block nav_class_prefix %}Collapsible{% endblock %}
+{% block nav_additional_attributes %}
+    # Locator for the button that expands the nav menu
+    EXPAND_BUTTON_LOCATOR = None
+    # Locator for the button that expands the nav menu 
+    # (can be the same value as EXPAND_BUTTON_LOCATOR)
+    COLLAPSE_BUTTON_LOCATOR = None
+    # Locator for the collapsing/expanding container of the navigation menu
+    MENU_CONTAINER_LOCATOR = None
+{% endblock %}
+

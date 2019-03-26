@@ -14,17 +14,21 @@ TEMPLATE_PATH = templates.templates.get_path()
 #: Maps file type to corresponding template file
 TEMPLATE_MAP = {
     TEST_TYPE: 'test_case.py',
-    # TODO: find a cleaner way of doing this?
     PAGE_TYPE: 'page_object/',
 }
 
 # Prototype names
+# TODO: Re-format these to be easier to read/type?
 FORM_PROTOTYPE = 'form'
 MODAL_PROTOTYPE = 'modal'
+NAV_PROTOTYPE = 'nav'
+COLLAPSIBLE_NAV_PROTOTYPE = 'collapsible nav'
 
 PROTOTYPE_NAMES = [
     FORM_PROTOTYPE,
     MODAL_PROTOTYPE,
+    NAV_PROTOTYPE,
+    COLLAPSIBLE_NAV_PROTOTYPE,
 ]
 
 # TODO: doc and implement
@@ -32,7 +36,8 @@ PAGE_OBJECT_TEMPLATE_MAP = {
     '': 'base_page.py',
     FORM_PROTOTYPE: 'form_object.py',
     MODAL_PROTOTYPE: 'modal_object.py',
-    # TODO:
+    NAV_PROTOTYPE: 'nav_object.py',
+    COLLAPSIBLE_NAV_PROTOTYPE: 'collapsible_nav_object.py',
 }
 
 #: Maps file type to corresponding subdirectory in a test package

@@ -1,0 +1,27 @@
+{% extends "base_page.py.j2" %}
+
+{% block parent_class %}prototypes.NavObject{% endblock %}
+
+{% block additional_attributes %}
+    # SET THE FOLLOWING ATTRIBUTES TO USE IN {% block nav_class_prefix %}{% endblock %}NavObject METHODS
+
+    # Maps link text (or any helpful string) to a tuple containing its locator
+    # and the page object class for the target page, modal, section, etc (or
+    # None if need be). E.g.:
+    # LINK_MAP = { 'About': (Locator.ABOUT_LINK, AboutPage), ... }
+    LINK_MAP = {}
+    # Maps link text (or any helpful string) to a tuple containing its locator
+    # and the page object class for the menu, dropdown, etc that should appear
+    # on hover (or None if need be). E.g.:
+    # HOVER_MAP = { 'Products': (Locator.PRODUCTS_LINK, ProductsHoverMenu), ... }
+    HOVER_MAP = {}
+    {% block nav_additional_attributes %}{% endblock %}
+
+    # UNCOMMENT BELOW TO OVERRIDE NavObject DEFAULTS
+
+    # (Default = True) True if element is a fixed navbar, False otherwise. If
+    # set to False, click_page_link() and hover_over_page_link() will scroll
+    # the target link into view before interacting with it
+    # FIXED = True
+{% endblock %}
+
