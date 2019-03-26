@@ -148,7 +148,10 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
         parents=[new_page_parent_parser],
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
-    # TODO: add optional --prototype arg with a list of valid page object prototype classes
+    # TODO: better help text that lists prototype chocies (similar to browsers in `run`?)
+    prototype_help = 'Page object prototype to subclass'
+    new_page_parser.add_argument('-p', '--prototype', metavar='<prototype_choice>', default=None,
+                                 choices=new_file.PROTOTYPE_NAMES, help=prototype_help)
     return new_parser
 
 
@@ -204,6 +207,7 @@ def parse_new_args(package_name, tests_module, args):
         if args.type is None:
             main(test_package_path, package_name)
         else:
+            # TODO: figure out how to pass --prototype in a cleaner way
             main(
                 test_package_path, package_name, args.type, args.module_name,
                 args.class_name, description=args.description, force=args.force

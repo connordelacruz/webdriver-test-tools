@@ -3,11 +3,14 @@
 from webdriver_test_tools.common.files import *
 from webdriver_test_tools.project import templates
 
+# TODO: organize module
 
+# New file types
 TEST_TYPE = 'test'
 PAGE_TYPE = 'page'
 
 TEMPLATE_PATH = templates.templates.get_path()
+
 # TODO: figure out how prototype templates factor in
 #: Maps file type to corresponding template file
 TEMPLATE_MAP = {
@@ -15,6 +18,21 @@ TEMPLATE_MAP = {
     # TODO: find a cleaner way of doing this?
     PAGE_TYPE: 'page_object/base_page.py',
 }
+
+# Prototype names
+FORM_PROTOTYPE = 'form'
+
+PROTOTYPE_NAMES = [
+    FORM_PROTOTYPE,
+]
+
+# TODO: doc and implement
+PAGE_OBJECT_TEMPLATE_MAP = {
+    'base': 'base_page.py',
+    'form': 'form_object.py',
+    # TODO:
+}
+
 #: Maps file type to corresponding subdirectory in a test package
 DIRECTORY_MAP = {
     TEST_TYPE: 'tests',
