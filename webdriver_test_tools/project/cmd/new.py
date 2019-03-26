@@ -6,6 +6,7 @@ from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project import new_file
 
 
+# TODO: update to include **kwargs to handle any other arguments? e.g. type-specific
 def main(test_package_path, test_package,
          file_type=None, module_name=None, class_name=None,
          description=None, force=False):
@@ -76,6 +77,7 @@ def main(test_package_path, test_package,
             default='',
             parsed_input=description
         )
+        # TODO: if page, show list of prototypes and optionally use one
         new_file_start = True
         new_file_path = new_file.new_file(
             test_package_path, test_package,
@@ -231,3 +233,4 @@ def validate_description(description):
     if validated_description != description:
         cmd.print_info('Replaced double quotes with single quotes in class description')
     return validated_description
+

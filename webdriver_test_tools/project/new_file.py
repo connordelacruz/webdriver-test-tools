@@ -8,6 +8,7 @@ TEST_TYPE = 'test'
 PAGE_TYPE = 'page'
 
 TEMPLATE_PATH = templates.templates.get_path()
+# TODO: figure out how prototype templates factor in
 #: Maps file type to corresponding template file
 TEMPLATE_MAP = {
     TEST_TYPE: 'test_case.py',
@@ -20,6 +21,7 @@ DIRECTORY_MAP = {
 }
 
 
+# TODO: **kwargs or some other way of determining if --prototype was specified
 def new_file(test_package_path, test_package, file_type, module_name, class_name,
              description=None, force=False):
     """Create a new project file
@@ -42,6 +44,7 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     """
     template_file = TEMPLATE_MAP[file_type]
     target_path = os.path.join(test_package_path, DIRECTORY_MAP[file_type])
+    # TODO: does context need to be different for prototypes?
     context = {
         'test_package': test_package,
         'module_name': module_name,
