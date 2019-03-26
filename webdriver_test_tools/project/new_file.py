@@ -12,7 +12,8 @@ TEMPLATE_PATH = templates.templates.get_path()
 #: Maps file type to corresponding template file
 TEMPLATE_MAP = {
     TEST_TYPE: 'test_case.py',
-    PAGE_TYPE: 'page_object.py',
+    # TODO: find a cleaner way of doing this?
+    PAGE_TYPE: 'page_object/base_page.py',
 }
 #: Maps file type to corresponding subdirectory in a test package
 DIRECTORY_MAP = {

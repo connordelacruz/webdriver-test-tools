@@ -5,8 +5,10 @@ from webdriver_test_tools.webdriver import actions, locate
 
 
 class {{ class_name }}({% block parent_class %}BasePage{% endblock %}):
-{% if description %}    """{{ description }}"""
-{% endif %}
+    {% if description %}
+    """{{ description }}"""
+    {% endif %}
+
     class Locator:
         """WebDriver locator tuples for any elements that will need to be
         accessed by this page object.
