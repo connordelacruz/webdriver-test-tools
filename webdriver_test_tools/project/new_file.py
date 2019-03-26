@@ -20,15 +20,18 @@ TEMPLATE_MAP = {
 
 # Prototype names
 FORM_PROTOTYPE = 'form'
+MODAL_PROTOTYPE = 'modal'
 
 PROTOTYPE_NAMES = [
     FORM_PROTOTYPE,
+    MODAL_PROTOTYPE,
 ]
 
 # TODO: doc and implement
 PAGE_OBJECT_TEMPLATE_MAP = {
     '': 'base_page.py',
     FORM_PROTOTYPE: 'form_object.py',
+    MODAL_PROTOTYPE: 'modal_object.py',
     # TODO:
 }
 
