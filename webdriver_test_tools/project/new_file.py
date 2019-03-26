@@ -40,9 +40,9 @@ DIRECTORY_MAP = {
 }
 
 
-# TODO: **kwargs or some other way of determining if --prototype was specified
+# TODO: implement **kwargs and update docstring
 def new_file(test_package_path, test_package, file_type, module_name, class_name,
-             description=None, force=False):
+             description=None, force=False, **kwargs):
     """Create a new project file
 
     This method assumes parameters have been validated. :func:`main()
@@ -63,6 +63,9 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     """
     template_file = TEMPLATE_MAP[file_type]
     target_path = os.path.join(test_package_path, DIRECTORY_MAP[file_type])
+    # TODO: TESTING
+    if kwargs and 'prototype' in kwargs:
+        print('Prototype:',kwargs['prototype'])
     # TODO: does context need to be different for prototypes?
     context = {
         'test_package': test_package,

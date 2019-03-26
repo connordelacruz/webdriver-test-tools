@@ -6,10 +6,8 @@ from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project import new_file
 
 
-# TODO: update to include **kwargs to handle any other arguments? e.g. type-specific
-def main(test_package_path, test_package,
-         file_type=None, module_name=None, class_name=None,
-         description=None, force=False):
+# TODO: update docs
+def main(test_package_path, test_package, args):
     """Command line dialogs for creating a new file
 
     This method accepts optional arguments for each of its prompts. If these
@@ -44,10 +42,22 @@ def main(test_package_path, test_package,
         same name already exists
     """
     new_file_start = False
+    # Get common items from args
+    # (Using getattr() with default values because some attributes might not be
+    # present if args.type wasn't specified)
+    file_type = getattr(args, 'type', None)
+    module_name = getattr(args, 'module_name', None)
+    class_name = getattr(args, 'class_name', None)
+    description = getattr(args, 'description', None)
+    force = getattr(args, 'force', False)
+    # module and class names are the minimum required args, will ignore
+    # optional prompts if this is True
+    minimum_required_args = module_name and class_name
     try:
-        # if module_name and class_name are set, use defaults for description and force
-        if module_name and class_name and description is None:
+        # if module_name and class_name are set, use defaults for optional arguments
+        if minimum_required_args and description is None:
             description = ''
+        # TODO: use new_file TYPE attributes instead of string literals
         _validate_file_type = cmd.validate_choice(
             ['test','page'], shorthand_choices={'t': 'test', 'p': 'page'}
         )
@@ -77,13 +87,31 @@ def main(test_package_path, test_package,
             default='',
             parsed_input=description
         )
-        # TODO: if page, show list of prototypes and optionally use one
+        # Arguments for page-specific prompts
+        kwargs = {}
+        if validated_file_type == new_file.PAGE_TYPE:
+            prototype = '' if args.prototype is None and minimum_required_args else args.prototype
+            # TODO: Better help text?
+            # TODO: only if module_name and class_name weren't both specified
+            _prototype_choices = [name for name in new_file.PROTOTYPE_NAMES]
+            # Allow empty string since this is an optional parameter
+            _prototype_choices.append('')
+            _validate_prototype = cmd.validate_choice(_prototype_choices)
+            kwargs['prototype'] = cmd.prompt(
+                'Page object prototype',
+                '(Optional) Select a page object prototype to subclass:',
+                *[cmd.INDENT + name for name in new_file.PROTOTYPE_NAMES],
+                validate=_validate_prototype,
+                default='',
+                parsed_input=prototype
+            )
+        # Start file creation
         new_file_start = True
         new_file_path = new_file.new_file(
             test_package_path, test_package,
             file_type=validated_file_type, module_name=validated_module_name,
             class_name=validated_class_name, description=validated_description,
-            force=force
+            force=force, **kwargs
         )
         # Output new file path on success
         print(cmd.COLORS['success']('\nFile created.'))
@@ -203,15 +231,7 @@ def parse_new_args(package_name, tests_module, args):
     # Get package path based on tests_module path
     test_package_path = os.path.dirname(os.path.dirname(tests_module.__file__))
     try:
-        # Account for event where user doesn't provide positional args for 'new' command
-        if args.type is None:
-            main(test_package_path, package_name)
-        else:
-            # TODO: figure out how to pass --prototype in a cleaner way
-            main(
-                test_package_path, package_name, args.type, args.module_name,
-                args.class_name, description=args.description, force=args.force
-            )
+        main(test_package_path, package_name, args)
     except Exception as e:
         print('')
         cmd.print_exception(e)
