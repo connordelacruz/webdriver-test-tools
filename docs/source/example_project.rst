@@ -154,7 +154,7 @@ new page module ``home`` and the new page object class ``HomePage``:
 
 .. code-block:: none
    :caption: New page object prompt
-   :emphasize-lines: 2,5,8
+   :emphasize-lines: 2,5,8,16
 
    Enter a file name for the new page module
    > Module file name: home
@@ -164,6 +164,14 @@ new page module ``home`` and the new page object class ``HomePage``:
    
    (Optional) Enter description of the new page object class
    > Description []:
+
+   (Optional) Select a page object prototype to subclass:
+      [1] form
+      [2] modal
+      [3] nav
+      [4] collapsible nav
+      [5] web page
+   > Page object prototype []:
 
 This will create the file ``example_package/pages/home.py``.
 
