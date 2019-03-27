@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.cmd.new module &mdash; WebDriver Test Tools 2.5.1-alpha documentation</title>
+  <title>webdriver_test_tools.project.cmd.new module &mdash; WebDriver Test Tools 2.6.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.5
+                2.6
               </div>
             
           
@@ -183,18 +183,22 @@
 <span id="webdriver-test-tools-project-cmd-new-module"></span><h1>webdriver_test_tools.project.cmd.new module<a class="headerlink" href="#module-webdriver_test_tools.project.cmd.new" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.new.main">
-<code class="descclassname">webdriver_test_tools.project.cmd.new.</code><code class="descname">main</code><span class="sig-paren">(</span><em>test_package_path</em>, <em>test_package</em>, <em>file_type=None</em>, <em>module_name=None</em>, <em>class_name=None</em>, <em>description=None</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/new.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.new.main" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.cmd.new.</code><code class="descname">main</code><span class="sig-paren">(</span><em>test_package_path</em>, <em>test_package</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/new.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.new.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Command line dialogs for creating a new file</p>
-<p>This method accepts optional arguments for each of its prompts. If these
-are set to something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>, their corresponding input prompts
-will be skipped unless validation for that parameter fails.</p>
-<p><code class="docutils literal notranslate"><span class="pre">file_type</span></code>, <code class="docutils literal notranslate"><span class="pre">module_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">class_name</span></code> are the 3 values
-required to create a new file. If these are all set to something other than
-<code class="docutils literal notranslate"><span class="pre">None</span></code>, this method will default to an empty <code class="docutils literal notranslate"><span class="pre">description</span></code> unless one
-is provided.</p>
+<p>This method checks <code class="docutils literal notranslate"><span class="pre">args</span></code> for optional arguments for each of its prompts.
+If these are set to something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>, their corresponding
+input prompts will be skipped unless validation for that parameter fails.</p>
+<p><code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">module_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">class_name</span></code> are the 3 values required to
+create a new file. If these are all set to something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+this method will default to an empty <code class="docutils literal notranslate"><span class="pre">description</span></code> unless one is
+provided.</p>
 <p><code class="docutils literal notranslate"><span class="pre">force</span></code> is the only optional parameter that does not have a prompt. It
 will default to <code class="docutils literal notranslate"><span class="pre">False</span></code> unless the <code class="docutils literal notranslate"><span class="pre">--force</span></code> flag is used when calling
 this method.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">page</span></code> command has an additional optional argument
+<code class="docutils literal notranslate"><span class="pre">--prototype</span></code>. If <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">module_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">class_name</span></code> are all
+set to something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>, this method will use the standart
+page object template unless one is specified with <code class="docutils literal notranslate"><span class="pre">prototype</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -202,21 +206,7 @@ this method.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>test_package_path</strong> – The root directory of the test package</li>
 <li><strong>test_package</strong> – The python package name of the test package</li>
-<li><strong>file_type</strong> – (Optional) The type of file to create. If valid, the user
-won’t be prompted for input and this will be used instead. Valid file
-types are stored as global variables with the _TYPE suffix</li>
-<li><strong>module_name</strong> – (Optional) Filename to use for the new python module.
-If valid, the user won’t be prompted for input and this will be used
-instead</li>
-<li><strong>class_name</strong> – (Optional) Name to use for the initial test class.
-If valid, the user won’t be prompted for input and this will be used
-instead</li>
-<li><strong>description</strong> – (Optional) Description to use in the docstring of the
-initial class. User will only be prompted for a description if one or
-more of the positional arguments (<code class="docutils literal notranslate"><span class="pre">file_type</span></code>, <code class="docutils literal notranslate"><span class="pre">module_name</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">class_name</span></code>) are set to <code class="docutils literal notranslate"><span class="pre">None</span></code></li>
-<li><strong>force</strong> – (Default: False) If True, force overwrite if a file with the
-same name already exists</li>
+<li><strong>args</strong> – Parsed arguments for the <code class="docutils literal notranslate"><span class="pre">new</span></code> command</li>
 </ul>
 </td>
 </tr>
@@ -233,14 +223,16 @@ same name already exists</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the test package ArgumentParser (i.e. the object
-returned by the <code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</li>
-<li><strong>formatter_class</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">argparse.RawTextHelpFormatter</span></code>) Class to use for the <code class="docutils literal notranslate"><span class="pre">formatter_class</span></code>
-parameter</li>
+<li><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the test
+package ArgumentParser (i.e. the object returned by the
+<code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</li>
+<li><strong>formatter_class</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">argparse.RawTextHelpFormatter</span></code>) Class
+to use for the <code class="docutils literal notranslate"><span class="pre">formatter_class</span></code> parameter</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code> object for the newly added <code class="docutils literal notranslate"><span class="pre">new</span></code> subparser</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code> object for the newly added <code class="docutils literal notranslate"><span class="pre">new</span></code>
+subparser</p>
 </td>
 </tr>
 </tbody>
@@ -357,7 +349,7 @@ single quotes or <code class="docutils literal notranslate"><span class="pre">No
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.5.1-alpha',
+            VERSION:'2.6.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

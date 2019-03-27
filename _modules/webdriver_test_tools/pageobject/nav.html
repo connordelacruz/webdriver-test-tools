@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.nav &mdash; WebDriver Test Tools 2.5.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.nav &mdash; WebDriver Test Tools 2.6.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.5
+                2.6
               </div>
             
           
@@ -172,7 +172,7 @@
 <span class="sd">    :var HOVER_MAP: Maps link text to a tuple containing its locator and the page</span>
 <span class="sd">        object class for the menu, dropdown, etc that should appear on hover (or None</span>
 <span class="sd">        if need be). Override in subclasses</span>
-<span class="sd">    :var fixed: (Default = True) True if element is a fixed navbar, False otherwise. If</span>
+<span class="sd">    :var FIXED: (Default = True) True if element is a fixed navbar, False otherwise. If</span>
 <span class="sd">        set to False in a subclass, :meth:`click_page_link()` and</span>
 <span class="sd">        :meth:`hover_over_page_link()` will scroll the target link into view before</span>
 <span class="sd">        interacting with it</span>
@@ -182,7 +182,7 @@
     <span class="n">LINK_MAP</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">HOVER_MAP</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="c1"># Nav attributes</span>
-    <span class="n">fixed</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">FIXED</span> <span class="o">=</span> <span class="kc">True</span>
 
 <div class="viewcode-block" id="NavObject.click_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.click_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">click_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Click one of the page links and return a page object class for the link</span>
@@ -195,7 +195,7 @@
         <span class="k">if</span> <span class="n">link_map_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">LINK_MAP</span><span class="p">:</span>
             <span class="n">link_tuple</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">LINK_MAP</span><span class="p">[</span><span class="n">link_map_key</span><span class="p">]</span>
             <span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">link_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">FIXED</span><span class="p">:</span>
                 <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">link</span><span class="p">)</span>
             <span class="n">link</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
             <span class="c1"># Initialize the target page object and return it</span>
@@ -212,7 +212,7 @@
         <span class="k">if</span> <span class="n">link_map_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">HOVER_MAP</span><span class="p">:</span>
             <span class="n">link_tuple</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">HOVER_MAP</span><span class="p">[</span><span class="n">link_map_key</span><span class="p">]</span>
             <span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">link_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">FIXED</span><span class="p">:</span>
                 <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">link</span><span class="p">)</span>
             <span class="n">action_chain</span> <span class="o">=</span> <span class="n">ActionChains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
             <span class="n">action_chain</span><span class="o">.</span><span class="n">move_to_element</span><span class="p">(</span><span class="n">link</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
@@ -255,14 +255,14 @@
 <div class="viewcode-block" id="CollapsibleNavObject.click_expand_button"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_expand_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_expand_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Click the button to expand the nav menu&quot;&quot;&quot;</span>
         <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EXPAND_BUTTON_LOCATOR</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">FIXED</span><span class="p">:</span>
             <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
         <span class="n">button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="CollapsibleNavObject.click_collapse_button"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.click_collapse_button">[docs]</a>    <span class="k">def</span> <span class="nf">click_collapse_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Click the button to collapse the nav menu&quot;&quot;&quot;</span>
         <span class="n">button</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">COLLAPSE_BUTTON_LOCATOR</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">FIXED</span><span class="p">:</span>
             <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
         <span class="n">button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></div></div>
 
@@ -300,7 +300,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.5.1-alpha',
+            VERSION:'2.6.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

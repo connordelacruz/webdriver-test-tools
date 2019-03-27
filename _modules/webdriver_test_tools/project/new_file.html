@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.new_file &mdash; WebDriver Test Tools 2.5.1-alpha documentation</title>
+  <title>webdriver_test_tools.project.new_file &mdash; WebDriver Test Tools 2.6.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.5
+                2.6
               </div>
             
           
@@ -162,15 +162,46 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">templates</span>
 
 
+<span class="c1"># New file types</span>
 <span class="n">TEST_TYPE</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
 <span class="n">PAGE_TYPE</span> <span class="o">=</span> <span class="s1">&#39;page&#39;</span>
 
 <span class="n">TEMPLATE_PATH</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">templates</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
-<span class="c1">#: Maps file type to corresponding template file</span>
+
+<span class="c1">#: Maps file type to corresponding template file/directory relative to the</span>
+<span class="c1">#: template path</span>
 <span class="n">TEMPLATE_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">TEST_TYPE</span><span class="p">:</span> <span class="s1">&#39;test_case.py&#39;</span><span class="p">,</span>
-    <span class="n">PAGE_TYPE</span><span class="p">:</span> <span class="s1">&#39;page_object.py&#39;</span><span class="p">,</span>
+    <span class="n">PAGE_TYPE</span><span class="p">:</span> <span class="s1">&#39;page_object/&#39;</span><span class="p">,</span>
 <span class="p">}</span>
+
+<span class="c1"># Prototype names</span>
+<span class="n">FORM_PROTOTYPE</span> <span class="o">=</span> <span class="s1">&#39;form&#39;</span>
+<span class="n">MODAL_PROTOTYPE</span> <span class="o">=</span> <span class="s1">&#39;modal&#39;</span>
+<span class="n">NAV_PROTOTYPE</span> <span class="o">=</span> <span class="s1">&#39;nav&#39;</span>
+<span class="n">COLLAPSIBLE_NAV_PROTOTYPE</span> <span class="o">=</span> <span class="s1">&#39;collapsible nav&#39;</span>
+<span class="n">WEB_PAGE_PROTOTYPE</span> <span class="o">=</span> <span class="s1">&#39;web page&#39;</span>
+
+<span class="c1">#: List of valid prototype names</span>
+<span class="n">PROTOTYPE_NAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FORM_PROTOTYPE</span><span class="p">,</span>
+    <span class="n">MODAL_PROTOTYPE</span><span class="p">,</span>
+    <span class="n">NAV_PROTOTYPE</span><span class="p">,</span>
+    <span class="n">COLLAPSIBLE_NAV_PROTOTYPE</span><span class="p">,</span>
+    <span class="n">WEB_PAGE_PROTOTYPE</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1">#: Maps prototype names to corresponding template file name.</span>
+<span class="c1">#: Empty string maps to generic BasePage template</span>
+<span class="n">PAGE_OBJECT_TEMPLATE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="s1">&#39;base_page.py&#39;</span><span class="p">,</span>
+    <span class="n">FORM_PROTOTYPE</span><span class="p">:</span> <span class="s1">&#39;form_object.py&#39;</span><span class="p">,</span>
+    <span class="n">MODAL_PROTOTYPE</span><span class="p">:</span> <span class="s1">&#39;modal_object.py&#39;</span><span class="p">,</span>
+    <span class="n">NAV_PROTOTYPE</span><span class="p">:</span> <span class="s1">&#39;nav_object.py&#39;</span><span class="p">,</span>
+    <span class="n">COLLAPSIBLE_NAV_PROTOTYPE</span><span class="p">:</span> <span class="s1">&#39;collapsible_nav_object.py&#39;</span><span class="p">,</span>
+    <span class="n">WEB_PAGE_PROTOTYPE</span><span class="p">:</span> <span class="s1">&#39;web_page_object.py&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
 <span class="c1">#: Maps file type to corresponding subdirectory in a test package</span>
 <span class="n">DIRECTORY_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">TEST_TYPE</span><span class="p">:</span> <span class="s1">&#39;tests&#39;</span><span class="p">,</span>
@@ -179,7 +210,7 @@
 
 
 <div class="viewcode-block" id="new_file"><a class="viewcode-back" href="../../../webdriver_test_tools.project.new_file.html#webdriver_test_tools.project.new_file.new_file">[docs]</a><span class="k">def</span> <span class="nf">new_file</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">test_package</span><span class="p">,</span> <span class="n">file_type</span><span class="p">,</span> <span class="n">module_name</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span>
-             <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+             <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create a new project file</span>
 
 <span class="sd">    This method assumes parameters have been validated. :func:`main()</span>
@@ -192,13 +223,30 @@
 <span class="sd">        as global variables with the _TYPE suffix</span>
 <span class="sd">    :param module_name: Filename to use for the new python module</span>
 <span class="sd">    :param class_name: Name to use for the initial test class</span>
-<span class="sd">    :param description: (Optional) Description to use in the docstring of the initial class</span>
+<span class="sd">    :param description: (Optional) Description to use in the docstring of the</span>
+<span class="sd">        initial class</span>
 <span class="sd">    :param force: (Default: False) If True, force overwrite if a file with the</span>
 <span class="sd">        same name already exists</span>
+
+<span class="sd">    This method accepts additional keyword arguments for type-specific</span>
+<span class="sd">    arguments.</span>
+
+<span class="sd">    Page kwargs:</span>
+
+<span class="sd">        * ``prototype``: Key in :data:`PAGE_OBJECT_TEMPLATE_MAP` specifying the</span>
+<span class="sd">          prototype template to use. Defaults to empty string (generic page</span>
+<span class="sd">          object)</span>
 
 <span class="sd">    :return: Path of the new file</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">template_file</span> <span class="o">=</span> <span class="n">TEMPLATE_MAP</span><span class="p">[</span><span class="n">file_type</span><span class="p">]</span>
+    <span class="c1"># If this is a page, determine which template in page_object/ to use</span>
+    <span class="k">if</span> <span class="n">file_type</span> <span class="o">==</span> <span class="n">PAGE_TYPE</span><span class="p">:</span>
+        <span class="c1"># Default to empty string (base_page.py)</span>
+        <span class="n">prototype</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">template_file</span><span class="p">,</span> <span class="n">PAGE_OBJECT_TEMPLATE_MAP</span><span class="p">[</span><span class="n">prototype</span><span class="p">]</span>
+        <span class="p">)</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">DIRECTORY_MAP</span><span class="p">[</span><span class="n">file_type</span><span class="p">])</span>
     <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;test_package&#39;</span><span class="p">:</span> <span class="n">test_package</span><span class="p">,</span>
@@ -210,6 +258,7 @@
         <span class="n">TEMPLATE_PATH</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">template_file</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span>
         <span class="n">target_filename</span><span class="o">=</span><span class="n">module_name</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="n">force</span>
     <span class="p">)</span></div>
+
 </pre></div>
 
            </div>
@@ -244,7 +293,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.5.1-alpha',
+            VERSION:'2.6.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

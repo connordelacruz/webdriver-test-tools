@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Example Project &mdash; WebDriver Test Tools 2.5.1-alpha documentation</title>
+  <title>Example Project &mdash; WebDriver Test Tools 2.6.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.5
+                2.6
               </div>
             
           
@@ -383,6 +383,14 @@ Enter a name for the initial page object class
 </span>
 (Optional) Enter description of the new page object class
 <span class="hll">&gt; Description []:
+</span>
+(Optional) Select a page object prototype to subclass:
+   [1] form
+   [2] modal
+   [3] nav
+   [4] collapsible nav
+   [5] web page
+<span class="hll">&gt; Page object prototype []:
 </span></pre></div>
 </div>
 </div>
@@ -440,8 +448,6 @@ for elements with the specified text.</p>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">HEADING</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">TAG_NAME</span><span class="p">,</span> <span class="s1">&#39;h1&#39;</span><span class="p">)</span>
         <span class="n">INFO_LINK</span> <span class="o">=</span> <span class="n">locate</span><span class="o">.</span><span class="n">by_element_text</span><span class="p">(</span><span class="s1">&#39;More information&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
-
-    <span class="c1"># Page Methods</span>
 
 <span class="hll">    <span class="k">def</span> <span class="nf">get_heading_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </span><span class="hll">        <span class="n">heading_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Locator</span><span class="o">.</span><span class="n">HEADING</span><span class="p">)</span>
@@ -749,7 +755,7 @@ tests:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.5.1-alpha',
+            VERSION:'2.6.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
