@@ -47,9 +47,9 @@ def main(test_package_path, test_package, args):
         # if module_name and class_name are set, use defaults for optional arguments
         if minimum_required_args and description is None:
             description = ''
-        # TODO: use new_file TYPE attributes instead of string literals
         _validate_file_type = cmd.validate_choice(
-            ['test','page'], shorthand_choices={'t': 'test', 'p': 'page'}
+            [new_file.TEST_TYPE, new_file.PAGE_TYPE],
+            shorthand_choices={'t': new_file.TEST_TYPE, 'p': new_file.PAGE_TYPE}
         )
         validated_file_type = cmd.prompt(
             '[t]est/[p]age',
@@ -93,7 +93,6 @@ def main(test_package_path, test_package, args):
             _validate_prototype = cmd.validate_choice(
                 _prototype_choices, shorthand_choices=_prototype_shorthands
             )
-            # TODO: Better help text?
             kwargs['prototype'] = cmd.prompt(
                 'Page object prototype',
                 '(Optional) Select a page object prototype to subclass:',
