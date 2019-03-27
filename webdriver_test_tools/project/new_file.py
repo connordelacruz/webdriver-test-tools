@@ -23,12 +23,14 @@ FORM_PROTOTYPE = 'form'
 MODAL_PROTOTYPE = 'modal'
 NAV_PROTOTYPE = 'nav'
 COLLAPSIBLE_NAV_PROTOTYPE = 'collapsible nav'
+WEB_PAGE_PROTOTYPE = 'web page'
 
 PROTOTYPE_NAMES = [
     FORM_PROTOTYPE,
     MODAL_PROTOTYPE,
     NAV_PROTOTYPE,
     COLLAPSIBLE_NAV_PROTOTYPE,
+    WEB_PAGE_PROTOTYPE,
 ]
 
 # TODO: doc and implement
@@ -38,6 +40,7 @@ PAGE_OBJECT_TEMPLATE_MAP = {
     MODAL_PROTOTYPE: 'modal_object.py',
     NAV_PROTOTYPE: 'nav_object.py',
     COLLAPSIBLE_NAV_PROTOTYPE: 'collapsible_nav_object.py',
+    WEB_PAGE_PROTOTYPE: 'web_page_object.py',
 }
 
 #: Maps file type to corresponding subdirectory in a test package
