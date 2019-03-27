@@ -39,7 +39,7 @@ install_requires = [
     'colour-runner>=0.0.5',
     'randomuser>=1.4.0',
     'py-loremipsum>=1.0.0',
-    'Jinja2>=2.9.5',
+    'Jinja2>=2.10',
     'urllib3>=1.22',
     'blessings>=1.6.1',
 ]
