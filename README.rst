@@ -287,8 +287,7 @@ New tests and page objects can be generated using the ``new`` command:
 
 ::
 
-    python -m <test_package> new [<type>] [<module_name>] [<ClassName>] [-d
-    <description>] [-f]
+    python -m <test_package> new [<type>] [<module_name>] [<ClassName>] [-d <description>] [-f]
 
 Where:
 
@@ -345,7 +344,6 @@ New page object modules can be generated using the ``new page`` command:
 Where ``<module_name>`` is the filename for the new module and
 ``<PageObjectClass>`` is the class name for the page object.
 
-
 The ``--description`` (or ``-d``) argument can be used to add a description for
 the initial page object class:
 
@@ -353,6 +351,18 @@ the initial page object class:
 
     python -m <test_package> new page <module_name> <PageObjectClass> -d "Page object description"
 
+By default, the new class will be a generic ``BasePage`` subclass. The
+``--prototype`` (or ``-p``) argument can be used to specify a `page object
+prototype`_ class to use as a parent class for the new page object:
+
+::
+
+   python -m <test_package> new page <module_name> <PageObjectClass> -p <prototype>
+
+For a list of valid ``<prototype>`` options, run ``python -m <test_package>
+new page --help``.
+
+.. _page object prototype: https://connordelacruz.com/webdriver-test-tools/utilities.html#page-object-prototypes
 
 If a page module with the same ``<module_name>`` already exists, ``new page``
 will not overwrite it by default. The ``--force`` (or ``-f``) argument can be
@@ -603,7 +613,6 @@ tests/
 Test case modules. These use page objects to interact with elements and assert
 that the expected behavior occurs. See `Creating New Tests`_ for info on
 generating new test modules.
-
 
 
 

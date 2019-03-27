@@ -1,0 +1,21 @@
+{% extends "base_page.py.j2" %}
+
+{% block parent_class %}prototypes.FormObject{% endblock %}
+
+{% block additional_attributes %}
+    class Input:
+        """Input name attributes and select/radio option lists."""
+        pass
+
+    # SET THE FOLLOWING ATTRIBUTES TO USE IN FormObject METHODS
+
+    # Locator for the form element
+    FORM_LOCATOR = None
+    # Locator for the form submit button
+    SUBMIT_LOCATOR = None
+    # (Optional) Page object of the modal/webpage/etc that should appear on
+    # successful form submission. If set to a subclass of BasePage, the
+    # click_submit() method will return an instance of the page object
+    SUBMIT_SUCCESS_CLASS = None
+{% endblock %}
+

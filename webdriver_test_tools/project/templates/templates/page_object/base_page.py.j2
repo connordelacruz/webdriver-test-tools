@@ -1,0 +1,20 @@
+from selenium.webdriver.common.by import By
+from webdriver_test_tools.pageobject import *
+from webdriver_test_tools.webdriver import actions, locate
+{% block additional_imports %}{% endblock %}
+
+
+class {{ class_name }}({% block parent_class %}BasePage{% endblock %}):
+    {% if description %}
+    """{{ description }}"""
+    {% endif %}
+
+    class Locator:
+        """WebDriver locator tuples for any elements that will need to be
+        accessed by this page object.
+        """
+        pass
+
+    {% block additional_attributes %}
+    {% endblock %}
+

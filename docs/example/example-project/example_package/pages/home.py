@@ -12,8 +12,6 @@ class HomePage(BasePage):
         HEADING = (By.TAG_NAME, 'h1')
         INFO_LINK = locate.by_element_text('More information', 'a')
 
-    # Page Methods
-
     def get_heading_text(self):
         heading_element = self.find_element(self.Locator.HEADING)
         return heading_element.text

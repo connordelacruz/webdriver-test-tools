@@ -6,49 +6,50 @@ from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project import new_file
 
 
-def main(test_package_path, test_package,
-         file_type=None, module_name=None, class_name=None,
-         description=None, force=False):
+def main(test_package_path, test_package, args):
     """Command line dialogs for creating a new file
 
-    This method accepts optional arguments for each of its prompts. If these
-    are set to something other than ``None``, their corresponding input prompts
-    will be skipped unless validation for that parameter fails.
+    This method checks ``args`` for optional arguments for each of its prompts.
+    If these are set to something other than ``None``, their corresponding
+    input prompts will be skipped unless validation for that parameter fails.
 
-    ``file_type``, ``module_name``, and ``class_name`` are the 3 values
-    required to create a new file. If these are all set to something other than
-    ``None``, this method will default to an empty ``description`` unless one
-    is provided.
+    ``type``, ``module_name``, and ``class_name`` are the 3 values required to
+    create a new file. If these are all set to something other than ``None``,
+    this method will default to an empty ``description`` unless one is
+    provided.
 
     ``force`` is the only optional parameter that does not have a prompt. It
     will default to ``False`` unless the ``--force`` flag is used when calling
     this method.
 
+    The ``new page`` command has an additional optional argument
+    ``--prototype``. If ``type``, ``module_name``, and ``class_name`` are all
+    set to something other than ``None``, this method will use the standart
+    page object template unless one is specified with ``prototype``.
+
     :param test_package_path: The root directory of the test package
     :param test_package: The python package name of the test package
-    :param file_type: (Optional) The type of file to create. If valid, the user
-        won't be prompted for input and this will be used instead. Valid file
-        types are stored as global variables with the _TYPE suffix
-    :param module_name: (Optional) Filename to use for the new python module.
-        If valid, the user won't be prompted for input and this will be used
-        instead
-    :param class_name: (Optional) Name to use for the initial test class.
-        If valid, the user won't be prompted for input and this will be used
-        instead
-    :param description: (Optional) Description to use in the docstring of the
-        initial class. User will only be prompted for a description if one or
-        more of the positional arguments (``file_type``, ``module_name``, and
-        ``class_name``) are set to ``None``
-    :param force: (Default: False) If True, force overwrite if a file with the
-        same name already exists
+    :param args: Parsed arguments for the ``new`` command
     """
     new_file_start = False
+    # Get common items from args
+    # (Using getattr() with default values because some attributes might not be
+    # present if args.type wasn't specified)
+    file_type = getattr(args, 'type', None)
+    module_name = getattr(args, 'module_name', None)
+    class_name = getattr(args, 'class_name', None)
+    description = getattr(args, 'description', None)
+    force = getattr(args, 'force', False)
+    # module and class names are the minimum required args, will ignore
+    # optional prompts if this is True
+    minimum_required_args = module_name and class_name
     try:
-        # if module_name and class_name are set, use defaults for description and force
-        if module_name and class_name and description is None:
+        # if module_name and class_name are set, use defaults for optional arguments
+        if minimum_required_args and description is None:
             description = ''
         _validate_file_type = cmd.validate_choice(
-            ['test','page'], shorthand_choices={'t': 'test', 'p': 'page'}
+            [new_file.TEST_TYPE, new_file.PAGE_TYPE],
+            shorthand_choices={'t': new_file.TEST_TYPE, 'p': new_file.PAGE_TYPE}
         )
         validated_file_type = cmd.prompt(
             '[t]est/[p]age',
@@ -76,12 +77,37 @@ def main(test_package_path, test_package,
             default='',
             parsed_input=description
         )
+        # Arguments for page-specific prompts
+        kwargs = {}
+        if validated_file_type == new_file.PAGE_TYPE:
+            prototype = getattr(args, 'prototype', None)
+            if prototype is None and minimum_required_args:
+                prototype = ''
+            _prototype_choices = [name for name in new_file.PROTOTYPE_NAMES]
+            # Allow for numeric shorthand answers (starting at 1)
+            _prototype_shorthands = {
+                str(ind + 1): choice for ind, choice in enumerate(_prototype_choices)
+            }
+            # Allow empty string since this is an optional parameter
+            _prototype_choices.append('')
+            _validate_prototype = cmd.validate_choice(
+                _prototype_choices, shorthand_choices=_prototype_shorthands
+            )
+            kwargs['prototype'] = cmd.prompt(
+                'Page object prototype',
+                '(Optional) Select a page object prototype to subclass:',
+                *[cmd.INDENT + '[{}] {}'.format(i, name) for i, name in _prototype_shorthands.items()],
+                validate=_validate_prototype,
+                default='',
+                parsed_input=prototype
+            )
+        # Start file creation
         new_file_start = True
         new_file_path = new_file.new_file(
             test_package_path, test_package,
             file_type=validated_file_type, module_name=validated_module_name,
             class_name=validated_class_name, description=validated_description,
-            force=force
+            force=force, **kwargs
         )
         # Output new file path on success
         print(cmd.COLORS['success']('\nFile created.'))
@@ -99,12 +125,14 @@ def main(test_package_path, test_package,
 def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
     """Add subparser for the ``<test_package> new`` command
 
-    :param subparsers: ``argparse._SubParsersAction`` object for the test package ArgumentParser (i.e. the object
-        returned by the ``add_subparsers()`` method)
-    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class to use for the ``formatter_class``
-        parameter
+    :param subparsers: ``argparse._SubParsersAction`` object for the test
+        package ArgumentParser (i.e. the object returned by the
+        ``add_subparsers()`` method)
+    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class
+        to use for the ``formatter_class`` parameter
 
-    :return: ``argparse.ArgumentParser`` object for the newly added ``new`` subparser
+    :return: ``argparse.ArgumentParser`` object for the newly added ``new``
+        subparser
     """
     # TODO: add info on no args to description or help
     # Adds custom --help argument
@@ -132,6 +160,7 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
     new_subparsers.add_parser(
         'test', description=new_test_description, help=new_test_help,
         parents=[new_test_parent_parser],
+        formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # New page object parser
@@ -144,10 +173,33 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
     new_page_parser = new_subparsers.add_parser(
         'page', description=new_page_description, help=new_page_help,
         parents=[new_page_parent_parser],
+        formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
-    # TODO: add optional --prototype arg with a list of valid page object prototype classes
+    prototype_options_help = _format_prototype_choices()
+    prototype_help = 'Page object prototype to subclass.' + prototype_options_help
+    new_page_parser.add_argument('-p', '--prototype', metavar='<prototype_choice>', default=None,
+                                 choices=new_file.PROTOTYPE_NAMES, help=prototype_help)
     return new_parser
+
+
+def _format_prototype_choices():
+    """Format the help string for page object prototype choices
+
+    The returned string will have the following format:
+
+    .. code:: python
+
+        '\\nOptions: {prototype,"prototype with spaces"}'
+
+    :return: Formatted help string for prototype options
+    """
+    # Add quotes around names with spaces
+    formatted_prototype_names = [
+        '"{}"'.format(name) if ' ' in name else name
+        for name in new_file.PROTOTYPE_NAMES
+    ]
+    return '\nOptions: {{{}}}'.format(','.join(formatted_prototype_names))
 
 
 def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
@@ -198,14 +250,7 @@ def parse_new_args(package_name, tests_module, args):
     # Get package path based on tests_module path
     test_package_path = os.path.dirname(os.path.dirname(tests_module.__file__))
     try:
-        # Account for event where user doesn't provide positional args for 'new' command
-        if args.type is None:
-            main(test_package_path, package_name)
-        else:
-            main(
-                test_package_path, package_name, args.type, args.module_name,
-                args.class_name, description=args.description, force=args.force
-            )
+        main(test_package_path, package_name, args)
     except Exception as e:
         print('')
         cmd.print_exception(e)
@@ -231,3 +276,4 @@ def validate_description(description):
     if validated_description != description:
         cmd.print_info('Replaced double quotes with single quotes in class description')
     return validated_description
+

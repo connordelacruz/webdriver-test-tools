@@ -46,7 +46,8 @@ def render_template(template_path, context):
     """
     path, filename = os.path.split(template_path)
     return jinja2.Environment(
-        loader=jinja2.FileSystemLoader(path or './')
+        loader=jinja2.FileSystemLoader(path or './'),
+        trim_blocks=True, lstrip_blocks=True
     ).get_template(filename).render(context)
 
 

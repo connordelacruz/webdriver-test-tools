@@ -63,6 +63,36 @@ section, we will create the ``generate_contact_form_data()`` method used to
 assign ``contact_form_data`` in the above example.
 
 
+Using Prototypes in New Page Objects
+------------------------------------
+
+.. todo rephrase title?
+
+By default, page objects generated using the ``new page`` command use a basic
+template and subclass :class:`BasePage
+<webdriver_test_tools.pageobject.base.BasePage>`_. You can specify a page object
+prototype to use as a basis for a new page using the ``--prototype`` (or ``-p``)
+argument:
+
+::
+
+   python -m <test_package> new page <module_name> <PageObjectClass> -p <prototype>
+
+Where ``<prototype>`` is one of the options listed when calling ``python -m
+<test_package> new page --help``:
+
+::
+
+   ...
+     -p <prototype_choice>, --prototype <prototype_choice>
+                           Page object prototype to subclass.
+                           Options: {form,modal,nav,"collapsible nav","web page"}
+   ...
+
+The generated page object will subclass the corresponding prototype class and
+include any variable declarations used by that prototype's methods.
+
+
 Test Data Generation
 ====================
 

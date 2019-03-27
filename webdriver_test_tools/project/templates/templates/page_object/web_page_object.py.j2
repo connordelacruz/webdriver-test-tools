@@ -1,0 +1,17 @@
+{% extends "base_page.py.j2" %}
+
+{% block additional_imports %}
+
+from {{test_package}}.config import SiteConfig
+{% endblock %}
+
+{% block parent_class %}prototypes.WebPageObject{% endblock %}
+
+{% block additional_attributes %}
+    # File name of the page relative to a base URL declared in SiteConfig
+    PAGE_FILENAME = ''
+    # Full URL of the page. E.g.:
+    # PAGE_URL = SiteConfig.BASE_URL + PAGE_FILENAME
+    PAGE_URL = SiteConfig.BASE_URL + PAGE_FILENAME
+{% endblock %}
+
