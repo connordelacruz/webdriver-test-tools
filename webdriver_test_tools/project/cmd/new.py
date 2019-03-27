@@ -6,40 +6,30 @@ from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project import new_file
 
 
-# TODO: update docs
 def main(test_package_path, test_package, args):
     """Command line dialogs for creating a new file
 
-    This method accepts optional arguments for each of its prompts. If these
-    are set to something other than ``None``, their corresponding input prompts
-    will be skipped unless validation for that parameter fails.
+    This method checks ``args`` for optional arguments for each of its prompts.
+    If these are set to something other than ``None``, their corresponding
+    input prompts will be skipped unless validation for that parameter fails.
 
-    ``file_type``, ``module_name``, and ``class_name`` are the 3 values
-    required to create a new file. If these are all set to something other than
-    ``None``, this method will default to an empty ``description`` unless one
-    is provided.
+    ``type``, ``module_name``, and ``class_name`` are the 3 values required to
+    create a new file. If these are all set to something other than ``None``,
+    this method will default to an empty ``description`` unless one is
+    provided.
 
     ``force`` is the only optional parameter that does not have a prompt. It
     will default to ``False`` unless the ``--force`` flag is used when calling
     this method.
 
+    The ``new page`` command has an additional optional argument
+    ``--prototype``. If ``type``, ``module_name``, and ``class_name`` are all
+    set to something other than ``None``, this method will use the standart
+    page object template unless one is specified with ``prototype``.
+
     :param test_package_path: The root directory of the test package
     :param test_package: The python package name of the test package
-    :param file_type: (Optional) The type of file to create. If valid, the user
-        won't be prompted for input and this will be used instead. Valid file
-        types are stored as global variables with the _TYPE suffix
-    :param module_name: (Optional) Filename to use for the new python module.
-        If valid, the user won't be prompted for input and this will be used
-        instead
-    :param class_name: (Optional) Name to use for the initial test class.
-        If valid, the user won't be prompted for input and this will be used
-        instead
-    :param description: (Optional) Description to use in the docstring of the
-        initial class. User will only be prompted for a description if one or
-        more of the positional arguments (``file_type``, ``module_name``, and
-        ``class_name``) are set to ``None``
-    :param force: (Default: False) If True, force overwrite if a file with the
-        same name already exists
+    :param args: Parsed arguments for the ``new`` command
     """
     new_file_start = False
     # Get common items from args
@@ -136,12 +126,14 @@ def main(test_package_path, test_package, args):
 def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
     """Add subparser for the ``<test_package> new`` command
 
-    :param subparsers: ``argparse._SubParsersAction`` object for the test package ArgumentParser (i.e. the object
-        returned by the ``add_subparsers()`` method)
-    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class to use for the ``formatter_class``
-        parameter
+    :param subparsers: ``argparse._SubParsersAction`` object for the test
+        package ArgumentParser (i.e. the object returned by the
+        ``add_subparsers()`` method)
+    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class
+        to use for the ``formatter_class`` parameter
 
-    :return: ``argparse.ArgumentParser`` object for the newly added ``new`` subparser
+    :return: ``argparse.ArgumentParser`` object for the newly added ``new``
+        subparser
     """
     # TODO: add info on no args to description or help
     # Adds custom --help argument
@@ -169,6 +161,7 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
     new_subparsers.add_parser(
         'test', description=new_test_description, help=new_test_help,
         parents=[new_test_parent_parser],
+        formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # New page object parser
@@ -181,13 +174,33 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
     new_page_parser = new_subparsers.add_parser(
         'page', description=new_page_description, help=new_page_help,
         parents=[new_page_parent_parser],
+        formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
-    # TODO: better help text that lists prototype chocies (similar to browsers in `run`?)
-    prototype_help = 'Page object prototype to subclass'
+    prototype_options_help = _format_prototype_choices()
+    prototype_help = 'Page object prototype to subclass.' + prototype_options_help
     new_page_parser.add_argument('-p', '--prototype', metavar='<prototype_choice>', default=None,
                                  choices=new_file.PROTOTYPE_NAMES, help=prototype_help)
     return new_parser
+
+
+def _format_prototype_choices():
+    """Format the help string for page object prototype choices
+
+    The returned string will have the following format:
+
+    .. code:: python
+
+        '\\nOptions: {prototype,"prototype with spaces"}'
+
+    :return: Formatted help string for prototype options
+    """
+    # Add quotes around names with spaces
+    formatted_prototype_names = [
+        '"{}"'.format(name) if ' ' in name else name
+        for name in new_file.PROTOTYPE_NAMES
+    ]
+    return '\nOptions: {{{}}}'.format(','.join(formatted_prototype_names))
 
 
 def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
