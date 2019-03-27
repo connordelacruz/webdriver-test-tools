@@ -221,7 +221,7 @@ For our example tests, we’ll want to look at the heading text and click on the
 .. literalinclude:: ../example/example-project/example_package/pages/home.py
     :caption: pages/home.py:
     :pyobject: HomePage
-    :emphasize-lines: 12-14,16-18
+    :emphasize-lines: 10-12,14-16
 
 .. note::
 
