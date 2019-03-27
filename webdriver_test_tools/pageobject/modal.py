@@ -1,3 +1,4 @@
+import inspect
 from selenium.common.exceptions import NoSuchElementException
 
 from webdriver_test_tools.pageobject import BasePage
@@ -45,5 +46,5 @@ class ModalObject(BasePage):
         :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>`,
         returns an instance of that object. Otherwise, returns None
         """
-        return self.MODAL_BODY_CLASS(self.driver) if issubclass(self.MODAL_BODY_CLASS, BasePage) else None
+        return self.MODAL_BODY_CLASS(self.driver) if inspect.isclass(self.MODAL_BODY_CLASS) and issubclass(self.MODAL_BODY_CLASS, BasePage) else None
 

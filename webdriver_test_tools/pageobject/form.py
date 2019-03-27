@@ -1,3 +1,4 @@
+import inspect
 from webdriver_test_tools.pageobject import BasePage
 from webdriver_test_tools.webdriver import actions
 
@@ -66,6 +67,6 @@ class FormObject(BasePage):
         """
         submit_button = self.find_element(self.SUBMIT_LOCATOR)
         actions.scroll.to_and_click(self.driver, submit_button, False)
-        if hasattr(self, 'SUBMIT_SUCCESS_CLASS') and issubclass(self.SUBMIT_SUCCESS_CLASS, BasePage):
+        if inspect.isclass(self.SUBMIT_SUCCESS_CLASS) and issubclass(self.SUBMIT_SUCCESS_CLASS, BasePage):
             return self.SUBMIT_SUCCESS_CLASS(self.driver)
 
