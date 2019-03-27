@@ -70,7 +70,7 @@ Using Prototypes in New Page Objects
 
 By default, page objects generated using the ``new page`` command use a basic
 template and subclass :class:`BasePage
-<webdriver_test_tools.pageobject.base.BasePage>`_. You can specify a page object
+<webdriver_test_tools.pageobject.base.BasePage>`. You can specify a page object
 prototype to use as a basis for a new page using the ``--prototype`` (or ``-p``)
 argument:
 

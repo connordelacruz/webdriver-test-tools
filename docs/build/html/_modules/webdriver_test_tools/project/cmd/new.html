@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.cmd.new &mdash; WebDriver Test Tools 2.5.1-alpha documentation</title>
+  <title>webdriver_test_tools.project.cmd.new &mdash; WebDriver Test Tools 2.6.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.5
+                2.6
               </div>
             
           
@@ -164,49 +164,50 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">new_file</span>
 
 
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.new.html#webdriver_test_tools.project.cmd.new.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">test_package</span><span class="p">,</span>
-         <span class="n">file_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">module_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">class_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-         <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.new.html#webdriver_test_tools.project.cmd.new.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">test_package</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Command line dialogs for creating a new file</span>
 
-<span class="sd">    This method accepts optional arguments for each of its prompts. If these</span>
-<span class="sd">    are set to something other than ``None``, their corresponding input prompts</span>
-<span class="sd">    will be skipped unless validation for that parameter fails.</span>
+<span class="sd">    This method checks ``args`` for optional arguments for each of its prompts.</span>
+<span class="sd">    If these are set to something other than ``None``, their corresponding</span>
+<span class="sd">    input prompts will be skipped unless validation for that parameter fails.</span>
 
-<span class="sd">    ``file_type``, ``module_name``, and ``class_name`` are the 3 values</span>
-<span class="sd">    required to create a new file. If these are all set to something other than</span>
-<span class="sd">    ``None``, this method will default to an empty ``description`` unless one</span>
-<span class="sd">    is provided.</span>
+<span class="sd">    ``type``, ``module_name``, and ``class_name`` are the 3 values required to</span>
+<span class="sd">    create a new file. If these are all set to something other than ``None``,</span>
+<span class="sd">    this method will default to an empty ``description`` unless one is</span>
+<span class="sd">    provided.</span>
 
 <span class="sd">    ``force`` is the only optional parameter that does not have a prompt. It</span>
 <span class="sd">    will default to ``False`` unless the ``--force`` flag is used when calling</span>
 <span class="sd">    this method.</span>
 
+<span class="sd">    The ``new page`` command has an additional optional argument</span>
+<span class="sd">    ``--prototype``. If ``type``, ``module_name``, and ``class_name`` are all</span>
+<span class="sd">    set to something other than ``None``, this method will use the standart</span>
+<span class="sd">    page object template unless one is specified with ``prototype``.</span>
+
 <span class="sd">    :param test_package_path: The root directory of the test package</span>
 <span class="sd">    :param test_package: The python package name of the test package</span>
-<span class="sd">    :param file_type: (Optional) The type of file to create. If valid, the user</span>
-<span class="sd">        won&#39;t be prompted for input and this will be used instead. Valid file</span>
-<span class="sd">        types are stored as global variables with the _TYPE suffix</span>
-<span class="sd">    :param module_name: (Optional) Filename to use for the new python module.</span>
-<span class="sd">        If valid, the user won&#39;t be prompted for input and this will be used</span>
-<span class="sd">        instead</span>
-<span class="sd">    :param class_name: (Optional) Name to use for the initial test class.</span>
-<span class="sd">        If valid, the user won&#39;t be prompted for input and this will be used</span>
-<span class="sd">        instead</span>
-<span class="sd">    :param description: (Optional) Description to use in the docstring of the</span>
-<span class="sd">        initial class. User will only be prompted for a description if one or</span>
-<span class="sd">        more of the positional arguments (``file_type``, ``module_name``, and</span>
-<span class="sd">        ``class_name``) are set to ``None``</span>
-<span class="sd">    :param force: (Default: False) If True, force overwrite if a file with the</span>
-<span class="sd">        same name already exists</span>
+<span class="sd">    :param args: Parsed arguments for the ``new`` command</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">new_file_start</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="c1"># Get common items from args</span>
+    <span class="c1"># (Using getattr() with default values because some attributes might not be</span>
+    <span class="c1"># present if args.type wasn&#39;t specified)</span>
+    <span class="n">file_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">module_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;module_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">class_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;class_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">force</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;force&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># module and class names are the minimum required args, will ignore</span>
+    <span class="c1"># optional prompts if this is True</span>
+    <span class="n">minimum_required_args</span> <span class="o">=</span> <span class="n">module_name</span> <span class="ow">and</span> <span class="n">class_name</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># if module_name and class_name are set, use defaults for description and force</span>
-        <span class="k">if</span> <span class="n">module_name</span> <span class="ow">and</span> <span class="n">class_name</span> <span class="ow">and</span> <span class="n">description</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># if module_name and class_name are set, use defaults for optional arguments</span>
+        <span class="k">if</span> <span class="n">minimum_required_args</span> <span class="ow">and</span> <span class="n">description</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="n">_validate_file_type</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">validate_choice</span><span class="p">(</span>
-            <span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">,</span><span class="s1">&#39;page&#39;</span><span class="p">],</span> <span class="n">shorthand_choices</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="s1">&#39;page&#39;</span><span class="p">}</span>
+            <span class="p">[</span><span class="n">new_file</span><span class="o">.</span><span class="n">TEST_TYPE</span><span class="p">,</span> <span class="n">new_file</span><span class="o">.</span><span class="n">PAGE_TYPE</span><span class="p">],</span>
+            <span class="n">shorthand_choices</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="n">new_file</span><span class="o">.</span><span class="n">TEST_TYPE</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="n">new_file</span><span class="o">.</span><span class="n">PAGE_TYPE</span><span class="p">}</span>
         <span class="p">)</span>
         <span class="n">validated_file_type</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span>
             <span class="s1">&#39;[t]est/[p]age&#39;</span><span class="p">,</span>
@@ -234,12 +235,37 @@
             <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
             <span class="n">parsed_input</span><span class="o">=</span><span class="n">description</span>
         <span class="p">)</span>
+        <span class="c1"># Arguments for page-specific prompts</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">validated_file_type</span> <span class="o">==</span> <span class="n">new_file</span><span class="o">.</span><span class="n">PAGE_TYPE</span><span class="p">:</span>
+            <span class="n">prototype</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;prototype&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">prototype</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">minimum_required_args</span><span class="p">:</span>
+                <span class="n">prototype</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">_prototype_choices</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">new_file</span><span class="o">.</span><span class="n">PROTOTYPE_NAMES</span><span class="p">]</span>
+            <span class="c1"># Allow for numeric shorthand answers (starting at 1)</span>
+            <span class="n">_prototype_shorthands</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">ind</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">choice</span> <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">choice</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">_prototype_choices</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="c1"># Allow empty string since this is an optional parameter</span>
+            <span class="n">_prototype_choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">_validate_prototype</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">validate_choice</span><span class="p">(</span>
+                <span class="n">_prototype_choices</span><span class="p">,</span> <span class="n">shorthand_choices</span><span class="o">=</span><span class="n">_prototype_shorthands</span>
+            <span class="p">)</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;prototype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span>
+                <span class="s1">&#39;Page object prototype&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;(Optional) Select a page object prototype to subclass:&#39;</span><span class="p">,</span>
+                <span class="o">*</span><span class="p">[</span><span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span> <span class="o">+</span> <span class="s1">&#39;[</span><span class="si">{}</span><span class="s1">] </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">_prototype_shorthands</span><span class="o">.</span><span class="n">items</span><span class="p">()],</span>
+                <span class="n">validate</span><span class="o">=</span><span class="n">_validate_prototype</span><span class="p">,</span>
+                <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="n">parsed_input</span><span class="o">=</span><span class="n">prototype</span>
+            <span class="p">)</span>
+        <span class="c1"># Start file creation</span>
         <span class="n">new_file_start</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">new_file_path</span> <span class="o">=</span> <span class="n">new_file</span><span class="o">.</span><span class="n">new_file</span><span class="p">(</span>
             <span class="n">test_package_path</span><span class="p">,</span> <span class="n">test_package</span><span class="p">,</span>
             <span class="n">file_type</span><span class="o">=</span><span class="n">validated_file_type</span><span class="p">,</span> <span class="n">module_name</span><span class="o">=</span><span class="n">validated_module_name</span><span class="p">,</span>
             <span class="n">class_name</span><span class="o">=</span><span class="n">validated_class_name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">validated_description</span><span class="p">,</span>
-            <span class="n">force</span><span class="o">=</span><span class="n">force</span>
+            <span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
         <span class="c1"># Output new file path on success</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">](</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">File created.&#39;</span><span class="p">))</span>
@@ -257,12 +283,14 @@
 <div class="viewcode-block" id="add_new_subparser"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.new.html#webdriver_test_tools.project.cmd.new.add_new_subparser">[docs]</a><span class="k">def</span> <span class="nf">add_new_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">formatter_class</span><span class="o">=</span><span class="n">RawTextHelpFormatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Add subparser for the ``&lt;test_package&gt; new`` command</span>
 
-<span class="sd">    :param subparsers: ``argparse._SubParsersAction`` object for the test package ArgumentParser (i.e. the object</span>
-<span class="sd">        returned by the ``add_subparsers()`` method)</span>
-<span class="sd">    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class to use for the ``formatter_class``</span>
-<span class="sd">        parameter</span>
+<span class="sd">    :param subparsers: ``argparse._SubParsersAction`` object for the test</span>
+<span class="sd">        package ArgumentParser (i.e. the object returned by the</span>
+<span class="sd">        ``add_subparsers()`` method)</span>
+<span class="sd">    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class</span>
+<span class="sd">        to use for the ``formatter_class`` parameter</span>
 
-<span class="sd">    :return: ``argparse.ArgumentParser`` object for the newly added ``new`` subparser</span>
+<span class="sd">    :return: ``argparse.ArgumentParser`` object for the newly added ``new``</span>
+<span class="sd">        subparser</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO: add info on no args to description or help</span>
     <span class="c1"># Adds custom --help argument</span>
@@ -290,6 +318,7 @@
     <span class="n">new_subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
         <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">new_test_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">new_test_help</span><span class="p">,</span>
         <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">new_test_parent_parser</span><span class="p">],</span>
+        <span class="n">formatter_class</span><span class="o">=</span><span class="n">formatter_class</span><span class="p">,</span>
         <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
     <span class="c1"># New page object parser</span>
@@ -302,10 +331,33 @@
     <span class="n">new_page_parser</span> <span class="o">=</span> <span class="n">new_subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
         <span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">new_page_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">new_page_help</span><span class="p">,</span>
         <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">new_page_parent_parser</span><span class="p">],</span>
+        <span class="n">formatter_class</span><span class="o">=</span><span class="n">formatter_class</span><span class="p">,</span>
         <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
-    <span class="c1"># TODO: add optional --prototype arg with a list of valid page object prototype classes</span>
+    <span class="n">prototype_options_help</span> <span class="o">=</span> <span class="n">_format_prototype_choices</span><span class="p">()</span>
+    <span class="n">prototype_help</span> <span class="o">=</span> <span class="s1">&#39;Page object prototype to subclass.&#39;</span> <span class="o">+</span> <span class="n">prototype_options_help</span>
+    <span class="n">new_page_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--prototype&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;prototype_choice&gt;&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">choices</span><span class="o">=</span><span class="n">new_file</span><span class="o">.</span><span class="n">PROTOTYPE_NAMES</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">prototype_help</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">new_parser</span></div>
+
+
+<span class="k">def</span> <span class="nf">_format_prototype_choices</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Format the help string for page object prototype choices</span>
+
+<span class="sd">    The returned string will have the following format:</span>
+
+<span class="sd">    .. code:: python</span>
+
+<span class="sd">        &#39;\\nOptions: {prototype,&quot;prototype with spaces&quot;}&#39;</span>
+
+<span class="sd">    :return: Formatted help string for prototype options</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Add quotes around names with spaces</span>
+    <span class="n">formatted_prototype_names</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39; &#39;</span> <span class="ow">in</span> <span class="n">name</span> <span class="k">else</span> <span class="n">name</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">new_file</span><span class="o">.</span><span class="n">PROTOTYPE_NAMES</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Options: {{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_prototype_names</span><span class="p">))</span>
 
 
 <div class="viewcode-block" id="get_new_parent_parser"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.new.html#webdriver_test_tools.project.cmd.new.get_new_parent_parser">[docs]</a><span class="k">def</span> <span class="nf">get_new_parent_parser</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="p">[],</span> <span class="n">class_name_metavar</span><span class="o">=</span><span class="s1">&#39;&lt;ClassName&gt;&#39;</span><span class="p">,</span>
@@ -356,14 +408,7 @@
     <span class="c1"># Get package path based on tests_module path</span>
     <span class="n">test_package_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">tests_module</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Account for event where user doesn&#39;t provide positional args for &#39;new&#39; command</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">main</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">main</span><span class="p">(</span>
-                <span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">module_name</span><span class="p">,</span>
-                <span class="n">args</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">force</span>
-            <span class="p">)</span>
+        <span class="n">main</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="n">cmd</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></div>
@@ -389,6 +434,7 @@
     <span class="k">if</span> <span class="n">validated_description</span> <span class="o">!=</span> <span class="n">description</span><span class="p">:</span>
         <span class="n">cmd</span><span class="o">.</span><span class="n">print_info</span><span class="p">(</span><span class="s1">&#39;Replaced double quotes with single quotes in class description&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">validated_description</span></div>
+
 </pre></div>
 
            </div>
@@ -423,7 +469,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.5.1-alpha',
+            VERSION:'2.6.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
