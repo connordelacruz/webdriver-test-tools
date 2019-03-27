@@ -59,12 +59,13 @@ class FormObject(BasePage):
     def click_submit(self):
         """Shorthand function for scrolling to the submit button and clicking it.
 
-        If :attr:`self.SUBMIT_SUCCESS_CLASS <SUBMIT_SUCCESS_CLASS>` is set to a subclass of
-        :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>`,
-        an instance of that object will be returned
+        If :attr:`self.SUBMIT_SUCCESS_CLASS <SUBMIT_SUCCESS_CLASS>` is set to a
+        subclass of :class:`BasePage
+        <webdriver_test_tools.pageobject.base.BasePage>`, an instance of that
+        object will be returned
         """
         submit_button = self.find_element(self.SUBMIT_LOCATOR)
         actions.scroll.to_and_click(self.driver, submit_button, False)
-        if issubclass(self.SUBMIT_SUCCESS_CLASS, BasePage):
+        if hasattr(self, 'SUBMIT_SUCCESS_CLASS') and issubclass(self.SUBMIT_SUCCESS_CLASS, BasePage):
             return self.SUBMIT_SUCCESS_CLASS(self.driver)
 
