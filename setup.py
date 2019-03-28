@@ -42,6 +42,7 @@ install_requires = [
     'Jinja2>=2.10',
     'urllib3>=1.22',
     'blessings>=1.6.1',
+    'PyYAML>=5.1,<5.2',
 ]
 
 entry_points = {
