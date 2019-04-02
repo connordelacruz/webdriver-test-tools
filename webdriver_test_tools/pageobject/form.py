@@ -51,9 +51,10 @@ class InputObject(BasePage):
 
 
     # TODO: document params
-    # TODO: use !!python/object and accept kwargs for all attributes instead (see https://pyyaml.org/wiki/PyYAMLDocumentation)?
-    def __init__(self, driver, input_dict):
+    def __init__(self, driver, form_element, input_dict):
         super().__init__(driver)
+        # TODO: may not be required after updating actions.form?
+        self.form_element = form_element
         # 'name' is required, so assume that it's a valid key and raise errors
         # otherwise
         self.name = input_dict['name']
@@ -85,9 +86,18 @@ class InputObject(BasePage):
             self.multiple = None
 
     def set_value(self, value):
+        """Set the value of the input
+
+        :param value: The value to set it to
+        """
+        # TODO: document value format
         # TODO: validate value if self.options is not None
-        # TODO: re-work webdriver.actions.form methods and wrap
-        pass
+        # TODO: currently this only supports inputs with name attributes
+        actions.fill_form_input(
+            self.driver, self.form_element,
+            self.name, value,
+            input_type=self.type
+        )
 
     def get_value(self):
         """Returns the current value of the input"""
@@ -149,12 +159,14 @@ class FormObject(BasePage):
         # TODO: raise exception w/ helpful message if any required keys are missing
         self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
         self.SUBMIT_LOCATOR = utils.yaml.to_locator(parsed_yaml['submit_locator'])
+        # TODO: document attribute
+        self.form_element = self.find_element(self.FORM_LOCATOR)
         # Initialize inputs
         self.inputs = {}
         for input_dict in parsed_yaml['inputs']:
             # TODO: throw exception if name isn't set (or validate during parse_yaml_file()?)
             # TODO: use !!python/object instead (see https://pyyaml.org/wiki/PyYAMLDocumentation)?
-            self.inputs[input_dict['name']] = InputObject(self.driver, input_dict)
+            self.inputs[input_dict['name']] = InputObject(self.driver, self.form_element, input_dict)
 
     # TODO: deprecate input_map
     def fill_form(self, input_map):
