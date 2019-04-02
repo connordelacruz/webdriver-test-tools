@@ -10,6 +10,7 @@ from webdriver_test_tools.webdriver.actions import scroll
 
 # Setting form input values
 
+# TODO: Find usages, determine if this can be easily re-worked to use new setup
 def fill_form_inputs(driver, form_element, input_name_map):
     """Takes a dictionary mapping input names to the desired values and fill out the form accordingly
 
@@ -27,6 +28,7 @@ def fill_form_inputs(driver, form_element, input_name_map):
     for name, value in input_name_map.items():
         fill_form_input(driver, form_element, name, value)
 
+# TODO: Find usages, determine if this can be easily re-worked to use new setup
 def fill_form_input(driver, form_element, name, value):
     """Takes the name and value of a form input and determines what type it is to fill
     it appropriately.

@@ -38,6 +38,15 @@ class InputObject(BasePage):
         SELECT = 'select'
         TEXTAREA = 'textarea'
         # TODO: group similar input types (text, selectable, etc) in arrays?
+        # Attribute support based on input types
+        SUPPORTS_OPTIONS = [
+            SELECT,
+            RADIO,
+            # TODO: CHECKBOX?
+        ]
+        SUPPORTS_MULTIPLE = [
+            SELECT,
+        ]
 
 
     # TODO: document params
@@ -58,9 +67,20 @@ class InputObject(BasePage):
         # Assume input is required unless otherwise specified
         self.required = input_dict.get('required', True)
         # Retrieve list of options (for radios and selects)
-        # TODO: only worry about options if self.type is select or radio (or checkbox?)
-        self.options = input_dict.get('options', None)
-        # TODO: self.multiple for selects
+        if self.type in self.Type.SUPPORTS_OPTIONS:
+            self.options = input_dict.get('options', None)
+        else:
+            # Ensures options attribute is ignored for inputs that don't
+            # support it
+            self.options = None
+        # (For select inputs) Assume only one option can be selected unless
+        # otherwise specified
+        if self.type in self.Type.SUPPORTS_MULTIPLE:
+            self.multiple = input_dict.get('multiple', False)
+        else:
+            # Ensure multiple attribute is ignored for inputs that don't
+            # support it
+            self.multiple = None
 
     # TODO: methods to fill input, get current value
 
