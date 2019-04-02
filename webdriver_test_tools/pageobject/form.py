@@ -82,7 +82,14 @@ class InputObject(BasePage):
             # support it
             self.multiple = None
 
-    # TODO: methods to fill input, get current value
+    def set_value(self, value):
+        # TODO: validate value if self.options is not None
+        # TODO: re-work webdriver.actions.form methods and wrap
+        pass
+
+    def get_value(self):
+        # TODO: test and doc
+        return actions.get_form_input_value(self.find_element(self.locator))
 
 
 class FormObject(BasePage):
@@ -101,8 +108,11 @@ class FormObject(BasePage):
     SUBMIT_LOCATOR = None
     # Optional page object to return on click_submit()
     SUBMIT_SUCCESS_CLASS = None
-    # TODO: Optional attribute with path to YAML file (parse on __init__?)
+    # Optional attribute with path to YAML file (parsed on __init__)
+    # TODO: Update docstring
+    YAML_FILE = None
 
+    # TODO: deprecate Input class?
     class Input:
         """Subclass used to contain name attributes and select/radio option lists for
         inputs
@@ -122,6 +132,26 @@ class FormObject(BasePage):
         """
         pass
 
+    def __init__(self, driver):
+        super().__init__(driver)
+        if self.YAML_FILE:
+            self.parse_yaml(self.YAML_FILE)
+
+    def parse_yaml(self, file_path):
+        # TODO: doc and implement
+        parsed_yaml = utils.yaml.parse_yaml_file(file_path)
+        # Initialize locators
+        # TODO: Assume required keys are present?
+        if 'form_locator' in parsed_yaml:
+            self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
+        if 'submit_locator' in parsed_yaml:
+            self.SUBMIT_LOCATOR = utils.yaml.to_locator(parsed_yaml['submit_locator'])
+        # Initialize inputs
+        self.inputs = []
+        for input_dict in parsed_yaml['inputs']:
+            self.inputs.append(InputObject(self.driver, input_dict))
+
+    # TODO: deprecate input_map
     def fill_form(self, input_map):
         """Fill the form element inputs
 
