@@ -1,4 +1,5 @@
 import inspect
+import os
 from selenium.webdriver.common.by import By
 from webdriver_test_tools.pageobject import utils, BasePage
 from webdriver_test_tools.webdriver import actions
@@ -50,6 +51,7 @@ class InputObject(BasePage):
 
 
     # TODO: document params
+    # TODO: use !!python/object and accept kwargs for all attributes instead (see https://pyyaml.org/wiki/PyYAMLDocumentation)?
     def __init__(self, driver, input_dict):
         super().__init__(driver)
         # 'name' is required, so assume that it's a valid key and raise errors
@@ -119,7 +121,7 @@ class FormObject(BasePage):
 
         :Example:
 
-            .. code:: python
+            .. code-block:: python
 
                 SOME_INPUT = 'someInput'
 
@@ -139,17 +141,17 @@ class FormObject(BasePage):
 
     def parse_yaml(self, file_path):
         # TODO: doc and implement
-        parsed_yaml = utils.yaml.parse_yaml_file(file_path)
+        parsed_yaml = utils.yaml.parse_yaml_file(file_path)['form']
         # Initialize locators
-        # TODO: Assume required keys are present?
-        if 'form_locator' in parsed_yaml:
-            self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
-        if 'submit_locator' in parsed_yaml:
-            self.SUBMIT_LOCATOR = utils.yaml.to_locator(parsed_yaml['submit_locator'])
+        # TODO: raise exception w/ helpful message if any required keys are missing
+        self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
+        self.SUBMIT_LOCATOR = utils.yaml.to_locator(parsed_yaml['submit_locator'])
         # Initialize inputs
-        self.inputs = []
+        self.inputs = {}
         for input_dict in parsed_yaml['inputs']:
-            self.inputs.append(InputObject(self.driver, input_dict))
+            # TODO: throw exception if name isn't set (or validate during parse_yaml_file()?)
+            # TODO: use !!python/object instead (see https://pyyaml.org/wiki/PyYAMLDocumentation)?
+            self.inputs[input_dict['name']] = InputObject(self.driver, input_dict)
 
     # TODO: deprecate input_map
     def fill_form(self, input_map):

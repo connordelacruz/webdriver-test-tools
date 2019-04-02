@@ -17,7 +17,7 @@ def parse_yaml_file(path):
     :return: A dictionary representation of the YAML file
     """
     with open(path, 'r') as file:
-        loaded = yaml.load(file, loader=yaml.FullLoader)
+        loaded = yaml.load(file, Loader=yaml.FullLoader)
     return loaded
 
 
