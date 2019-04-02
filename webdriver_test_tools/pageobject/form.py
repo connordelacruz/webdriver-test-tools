@@ -5,8 +5,42 @@ from webdriver_test_tools.webdriver import actions
 
 
 class InputObject(BasePage):
-    # TODO: document and implement
+    """Page object prototype for input elements"""
 
+    class Type:
+        """Set of supported input types"""
+        # https://www.w3schools.com/html/html_form_input_types.asp
+        # TODO: comment out unsupported?
+        # Standard <input> tag types
+        BUTTON = 'button'
+        CHECKBOX = 'checkbox'
+        COLOR = 'color'
+        DATE = 'date'
+        DATETIME_LOCAL = 'datetime-local'
+        EMAIL = 'email'
+        FILE = 'file'
+        HIDDEN = 'hidden'
+        IMAGE = 'image'
+        MONTH = 'month'
+        NUMBER = 'number'
+        PASSWORD = 'password'
+        RADIO = 'radio'
+        RANGE = 'range'
+        RESET = 'reset'
+        SEARCH = 'search'
+        SUBMIT = 'submit'
+        TEL = 'tel'
+        TEXT = 'text'
+        TIME = 'time'
+        URL = 'url'
+        WEEK = 'week'
+        # Non-<input> tag inputs
+        SELECT = 'select'
+        TEXTAREA = 'textarea'
+        # TODO: group similar input types (text, selectable, etc) in arrays?
+
+
+    # TODO: document params
     def __init__(self, driver, input_dict):
         super().__init__(driver)
         # 'name' is required, so assume that it's a valid key and raise errors
@@ -19,13 +53,14 @@ class InputObject(BasePage):
         else:
             self.locator = (By.NAME, self.name)
         # Get input type, default to 'text' if unspecified
-        # TODO: validate type based on a known list (and don't use string literal values)
-        self.type = input_dict.get('type', 'text')
+        # TODO: validate type based on attributes in self.Type
+        self.type = input_dict.get('type', self.Type.TEXT)
         # Assume input is required unless otherwise specified
         self.required = input_dict.get('required', True)
         # Retrieve list of options (for radios and selects)
         # TODO: only worry about options if self.type is select or radio (or checkbox?)
         self.options = input_dict.get('options', None)
+        # TODO: self.multiple for selects
 
     # TODO: methods to fill input, get current value
 
