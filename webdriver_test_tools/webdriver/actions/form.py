@@ -28,7 +28,6 @@ def fill_form_inputs(driver, form_element, input_name_map):
     for name, value in input_name_map.items():
         fill_form_input(driver, form_element, name, value)
 
-# TODO: Update param docs
 def fill_form_input(driver, form_element, name, value, input_type=None):
     """Takes the name and value of a form input and determines what type it is to fill
     it appropriately.
@@ -51,6 +50,10 @@ def fill_form_input(driver, form_element, name, value, input_type=None):
         * For file inputs, this value should be a filepath to the desired file.
         * For other input types (text, number, etc) this should be a string
           representation of the values to enter into it.
+
+    :param input_type: (Optional) If known, the ``type`` attribute of the input
+        or tag name for non-input elements (e.g. select). If unspecified, this
+        method will determine the type using element attributes
     """
     input_element = form_element.find_element_by_name(name)
     # Determine input type if unspecified
