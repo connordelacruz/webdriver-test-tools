@@ -43,7 +43,7 @@ class InputObject(BasePage):
         SUPPORTS_OPTIONS = [
             SELECT,
             RADIO,
-            # TODO: CHECKBOX?
+            CHECKBOX,
         ]
         SUPPORTS_MULTIPLE = [
             SELECT,
@@ -90,8 +90,11 @@ class InputObject(BasePage):
         pass
 
     def get_value(self):
-        # TODO: test and doc
-        return actions.get_form_input_value(self.find_element(self.locator))
+        """Returns the current value of the input"""
+        return actions.get_form_input_value(
+            self.find_element(self.locator),
+            input_type=self.type
+        )
 
 
 class FormObject(BasePage):
@@ -163,6 +166,12 @@ class FormObject(BasePage):
         """
         form = self.find_element(self.FORM_LOCATOR)
         actions.form.fill_form_inputs(self.driver, form, input_map)
+
+    def fill_inputs(self, **kwargs):
+        # TODO: doc
+        for name, value in kwargs.items():
+            # TODO: handle invalid names
+            self.inputs['name'].set_value(value)
 
     def submit_is_enabled(self):
         """Short hand function for checking if the submit button is enabled. Useful
