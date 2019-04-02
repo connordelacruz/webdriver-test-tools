@@ -116,6 +116,11 @@ class FormObject(BasePage):
         should appear on successful form submission. If subclass set to a subclass of
         :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>`,
         :meth:`click_submit()` will return an instance of this object.
+    :var YAML_FILENAME: (Optional) Path to a YAML file representing the form
+        object. This will be used to determine ``FORM_LOCATOR`` and
+        ``SUBMIT_LOCATOR`` and create :class:`InputObject
+        <webdriver_test_tools.pageobject.form.InputObject>` instances for each
+        input
     """
 
     # Locators
@@ -124,7 +129,6 @@ class FormObject(BasePage):
     # Optional page object to return on click_submit()
     SUBMIT_SUCCESS_CLASS = None
     # Optional attribute with path to YAML file (parsed on __init__)
-    # TODO: Update docstring
     YAML_FILE = None
 
     # TODO: deprecate Input class?
@@ -159,16 +163,15 @@ class FormObject(BasePage):
         # TODO: raise exception w/ helpful message if any required keys are missing
         self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
         self.SUBMIT_LOCATOR = utils.yaml.to_locator(parsed_yaml['submit_locator'])
-        # TODO: document attribute
+        # TODO: document form_element and inputs attributes somewhere
         self.form_element = self.find_element(self.FORM_LOCATOR)
         # Initialize inputs
         self.inputs = {}
         for input_dict in parsed_yaml['inputs']:
             # TODO: throw exception if name isn't set (or validate during parse_yaml_file()?)
-            # TODO: use !!python/object instead (see https://pyyaml.org/wiki/PyYAMLDocumentation)?
             self.inputs[input_dict['name']] = InputObject(self.driver, self.form_element, input_dict)
 
-    # TODO: deprecate input_map
+    # TODO: deprecate input_map workflow
     def fill_form(self, input_map):
         """Fill the form element inputs
 
@@ -180,7 +183,7 @@ class FormObject(BasePage):
         actions.form.fill_form_inputs(self.driver, form, input_map)
 
     def fill_inputs(self, **kwargs):
-        # TODO: doc
+        # TODO: document
         for name, value in kwargs.items():
             # TODO: handle invalid names
             self.inputs['name'].set_value(value)
