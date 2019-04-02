@@ -1,6 +1,33 @@
 import inspect
-from webdriver_test_tools.pageobject import BasePage
+from selenium.webdriver.common.by import By
+from webdriver_test_tools.pageobject import utils, BasePage
 from webdriver_test_tools.webdriver import actions
+
+
+class InputObject(BasePage):
+    # TODO: document and implement
+
+    def __init__(self, driver, input_dict):
+        super().__init__(driver)
+        # 'name' is required, so assume that it's a valid key and raise errors
+        # otherwise
+        self.name = input_dict['name']
+        # If 'input_locator' is specified, use that as the locator, otherwise
+        # find using self.name
+        if 'input_locator' in input_dict:
+            self.locator = utils.yaml.to_locator(input_dict['input_locator'])
+        else:
+            self.locator = (By.NAME, self.name)
+        # Get input type, default to 'text' if unspecified
+        # TODO: validate type based on a known list (and don't use string literal values)
+        self.type = input_dict.get('type', 'text')
+        # Assume input is required unless otherwise specified
+        self.required = input_dict.get('required', True)
+        # Retrieve list of options (for radios and selects)
+        # TODO: only worry about options if self.type is select or radio (or checkbox?)
+        self.options = input_dict.get('options', None)
+
+    # TODO: methods to fill input, get current value
 
 
 class FormObject(BasePage):
@@ -19,6 +46,7 @@ class FormObject(BasePage):
     SUBMIT_LOCATOR = None
     # Optional page object to return on click_submit()
     SUBMIT_SUCCESS_CLASS = None
+    # TODO: Optional attribute with path to YAML file (parse on __init__?)
 
     class Input:
         """Subclass used to contain name attributes and select/radio option lists for

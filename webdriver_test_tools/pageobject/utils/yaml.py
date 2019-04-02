@@ -8,6 +8,7 @@ import yaml
 # General YAML Utilities
 
 # TODO: error handling?
+# TODO: convert ints to strings? (e.g. for numeric keys)
 def parse_yaml_file(path):
     """Parses a YAML file and returns a dictionary representation of it
 
@@ -22,7 +23,7 @@ def parse_yaml_file(path):
 
 # WebDriver YAML constructs
 
-# TODO: better name, ['by'].upper() behavior
+# TODO: better name (refactor usages)
 def to_locator(locator_dict):
     """Takes a locator dictionary from a parsed YAML file and returns the
     locator tuple
@@ -32,6 +33,11 @@ def to_locator(locator_dict):
 
             * 'by': name of attribute from selenium.webdriver.common.by.By
             * 'locator': locator string
+
+        .. note::
+
+            The string mapped to the 'by' key will be capitalized before
+            checking if it's a valid attribute of the ``By`` class
 
     :return: Parsed WebDriver locator tuple
     """
