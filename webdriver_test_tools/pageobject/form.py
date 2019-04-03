@@ -98,8 +98,13 @@ class InputObject(BasePage):
 
     # Input Setter Methods
 
+    # TODO: test
     def _set_radio_value(self, value):
-        # TODO: doc and test
+        """Select the radio input located by ``self.locator`` with the
+        specified ``value`` attribute
+
+        :param value: The ``value`` attribute of the radio element to select
+        """
         # Filter radio elements to the one that matches value
         radio_element = [
             element for element in self.find_elements(self.locator)
@@ -107,8 +112,13 @@ class InputObject(BasePage):
         ][0]
         actions.scroll.to_and_click(self.driver, radio_element, False)
 
+    # TODO: test
     def _set_checkbox_value(self, value):
-        # TODO: doc and test
+        """Set the checked state of the checkbox input
+
+        :param value: True to check the box, False to uncheck it. This function
+            will do nothing if the checkbox already matches the desired value
+        """
         checkbox_element = self.find_element(self.locator)
         # Return if value is already set correctly
         if checkbox_element.is_selected() == value:
@@ -128,22 +138,40 @@ class InputObject(BasePage):
         # TODO: doc, implement, and test
         pass
 
-    # TODO: add clear value methods, remove optional param?
     def _set_text_value(self, value, clear_current_value=False):
-        # TODO: doc and test
+        """Set the value of the text input
+
+        Used for text inputs and other input types that are functionally
+        similar (e.g. textarea, email, etc)
+
+        :param value: The string to set the input value to. Uses
+            ``WebElement.send_keys()`` method to set
+        :param clear_current_value: (Default = False) If True, clear any
+            existing value in the input before entering the new one
+        """
         input_element = self.find_element(self.locator)
         if clear_current_value:
             input_element.clear()
         input_element.send_keys(value)
 
     def _set_select_value(self, value):
-        # TODO: doc and test
+        """Select an option in the select element
+
+        :param value: The ``value`` attribute of the option to select
+        """
+        # TODO: validate value using self.options
         select = Select(self.find_element(self.locator))
         select.select_by_value(value)
 
-    # TODO: add clear value methods, remove optional param?
+    # TODO: test
     def _set_multiple_select_values(self, values, clear_current_value=False):
-        # TODO: doc and test
+        """Select one or more options in a multiple select element
+
+        :param values: List of ``value`` attributes for the options to select
+            (or a single ``value`` attribute if only one needs to be selected)
+        :param clear_current_value: (Default = False) if True, deselect any
+            currently selected options before selecting the new ones
+        """
         select = Select(self.find_element(self.locator))
         if clear_current_value:
             select.deselect_all()
@@ -151,32 +179,29 @@ class InputObject(BasePage):
         # avoid any iteration issues (e.g. if it's a string)
         if not isinstance(values, (list, dict)):
             values = [values]
+        # TODO: validate value using self.options
         for value in values:
             select.select_by_value(value)
 
     # Internal attribute for setter method. Gets set after determining input
     # type in __init__() (defaults to text)
+    # TODO: use state pattern instead?
     _set_value = _set_text_value
 
 
-    # TODO: set this based on type
     # TODO: document input type value formats
     def set_value(self, value, **kwargs):
         """Set the value of the input
 
         :param value: The value to set it to
-        """
-        # TODO: document value format
-        # TODO: validate value if self.options is not None
-        self._set_value(value, **kwargs)
-        # TODO: currently this only supports inputs with name attributes
-        # actions.form.fill_form_input(
-        #     self.driver, self.form_element,
-        #     self.name, value,
-        #     input_type=self.type
-        # )
 
-    # TODO: extract from actions?
+        Additionally accepts keyword arguments based on the type of input this
+        ``InputObject`` represents. See the above ``_set`` methods for
+        type-specific optional arguments
+        """
+        self._set_value(value, **kwargs)
+
+    # TODO: extract from actions similar to set_value() stuff
     def get_value(self):
         """Returns the current value of the input"""
         return actions.get_form_input_value(
