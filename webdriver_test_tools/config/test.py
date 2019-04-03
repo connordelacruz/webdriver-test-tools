@@ -23,7 +23,7 @@ class TestSuiteConfig:
 
     # Configure test runner
     RUNNER_CLASS = ColourTextTestRunner
-    RUNNER_KWARGS = {}
+    RUNNER_KWARGS = {'warnings': 'default'}
     DEFAULT_VERBOSITY = 2
 
     # Functions

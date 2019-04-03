@@ -1,5 +1,6 @@
 import inspect
 import os
+import warnings
 from selenium.webdriver.common.by import By
 from webdriver_test_tools.pageobject import utils, BasePage
 from webdriver_test_tools.webdriver import actions
@@ -165,7 +166,12 @@ class FormObject(BasePage):
 
         :param file_path: Full path to the YAML file
         """
-        parsed_yaml = utils.yaml.parse_yaml_file(file_path)['form']
+        try:
+            parsed_yaml = utils.yaml.parse_yaml_file(file_path)['form']
+        except KeyError as e:
+            raise utils.yaml.YAMLKeyError(
+                "Missing top level 'form' key in YAML"
+            )
         # Initialize locators
         try:
             self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
@@ -192,6 +198,10 @@ class FormObject(BasePage):
             See :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`
             for values to use for different input types
         """
+        warnings.warn(
+            'FormObject.fill_form() is deprecated and may be removed in future versions, use fill_inputs() instead',
+            DeprecationWarning
+        )
         form = self.find_element(self.FORM_LOCATOR)
         actions.form.fill_form_inputs(self.driver, form, input_map)
 
