@@ -14,28 +14,28 @@ class InputObject(BasePage):
         """Set of supported input types"""
         # https://www.w3schools.com/html/html_form_input_types.asp
         # Standard <input> tag types
-        # TODO: Uncomment as support is added
-        # BUTTON = 'button'
         CHECKBOX = 'checkbox'
-        # COLOR = 'color'
-        # DATE = 'date'
-        # DATETIME_LOCAL = 'datetime-local'
         EMAIL = 'email'
         FILE = 'file'
-        # HIDDEN = 'hidden'
-        # IMAGE = 'image'
-        # MONTH = 'month'
         NUMBER = 'number'
         PASSWORD = 'password'
         RADIO = 'radio'
+        SEARCH = 'search'
+        TEXT = 'text'
+        URL = 'url'
+        # TODO: Uncomment as support is added
+        # BUTTON = 'button'
+        # COLOR = 'color'
+        # DATE = 'date'
+        # DATETIME_LOCAL = 'datetime-local'
+        # HIDDEN = 'hidden'
+        # IMAGE = 'image'
+        # MONTH = 'month'
         # RANGE = 'range'
         # RESET = 'reset'
-        SEARCH = 'search'
         # SUBMIT = 'submit'
         # TEL = 'tel'
-        TEXT = 'text'
         # TIME = 'time'
-        URL = 'url'
         # WEEK = 'week'
         # Non-<input> tag inputs
         SELECT = 'select'
@@ -55,7 +55,7 @@ class InputObject(BasePage):
     # TODO: document params
     def __init__(self, driver, form_element, input_dict):
         super().__init__(driver)
-        # TODO: may not be required after updating actions.form?
+        # TODO: Remove after updating get_value()
         self.form_element = form_element
         # 'name' is required, so assume that it's a valid key and raise errors
         # otherwise
@@ -86,6 +86,15 @@ class InputObject(BasePage):
             # Ensure multiple attribute is ignored for inputs that don't
             # support it
             self.multiple = None
+        # Determine the function that set_value() wraps based on type
+        # Defaults to self._set_text_value
+        if self.type == self.Type.RADIO:
+            self._set_value = self._set_radio_value
+        elif self.type == self.Type.CHECKBOX:
+            # TODO: handle multiple == True
+            self._set_value = self._set_checkbox_value
+        elif self.type == self.Type.SELECT:
+            self._set_value = self._set_multiple_select_values if self.multiple else self._set_select_value
 
     # Input Setter Methods
 
@@ -145,22 +154,27 @@ class InputObject(BasePage):
         for value in values:
             select.select_by_value(value)
 
+    # Internal attribute for setter method. Gets set after determining input
+    # type in __init__() (defaults to text)
+    _set_value = _set_text_value
+
 
     # TODO: set this based on type
     # TODO: document input type value formats
-    def set_value(self, value):
+    def set_value(self, value, **kwargs):
         """Set the value of the input
 
         :param value: The value to set it to
         """
         # TODO: document value format
         # TODO: validate value if self.options is not None
+        self._set_value(value, **kwargs)
         # TODO: currently this only supports inputs with name attributes
-        actions.form.fill_form_input(
-            self.driver, self.form_element,
-            self.name, value,
-            input_type=self.type
-        )
+        # actions.form.fill_form_input(
+        #     self.driver, self.form_element,
+        #     self.name, value,
+        #     input_type=self.type
+        # )
 
     # TODO: extract from actions?
     def get_value(self):
