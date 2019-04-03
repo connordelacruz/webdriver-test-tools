@@ -107,6 +107,7 @@ class InputObject(BasePage):
         )
 
 
+# TODO: update docstring to reflect yaml stuff
 class FormObject(BasePage):
     """Page object prototype for forms
 
@@ -130,6 +131,7 @@ class FormObject(BasePage):
     SUBMIT_SUCCESS_CLASS = None
     # Optional attribute with path to YAML file (parsed on __init__)
     YAML_FILE = None
+    # TODO: document form_element and inputs attributes, initialize to None/{}
 
     # TODO: deprecate Input class?
     class Input:
@@ -156,20 +158,31 @@ class FormObject(BasePage):
         if self.YAML_FILE:
             self.parse_yaml(self.YAML_FILE)
 
+    # TODO: link yaml syntax doc
     def parse_yaml(self, file_path):
-        # TODO: doc and implement
+        """Parse a YAML representation of the form object and set attributes
+        accordingly
+
+        :param file_path: Full path to the YAML file
+        """
         parsed_yaml = utils.yaml.parse_yaml_file(file_path)['form']
         # Initialize locators
-        # TODO: raise exception w/ helpful message if any required keys are missing
-        self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
-        self.SUBMIT_LOCATOR = utils.yaml.to_locator(parsed_yaml['submit_locator'])
-        # TODO: document form_element and inputs attributes somewhere
+        try:
+            self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
+            self.SUBMIT_LOCATOR = utils.yaml.to_locator(parsed_yaml['submit_locator'])
+        except KeyError as e:
+            raise utils.yaml.YAMLKeyError(
+                'Missing required {} key in form YAML'.format(e)
+            )
         self.form_element = self.find_element(self.FORM_LOCATOR)
         # Initialize inputs
         self.inputs = {}
         for input_dict in parsed_yaml['inputs']:
-            # TODO: throw exception if name isn't set (or validate during parse_yaml_file()?)
-            self.inputs[input_dict['name']] = InputObject(self.driver, self.form_element, input_dict)
+            try:
+                self.inputs[input_dict['name']] = InputObject(self.driver, self.form_element, input_dict)
+            except KeyError as e:
+                error_msg = "Missing required 'name' key in input YAML (input: {})".format(str(input_dict))
+                raise utils.yaml.YAMLKeyError(error_msg)
 
     # TODO: deprecate input_map workflow
     def fill_form(self, input_map):

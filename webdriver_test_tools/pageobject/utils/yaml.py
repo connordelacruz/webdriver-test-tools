@@ -4,6 +4,19 @@ import yaml
 
 # TODO: move some more generic functions to webdriver_test_tools.common?
 
+# Exceptions
+
+class YAMLParseException(Exception):
+    """Generic exception for parsing YAML files"""
+    pass
+
+class YAMLKeyError(YAMLParseException):
+    """Missing key in parsed YAML"""
+    pass
+
+class YAMLValueError(YAMLParseException):
+    """Invalid value in parsed YAML"""
+    pass
 
 # General YAML Utilities
 
@@ -41,8 +54,17 @@ def to_locator(locator_dict):
 
     :return: Parsed WebDriver locator tuple
     """
-    # TODO: error handling when keys are missing or values are invalid
-    locate_by_attr = locator_dict['by'].upper()
-    locate_by = getattr(By, locate_by_attr, None)
-    return (locate_by, locator_dict['locator'])
+    try:
+        locate_by_attr = locator_dict['by'].upper()
+        locate_by = getattr(By, locate_by_attr)
+        return (locate_by, locator_dict['locator'])
+    except KeyError as e:
+        error_msg = 'Missing required {0} key in locator YAML (locator: {1})'.format(
+            e, str(locator_dict)
+        )
+        raise YAMLKeyError(error_msg)
+    except AttributeError as e:
+        error_msg = "Invalid 'locate_by' value (locate_by: {}). ".format(locate_by_attr)
+        error_msg += 'Must be a valid attribute of selenium.webdriver.common.by.By'
+        raise YAMLValueError(error_msg)
 
