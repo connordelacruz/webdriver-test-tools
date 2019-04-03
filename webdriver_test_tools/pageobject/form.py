@@ -3,6 +3,7 @@ import os
 import warnings
 from selenium.webdriver.common.by import By
 from webdriver_test_tools.pageobject import utils, BasePage
+from selenium.webdriver.support.ui import Select
 from webdriver_test_tools.webdriver import actions
 
 
@@ -12,30 +13,30 @@ class InputObject(BasePage):
     class Type:
         """Set of supported input types"""
         # https://www.w3schools.com/html/html_form_input_types.asp
-        # TODO: comment out unsupported?
         # Standard <input> tag types
-        BUTTON = 'button'
+        # TODO: Uncomment as support is added
+        # BUTTON = 'button'
         CHECKBOX = 'checkbox'
-        COLOR = 'color'
-        DATE = 'date'
-        DATETIME_LOCAL = 'datetime-local'
+        # COLOR = 'color'
+        # DATE = 'date'
+        # DATETIME_LOCAL = 'datetime-local'
         EMAIL = 'email'
         FILE = 'file'
-        HIDDEN = 'hidden'
-        IMAGE = 'image'
-        MONTH = 'month'
+        # HIDDEN = 'hidden'
+        # IMAGE = 'image'
+        # MONTH = 'month'
         NUMBER = 'number'
         PASSWORD = 'password'
         RADIO = 'radio'
-        RANGE = 'range'
-        RESET = 'reset'
+        # RANGE = 'range'
+        # RESET = 'reset'
         SEARCH = 'search'
-        SUBMIT = 'submit'
-        TEL = 'tel'
+        # SUBMIT = 'submit'
+        # TEL = 'tel'
         TEXT = 'text'
-        TIME = 'time'
+        # TIME = 'time'
         URL = 'url'
-        WEEK = 'week'
+        # WEEK = 'week'
         # Non-<input> tag inputs
         SELECT = 'select'
         TEXTAREA = 'textarea'
@@ -86,6 +87,67 @@ class InputObject(BasePage):
             # support it
             self.multiple = None
 
+    # Input Setter Methods
+
+    def _set_radio_value(self, value):
+        # TODO: doc and test
+        # Filter radio elements to the one that matches value
+        radio_element = [
+            element for element in self.find_elements(self.locator)
+            if element.get_attribute('value') == value
+        ][0]
+        actions.scroll.to_and_click(self.driver, radio_element, False)
+
+    def _set_checkbox_value(self, value):
+        # TODO: doc and test
+        checkbox_element = self.find_element(self.locator)
+        # Return if value is already set correctly
+        if checkbox_element.is_selected() == value:
+            return
+        # If checkbox is visible, just click that element. If it's invisible
+        # for styling reasons, try to find the corresponding label and click
+        # that
+        if checkbox_element.is_displayed():
+            element_to_click = checkbox_element
+        else:
+            checkbox_id = checkbox_element.get_attribute('id')
+            label_css = 'label[for="{}"]'.format(checkbox_id)
+            element_to_click = self.find_element((By.CSS_SELECTOR, label_css))
+        actions.scroll.to_and_click(self.driver, element_to_click, False)
+
+    def _set_multiple_checkbox_values(self, values):
+        # TODO: doc, implement, and test
+        pass
+
+    # TODO: add clear value methods, remove optional param?
+    def _set_text_value(self, value, clear_current_value=False):
+        # TODO: doc and test
+        input_element = self.find_element(self.locator)
+        if clear_current_value:
+            input_element.clear()
+        input_element.send_keys(value)
+
+    def _set_select_value(self, value):
+        # TODO: doc and test
+        select = Select(self.find_element(self.locator))
+        select.select_by_value(value)
+
+    # TODO: add clear value methods, remove optional param?
+    def _set_multiple_select_values(self, values, clear_current_value=False):
+        # TODO: doc and test
+        select = Select(self.find_element(self.locator))
+        if clear_current_value:
+            select.deselect_all()
+        # If values is just a single item, make it a list with just itself to
+        # avoid any iteration issues (e.g. if it's a string)
+        if not isinstance(values, (list, dict)):
+            values = [values]
+        for value in values:
+            select.select_by_value(value)
+
+
+    # TODO: set this based on type
+    # TODO: document input type value formats
     def set_value(self, value):
         """Set the value of the input
 
@@ -94,12 +156,13 @@ class InputObject(BasePage):
         # TODO: document value format
         # TODO: validate value if self.options is not None
         # TODO: currently this only supports inputs with name attributes
-        actions.fill_form_input(
+        actions.form.fill_form_input(
             self.driver, self.form_element,
             self.name, value,
             input_type=self.type
         )
 
+    # TODO: extract from actions?
     def get_value(self):
         """Returns the current value of the input"""
         return actions.get_form_input_value(
@@ -180,22 +243,30 @@ class FormObject(BasePage):
             raise utils.yaml.YAMLKeyError(
                 'Missing required {} key in form YAML'.format(e)
             )
+        # FIXME: form_element is stale after reload
         self.form_element = self.find_element(self.FORM_LOCATOR)
         # Initialize inputs
         self.inputs = {}
         for input_dict in parsed_yaml['inputs']:
             try:
+                # TODO: Use different attribute as key so name can change without affecting code?
+                # TODO: Verify unique names
                 self.inputs[input_dict['name']] = InputObject(self.driver, self.form_element, input_dict)
             except KeyError as e:
                 error_msg = "Missing required 'name' key in input YAML (input: {})".format(str(input_dict))
                 raise utils.yaml.YAMLKeyError(error_msg)
 
-    # TODO: deprecate input_map workflow
+    # TODO: deprecate old fill_form workflow
     def fill_form(self, input_map):
-        """Fill the form element inputs
+        """
+        .. deprecated:: 2.7.0
+           Use :fun:`fill_inputs` instead
 
-        :param input_map: Dictionary mapping input names to the values to set them to.
-            See :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`
+        Fill the form element inputs
+
+        :param input_map: Dictionary mapping input names to the values to set
+            them to. See
+            :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`
             for values to use for different input types
         """
         warnings.warn(
@@ -205,11 +276,25 @@ class FormObject(BasePage):
         form = self.find_element(self.FORM_LOCATOR)
         actions.form.fill_form_inputs(self.driver, form, input_map)
 
-    def fill_inputs(self, **kwargs):
-        # TODO: document
-        for name, value in kwargs.items():
-            # TODO: handle invalid names
-            self.inputs['name'].set_value(value)
+    def fill_inputs(self, input_map, strict=False):
+        """Fill form inputs
+
+        :param input_map: Dictionary mapping input `name` key to the values to set
+            them to. See :meth:`InputObject.set_value` for value formats for
+            different input types
+        :param strict: (Default = False) If True, throw an exception if a key
+            in ``input_map`` is not a valid key in ``self.inputs``. Otherwise
+            throw a warning and continue
+        """
+        for name, value in input_map.items():
+            try:
+                self.inputs[name].set_value(value)
+            # TODO: verify
+            except KeyError as e:
+                if strict:
+                    raise e
+                else:
+                    warnings.warn('Invalid input name {}, skipping'.format(e))
 
     def submit_is_enabled(self):
         """Short hand function for checking if the submit button is enabled. Useful

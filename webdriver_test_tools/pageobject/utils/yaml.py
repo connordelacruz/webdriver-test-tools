@@ -20,8 +20,6 @@ class YAMLValueError(YAMLParseException):
 
 # General YAML Utilities
 
-# TODO: error handling?
-# TODO: convert ints to strings? (e.g. for numeric keys)
 def parse_yaml_file(path):
     """Parses a YAML file and returns a dictionary representation of it
 
