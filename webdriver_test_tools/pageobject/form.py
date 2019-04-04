@@ -2,6 +2,7 @@ import inspect
 import os
 import warnings
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 from webdriver_test_tools.pageobject import utils, BasePage
 from selenium.webdriver.support.ui import Select
 from webdriver_test_tools.webdriver import actions
@@ -53,10 +54,10 @@ class InputObject(BasePage):
 
 
     # TODO: document params
-    def __init__(self, driver, form_element, input_dict):
+    def __init__(self, driver, input_dict):
         super().__init__(driver)
         # TODO: Remove after updating get_value()
-        self.form_element = form_element
+        # self.form_element = form_element
         # 'name' is required, so assume that it's a valid key and raise errors
         # otherwise
         self.name = input_dict['name']
@@ -86,15 +87,44 @@ class InputObject(BasePage):
             # Ensure multiple attribute is ignored for inputs that don't
             # support it
             self.multiple = None
-        # Determine the function that set_value() wraps based on type
-        # Defaults to self._set_text_value
+        # Determine the getter/setter methods based on type
+        # Defaults to text input getter/setter methods
         if self.type == self.Type.RADIO:
             self._set_value = self._set_radio_value
+            self._get_value = self._get_radio_value
         elif self.type == self.Type.CHECKBOX:
             # TODO: handle multiple == True
             self._set_value = self._set_checkbox_value
+            self._get_value = self._get_checkbox_value
         elif self.type == self.Type.SELECT:
-            self._set_value = self._set_multiple_select_values if self.multiple else self._set_select_value
+            if self.multiple:
+                self._set_value = self._set_multiple_select_values
+                self._get_value = self._get_multiple_select_values
+            else:
+                self._set_value = self._set_select_value
+                self._get_value = self._get_select_value
+
+    # WebElement Retrieval methods
+
+    def find_input_element(self):
+        """Returns the ``WebElement`` object located by ``self.locator``
+
+        Shorthand for ``self.find_element(self.locator)``
+
+        :return: ``WebElement`` object for the input
+        """
+        return self.find_element(self.locator)
+
+    def find_input_elements(self):
+        """Returns the list of ``WebElement`` objects located by
+        ``self.locator``. Used for input types that can have multiple elements
+        corresponding to it (e.g. radios)
+
+        Shorthand for ``self.find_elements(self.locator)``
+
+        :return: List of ``WebElement`` objects for the inputs
+        """
+        return self.find_elements(self.locator)
 
     # Input Setter Methods
 
@@ -107,7 +137,7 @@ class InputObject(BasePage):
         """
         # Filter radio elements to the one that matches value
         radio_element = [
-            element for element in self.find_elements(self.locator)
+            element for element in self.find_input_elements()
             if element.get_attribute('value') == value
         ][0]
         actions.scroll.to_and_click(self.driver, radio_element, False)
@@ -119,7 +149,7 @@ class InputObject(BasePage):
         :param value: True to check the box, False to uncheck it. This function
             will do nothing if the checkbox already matches the desired value
         """
-        checkbox_element = self.find_element(self.locator)
+        checkbox_element = self.find_input_element()
         # Return if value is already set correctly
         if checkbox_element.is_selected() == value:
             return
@@ -149,7 +179,7 @@ class InputObject(BasePage):
         :param clear_current_value: (Default = False) If True, clear any
             existing value in the input before entering the new one
         """
-        input_element = self.find_element(self.locator)
+        input_element = self.find_input_element()
         if clear_current_value:
             input_element.clear()
         input_element.send_keys(value)
@@ -160,7 +190,7 @@ class InputObject(BasePage):
         :param value: The ``value`` attribute of the option to select
         """
         # TODO: validate value using self.options
-        select = Select(self.find_element(self.locator))
+        select = Select(self.find_input_element())
         select.select_by_value(value)
 
     # TODO: test
@@ -172,7 +202,7 @@ class InputObject(BasePage):
         :param clear_current_value: (Default = False) if True, deselect any
             currently selected options before selecting the new ones
         """
-        select = Select(self.find_element(self.locator))
+        select = Select(self.find_input_element())
         if clear_current_value:
             select.deselect_all()
         # If values is just a single item, make it a list with just itself to
@@ -185,7 +215,7 @@ class InputObject(BasePage):
 
     # Internal attribute for setter method. Gets set after determining input
     # type in __init__() (defaults to text)
-    # TODO: use state pattern instead?
+    # TODO: use state pattern instead
     _set_value = _set_text_value
 
 
@@ -201,13 +231,79 @@ class InputObject(BasePage):
         """
         self._set_value(value, **kwargs)
 
-    # TODO: extract from actions similar to set_value() stuff
+    # Input Getter Methods
+
+    # TODO: test
+    def _get_radio_value(self):
+        """Returns the ``value`` attribute of the selected radio input
+
+        :return: The ``value`` attribute of the selected radio input or
+            ``None`` if all radios located with ``self.locator`` are deselected
+        """
+        selected_radio_list = [
+            element for element in self.find_input_elements()
+            if element.is_selected()
+        ]
+        # If none of the radios are selected, return None
+        return selected_radio_list[0] if selected_radio_list else None
+
+    # TODO: test
+    def _get_checkbox_value(self):
+        """Returns the checked state of the checkbox input
+
+        :return: True if the checkbox is checked, False if it's unchecked
+        """
+        return self.find_input_element().is_selected()
+
+    def _get_multiple_checkbox_values(self):
+        # TODO: doc, implement, and test
+        pass
+
+    # TODO: test
+    def _get_text_value(self):
+        """Returns the value of the text input
+
+        :return: The value of the text input
+        """
+        return self.find_input_element().get_attribute('value')
+
+    # TODO: test
+    def _get_select_value(self):
+        """Returns the ``value`` attribute of the selected option element
+
+        :return: The ``value`` attribute of the selected option element or
+            ``None`` if nothing is selected
+        """
+        select = Select(self.find_input_element())
+        try:
+            value = select.first_selected_option.get_attribute('value')
+        except NoSuchElementException:
+            value = None
+        return value
+
+    # TODO: test
+    def _get_multiple_select_values(self):
+        """Returns a list of ``value`` attributes of the selected option
+        elements
+
+        :return: List of ``value`` attributes of the selected option elements
+            or an empty list if nothing is selected
+        """
+        select = Select(self.find_input_element())
+        return [option.get_attribute('value') for option in select.all_selected_options]
+
+    # Internal attribute for getter method. Gets set after determining input
+    # type in __init__() (defaults to text)
+    # TODO: use state pattern instead
+    _get_value = _get_text_value
+
     def get_value(self):
         """Returns the current value of the input"""
-        return actions.get_form_input_value(
-            self.find_element(self.locator),
-            input_type=self.type
-        )
+        # return actions.get_form_input_value(
+        #     self.find_input_element(),
+        #     input_type=self.type
+        # )
+        return self._get_value()
 
 
 # TODO: update docstring to reflect yaml stuff
@@ -282,15 +378,15 @@ class FormObject(BasePage):
             raise utils.yaml.YAMLKeyError(
                 'Missing required {} key in form YAML'.format(e)
             )
-        # FIXME: form_element is stale after reload
-        self.form_element = self.find_element(self.FORM_LOCATOR)
+        # TODO: remove
+        # self.form_element = self.find_element(self.FORM_LOCATOR)
         # Initialize inputs
         self.inputs = {}
         for input_dict in parsed_yaml['inputs']:
             try:
                 # TODO: Use different attribute as key so name can change without affecting code?
                 # TODO: Verify unique names
-                self.inputs[input_dict['name']] = InputObject(self.driver, self.form_element, input_dict)
+                self.inputs[input_dict['name']] = InputObject(self.driver, input_dict)
             except KeyError as e:
                 error_msg = "Missing required 'name' key in input YAML (input: {})".format(str(input_dict))
                 raise utils.yaml.YAMLKeyError(error_msg)
@@ -299,7 +395,7 @@ class FormObject(BasePage):
     def fill_form(self, input_map):
         """
         .. deprecated:: 2.7.0
-           Use :fun:`fill_inputs` instead
+           Use :meth:`fill_inputs` instead
 
         Fill the form element inputs
 

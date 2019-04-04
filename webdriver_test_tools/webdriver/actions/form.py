@@ -267,9 +267,15 @@ def get_select_value(input_element):
 
     :param input_element: WebElement for the input
 
-    :return: The value attribute of the selected option
+    :return: The value attribute of the selected option or None if nothing is
+        selected
     """
-    return input_element.get_attribute('value')
+    select = Select(input_element)
+    try:
+        value = select.first_selected_option.get_attribute('value')
+    except NoSuchElementException:
+        value = None
+    return value
 
 
 def get_select_multiple_values(input_element):
