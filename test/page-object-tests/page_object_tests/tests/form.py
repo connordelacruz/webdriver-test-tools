@@ -29,6 +29,7 @@ class FormObjectTestCase(WebDriverTestCase):
         }
         # Fill form
         form_object.fill_inputs(input_map)
+        # TODO: test multi select and multi checkbox differently (i.e. that the values modified in fill_inputs() match are set correctly in get_value())
         # Assert that the input values match the retrieved values
         for input_name, set_val in input_map.items():
             get_val = form_object.inputs[input_name].get_value()

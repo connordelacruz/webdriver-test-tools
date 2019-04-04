@@ -128,7 +128,6 @@ class InputObject(BasePage):
 
     # Input Setter Methods
 
-    # TODO: test
     def _set_radio_value(self, value):
         """Select the radio input located by ``self.locator`` with the
         specified ``value`` attribute
@@ -142,7 +141,29 @@ class InputObject(BasePage):
         ][0]
         actions.scroll.to_and_click(self.driver, radio_element, False)
 
-    # TODO: test
+    # TODO: move to actions.form? it makes a bit more sense to have it there
+    def _toggle_checkbox(self, checkbox_element):
+        """Helper method for toggling checkboxes that may or may not be visible
+
+        If checkbox is visible, just click that element. If it's invisible for
+        styling reasons, try to find the corresponding label and click that
+
+        :param checkbox_element: ``WebElement`` for the checkbox to toggle
+
+        :return: True if the checkbox is checked after toggling, False if
+            unchecked
+        """
+        if checkbox_element.is_displayed():
+            element_to_click = checkbox_element
+        else:
+            # Assuming the checkbox has id attribute since label for attributes
+            # must reference it
+            checkbox_id = checkbox_element.get_attribute('id')
+            label_css = 'label[for="{}"]'.format(checkbox_id)
+            element_to_click = self.find_element((By.CSS_SELECTOR, label_css))
+        actions.scroll.to_and_click(self.driver, element_to_click, False)
+        return checkbox_element.is_selected()
+
     def _set_checkbox_value(self, value):
         """Set the checked state of the checkbox input
 
@@ -153,20 +174,23 @@ class InputObject(BasePage):
         # Return if value is already set correctly
         if checkbox_element.is_selected() == value:
             return
-        # If checkbox is visible, just click that element. If it's invisible
-        # for styling reasons, try to find the corresponding label and click
-        # that
-        if checkbox_element.is_displayed():
-            element_to_click = checkbox_element
-        else:
-            checkbox_id = checkbox_element.get_attribute('id')
-            label_css = 'label[for="{}"]'.format(checkbox_id)
-            element_to_click = self.find_element((By.CSS_SELECTOR, label_css))
-        actions.scroll.to_and_click(self.driver, element_to_click, False)
+        self._toggle_checkbox(checkbox_element)
 
+    # TODO: test
     def _set_multiple_checkbox_values(self, values):
-        # TODO: doc, implement, and test
-        pass
+        """Check/uncheck one or more checkboxes in a checkbox group
+
+        :param values: Dictionary mapping checkbox input's ``value`` attribute
+            to the desired checked state (True = check, False = uncheck).
+            Checkboxes already in the desired state won't be modified
+        """
+        checkbox_elements = [
+            element for element in self.find_input_elements()
+            if element.get_attribute('value') in values
+            and element.is_selected != values[element.get_attribute('value')]
+        ]
+        for checkbox_element in checkbox_elements:
+            self._toggle_checkbox(checkbox_element)
 
     def _set_text_value(self, value, clear_current_value=False):
         """Set the value of the text input
@@ -193,7 +217,6 @@ class InputObject(BasePage):
         select = Select(self.find_input_element())
         select.select_by_value(value)
 
-    # TODO: test
     def _set_multiple_select_values(self, values, clear_current_value=False):
         """Select one or more options in a multiple select element
 
@@ -233,7 +256,6 @@ class InputObject(BasePage):
 
     # Input Getter Methods
 
-    # TODO: test
     def _get_radio_value(self):
         """Returns the ``value`` attribute of the selected radio input
 
@@ -247,7 +269,6 @@ class InputObject(BasePage):
         # If none of the radios are selected, return None
         return selected_radio_list[0].get_attribute('value') if selected_radio_list else None
 
-    # TODO: test
     def _get_checkbox_value(self):
         """Returns the checked state of the checkbox input
 
@@ -255,11 +276,19 @@ class InputObject(BasePage):
         """
         return self.find_input_element().is_selected()
 
-    def _get_multiple_checkbox_values(self):
-        # TODO: doc, implement, and test
-        pass
-
     # TODO: test
+    def _get_multiple_checkbox_values(self):
+        """Returns a dictionary mapping ``value`` attributes of each checkbox
+        to True if checked, False if unchecked
+
+        :return: Dictionary mapping ``value`` attributes of each checkbox to
+            True if checked, False if unchecked
+        """
+        return {
+            checkbox_element.get_attribute('value'): checkbox_element.is_selected()
+            for checkbox_element in self.find_input_elements()
+        }
+
     def _get_text_value(self):
         """Returns the value of the text input
 
@@ -267,7 +296,6 @@ class InputObject(BasePage):
         """
         return self.find_input_element().get_attribute('value')
 
-    # TODO: test
     def _get_select_value(self):
         """Returns the ``value`` attribute of the selected option element
 
@@ -281,7 +309,6 @@ class InputObject(BasePage):
             value = None
         return value
 
-    # TODO: test
     def _get_multiple_select_values(self):
         """Returns a list of ``value`` attributes of the selected option
         elements
