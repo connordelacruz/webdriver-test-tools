@@ -1,14 +1,24 @@
 {% extends "base_page.py.j2" %}
 
+{% block standard_library_imports %}
+import os
+
+{% endblock %}
+
 {% block parent_class %}prototypes.FormObject{% endblock %}
 
 {% block additional_attributes %}
+# TODO: remove
     class Input:
         """Input name attributes and select/radio option lists."""
         pass
 
     # SET THE FOLLOWING ATTRIBUTES TO USE IN FormObject METHODS
 
+    # TODO: Figure out if YAML should be the default
+    # TODO: document attribute
+    # YAML_FILE = os.path.join(os.path.dirname(__file__), '{{module_name}}.yml')
+    # TODO: update locators
     # Locator for the form element
     FORM_LOCATOR = None
     # Locator for the form submit button

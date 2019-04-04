@@ -38,6 +38,8 @@ PROTOTYPE_NAMES = [
 PAGE_OBJECT_TEMPLATE_MAP = {
     '': 'base_page.py',
     FORM_PROTOTYPE: 'form_object.py',
+    # TODO:
+    # FORM_PROTOTYPE: ['form_object.py', 'form_object.yml'],
     MODAL_PROTOTYPE: 'modal_object.py',
     NAV_PROTOTYPE: 'nav_object.py',
     COLLAPSIBLE_NAV_PROTOTYPE: 'collapsible_nav_object.py',
@@ -86,13 +88,14 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     if file_type == PAGE_TYPE:
         # Default to empty string (base_page.py)
         prototype = kwargs.get('prototype', '')
+        # TODO: handle lists of filenames, determine filetypes
         template_file = os.path.join(
             template_file, PAGE_OBJECT_TEMPLATE_MAP[prototype]
         )
     target_path = os.path.join(test_package_path, DIRECTORY_MAP[file_type])
     context = {
         'test_package': test_package,
-        'module_name': module_name,
+        'module_name': module_name, # TODO: don't include .py extension if it does already?
         'class_name': class_name,
         'description': description,
     }
