@@ -1,0 +1,36 @@
+
+form:
+  form_locator:
+    by: ID
+    locator: test-form
+  submit_locator:
+    by: CSS_SELECTOR
+    locator: 'button[type="submit"]'
+  inputs:
+    - name: optText
+    - name: optRadio
+      type: radio
+      options:
+        - '1'
+        - '2'
+    - name: optCheckbox
+      type: checkbox
+    - name: 'optCheckboxGroup[]'
+      type: checkbox
+      options:
+        - '1'
+        - '2'
+        - '3'
+    - name: optSelect
+      type: select
+      options:
+        - '1'
+        - '2'
+    - name: optMultipleSelect
+      type: select
+      multiple: true
+      options:
+        - '1'
+        - '2'
+        - '3'
+

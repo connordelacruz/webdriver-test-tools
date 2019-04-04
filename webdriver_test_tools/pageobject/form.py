@@ -245,7 +245,7 @@ class InputObject(BasePage):
             if element.is_selected()
         ]
         # If none of the radios are selected, return None
-        return selected_radio_list[0] if selected_radio_list else None
+        return selected_radio_list[0].get_attribute('value') if selected_radio_list else None
 
     # TODO: test
     def _get_checkbox_value(self):
@@ -430,6 +430,8 @@ class FormObject(BasePage):
                     raise e
                 else:
                     warnings.warn('Invalid input name {}, skipping'.format(e))
+
+    # TODO: def get_input_values(self, name_list)
 
     def submit_is_enabled(self):
         """Short hand function for checking if the submit button is enabled. Useful
