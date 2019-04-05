@@ -19,20 +19,49 @@ class FormObjectTestCase(WebDriverTestCase):
     def test_input_set_methods(self):
         """Test set_value() and get_value() methods"""
         form_object = TestFormObject(self.driver)
+        # Subtest message format string
+        subtest_msg_fmt = 'Call get_value() and compare with values used in fill_form() [{val_type} value input types]'
+        # Single value input types
         input_map = {
             'optText': 'Sample text entry',
             'optRadio': '1',
             'optCheckbox': True,
-            # 'optCheckboxGroup[]': ['1', '3'],
             'optSelect': '2',
-            'optMultipleSelect': ['1', '3'],
         }
-        # Fill form
         form_object.fill_inputs(input_map)
-        # TODO: test multi select and multi checkbox differently (i.e. that the values modified in fill_inputs() match are set correctly in get_value())
-        # Assert that the input values match the retrieved values
         for input_name, set_val in input_map.items():
             get_val = form_object.inputs[input_name].get_value()
-            with self.subTest('Call get_value() and compare with set_value() values', input_name=input_name, set_val=set_val, get_val=get_val):
+            with self.subTest(subtest_msg_fmt.format(val_type='single'),
+                              input_name=input_name, set_val=set_val, get_val=get_val):
                 self.assertEqual(set_val, get_val)
+
+        # Dictionary value input types
+        input_map = {
+            'optCheckboxGroup[]': {'1': True, '3': True},
+        }
+        form_object.fill_inputs(input_map)
+        for input_name, set_val in input_map.items():
+            get_val = form_object.inputs[input_name].get_value()
+            for key, val in set_val.items():
+                with self.subTest(subtest_msg_fmt.format(val_type='dictionary'),
+                                  input_name=input_name, set_val=set_val, get_val=get_val):
+                    self.assertIn(
+                        key, get_val,
+                        msg='Key from set value dictionary not in dictionary returned by get_value()'
+                    )
+                    self.assertEqual(
+                        val, get_val[key], msg='set_value() and get_value() for key do not match'
+                    )
+
+        # List value input types
+        input_map = {
+            'optMultipleSelect': ['1', '3'],
+        }
+        form_object.fill_inputs(input_map)
+        for input_name, set_val in input_map.items():
+            get_val = form_object.inputs[input_name].get_value()
+            with self.subTest(subtest_msg_fmt.format(val_type='list'),
+                              input_name=input_name, set_val=set_val, get_val=get_val):
+                # assertCountEqual() compares lists regardless of order
+                self.assertCountEqual(set_val, get_val)
 

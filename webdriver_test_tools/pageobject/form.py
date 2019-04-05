@@ -24,7 +24,7 @@ class InputObject(BasePage):
         SEARCH = 'search'
         TEXT = 'text'
         URL = 'url'
-        # TODO: Uncomment as support is added
+        # TODO: Uncomment as support is added/verified
         # BUTTON = 'button'
         # COLOR = 'color'
         # DATE = 'date'
@@ -50,14 +50,13 @@ class InputObject(BasePage):
         ]
         SUPPORTS_MULTIPLE = [
             SELECT,
+            CHECKBOX,
         ]
 
 
     # TODO: document params
     def __init__(self, driver, input_dict):
         super().__init__(driver)
-        # TODO: Remove after updating get_value()
-        # self.form_element = form_element
         # 'name' is required, so assume that it's a valid key and raise errors
         # otherwise
         self.name = input_dict['name']
@@ -93,9 +92,12 @@ class InputObject(BasePage):
             self._set_value = self._set_radio_value
             self._get_value = self._get_radio_value
         elif self.type == self.Type.CHECKBOX:
-            # TODO: handle multiple == True
-            self._set_value = self._set_checkbox_value
-            self._get_value = self._get_checkbox_value
+            if self.multiple:
+                self._set_value = self._set_multiple_checkbox_values
+                self._get_value = self._get_multiple_checkbox_values
+            else:
+                self._set_value = self._set_checkbox_value
+                self._get_value = self._get_checkbox_value
         elif self.type == self.Type.SELECT:
             if self.multiple:
                 self._set_value = self._set_multiple_select_values
@@ -176,7 +178,6 @@ class InputObject(BasePage):
             return
         self._toggle_checkbox(checkbox_element)
 
-    # TODO: test
     def _set_multiple_checkbox_values(self, values):
         """Check/uncheck one or more checkboxes in a checkbox group
 
@@ -276,7 +277,6 @@ class InputObject(BasePage):
         """
         return self.find_input_element().is_selected()
 
-    # TODO: test
     def _get_multiple_checkbox_values(self):
         """Returns a dictionary mapping ``value`` attributes of each checkbox
         to True if checked, False if unchecked
@@ -405,8 +405,6 @@ class FormObject(BasePage):
             raise utils.yaml.YAMLKeyError(
                 'Missing required {} key in form YAML'.format(e)
             )
-        # TODO: remove
-        # self.form_element = self.find_element(self.FORM_LOCATOR)
         # Initialize inputs
         self.inputs = {}
         for input_dict in parsed_yaml['inputs']:

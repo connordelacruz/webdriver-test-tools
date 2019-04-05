@@ -17,6 +17,7 @@ form:
       type: checkbox
     - name: 'optCheckboxGroup[]'
       type: checkbox
+      multiple: true
       options:
         - '1'
         - '2'
