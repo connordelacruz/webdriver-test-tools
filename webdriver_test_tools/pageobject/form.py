@@ -8,6 +8,8 @@ from selenium.webdriver.support.ui import Select
 from webdriver_test_tools.webdriver import actions
 
 
+# Input Page Objects
+
 class InputObject(BasePage):
     """Page object prototype for input elements"""
 
@@ -143,29 +145,6 @@ class InputObject(BasePage):
         ][0]
         actions.scroll.to_and_click(self.driver, radio_element, False)
 
-    # TODO: move to actions.form? it makes a bit more sense to have it there
-    def _toggle_checkbox(self, checkbox_element):
-        """Helper method for toggling checkboxes that may or may not be visible
-
-        If checkbox is visible, just click that element. If it's invisible for
-        styling reasons, try to find the corresponding label and click that
-
-        :param checkbox_element: ``WebElement`` for the checkbox to toggle
-
-        :return: True if the checkbox is checked after toggling, False if
-            unchecked
-        """
-        if checkbox_element.is_displayed():
-            element_to_click = checkbox_element
-        else:
-            # Assuming the checkbox has id attribute since label for attributes
-            # must reference it
-            checkbox_id = checkbox_element.get_attribute('id')
-            label_css = 'label[for="{}"]'.format(checkbox_id)
-            element_to_click = self.find_element((By.CSS_SELECTOR, label_css))
-        actions.scroll.to_and_click(self.driver, element_to_click, False)
-        return checkbox_element.is_selected()
-
     def _set_checkbox_value(self, value):
         """Set the checked state of the checkbox input
 
@@ -176,7 +155,7 @@ class InputObject(BasePage):
         # Return if value is already set correctly
         if checkbox_element.is_selected() == value:
             return
-        self._toggle_checkbox(checkbox_element)
+        actions.form.toggle_checkbox(self.driver, checkbox_element)
 
     def _set_multiple_checkbox_values(self, values):
         """Check/uncheck one or more checkboxes in a checkbox group
@@ -191,7 +170,7 @@ class InputObject(BasePage):
             and element.is_selected != values[element.get_attribute('value')]
         ]
         for checkbox_element in checkbox_elements:
-            self._toggle_checkbox(checkbox_element)
+            actions.form.toggle_checkbox(self.driver, checkbox_element)
 
     def _set_text_value(self, value, clear_current_value=False):
         """Set the value of the text input
@@ -332,6 +311,8 @@ class InputObject(BasePage):
         # )
         return self._get_value()
 
+
+# Form Page Objects
 
 # TODO: update docstring to reflect yaml stuff
 class FormObject(BasePage):

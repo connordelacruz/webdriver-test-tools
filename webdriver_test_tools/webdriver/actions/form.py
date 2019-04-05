@@ -8,9 +8,35 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from webdriver_test_tools.webdriver import locate
 from webdriver_test_tools.webdriver.actions import scroll
 
-# Setting form input values
 
-# TODO: Find usages, determine if this can be easily re-worked to use new setup
+# Input helper methods
+
+def toggle_checkbox(driver, checkbox_element):
+    """Helper method for toggling checkboxes that may or may not be visible
+
+    If checkbox is visible, just click that element. If it's invisible for
+    styling reasons, try to find the corresponding label and click that
+
+    :param driver: Selenium webdriver object
+    :param checkbox_element: WebElement for the checkbox to toggle
+
+    :return: True if the checkbox is checked after toggling, False if unchecked
+    """
+    if checkbox_element.is_displayed():
+        element_to_click = checkbox_element
+    else:
+        # Assuming the checkbox has id attribute since label for attributes
+        # must reference it
+        checkbox_id = checkbox_element.get_attribute('id')
+        label_css = 'label[for="{}"]'.format(checkbox_id)
+        element_to_click = driver.find_element_by_css_selector(label_css)
+    scroll.to_and_click(driver, element_to_click, False)
+    return checkbox_element.is_selected()
+
+
+# Setting form input values
+# TODO: deprecate? These are handled by InputObject methods
+
 def fill_form_inputs(driver, form_element, input_name_map):
     """Takes a dictionary mapping input names to the desired values and fill out the form accordingly
 
