@@ -1,10 +1,12 @@
 import inspect
 import os
 import warnings
-from selenium.webdriver.common.by import By
+
 from selenium.common.exceptions import NoSuchElementException
-from webdriver_test_tools.pageobject import utils, BasePage
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+
+from webdriver_test_tools.pageobject import utils, BasePage
 from webdriver_test_tools.webdriver import actions
 
 
@@ -43,7 +45,6 @@ class InputObject(BasePage):
         # Non-<input> tag inputs
         SELECT = 'select'
         TEXTAREA = 'textarea'
-        # TODO: group similar input types (text, selectable, etc) in arrays?
         # Attribute support based on input types
         SUPPORTS_OPTIONS = [
             SELECT,
@@ -90,6 +91,7 @@ class InputObject(BasePage):
             self.multiple = None
         # Determine the getter/setter methods based on type
         # Defaults to text input getter/setter methods
+        # TODO: move getter/setter methods to strategry classes?
         if self.type == self.Type.RADIO:
             self._set_value = self._set_radio_value
             self._get_value = self._get_radio_value
@@ -218,9 +220,7 @@ class InputObject(BasePage):
 
     # Internal attribute for setter method. Gets set after determining input
     # type in __init__() (defaults to text)
-    # TODO: use state pattern instead
     _set_value = _set_text_value
-
 
     # TODO: document input type value formats
     def set_value(self, value, **kwargs):
@@ -300,15 +300,10 @@ class InputObject(BasePage):
 
     # Internal attribute for getter method. Gets set after determining input
     # type in __init__() (defaults to text)
-    # TODO: use state pattern instead
     _get_value = _get_text_value
 
     def get_value(self):
         """Returns the current value of the input"""
-        # return actions.get_form_input_value(
-        #     self.find_input_element(),
-        #     input_type=self.type
-        # )
         return self._get_value()
 
 
