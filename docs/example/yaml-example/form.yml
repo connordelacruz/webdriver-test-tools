@@ -1,0 +1,62 @@
+form:
+  # Locator for the form
+  form_locator:
+    by: ID
+    locator: example-form-id
+  # Locator for the submit button
+  submit_locator:
+    by: CSS_SELECTOR
+    locator: '#example-form-id button[type="submit"]'
+  # List of inputs in the form
+  inputs:
+    # Basic syntax:
+    - name: email
+      type: email
+    # 'type' defaults to 'text' if not specified:
+    - name: text_input
+    # Assume required by default, specify otherwise:
+    - name: phone
+      type: text
+      required: false
+    # Supports inputs with no 'name' attribute (though the name key is still
+    # required for identification):
+    - name: unique_identifier
+      input_locator:
+        by: CLASS_NAME
+        locator: input-with-no-name-attribute
+      type: text
+    # Specify list of options for selects and radios:
+    - name: select_example
+      type: select
+      options:
+        - option1
+        - option2
+        - option3
+        - option4
+    # 'options' can bet a dictionary too. Only the keys are used, so the values
+    # can be set to anything:
+    - name: radio_example
+      type: radio
+      # NOTE: numeric options keys/list entries should be in quotes
+      options:
+        '001': Helpful label
+        '002': Another helpful label
+        '003': An even more helpful label
+    # Support select elements with the 'multiple' attribute:
+    - name: multiple_select_example
+      type: select
+      multiple: true
+      options:
+        - option0
+        - option1
+        - option2
+    # Checkbox groups can accept a list of options too:
+    - name: checkboxes[]
+      type: checkbox
+      # NOTE: set 'multiple' to true when multiple checkboxes have the same
+      # name and different values
+      multiple: true
+      options:
+        - box0
+        - box1
+        - box2
