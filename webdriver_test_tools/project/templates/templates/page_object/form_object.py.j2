@@ -8,21 +8,11 @@ import os
 {% block parent_class %}prototypes.FormObject{% endblock %}
 
 {% block additional_attributes %}
-# TODO: remove
-    class Input:
-        """Input name attributes and select/radio option lists."""
-        pass
+    # Path to YAML file representing the form object
+    YAML_FILE = os.path.join(os.path.dirname(__file__), '{{module_name}}.yml')
 
     # SET THE FOLLOWING ATTRIBUTES TO USE IN FormObject METHODS
 
-    # TODO: Figure out if YAML should be the default
-    # TODO: document attribute
-    # YAML_FILE = os.path.join(os.path.dirname(__file__), '{{module_name}}.yml')
-    # TODO: update locators
-    # Locator for the form element
-    FORM_LOCATOR = None
-    # Locator for the form submit button
-    SUBMIT_LOCATOR = None
     # (Optional) Page object of the modal/webpage/etc that should appear on
     # successful form submission. If set to a subclass of BasePage, the
     # click_submit() method will return an instance of the page object

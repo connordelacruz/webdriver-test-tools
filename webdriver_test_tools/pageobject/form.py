@@ -335,7 +335,7 @@ class FormObject(BasePage):
     YAML_FILE = None
     # TODO: document form_element and inputs attributes, initialize to None/{}
 
-    # TODO: deprecate Input class?
+    # TODO: deprecate Input class
     class Input:
         """Subclass used to contain name attributes and select/radio option lists for
         inputs

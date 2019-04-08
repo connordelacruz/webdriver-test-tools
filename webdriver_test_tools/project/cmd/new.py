@@ -110,6 +110,7 @@ def main(test_package_path, test_package, args):
             force=force, **kwargs
         )
         # Output new file path on success
+        # TODO: Custom success messages based on type? E.g. instructions on filling out YAML file?
         success_msg = '\nFile' + ('s' if len(new_file_paths) > 1 else '') + ' created.'
         print(cmd.COLORS['success'](success_msg))
         for new_file_path in new_file_paths:
