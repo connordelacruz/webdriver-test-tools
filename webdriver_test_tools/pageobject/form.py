@@ -432,7 +432,24 @@ class FormObject(BasePage):
                 else:
                     warnings.warn('Invalid input name {}, skipping'.format(e))
 
-    # TODO: def get_input_values(self, name_list)
+    # TODO: test
+    def get_input_values(self, name_list=None):
+        """Get the current values of form inputs
+
+        :param name_list: (Optional) List of input names to get values for. If
+            unspecified, will get values for all inputs
+
+        :return: Dictionary mapping names to the value of each input
+        """
+        if not name_list:
+            # Get all inputs if name_list isn't provided
+            name_list = [k for k in self.inputs.keys()]
+        else:
+            # Filter out invalid keys if name_list is provided
+            name_list = [name for name in name_list if name in self.inputs.keys()]
+        return {
+            name: self.inputs[name].get_value() for name in name_list
+        }
 
     def submit_is_enabled(self):
         """Short hand function for checking if the submit button is enabled. Useful
