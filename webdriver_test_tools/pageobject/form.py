@@ -57,8 +57,14 @@ class InputObject(BasePage):
         ]
 
 
-    # TODO: document params
+    # TODO: Link InputObject YAML docs
     def __init__(self, driver, input_dict):
+        """Initialize ``InputObject``
+
+        :param driver: Selenium WebDriver object
+        :param input_dict: Parsed dictionary from YAML file inputs list. Must
+            have 'name' key set
+        """
         super().__init__(driver)
         # 'name' is required, so assume that it's a valid key and raise errors
         # otherwise
@@ -309,36 +315,50 @@ class InputObject(BasePage):
 
 # Form Page Objects
 
-# TODO: update docstring to reflect yaml stuff
 class FormObject(BasePage):
     """Page object prototype for forms
 
-    :var FORM_LOCATOR: Locator for the form element. Override in subclasses
-    :var SUBMIT_LOCATOR: Locator for the submit button. Override in subclasses
+    Subclasses should set the following attributes:
+
+    :var YAML_FILENAME: Path to a YAML file representing the form object. This
+        file is parsed during initialization using :meth:`parse_yaml` and is
+        used to determine :attr:`FORM_LOCATOR` and :attr:`SUBMIT_LOCATOR` and
+        create :class:`InputObject` instances for each input, which are stored
+        in :attr:`inputs`
     :var SUBMIT_SUCCESS_CLASS: (Optional) Page object of modal/webpage/etc that
-        should appear on successful form submission. If subclass set to a subclass of
-        :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>`,
+        should appear on successful form submission. If subclass set to a
+        subclass of :class:`BasePage
+        <webdriver_test_tools.pageobject.base.BasePage>`,
         :meth:`click_submit()` will return an instance of this object.
-    :var YAML_FILENAME: (Optional) Path to a YAML file representing the form
-        object. This will be used to determine ``FORM_LOCATOR`` and
-        ``SUBMIT_LOCATOR`` and create :class:`InputObject
-        <webdriver_test_tools.pageobject.form.InputObject>` instances for each
-        input
+
+    The following attributes are determined based on the contents of
+    :attr:`YAML_FILENAME`:
+
+    :var FORM_LOCATOR: Locator for the form element
+    :var SUBMIT_LOCATOR: Locator for the submit button
+
+    :var inputs: A dictionary mapping input names to the corresponding
+        :class:`InputObject` instances. The keys correspond with the ``name``
+        keys in the YAML representation of the form
     """
 
+    # Attribute with path to YAML file (parsed on __init__)
+    YAML_FILE = None
+    # Optional page object to return on click_submit()
+    SUBMIT_SUCCESS_CLASS = None
     # Locators
     FORM_LOCATOR = None
     SUBMIT_LOCATOR = None
-    # Optional page object to return on click_submit()
-    SUBMIT_SUCCESS_CLASS = None
-    # Optional attribute with path to YAML file (parsed on __init__)
-    YAML_FILE = None
-    # TODO: document form_element and inputs attributes, initialize to None/{}
+    # Input objects
+    inputs = {}
 
-    # TODO: deprecate Input class
     class Input:
-        """Subclass used to contain name attributes and select/radio option lists for
-        inputs
+        """
+        .. deprecated:: 2.7.0
+            Use :class:`InputObject`s and :attr:`FormObject.inputs` instead
+
+        Subclass used to contain name attributes and select/radio option lists
+        for inputs
 
         :Example:
 
@@ -386,8 +406,14 @@ class FormObject(BasePage):
         for input_dict in parsed_yaml['inputs']:
             try:
                 # TODO: Use different attribute as key so name can change without affecting code?
-                # TODO: Verify unique names
-                self.inputs[input_dict['name']] = InputObject(self.driver, input_dict)
+                input_name = input_dict['name']
+                # Input names must be unique
+                if input_name in self.inputs:
+                    error_msg = "Multiple inputs with the same 'name' value (name: {}). ".format(input_name)
+                    error_msg += 'Input names must be unique'
+                    raise utils.yaml.YAMLValueError(error_msg)
+                # Initialize InputObject
+                self.inputs[input_name] = InputObject(self.driver, input_dict)
             except KeyError as e:
                 error_msg = "Missing required 'name' key in input YAML (input: {})".format(str(input_dict))
                 raise utils.yaml.YAMLKeyError(error_msg)

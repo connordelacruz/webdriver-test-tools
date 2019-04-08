@@ -33,9 +33,9 @@ PROTOTYPE_NAMES = [
     WEB_PAGE_PROTOTYPE,
 ]
 
-#: Maps prototype names to corresponding template file name.
+#: Maps prototype names to the base name of the corresponding template files
+#: and a list of file extensions for each file.
 #: Empty string maps to generic BasePage template
-# TODO: update doc comment
 PAGE_OBJECT_TEMPLATE_MAP = {
     '': {
         'name': 'base_page',
