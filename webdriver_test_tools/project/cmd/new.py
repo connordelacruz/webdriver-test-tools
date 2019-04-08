@@ -61,6 +61,7 @@ def main(test_package_path, test_package, args):
             'Module file name',
             'Enter a file name for the new {} module'.format(validated_file_type),
             validate=cmd.validate_module_filename,
+            # TODO: validate=cmd.validate_module_name,
             parsed_input=module_name
         )
         class_type = 'test case' if validated_file_type == 'test' else 'page object'

@@ -200,9 +200,37 @@ def validate_package_name(package_name):
     return validated_package_name
 
 
+def validate_module_name(module_name):
+    """Removes and replaces characters to ensure a string is a valid python
+    module file name
+
+    :param module_name: The desired module name. If the name ends in .py, the
+        extension will be removed
+
+    :return: Modified module_name with whitespaces and hyphens replaced with
+        underscores and all invalid characters removed
+    """
+    # Strip .py extension if present
+    module_name, ext = os.path.splitext(module_name.strip())
+    try:
+        validated_module_name = _validate_python_identifier(module_name)
+    except ValidationError as e:
+        raise ValidationError('Please enter a valid module name.')
+    # Alert the user of any changes made in validation
+    if module_name != validated_module_name:
+        print_validation_change(
+            '"{0}" was changed to "{1}" in order to be a valid python module file',
+            module_name, validated_module_name
+        )
+    return validated_module_name
+
+
 def validate_module_filename(module_filename, suppress_ext_change=True):
     """Removes and replaces characters to ensure a string is a valid python
     module file name
+
+    Essentially a wrapper around :func:`validate_module_name` that makes sure a
+    .py extension is added to the end if needed
 
     :param module_filename: The desired module file name. If the .py extension
         is excluded, it will be appended after validation
@@ -216,16 +244,7 @@ def validate_module_filename(module_filename, suppress_ext_change=True):
     """
     # Strip .py extension if present
     module_name, ext = os.path.splitext(module_filename.strip())
-    try:
-        validated_module_name = _validate_python_identifier(module_name)
-    except ValidationError as e:
-        raise ValidationError('Please enter a valid module name.')
-    # Alert the user of any changes made in validation
-    if module_name != validated_module_name:
-        print_validation_change(
-            '"{0}" was changed to "{1}" in order to be a valid python module file',
-            module_name, validated_module_name
-        )
+    validated_module_name = validate_module_name(module_name)
     # Append .py extension
     validated_module_filename = validated_module_name + '.py'
     if ext != '.py' and not suppress_ext_change:
