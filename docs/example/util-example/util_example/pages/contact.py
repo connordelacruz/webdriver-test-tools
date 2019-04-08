@@ -1,27 +1,19 @@
+import os
+
 from selenium.webdriver.common.by import By
 from webdriver_test_tools.pageobject import *
 from webdriver_test_tools.webdriver import actions, locate
 
 
 class ContactPage(prototypes.FormObject):
+    # Path to YAML file representing the form object
+    YAML_FILE = os.path.join(os.path.dirname(__file__), 'contact.yml')
+
     # Relative to SiteConfig.BASE_URL
     PAGE_FILENAME = 'contact.html'
 
-    class Locator:
-        CONTACT_FORM = (By.ID, 'contact-form')
-        SUBMIT = (By.CSS_SELECTOR, 'button[type="submit"]')
-
-    # Attributes used by FormObject methods
-    FORM_LOCATOR = Locator.CONTACT_FORM
-    SUBMIT_LOCATOR = Locator.SUBMIT
+    # Page object class to return on click_submit()
     SUBMIT_SUCCESS_CLASS = SuccessModal
-
-    class Input:
-        """Constants for input names"""
-        FIRST_NAME = 'firstname'
-        LAST_NAME = 'lastname'
-        EMAIL = 'email'
-        MESSAGE = 'message'
 
 
 class SuccessModal(prototypes.ModalObject):

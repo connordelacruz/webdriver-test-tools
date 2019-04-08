@@ -20,10 +20,10 @@ class ContactTestCase(WebDriverTestCase):
         user = data.RandomUser({'nat': 'us'})
         msg = data.loremipsum.generate(1, 'short')
         form_data = {
-            ContactPage.Input.FIRST_NAME: user.get_first_name(),
-            ContactPage.Input.LAST_NAME: user.get_last_name(),
-            ContactPage.Input.EMAIL: user.get_email(),
-            ContactPage.Input.MESSAGE: msg,
+            'firstname': user.get_first_name(),
+            'lastname': user.get_last_name(),
+            'email': user.get_email(),
+            'message': msg,
         }
         return form_data
 
@@ -35,8 +35,9 @@ class ContactTestCase(WebDriverTestCase):
         contact_form_data = self.generate_contact_form_data()
 
         with self.subTest('Fill all required fields'):
-            contact_page.fill_form(contact_form_data)
+            contact_page.fill_inputs(contact_form_data)
             # Assert submit is enabled after filling required fields
+            # (SUBMIT_LOCATOR is set based on the submit_locator value in contact.yml)
             self.assertEnabled(contact_page.SUBMIT_LOCATOR)
 
         with self.subTest('Submit contact form'):

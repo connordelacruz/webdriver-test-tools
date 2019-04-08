@@ -1,0 +1,17 @@
+form:
+  # REQUIRED: Locator for the form
+  form_locator:
+    by: ID
+    locator: contact-form
+  # REQUIRED: Locator for the submit button
+  submit_locator:
+    by: CSS_SELECTOR
+    locator: 'button[type="submit"]'
+  # List of inputs in the form
+  inputs:
+    - name: firstname
+    - name: lastname
+    - name: email
+      type: email
+    - name: message
+      type: textarea
