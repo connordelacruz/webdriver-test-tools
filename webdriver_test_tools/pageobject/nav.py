@@ -8,16 +8,16 @@ from webdriver_test_tools.webdriver import actions
 class NavObject(BasePage):
     """Page object prototype for navbars
 
-    :var LINK_MAP:  Maps link text to a tuple containing its locator and the page object
-        class for the target page, modal, section, etc (or None if need be).
-        Override in subclasses
-    :var HOVER_MAP: Maps link text to a tuple containing its locator and the page
-        object class for the menu, dropdown, etc that should appear on hover (or None
-        if need be). Override in subclasses
-    :var FIXED: (Default = True) True if element is a fixed navbar, False otherwise. If
-        set to False in a subclass, :meth:`click_page_link()` and
-        :meth:`hover_over_page_link()` will scroll the target link into view before
-        interacting with it
+    :var NavObject.LINK_MAP: Maps link text to a tuple containing its locator
+        and the page object class for the target page, modal, section, etc (or
+        None if need be). Override in subclasses
+    :var NavObject.HOVER_MAP: Maps link text to a tuple containing its locator
+        and the page object class for the menu, dropdown, etc that should
+        appear on hover (or None if need be). Override in subclasses
+    :var NavObject.FIXED: (Default = True) True if element is a fixed navbar,
+        False otherwise. If set to False in a subclass,
+        :meth:`click_page_link()` and :meth:`hover_over_page_link()` will
+        scroll the target link into view before interacting with it
     """
 
     # Link maps
@@ -68,10 +68,12 @@ class CollapsibleNavObject(NavObject):
     In addition to the variables for :class:`NavObject`, the following variables need to
     be defined for collapsible navs
 
-    :var EXPAND_BUTTON_LOCATOR: Locator for the button that expands the nav menu
-    :var COLLAPSE_BUTTON_LOCATOR: Locator for the button that expands the nav menu
-    :var MENU_CONTAINER_LOCATOR: Locator for the collapsing/expanding container of the
-        navigation menu
+    :var CollapsibleNavObject.EXPAND_BUTTON_LOCATOR: Locator for the button
+        that expands the nav menu
+    :var CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR: Locator for the button
+        that expands the nav menu
+    :var CollapsibleNavObject.MENU_CONTAINER_LOCATOR: Locator for the
+        collapsing/expanding container of the navigation menu
     """
 
     EXPAND_BUTTON_LOCATOR = None

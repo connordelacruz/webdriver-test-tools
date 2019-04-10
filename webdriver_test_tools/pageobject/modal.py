@@ -11,19 +11,22 @@ class ModalObject(BasePage):
 
     Subclasses should set the following attributes:
 
-    :var YAML_FILE: Path to a YAML file representing the modal object. This
-        file is parsed during initialization using :meth:`parse_yaml` and is
-        used to determine :attr:`MODAL_LOCATOR` and :attr:`CLOSE_LOCATOR`
-    :var MODAL_BODY_CLASS: (Optional) Page object for the contents of the modal
-        body. If set to a subclass of :class:`BasePage
+    :var ModalObject.YAML_FILE: Path to a YAML file representing the modal
+        object. This file is parsed during initialization using
+        :meth:`parse_yaml` and is used to determine :attr:`MODAL_LOCATOR` and
+        :attr:`CLOSE_LOCATOR`
+    :var ModalObject.MODAL_BODY_CLASS: (Optional) Page object for the contents
+        of the modal body. If set to a subclass of :class:`BasePage
         <webdriver_test_tools.pageobject.base.BasePage>`,
         :meth:`get_modal_body()` will return an instance of this object.
 
     The following attributes are determined based on the contents of
     :attr:`YAML_FILE`:
 
-    :var MODAL_LOCATOR: Locator for the modal element. Override in subclasses
-    :var CLOSE_LOCATOR: Locator for the close button. Override in subclasses
+    :var ModalObject.MODAL_LOCATOR: Locator for the modal element. Override in
+        subclasses
+    :var ModalObject.CLOSE_LOCATOR: Locator for the close button. Override in
+        subclasses
     """
 
     # Attribute with path to YAML file (parsed on __init__)

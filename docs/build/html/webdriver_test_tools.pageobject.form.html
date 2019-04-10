@@ -342,14 +342,14 @@ type-specific optional arguments</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.YAML_FILE" title="webdriver_test_tools.pageobject.form.FormObject.YAML_FILE"><strong>YAML_FILE</strong></a> – Path to a YAML file representing the form object. This file
-is parsed during initialization using <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.parse_yaml" title="webdriver_test_tools.pageobject.form.FormObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> and is used to
-determine <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">FORM_LOCATOR</span></code></a> and <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SUBMIT_LOCATOR</span></code></a> and create
-<a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances for each input, which are stored in
-<a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inputs</span></code></a></li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><strong>SUBMIT_SUCCESS_CLASS</strong></a> – (Optional) Page object of modal/webpage/etc that
-should appear on successful form submission. If subclass set to a
-subclass of <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>,
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.YAML_FILE" title="webdriver_test_tools.pageobject.form.FormObject.YAML_FILE"><strong>FormObject.YAML_FILE</strong></a> – Path to a YAML file representing the form
+object. This file is parsed during initialization using
+<a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.parse_yaml" title="webdriver_test_tools.pageobject.form.FormObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> and is used to determine <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">FORM_LOCATOR</span></code></a> and
+<a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SUBMIT_LOCATOR</span></code></a> and create <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances for
+each input, which are stored in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inputs</span></code></a></li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><strong>FormObject.SUBMIT_SUCCESS_CLASS</strong></a> – (Optional) Page object of
+modal/webpage/etc that should appear on successful form submission. If
+subclass set to a subclass of <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>,
 <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="webdriver_test_tools.pageobject.form.FormObject.click_submit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">click_submit()</span></code></a> will return an instance of this object.</li>
 </ul>
 </td>
@@ -363,11 +363,11 @@ subclass of <a class="reference internal" href="webdriver_test_tools.pageobject.
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><strong>FORM_LOCATOR</strong></a> – Locator for the form element</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><strong>SUBMIT_LOCATOR</strong></a> – Locator for the submit button</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><strong>inputs</strong></a> – A dictionary mapping input names to the corresponding
-<a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances. The keys correspond with the <code class="docutils literal notranslate"><span class="pre">name</span></code>
-keys in the YAML representation of the form</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><strong>FormObject.FORM_LOCATOR</strong></a> – Locator for the form element</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><strong>FormObject.SUBMIT_LOCATOR</strong></a> – Locator for the submit button</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><strong>FormObject.inputs</strong></a> – A dictionary mapping input names to the
+corresponding <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances. The keys correspond with
+the <code class="docutils literal notranslate"><span class="pre">name</span></code> keys in the YAML representation of the form</li>
 </ul>
 </td>
 </tr>
