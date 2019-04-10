@@ -6,16 +6,24 @@ from webdriver_test_tools.pageobject import utils, BasePage
 from webdriver_test_tools.webdriver import actions
 
 
-# TODO: update docstring (see FormObject for ref)
 class ModalObject(BasePage):
     """Page object prototype for modals
 
+    Subclasses should set the following attributes:
+
+    :var YAML_FILE: Path to a YAML file representing the modal object. This
+        file is parsed during initialization using :meth:`parse_yaml` and is
+        used to determine :attr:`MODAL_LOCATOR` and :attr:`CLOSE_LOCATOR`
+    :var MODAL_BODY_CLASS: (Optional) Page object for the contents of the modal
+        body. If set to a subclass of :class:`BasePage
+        <webdriver_test_tools.pageobject.base.BasePage>`,
+        :meth:`get_modal_body()` will return an instance of this object.
+
+    The following attributes are determined based on the contents of
+    :attr:`YAML_FILE`:
+
     :var MODAL_LOCATOR: Locator for the modal element. Override in subclasses
     :var CLOSE_LOCATOR: Locator for the close button. Override in subclasses
-    :var MODAL_BODY_CLASS: (Optional) Page object for the contents of the modal body.
-        If set to a subclass of
-        :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>`,
-        :meth:`get_modal_body()` will return an instance of this object.
     """
 
     # Attribute with path to YAML file (parsed on __init__)
@@ -59,9 +67,9 @@ class ModalObject(BasePage):
         """Check if the modal is displayed
 
         This method checks if the element located by :attr:`MODAL_LOCATOR`
-        exists and is visible. This should be sufficient for many common implementations
-        of modals, but can be overridden if this isn't a reliable detection
-        method for an implementation
+        exists and is visible. This should be sufficient for many common
+        implementations of modals, but can be overridden if this isn't a
+        reliable detection method for an implementation
 
         :return: True if the modal is displayed, False otherwise
         """
@@ -76,9 +84,10 @@ class ModalObject(BasePage):
         actions.scroll.to_and_click(self.driver, self.find_element(self.CLOSE_LOCATOR))
 
     def get_modal_body(self):
-        """If :attr:`self.MODAL_BODY_CLASS <MODAL_BODY_CLASS>` is set to a subclass of
-        :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>`,
-        returns an instance of that object. Otherwise, returns None
+        """If :attr:`self.MODAL_BODY_CLASS <MODAL_BODY_CLASS>` is set to a
+        subclass of :class:`BasePage
+        <webdriver_test_tools.pageobject.base.BasePage>`, returns an instance
+        of that object. Otherwise, returns None
         """
         return self.MODAL_BODY_CLASS(self.driver) if inspect.isclass(self.MODAL_BODY_CLASS) and issubclass(self.MODAL_BODY_CLASS, BasePage) else None
 
