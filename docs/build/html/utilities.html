@@ -321,6 +321,7 @@ write our test in <code class="docutils literal notranslate"><span class="pre">C
             <span class="c1"># click_submit() returns a SuccessModal page object</span>
             <span class="n">success_modal</span> <span class="o">=</span> <span class="n">contact_page</span><span class="o">.</span><span class="n">click_submit</span><span class="p">()</span>
             <span class="c1"># Assert success modal is visible on submit</span>
+            <span class="c1"># (MODAL_LOCATOR is set based on the modal_locator value in success_modal.yml)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertVisible</span><span class="p">(</span><span class="n">success_modal</span><span class="o">.</span><span class="n">MODAL_LOCATOR</span><span class="p">)</span>
 
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="s1">&#39;Close success modal&#39;</span><span class="p">):</span>

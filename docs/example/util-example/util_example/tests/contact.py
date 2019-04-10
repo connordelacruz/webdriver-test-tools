@@ -44,6 +44,7 @@ class ContactTestCase(WebDriverTestCase):
             # click_submit() returns a SuccessModal page object
             success_modal = contact_page.click_submit()
             # Assert success modal is visible on submit
+            # (MODAL_LOCATOR is set based on the modal_locator value in success_modal.yml)
             self.assertVisible(success_modal.MODAL_LOCATOR)
 
         with self.subTest('Close success modal'):
