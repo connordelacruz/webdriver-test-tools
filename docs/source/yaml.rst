@@ -9,6 +9,8 @@ Page Object YAML files
 General Syntax
 ==============
 
+.. _yaml-locators:
+
 Locator Dictionaries
 --------------------
 
@@ -31,11 +33,21 @@ required keys:
      strategy
 
 
-Forms
-=====
+.. _yaml-form-objects:
+
+FormObjects
+===========
+
+:class:`FormObjects <webdriver_test_tools.pageobject.form.FormObject>` support
+YAML representations of the form element using the following syntax.
 
 Syntax
 ------
+
+.. _yaml-forms:
+
+Forms
+~~~~~
 
 Form objects have 3 required keys:
 
@@ -43,9 +55,14 @@ Form objects have 3 required keys:
      ``<form>`` element
    * ``submit_locator``: `Locator dictionary <Locator Dictionaries>`_ for the
      form's submit button
-   * ``inputs``: List of form inputs
+   * ``inputs``: List of form `inputs <Inputs>`_
 
-The items in the ``inputs`` list have the following keys:
+.. _yaml-inputs:
+
+Inputs
+~~~~~~
+
+The items in the form ``inputs`` list have the following keys:
 
    * ``name``: **(Required)** The ``name`` attribute of the element. If the
      element doesn't have a name attribute, set this to any unique identifier

@@ -57,9 +57,10 @@ class InputObject(BasePage):
         ]
 
 
-    # TODO: Link InputObject YAML docs
     def __init__(self, driver, input_dict):
-        """Initialize ``InputObject``
+        """Initialize ``InputObject`` using parsed YAML
+
+        See :ref:`YAML inputs doc <yaml-inputs>` for details on syntax.
 
         :param driver: Selenium WebDriver object
         :param input_dict: Parsed dictionary from YAML file inputs list. Must
@@ -228,11 +229,26 @@ class InputObject(BasePage):
     # type in __init__() (defaults to text)
     _set_value = _set_text_value
 
-    # TODO: document input type value formats
     def set_value(self, value, **kwargs):
         """Set the value of the input
 
         :param value: The value to set it to
+
+            * For radio elements, this should be the value attribute of the
+              radio to select.
+            * For checkbox elements, this value should be a boolean
+              (True=checked, False=unchecked).
+            * For checkbox groups, this value should be a dictionary mapping
+              checkbox input's ``value`` attribute to the desired checked state
+              (True = check, False = uncheck).
+            * For single select elements, this value should be the value of the
+              option to select.
+            * For multiple select elements, this value should be a list of
+              values of the options to select.
+            * For file inputs, this value should be a filepath to the desired
+              file.
+            * For other input types (text, number, etc) this should be a string
+              representation of the values to enter into it.
 
         Additionally accepts keyword arguments based on the type of input this
         ``InputObject`` represents. See the above ``_set`` methods for
@@ -380,10 +396,12 @@ class FormObject(BasePage):
         if self.YAML_FILE:
             self.parse_yaml(self.YAML_FILE)
 
-    # TODO: link yaml syntax doc
     def parse_yaml(self, file_path):
         """Parse a YAML representation of the form object and set attributes
         accordingly
+
+        See :ref:`YAML FormObjects doc <yaml-form-objects>` for details on
+        syntax.
 
         :param file_path: Full path to the YAML file
         """
