@@ -1,8 +1,7 @@
+"""Utilities for parsing YAML page object representations."""
 from selenium.webdriver.common.by import By
 import yaml
 
-
-# TODO: move some more generic functions to webdriver_test_tools.common?
 
 # Exceptions
 
