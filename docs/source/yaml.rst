@@ -1,13 +1,36 @@
+.. _yaml-page-objects:
+
 ======================
 Page Object YAML files
 ======================
 
 .. contents::
 
-.. todo overview, list supported classes, link to YAML syntax doc, expand on general syntax?
+Overview
+========
+
+To simplify the process of creating new page objects, some page object prototype
+classes support YAML representations of the object. Prototype classes that
+support this will generate a ``.yml`` file in addition to a Python module when
+using the ``new page --prototype <prototype>`` command.
+
+The following sections detail YAML syntax specifically for
+``webdriver_test_tools``. For a basic introduction to YAML syntax in general,
+see `Ansible's YAML documentation`_.
+
+
+Supported Prototype Classes
+---------------------------
+
+As of 2.7.0, only the :class:`FormObject
+<webdriver_test_tools.pageobject.form.FormObject>` class supports YAML parsing.
+However, YAML support will be added to more in future releases.
+
 
 General Syntax
 ==============
+
+This section documents the syntax of general page object constructs.
 
 .. _yaml-locators:
 

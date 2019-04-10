@@ -44,7 +44,6 @@ for most of the tasks we want them to do.
     :caption: pages/contact.py
 
 .. todo Better phrasing and more detail
-.. todo Link to YAML docs
 
 The ``FormObject`` parses the file specified with the ``YAML_FILE`` attribute on
 initialization:
@@ -56,6 +55,10 @@ This is used to set the attributes ``FORM_LOCATOR`` and ``SUBMIT_LOCATOR``,
 which are required to use the methods ``fill_inputs()`` and ``click_submit()``.
 If the ``SUBMIT_SUCCESS_CLASS`` attribute is set, ``click_submit()`` will return
 an initialized page object of that type. 
+
+.. note::
+
+   For more information on YAML syntax, see :ref:`yaml-page-objects`.
 
 The ``ModalObject`` attribute ``CLOSE_LOCATOR`` needs to be set to use the
 method ``click_close_button()``. 
