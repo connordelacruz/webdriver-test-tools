@@ -189,16 +189,16 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP"><strong>LINK_MAP</strong></a> – Maps link text to a tuple containing its locator and the page object
-class for the target page, modal, section, etc (or None if need be).
-Override in subclasses</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP"><strong>HOVER_MAP</strong></a> – Maps link text to a tuple containing its locator and the page
-object class for the menu, dropdown, etc that should appear on hover (or None
-if need be). Override in subclasses</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.FIXED" title="webdriver_test_tools.pageobject.nav.NavObject.FIXED"><strong>FIXED</strong></a> – (Default = True) True if element is a fixed navbar, False otherwise. If
-set to False in a subclass, <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.click_page_link" title="webdriver_test_tools.pageobject.nav.NavObject.click_page_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">click_page_link()</span></code></a> and
-<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link" title="webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hover_over_page_link()</span></code></a> will scroll the target link into view before
-interacting with it</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP"><strong>NavObject.LINK_MAP</strong></a> – Maps link text to a tuple containing its locator
+and the page object class for the target page, modal, section, etc (or
+None if need be). Override in subclasses</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP"><strong>NavObject.HOVER_MAP</strong></a> – Maps link text to a tuple containing its locator
+and the page object class for the menu, dropdown, etc that should
+appear on hover (or None if need be). Override in subclasses</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.FIXED" title="webdriver_test_tools.pageobject.nav.NavObject.FIXED"><strong>NavObject.FIXED</strong></a> – (Default = True) True if element is a fixed navbar,
+False otherwise. If set to False in a subclass,
+<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.click_page_link" title="webdriver_test_tools.pageobject.nav.NavObject.click_page_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">click_page_link()</span></code></a> and <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link" title="webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hover_over_page_link()</span></code></a> will
+scroll the target link into view before interacting with it</li>
 </ul>
 </td>
 </tr>
@@ -267,10 +267,12 @@ be defined for collapsible navs</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR"><strong>EXPAND_BUTTON_LOCATOR</strong></a> – Locator for the button that expands the nav menu</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR"><strong>COLLAPSE_BUTTON_LOCATOR</strong></a> – Locator for the button that expands the nav menu</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR"><strong>MENU_CONTAINER_LOCATOR</strong></a> – Locator for the collapsing/expanding container of the
-navigation menu</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.EXPAND_BUTTON_LOCATOR"><strong>CollapsibleNavObject.EXPAND_BUTTON_LOCATOR</strong></a> – Locator for the button
+that expands the nav menu</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR"><strong>CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR</strong></a> – Locator for the button
+that expands the nav menu</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR"><strong>CollapsibleNavObject.MENU_CONTAINER_LOCATOR</strong></a> – Locator for the
+collapsing/expanding container of the navigation menu</li>
 </ul>
 </td>
 </tr>
