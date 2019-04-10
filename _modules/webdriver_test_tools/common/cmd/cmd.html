@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../yaml.html">Page Object YAML files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -358,9 +359,37 @@
     <span class="k">return</span> <span class="n">validated_package_name</span></div>
 
 
+<div class="viewcode-block" id="validate_module_name"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.validate_module_name">[docs]</a><span class="k">def</span> <span class="nf">validate_module_name</span><span class="p">(</span><span class="n">module_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python</span>
+<span class="sd">    module file name</span>
+
+<span class="sd">    :param module_name: The desired module name. If the name ends in .py, the</span>
+<span class="sd">        extension will be removed</span>
+
+<span class="sd">    :return: Modified module_name with whitespaces and hyphens replaced with</span>
+<span class="sd">        underscores and all invalid characters removed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Strip .py extension if present</span>
+    <span class="n">module_name</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">module_name</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">validated_module_name</span> <span class="o">=</span> <span class="n">_validate_python_identifier</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid module name.&#39;</span><span class="p">)</span>
+    <span class="c1"># Alert the user of any changes made in validation</span>
+    <span class="k">if</span> <span class="n">module_name</span> <span class="o">!=</span> <span class="n">validated_module_name</span><span class="p">:</span>
+        <span class="n">print_validation_change</span><span class="p">(</span>
+            <span class="s1">&#39;&quot;</span><span class="si">{0}</span><span class="s1">&quot; was changed to &quot;</span><span class="si">{1}</span><span class="s1">&quot; in order to be a valid python module file&#39;</span><span class="p">,</span>
+            <span class="n">module_name</span><span class="p">,</span> <span class="n">validated_module_name</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">validated_module_name</span></div>
+
+
 <div class="viewcode-block" id="validate_module_filename"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.validate_module_filename">[docs]</a><span class="k">def</span> <span class="nf">validate_module_filename</span><span class="p">(</span><span class="n">module_filename</span><span class="p">,</span> <span class="n">suppress_ext_change</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Removes and replaces characters to ensure a string is a valid python</span>
 <span class="sd">    module file name</span>
+
+<span class="sd">    Essentially a wrapper around :func:`validate_module_name` that makes sure a</span>
+<span class="sd">    .py extension is added to the end if needed</span>
 
 <span class="sd">    :param module_filename: The desired module file name. If the .py extension</span>
 <span class="sd">        is excluded, it will be appended after validation</span>
@@ -374,16 +403,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Strip .py extension if present</span>
     <span class="n">module_name</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">module_filename</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">validated_module_name</span> <span class="o">=</span> <span class="n">_validate_python_identifier</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid module name.&#39;</span><span class="p">)</span>
-    <span class="c1"># Alert the user of any changes made in validation</span>
-    <span class="k">if</span> <span class="n">module_name</span> <span class="o">!=</span> <span class="n">validated_module_name</span><span class="p">:</span>
-        <span class="n">print_validation_change</span><span class="p">(</span>
-            <span class="s1">&#39;&quot;</span><span class="si">{0}</span><span class="s1">&quot; was changed to &quot;</span><span class="si">{1}</span><span class="s1">&quot; in order to be a valid python module file&#39;</span><span class="p">,</span>
-            <span class="n">module_name</span><span class="p">,</span> <span class="n">validated_module_name</span>
-        <span class="p">)</span>
+    <span class="n">validated_module_name</span> <span class="o">=</span> <span class="n">validate_module_name</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
     <span class="c1"># Append .py extension</span>
     <span class="n">validated_module_filename</span> <span class="o">=</span> <span class="n">validated_module_name</span> <span class="o">+</span> <span class="s1">&#39;.py&#39;</span>
     <span class="k">if</span> <span class="n">ext</span> <span class="o">!=</span> <span class="s1">&#39;.py&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">suppress_ext_change</span><span class="p">:</span>

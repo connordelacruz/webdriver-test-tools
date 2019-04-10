@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Page Object YAML files &mdash; WebDriver Test Tools 2.6.0-alpha documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="BrowserStack Support" href="browserstack.html" />
+    <link rel="prev" title="Testing Utilities" href="utilities.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Docs:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Page Object YAML files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#supported-prototype-classes">Supported Prototype Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#general-syntax">General Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#locator-dictionaries">Locator Dictionaries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#formobjects">FormObjects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#syntax">Syntax</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#forms">Forms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yaml-inputs">Inputs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Page Object YAML files</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/yaml.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="page-object-yaml-files">
+<span id="yaml-page-objects"></span><h1><a class="toc-backref" href="#id4">Page Object YAML files</a><a class="headerlink" href="#page-object-yaml-files" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#page-object-yaml-files" id="id4">Page Object YAML files</a><ul>
+<li><a class="reference internal" href="#overview" id="id5">Overview</a><ul>
+<li><a class="reference internal" href="#supported-prototype-classes" id="id6">Supported Prototype Classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#general-syntax" id="id7">General Syntax</a><ul>
+<li><a class="reference internal" href="#locator-dictionaries" id="id8">Locator Dictionaries</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#formobjects" id="id9">FormObjects</a><ul>
+<li><a class="reference internal" href="#syntax" id="id10">Syntax</a><ul>
+<li><a class="reference internal" href="#forms" id="id11">Forms</a></li>
+<li><a class="reference internal" href="#yaml-inputs" id="id12">Inputs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example" id="id13">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id5">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>To simplify the process of creating new page objects, some page object prototype
+classes support YAML representations of the object. Prototype classes that
+support this will generate a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file in addition to a Python module when
+using the <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">page</span> <span class="pre">--prototype</span> <span class="pre">&lt;prototype&gt;</span></code> command.</p>
+<p>The following sections detail YAML syntax specifically for
+<code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code>. For a basic introduction to YAML syntax in general,
+see <a class="reference external" href="https://docs.ansible.com/ansible/2.7/reference_appendices/YAMLSyntax.html">Ansible’s YAML documentation</a>.</p>
+<div class="section" id="supported-prototype-classes">
+<h3><a class="toc-backref" href="#id6">Supported Prototype Classes</a><a class="headerlink" href="#supported-prototype-classes" title="Permalink to this headline">¶</a></h3>
+<p>As of 2.7.0, only the <a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject" title="webdriver_test_tools.pageobject.form.FormObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">FormObject</span></code></a> class supports YAML parsing.
+However, YAML support will be added to more in future releases.</p>
+</div>
+</div>
+<div class="section" id="general-syntax">
+<h2><a class="toc-backref" href="#id7">General Syntax</a><a class="headerlink" href="#general-syntax" title="Permalink to this headline">¶</a></h2>
+<p>This section documents the syntax of general page object constructs.</p>
+<div class="section" id="locator-dictionaries">
+<span id="yaml-locators"></span><h3><a class="toc-backref" href="#id8">Locator Dictionaries</a><a class="headerlink" href="#locator-dictionaries" title="Permalink to this headline">¶</a></h3>
+<p>Element locators are represented by YAML dictionaries with the following
+required keys:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">by</span></code>: Locator strategy to use when finding the element. Use variable
+names of attributes in <code class="docutils literal notranslate"><span class="pre">selenium.webdriver.common.by.By</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">CLASS_NAME</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">CSS_SELECTOR</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">ID</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">LINK_TEXT</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">NAME</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">PARTIAL_LINK_TEXT</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">TAG_NAME</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">XPATH</span></code></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">locator</span></code>: Value used to locate element with the specified locator
+strategy</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="formobjects">
+<span id="yaml-form-objects"></span><h2><a class="toc-backref" href="#id9">FormObjects</a><a class="headerlink" href="#formobjects" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject" title="webdriver_test_tools.pageobject.form.FormObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">FormObjects</span></code></a> support
+YAML representations of the form element using the following syntax.</p>
+<div class="section" id="syntax">
+<h3><a class="toc-backref" href="#id10">Syntax</a><a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="forms">
+<span id="yaml-forms"></span><h4><a class="toc-backref" href="#id11">Forms</a><a class="headerlink" href="#forms" title="Permalink to this headline">¶</a></h4>
+<p>Form objects have 3 required keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">form_locator</span></code>: <a class="reference external" href="LocatorDictionaries">Locator dictionary</a> for the
+<code class="docutils literal notranslate"><span class="pre">&lt;form&gt;</span></code> element</li>
+<li><code class="docutils literal notranslate"><span class="pre">submit_locator</span></code>: <a class="reference external" href="LocatorDictionaries">Locator dictionary</a> for the
+form’s submit button</li>
+<li><code class="docutils literal notranslate"><span class="pre">inputs</span></code>: List of form <a class="reference external" href="Inputs">inputs</a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="yaml-inputs">
+<span id="id2"></span><h4><a class="toc-backref" href="#id12">Inputs</a><a class="headerlink" href="#yaml-inputs" title="Permalink to this headline">¶</a></h4>
+<p>The items in the form <code class="docutils literal notranslate"><span class="pre">inputs</span></code> list have the following keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code>: <strong>(Required)</strong> The <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute of the element. If the
+element doesn’t have a name attribute, set this to any unique identifier
+(i.e. not used as the <code class="docutils literal notranslate"><span class="pre">name</span></code> value for another input in the form)</li>
+<li><code class="docutils literal notranslate"><span class="pre">input_locator</span></code>: <strong>(Required if element has no ``name`` attribute)</strong>
+<a class="reference external" href="LocatorDictionaries">Locator dictionary</a> for the element. If provided,
+this will be used instead of <code class="docutils literal notranslate"><span class="pre">name</span></code> to find the element</li>
+<li><code class="docutils literal notranslate"><span class="pre">type</span></code>: <em>(Default: ``text``)</em> The <code class="docutils literal notranslate"><span class="pre">type</span></code> attribute of the input</li>
+<li><code class="docutils literal notranslate"><span class="pre">required</span></code>: <em>(Default: ``true``)</em> Whether or not the input is required to
+submit the form</li>
+<li><code class="docutils literal notranslate"><span class="pre">options</span></code>: <strong>(Required if ``type`` is ``radio``, ``select``, or a
+``checkbox`` group (i.e. multiple checkboxes with the same name))</strong> List of
+<code class="docutils literal notranslate"><span class="pre">value</span></code> attributes of radio inputs, select options, or checkboxes. A
+dictionary mapping values to labels is also valid (though only the map keys
+will be used, so the labels can be set to anything)</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="example">
+<h3><a class="toc-backref" href="#id13">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="p">:</span>
+  <span class="c1"># Locator for the form</span>
+  <span class="n">form_locator</span><span class="p">:</span>
+    <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+    <span class="n">locator</span><span class="p">:</span> <span class="n">example</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="nb">id</span>
+  <span class="c1"># Locator for the submit button</span>
+  <span class="n">submit_locator</span><span class="p">:</span>
+    <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+    <span class="n">locator</span><span class="p">:</span> <span class="s1">&#39;#example-form-id button[type=&quot;submit&quot;]&#39;</span>
+  <span class="c1"># List of inputs in the form</span>
+  <span class="n">inputs</span><span class="p">:</span>
+    <span class="c1"># Basic syntax:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">email</span>
+      <span class="nb">type</span><span class="p">:</span> <span class="n">email</span>
+    <span class="c1"># &#39;type&#39; defaults to &#39;text&#39; if not specified:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">text_input</span>
+    <span class="c1"># Assume required by default, specify otherwise:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">phone</span>
+      <span class="nb">type</span><span class="p">:</span> <span class="n">text</span>
+      <span class="n">required</span><span class="p">:</span> <span class="n">false</span>
+    <span class="c1"># Supports inputs with no &#39;name&#39; attribute (though the name key is still</span>
+    <span class="c1"># required for identification):</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">unique_identifier</span>
+      <span class="n">input_locator</span><span class="p">:</span>
+        <span class="n">by</span><span class="p">:</span> <span class="n">CLASS_NAME</span>
+        <span class="n">locator</span><span class="p">:</span> <span class="nb">input</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">no</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">attribute</span>
+      <span class="nb">type</span><span class="p">:</span> <span class="n">text</span>
+    <span class="c1"># Specify list of options for selects and radios:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">select_example</span>
+      <span class="nb">type</span><span class="p">:</span> <span class="n">select</span>
+      <span class="n">options</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">option1</span>
+        <span class="o">-</span> <span class="n">option2</span>
+        <span class="o">-</span> <span class="n">option3</span>
+        <span class="o">-</span> <span class="n">option4</span>
+    <span class="c1"># &#39;options&#39; can bet a dictionary too. Only the keys are used, so the values</span>
+    <span class="c1"># can be set to anything:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">radio_example</span>
+      <span class="nb">type</span><span class="p">:</span> <span class="n">radio</span>
+      <span class="c1"># NOTE: numeric options keys/list entries should be in quotes</span>
+      <span class="n">options</span><span class="p">:</span>
+        <span class="s1">&#39;001&#39;</span><span class="p">:</span> <span class="n">Helpful</span> <span class="n">label</span>
+        <span class="s1">&#39;002&#39;</span><span class="p">:</span> <span class="n">Another</span> <span class="n">helpful</span> <span class="n">label</span>
+        <span class="s1">&#39;003&#39;</span><span class="p">:</span> <span class="n">An</span> <span class="n">even</span> <span class="n">more</span> <span class="n">helpful</span> <span class="n">label</span>
+    <span class="c1"># Support select elements with the &#39;multiple&#39; attribute:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">multiple_select_example</span>
+      <span class="nb">type</span><span class="p">:</span> <span class="n">select</span>
+      <span class="n">multiple</span><span class="p">:</span> <span class="n">true</span>
+      <span class="n">options</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">option0</span>
+        <span class="o">-</span> <span class="n">option1</span>
+        <span class="o">-</span> <span class="n">option2</span>
+    <span class="c1"># Checkbox groups can accept a list of options too:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">checkboxes</span><span class="p">[]</span>
+      <span class="nb">type</span><span class="p">:</span> <span class="n">checkbox</span>
+      <span class="c1"># NOTE: set &#39;multiple&#39; to true when multiple checkboxes have the same</span>
+      <span class="c1"># name and different values</span>
+      <span class="n">multiple</span><span class="p">:</span> <span class="n">true</span>
+      <span class="n">options</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">box0</span>
+        <span class="o">-</span> <span class="n">box1</span>
+        <span class="o">-</span> <span class="n">box2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="browserstack.html" class="btn btn-neutral float-right" title="BrowserStack Support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="utilities.html" class="btn btn-neutral" title="Testing Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.6.0-alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

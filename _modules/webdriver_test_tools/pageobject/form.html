@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -157,34 +158,386 @@
             
   <h1>Source code for webdriver_test_tools.pageobject.form</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">BasePage</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="k">import</span> <span class="n">NoSuchElementException</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="k">import</span> <span class="n">Select</span>
+
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">BasePage</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver</span> <span class="k">import</span> <span class="n">actions</span>
 
+
+<span class="c1"># Input Page Objects</span>
+
+<div class="viewcode-block" id="InputObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject">[docs]</a><span class="k">class</span> <span class="nc">InputObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Page object prototype for input elements&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="InputObject.Type"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject.Type">[docs]</a>    <span class="k">class</span> <span class="nc">Type</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set of supported input types&quot;&quot;&quot;</span>
+        <span class="c1"># https://www.w3schools.com/html/html_form_input_types.asp</span>
+        <span class="c1"># Standard &lt;input&gt; tag types</span>
+        <span class="n">CHECKBOX</span> <span class="o">=</span> <span class="s1">&#39;checkbox&#39;</span>
+        <span class="n">EMAIL</span> <span class="o">=</span> <span class="s1">&#39;email&#39;</span>
+        <span class="n">FILE</span> <span class="o">=</span> <span class="s1">&#39;file&#39;</span>
+        <span class="n">NUMBER</span> <span class="o">=</span> <span class="s1">&#39;number&#39;</span>
+        <span class="n">PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span>
+        <span class="n">RADIO</span> <span class="o">=</span> <span class="s1">&#39;radio&#39;</span>
+        <span class="n">SEARCH</span> <span class="o">=</span> <span class="s1">&#39;search&#39;</span>
+        <span class="n">TEXT</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span>
+        <span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;url&#39;</span>
+        <span class="c1"># TODO: Uncomment as support is added/verified</span>
+        <span class="c1"># BUTTON = &#39;button&#39;</span>
+        <span class="c1"># COLOR = &#39;color&#39;</span>
+        <span class="c1"># DATE = &#39;date&#39;</span>
+        <span class="c1"># DATETIME_LOCAL = &#39;datetime-local&#39;</span>
+        <span class="c1"># HIDDEN = &#39;hidden&#39;</span>
+        <span class="c1"># IMAGE = &#39;image&#39;</span>
+        <span class="c1"># MONTH = &#39;month&#39;</span>
+        <span class="c1"># RANGE = &#39;range&#39;</span>
+        <span class="c1"># RESET = &#39;reset&#39;</span>
+        <span class="c1"># SUBMIT = &#39;submit&#39;</span>
+        <span class="c1"># TEL = &#39;tel&#39;</span>
+        <span class="c1"># TIME = &#39;time&#39;</span>
+        <span class="c1"># WEEK = &#39;week&#39;</span>
+        <span class="c1"># Non-&lt;input&gt; tag inputs</span>
+        <span class="n">SELECT</span> <span class="o">=</span> <span class="s1">&#39;select&#39;</span>
+        <span class="n">TEXTAREA</span> <span class="o">=</span> <span class="s1">&#39;textarea&#39;</span>
+        <span class="c1"># Attribute support based on input types</span>
+        <span class="n">SUPPORTS_OPTIONS</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">SELECT</span><span class="p">,</span>
+            <span class="n">RADIO</span><span class="p">,</span>
+            <span class="n">CHECKBOX</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">SUPPORTS_MULTIPLE</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">SELECT</span><span class="p">,</span>
+            <span class="n">CHECKBOX</span><span class="p">,</span>
+        <span class="p">]</span></div>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">input_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize ``InputObject`` using parsed YAML</span>
+
+<span class="sd">        See :ref:`YAML inputs doc &lt;yaml-inputs&gt;` for details on syntax.</span>
+
+<span class="sd">        :param driver: Selenium WebDriver object</span>
+<span class="sd">        :param input_dict: Parsed dictionary from YAML file inputs list. Must</span>
+<span class="sd">            have &#39;name&#39; key set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+        <span class="c1"># &#39;name&#39; is required, so assume that it&#39;s a valid key and raise errors</span>
+        <span class="c1"># otherwise</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="c1"># If &#39;input_locator&#39; is specified, use that as the locator, otherwise</span>
+        <span class="c1"># find using self.name</span>
+        <span class="k">if</span> <span class="s1">&#39;input_locator&#39;</span> <span class="ow">in</span> <span class="n">input_dict</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">to_locator</span><span class="p">(</span><span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;input_locator&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1"># Get input type, default to &#39;text&#39; if unspecified</span>
+        <span class="c1"># TODO: validate type based on attributes in self.Type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">input_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">TEXT</span><span class="p">)</span>
+        <span class="c1"># Assume input is required unless otherwise specified</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="n">input_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Retrieve list of options (for radios and selects)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">SUPPORTS_OPTIONS</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">input_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;options&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Ensures options attribute is ignored for inputs that don&#39;t</span>
+            <span class="c1"># support it</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># (For select inputs) Assume only one option can be selected unless</span>
+        <span class="c1"># otherwise specified</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">SUPPORTS_MULTIPLE</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span> <span class="o">=</span> <span class="n">input_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;multiple&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Ensure multiple attribute is ignored for inputs that don&#39;t</span>
+            <span class="c1"># support it</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># Determine the getter/setter methods based on type</span>
+        <span class="c1"># Defaults to text input getter/setter methods</span>
+        <span class="c1"># TODO: move getter/setter methods to strategry classes?</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">RADIO</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_radio_value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_radio_value</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">CHECKBOX</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_multiple_checkbox_values</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_multiple_checkbox_values</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_checkbox_value</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_checkbox_value</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">SELECT</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiple</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_multiple_select_values</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_multiple_select_values</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_select_value</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_select_value</span>
+
+    <span class="c1"># WebElement Retrieval methods</span>
+
+<div class="viewcode-block" id="InputObject.find_input_element"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject.find_input_element">[docs]</a>    <span class="k">def</span> <span class="nf">find_input_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the ``WebElement`` object located by ``self.locator``</span>
+
+<span class="sd">        Shorthand for ``self.find_element(self.locator)``</span>
+
+<span class="sd">        :return: ``WebElement`` object for the input</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">locator</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InputObject.find_input_elements"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject.find_input_elements">[docs]</a>    <span class="k">def</span> <span class="nf">find_input_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the list of ``WebElement`` objects located by</span>
+<span class="sd">        ``self.locator``. Used for input types that can have multiple elements</span>
+<span class="sd">        corresponding to it (e.g. radios)</span>
+
+<span class="sd">        Shorthand for ``self.find_elements(self.locator)``</span>
+
+<span class="sd">        :return: List of ``WebElement`` objects for the inputs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">locator</span><span class="p">)</span></div>
+
+    <span class="c1"># Input Setter Methods</span>
+
+    <span class="k">def</span> <span class="nf">_set_radio_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Select the radio input located by ``self.locator`` with the</span>
+<span class="sd">        specified ``value`` attribute</span>
+
+<span class="sd">        :param value: The ``value`` attribute of the radio element to select</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Filter radio elements to the one that matches value</span>
+        <span class="n">radio_element</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">element</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_input_elements</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">value</span>
+        <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">to_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">radio_element</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_checkbox_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the checked state of the checkbox input</span>
+
+<span class="sd">        :param value: True to check the box, False to uncheck it. This function</span>
+<span class="sd">            will do nothing if the checkbox already matches the desired value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">checkbox_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_input_element</span><span class="p">()</span>
+        <span class="c1"># Return if value is already set correctly</span>
+        <span class="k">if</span> <span class="n">checkbox_element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">actions</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">toggle_checkbox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">checkbox_element</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_multiple_checkbox_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check/uncheck one or more checkboxes in a checkbox group</span>
+
+<span class="sd">        :param values: Dictionary mapping checkbox input&#39;s ``value`` attribute</span>
+<span class="sd">            to the desired checked state (True = check, False = uncheck).</span>
+<span class="sd">            Checkboxes already in the desired state won&#39;t be modified</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">checkbox_elements</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">element</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_input_elements</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">values</span>
+            <span class="ow">and</span> <span class="n">element</span><span class="o">.</span><span class="n">is_selected</span> <span class="o">!=</span> <span class="n">values</span><span class="p">[</span><span class="n">element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)]</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">checkbox_element</span> <span class="ow">in</span> <span class="n">checkbox_elements</span><span class="p">:</span>
+            <span class="n">actions</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">toggle_checkbox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">checkbox_element</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_text_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">clear_current_value</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the value of the text input</span>
+
+<span class="sd">        Used for text inputs and other input types that are functionally</span>
+<span class="sd">        similar (e.g. textarea, email, etc)</span>
+
+<span class="sd">        :param value: The string to set the input value to. Uses</span>
+<span class="sd">            ``WebElement.send_keys()`` method to set</span>
+<span class="sd">        :param clear_current_value: (Default = False) If True, clear any</span>
+<span class="sd">            existing value in the input before entering the new one</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">input_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_input_element</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">clear_current_value</span><span class="p">:</span>
+            <span class="n">input_element</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">input_element</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_select_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Select an option in the select element</span>
+
+<span class="sd">        :param value: The ``value`` attribute of the option to select</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: validate value using self.options</span>
+        <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_input_element</span><span class="p">())</span>
+        <span class="n">select</span><span class="o">.</span><span class="n">select_by_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_multiple_select_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">clear_current_value</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Select one or more options in a multiple select element</span>
+
+<span class="sd">        :param values: List of ``value`` attributes for the options to select</span>
+<span class="sd">            (or a single ``value`` attribute if only one needs to be selected)</span>
+<span class="sd">        :param clear_current_value: (Default = False) if True, deselect any</span>
+<span class="sd">            currently selected options before selecting the new ones</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_input_element</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">clear_current_value</span><span class="p">:</span>
+            <span class="n">select</span><span class="o">.</span><span class="n">deselect_all</span><span class="p">()</span>
+        <span class="c1"># If values is just a single item, make it a list with just itself to</span>
+        <span class="c1"># avoid any iteration issues (e.g. if it&#39;s a string)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">values</span><span class="p">]</span>
+        <span class="c1"># TODO: validate value using self.options</span>
+        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+            <span class="n">select</span><span class="o">.</span><span class="n">select_by_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="c1"># Internal attribute for setter method. Gets set after determining input</span>
+    <span class="c1"># type in __init__() (defaults to text)</span>
+    <span class="n">_set_value</span> <span class="o">=</span> <span class="n">_set_text_value</span>
+
+<div class="viewcode-block" id="InputObject.set_value"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject.set_value">[docs]</a>    <span class="k">def</span> <span class="nf">set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the value of the input</span>
+
+<span class="sd">        :param value: The value to set it to</span>
+
+<span class="sd">            * For radio elements, this should be the value attribute of the</span>
+<span class="sd">              radio to select.</span>
+<span class="sd">            * For checkbox elements, this value should be a boolean</span>
+<span class="sd">              (True=checked, False=unchecked).</span>
+<span class="sd">            * For checkbox groups, this value should be a dictionary mapping</span>
+<span class="sd">              checkbox input&#39;s ``value`` attribute to the desired checked state</span>
+<span class="sd">              (True = check, False = uncheck).</span>
+<span class="sd">            * For single select elements, this value should be the value of the</span>
+<span class="sd">              option to select.</span>
+<span class="sd">            * For multiple select elements, this value should be a list of</span>
+<span class="sd">              values of the options to select.</span>
+<span class="sd">            * For file inputs, this value should be a filepath to the desired</span>
+<span class="sd">              file.</span>
+<span class="sd">            * For other input types (text, number, etc) this should be a string</span>
+<span class="sd">              representation of the values to enter into it.</span>
+
+<span class="sd">        Additionally accepts keyword arguments based on the type of input this</span>
+<span class="sd">        ``InputObject`` represents. See the above ``_set`` methods for</span>
+<span class="sd">        type-specific optional arguments</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_value</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    <span class="c1"># Input Getter Methods</span>
+
+    <span class="k">def</span> <span class="nf">_get_radio_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the ``value`` attribute of the selected radio input</span>
+
+<span class="sd">        :return: The ``value`` attribute of the selected radio input or</span>
+<span class="sd">            ``None`` if all radios located with ``self.locator`` are deselected</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">selected_radio_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">element</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_input_elements</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span>
+        <span class="p">]</span>
+        <span class="c1"># If none of the radios are selected, return None</span>
+        <span class="k">return</span> <span class="n">selected_radio_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">selected_radio_list</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_get_checkbox_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the checked state of the checkbox input</span>
+
+<span class="sd">        :return: True if the checkbox is checked, False if it&#39;s unchecked</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_input_element</span><span class="p">()</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_get_multiple_checkbox_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary mapping ``value`` attributes of each checkbox</span>
+<span class="sd">        to True if checked, False if unchecked</span>
+
+<span class="sd">        :return: Dictionary mapping ``value`` attributes of each checkbox to</span>
+<span class="sd">            True if checked, False if unchecked</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">checkbox_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">):</span> <span class="n">checkbox_element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">checkbox_element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_input_elements</span><span class="p">()</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_get_text_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the value of the text input</span>
+
+<span class="sd">        :return: The value of the text input</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_input_element</span><span class="p">()</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_select_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the ``value`` attribute of the selected option element</span>
+
+<span class="sd">        :return: The ``value`` attribute of the selected option element or</span>
+<span class="sd">            ``None`` if nothing is selected</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_input_element</span><span class="p">())</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="n">first_selected_option</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">_get_multiple_select_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of ``value`` attributes of the selected option</span>
+<span class="sd">        elements</span>
+
+<span class="sd">        :return: List of ``value`` attributes of the selected option elements</span>
+<span class="sd">            or an empty list if nothing is selected</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_input_element</span><span class="p">())</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">option</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">select</span><span class="o">.</span><span class="n">all_selected_options</span><span class="p">]</span>
+
+    <span class="c1"># Internal attribute for getter method. Gets set after determining input</span>
+    <span class="c1"># type in __init__() (defaults to text)</span>
+    <span class="n">_get_value</span> <span class="o">=</span> <span class="n">_get_text_value</span>
+
+<div class="viewcode-block" id="InputObject.get_value"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject.get_value">[docs]</a>    <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the current value of the input&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">()</span></div></div>
+
+
+<span class="c1"># Form Page Objects</span>
 
 <div class="viewcode-block" id="FormObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject">[docs]</a><span class="k">class</span> <span class="nc">FormObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Page object prototype for forms</span>
 
-<span class="sd">    :var FORM_LOCATOR: Locator for the form element. Override in subclasses</span>
-<span class="sd">    :var SUBMIT_LOCATOR: Locator for the submit button. Override in subclasses</span>
+<span class="sd">    Subclasses should set the following attributes:</span>
+
+<span class="sd">    :var YAML_FILE: Path to a YAML file representing the form object. This file</span>
+<span class="sd">        is parsed during initialization using :meth:`parse_yaml` and is used to</span>
+<span class="sd">        determine :attr:`FORM_LOCATOR` and :attr:`SUBMIT_LOCATOR` and create</span>
+<span class="sd">        :class:`InputObject` instances for each input, which are stored in</span>
+<span class="sd">        :attr:`inputs`</span>
 <span class="sd">    :var SUBMIT_SUCCESS_CLASS: (Optional) Page object of modal/webpage/etc that</span>
-<span class="sd">        should appear on successful form submission. If subclass set to a subclass of</span>
-<span class="sd">        :class:`BasePage &lt;webdriver_test_tools.pageobject.base.BasePage&gt;`,</span>
+<span class="sd">        should appear on successful form submission. If subclass set to a</span>
+<span class="sd">        subclass of :class:`BasePage</span>
+<span class="sd">        &lt;webdriver_test_tools.pageobject.base.BasePage&gt;`,</span>
 <span class="sd">        :meth:`click_submit()` will return an instance of this object.</span>
+
+<span class="sd">    The following attributes are determined based on the contents of</span>
+<span class="sd">    :attr:`YAML_FILE`:</span>
+
+<span class="sd">    :var FORM_LOCATOR: Locator for the form element</span>
+<span class="sd">    :var SUBMIT_LOCATOR: Locator for the submit button</span>
+
+<span class="sd">    :var inputs: A dictionary mapping input names to the corresponding</span>
+<span class="sd">        :class:`InputObject` instances. The keys correspond with the ``name``</span>
+<span class="sd">        keys in the YAML representation of the form</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># Attribute with path to YAML file (parsed on __init__)</span>
+    <span class="n">YAML_FILE</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># Optional page object to return on click_submit()</span>
+    <span class="n">SUBMIT_SUCCESS_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1"># Locators</span>
     <span class="n">FORM_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">SUBMIT_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="c1"># Optional page object to return on click_submit()</span>
-    <span class="n">SUBMIT_SUCCESS_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># Input objects</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">{}</span>
 
 <div class="viewcode-block" id="FormObject.Input"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.Input">[docs]</a>    <span class="k">class</span> <span class="nc">Input</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Subclass used to contain name attributes and select/radio option lists for</span>
-<span class="sd">        inputs</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. deprecated:: 2.7.0</span>
+<span class="sd">            Use :class:`InputObject` and :attr:`FormObject.inputs` instead</span>
+
+<span class="sd">        Subclass used to contain name attributes and select/radio option lists</span>
+<span class="sd">        for inputs</span>
 
 <span class="sd">        :Example:</span>
 
-<span class="sd">            .. code:: python</span>
+<span class="sd">            .. code-block:: python</span>
 
 <span class="sd">                SOME_INPUT = &#39;someInput&#39;</span>
 
@@ -197,15 +550,109 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="FormObject.fill_form"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_form">[docs]</a>    <span class="k">def</span> <span class="nf">fill_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_map</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fill the form element inputs</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">YAML_FILE</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">YAML_FILE</span><span class="p">)</span>
 
-<span class="sd">        :param input_map: Dictionary mapping input names to the values to set them to.</span>
-<span class="sd">            See :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`</span>
+<div class="viewcode-block" id="FormObject.parse_yaml"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.parse_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse a YAML representation of the form object and set attributes</span>
+<span class="sd">        accordingly</span>
+
+<span class="sd">        See :ref:`YAML FormObjects doc &lt;yaml-form-objects&gt;` for details on</span>
+<span class="sd">        syntax.</span>
+
+<span class="sd">        :param file_path: Full path to the YAML file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">parsed_yaml</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_yaml_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="s1">&#39;form&#39;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span>
+                <span class="s2">&quot;Missing top level &#39;form&#39; key in YAML&quot;</span>
+            <span class="p">)</span>
+        <span class="c1"># Initialize locators</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">to_locator</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;form_locator&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">to_locator</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;submit_locator&#39;</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span>
+                <span class="s1">&#39;Missing required </span><span class="si">{}</span><span class="s1"> key in form YAML&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="c1"># Initialize inputs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">input_dict</span> <span class="ow">in</span> <span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;inputs&#39;</span><span class="p">]:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># TODO: Use different attribute as key so name can change without affecting code?</span>
+                <span class="n">input_name</span> <span class="o">=</span> <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+                <span class="c1"># Input names must be unique</span>
+                <span class="k">if</span> <span class="n">input_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>
+                    <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;Multiple inputs with the same &#39;name&#39; value (name: </span><span class="si">{}</span><span class="s2">). &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_name</span><span class="p">)</span>
+                    <span class="n">error_msg</span> <span class="o">+=</span> <span class="s1">&#39;Input names must be unique&#39;</span>
+                    <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLValueError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+                <span class="c1"># Initialize InputObject</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">input_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">InputObject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">input_dict</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;Missing required &#39;name&#39; key in input YAML (input: </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">input_dict</span><span class="p">))</span>
+                <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span></div>
+
+    <span class="c1"># TODO: deprecate old fill_form workflow</span>
+<div class="viewcode-block" id="FormObject.fill_form"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_form">[docs]</a>    <span class="k">def</span> <span class="nf">fill_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_map</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. deprecated:: 2.7.0</span>
+<span class="sd">           Use :meth:`fill_inputs` instead</span>
+
+<span class="sd">        Fill the form element inputs</span>
+
+<span class="sd">        :param input_map: Dictionary mapping input names to the values to set</span>
+<span class="sd">            them to. See</span>
+<span class="sd">            :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`</span>
 <span class="sd">            for values to use for different input types</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s1">&#39;FormObject.fill_form() is deprecated and may be removed in future versions, use fill_inputs() instead&#39;</span><span class="p">,</span>
+            <span class="ne">DeprecationWarning</span>
+        <span class="p">)</span>
         <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span><span class="p">)</span>
         <span class="n">actions</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">fill_form_inputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">input_map</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FormObject.fill_inputs"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_inputs">[docs]</a>    <span class="k">def</span> <span class="nf">fill_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_map</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fill form inputs</span>
+
+<span class="sd">        :param input_map: Dictionary mapping input `name` key to the values to set</span>
+<span class="sd">            them to. See :meth:`InputObject.set_value` for value formats for</span>
+<span class="sd">            different input types</span>
+<span class="sd">        :param strict: (Default = False) If True, throw an exception if a key</span>
+<span class="sd">            in ``input_map`` is not a valid key in ``self.inputs``. Otherwise</span>
+<span class="sd">            throw a warning and continue</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">input_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="c1"># TODO: verify</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">strict</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">e</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Invalid input name </span><span class="si">{}</span><span class="s1">, skipping&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+
+    <span class="c1"># TODO: test</span>
+<div class="viewcode-block" id="FormObject.get_input_values"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.get_input_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_input_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name_list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the current values of form inputs</span>
+
+<span class="sd">        :param name_list: (Optional) List of input names to get values for. If</span>
+<span class="sd">            unspecified, will get values for all inputs</span>
+
+<span class="sd">        :return: Dictionary mapping names to the value of each input</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name_list</span><span class="p">:</span>
+            <span class="c1"># Get all inputs if name_list isn&#39;t provided</span>
+            <span class="n">name_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Filter out invalid keys if name_list is provided</span>
+            <span class="n">name_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">name_list</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">name</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">name_list</span>
+        <span class="p">}</span></div>
 
 <div class="viewcode-block" id="FormObject.submit_is_enabled"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled">[docs]</a>    <span class="k">def</span> <span class="nf">submit_is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Short hand function for checking if the submit button is enabled. Useful</span>

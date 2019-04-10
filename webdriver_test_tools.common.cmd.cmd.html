@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -367,10 +368,31 @@ underscores and all invalid characters removed</td>
 </dd></dl>
 
 <dl class="function">
+<dt id="webdriver_test_tools.common.cmd.cmd.validate_module_name">
+<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">validate_module_name</code><span class="sig-paren">(</span><em>module_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_module_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_module_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes and replaces characters to ensure a string is a valid python
+module file name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module_name</strong> – The desired module name. If the name ends in .py, the
+extension will be removed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified module_name with whitespaces and hyphens replaced with
+underscores and all invalid characters removed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.validate_module_filename">
 <code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">validate_module_filename</code><span class="sig-paren">(</span><em>module_filename</em>, <em>suppress_ext_change=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_module_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_module_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes and replaces characters to ensure a string is a valid python
 module file name</p>
+<p>Essentially a wrapper around <a class="reference internal" href="#webdriver_test_tools.common.cmd.cmd.validate_module_name" title="webdriver_test_tools.common.cmd.cmd.validate_module_name"><code class="xref py py-func docutils literal notranslate"><span class="pre">validate_module_name()</span></code></a> that makes sure a
+.py extension is added to the end if needed</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

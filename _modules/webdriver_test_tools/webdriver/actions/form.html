@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../yaml.html">Page Object YAML files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -166,7 +167,34 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver</span> <span class="k">import</span> <span class="n">locate</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver.actions</span> <span class="k">import</span> <span class="n">scroll</span>
 
+
+<span class="c1"># Input helper methods</span>
+
+<div class="viewcode-block" id="toggle_checkbox"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.toggle_checkbox">[docs]</a><span class="k">def</span> <span class="nf">toggle_checkbox</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">checkbox_element</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper method for toggling checkboxes that may or may not be visible</span>
+
+<span class="sd">    If checkbox is visible, just click that element. If it&#39;s invisible for</span>
+<span class="sd">    styling reasons, try to find the corresponding label and click that</span>
+
+<span class="sd">    :param driver: Selenium webdriver object</span>
+<span class="sd">    :param checkbox_element: WebElement for the checkbox to toggle</span>
+
+<span class="sd">    :return: True if the checkbox is checked after toggling, False if unchecked</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">checkbox_element</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">():</span>
+        <span class="n">element_to_click</span> <span class="o">=</span> <span class="n">checkbox_element</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Assuming the checkbox has id attribute since label for attributes</span>
+        <span class="c1"># must reference it</span>
+        <span class="n">checkbox_id</span> <span class="o">=</span> <span class="n">checkbox_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+        <span class="n">label_css</span> <span class="o">=</span> <span class="s1">&#39;label[for=&quot;</span><span class="si">{}</span><span class="s1">&quot;]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">checkbox_id</span><span class="p">)</span>
+        <span class="n">element_to_click</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="n">label_css</span><span class="p">)</span>
+    <span class="n">scroll</span><span class="o">.</span><span class="n">to_and_click</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_to_click</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">checkbox_element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span></div>
+
+
 <span class="c1"># Setting form input values</span>
+<span class="c1"># TODO: deprecate? These are handled by InputObject methods</span>
 
 <div class="viewcode-block" id="fill_form_inputs"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.fill_form_inputs">[docs]</a><span class="k">def</span> <span class="nf">fill_form_inputs</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">input_name_map</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Takes a dictionary mapping input names to the desired values and fill out the form accordingly</span>
@@ -185,7 +213,7 @@
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">input_name_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">fill_form_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="fill_form_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.fill_form_input">[docs]</a><span class="k">def</span> <span class="nf">fill_form_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="fill_form_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.fill_form_input">[docs]</a><span class="k">def</span> <span class="nf">fill_form_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">form_element</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Takes the name and value of a form input and determines what type it is to fill</span>
 <span class="sd">    it appropriately.</span>
 
@@ -207,10 +235,16 @@
 <span class="sd">        * For file inputs, this value should be a filepath to the desired file.</span>
 <span class="sd">        * For other input types (text, number, etc) this should be a string</span>
 <span class="sd">          representation of the values to enter into it.</span>
+
+<span class="sd">    :param input_type: (Optional) If known, the ``type`` attribute of the input</span>
+<span class="sd">        or tag name for non-input elements (e.g. select). If unspecified, this</span>
+<span class="sd">        method will determine the type using element attributes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">input_element</span> <span class="o">=</span> <span class="n">form_element</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-    <span class="c1"># If element tag isn&#39;t input, use tag name as input_type (e.g. select)</span>
-    <span class="n">input_type</span> <span class="o">=</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="o">!=</span> <span class="s1">&#39;input&#39;</span> <span class="k">else</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
+    <span class="c1"># Determine input type if unspecified</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">input_type</span><span class="p">:</span>
+        <span class="c1"># If element tag isn&#39;t input, use tag name as input_type (e.g. select)</span>
+        <span class="n">input_type</span> <span class="o">=</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="o">!=</span> <span class="s1">&#39;input&#39;</span> <span class="k">else</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
     <span class="c1"># figure out the input type, handle appropriately</span>
     <span class="c1"># Radio Buttons</span>
     <span class="k">if</span> <span class="n">input_type</span> <span class="o">==</span> <span class="s1">&#39;radio&#39;</span><span class="p">:</span>
@@ -250,6 +284,7 @@
     <span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">radio_element</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
     <span class="n">radio_element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></div>
 
+<span class="c1"># TODO: account for checkbox names with multiple values</span>
 <div class="viewcode-block" id="toggle_checkbox_input"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.toggle_checkbox_input">[docs]</a><span class="k">def</span> <span class="nf">toggle_checkbox_input</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">checkbox_element</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Set the checked state of a checkbox input</span>
 
@@ -342,18 +377,23 @@
     <span class="k">return</span> <span class="n">input_map</span></div>
 
 
-<div class="viewcode-block" id="get_form_input_value"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_form_input_value">[docs]</a><span class="k">def</span> <span class="nf">get_form_input_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">):</span>
+<div class="viewcode-block" id="get_form_input_value"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_form_input_value">[docs]</a><span class="k">def</span> <span class="nf">get_form_input_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the value of an input</span>
 
-<span class="sd">    This function contains the logic to determine what kind of input this is and uses</span>
-<span class="sd">    the appropriate function to retrieve its value</span>
+<span class="sd">    This function contains the logic to determine what kind of input this is</span>
+<span class="sd">    and uses the appropriate function to retrieve its value</span>
 
 <span class="sd">    :param input_element: WebElement for the input</span>
+<span class="sd">    :param input_type: (Optional) If known, the ``type`` attribute of the input</span>
+<span class="sd">        or tag name for non-input elements (e.g. select). If unspecified, this</span>
+<span class="sd">        method will determine the type using element attributes</span>
 
 <span class="sd">    :return: The value of the input</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># If element tag isn&#39;t input, use tag name as input_type (e.g. select)</span>
-    <span class="n">input_type</span> <span class="o">=</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="o">!=</span> <span class="s1">&#39;input&#39;</span> <span class="k">else</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
+    <span class="c1"># Determine input type if unspecified</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">input_type</span><span class="p">:</span>
+        <span class="c1"># If element tag isn&#39;t input, use tag name as input_type (e.g. select)</span>
+        <span class="n">input_type</span> <span class="o">=</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">tag_name</span> <span class="o">!=</span> <span class="s1">&#39;input&#39;</span> <span class="k">else</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
     <span class="c1"># figure out the input type, handle appropriately</span>
     <span class="c1"># Radio Buttons</span>
     <span class="k">if</span> <span class="n">input_type</span> <span class="o">==</span> <span class="s1">&#39;radio&#39;</span><span class="p">:</span>
@@ -386,6 +426,7 @@
     <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">input_element</span><span class="o">.</span><span class="n">is_selected</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span></div>
 
 
+<span class="c1"># TODO: handle multi-checkboxes</span>
 <div class="viewcode-block" id="get_checkbox_value"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_checkbox_value">[docs]</a><span class="k">def</span> <span class="nf">get_checkbox_value</span><span class="p">(</span><span class="n">input_element</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get the value of a checkbox input</span>
 
@@ -411,9 +452,15 @@
 
 <span class="sd">    :param input_element: WebElement for the input</span>
 
-<span class="sd">    :return: The value attribute of the selected option</span>
+<span class="sd">    :return: The value attribute of the selected option or None if nothing is</span>
+<span class="sd">        selected</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">input_element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span></div>
+    <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">input_element</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="n">first_selected_option</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">value</span></div>
 
 
 <div class="viewcode-block" id="get_select_multiple_values"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.actions.form.html#webdriver_test_tools.webdriver.actions.form.get_select_multiple_values">[docs]</a><span class="k">def</span> <span class="nf">get_select_multiple_values</span><span class="p">(</span><span class="n">input_element</span><span class="p">):</span>
