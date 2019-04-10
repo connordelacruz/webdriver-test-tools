@@ -336,11 +336,11 @@ class FormObject(BasePage):
 
     Subclasses should set the following attributes:
 
-    :var YAML_FILENAME: Path to a YAML file representing the form object. This
-        file is parsed during initialization using :meth:`parse_yaml` and is
-        used to determine :attr:`FORM_LOCATOR` and :attr:`SUBMIT_LOCATOR` and
-        create :class:`InputObject` instances for each input, which are stored
-        in :attr:`inputs`
+    :var YAML_FILE: Path to a YAML file representing the form object. This file
+        is parsed during initialization using :meth:`parse_yaml` and is used to
+        determine :attr:`FORM_LOCATOR` and :attr:`SUBMIT_LOCATOR` and create
+        :class:`InputObject` instances for each input, which are stored in
+        :attr:`inputs`
     :var SUBMIT_SUCCESS_CLASS: (Optional) Page object of modal/webpage/etc that
         should appear on successful form submission. If subclass set to a
         subclass of :class:`BasePage
@@ -348,7 +348,7 @@ class FormObject(BasePage):
         :meth:`click_submit()` will return an instance of this object.
 
     The following attributes are determined based on the contents of
-    :attr:`YAML_FILENAME`:
+    :attr:`YAML_FILE`:
 
     :var FORM_LOCATOR: Locator for the form element
     :var SUBMIT_LOCATOR: Locator for the submit button
@@ -371,7 +371,7 @@ class FormObject(BasePage):
     class Input:
         """
         .. deprecated:: 2.7.0
-            Use :class:`InputObject`s and :attr:`FormObject.inputs` instead
+            Use :class:`InputObject` and :attr:`FormObject.inputs` instead
 
         Subclass used to contain name attributes and select/radio option lists
         for inputs

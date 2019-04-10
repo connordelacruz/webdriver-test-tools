@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../yaml.html">Page Object YAML files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -164,6 +165,13 @@
 <span class="k">class</span> <span class="nc">ColourTextTestRunner</span><span class="p">(</span><span class="n">runner</span><span class="o">.</span><span class="n">TextTestRunner</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A test runner that uses colour in its output&quot;&quot;&quot;</span>
     <span class="n">resultclass</span> <span class="o">=</span> <span class="n">ColourTextTestResult</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">no_colour</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;no_colour&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ColourTextTestRunner</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_makeResult</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">resultclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">descriptions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_colour</span><span class="p">)</span>
 </pre></div>
 
            </div>

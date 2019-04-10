@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="BrowserStack Support" href="browserstack.html" />
+    <link rel="next" title="Page Object YAML files" href="yaml.html" />
     <link rel="prev" title="Testing with Additional Browsers" href="additional_browsers.html" /> 
 
   
@@ -109,6 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#screenshots">Screenshots</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -176,31 +177,31 @@
            <div itemprop="articleBody">
             
   <div class="section" id="testing-utilities">
-<h1><a class="toc-backref" href="#id8">Testing Utilities</a><a class="headerlink" href="#testing-utilities" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id9">Testing Utilities</a><a class="headerlink" href="#testing-utilities" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#testing-utilities" id="id8">Testing Utilities</a><ul>
-<li><a class="reference internal" href="#page-object-prototypes" id="id9">Page Object Prototypes</a><ul>
-<li><a class="reference internal" href="#example" id="id10">Example</a></li>
-<li><a class="reference internal" href="#using-prototypes-in-new-page-objects" id="id11">Using Prototypes in New Page Objects</a></li>
+<li><a class="reference internal" href="#testing-utilities" id="id9">Testing Utilities</a><ul>
+<li><a class="reference internal" href="#page-object-prototypes" id="id10">Page Object Prototypes</a><ul>
+<li><a class="reference internal" href="#example" id="id11">Example</a></li>
+<li><a class="reference internal" href="#using-prototypes-in-new-page-objects" id="id12">Using Prototypes in New Page Objects</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#test-data-generation" id="id12">Test Data Generation</a><ul>
-<li><a class="reference internal" href="#id1" id="id13">Example</a></li>
+<li><a class="reference internal" href="#test-data-generation" id="id13">Test Data Generation</a><ul>
+<li><a class="reference internal" href="#id1" id="id14">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#static-test-data" id="id14">Static Test Data</a><ul>
-<li><a class="reference internal" href="#id2" id="id15">Example</a></li>
+<li><a class="reference internal" href="#static-test-data" id="id15">Static Test Data</a><ul>
+<li><a class="reference internal" href="#id2" id="id16">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#screenshots" id="id16">Screenshots</a></li>
+<li><a class="reference internal" href="#screenshots" id="id17">Screenshots</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="page-object-prototypes">
-<h2><a class="toc-backref" href="#id9">Page Object Prototypes</a><a class="headerlink" href="#page-object-prototypes" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Page Object Prototypes</a><a class="headerlink" href="#page-object-prototypes" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code> package includes pre-defined subclasses of
 <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a> for common
 components like forms and navbars. These classes define common methods and
@@ -208,7 +209,7 @@ attributes to reduce the amount of code needed to create page objects.</p>
 <p>For more information and a list of currently implemented page object
 prototypes, see the <a class="reference internal" href="webdriver_test_tools.pageobject.prototypes.html"><span class="doc">full documentation</span></a>.</p>
 <div class="section" id="example">
-<h3><a class="toc-backref" href="#id10">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <p>Suppose we have a “Contact Us” form with form validation that disables the
 submit button until required inputs are filled. When submit is clicked, a modal
 appears informing the user that their submission was successful. The modal has a
@@ -225,30 +226,22 @@ We’ll then need to create <code class="docutils literal notranslate"><span cla
 for most of the tasks we want them to do.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">pages/contact.py</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver</span> <span class="k">import</span> <span class="n">actions</span><span class="p">,</span> <span class="n">locate</span>
 
 
 <span class="k">class</span> <span class="nc">ContactPage</span><span class="p">(</span><span class="n">prototypes</span><span class="o">.</span><span class="n">FormObject</span><span class="p">):</span>
+    <span class="c1"># Path to YAML file representing the form object</span>
+    <span class="n">YAML_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;contact.yml&#39;</span><span class="p">)</span>
+
     <span class="c1"># Relative to SiteConfig.BASE_URL</span>
     <span class="n">PAGE_FILENAME</span> <span class="o">=</span> <span class="s1">&#39;contact.html&#39;</span>
 
-    <span class="k">class</span> <span class="nc">Locator</span><span class="p">:</span>
-        <span class="n">CONTACT_FORM</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;contact-form&#39;</span><span class="p">)</span>
-        <span class="n">SUBMIT</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">)</span>
-
-    <span class="c1"># Attributes used by FormObject methods</span>
-    <span class="n">FORM_LOCATOR</span> <span class="o">=</span> <span class="n">Locator</span><span class="o">.</span><span class="n">CONTACT_FORM</span>
-    <span class="n">SUBMIT_LOCATOR</span> <span class="o">=</span> <span class="n">Locator</span><span class="o">.</span><span class="n">SUBMIT</span>
+    <span class="c1"># Page object class to return on click_submit()</span>
     <span class="n">SUBMIT_SUCCESS_CLASS</span> <span class="o">=</span> <span class="n">SuccessModal</span>
-
-    <span class="k">class</span> <span class="nc">Input</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Constants for input names&quot;&quot;&quot;</span>
-        <span class="n">FIRST_NAME</span> <span class="o">=</span> <span class="s1">&#39;firstname&#39;</span>
-        <span class="n">LAST_NAME</span> <span class="o">=</span> <span class="s1">&#39;lastname&#39;</span>
-        <span class="n">EMAIL</span> <span class="o">=</span> <span class="s1">&#39;email&#39;</span>
-        <span class="n">MESSAGE</span> <span class="o">=</span> <span class="s1">&#39;message&#39;</span>
 
 
 <span class="k">class</span> <span class="nc">SuccessModal</span><span class="p">(</span><span class="n">prototypes</span><span class="o">.</span><span class="n">ModalObject</span><span class="p">):</span>
@@ -264,23 +257,53 @@ for most of the tasks we want them to do.</p>
 </pre></div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">FormObject</span></code> attributes <code class="docutils literal notranslate"><span class="pre">FORM_LOCATOR</span></code> and <code class="docutils literal notranslate"><span class="pre">SUBMIT_LOCATOR</span></code> need to be
-set to use the methods <code class="docutils literal notranslate"><span class="pre">fill_form()</span></code> and <code class="docutils literal notranslate"><span class="pre">click_submit()</span></code>.  If the
-<code class="docutils literal notranslate"><span class="pre">SUBMIT_SUCCESS_CLASS</span></code> attribute is set, <code class="docutils literal notranslate"><span class="pre">click_submit()</span></code> will return an
-initialized page object of that type. The <code class="docutils literal notranslate"><span class="pre">ModalObject</span></code> attribute and
-<code class="docutils literal notranslate"><span class="pre">CLOSE_LOCATOR</span></code> needs to be set to use the method <code class="docutils literal notranslate"><span class="pre">click_close_button()</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FormObject</span></code> parses the file specified with the <code class="docutils literal notranslate"><span class="pre">YAML_FILE</span></code> attribute on
+initialization:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">pages/contact.yml</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="p">:</span>
+  <span class="c1"># REQUIRED: Locator for the form</span>
+  <span class="n">form_locator</span><span class="p">:</span>
+    <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+    <span class="n">locator</span><span class="p">:</span> <span class="n">contact</span><span class="o">-</span><span class="n">form</span>
+  <span class="c1"># REQUIRED: Locator for the submit button</span>
+  <span class="n">submit_locator</span><span class="p">:</span>
+    <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+    <span class="n">locator</span><span class="p">:</span> <span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span>
+  <span class="c1"># List of inputs in the form</span>
+  <span class="n">inputs</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">firstname</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">lastname</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">email</span>
+      <span class="nb">type</span><span class="p">:</span> <span class="n">email</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">message</span>
+      <span class="nb">type</span><span class="p">:</span> <span class="n">textarea</span>
+</pre></div>
+</div>
+</div>
+<p>This is used to set the attributes <code class="docutils literal notranslate"><span class="pre">FORM_LOCATOR</span></code> and <code class="docutils literal notranslate"><span class="pre">SUBMIT_LOCATOR</span></code>,
+which are required to use the methods <code class="docutils literal notranslate"><span class="pre">fill_inputs()</span></code> and <code class="docutils literal notranslate"><span class="pre">click_submit()</span></code>.
+If the <code class="docutils literal notranslate"><span class="pre">SUBMIT_SUCCESS_CLASS</span></code> attribute is set, <code class="docutils literal notranslate"><span class="pre">click_submit()</span></code> will return
+an initialized page object of that type.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For more information on YAML syntax, see <a class="reference internal" href="yaml.html#yaml-page-objects"><span class="std std-ref">Page Object YAML files</span></a>.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ModalObject</span></code> attribute <code class="docutils literal notranslate"><span class="pre">CLOSE_LOCATOR</span></code> needs to be set to use the
+method <code class="docutils literal notranslate"><span class="pre">click_close_button()</span></code>.</p>
 <p>After creating those page object classes, we have everything necessary to
 write our test in <code class="docutils literal notranslate"><span class="pre">ContactTestCase</span></code>:</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">tests/contact.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">tests/contact.py</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">test_contact_form</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Send message through contact form&quot;&quot;&quot;</span>
         <span class="n">contact_page</span> <span class="o">=</span> <span class="n">ContactPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
         <span class="n">contact_form_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_contact_form_data</span><span class="p">()</span>
 
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="s1">&#39;Fill all required fields&#39;</span><span class="p">):</span>
-            <span class="n">contact_page</span><span class="o">.</span><span class="n">fill_form</span><span class="p">(</span><span class="n">contact_form_data</span><span class="p">)</span>
+            <span class="n">contact_page</span><span class="o">.</span><span class="n">fill_inputs</span><span class="p">(</span><span class="n">contact_form_data</span><span class="p">)</span>
             <span class="c1"># Assert submit is enabled after filling required fields</span>
+            <span class="c1"># (SUBMIT_LOCATOR is set based on the submit_locator value in contact.yml)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEnabled</span><span class="p">(</span><span class="n">contact_page</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span>
 
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="s1">&#39;Submit contact form&#39;</span><span class="p">):</span>
@@ -296,13 +319,13 @@ write our test in <code class="docutils literal notranslate"><span class="pre">C
 </pre></div>
 </div>
 </div>
-<p>The <a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_form" title="webdriver_test_tools.pageobject.form.FormObject.fill_form"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_form()</span></code></a> method takes a
-dictionary mapping input names to the values to set them to. In the following
-section, we will create the <code class="docutils literal notranslate"><span class="pre">generate_contact_form_data()</span></code> method used to
-assign <code class="docutils literal notranslate"><span class="pre">contact_form_data</span></code> in the above example.</p>
+<p>The <a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_inputs" title="webdriver_test_tools.pageobject.form.FormObject.fill_inputs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_inputs()</span></code></a> method takes a
+dictionary mapping input names to the values to set them to. In the <a class="reference internal" href="#test-data-generation">Test Data
+Generation</a> section, we will create the <code class="docutils literal notranslate"><span class="pre">generate_contact_form_data()</span></code> method
+used to assign <code class="docutils literal notranslate"><span class="pre">contact_form_data</span></code> in the above example.</p>
 </div>
 <div class="section" id="using-prototypes-in-new-page-objects">
-<h3><a class="toc-backref" href="#id11">Using Prototypes in New Page Objects</a><a class="headerlink" href="#using-prototypes-in-new-page-objects" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Using Prototypes in New Page Objects</a><a class="headerlink" href="#using-prototypes-in-new-page-objects" title="Permalink to this headline">¶</a></h3>
 <p>By default, page objects generated using the <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">page</span></code> command use a basic
 template and subclass <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>. You can specify a page object
 prototype to use as a basis for a new page using the <code class="docutils literal notranslate"><span class="pre">--prototype</span></code> (or <code class="docutils literal notranslate"><span class="pre">-p</span></code>)
@@ -324,7 +347,7 @@ include any variable declarations used by that prototype’s methods.</p>
 </div>
 </div>
 <div class="section" id="test-data-generation">
-<h2><a class="toc-backref" href="#id12">Test Data Generation</a><a class="headerlink" href="#test-data-generation" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Test Data Generation</a><a class="headerlink" href="#test-data-generation" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code> package includes some utility packages for
 generating random user information and placeholder text to use for sample data:</p>
 <blockquote>
@@ -343,20 +366,20 @@ convenience. To use them, add the following import statement:</p>
 </pre></div>
 </div>
 <div class="section" id="id1">
-<h3><a class="toc-backref" href="#id13">Example</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Example</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Continuing from the above example, we’ll add the following method to
 <code class="docutils literal notranslate"><span class="pre">ContactTestCase</span></code>:</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">tests/contact.py</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">tests/contact.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">generate_contact_form_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a dictionary mapping input names to generated user data&quot;&quot;&quot;</span>
         <span class="n">user</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">RandomUser</span><span class="p">({</span><span class="s1">&#39;nat&#39;</span><span class="p">:</span> <span class="s1">&#39;us&#39;</span><span class="p">})</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loremipsum</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">)</span>
         <span class="n">form_data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">ContactPage</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">FIRST_NAME</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">get_first_name</span><span class="p">(),</span>
-            <span class="n">ContactPage</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">LAST_NAME</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">get_last_name</span><span class="p">(),</span>
-            <span class="n">ContactPage</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">EMAIL</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">get_email</span><span class="p">(),</span>
-            <span class="n">ContactPage</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">MESSAGE</span><span class="p">:</span> <span class="n">msg</span><span class="p">,</span>
+            <span class="s1">&#39;firstname&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">get_first_name</span><span class="p">(),</span>
+            <span class="s1">&#39;lastname&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">get_last_name</span><span class="p">(),</span>
+            <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">get_email</span><span class="p">(),</span>
+            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">msg</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">form_data</span>
 </pre></div>
@@ -367,18 +390,18 @@ mapping form input names to the corresponding values.</p>
 </div>
 </div>
 <div class="section" id="static-test-data">
-<h2><a class="toc-backref" href="#id14">Static Test Data</a><a class="headerlink" href="#static-test-data" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">Static Test Data</a><a class="headerlink" href="#static-test-data" title="Permalink to this headline">¶</a></h2>
 <p>Some tests may require static data for testing (e.g. login info for a registered
 user). These values can be stored in inside the <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/data.py</span></code>
 module to keep them independent of test modules or page objects.</p>
 <div class="section" id="id2">
-<h3><a class="toc-backref" href="#id15">Example</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Example</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Suppose we have a user registration form that displays an error when registering
 with an email of an existing user. To test this functionality, we’ll need to use
 an email that we know is already registered. We can add the following value to
 the <code class="docutils literal notranslate"><span class="pre">data</span></code> module and import it in our test modules:</p>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">data.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">data.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># email for a registered user</span>
 <span class="n">REGISTERED_USER_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;registered.user@example.com&#39;</span>
 </pre></div>
@@ -391,12 +414,12 @@ updated in a single place without altering the tests.</p>
 </div>
 </div>
 <div class="section" id="screenshots">
-<h2><a class="toc-backref" href="#id16">Screenshots</a><a class="headerlink" href="#screenshots" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id17">Screenshots</a><a class="headerlink" href="#screenshots" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail"><code class="xref py py-meth docutils literal notranslate"><span class="pre">WebDriverTestCase.screenshotOnFail()</span></code></a>
 decorator method can be used to save screenshots when a test assertion fails.
 This can be particularly useful when running tests using <a class="reference internal" href="additional_browsers.html#headless-browsers"><span class="std std-ref">headless browsers</span></a>.</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">Usage example:</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Usage example:</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="nd">@WebDriverTestCase.screenshotOnFail</span><span class="p">()</span>
@@ -425,7 +448,7 @@ for more information.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="browserstack.html" class="btn btn-neutral float-right" title="BrowserStack Support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="yaml.html" class="btn btn-neutral float-right" title="Page Object YAML files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="additional_browsers.html" class="btn btn-neutral" title="Testing with Additional Browsers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
