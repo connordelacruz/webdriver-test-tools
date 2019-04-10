@@ -56,12 +56,19 @@ which are required to use the methods ``fill_inputs()`` and ``click_submit()``.
 If the ``SUBMIT_SUCCESS_CLASS`` attribute is set, ``click_submit()`` will return
 an initialized page object of that type. 
 
+The ``ModalObject`` parses the file specified with the ``YAML_FILE`` attribute
+on initialization:
+
+.. literalinclude:: ../example/util-example/util_example/pages/success_modal.yml
+    :caption: pages/success_modal.yml
+
+This is used to set the attributes ``MODAL_LOCATOR`` and ``CLOSE_LOCATOR``,
+which are required to use the ``click_close_button()`` method and other
+``ModalObject`` methods. 
+
 .. note::
 
    For more information on YAML syntax, see :ref:`yaml-page-objects`.
-
-The ``ModalObject`` attribute ``CLOSE_LOCATOR`` needs to be set to use the
-method ``click_close_button()``. 
 
 After creating those page object classes, we have everything necessary to
 write our test in ``ContactTestCase``:

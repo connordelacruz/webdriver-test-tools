@@ -17,12 +17,6 @@ class ContactPage(prototypes.FormObject):
 
 
 class SuccessModal(prototypes.ModalObject):
-
-    class Locator:
-        SUCCESS_MODAL = (By.ID, 'success-modal')
-        CLOSE_BUTTON = (By.ID, 'close')
-
-    # Attributes used by ModalObject methods
-    MODAL_LOCATOR = Locator.SUCCESS_MODAL
-    CLOSE_LOCATOR = Locator.CLOSE_BUTTON
+    # Path to YAML file representing the modal object
+    YAML_FILE = os.path.join(os.path.dirname(__file__), 'success_modal.yml')
 
