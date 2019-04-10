@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -181,6 +182,29 @@
 <span id="webdriver-test-tools-webdriver-actions-form-module"></span><h1>webdriver_test_tools.webdriver.actions.form module<a class="headerlink" href="#module-webdriver_test_tools.webdriver.actions.form" title="Permalink to this headline">¶</a></h1>
 <p>Functions for interacting with forms</p>
 <dl class="function">
+<dt id="webdriver_test_tools.webdriver.actions.form.toggle_checkbox">
+<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">toggle_checkbox</code><span class="sig-paren">(</span><em>driver</em>, <em>checkbox_element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#toggle_checkbox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.toggle_checkbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper method for toggling checkboxes that may or may not be visible</p>
+<p>If checkbox is visible, just click that element. If it’s invisible for
+styling reasons, try to find the corresponding label and click that</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>driver</strong> – Selenium webdriver object</li>
+<li><strong>checkbox_element</strong> – WebElement for the checkbox to toggle</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the checkbox is checked after toggling, False if unchecked</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="webdriver_test_tools.webdriver.actions.form.fill_form_inputs">
 <code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">fill_form_inputs</code><span class="sig-paren">(</span><em>driver</em>, <em>form_element</em>, <em>input_name_map</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#fill_form_inputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.fill_form_inputs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes a dictionary mapping input names to the desired values and fill out the form accordingly</p>
@@ -206,7 +230,7 @@ different inputs.</li>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.actions.form.fill_form_input">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">fill_form_input</code><span class="sig-paren">(</span><em>driver</em>, <em>form_element</em>, <em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#fill_form_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.fill_form_input" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">fill_form_input</code><span class="sig-paren">(</span><em>driver</em>, <em>form_element</em>, <em>name</em>, <em>value</em>, <em>input_type=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#fill_form_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.fill_form_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes the name and value of a form input and determines what type it is to fill
 it appropriately.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -234,6 +258,9 @@ options to select.</li>
 representation of the values to enter into it.</li>
 </ul>
 </li>
+<li><strong>input_type</strong> – (Optional) If known, the <code class="docutils literal notranslate"><span class="pre">type</span></code> attribute of the input
+or tag name for non-input elements (e.g. select). If unspecified, this
+method will determine the type using element attributes</li>
 </ul>
 </td>
 </tr>
@@ -376,17 +403,24 @@ types of different inputs.</p>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.actions.form.get_form_input_value">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">get_form_input_value</code><span class="sig-paren">(</span><em>input_element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#get_form_input_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.get_form_input_value" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">get_form_input_value</code><span class="sig-paren">(</span><em>input_element</em>, <em>input_type=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#get_form_input_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.get_form_input_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the value of an input</p>
-<p>This function contains the logic to determine what kind of input this is and uses
-the appropriate function to retrieve its value</p>
+<p>This function contains the logic to determine what kind of input this is
+and uses the appropriate function to retrieve its value</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_element</strong> – WebElement for the input</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_element</strong> – WebElement for the input</li>
+<li><strong>input_type</strong> – (Optional) If known, the <code class="docutils literal notranslate"><span class="pre">type</span></code> attribute of the input
+or tag name for non-input elements (e.g. select). If unspecified, this
+method will determine the type using element attributes</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value of the input</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The value of the input</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -451,7 +485,8 @@ if it’s not selected</td>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_element</strong> – WebElement for the input</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value attribute of the selected option</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value attribute of the selected option or None if nothing is
+selected</td>
 </tr>
 </tbody>
 </table>

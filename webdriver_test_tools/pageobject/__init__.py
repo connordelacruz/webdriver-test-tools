@@ -23,8 +23,17 @@ Prototype Modules
    webdriver_test_tools.pageobject.nav
    webdriver_test_tools.pageobject.webpage
 
+
+Internal Modules
+----------------
+
+.. toctree::
+
+   webdriver_test_tools.pageobject.utils
+
 """
 
+from . import utils
 from .base import *
 from . import prototypes
 

@@ -23,6 +23,8 @@ class TestSuiteConfig:
 
     # Configure test runner
     RUNNER_CLASS = ColourTextTestRunner
+    # TODO: Enable warnings, only show deprecation
+    # RUNNER_KWARGS = {'warnings': 'default'}
     RUNNER_KWARGS = {}
     DEFAULT_VERBOSITY = 2
 

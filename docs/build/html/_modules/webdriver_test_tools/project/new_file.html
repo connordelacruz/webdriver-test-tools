@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -191,15 +192,34 @@
     <span class="n">WEB_PAGE_PROTOTYPE</span><span class="p">,</span>
 <span class="p">]</span>
 
-<span class="c1">#: Maps prototype names to corresponding template file name.</span>
+<span class="c1">#: Maps prototype names to the base name of the corresponding template files</span>
+<span class="c1">#: and a list of file extensions for each file.</span>
 <span class="c1">#: Empty string maps to generic BasePage template</span>
 <span class="n">PAGE_OBJECT_TEMPLATE_MAP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="s1">&#39;base_page.py&#39;</span><span class="p">,</span>
-    <span class="n">FORM_PROTOTYPE</span><span class="p">:</span> <span class="s1">&#39;form_object.py&#39;</span><span class="p">,</span>
-    <span class="n">MODAL_PROTOTYPE</span><span class="p">:</span> <span class="s1">&#39;modal_object.py&#39;</span><span class="p">,</span>
-    <span class="n">NAV_PROTOTYPE</span><span class="p">:</span> <span class="s1">&#39;nav_object.py&#39;</span><span class="p">,</span>
-    <span class="n">COLLAPSIBLE_NAV_PROTOTYPE</span><span class="p">:</span> <span class="s1">&#39;collapsible_nav_object.py&#39;</span><span class="p">,</span>
-    <span class="n">WEB_PAGE_PROTOTYPE</span><span class="p">:</span> <span class="s1">&#39;web_page_object.py&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;base_page&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;py&#39;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="n">FORM_PROTOTYPE</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span> <span class="p">:</span> <span class="s1">&#39;form_object&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;py&#39;</span><span class="p">,</span> <span class="s1">&#39;yml&#39;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="n">MODAL_PROTOTYPE</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span> <span class="p">:</span> <span class="s1">&#39;modal_object&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;py&#39;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="n">NAV_PROTOTYPE</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span> <span class="p">:</span> <span class="s1">&#39;nav_object&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;py&#39;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="n">COLLAPSIBLE_NAV_PROTOTYPE</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span> <span class="p">:</span> <span class="s1">&#39;collapsible_nav_object&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;py&#39;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="n">WEB_PAGE_PROTOTYPE</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span> <span class="p">:</span> <span class="s1">&#39;web_page_object&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;py&#39;</span><span class="p">]</span>
+    <span class="p">},</span>
 <span class="p">}</span>
 
 <span class="c1">#: Maps file type to corresponding subdirectory in a test package</span>
@@ -221,7 +241,9 @@
 <span class="sd">    :param test_package: The python package name of the test package</span>
 <span class="sd">    :param file_type: The type of file to create. Valid file types are stored</span>
 <span class="sd">        as global variables with the _TYPE suffix</span>
-<span class="sd">    :param module_name: Filename to use for the new python module</span>
+<span class="sd">    :param module_name: Python module name to use when creating the new file</span>
+<span class="sd">        (without the .py extension, as this name is used when creating any</span>
+<span class="sd">        additional non-Python files)</span>
 <span class="sd">    :param class_name: Name to use for the initial test class</span>
 <span class="sd">    :param description: (Optional) Description to use in the docstring of the</span>
 <span class="sd">        initial class</span>
@@ -237,27 +259,75 @@
 <span class="sd">          prototype template to use. Defaults to empty string (generic page</span>
 <span class="sd">          object)</span>
 
-<span class="sd">    :return: Path of the new file</span>
+<span class="sd">    :return: List of paths for each new file created</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">template_file</span> <span class="o">=</span> <span class="n">TEMPLATE_MAP</span><span class="p">[</span><span class="n">file_type</span><span class="p">]</span>
-    <span class="c1"># If this is a page, determine which template in page_object/ to use</span>
-    <span class="k">if</span> <span class="n">file_type</span> <span class="o">==</span> <span class="n">PAGE_TYPE</span><span class="p">:</span>
-        <span class="c1"># Default to empty string (base_page.py)</span>
-        <span class="n">prototype</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="n">template_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-            <span class="n">template_file</span><span class="p">,</span> <span class="n">PAGE_OBJECT_TEMPLATE_MAP</span><span class="p">[</span><span class="n">prototype</span><span class="p">]</span>
-        <span class="p">)</span>
-    <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">DIRECTORY_MAP</span><span class="p">[</span><span class="n">file_type</span><span class="p">])</span>
     <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;test_package&#39;</span><span class="p">:</span> <span class="n">test_package</span><span class="p">,</span>
         <span class="s1">&#39;module_name&#39;</span><span class="p">:</span> <span class="n">module_name</span><span class="p">,</span>
         <span class="s1">&#39;class_name&#39;</span><span class="p">:</span> <span class="n">class_name</span><span class="p">,</span>
         <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="n">create_file_from_template</span><span class="p">(</span>
-        <span class="n">TEMPLATE_PATH</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">template_file</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span>
-        <span class="n">target_filename</span><span class="o">=</span><span class="n">module_name</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="n">force</span>
-    <span class="p">)</span></div>
+    <span class="k">if</span> <span class="n">file_type</span> <span class="o">==</span> <span class="n">PAGE_TYPE</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_new_page</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span>
+                         <span class="n">prototype</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+                         <span class="n">overwrite</span><span class="o">=</span><span class="n">force</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_new_test</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span>
+                         <span class="n">overwrite</span><span class="o">=</span><span class="n">force</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_new_page</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">prototype</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a new page object file</span>
+
+<span class="sd">    :param test_package_path: The root directory of the test package</span>
+<span class="sd">    :param context: Jinja context to use when creating the file. Assumes</span>
+<span class="sd">        ``context`` has the &#39;module_name&#39; key set</span>
+<span class="sd">    :param prototype: (Default: &#39;&#39;) Key in :data:`PAGE_OBJECT_TEMPLATE_MAP`</span>
+<span class="sd">        specifying the prototype template to use. Defaults to empty string</span>
+<span class="sd">        (generic page object)</span>
+<span class="sd">    :param overwrite: (Default: False) If True, force overwrite if attempting</span>
+<span class="sd">        to create a file that already exists</span>
+
+<span class="sd">    :return: List of paths for each new file created</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">template_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">TEMPLATE_PATH</span><span class="p">,</span> <span class="n">TEMPLATE_MAP</span><span class="p">[</span><span class="n">PAGE_TYPE</span><span class="p">])</span>
+    <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">DIRECTORY_MAP</span><span class="p">[</span><span class="n">PAGE_TYPE</span><span class="p">])</span>
+    <span class="c1"># Get info on template(s) for prototype</span>
+    <span class="n">template_map</span> <span class="o">=</span> <span class="n">PAGE_OBJECT_TEMPLATE_MAP</span><span class="p">[</span><span class="n">prototype</span><span class="p">]</span>
+    <span class="c1"># Keep track of files created</span>
+    <span class="n">new_files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">template_map</span><span class="p">[</span><span class="s1">&#39;types&#39;</span><span class="p">]:</span>
+        <span class="n">template_filename</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">template_map</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">ext</span><span class="p">)</span>
+        <span class="n">target_filename</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context</span><span class="p">[</span><span class="s1">&#39;module_name&#39;</span><span class="p">],</span> <span class="n">ext</span><span class="p">)</span>
+        <span class="n">new_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">create_file_from_template</span><span class="p">(</span>
+            <span class="n">template_path</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">template_filename</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span>
+            <span class="n">target_filename</span><span class="o">=</span><span class="n">target_filename</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="n">overwrite</span>
+        <span class="p">))</span>
+    <span class="k">return</span> <span class="n">new_files</span>
+
+
+<span class="k">def</span> <span class="nf">_new_test</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a new test file</span>
+
+<span class="sd">    :param test_package_path: The root directory of the test package</span>
+<span class="sd">    :param context: Jinja context to use when creating the file. Assumes</span>
+<span class="sd">        ``context`` has the &#39;module_name&#39; key set</span>
+<span class="sd">    :param overwrite: (Default: False) If True, force overwrite if attempting</span>
+<span class="sd">        to create a file that already exists</span>
+
+<span class="sd">    :return: List of paths for each new file created</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">DIRECTORY_MAP</span><span class="p">[</span><span class="n">TEST_TYPE</span><span class="p">])</span>
+    <span class="n">template_filename</span> <span class="o">=</span> <span class="n">TEMPLATE_MAP</span><span class="p">[</span><span class="n">TEST_TYPE</span><span class="p">]</span>
+    <span class="n">target_filename</span> <span class="o">=</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;module_name&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.py&#39;</span>
+    <span class="n">new_file</span> <span class="o">=</span> <span class="n">create_file_from_template</span><span class="p">(</span>
+        <span class="n">TEMPLATE_PATH</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">template_filename</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span>
+        <span class="n">target_filename</span><span class="o">=</span><span class="n">target_filename</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="n">overwrite</span>
+    <span class="p">)</span>
+    <span class="c1"># Return a list to keep value consistent with _new_page()</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">new_file</span><span class="p">]</span>
+
+
 
 </pre></div>
 

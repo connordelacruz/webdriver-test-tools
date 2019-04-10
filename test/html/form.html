@@ -27,21 +27,13 @@
         <h2 class="card-title">Test Form</h2>
         <form id="test-form">
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="optText">Optional Text:</label>
                     <input type="text" class="form-control" name="optText" id="optText">
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="reqText">Required Text:</label>
-                    <input type="text" class="form-control" name="reqText" id="reqText" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="disText">Disabled Text:</label>
-                    <input type="text" class="form-control" name="disText" id="disText" disabled>
-                </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label>Optional Radio:</label>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="optRadio" value="1" id="optRadio1">
@@ -52,54 +44,35 @@
                         <label for="optRadio2">Radio 2</label>
                     </div>
                 </div>
-                <div class="form-group col-md-4">
-                    <label>Required Radio:</label>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="reqRadio" value="1" id="reqRadio1" required>
-                        <label for="reqRadio1">Radio 1</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="reqRadio" value="2" id="reqRadio2" required>
-                        <label for="reqRadio2">Radio 2</label>
-                    </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Disabled Radio:</label>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="disRadio" value="1" id="disRadio1" disabled>
-                        <label for="disRadio1">Radio 1</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="disRadio" value="2" id="disRadio2" disabled>
-                        <label for="disRadio2">Radio 2</label>
-                    </div>
-                </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label>Optional Checkbox:</label>
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" name="optCheckbox" id="optCheckbox">
                         <label for="optCheckbox">Checkbox</label>
                     </div>
                 </div>
-                <div class="form-group col-md-4">
-                    <label>Required Checkbox:</label>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Optional Checkbox Group:</label>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="reqCheckbox" id="reqCheckbox" required>
-                        <label for="reqCheckbox">Checkbox</label>
+                        <input type="checkbox" class="form-check-input" name="optCheckboxGroup[]" id="optCheckbox1" value="1">
+                        <label for="optCheckbox1">Checkbox 1</label>
                     </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Disabled Checkbox:</label>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="disCheckbox" id="disCheckbox" disabled>
-                        <label for="disCheckbox">Checkbox</label>
+                        <input type="checkbox" class="form-check-input" name="optCheckboxGroup[]" id="optCheckbox2" value="2">
+                        <label for="optCheckbox2">Checkbox 2</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="optCheckboxGroup[]" id="optCheckbox3" value="3">
+                        <label for="optCheckbox3">Checkbox 3</label>
                     </div>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="optSelect">Optional Select:</label>
                     <select class="form-control" name="optSelect" id="optSelect">
                         <option value="" disabled selected>Select...</option>
@@ -107,43 +80,11 @@
                         <option value="2">Select 2</option>
                     </select>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="reqSelect">Required Select:</label>
-                    <select class="form-control" name="reqSelect" id="reqSelect" required>
-                        <option value="" disabled selected>Select...</option>
-                        <option value="1">Select 1</option>
-                        <option value="2">Select 2</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="disSelect">Disabled Select:</label>
-                    <select class="form-control" name="disSelect" id="disSelect" disabled>
-                        <option value="" disabled selected>Select...</option>
-                        <option value="1">Select 1</option>
-                        <option value="2">Select 2</option>
-                    </select>
-                </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="optMultipleSelect">Optional Select:</label>
+                <div class="form-group col-md-6">
+                    <label for="optMultipleSelect">Optional Multiple Select:</label>
                     <select multiple class="form-control" name="optMultipleSelect" id="optMultipleSelect">
-                        <option value="1">Select 1</option>
-                        <option value="2">Select 2</option>
-                        <option value="3">Select 3</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="reqMultipleSelect">Required Select:</label>
-                    <select multiple class="form-control" name="reqMultipleSelect" id="reqMultipleSelect" required>
-                        <option value="1">Select 1</option>
-                        <option value="2">Select 2</option>
-                        <option value="3">Select 3</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="disMultipleSelect">Disabled Select:</label>
-                    <select multiple class="form-control" name="disMultipleSelect" id="disMultipleSelect" disabled>
                         <option value="1">Select 1</option>
                         <option value="2">Select 2</option>
                         <option value="3">Select 3</option>

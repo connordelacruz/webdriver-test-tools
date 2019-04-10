@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -195,8 +196,9 @@ template path</p>
 
 <dl class="data">
 <dt id="webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP">
-<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">PAGE_OBJECT_TEMPLATE_MAP</code><em class="property"> = {'': 'base_page.py', 'collapsible nav': 'collapsible_nav_object.py', 'form': 'form_object.py', 'modal': 'modal_object.py', 'nav': 'nav_object.py', 'web page': 'web_page_object.py'}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maps prototype names to corresponding template file name.
+<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">PAGE_OBJECT_TEMPLATE_MAP</code><em class="property"> = {'': {'name': 'base_page', 'types': ['py']}, 'collapsible nav': {'name': 'collapsible_nav_object', 'types': ['py']}, 'form': {'name': 'form_object', 'types': ['py', 'yml']}, 'modal': {'name': 'modal_object', 'types': ['py']}, 'nav': {'name': 'nav_object', 'types': ['py']}, 'web page': {'name': 'web_page_object', 'types': ['py']}}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps prototype names to the base name of the corresponding template files
+and a list of file extensions for each file.
 Empty string maps to generic BasePage template</p>
 </dd></dl>
 
@@ -221,7 +223,9 @@ before calling this function</p>
 <li><strong>test_package</strong> – The python package name of the test package</li>
 <li><strong>file_type</strong> – The type of file to create. Valid file types are stored
 as global variables with the _TYPE suffix</li>
-<li><strong>module_name</strong> – Filename to use for the new python module</li>
+<li><strong>module_name</strong> – Python module name to use when creating the new file
+(without the .py extension, as this name is used when creating any
+additional non-Python files)</li>
 <li><strong>class_name</strong> – Name to use for the initial test class</li>
 <li><strong>description</strong> – (Optional) Description to use in the docstring of the
 initial class</li>
@@ -246,7 +250,7 @@ object)</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Path of the new file</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of paths for each new file created</td>
 </tr>
 </tbody>
 </table>

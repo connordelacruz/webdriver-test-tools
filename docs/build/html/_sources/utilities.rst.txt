@@ -43,11 +43,25 @@ for most of the tasks we want them to do.
 .. literalinclude:: ../example/util-example/util_example/pages/contact.py
     :caption: pages/contact.py
 
-The ``FormObject`` attributes ``FORM_LOCATOR`` and ``SUBMIT_LOCATOR`` need to be
-set to use the methods ``fill_form()`` and ``click_submit()``.  If the
-``SUBMIT_SUCCESS_CLASS`` attribute is set, ``click_submit()`` will return an
-initialized page object of that type. The ``ModalObject`` attribute and
-``CLOSE_LOCATOR`` needs to be set to use the method ``click_close_button()``. 
+.. todo Better phrasing and more detail
+
+The ``FormObject`` parses the file specified with the ``YAML_FILE`` attribute on
+initialization:
+
+.. literalinclude:: ../example/util-example/util_example/pages/contact.yml
+    :caption: pages/contact.yml
+
+This is used to set the attributes ``FORM_LOCATOR`` and ``SUBMIT_LOCATOR``,
+which are required to use the methods ``fill_inputs()`` and ``click_submit()``.
+If the ``SUBMIT_SUCCESS_CLASS`` attribute is set, ``click_submit()`` will return
+an initialized page object of that type. 
+
+.. note::
+
+   For more information on YAML syntax, see :ref:`yaml-page-objects`.
+
+The ``ModalObject`` attribute ``CLOSE_LOCATOR`` needs to be set to use the
+method ``click_close_button()``. 
 
 After creating those page object classes, we have everything necessary to
 write our test in ``ContactTestCase``:
@@ -56,11 +70,11 @@ write our test in ``ContactTestCase``:
     :caption: tests/contact.py
     :pyobject: ContactTestCase.test_contact_form
     
-The :meth:`fill_form()
-<webdriver_test_tools.pageobject.form.FormObject.fill_form>` method takes a
-dictionary mapping input names to the values to set them to. In the following
-section, we will create the ``generate_contact_form_data()`` method used to
-assign ``contact_form_data`` in the above example.
+The :meth:`fill_inputs()
+<webdriver_test_tools.pageobject.form.FormObject.fill_inputs>` method takes a
+dictionary mapping input names to the values to set them to. In the `Test Data
+Generation`_ section, we will create the ``generate_contact_form_data()`` method
+used to assign ``contact_form_data`` in the above example.
 
 
 Using Prototypes in New Page Objects

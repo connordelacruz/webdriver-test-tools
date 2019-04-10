@@ -8,7 +8,34 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from webdriver_test_tools.webdriver import locate
 from webdriver_test_tools.webdriver.actions import scroll
 
+
+# Input helper methods
+
+def toggle_checkbox(driver, checkbox_element):
+    """Helper method for toggling checkboxes that may or may not be visible
+
+    If checkbox is visible, just click that element. If it's invisible for
+    styling reasons, try to find the corresponding label and click that
+
+    :param driver: Selenium webdriver object
+    :param checkbox_element: WebElement for the checkbox to toggle
+
+    :return: True if the checkbox is checked after toggling, False if unchecked
+    """
+    if checkbox_element.is_displayed():
+        element_to_click = checkbox_element
+    else:
+        # Assuming the checkbox has id attribute since label for attributes
+        # must reference it
+        checkbox_id = checkbox_element.get_attribute('id')
+        label_css = 'label[for="{}"]'.format(checkbox_id)
+        element_to_click = driver.find_element_by_css_selector(label_css)
+    scroll.to_and_click(driver, element_to_click, False)
+    return checkbox_element.is_selected()
+
+
 # Setting form input values
+# TODO: deprecate? These are handled by InputObject methods
 
 def fill_form_inputs(driver, form_element, input_name_map):
     """Takes a dictionary mapping input names to the desired values and fill out the form accordingly
@@ -27,7 +54,7 @@ def fill_form_inputs(driver, form_element, input_name_map):
     for name, value in input_name_map.items():
         fill_form_input(driver, form_element, name, value)
 
-def fill_form_input(driver, form_element, name, value):
+def fill_form_input(driver, form_element, name, value, input_type=None):
     """Takes the name and value of a form input and determines what type it is to fill
     it appropriately.
 
@@ -49,10 +76,16 @@ def fill_form_input(driver, form_element, name, value):
         * For file inputs, this value should be a filepath to the desired file.
         * For other input types (text, number, etc) this should be a string
           representation of the values to enter into it.
+
+    :param input_type: (Optional) If known, the ``type`` attribute of the input
+        or tag name for non-input elements (e.g. select). If unspecified, this
+        method will determine the type using element attributes
     """
     input_element = form_element.find_element_by_name(name)
-    # If element tag isn't input, use tag name as input_type (e.g. select)
-    input_type = input_element.tag_name if input_element.tag_name != 'input' else input_element.get_attribute('type')
+    # Determine input type if unspecified
+    if not input_type:
+        # If element tag isn't input, use tag name as input_type (e.g. select)
+        input_type = input_element.tag_name if input_element.tag_name != 'input' else input_element.get_attribute('type')
     # figure out the input type, handle appropriately
     # Radio Buttons
     if input_type == 'radio':
@@ -92,6 +125,7 @@ def select_radio_input(driver, form_element, name, value):
     scroll.into_view(driver, radio_element, False)
     radio_element.click()
 
+# TODO: account for checkbox names with multiple values
 def toggle_checkbox_input(driver, checkbox_element, value):
     """Set the checked state of a checkbox input
 
@@ -184,18 +218,23 @@ def get_form_input_values(form_element, input_names=None):
     return input_map
 
 
-def get_form_input_value(input_element):
+def get_form_input_value(input_element, input_type=None):
     """Returns the value of an input
 
-    This function contains the logic to determine what kind of input this is and uses
-    the appropriate function to retrieve its value
+    This function contains the logic to determine what kind of input this is
+    and uses the appropriate function to retrieve its value
 
     :param input_element: WebElement for the input
+    :param input_type: (Optional) If known, the ``type`` attribute of the input
+        or tag name for non-input elements (e.g. select). If unspecified, this
+        method will determine the type using element attributes
 
     :return: The value of the input
     """
-    # If element tag isn't input, use tag name as input_type (e.g. select)
-    input_type = input_element.tag_name if input_element.tag_name != 'input' else input_element.get_attribute('type')
+    # Determine input type if unspecified
+    if not input_type:
+        # If element tag isn't input, use tag name as input_type (e.g. select)
+        input_type = input_element.tag_name if input_element.tag_name != 'input' else input_element.get_attribute('type')
     # figure out the input type, handle appropriately
     # Radio Buttons
     if input_type == 'radio':
@@ -228,6 +267,7 @@ def get_radio_value(input_element):
     return input_element.get_attribute('value') if input_element.is_selected() else None
 
 
+# TODO: handle multi-checkboxes
 def get_checkbox_value(input_element):
     """Get the value of a checkbox input
 
@@ -253,9 +293,15 @@ def get_select_value(input_element):
 
     :param input_element: WebElement for the input
 
-    :return: The value attribute of the selected option
+    :return: The value attribute of the selected option or None if nothing is
+        selected
     """
-    return input_element.get_attribute('value')
+    select = Select(input_element)
+    try:
+        value = select.first_selected_option.get_attribute('value')
+    except NoSuchElementException:
+        value = None
+    return value
 
 
 def get_select_multiple_values(input_element):

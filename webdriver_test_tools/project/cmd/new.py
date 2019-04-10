@@ -60,7 +60,7 @@ def main(test_package_path, test_package, args):
         validated_module_name = cmd.prompt(
             'Module file name',
             'Enter a file name for the new {} module'.format(validated_file_type),
-            validate=cmd.validate_module_filename,
+            validate=cmd.validate_module_name,
             parsed_input=module_name
         )
         class_type = 'test case' if validated_file_type == 'test' else 'page object'
@@ -103,15 +103,18 @@ def main(test_package_path, test_package, args):
             )
         # Start file creation
         new_file_start = True
-        new_file_path = new_file.new_file(
+        new_file_paths = new_file.new_file(
             test_package_path, test_package,
             file_type=validated_file_type, module_name=validated_module_name,
             class_name=validated_class_name, description=validated_description,
             force=force, **kwargs
         )
         # Output new file path on success
-        print(cmd.COLORS['success']('\nFile created.'))
-        print(new_file_path)
+        # TODO: Custom success messages based on type? E.g. instructions on filling out YAML file?
+        success_msg = '\nFile' + ('s' if len(new_file_paths) > 1 else '') + ' created.'
+        print(cmd.COLORS['success'](success_msg))
+        for new_file_path in new_file_paths:
+            print(new_file_path)
     except KeyboardInterrupt:
         print('')
         if new_file_start:

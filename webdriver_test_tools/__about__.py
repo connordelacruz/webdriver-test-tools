@@ -10,6 +10,7 @@ __title__ = 'webdriver_test_tools'
 __project__ = 'WebDriver Test Tools'
 __summary__ = 'A front-end testing framework using Selenium WebDriver and Python'
 
+# TODO: bump to 2.7.0
 __release__ = '2.6.0-alpha'
 __version__ = __release__.split('-')[0]
 __devstatus__ = 'Development Status :: 3 - Alpha'
