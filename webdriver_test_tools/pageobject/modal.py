@@ -1,10 +1,12 @@
 import inspect
+import os
 from selenium.common.exceptions import NoSuchElementException
 
-from webdriver_test_tools.pageobject import BasePage
+from webdriver_test_tools.pageobject import utils, BasePage
 from webdriver_test_tools.webdriver import actions
 
 
+# TODO: update docstring (see FormObject for ref)
 class ModalObject(BasePage):
     """Page object prototype for modals
 
@@ -15,11 +17,43 @@ class ModalObject(BasePage):
         :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>`,
         :meth:`get_modal_body()` will return an instance of this object.
     """
+
+    # Attribute with path to YAML file (parsed on __init__)
+    YAML_FILE = None
     # Locators
     MODAL_LOCATOR = None
     CLOSE_LOCATOR = None
     # Optional page object for the modal body content
     MODAL_BODY_CLASS = None
+
+    def __init__(self, driver):
+        super().__init__(driver)
+        if self.YAML_FILE:
+            self.parse_yaml(self.YAML_FILE)
+
+    def parse_yaml(self, file_path):
+        """Parse a YAML representation of the modal object and set attributes
+        accordingly
+
+        See :ref:`YAML ModalObjects doc <yaml-modal-objects>` for details on
+        syntax.
+
+        :param file_path: Full path to the YAML file
+        """
+        try:
+            parsed_yaml = utils.yaml.parse_yaml_file(file_path)['modal']
+        except KeyError as e:
+            raise utils.yaml.YAMLKeyError(
+                "Missing top level 'modal' key in YAML"
+            )
+        # Initialize locators
+        try:
+            self.MODAL_LOCATOR = utils.yaml.to_locator(parsed_yaml['modal_locator'])
+            self.CLOSE_LOCATOR = utils.yaml.to_locator(parsed_yaml['close_locator'])
+        except KeyError as e:
+            raise utils.yaml.YAMLKeyError(
+                'Missing required {} key in modal YAML'.format(e)
+            )
 
     def is_displayed(self):
         """Check if the modal is displayed

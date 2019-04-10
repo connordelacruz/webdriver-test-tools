@@ -110,3 +110,25 @@ Example
 
 .. literalinclude:: ../example/yaml-example/form.yml
 
+
+.. _yaml-modal-objects:
+
+ModalObjects
+============
+
+:class:`ModalObjects <webdriver_test_tools.pageobject.modal.ModalObject>`
+support YAML representations of the modal using the following syntax.
+
+Syntax
+------
+
+Modal objects have 2 required keys:
+
+   * ``modal_locator``: `Locator dictionary <Locator Dictionaries>`_ for the
+     modal container element
+   * ``close_locator``: `Locator dictionary <Locator Dictionaries>`_ for the
+     modal close button
+
+.. todo example
+
+

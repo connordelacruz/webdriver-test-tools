@@ -47,7 +47,7 @@ PAGE_OBJECT_TEMPLATE_MAP = {
     },
     MODAL_PROTOTYPE: {
         'name' : 'modal_object',
-        'types': ['py']
+        'types': ['py', 'yml']
     },
     NAV_PROTOTYPE: {
         'name' : 'nav_object',
