@@ -29,8 +29,7 @@ class ModalObject(YAMLParsingPageObject):
         subclasses
     """
 
-    # TODO: doc
-    YAML_ROOT_KEY = 'modal'
+    _YAML_ROOT_KEY = 'modal'
     # Attribute with path to YAML file (parsed on __init__)
     YAML_FILE = None
     # Locators

@@ -358,9 +358,9 @@ class FormObject(YAMLParsingPageObject):
         the ``name`` keys in the YAML representation of the form
     """
 
-    # TODO: doc
-    YAML_ROOT_KEY = 'form'
+    _YAML_ROOT_KEY = 'form'
     # Attribute with path to YAML file (parsed on __init__)
+    # TODO: remove
     YAML_FILE = None
     # Optional page object to return on click_submit()
     SUBMIT_SUCCESS_CLASS = None
@@ -393,12 +393,6 @@ class FormObject(YAMLParsingPageObject):
         """
         pass
 
-    # TODO: remove
-    # def __init__(self, driver):
-    #     super().__init__(driver)
-    #     if self.YAML_FILE:
-    #         self.parse_yaml(self.YAML_FILE)
-
     def parse_yaml(self, file_path):
         """Parse a YAML representation of the form object and set attributes
         accordingly
@@ -409,13 +403,6 @@ class FormObject(YAMLParsingPageObject):
         :param file_path: Full path to the YAML file
         """
         parsed_yaml = super().parse_yaml(file_path)
-        # TODO: remove
-        # try:
-        #     parsed_yaml = utils.yaml.parse_yaml_file(file_path)['form']
-        # except KeyError as e:
-        #     raise utils.yaml.YAMLKeyError(
-        #         "Missing top level 'form' key in YAML"
-        #     )
         # Initialize locators
         try:
             self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
