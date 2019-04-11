@@ -165,7 +165,7 @@
 <span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="k">import</span> <span class="n">By</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="k">import</span> <span class="n">Select</span>
 
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">BasePage</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">,</span> <span class="n">YAMLParsingPageObject</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.webdriver</span> <span class="k">import</span> <span class="n">actions</span>
 
 
@@ -490,7 +490,7 @@
 
 <span class="c1"># Form Page Objects</span>
 
-<div class="viewcode-block" id="FormObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject">[docs]</a><span class="k">class</span> <span class="nc">FormObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
+<div class="viewcode-block" id="FormObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject">[docs]</a><span class="k">class</span> <span class="nc">FormObject</span><span class="p">(</span><span class="n">YAMLParsingPageObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Page object prototype for forms</span>
 
 <span class="sd">    Subclasses should set the following attributes:</span>
@@ -517,8 +517,7 @@
 <span class="sd">        the ``name`` keys in the YAML representation of the form</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Attribute with path to YAML file (parsed on __init__)</span>
-    <span class="n">YAML_FILE</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_YAML_ROOT_KEY</span> <span class="o">=</span> <span class="s1">&#39;form&#39;</span>
     <span class="c1"># Optional page object to return on click_submit()</span>
     <span class="n">SUBMIT_SUCCESS_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1"># Locators</span>
@@ -550,11 +549,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">YAML_FILE</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">YAML_FILE</span><span class="p">)</span>
-
 <div class="viewcode-block" id="FormObject.parse_yaml"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.parse_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Parse a YAML representation of the form object and set attributes</span>
 <span class="sd">        accordingly</span>
@@ -564,12 +558,7 @@
 
 <span class="sd">        :param file_path: Full path to the YAML file</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">parsed_yaml</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_yaml_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="s1">&#39;form&#39;</span><span class="p">]</span>
-        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span>
-                <span class="s2">&quot;Missing top level &#39;form&#39; key in YAML&quot;</span>
-            <span class="p">)</span>
+        <span class="n">parsed_yaml</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_yaml</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
         <span class="c1"># Initialize locators</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">to_locator</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;form_locator&#39;</span><span class="p">])</span>
