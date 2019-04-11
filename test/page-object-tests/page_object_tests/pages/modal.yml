@@ -1,0 +1,15 @@
+# ModalObject YAML Documentation: 
+# https://connordelacruz.com/webdriver-test-tools/yaml.html#modalobjects
+
+# REPLACE <PLACEHOLDER VALUES> BELOW:
+
+
+modal:
+  # REQUIRED: Locator for the modal
+  modal_locator:
+    by: ID
+    locator: test-modal
+  # REQUIRED: Locator for the close button
+  close_locator:
+    by: CSS_SELECTOR
+    locator: "#test-modal button.close"

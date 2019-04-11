@@ -1,14 +1,18 @@
 {% extends "base_page.py.j2" %}
 
+{% block standard_library_imports %}
+import os
+
+{% endblock %}
+
 {% block parent_class %}prototypes.ModalObject{% endblock %}
 
 {% block additional_attributes %}
+    # Path to YAML file representing the modal object
+    YAML_FILE = os.path.join(os.path.dirname(__file__), '{{module_name}}.yml')
+
     # SET THE FOLLOWING ATTRIBUTES TO USE IN ModalObject METHODS
 
-    # Locator for the modal element
-    MODAL_LOCATOR = None
-    # Locator for the modal's close button
-    CLOSE_LOCATOR = None
     # (Optional) Page object of the contents of the modal body. If set to a
     # subclass of BasePage, the get_modal_body() method will return an instance
     # of the page object

@@ -24,9 +24,14 @@ see `Ansible's YAML documentation`_.
 Supported Prototype Classes
 ---------------------------
 
-As of 2.7.0, only the :class:`FormObject
-<webdriver_test_tools.pageobject.form.FormObject>` class supports YAML parsing.
-However, YAML support will be added to more in future releases.
+Currently, the following prototype classes support YAML parsing:  
+
+   * :class:`FormObject <webdriver_test_tools.pageobject.form.FormObject>`
+   * :class:`ModalObject <webdriver_test_tools.pageobject.modal.ModalObject>`
+
+YAML support will be added to more in future releases.
+
+.. todo briefly go over YAML_FILE attribute
 
 
 General Syntax
@@ -109,4 +114,29 @@ Example
 -------
 
 .. literalinclude:: ../example/yaml-example/form.yml
+
+
+.. _yaml-modal-objects:
+
+ModalObjects
+============
+
+:class:`ModalObjects <webdriver_test_tools.pageobject.modal.ModalObject>`
+support YAML representations of the modal using the following syntax.
+
+Syntax
+------
+
+Modal objects have 2 required keys:
+
+   * ``modal_locator``: `Locator dictionary <Locator Dictionaries>`_ for the
+     modal container element
+   * ``close_locator``: `Locator dictionary <Locator Dictionaries>`_ for the
+     modal close button
+
+
+Example
+-------
+
+.. literalinclude:: ../example/yaml-example/modal.yml
 

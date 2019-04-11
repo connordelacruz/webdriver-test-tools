@@ -200,6 +200,7 @@ def _expand_wildcard_class_map_keys(test_case_list, test_class_map):
     for existing_key in existing_keys:
         updated_class_map[existing_key].extend(test_class_map[existing_key])
     # Update original map with temp dictionary
+    # TODO: Look into issues with overlapping class wildcards
     test_class_map.update(updated_class_map)
     # If none of the wild card entries matched any tests and the updated map is
     # empty, set it to None

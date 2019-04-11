@@ -1,0 +1,9 @@
+modal:
+  # Locator for the modal
+  modal_locator:
+    by: ID
+    locator: test-modal
+  # Locator for the close button
+  close_locator:
+    by: CSS_SELECTOR
+    locator: "#test-modal button.close"

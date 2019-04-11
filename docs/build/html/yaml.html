@@ -111,6 +111,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#modalobjects">ModalObjects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
@@ -180,26 +185,31 @@
            <div itemprop="articleBody">
             
   <div class="section" id="page-object-yaml-files">
-<span id="yaml-page-objects"></span><h1><a class="toc-backref" href="#id4">Page Object YAML files</a><a class="headerlink" href="#page-object-yaml-files" title="Permalink to this headline">¶</a></h1>
+<span id="yaml-page-objects"></span><h1><a class="toc-backref" href="#id8">Page Object YAML files</a><a class="headerlink" href="#page-object-yaml-files" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#page-object-yaml-files" id="id4">Page Object YAML files</a><ul>
-<li><a class="reference internal" href="#overview" id="id5">Overview</a><ul>
-<li><a class="reference internal" href="#supported-prototype-classes" id="id6">Supported Prototype Classes</a></li>
+<li><a class="reference internal" href="#page-object-yaml-files" id="id8">Page Object YAML files</a><ul>
+<li><a class="reference internal" href="#overview" id="id9">Overview</a><ul>
+<li><a class="reference internal" href="#supported-prototype-classes" id="id10">Supported Prototype Classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#general-syntax" id="id7">General Syntax</a><ul>
-<li><a class="reference internal" href="#locator-dictionaries" id="id8">Locator Dictionaries</a></li>
+<li><a class="reference internal" href="#general-syntax" id="id11">General Syntax</a><ul>
+<li><a class="reference internal" href="#locator-dictionaries" id="id12">Locator Dictionaries</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#formobjects" id="id9">FormObjects</a><ul>
-<li><a class="reference internal" href="#syntax" id="id10">Syntax</a><ul>
-<li><a class="reference internal" href="#forms" id="id11">Forms</a></li>
-<li><a class="reference internal" href="#yaml-inputs" id="id12">Inputs</a></li>
+<li><a class="reference internal" href="#formobjects" id="id13">FormObjects</a><ul>
+<li><a class="reference internal" href="#syntax" id="id14">Syntax</a><ul>
+<li><a class="reference internal" href="#forms" id="id15">Forms</a></li>
+<li><a class="reference internal" href="#yaml-inputs" id="id16">Inputs</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#example" id="id13">Example</a></li>
+<li><a class="reference internal" href="#example" id="id17">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modalobjects" id="id18">ModalObjects</a><ul>
+<li><a class="reference internal" href="#id4" id="id19">Syntax</a></li>
+<li><a class="reference internal" href="#id7" id="id20">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -207,7 +217,7 @@
 </ul>
 </div>
 <div class="section" id="overview">
-<h2><a class="toc-backref" href="#id5">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>To simplify the process of creating new page objects, some page object prototype
 classes support YAML representations of the object. Prototype classes that
 support this will generate a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file in addition to a Python module when
@@ -216,16 +226,22 @@ using the <code class="docutils literal notranslate"><span class="pre">new</span
 <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code>. For a basic introduction to YAML syntax in general,
 see <a class="reference external" href="https://docs.ansible.com/ansible/2.7/reference_appendices/YAMLSyntax.html">Ansible’s YAML documentation</a>.</p>
 <div class="section" id="supported-prototype-classes">
-<h3><a class="toc-backref" href="#id6">Supported Prototype Classes</a><a class="headerlink" href="#supported-prototype-classes" title="Permalink to this headline">¶</a></h3>
-<p>As of 2.7.0, only the <a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject" title="webdriver_test_tools.pageobject.form.FormObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">FormObject</span></code></a> class supports YAML parsing.
-However, YAML support will be added to more in future releases.</p>
+<h3><a class="toc-backref" href="#id10">Supported Prototype Classes</a><a class="headerlink" href="#supported-prototype-classes" title="Permalink to this headline">¶</a></h3>
+<p>Currently, the following prototype classes support YAML parsing:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject" title="webdriver_test_tools.pageobject.form.FormObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">FormObject</span></code></a></li>
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject" title="webdriver_test_tools.pageobject.modal.ModalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalObject</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>YAML support will be added to more in future releases.</p>
 </div>
 </div>
 <div class="section" id="general-syntax">
-<h2><a class="toc-backref" href="#id7">General Syntax</a><a class="headerlink" href="#general-syntax" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">General Syntax</a><a class="headerlink" href="#general-syntax" title="Permalink to this headline">¶</a></h2>
 <p>This section documents the syntax of general page object constructs.</p>
 <div class="section" id="locator-dictionaries">
-<span id="yaml-locators"></span><h3><a class="toc-backref" href="#id8">Locator Dictionaries</a><a class="headerlink" href="#locator-dictionaries" title="Permalink to this headline">¶</a></h3>
+<span id="yaml-locators"></span><h3><a class="toc-backref" href="#id12">Locator Dictionaries</a><a class="headerlink" href="#locator-dictionaries" title="Permalink to this headline">¶</a></h3>
 <p>Element locators are represented by YAML dictionaries with the following
 required keys:</p>
 <blockquote>
@@ -253,13 +269,13 @@ strategy</p>
 </div>
 </div>
 <div class="section" id="formobjects">
-<span id="yaml-form-objects"></span><h2><a class="toc-backref" href="#id9">FormObjects</a><a class="headerlink" href="#formobjects" title="Permalink to this headline">¶</a></h2>
+<span id="yaml-form-objects"></span><h2><a class="toc-backref" href="#id13">FormObjects</a><a class="headerlink" href="#formobjects" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject" title="webdriver_test_tools.pageobject.form.FormObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">FormObjects</span></code></a> support
 YAML representations of the form element using the following syntax.</p>
 <div class="section" id="syntax">
-<h3><a class="toc-backref" href="#id10">Syntax</a><a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Syntax</a><a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="forms">
-<span id="yaml-forms"></span><h4><a class="toc-backref" href="#id11">Forms</a><a class="headerlink" href="#forms" title="Permalink to this headline">¶</a></h4>
+<span id="yaml-forms"></span><h4><a class="toc-backref" href="#id15">Forms</a><a class="headerlink" href="#forms" title="Permalink to this headline">¶</a></h4>
 <p>Form objects have 3 required keys:</p>
 <blockquote>
 <div><ul class="simple">
@@ -272,7 +288,7 @@ form’s submit button</li>
 </div></blockquote>
 </div>
 <div class="section" id="yaml-inputs">
-<span id="id2"></span><h4><a class="toc-backref" href="#id12">Inputs</a><a class="headerlink" href="#yaml-inputs" title="Permalink to this headline">¶</a></h4>
+<span id="id2"></span><h4><a class="toc-backref" href="#id16">Inputs</a><a class="headerlink" href="#yaml-inputs" title="Permalink to this headline">¶</a></h4>
 <p>The items in the form <code class="docutils literal notranslate"><span class="pre">inputs</span></code> list have the following keys:</p>
 <blockquote>
 <div><ul class="simple">
@@ -295,7 +311,7 @@ will be used, so the labels can be set to anything)</li>
 </div>
 </div>
 <div class="section" id="example">
-<h3><a class="toc-backref" href="#id13">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="p">:</span>
   <span class="c1"># Locator for the form</span>
   <span class="n">form_locator</span><span class="p">:</span>
@@ -358,6 +374,37 @@ will be used, so the labels can be set to anything)</li>
         <span class="o">-</span> <span class="n">box0</span>
         <span class="o">-</span> <span class="n">box1</span>
         <span class="o">-</span> <span class="n">box2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="modalobjects">
+<span id="yaml-modal-objects"></span><h2><a class="toc-backref" href="#id18">ModalObjects</a><a class="headerlink" href="#modalobjects" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject" title="webdriver_test_tools.pageobject.modal.ModalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalObjects</span></code></a>
+support YAML representations of the modal using the following syntax.</p>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id19">Syntax</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Modal objects have 2 required keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">modal_locator</span></code>: <a class="reference external" href="LocatorDictionaries">Locator dictionary</a> for the
+modal container element</li>
+<li><code class="docutils literal notranslate"><span class="pre">close_locator</span></code>: <a class="reference external" href="LocatorDictionaries">Locator dictionary</a> for the
+modal close button</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id20">Example</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modal</span><span class="p">:</span>
+  <span class="c1"># Locator for the modal</span>
+  <span class="n">modal_locator</span><span class="p">:</span>
+    <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+    <span class="n">locator</span><span class="p">:</span> <span class="n">test</span><span class="o">-</span><span class="n">modal</span>
+  <span class="c1"># Locator for the close button</span>
+  <span class="n">close_locator</span><span class="p">:</span>
+    <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+    <span class="n">locator</span><span class="p">:</span> <span class="s2">&quot;#test-modal button.close&quot;</span>
 </pre></div>
 </div>
 </div>

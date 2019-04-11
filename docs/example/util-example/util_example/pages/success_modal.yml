@@ -1,0 +1,9 @@
+modal:
+  # REQUIRED: Locator for the modal
+  modal_locator:
+    by: ID
+    locator: success-modal
+  # REQUIRED: Locator for the close button
+  close_locator:
+    by: ID
+    locator: close

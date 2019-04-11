@@ -336,26 +336,26 @@ class FormObject(BasePage):
 
     Subclasses should set the following attributes:
 
-    :var YAML_FILE: Path to a YAML file representing the form object. This file
-        is parsed during initialization using :meth:`parse_yaml` and is used to
-        determine :attr:`FORM_LOCATOR` and :attr:`SUBMIT_LOCATOR` and create
-        :class:`InputObject` instances for each input, which are stored in
-        :attr:`inputs`
-    :var SUBMIT_SUCCESS_CLASS: (Optional) Page object of modal/webpage/etc that
-        should appear on successful form submission. If subclass set to a
-        subclass of :class:`BasePage
+    :var FormObject.YAML_FILE: Path to a YAML file representing the form
+        object. This file is parsed during initialization using
+        :meth:`parse_yaml` and is used to determine :attr:`FORM_LOCATOR` and
+        :attr:`SUBMIT_LOCATOR` and create :class:`InputObject` instances for
+        each input, which are stored in :attr:`inputs`
+    :var FormObject.SUBMIT_SUCCESS_CLASS: (Optional) Page object of
+        modal/webpage/etc that should appear on successful form submission. If
+        subclass set to a subclass of :class:`BasePage
         <webdriver_test_tools.pageobject.base.BasePage>`,
         :meth:`click_submit()` will return an instance of this object.
 
     The following attributes are determined based on the contents of
     :attr:`YAML_FILE`:
 
-    :var FORM_LOCATOR: Locator for the form element
-    :var SUBMIT_LOCATOR: Locator for the submit button
+    :var FormObject.FORM_LOCATOR: Locator for the form element
+    :var FormObject.SUBMIT_LOCATOR: Locator for the submit button
 
-    :var inputs: A dictionary mapping input names to the corresponding
-        :class:`InputObject` instances. The keys correspond with the ``name``
-        keys in the YAML representation of the form
+    :var FormObject.inputs: A dictionary mapping input names to the
+        corresponding :class:`InputObject` instances. The keys correspond with
+        the ``name`` keys in the YAML representation of the form
     """
 
     # Attribute with path to YAML file (parsed on __init__)

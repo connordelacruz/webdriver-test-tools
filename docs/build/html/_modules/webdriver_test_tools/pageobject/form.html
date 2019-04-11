@@ -495,26 +495,26 @@
 
 <span class="sd">    Subclasses should set the following attributes:</span>
 
-<span class="sd">    :var YAML_FILE: Path to a YAML file representing the form object. This file</span>
-<span class="sd">        is parsed during initialization using :meth:`parse_yaml` and is used to</span>
-<span class="sd">        determine :attr:`FORM_LOCATOR` and :attr:`SUBMIT_LOCATOR` and create</span>
-<span class="sd">        :class:`InputObject` instances for each input, which are stored in</span>
-<span class="sd">        :attr:`inputs`</span>
-<span class="sd">    :var SUBMIT_SUCCESS_CLASS: (Optional) Page object of modal/webpage/etc that</span>
-<span class="sd">        should appear on successful form submission. If subclass set to a</span>
-<span class="sd">        subclass of :class:`BasePage</span>
+<span class="sd">    :var FormObject.YAML_FILE: Path to a YAML file representing the form</span>
+<span class="sd">        object. This file is parsed during initialization using</span>
+<span class="sd">        :meth:`parse_yaml` and is used to determine :attr:`FORM_LOCATOR` and</span>
+<span class="sd">        :attr:`SUBMIT_LOCATOR` and create :class:`InputObject` instances for</span>
+<span class="sd">        each input, which are stored in :attr:`inputs`</span>
+<span class="sd">    :var FormObject.SUBMIT_SUCCESS_CLASS: (Optional) Page object of</span>
+<span class="sd">        modal/webpage/etc that should appear on successful form submission. If</span>
+<span class="sd">        subclass set to a subclass of :class:`BasePage</span>
 <span class="sd">        &lt;webdriver_test_tools.pageobject.base.BasePage&gt;`,</span>
 <span class="sd">        :meth:`click_submit()` will return an instance of this object.</span>
 
 <span class="sd">    The following attributes are determined based on the contents of</span>
 <span class="sd">    :attr:`YAML_FILE`:</span>
 
-<span class="sd">    :var FORM_LOCATOR: Locator for the form element</span>
-<span class="sd">    :var SUBMIT_LOCATOR: Locator for the submit button</span>
+<span class="sd">    :var FormObject.FORM_LOCATOR: Locator for the form element</span>
+<span class="sd">    :var FormObject.SUBMIT_LOCATOR: Locator for the submit button</span>
 
-<span class="sd">    :var inputs: A dictionary mapping input names to the corresponding</span>
-<span class="sd">        :class:`InputObject` instances. The keys correspond with the ``name``</span>
-<span class="sd">        keys in the YAML representation of the form</span>
+<span class="sd">    :var FormObject.inputs: A dictionary mapping input names to the</span>
+<span class="sd">        corresponding :class:`InputObject` instances. The keys correspond with</span>
+<span class="sd">        the ``name`` keys in the YAML representation of the form</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Attribute with path to YAML file (parsed on __init__)</span>

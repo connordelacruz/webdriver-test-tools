@@ -359,6 +359,7 @@
     <span class="k">for</span> <span class="n">existing_key</span> <span class="ow">in</span> <span class="n">existing_keys</span><span class="p">:</span>
         <span class="n">updated_class_map</span><span class="p">[</span><span class="n">existing_key</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">test_class_map</span><span class="p">[</span><span class="n">existing_key</span><span class="p">])</span>
     <span class="c1"># Update original map with temp dictionary</span>
+    <span class="c1"># TODO: Look into issues with overlapping class wildcards</span>
     <span class="n">test_class_map</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">updated_class_map</span><span class="p">)</span>
     <span class="c1"># If none of the wild card entries matched any tests and the updated map is</span>
     <span class="c1"># empty, set it to None</span>
