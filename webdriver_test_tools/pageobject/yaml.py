@@ -1,4 +1,3 @@
-# TODO: document, add apidoc
 from abc import ABC, abstractmethod
 import os
 from webdriver_test_tools.pageobject import utils, BasePage
@@ -6,7 +5,10 @@ from webdriver_test_tools.pageobject import utils, BasePage
 
 class YAMLParsingPageObject(BasePage, ABC):
     """Abstract subclass of :class:`BasePage` with the basic attributes and
-    abstract method for parsing YAML representations of page objects
+    abstract method for parsing YAML representations of page objects.
+
+    This is a subclass of :class:`BasePage`, so prototypes that implement this
+    only need to subclass ``YAMLParsingPageObject``.
 
     Page object prototypes that implement this will need to set the following
     attribute:

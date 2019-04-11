@@ -30,19 +30,11 @@ class ModalObject(YAMLParsingPageObject):
     """
 
     _YAML_ROOT_KEY = 'modal'
-    # Attribute with path to YAML file (parsed on __init__)
-    YAML_FILE = None
     # Locators
     MODAL_LOCATOR = None
     CLOSE_LOCATOR = None
     # Optional page object for the modal body content
     MODAL_BODY_CLASS = None
-
-    # TODO: remove
-    # def __init__(self, driver):
-    #     super().__init__(driver)
-    #     if self.YAML_FILE:
-    #         self.parse_yaml(self.YAML_FILE)
 
     def parse_yaml(self, file_path):
         """Parse a YAML representation of the modal object and set attributes
@@ -54,13 +46,6 @@ class ModalObject(YAMLParsingPageObject):
         :param file_path: Full path to the YAML file
         """
         parsed_yaml = super().parse_yaml(file_path)
-        # TODO: remove
-        # try:
-        #     parsed_yaml = utils.yaml.parse_yaml_file(file_path)['modal']
-        # except KeyError as e:
-        #     raise utils.yaml.YAMLKeyError(
-        #         "Missing top level 'modal' key in YAML"
-        #     )
         # Initialize locators
         try:
             self.MODAL_LOCATOR = utils.yaml.to_locator(parsed_yaml['modal_locator'])

@@ -35,9 +35,9 @@ Internal Modules
 
 """
 
+# TODO: re-organize subpackage?
 from . import utils
-# TODO: just import BasePage?
-from .base import *
+from .base import BasePage
 from .yaml import YAMLParsingPageObject
 from . import prototypes
 

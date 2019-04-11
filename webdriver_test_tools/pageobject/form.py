@@ -359,9 +359,6 @@ class FormObject(YAMLParsingPageObject):
     """
 
     _YAML_ROOT_KEY = 'form'
-    # Attribute with path to YAML file (parsed on __init__)
-    # TODO: remove
-    YAML_FILE = None
     # Optional page object to return on click_submit()
     SUBMIT_SUCCESS_CLASS = None
     # Locators
