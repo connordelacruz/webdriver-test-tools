@@ -334,7 +334,7 @@ type-specific optional arguments</p>
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.form.FormObject">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.form.</code><code class="descname">FormObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.base.BasePage</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject</span></code></a></p>
 <p>Page object prototype for forms</p>
 <p>Subclasses should set the following attributes:</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -342,7 +342,7 @@ type-specific optional arguments</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.YAML_FILE" title="webdriver_test_tools.pageobject.form.FormObject.YAML_FILE"><strong>FormObject.YAML_FILE</strong></a> – Path to a YAML file representing the form
+<li><strong>FormObject.YAML_FILE</strong> – Path to a YAML file representing the form
 object. This file is parsed during initialization using
 <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.parse_yaml" title="webdriver_test_tools.pageobject.form.FormObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> and is used to determine <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">FORM_LOCATOR</span></code></a> and
 <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SUBMIT_LOCATOR</span></code></a> and create <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances for
@@ -357,7 +357,7 @@ subclass set to a subclass of <a class="reference internal" href="webdriver_test
 </tbody>
 </table>
 <p>The following attributes are determined based on the contents of
-<a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.YAML_FILE" title="webdriver_test_tools.pageobject.form.FormObject.YAML_FILE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code></a>:</p>
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code>:</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -373,11 +373,6 @@ the <code class="docutils literal notranslate"><span class="pre">name</span></co
 </tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.form.FormObject.YAML_FILE">
-<code class="descname">YAML_FILE</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.YAML_FILE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS">
 <code class="descname">SUBMIT_SUCCESS_CLASS</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="Permalink to this definition">¶</a></dt>

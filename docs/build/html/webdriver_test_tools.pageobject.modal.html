@@ -182,7 +182,7 @@
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.modal.ModalObject">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.modal.</code><code class="descname">ModalObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/modal.html#ModalObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.base.BasePage</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject</span></code></a></p>
 <p>Page object prototype for modals</p>
 <p>Subclasses should set the following attributes:</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -190,7 +190,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.YAML_FILE" title="webdriver_test_tools.pageobject.modal.ModalObject.YAML_FILE"><strong>ModalObject.YAML_FILE</strong></a> – Path to a YAML file representing the modal
+<li><strong>ModalObject.YAML_FILE</strong> – Path to a YAML file representing the modal
 object. This file is parsed during initialization using
 <a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.parse_yaml" title="webdriver_test_tools.pageobject.modal.ModalObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> and is used to determine <a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR" title="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MODAL_LOCATOR</span></code></a> and
 <a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR" title="webdriver_test_tools.pageobject.modal.ModalObject.CLOSE_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CLOSE_LOCATOR</span></code></a></li>
@@ -203,7 +203,7 @@ of the modal body. If set to a subclass of <a class="reference internal" href="w
 </tbody>
 </table>
 <p>The following attributes are determined based on the contents of
-<a class="reference internal" href="#webdriver_test_tools.pageobject.modal.ModalObject.YAML_FILE" title="webdriver_test_tools.pageobject.modal.ModalObject.YAML_FILE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code></a>:</p>
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code>:</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -218,11 +218,6 @@ subclasses</li>
 </tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.modal.ModalObject.YAML_FILE">
-<code class="descname">YAML_FILE</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.YAML_FILE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR">
 <code class="descname">MODAL_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.modal.ModalObject.MODAL_LOCATOR" title="Permalink to this definition">¶</a></dt>

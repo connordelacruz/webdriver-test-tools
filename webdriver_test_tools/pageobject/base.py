@@ -1,5 +1,6 @@
 # Base class for page objects
 
+# TODO: Clean up for consistency with other modules
 
 class BasePage(object):
     """Base class for page objects"""

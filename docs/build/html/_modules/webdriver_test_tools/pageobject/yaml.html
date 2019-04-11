@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>webdriver_test_tools.pageobject.yaml &mdash; WebDriver Test Tools 2.8.0-alpha documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> WebDriver Test Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">WebDriver Test Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_projects.html">Test Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">WebDriver Test Tools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.pageobject.yaml</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for webdriver_test_tools.pageobject.yaml</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">BasePage</span>
+
+
+<div class="viewcode-block" id="YAMLParsingPageObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject">[docs]</a><span class="k">class</span> <span class="nc">YAMLParsingPageObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Abstract subclass of :class:`BasePage</span>
+<span class="sd">    &lt;webdriver_test_tools.pageobject.base.BasePage&gt;` with the basic attributes</span>
+<span class="sd">    and abstract method for parsing YAML representations of page objects.</span>
+
+<span class="sd">    Since this subclasses :class:`BasePage</span>
+<span class="sd">    &lt;webdriver_test_tools.pageobject.base.BasePage&gt;`, prototypes that implement</span>
+<span class="sd">    this only need to subclass ``YAMLParsingPageObject``.</span>
+
+<span class="sd">    Page object prototypes that implement this will need to set the following</span>
+<span class="sd">    attribute:</span>
+
+<span class="sd">    :var YAMLParsingPageObject._YAML_ROOT_KEY: String for the expected root key</span>
+<span class="sd">        in the parsed YAML. Usually a descriptor of the prototype (e.g. &#39;form&#39;)</span>
+
+<span class="sd">    The abstract method :meth:`parse_yaml` is partially implemented and returns</span>
+<span class="sd">    the results of parsing the YAML file and retrieving the value at</span>
+<span class="sd">    ``_YAML_ROOT_KEY``. Implementations of ``parse_yaml()`` can call</span>
+<span class="sd">    ``super().parse_yaml(file_name)`` to get the dictionary, e.g.:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            def parse_yaml(self, file_name):</span>
+<span class="sd">                parsed_yaml = super().parse_yaml(file_path)</span>
+<span class="sd">                ...</span>
+
+<span class="sd">    This class also includes the following attribute, which should be set in</span>
+<span class="sd">    subclasses of the prototype classes that implement this:</span>
+
+<span class="sd">    :var YAMLParsingPageObject.YAML_FILE: Path to a YAML file representing the</span>
+<span class="sd">        page object. This file is parsed during initialization using</span>
+<span class="sd">        :meth:`parse_yaml` (if it&#39;s set)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO: abstract property?</span>
+    <span class="n">_YAML_ROOT_KEY</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">YAML_FILE</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">YAML_FILE</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">YAML_FILE</span><span class="p">)</span>
+
+<div class="viewcode-block" id="YAMLParsingPageObject.parse_yaml"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Partially implemented abstract method for parsing YAML</span>
+<span class="sd">        representation of the page object. Implementations of this can call</span>
+<span class="sd">        ``super().parse_yaml(file_path)`` to get the value of the parsed file</span>
+<span class="sd">        at :attr:`_YAML_ROOT_KEY`</span>
+
+<span class="sd">        :param file_path: Full path to the YAML file</span>
+
+<span class="sd">        :return: Dictionary of parsed YAML at :attr:`_YAML_ROOT_KEY`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">parsed_yaml</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_yaml_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="bp">self</span><span class="o">.</span><span class="n">_YAML_ROOT_KEY</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span>
+                <span class="s2">&quot;Missing top level &#39;</span><span class="si">{}</span><span class="s2">&#39; key in YAML&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_YAML_ROOT_KEY</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">parsed_yaml</span></div></div>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Connor de la Cruz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.8.0-alpha',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

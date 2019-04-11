@@ -2,11 +2,11 @@ import inspect
 import os
 from selenium.common.exceptions import NoSuchElementException
 
-from webdriver_test_tools.pageobject import utils, BasePage
+from webdriver_test_tools.pageobject import utils, BasePage, YAMLParsingPageObject
 from webdriver_test_tools.webdriver import actions
 
 
-class ModalObject(BasePage):
+class ModalObject(YAMLParsingPageObject):
     """Page object prototype for modals
 
     Subclasses should set the following attributes:
@@ -29,18 +29,12 @@ class ModalObject(BasePage):
         subclasses
     """
 
-    # Attribute with path to YAML file (parsed on __init__)
-    YAML_FILE = None
+    _YAML_ROOT_KEY = 'modal'
     # Locators
     MODAL_LOCATOR = None
     CLOSE_LOCATOR = None
     # Optional page object for the modal body content
     MODAL_BODY_CLASS = None
-
-    def __init__(self, driver):
-        super().__init__(driver)
-        if self.YAML_FILE:
-            self.parse_yaml(self.YAML_FILE)
 
     def parse_yaml(self, file_path):
         """Parse a YAML representation of the modal object and set attributes
@@ -51,12 +45,7 @@ class ModalObject(BasePage):
 
         :param file_path: Full path to the YAML file
         """
-        try:
-            parsed_yaml = utils.yaml.parse_yaml_file(file_path)['modal']
-        except KeyError as e:
-            raise utils.yaml.YAMLKeyError(
-                "Missing top level 'modal' key in YAML"
-            )
+        parsed_yaml = super().parse_yaml(file_path)
         # Initialize locators
         try:
             self.MODAL_LOCATOR = utils.yaml.to_locator(parsed_yaml['modal_locator'])
