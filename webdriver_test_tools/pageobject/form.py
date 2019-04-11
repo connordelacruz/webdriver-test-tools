@@ -6,7 +6,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-from webdriver_test_tools.pageobject import utils, BasePage
+from webdriver_test_tools.pageobject import utils, BasePage, YAMLParsingPageObject
 from webdriver_test_tools.webdriver import actions
 
 
@@ -331,7 +331,7 @@ class InputObject(BasePage):
 
 # Form Page Objects
 
-class FormObject(BasePage):
+class FormObject(YAMLParsingPageObject):
     """Page object prototype for forms
 
     Subclasses should set the following attributes:
@@ -358,6 +358,8 @@ class FormObject(BasePage):
         the ``name`` keys in the YAML representation of the form
     """
 
+    # TODO: doc
+    YAML_ROOT_KEY = 'form'
     # Attribute with path to YAML file (parsed on __init__)
     YAML_FILE = None
     # Optional page object to return on click_submit()
@@ -391,10 +393,11 @@ class FormObject(BasePage):
         """
         pass
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        if self.YAML_FILE:
-            self.parse_yaml(self.YAML_FILE)
+    # TODO: remove
+    # def __init__(self, driver):
+    #     super().__init__(driver)
+    #     if self.YAML_FILE:
+    #         self.parse_yaml(self.YAML_FILE)
 
     def parse_yaml(self, file_path):
         """Parse a YAML representation of the form object and set attributes
@@ -405,12 +408,14 @@ class FormObject(BasePage):
 
         :param file_path: Full path to the YAML file
         """
-        try:
-            parsed_yaml = utils.yaml.parse_yaml_file(file_path)['form']
-        except KeyError as e:
-            raise utils.yaml.YAMLKeyError(
-                "Missing top level 'form' key in YAML"
-            )
+        parsed_yaml = super().parse_yaml(file_path)
+        # TODO: remove
+        # try:
+        #     parsed_yaml = utils.yaml.parse_yaml_file(file_path)['form']
+        # except KeyError as e:
+        #     raise utils.yaml.YAMLKeyError(
+        #         "Missing top level 'form' key in YAML"
+        #     )
         # Initialize locators
         try:
             self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])

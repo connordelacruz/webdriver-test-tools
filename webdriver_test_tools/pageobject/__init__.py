@@ -1,7 +1,8 @@
 """Page object classes.
 
 
-This module imports :class:`webdriver_test_tools.pageobject.base.BasePage`.
+This module imports :class:`webdriver_test_tools.pageobject.base.BasePage` and
+:class:`webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject`.
 
 
 Main Modules
@@ -29,11 +30,14 @@ Internal Modules
 
 .. toctree::
 
+   webdriver_test_tools.pageobject.yaml
    webdriver_test_tools.pageobject.utils
 
 """
 
 from . import utils
+# TODO: just import BasePage?
 from .base import *
+from .yaml import YAMLParsingPageObject
 from . import prototypes
 
