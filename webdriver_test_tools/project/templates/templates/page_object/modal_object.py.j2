@@ -1,16 +1,9 @@
-{% extends "base_page.py.j2" %}
-
-{% block standard_library_imports %}
-import os
-
-{% endblock %}
+{% extends "yaml_page.py.j2" %}
 
 {% block parent_class %}prototypes.ModalObject{% endblock %}
 
 {% block additional_attributes %}
-    # Path to YAML file representing the modal object
-    YAML_FILE = os.path.join(os.path.dirname(__file__), '{{module_name}}.yml')
-
+{{super()}}
     # SET THE FOLLOWING ATTRIBUTES TO USE IN ModalObject METHODS
 
     # (Optional) Page object of the contents of the modal body. If set to a
