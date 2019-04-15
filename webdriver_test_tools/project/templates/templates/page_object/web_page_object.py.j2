@@ -8,10 +8,14 @@ from {{test_package}}.config import SiteConfig
 {% block parent_class %}prototypes.WebPageObject{% endblock %}
 
 {% block additional_attributes %}
+    # Used for internal WebPageObject methods (do not modify)
+    SITE_CONFIG = SiteConfig
+
+    # TODO: UPDATE FOR YAML
     # File name of the page relative to a base URL declared in SiteConfig
     PAGE_FILENAME = ''
     # Full URL of the page. E.g.:
-    # PAGE_URL = SiteConfig.BASE_URL + PAGE_FILENAME
-    PAGE_URL = SiteConfig.BASE_URL + PAGE_FILENAME
+    # PAGE_URL = SITE_CONFIG.BASE_URL + PAGE_FILENAME
+    PAGE_URL = SITE_CONFIG.BASE_URL + PAGE_FILENAME
 {% endblock %}
 

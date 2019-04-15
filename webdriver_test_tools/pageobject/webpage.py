@@ -1,18 +1,29 @@
 from webdriver_test_tools.pageobject import utils, BasePage, YAMLParsingPageObject
 
 
-# TODO: update docs (include YAML_FILE)
 class WebPageObject(YAMLParsingPageObject):
     """Page object prototype for web pages
 
+    Subclasses should set the following attributes:
+
+    :var WebPageObject.YAML_FILE: Path to a YAML file representing the web
+        page. This file is parsed during initialization using
+        :meth:`parse_yaml` and is used to determine :attr:`PAGE_FILENAME` and
+        :attr:`PAGE_URL`
+    :var WebPageObject.SITE_CONFIG: Test project's :class:`SiteConfig` class.
+        Used in :meth:`parse_yaml` to determine page url attributes if the YAML
+        'url' value is a dictionary with a path relative to a configured URL
+
+    The following attributes are determined based on the contents of
+    :attr:`YAML_FILE`:
+
     :var WebPageObject.PAGE_FILENAME: File name of the page relative to a base
-        URL declared in ``SiteConfig``
+        URL declared in ``SITE_CONFIG`` class
     :var WebPageObject.PAGE_URL: Full URL of the page (e.g.
-        ``SiteConfig.BASE_URL + PAGE_FILENAME``)
+        ``SITE_CONFIG.BASE_URL + PAGE_FILENAME``)
     """
     _YAML_ROOT_KEY = 'web_page'
 
-    # TODO: doc and implement
     SITE_CONFIG = None
     # TODO: rename to PAGE_RELATIVE_PATH?
     PAGE_FILENAME = None
@@ -31,23 +42,61 @@ class WebPageObject(YAMLParsingPageObject):
         # Initialize locators
         try:
             url = parsed_yaml['url']
+            # url can be a url string or a dict mapping the page path relative
+            # to a SITE_CONFIG attribute
             if isinstance(url, str):
                 # TODO: what about PAGE_FILENAME?
                 self.PAGE_URL = url
-            # TODO: if dict, set attributes accordingly
             elif isinstance(url, dict):
-                # TODO: key error if either is missing
-                self.PAGE_FILENAME = url['path']
-                # TODO: figure out a way to get project config (self.SITE_CONFIG)
-                relative_to = url['relative_to']
+                self.PAGE_FILENAME, self.PAGE_URL = self._parse_url_dict(url)
             else:
                 error_msg = "Invalid 'url' value (url: {}). ".format(url)
                 error_msg += "Must be a string or a dictionary with keys 'path' and 'relative_to'"
                 raise utils.yaml.YAMLValueError(error_msg)
         except KeyError as e:
             raise utils.yaml.YAMLKeyError(
-                'Missing required {} key in modal YAML'.format(e)
+                'Missing required {} key in web page YAML'.format(e)
             )
+
+    def _parse_url_dict(self, url):
+        """Parse 'url' dictionary in web page YAML
+
+        :param url: 'url' dictionary from parsed YAML. Expected to have keys
+            'path' and 'relative_to'
+
+        :return: A tuple containing the relative path to the page and the full
+            URL
+
+        :raises YAMLKeyError: if ``url`` is missing either required key
+        """
+        try:
+            return (
+                url['path'],
+                self._get_base_url(url['relative_to']) + url['path']
+            )
+        except KeyError as e:
+            raise utils.yaml.YAMLKeyError(
+                "Missing required {} key in web page 'url' dictionary"
+            )
+
+    def _get_base_url(self, relative_to):
+        """Helper method for resolving url relative_to key
+
+        :param relative_to: Name of an attribute in :attr:`SITE_CONFIG` class
+
+        :return: The value of the specified attribute in :attr:`SITE_CONFIG`
+            class
+
+        :raises YAMLValueError: if ``relative_to`` is not a valid attribute
+            name of :attr:`SITE_CONFIG`
+        """
+        try:
+            base_url = getattr(self.SITE_CONFIG, relative_to)
+        except AttributeError as e:
+            error_msg = "Invalid URL 'relative_to' value (relative_to: {}). ".format(relative_to)
+            error_msg += 'Must be a valid attribute declared in SiteConfig class'
+            raise utils.YAMLValueError(error_msg)
+        return base_url
 
     def get_page_title(self):
         """Get the title of the current page
