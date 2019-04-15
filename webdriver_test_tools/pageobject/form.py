@@ -57,6 +57,7 @@ class InputObject(BasePage):
         ]
 
 
+    # TODO: add kwargs for each key in input_dict, update parse_yaml()
     def __init__(self, driver, input_dict):
         """Initialize ``InputObject`` using parsed YAML
 

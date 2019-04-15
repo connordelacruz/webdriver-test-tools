@@ -1,11 +1,24 @@
-{% extends "yaml_page.py.j2" %}
+{% if use_yaml %}{% extends "yaml_page.py.j2" %}{% else %}{% extends "base_page.py.j2" %}{% endif %}
 
 {% block parent_class %}prototypes.FormObject{% endblock %}
 
 {% block additional_attributes %}
-{{super()}}
+{% if use_yaml %}{{super()}}
+{% endif %}
     # SET THE FOLLOWING ATTRIBUTES TO USE IN FormObject METHODS
 
+{% if not use_yaml %}
+    # REQUIRED: Locator for the form element
+    FORM_LOCATOR = None
+    # REQUIRED: Locator for the form submit button
+    SUBMIT_LOCATOR = None
+
+    # REQUIRED: Dictionary mapping input names to the corresponding
+    # prototypes.InputObject instances
+    # TODO: re-work to support non-YAML
+    inputs = {}
+
+{% endif %}
     # (Optional) Page object of the modal/webpage/etc that should appear on
     # successful form submission. If set to a subclass of BasePage, the
     # click_submit() method will return an instance of the page object
