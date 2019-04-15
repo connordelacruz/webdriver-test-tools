@@ -59,7 +59,7 @@ PAGE_OBJECT_TEMPLATE_MAP = {
     },
     WEB_PAGE_PROTOTYPE: {
         'name' : 'web_page_object',
-        'types': ['py']
+        'types': ['py', 'yml']
     },
 }
 
