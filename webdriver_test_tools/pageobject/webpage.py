@@ -18,13 +18,20 @@ class WebPageObject(YAMLParsingPageObject):
     :attr:`YAML_FILE`:
 
     :var WebPageObject.PAGE_FILENAME: File name of the page relative to a base
-        URL declared in ``SITE_CONFIG`` class
+        URL declared in ``SITE_CONFIG`` class.
+
+        .. note::
+
+            If the 'url' key in the YAML file is set to a full URL,
+            :attr:`PAGE_FILENAME` will be set to ``None``
+
     :var WebPageObject.PAGE_URL: Full URL of the page (e.g.
         ``SITE_CONFIG.BASE_URL + PAGE_FILENAME``)
     """
     _YAML_ROOT_KEY = 'web_page'
 
     SITE_CONFIG = None
+
     # TODO: rename to PAGE_RELATIVE_PATH?
     PAGE_FILENAME = None
     PAGE_URL = None
@@ -45,7 +52,6 @@ class WebPageObject(YAMLParsingPageObject):
             # url can be a url string or a dict mapping the page path relative
             # to a SITE_CONFIG attribute
             if isinstance(url, str):
-                # TODO: what about PAGE_FILENAME?
                 self.PAGE_URL = url
             elif isinstance(url, dict):
                 self.PAGE_FILENAME, self.PAGE_URL = self._parse_url_dict(url)
@@ -69,6 +75,7 @@ class WebPageObject(YAMLParsingPageObject):
 
         :raises YAMLKeyError: if ``url`` is missing either required key
         """
+        # TODO: what if URL is an exact attribute in site config and not relative?
         try:
             return (
                 url['path'],
