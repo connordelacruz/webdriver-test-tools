@@ -28,6 +28,7 @@ Currently, the following prototype classes support YAML parsing:
 
    * :class:`FormObject <webdriver_test_tools.pageobject.form.FormObject>`
    * :class:`ModalObject <webdriver_test_tools.pageobject.modal.ModalObject>`
+   * :class:`WebPageObject <webdriver_test_tools.pageobject.webpage.WebPageObject>`
 
 YAML support will be added to more in future releases.
 
@@ -81,11 +82,11 @@ Forms
 
 Form objects have 3 required keys:
 
-   * ``form_locator``: `Locator dictionary <Locator Dictionaries>`_ for the
+   * ``form_locator``: :ref:`Locator dictionary <yaml-locators>` for the
      ``<form>`` element
-   * ``submit_locator``: `Locator dictionary <Locator Dictionaries>`_ for the
+   * ``submit_locator``: :ref:`Locator dictionary <yaml-locators>` for the
      form's submit button
-   * ``inputs``: List of form `inputs <Inputs>`_
+   * ``inputs``: List of form :ref:`inputs <yaml-inputs>`
 
 .. _yaml-inputs:
 
@@ -98,7 +99,7 @@ The items in the form ``inputs`` list have the following keys:
      element doesn't have a name attribute, set this to any unique identifier
      (i.e. not used as the ``name`` value for another input in the form)
    * ``input_locator``: **(Required if element has no ``name`` attribute)**
-     `Locator dictionary <Locator Dictionaries>`_ for the element. If provided,
+     :ref:`Locator dictionary <yaml-locators>` for the element. If provided,
      this will be used instead of ``name`` to find the element
    * ``type``: *(Default: ``text``)* The ``type`` attribute of the input
    * ``required``: *(Default: ``true``)* Whether or not the input is required to
@@ -129,14 +130,48 @@ Syntax
 
 Modal objects have 2 required keys:
 
-   * ``modal_locator``: `Locator dictionary <Locator Dictionaries>`_ for the
-     modal container element
-   * ``close_locator``: `Locator dictionary <Locator Dictionaries>`_ for the
-     modal close button
+   * ``modal_locator``: :ref:`Locator dictionary <yaml-locators>` for the modal
+     container element
+   * ``close_locator``: :ref:`Locator dictionary <yaml-locators>` for the modal
+     close button
 
 
 Example
 -------
 
 .. literalinclude:: ../example/yaml-example/modal.yml
+
+
+.. _yaml-web-page-objects:
+
+WebPageObjects
+==============
+
+:class:`WebPageObjects <webdriver_test_tools.pageobject.webpage.WebPageObject>`
+support YAML representations of the modal using the following syntax.
+
+Syntax
+------
+
+Web page objects have one required key ``url``, which can be set to either the
+full URL to the page, or a dictionary containing the following keys:
+
+   * ``path``: The path to the page, relative to the ``SiteConfig`` attribute
+     specified in ``relative_to``
+   * ``relative_to``: A valid attribute declared in the project's ``SiteConfig``
+     class to use as a base URL. It is assumed that the value of this attribute
+     has a trailing '/'
+
+.. note::
+
+   If 'url' is set to just the full URL to the page, the attribute
+   ``PAGE_FILENAME`` will not be set in the ``WebPageObject``. If it is set to a
+   dictionary, ``PAGE_FILENAME`` will be set to the value of 'path'
+
+
+Example
+-------
+
+.. literalinclude:: ../example/yaml-example/web_page.yml
+
 

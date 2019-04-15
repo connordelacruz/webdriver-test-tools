@@ -1,0 +1,13 @@
+
+# Example 1: Full URL to page
+web_page:
+  url: http://example.com/
+
+# Example 2: Relative to a URL declared in SiteConfig
+web_page:
+  url:
+    # Page path, relative to the SiteConfig attribute specified below
+    path: path/to/page.html
+    # A valid attribute in project SiteConfig to use as the base URL for page
+    relative_to: BASE_URL
+
