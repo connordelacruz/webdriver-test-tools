@@ -25,7 +25,6 @@ def main(tests_module, config_module=None, package_name=None):
     if args.command == 'list':
         parse_list_args(tests_module, args)
     elif args.command == 'new':
-        # TODO: pass config_module?
         parse_new_args(package_name, tests_module, args)
     elif args.command == 'run' or args.command is None:
         parse_run_args(tests_module, config_module, args)
@@ -65,5 +64,5 @@ def get_parser(config_module=None, package_name=None):
     )
     run_parser = add_run_subparser(subparsers, config_module, parents=[test_parent_parser])
     list_parser = add_list_subparser(subparsers, parents=[test_parent_parser])
-    new_parser = add_new_subparser(subparsers)
+    new_parser = add_new_subparser(subparsers, config_module)
     return parser

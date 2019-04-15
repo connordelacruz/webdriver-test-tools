@@ -2,10 +2,12 @@ import os
 import sys
 from argparse import RawTextHelpFormatter
 
+from webdriver_test_tools import config
 from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project import new_file
 
 
+# TODO: update docs
 def main(test_package_path, test_package, args):
     """Command line dialogs for creating a new file
 
@@ -81,6 +83,7 @@ def main(test_package_path, test_package, args):
         kwargs = {}
         if validated_file_type == new_file.PAGE_TYPE:
             prototype = getattr(args, 'prototype', None)
+            use_yaml = getattr(args, 'use_yaml', config.ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML)
             if prototype is None and minimum_required_args:
                 prototype = ''
             _prototype_choices = [name for name in new_file.PROTOTYPE_NAMES]
@@ -101,6 +104,8 @@ def main(test_package_path, test_package, args):
                 default='',
                 parsed_input=prototype
             )
+            # TODO: if using a prototype that supports it, add YAML prompt
+            kwargs['use_yaml'] = use_yaml
         # Start file creation
         new_file_start = True
         new_file_paths = new_file.new_file(
@@ -125,18 +130,23 @@ def main(test_package_path, test_package, args):
 
 # Subparser
 
-def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
+def add_new_subparser(subparsers, config_module, formatter_class=RawTextHelpFormatter):
     """Add subparser for the ``<test_package> new`` command
 
     :param subparsers: ``argparse._SubParsersAction`` object for the test
         package ArgumentParser (i.e. the object returned by the
         ``add_subparsers()`` method)
+    :param config_module: The module object for ``<test_project>.config``
     :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class
         to use for the ``formatter_class`` parameter
 
     :return: ``argparse.ArgumentParser`` object for the newly added ``new``
         subparser
     """
+    if config_module is None:
+        config_module = config
+    # Get ProjectFilesConfig
+    project_files_config = config_module.ProjectFilesConfig if 'ProjectFilesConfig' in dir(config_module) else config.ProjectFilesConfig
     # TODO: add info on no args to description or help
     # Adds custom --help argument
     generic_parent_parser = cmd.argparse.get_generic_parent_parser()
@@ -167,6 +177,7 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
     # New page object parser
+    # TODO: split off into helper methods
     new_page_parent_parser = get_new_parent_parser(
         parents=[generic_parent_parser], class_name_metavar='<PageObjectClass>',
         class_name_help='Name to use for the initial page object class'
@@ -183,7 +194,19 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
     prototype_help = 'Page object prototype to subclass.' + prototype_options_help
     new_page_parser.add_argument('-p', '--prototype', metavar='<prototype_choice>', default=None,
                                  choices=new_file.PROTOTYPE_NAMES, help=prototype_help)
-    # TODO: add --yaml or --no-yaml based on project config
+    yaml_default = project_files_config.ENABLE_PAGE_OBJECT_YAML
+    # Add options to negate YAML default config
+    # TODO: better yaml_help, always have -y and -Y but default to config setting?
+    if yaml_default:
+        yaml_flags = ['--no-yaml', '-Y']
+        yaml_action = 'store_false'
+        yaml_help = 'Generate Python-only module if using a --prototype that supports YAML parsing'
+    else:
+        yaml_flags = ['--yaml', '-y']
+        yaml_action = 'store_true'
+        yaml_help = 'If using a --prototype that supports YAML parsing, also generate YAML file and have class parse it'
+    new_page_parser.add_argument(*yaml_flags, action=yaml_action, default=yaml_default,
+                                 dest='use_yaml', help=yaml_help)
     return new_parser
 
 
@@ -244,7 +267,6 @@ def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
 
 # Argument parsing functions
 
-# TODO: take config module
 def parse_new_args(package_name, tests_module, args):
     """Parse arguments and run the 'new' command
 

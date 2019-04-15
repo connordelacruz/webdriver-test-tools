@@ -103,7 +103,6 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
 
     :return: List of paths for each new file created
     """
-    # TODO: add boolean value 'use_yaml'
     context = {
         'test_package': test_package,
         'module_name': module_name,
@@ -113,14 +112,15 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     if file_type == PAGE_TYPE:
         return _new_page(test_package_path, context,
                          prototype=kwargs.get('prototype', ''),
+                         use_yaml=kwargs.get('use_yaml', True),
                          overwrite=force)
     else:
         return _new_test(test_package_path, context,
                          overwrite=force)
 
 
-# TODO: update to support optional YAML page objects
-def _new_page(test_package_path, context, prototype='', overwrite=False):
+# TODO: update docs
+def _new_page(test_package_path, context, prototype='', use_yaml=True, overwrite=False):
     """Create a new page object file
 
     :param test_package_path: The root directory of the test package
@@ -138,9 +138,16 @@ def _new_page(test_package_path, context, prototype='', overwrite=False):
     target_path = os.path.join(test_package_path, DIRECTORY_MAP[PAGE_TYPE])
     # Get info on template(s) for prototype
     template_map = PAGE_OBJECT_TEMPLATE_MAP[prototype]
+    # Add 'use_yaml' to context
+    context['use_yaml'] = use_yaml
+    # If not using YAML, exclude .yml templates
+    file_types = [
+        ext for ext in template_map['types']
+        if use_yaml or ext != 'yml'
+    ]
     # Keep track of files created
     new_files = []
-    for ext in template_map['types']:
+    for ext in file_types:
         template_filename = '{}.{}'.format(template_map['name'], ext)
         target_filename = '{}.{}'.format(context['module_name'], ext)
         new_files.append(create_file_from_template(
