@@ -133,6 +133,7 @@ def create_config_files(target_path, context):
         '__init__.py',
         'browser.py',
         'browserstack.py',
+        'projectfiles.py',
         'site.py',
         'test.py',
         'webdriver.py',
