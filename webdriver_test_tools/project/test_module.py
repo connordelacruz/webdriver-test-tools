@@ -25,6 +25,7 @@ def main(tests_module, config_module=None, package_name=None):
     if args.command == 'list':
         parse_list_args(tests_module, args)
     elif args.command == 'new':
+        # TODO: pass config_module?
         parse_new_args(package_name, tests_module, args)
     elif args.command == 'run' or args.command is None:
         parse_run_args(tests_module, config_module, args)

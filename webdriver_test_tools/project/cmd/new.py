@@ -183,6 +183,7 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
     prototype_help = 'Page object prototype to subclass.' + prototype_options_help
     new_page_parser.add_argument('-p', '--prototype', metavar='<prototype_choice>', default=None,
                                  choices=new_file.PROTOTYPE_NAMES, help=prototype_help)
+    # TODO: add --yaml or --no-yaml based on project config
     return new_parser
 
 
@@ -197,6 +198,7 @@ def _format_prototype_choices():
 
     :return: Formatted help string for prototype options
     """
+    # TODO: display which ones support YAML
     # Add quotes around names with spaces
     formatted_prototype_names = [
         '"{}"'.format(name) if ' ' in name else name
@@ -242,6 +244,7 @@ def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
 
 # Argument parsing functions
 
+# TODO: take config module
 def parse_new_args(package_name, tests_module, args):
     """Parse arguments and run the 'new' command
 

@@ -70,6 +70,7 @@ DIRECTORY_MAP = {
 }
 
 
+# TODO: update to support optional YAML page objects
 def new_file(test_package_path, test_package, file_type, module_name, class_name,
              description=None, force=False, **kwargs):
     """Create a new project file
@@ -102,6 +103,7 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
 
     :return: List of paths for each new file created
     """
+    # TODO: add boolean value 'use_yaml'
     context = {
         'test_package': test_package,
         'module_name': module_name,
@@ -117,6 +119,7 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
                          overwrite=force)
 
 
+# TODO: update to support optional YAML page objects
 def _new_page(test_package_path, context, prototype='', overwrite=False):
     """Create a new page object file
 
