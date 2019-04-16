@@ -218,10 +218,10 @@ def _add_new_page_subparser(formatter_class, generic_parent_parser, new_subparse
         formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
-    # TODO: add prototype group?
+    prototype_group = new_page_parser.add_argument_group('Prototype Options')
     prototype_options_help = _format_prototype_choices()
     prototype_help = 'Page object prototype to subclass.' + prototype_options_help
-    new_page_parser.add_argument('-p', '--prototype', metavar='<prototype_choice>', default=None,
+    prototype_group.add_argument('-p', '--prototype', metavar='<prototype_choice>', default=None,
                                  choices=new_file.PROTOTYPE_NAMES, help=prototype_help)
     yaml_default = project_files_config.ENABLE_PAGE_OBJECT_YAML
     # Add options to negate YAML default config
@@ -231,7 +231,7 @@ def _add_new_page_subparser(formatter_class, generic_parent_parser, new_subparse
     else:
         yaml_help = 'Generate .py and .yml files if using a --prototype that supports YAML parsing' + _format_yaml_prototype_choices()
         no_yaml_help = SUPPRESS
-    yaml_group = new_page_parser.add_mutually_exclusive_group()
+    yaml_group = prototype_group.add_mutually_exclusive_group()
     yaml_group.add_argument('--yaml', '-y', action='store_true', default=yaml_default,
                                  dest='use_yaml', help=yaml_help)
     yaml_group.add_argument('--no-yaml', '-Y', action='store_false', default=yaml_default,
@@ -294,18 +294,20 @@ def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
         ``<module_name>``, ``<class_name>``, and ``--description`` arguments
     """
     new_parent_parser = cmd.argparse.ArgumentParser(add_help=False, parents=parents)
+    positional_args_group = new_parent_parser.add_argument_group('Positional Arguments')
     # Positional arguments
     module_name_help = 'Filename to use for the new python module'
-    new_parent_parser.add_argument('module_name', metavar='<module_name>', nargs='?', default=None,
+    positional_args_group.add_argument('module_name', metavar='<module_name>', nargs='?', default=None,
                                    help=module_name_help)
-    new_parent_parser.add_argument('class_name', metavar=class_name_metavar, nargs='?', default=None,
+    positional_args_group.add_argument('class_name', metavar=class_name_metavar, nargs='?', default=None,
                                    help=class_name_help)
     # Optional arguments
+    optional_args_group = new_parent_parser.add_argument_group('Optional Arguments')
     description_help='Description for the initial class'
-    new_parent_parser.add_argument('-d', '--description', metavar='<description>', default=None,
+    optional_args_group.add_argument('-d', '--description', metavar='<description>', default=None,
                                    help=description_help)
     force_help='Force overwrite if a file with the same name already exists'
-    new_parent_parser.add_argument('-f', '--force', action='store_true', default=False,
+    optional_args_group.add_argument('-f', '--force', action='store_true', default=False,
                                    help=force_help)
 
     return new_parent_parser
