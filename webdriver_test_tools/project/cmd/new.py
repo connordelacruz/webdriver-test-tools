@@ -1,6 +1,6 @@
 import os
 import sys
-from argparse import RawTextHelpFormatter
+from argparse import RawTextHelpFormatter, SUPPRESS
 
 from webdriver_test_tools import config
 from webdriver_test_tools.common import cmd
@@ -218,6 +218,7 @@ def _add_new_page_subparser(formatter_class, generic_parent_parser, new_subparse
         formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
+    # TODO: add prototype group?
     prototype_options_help = _format_prototype_choices()
     prototype_help = 'Page object prototype to subclass.' + prototype_options_help
     new_page_parser.add_argument('-p', '--prototype', metavar='<prototype_choice>', default=None,
@@ -225,16 +226,16 @@ def _add_new_page_subparser(formatter_class, generic_parent_parser, new_subparse
     yaml_default = project_files_config.ENABLE_PAGE_OBJECT_YAML
     # Add options to negate YAML default config
     if yaml_default:
-        yaml_flags = ['--no-yaml', '-Y']
-        yaml_action = 'store_false'
-        yaml_help = 'Only generate .py files if using a --prototype that supports YAML parsing'
+        no_yaml_help = 'Only generate .py files if using a --prototype that supports YAML parsing' + _format_yaml_prototype_choices()
+        yaml_help = SUPPRESS
     else:
-        yaml_flags = ['--yaml', '-y']
-        yaml_action = 'store_true'
-        yaml_help = 'Generate .py and .yml files if using a --prototype that supports YAML parsing'
-    yaml_help += _format_yaml_prototype_choices()
-    new_page_parser.add_argument(*yaml_flags, action=yaml_action, default=yaml_default,
+        yaml_help = 'Generate .py and .yml files if using a --prototype that supports YAML parsing' + _format_yaml_prototype_choices()
+        no_yaml_help = SUPPRESS
+    yaml_group = new_page_parser.add_mutually_exclusive_group()
+    yaml_group.add_argument('--yaml', '-y', action='store_true', default=yaml_default,
                                  dest='use_yaml', help=yaml_help)
+    yaml_group.add_argument('--no-yaml', '-Y', action='store_false', default=yaml_default,
+                                 dest='use_yaml', help=no_yaml_help)
 
 
 def _format_prototype_choices():
