@@ -18,7 +18,6 @@ This module imports the following classes:
    webdriver_test_tools.config.test
    webdriver_test_tools.config.webdriver
 """
-# TODO: rename?
 from .projectfiles import ProjectFilesConfig
 from .site import SiteConfig
 from .test import TestSuiteConfig
