@@ -57,7 +57,6 @@ class InputObject(BasePage):
         ]
 
 
-    # TODO: add kwargs for each key in input_dict, update parse_yaml()
     def __init__(self, driver, input_dict):
         """Initialize ``InputObject`` using parsed YAML
 
@@ -350,16 +349,28 @@ class FormObject(YAMLParsingPageObject):
         :meth:`click_submit()` will return an instance of this object.
 
     The following attributes are determined based on the contents of
-    :attr:`YAML_FILE`:
+    :attr:`YAML_FILE` (or should be set in subclasses if :attr:`YAML_FILE` is
+    ``None``):
 
     :var FormObject.FORM_LOCATOR: Locator for the form element
     :var FormObject.SUBMIT_LOCATOR: Locator for the submit button
 
+    The following attribute is set based on the 'inputs' key parsed from
+    :attr:`YAML_FILE` (or parsed from :attr:`INPUT_DICTS`, which should be set
+    in subclasses if :attr:`YAML_FILE` is ``None``):
+
     :var FormObject.inputs: A dictionary mapping input names to the
         corresponding :class:`InputObject` instances. The keys correspond with
         the ``name`` keys in the YAML representation of the form
+
+    If :attr:`YAML_FILE` is ``None``, subclasses must set the following
+    attribute:
+
+    :var FormObject.INPUT_DICTS: List of input dictionaries. These are used to
+        initialize the :class:`InputObject` instances in :attr:`inputs` at
+        runtime. These dictionaries use the same syntax as :ref:`YAML inputs
+        <yaml-inputs>`.
     """
-    # TODO: document YAML and non-YAML differences and INPUT_DICTS
 
     _YAML_ROOT_KEY = 'form'
     # Optional page object to return on click_submit()
@@ -368,7 +379,6 @@ class FormObject(YAMLParsingPageObject):
     FORM_LOCATOR = None
     SUBMIT_LOCATOR = None
     # Input objects
-    # TODO: doc (and rename?)
     INPUT_DICTS = []
     inputs = {}
 
@@ -415,24 +425,7 @@ class FormObject(YAMLParsingPageObject):
             )
         # Initialize inputs
         self._initialize_inputs(parsed_yaml['inputs'])
-        # TODO: remove
-        # self.inputs = {}
-        # for input_dict in parsed_yaml['inputs']:
-        #     try:
-        #         # TODO: Use different attribute as key so name can change without affecting code?
-        #         input_name = input_dict['name']
-        #         # Input names must be unique
-        #         if input_name in self.inputs:
-        #             error_msg = "Multiple inputs with the same 'name' value (name: {}). ".format(input_name)
-        #             error_msg += 'Input names must be unique'
-        #             raise utils.yaml.YAMLValueError(error_msg)
-        #         # Initialize InputObject
-        #         self.inputs[input_name] = InputObject(self.driver, input_dict)
-        #     except KeyError as e:
-        #         error_msg = "Missing required 'name' key in input YAML (input: {})".format(str(input_dict))
-        #         raise utils.yaml.YAMLKeyError(error_msg)
 
-    # TODO: test
     def no_yaml_init(self):
         """Initialize ``self.inputs`` using values in :attr:`INPUT_DICTS`"""
         self._initialize_inputs(self.INPUT_DICTS, from_yaml=False)
@@ -505,7 +498,6 @@ class FormObject(YAMLParsingPageObject):
                 else:
                     warnings.warn('Invalid input name {}, skipping'.format(e))
 
-    # TODO: test
     def get_input_values(self, name_list=None):
         """Get the current values of form inputs
 
