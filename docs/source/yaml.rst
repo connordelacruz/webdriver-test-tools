@@ -1,7 +1,7 @@
 .. _yaml-page-objects:
 
 ======================
-Page Object YAML files
+Page Object YAML Files
 ======================
 
 .. contents::

@@ -224,15 +224,15 @@ def _add_new_page_subparser(formatter_class, generic_parent_parser, new_subparse
                                  choices=new_file.PROTOTYPE_NAMES, help=prototype_help)
     yaml_default = project_files_config.ENABLE_PAGE_OBJECT_YAML
     # Add options to negate YAML default config
-    # TODO: better yaml_help, always have -y and -Y but default to config setting?
     if yaml_default:
         yaml_flags = ['--no-yaml', '-Y']
         yaml_action = 'store_false'
-        yaml_help = 'Generate Python-only module if using a --prototype that supports YAML parsing'
+        yaml_help = 'Only generate .py files if using a --prototype that supports YAML parsing'
     else:
         yaml_flags = ['--yaml', '-y']
         yaml_action = 'store_true'
-        yaml_help = 'If using a --prototype that supports YAML parsing, also generate YAML file and have class parse it'
+        yaml_help = 'Generate .py and .yml files if using a --prototype that supports YAML parsing'
+    yaml_help += _format_yaml_prototype_choices()
     new_page_parser.add_argument(*yaml_flags, action=yaml_action, default=yaml_default,
                                  dest='use_yaml', help=yaml_help)
 
@@ -248,13 +248,31 @@ def _format_prototype_choices():
 
     :return: Formatted help string for prototype options
     """
-    # TODO: display which ones support YAML
     # Add quotes around names with spaces
     formatted_prototype_names = [
         '"{}"'.format(name) if ' ' in name else name
         for name in new_file.PROTOTYPE_NAMES
     ]
     return '\nOptions: {{{}}}'.format(','.join(formatted_prototype_names))
+
+
+def _format_yaml_prototype_choices():
+    """Format the help string for prototype choices with YAML support
+
+    The returned string will have the following format:
+
+    .. code:: python
+
+        '\\nSupported Prototypes: {prototype,"prototype with spaces"}'
+
+    :return: Formatted help string for prototype options
+    """
+    # Add quotes around names with spaces
+    formatted_prototype_names = [
+        '"{}"'.format(name) if ' ' in name else name
+        for name in new_file.YAML_PROTOTYPE_NAMES
+    ]
+    return '\nSupported Prototypes: {{{}}}'.format(','.join(formatted_prototype_names))
 
 
 def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',

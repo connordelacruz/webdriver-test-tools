@@ -32,6 +32,13 @@ PROTOTYPE_NAMES = [
     COLLAPSIBLE_NAV_PROTOTYPE,
     WEB_PAGE_PROTOTYPE,
 ]
+#: List of prototype names that support YAML parsing
+# TODO: merge w/ PROTOTYPE_NAMES/PAGE_OBJECT_TEMPLATE_MAP somehow?
+YAML_PROTOTYPE_NAMES = [
+    FORM_PROTOTYPE,
+    MODAL_PROTOTYPE,
+    WEB_PAGE_PROTOTYPE,
+]
 
 #: Maps prototype names to the base name of the corresponding template files
 #: and a list of file extensions for each file.
