@@ -21,3 +21,9 @@ class SiteConfig(site.SiteConfig):
     BASE_URL = SITE_URL
 
     # DECLARE ANY OTHER URL VARIABLES NEEDED FOR TESTING HERE
+
+    # WebPageObject Test URLs
+
+    IANA_SITE_URL = 'https://www.iana.org'
+    IANA_BASE_URL = IANA_SITE_URL + '/'
+
