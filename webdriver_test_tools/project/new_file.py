@@ -128,7 +128,7 @@ def _new_page(test_package_path, context, prototype='', use_yaml=True, overwrite
         specifying the prototype template to use. Defaults to empty string
         (generic page object)
     :param use_yaml: (Default: True) If True, generate .py and .yml files for
-        supported prototypes. If False, Just generate .py files. Templates will
+        supported prototypes. If False, just generate .py files. Templates will
         render different attributes based on this setting
     :param overwrite: (Default: False) If True, force overwrite if attempting
         to create a file that already exists

@@ -87,7 +87,6 @@ def main(test_package_path, test_package, args):
         kwargs = {}
         if validated_file_type == new_file.PAGE_TYPE:
             prototype = getattr(args, 'prototype', None)
-            # TODO: figure out how to handle prompt
             use_yaml = getattr(args, 'use_yaml', config.ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML)
             if prototype is None and minimum_required_args:
                 prototype = ''
@@ -109,7 +108,7 @@ def main(test_package_path, test_package, args):
                 default='',
                 parsed_input=prototype
             )
-            # TODO: if using a prototype that supports it, add YAML prompt
+            # TODO: Add prompt if class supports it (will need to change arg default to None and pass config_module as param)
             kwargs['use_yaml'] = use_yaml
         # Start file creation
         new_file_start = True
