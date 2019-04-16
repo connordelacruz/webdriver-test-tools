@@ -61,7 +61,8 @@ class InputObject(BasePage):
     def __init__(self, driver, input_dict):
         """Initialize ``InputObject`` using parsed YAML
 
-        See :ref:`YAML inputs doc <yaml-inputs>` for details on syntax.
+        See :ref:`YAML inputs doc <yaml-inputs>` for details on ``input_dict``
+        syntax.
 
         :param driver: Selenium WebDriver object
         :param input_dict: Parsed dictionary from YAML file inputs list. Must
@@ -358,6 +359,7 @@ class FormObject(YAMLParsingPageObject):
         corresponding :class:`InputObject` instances. The keys correspond with
         the ``name`` keys in the YAML representation of the form
     """
+    # TODO: document YAML and non-YAML differences and INPUT_DICTS
 
     _YAML_ROOT_KEY = 'form'
     # Optional page object to return on click_submit()
@@ -366,6 +368,8 @@ class FormObject(YAMLParsingPageObject):
     FORM_LOCATOR = None
     SUBMIT_LOCATOR = None
     # Input objects
+    # TODO: doc (and rename?)
+    INPUT_DICTS = []
     inputs = {}
 
     class Input:
@@ -410,8 +414,38 @@ class FormObject(YAMLParsingPageObject):
                 'Missing required {} key in form YAML'.format(e)
             )
         # Initialize inputs
+        self._initialize_inputs(parsed_yaml['inputs'])
+        # TODO: remove
+        # self.inputs = {}
+        # for input_dict in parsed_yaml['inputs']:
+        #     try:
+        #         # TODO: Use different attribute as key so name can change without affecting code?
+        #         input_name = input_dict['name']
+        #         # Input names must be unique
+        #         if input_name in self.inputs:
+        #             error_msg = "Multiple inputs with the same 'name' value (name: {}). ".format(input_name)
+        #             error_msg += 'Input names must be unique'
+        #             raise utils.yaml.YAMLValueError(error_msg)
+        #         # Initialize InputObject
+        #         self.inputs[input_name] = InputObject(self.driver, input_dict)
+        #     except KeyError as e:
+        #         error_msg = "Missing required 'name' key in input YAML (input: {})".format(str(input_dict))
+        #         raise utils.yaml.YAMLKeyError(error_msg)
+
+    # TODO: test
+    def no_yaml_init(self):
+        """Initialize ``self.inputs`` using values in :attr:`INPUT_DICTS`"""
+        self._initialize_inputs(self.INPUT_DICTS, from_yaml=False)
+
+    def _initialize_inputs(self, input_dicts, from_yaml=True):
+        """Initialize :class:`InputObject` instances in ``self.inputs``
+
+        :param input_dicts: List of input dictionaries
+        :param from_yaml: (Default: True) Whether or not this was parsed from
+            YAML. Exceptions raised will be different based on this
+        """
         self.inputs = {}
-        for input_dict in parsed_yaml['inputs']:
+        for input_dict in input_dicts:
             try:
                 # TODO: Use different attribute as key so name can change without affecting code?
                 input_name = input_dict['name']
@@ -419,12 +453,17 @@ class FormObject(YAMLParsingPageObject):
                 if input_name in self.inputs:
                     error_msg = "Multiple inputs with the same 'name' value (name: {}). ".format(input_name)
                     error_msg += 'Input names must be unique'
-                    raise utils.yaml.YAMLValueError(error_msg)
+                    raise utils.yaml.YAMLValueError(error_msg) if from_yaml else ValueError(error_msg)
                 # Initialize InputObject
                 self.inputs[input_name] = InputObject(self.driver, input_dict)
             except KeyError as e:
-                error_msg = "Missing required 'name' key in input YAML (input: {})".format(str(input_dict))
-                raise utils.yaml.YAMLKeyError(error_msg)
+                if from_yaml:
+                    error_msg = "Missing required 'name' key in input YAML (input: {})".format(str(input_dict))
+                    raise utils.yaml.YAMLKeyError(error_msg)
+                # Preserve stack trace for key error if not parsing YAML
+                else:
+                    raise
+
 
     # TODO: deprecate old fill_form workflow
     def fill_form(self, input_map):
