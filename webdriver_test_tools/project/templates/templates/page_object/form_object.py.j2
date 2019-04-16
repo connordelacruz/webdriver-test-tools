@@ -13,10 +13,10 @@
     # REQUIRED: Locator for the form submit button
     SUBMIT_LOCATOR = None
 
-    # REQUIRED: Dictionary mapping input names to the corresponding
-    # prototypes.InputObject instances
-    # TODO: re-work to support non-YAML
-    inputs = {}
+    # REQUIRED: List of input dictionaries. These will be used to initialize
+    # InputObjects at run time.
+    # TODO: link to YAML docs for format
+    INPUT_DICTS = []
 
 {% endif %}
     # (Optional) Page object of the modal/webpage/etc that should appear on
