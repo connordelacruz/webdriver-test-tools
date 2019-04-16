@@ -70,7 +70,6 @@ DIRECTORY_MAP = {
 }
 
 
-# TODO: update to support optional YAML page objects
 def new_file(test_package_path, test_package, file_type, module_name, class_name,
              description=None, force=False, **kwargs):
     """Create a new project file
@@ -119,7 +118,6 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
                          overwrite=force)
 
 
-# TODO: update docs
 def _new_page(test_package_path, context, prototype='', use_yaml=True, overwrite=False):
     """Create a new page object file
 
@@ -129,6 +127,9 @@ def _new_page(test_package_path, context, prototype='', use_yaml=True, overwrite
     :param prototype: (Default: '') Key in :data:`PAGE_OBJECT_TEMPLATE_MAP`
         specifying the prototype template to use. Defaults to empty string
         (generic page object)
+    :param use_yaml: (Default: True) If True, generate .py and .yml files for
+        supported prototypes. If False, Just generate .py files. Templates will
+        render different attributes based on this setting
     :param overwrite: (Default: False) If True, force overwrite if attempting
         to create a file that already exists
 
