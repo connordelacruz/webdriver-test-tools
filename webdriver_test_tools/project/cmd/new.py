@@ -7,7 +7,6 @@ from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project import new_file
 
 
-# TODO: Re-phrase section on page object optional args?
 def main(test_package_path, test_package, args):
     """Command line dialogs for creating a new file
 
@@ -26,12 +25,13 @@ def main(test_package_path, test_package, args):
 
     The ``new page`` command has additional optional arguments ``--prototype``
     and ``--yaml``/``--no-yaml`` (depending on the configuration of
-    ``ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML``). Prompts for these values
+    ``ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML``). Prompt for ``--prototype``
     will not be shown if ``type``, ``module_name``, and ``class_name`` are all
     set to something other than ``None``. Instead, this method will use the
-    standard page object template unless one is specified with ``prototype``,
-    and will use the value of ``ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML``
-    unless ``--yaml``/``--no-yaml`` is specified.
+    standard page object template unless one is specified with ``prototype``.
+    Currently there is no prompt for the ``--yaml``/``--no-yaml`` arguments, so
+    the value of ``ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML`` will always be
+    used unless ``--yaml``/``--no-yaml`` is specified.
 
     :param test_package_path: The root directory of the test package
     :param test_package: The python package name of the test package

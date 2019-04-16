@@ -24,22 +24,6 @@ NAV_PROTOTYPE = 'nav'
 COLLAPSIBLE_NAV_PROTOTYPE = 'collapsible nav'
 WEB_PAGE_PROTOTYPE = 'web page'
 
-#: List of valid prototype names
-PROTOTYPE_NAMES = [
-    FORM_PROTOTYPE,
-    MODAL_PROTOTYPE,
-    NAV_PROTOTYPE,
-    COLLAPSIBLE_NAV_PROTOTYPE,
-    WEB_PAGE_PROTOTYPE,
-]
-#: List of prototype names that support YAML parsing
-# TODO: merge w/ PROTOTYPE_NAMES/PAGE_OBJECT_TEMPLATE_MAP somehow?
-YAML_PROTOTYPE_NAMES = [
-    FORM_PROTOTYPE,
-    MODAL_PROTOTYPE,
-    WEB_PAGE_PROTOTYPE,
-]
-
 #: Maps prototype names to the base name of the corresponding template files
 #: and a list of file extensions for each file.
 #: Empty string maps to generic BasePage template
@@ -69,6 +53,18 @@ PAGE_OBJECT_TEMPLATE_MAP = {
         'types': ['py', 'yml']
     },
 }
+
+#: List of valid prototype names
+PROTOTYPE_NAMES = [
+    prototype for prototype in PAGE_OBJECT_TEMPLATE_MAP
+    if prototype != ''
+]
+
+#: List of prototype names that support YAML parsing
+YAML_PROTOTYPE_NAMES = [
+    prototype for prototype, options in PAGE_OBJECT_TEMPLATE_MAP.items()
+    if 'yml' in options.get('types', [])
+]
 
 #: Maps file type to corresponding subdirectory in a test package
 DIRECTORY_MAP = {
