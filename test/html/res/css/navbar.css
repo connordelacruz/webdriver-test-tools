@@ -1,0 +1,6 @@
+/* Custom navbar styles */
+
+.hover-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
