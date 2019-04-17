@@ -39,12 +39,15 @@ class NavLinkObject(BasePage):
         self.click_action = link_dict.get('click', self.ActionTypes.PAGE)
         if self.click_action == self.ActionTypes.NONE:
             self.click_action = None
+            # Click target should also be None
+            self.target = None
         self.hover_action = link_dict.get('hover', None)
         if self.hover_action == self.ActionTypes.NONE:
             self.hover_action = None
         # Get target attribute if required
         if self.click_action in self.ActionTypes.REQUIRES_TARGET:
             target = link_dict['target']
+            # TODO: if section type and target doesn't start w/ #, add one?
             if isinstance(target, dict):
                 # TODO: extract to method, error handling, figure out if this is the best way to handle this
                 base_url = getattr(site_config, target['relative_to'])
@@ -72,7 +75,8 @@ class NavLinkObject(BasePage):
 
         :return: Link target (url or section ID) if ``self.click_action`` is
             'page' or 'section', or a :class:`NavMenuObject` instance if
-            ``self.click_action`` is 'menu'
+            ``self.click_action`` is 'menu' (or ``None`` if
+            ``self.click_action`` is ``None``)
         """
         actions.scroll.to_and_click(self.driver, self.find_link_element(), False)
         return self.menu if self.click_action == self.ActionTypes.MENU else self.target

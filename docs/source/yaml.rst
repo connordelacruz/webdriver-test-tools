@@ -92,6 +92,8 @@ required keys:
      strategy
 
 
+.. todo document root keys for each
+
 .. _yaml-form-objects:
 
 FormObjects
@@ -202,4 +204,83 @@ Example
 
 .. literalinclude:: ../example/yaml-example/web_page.yml
 
+
+.. _yaml-nav-objects:
+
+NavObjects
+==========
+
+:class:`NavObjects <webdriver_test_tools.pageobject.nav.NavObject>` support YAML
+representations of the nav using the following syntax.
+
+Syntax
+------
+
+.. _yaml-navs:
+
+Navbars
+~~~~~~~
+
+Navbar objects have the following keys: 
+
+   * ``links``: **(Required)** List of :ref:`links <yaml-links>`.
+   * ``fixed``: *(Default:* ``true`` *)* Whether or not the navbar is fixed to
+     the screen
+   .. todo collapsible stuff
+
+.. _yaml-links:
+
+Links
+~~~~~
+
+The items in the nav ``links`` list have the following keys:
+
+   * ``name``: **(Required)** Name used to refer to this link. Must be unique
+     from other links in the same list
+   * ``link_locator``: **(Required)** :ref:`Locator dictionary <yaml-locators>`
+     for the link element
+   * ``click``: *(Default:* ``page`` *)* One of the following values describing
+     the expected action on click:
+
+      * ``page``: *(Default)* Go to another page
+      * ``section``: Jump to a section in the current page
+      * ``menu``: Toggle a dropdown menu
+      * ``none``: No expected action
+
+   * ``hover``: *(Default:* ``none`` *)* One of the following values describing
+     the expected action on hover:
+
+      * ``none``: *(Default)* No expected action
+      * ``menu``: Show dropdown menu
+
+   * ``target``: **(Required if** ``click`` **is** ``page`` **or** ``section``
+     **)** The link target, formatted in one of the following ways (depending on
+     ``click`` type):
+
+      * (``click: page``) The full URL to the target page
+      * (``click: page``) A dictionary containing the following keys:
+
+         * ``path``: The path to the target page, relative to the ``SiteConfig``
+           attribute specified in ``relative_to``
+         * ``relative_to``: A valid attribute declared in the project's
+           ``SiteConfig`` class to use as a base URL. It is assumed that the
+           value of this attribute has a trailing '/'
+
+      * (``click: section``) The ``id`` attribute of the section element (i.e.
+        the link's ``href`` attribute)
+
+   * ``menu``: **(Required if** ``click`` **or** ``hover`` **is** ``menu`` **)**
+     A dictionary representing the menu that appears on click or hover. Contains
+     the following **required** keys:
+
+      * ``menu_locator``: :ref:`Locator dictionary <yaml-locators>` for the menu
+        element
+      * ``links``: List of :ref:`links <yaml-links>`. Same syntax as the nav
+        object links list
+
+
+Example
+-------
+
+.. todo
 
