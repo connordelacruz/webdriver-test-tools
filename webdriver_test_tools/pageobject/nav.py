@@ -15,6 +15,7 @@ class NavLinkObject(BasePage):
         PAGE = 'page'
         SECTION = 'section'
         MENU = 'menu'
+        NONE = 'none'
         # Click/hover support for each type
         CLICK_ACTIONS = [
             PAGE, SECTION, MENU
@@ -27,7 +28,7 @@ class NavLinkObject(BasePage):
             PAGE, SECTION
         ]
 
-    def __init__(self, driver, link_dict):
+    def __init__(self, driver, link_dict, site_config):
         # TODO: doc
         super().__init__(driver)
         # 'name' and 'link_locator' required, so assume that they're valid keys
@@ -36,14 +37,22 @@ class NavLinkObject(BasePage):
         self.locator = utils.yaml.to_locator(link_dict['link_locator'])
         # TODO: raise value errors if invalid (allow either to be None though)
         self.click_action = link_dict.get('click', self.ActionTypes.PAGE)
+        if self.click_action == self.ActionTypes.NONE:
+            self.click_action = None
         self.hover_action = link_dict.get('hover', None)
+        if self.hover_action == self.ActionTypes.NONE:
+            self.hover_action = None
         # Get target attribute if required
         if self.click_action in self.ActionTypes.REQUIRES_TARGET:
-            # TODO: handle relative_to target
-            self.target = link_dict['target']
+            target = link_dict['target']
+            if isinstance(target, dict):
+                # TODO: extract to method, error handling, figure out if this is the best way to handle this
+                base_url = getattr(site_config, target['relative_to'])
+                target = base_url + target['path']
+            self.target = target
         # Parse menu if applicable
         if self.ActionTypes.MENU in [self.click_action, self.hover_action]:
-            self.menu = NavMenuObject(self.driver, link_dict['menu'])
+            self.menu = NavMenuObject(self.driver, link_dict['menu'], site_config)
 
     # WebElement retrieval
 
@@ -86,19 +95,19 @@ class NavLinkObject(BasePage):
 class NavMenuObject(BasePage):
     """Page object prototype for dropdown/collapsible nav menus"""
 
-    def __init__(self, driver, menu_dict):
+    def __init__(self, driver, menu_dict, site_config):
         # TODO: doc
         super().__init__(driver)
         # 'menu_locator' is required, so assume it's a valid key and raise
         # errors otherwise
-        self.locator = menu_dict['menu_locator']
+        self.locator = utils.yaml.to_locator(menu_dict['menu_locator'])
         # TODO: link map
         self.links = {}
         for link_dict in menu_dict['links']:
             # TODO: except key error
             link_name = link_dict['name']
             # TODO: raise (yaml) value error if name not unique
-            self.links[link_name] = NavLinkObject(self.driver, link_dict)
+            self.links[link_name] = NavLinkObject(self.driver, link_dict, site_config)
 
     # WebElement retrieval
 
@@ -137,7 +146,13 @@ class NavMenuObject(BasePage):
         # TODO: KeyError message?
         return self.links[link_name].hover_over_link()
 
-    # TODO: is_visible()
+    def is_visible(self):
+        # TODO: doc
+        try:
+            visible = self.find_menu_element().is_displayed()
+        except NoSuchElementException:
+            visible = False
+        return visible
 
 
 # Navbar Page Objects
@@ -159,6 +174,9 @@ class NavObject(YAMLParsingPageObject):
     """
 
     _YAML_ROOT_KEY = 'nav'
+
+    # TODO: doc
+    SITE_CONFIG = None
 
     # Nav attributes
     FIXED = True
@@ -190,6 +208,7 @@ class NavObject(YAMLParsingPageObject):
         """Initialize ``self.links`` using values in :attr:`LINK_DICTS`"""
         self._initialize_links(self.LINK_DICTS, from_yaml=False)
 
+    # TODO: overlaps w/ menu, merge?
     def _initialize_links(self, link_dicts, from_yaml=True):
         """Initialize :class:`NavLinkObject` instances in ``self.links``
 
@@ -208,7 +227,7 @@ class NavObject(YAMLParsingPageObject):
                     error_msg += 'link names must be unique'
                     raise utils.yaml.YAMLValueError(error_msg) if from_yaml else ValueError(error_msg)
                 # Initialize NavLinkObject
-                self.links[link_name] = NavLinkObject(self.driver, link_dict)
+                self.links[link_name] = NavLinkObject(self.driver, link_dict, self.SITE_CONFIG)
             except KeyError as e:
                 if from_yaml:
                     error_message = 'Missing required {} key in link YAML (link: {})'.format(e, str(link_dict))

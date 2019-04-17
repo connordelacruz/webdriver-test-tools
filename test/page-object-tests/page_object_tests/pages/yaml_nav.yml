@@ -1,0 +1,81 @@
+
+nav:
+  fixed: false
+  links:
+    - name: home
+      link_locator:
+        by: CLASS_NAME
+        locator: navbar-brand
+      target:
+        path: index.html
+        relative_to: BASE_URL
+    - name: section3
+      link_locator:
+        by: CSS_SELECTOR
+        locator: 'a[href="#section3"]'
+      click: section
+      target: '#section3'
+    - name: hover-menu
+      link_locator:
+        by: ID
+        locator: hover-menu-link
+      click: none
+      hover: menu
+      menu:
+        menu_locator:
+          by: ID
+          locator: hover-menu
+        links:
+          - name: home
+            link_locator:
+              by: CSS_SELECTOR
+              locator: '#hover-menu a[href="index.html"]'
+            target:
+              path: index.html
+              relative_to: BASE_URL
+          - name: form
+            link_locator:
+              by: CSS_SELECTOR
+              locator: '#hover-menu a[href="form.html"]'
+            target:
+              path: form.html
+              relative_to: BASE_URL
+          - name: modal
+            link_locator:
+              by: CSS_SELECTOR
+              locator: '#hover-menu a[href="modal.html"]'
+            target:
+              path: modal.html
+              relative_to: BASE_URL
+    - name: click-menu
+      link_locator:
+        by: ID
+        locator: click-menu-link
+      click: menu
+      menu:
+        menu_locator:
+          by: ID
+          locator: click-menu
+        links:
+          - name: home
+            link_locator:
+              by: CSS_SELECTOR
+              locator: '#click-menu a[href="index.html"]'
+            target:
+              path: index.html
+              relative_to: BASE_URL
+          - name: form
+            link_locator:
+              by: CSS_SELECTOR
+              locator: '#click-menu a[href="form.html"]'
+            target:
+              path: form.html
+              relative_to: BASE_URL
+          - name: modal
+            link_locator:
+              by: CSS_SELECTOR
+              locator: '#click-menu a[href="modal.html"]'
+            target:
+              path: modal.html
+              relative_to: BASE_URL
+
