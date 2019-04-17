@@ -8,13 +8,17 @@ This module imports the following classes:
     :class:`webdriver_test_tools.pageobject.form.FormObject`
     :class:`webdriver_test_tools.pageobject.form.InputObject`
     :class:`webdriver_test_tools.pageobject.modal.ModalObject`
+    :class:`webdriver_test_tools.pageobject.nav.NavLinkObject`
+    :class:`webdriver_test_tools.pageobject.nav.NavMenuObject`
     :class:`webdriver_test_tools.pageobject.nav.CollapsibleNavObject`
     :class:`webdriver_test_tools.pageobject.nav.NavObject`
     :class:`webdriver_test_tools.pageobject.webpage.WebPageObject`
 """
 
 from .webpage import WebPageObject
-from .nav import NavObject, CollapsibleNavObject
+from .nav import (
+    NavLinkObject, NavMenuObject, NavObject, CollapsibleNavObject
+)
 from .form import FormObject, InputObject
 from .modal import ModalObject
 

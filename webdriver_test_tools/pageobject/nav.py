@@ -1,10 +1,114 @@
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 
-from webdriver_test_tools.pageobject import BasePage
+from webdriver_test_tools.pageobject import utils, BasePage, YAMLParsingPageObject
 from webdriver_test_tools.webdriver import actions
 
 
+# Link Page Objects
+
+class NavLinkObject(BasePage):
+    # TODO: doc and implement
+
+    class ActionTypes:
+        # TODO: doc
+        PAGE = 'page'
+        SECTION = 'section'
+        MENU = 'menu'
+        # Click/hover support for each type
+        CLICK_ACTIONS = [
+            PAGE, SECTION, MENU
+        ]
+        HOVER_ACTIONS = [
+            MENU
+        ]
+
+    def __init__(self, driver, link_dict):
+        # TODO: doc
+        super().__init__(driver)
+        # 'name' and 'link_locator' required, so assume that they're valid keys
+        # and raise errors otherwise
+        self.name = link_dict['name']
+        self.locator = utils.yaml.to_locator(link_dict['link_locator'])
+        # TODO: raise value errors if invalid
+        self.click_action = link_dict.get('click', self.ActionTypes.PAGE)
+        self.hover_action = link_dict.get('hover', None)
+        # TODO: raise key error if click_action is page/section
+        self.target = link_dict.get('target', None)
+        # Parse menu if applicable
+        if self.ActionTypes.MENU in [self.click_action, self.hover_action]:
+            # TODO: self.menu = NavMenuObject(self.driver, link_dict['menu'])
+            pass
+
+    # WebElement retrieval
+
+    def find_link_element(self):
+        """Returns the ``WebElement`` object located by ``self.locator``
+
+        Shorthand for ``self.find_element(self.locator)``
+
+        :return: ``WebElement`` object for the link
+        """
+        return self.find_element(self.locator)
+
+    # Actions
+
+    def click_link(self):
+        actions.scroll.to_and_click(self.driver, self.find_link_element(), False)
+        # TODO: return something? (and doc)
+
+    def hover_over_link(self):
+        link_element = self.find_link_element()
+        actions.scroll.into_view(self.driver, link_element, False)
+        action_chain = ActionChains(self.driver)
+        action_chain.move_to_element(link_element).perform()
+        # TODO: return menu object? (and doc)
+
+
+# Menu Page Objects
+
+class NavMenuObject(BasePage):
+    # TODO: doc and implement
+
+    def __init__(self, driver, menu_dict):
+        # TODO: doc
+        super().__init__(driver)
+        # 'menu_locator' is required, so assume it's a valid key and raise
+        # errors otherwise
+        self.locator = menu_dict['menu_locator']
+        # TODO: link map
+        self.links = {}
+        for link_dict in menu_dict['links']:
+            # TODO: except key error
+            link_name = link_dict['name']
+            # TODO: raise (yaml) value error if name not unique
+            self.links[link_name] = NavLinkObject(self.driver, link_dict)
+
+    # WebElement retrieval
+
+    def find_menu_element(self):
+        """Returns the ``WebElement`` object located by ``self.locator``
+
+        Shorthand for ``self.find_element(self.locator)``
+
+        :return: ``WebElement`` object for the menu
+        """
+        return self.find_element(self.locator)
+
+    # Actions
+
+    def click_link(self, link_name):
+        # TODO: doc, return something, errors?
+        self.links[link_name].click_link()
+
+    def hover_over_link(self, link_name):
+        # TODO: doc, return something, errors?
+        self.links[link_name].hover_over_link()
+
+
+# Navbar Page Objects
+
+# TODO: YAML support, implement new objects, update docs
 class NavObject(BasePage):
     """Page object prototype for navbars
 
