@@ -21,7 +21,8 @@ class ModalObject(YAMLParsingPageObject):
         :meth:`get_modal_body()` will return an instance of this object.
 
     The following attributes are determined based on the contents of
-    :attr:`YAML_FILE`:
+    :attr:`YAML_FILE` (or should be set in subclasses if :attr:`YAML_FILE` is
+    ``None``):
 
     :var ModalObject.MODAL_LOCATOR: Locator for the modal element. Override in
         subclasses
