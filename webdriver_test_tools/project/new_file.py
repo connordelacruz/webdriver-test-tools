@@ -24,15 +24,6 @@ NAV_PROTOTYPE = 'nav'
 COLLAPSIBLE_NAV_PROTOTYPE = 'collapsible nav'
 WEB_PAGE_PROTOTYPE = 'web page'
 
-#: List of valid prototype names
-PROTOTYPE_NAMES = [
-    FORM_PROTOTYPE,
-    MODAL_PROTOTYPE,
-    NAV_PROTOTYPE,
-    COLLAPSIBLE_NAV_PROTOTYPE,
-    WEB_PAGE_PROTOTYPE,
-]
-
 #: Maps prototype names to the base name of the corresponding template files
 #: and a list of file extensions for each file.
 #: Empty string maps to generic BasePage template
@@ -62,6 +53,18 @@ PAGE_OBJECT_TEMPLATE_MAP = {
         'types': ['py', 'yml']
     },
 }
+
+#: List of valid prototype names
+PROTOTYPE_NAMES = [
+    prototype for prototype in PAGE_OBJECT_TEMPLATE_MAP
+    if prototype != ''
+]
+
+#: List of prototype names that support YAML parsing
+YAML_PROTOTYPE_NAMES = [
+    prototype for prototype, options in PAGE_OBJECT_TEMPLATE_MAP.items()
+    if 'yml' in options.get('types', [])
+]
 
 #: Maps file type to corresponding subdirectory in a test package
 DIRECTORY_MAP = {
@@ -111,13 +114,14 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
     if file_type == PAGE_TYPE:
         return _new_page(test_package_path, context,
                          prototype=kwargs.get('prototype', ''),
+                         use_yaml=kwargs.get('use_yaml', True),
                          overwrite=force)
     else:
         return _new_test(test_package_path, context,
                          overwrite=force)
 
 
-def _new_page(test_package_path, context, prototype='', overwrite=False):
+def _new_page(test_package_path, context, prototype='', use_yaml=True, overwrite=False):
     """Create a new page object file
 
     :param test_package_path: The root directory of the test package
@@ -126,6 +130,9 @@ def _new_page(test_package_path, context, prototype='', overwrite=False):
     :param prototype: (Default: '') Key in :data:`PAGE_OBJECT_TEMPLATE_MAP`
         specifying the prototype template to use. Defaults to empty string
         (generic page object)
+    :param use_yaml: (Default: True) If True, generate .py and .yml files for
+        supported prototypes. If False, just generate .py files. Templates will
+        render different attributes based on this setting
     :param overwrite: (Default: False) If True, force overwrite if attempting
         to create a file that already exists
 
@@ -135,9 +142,16 @@ def _new_page(test_package_path, context, prototype='', overwrite=False):
     target_path = os.path.join(test_package_path, DIRECTORY_MAP[PAGE_TYPE])
     # Get info on template(s) for prototype
     template_map = PAGE_OBJECT_TEMPLATE_MAP[prototype]
+    # Add 'use_yaml' to context
+    context['use_yaml'] = use_yaml
+    # If not using YAML, exclude .yml templates
+    file_types = [
+        ext for ext in template_map['types']
+        if use_yaml or ext != 'yml'
+    ]
     # Keep track of files created
     new_files = []
-    for ext in template_map['types']:
+    for ext in file_types:
         template_filename = '{}.{}'.format(template_map['name'], ext)
         target_filename = '{}.{}'.format(context['module_name'], ext)
         new_files.append(create_file_from_template(

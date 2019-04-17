@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -189,17 +189,23 @@ template path</p>
 </dd></dl>
 
 <dl class="data">
+<dt id="webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP">
+<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">PAGE_OBJECT_TEMPLATE_MAP</code><em class="property"> = {'': {'name': 'base_page', 'types': ['py']}, 'collapsible nav': {'name': 'collapsible_nav_object', 'types': ['py']}, 'form': {'name': 'form_object', 'types': ['py', 'yml']}, 'modal': {'name': 'modal_object', 'types': ['py', 'yml']}, 'nav': {'name': 'nav_object', 'types': ['py']}, 'web page': {'name': 'web_page_object', 'types': ['py', 'yml']}}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps prototype names to the base name of the corresponding template files
+and a list of file extensions for each file.
+Empty string maps to generic BasePage template</p>
+</dd></dl>
+
+<dl class="data">
 <dt id="webdriver_test_tools.project.new_file.PROTOTYPE_NAMES">
 <code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">PROTOTYPE_NAMES</code><em class="property"> = ['form', 'modal', 'nav', 'collapsible nav', 'web page']</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.PROTOTYPE_NAMES" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of valid prototype names</p>
 </dd></dl>
 
 <dl class="data">
-<dt id="webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP">
-<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">PAGE_OBJECT_TEMPLATE_MAP</code><em class="property"> = {'': {'name': 'base_page', 'types': ['py']}, 'collapsible nav': {'name': 'collapsible_nav_object', 'types': ['py']}, 'form': {'name': 'form_object', 'types': ['py', 'yml']}, 'modal': {'name': 'modal_object', 'types': ['py', 'yml']}, 'nav': {'name': 'nav_object', 'types': ['py']}, 'web page': {'name': 'web_page_object', 'types': ['py']}}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maps prototype names to the base name of the corresponding template files
-and a list of file extensions for each file.
-Empty string maps to generic BasePage template</p>
+<dt id="webdriver_test_tools.project.new_file.YAML_PROTOTYPE_NAMES">
+<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">YAML_PROTOTYPE_NAMES</code><em class="property"> = ['form', 'modal', 'web page']</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.YAML_PROTOTYPE_NAMES" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of prototype names that support YAML parsing</p>
 </dd></dl>
 
 <dl class="data">

@@ -15,7 +15,8 @@ class WebPageObject(YAMLParsingPageObject):
         'url' value is a dictionary with a path relative to a configured URL
 
     The following attributes are determined based on the contents of
-    :attr:`YAML_FILE`:
+    :attr:`YAML_FILE` (or parsed from :attr:`INPUT_DICTS`, which should be set
+    in subclasses if :attr:`YAML_FILE` is ``None``):
 
     :var WebPageObject.PAGE_FILENAME: File name of the page relative to a base
         URL declared in ``SITE_CONFIG`` class.

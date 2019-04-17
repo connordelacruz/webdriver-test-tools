@@ -64,5 +64,5 @@ def get_parser(config_module=None, package_name=None):
     )
     run_parser = add_run_subparser(subparsers, config_module, parents=[test_parent_parser])
     list_parser = add_list_subparser(subparsers, parents=[test_parent_parser])
-    new_parser = add_new_subparser(subparsers)
+    new_parser = add_new_subparser(subparsers, config_module)
     return parser

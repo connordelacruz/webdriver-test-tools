@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -196,10 +196,15 @@ provided.</p>
 <p><code class="docutils literal notranslate"><span class="pre">force</span></code> is the only optional parameter that does not have a prompt. It
 will default to <code class="docutils literal notranslate"><span class="pre">False</span></code> unless the <code class="docutils literal notranslate"><span class="pre">--force</span></code> flag is used when calling
 this method.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">page</span></code> command has an additional optional argument
-<code class="docutils literal notranslate"><span class="pre">--prototype</span></code>. If <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">module_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">class_name</span></code> are all
-set to something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>, this method will use the standart
-page object template unless one is specified with <code class="docutils literal notranslate"><span class="pre">prototype</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">page</span></code> command has additional optional arguments <code class="docutils literal notranslate"><span class="pre">--prototype</span></code>
+and <code class="docutils literal notranslate"><span class="pre">--yaml</span></code>/<code class="docutils literal notranslate"><span class="pre">--no-yaml</span></code> (depending on the configuration of
+<code class="docutils literal notranslate"><span class="pre">ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML</span></code>). Prompt for <code class="docutils literal notranslate"><span class="pre">--prototype</span></code>
+will not be shown if <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">module_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">class_name</span></code> are all
+set to something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>. Instead, this method will use the
+standard page object template unless one is specified with <code class="docutils literal notranslate"><span class="pre">prototype</span></code>.
+Currently there is no prompt for the <code class="docutils literal notranslate"><span class="pre">--yaml</span></code>/<code class="docutils literal notranslate"><span class="pre">--no-yaml</span></code> arguments, so
+the value of <code class="docutils literal notranslate"><span class="pre">ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML</span></code> will always be
+used unless <code class="docutils literal notranslate"><span class="pre">--yaml</span></code>/<code class="docutils literal notranslate"><span class="pre">--no-yaml</span></code> is specified.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -217,7 +222,7 @@ page object template unless one is specified with <code class="docutils literal 
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.new.add_new_subparser">
-<code class="descclassname">webdriver_test_tools.project.cmd.new.</code><code class="descname">add_new_subparser</code><span class="sig-paren">(</span><em>subparsers</em>, <em>formatter_class=&lt;class 'argparse.RawTextHelpFormatter'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/new.html#add_new_subparser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.new.add_new_subparser" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.cmd.new.</code><code class="descname">add_new_subparser</code><span class="sig-paren">(</span><em>subparsers</em>, <em>config_module</em>, <em>formatter_class=&lt;class 'argparse.RawTextHelpFormatter'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/new.html#add_new_subparser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.new.add_new_subparser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add subparser for the <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;</span> <span class="pre">new</span></code> command</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -227,6 +232,7 @@ page object template unless one is specified with <code class="docutils literal 
 <li><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the test
 package ArgumentParser (i.e. the object returned by the
 <code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</li>
+<li><strong>config_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code></li>
 <li><strong>formatter_class</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">argparse.RawTextHelpFormatter</span></code>) Class
 to use for the <code class="docutils literal notranslate"><span class="pre">formatter_class</span></code> parameter</li>
 </ul>
