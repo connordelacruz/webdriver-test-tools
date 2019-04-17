@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -157,20 +157,113 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.pageobject.webpage</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">BasePage</span>
+<span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">,</span> <span class="n">YAMLParsingPageObject</span>
 
 
-<div class="viewcode-block" id="WebPageObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject">[docs]</a><span class="k">class</span> <span class="nc">WebPageObject</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
+<div class="viewcode-block" id="WebPageObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject">[docs]</a><span class="k">class</span> <span class="nc">WebPageObject</span><span class="p">(</span><span class="n">YAMLParsingPageObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Page object prototype for web pages</span>
 
-<span class="sd">    :var WebPageObject.PAGE_FILENAME: File name of the page relative to a base</span>
-<span class="sd">        URL declared in ``SiteConfig``</span>
-<span class="sd">    :var WebPageObject.PAGE_URL: Full URL of the page (e.g.</span>
-<span class="sd">        ``SiteConfig.BASE_URL + PAGE_FILENAME``)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    Subclasses should set the following attributes:</span>
 
+<span class="sd">    :var WebPageObject.YAML_FILE: Path to a YAML file representing the web</span>
+<span class="sd">        page. This file is parsed during initialization using</span>
+<span class="sd">        :meth:`parse_yaml` and is used to determine :attr:`PAGE_FILENAME` and</span>
+<span class="sd">        :attr:`PAGE_URL`</span>
+<span class="sd">    :var WebPageObject.SITE_CONFIG: Test project&#39;s :class:`SiteConfig` class.</span>
+<span class="sd">        Used in :meth:`parse_yaml` to determine page url attributes if the YAML</span>
+<span class="sd">        &#39;url&#39; value is a dictionary with a path relative to a configured URL</span>
+
+<span class="sd">    The following attributes are determined based on the contents of</span>
+<span class="sd">    :attr:`YAML_FILE` (or parsed from :attr:`INPUT_DICTS`, which should be set</span>
+<span class="sd">    in subclasses if :attr:`YAML_FILE` is ``None``):</span>
+
+<span class="sd">    :var WebPageObject.PAGE_FILENAME: File name of the page relative to a base</span>
+<span class="sd">        URL declared in ``SITE_CONFIG`` class.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            If the &#39;url&#39; key in the YAML file is set to a full URL,</span>
+<span class="sd">            :attr:`PAGE_FILENAME` will be set to ``None``</span>
+
+<span class="sd">    :var WebPageObject.PAGE_URL: Full URL of the page (e.g.</span>
+<span class="sd">        ``SITE_CONFIG.BASE_URL + PAGE_FILENAME``)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_YAML_ROOT_KEY</span> <span class="o">=</span> <span class="s1">&#39;web_page&#39;</span>
+
+    <span class="n">SITE_CONFIG</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># TODO: rename to PAGE_RELATIVE_PATH?</span>
     <span class="n">PAGE_FILENAME</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">PAGE_URL</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="WebPageObject.parse_yaml"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse a YAML representation of the web page object and set</span>
+<span class="sd">        attributes accordingly</span>
+
+<span class="sd">        See :ref:`YAML WebPageObjects doc &lt;yaml-web-page-objects&gt;` for details</span>
+<span class="sd">        on syntax.</span>
+
+<span class="sd">        :param file_path: Full path to the YAML file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">parsed_yaml</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_yaml</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="c1"># Initialize locators</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+            <span class="c1"># url can be a url string or a dict mapping the page path relative</span>
+            <span class="c1"># to a SITE_CONFIG attribute</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PAGE_URL</span> <span class="o">=</span> <span class="n">url</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PAGE_FILENAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PAGE_URL</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_url_dict</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;Invalid &#39;url&#39; value (url: </span><span class="si">{}</span><span class="s2">). &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+                <span class="n">error_msg</span> <span class="o">+=</span> <span class="s2">&quot;Must be a string or a dictionary with keys &#39;path&#39; and &#39;relative_to&#39;&quot;</span>
+                <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLValueError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span>
+                <span class="s1">&#39;Missing required </span><span class="si">{}</span><span class="s1"> key in web page YAML&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_parse_url_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse &#39;url&#39; dictionary in web page YAML</span>
+
+<span class="sd">        :param url: &#39;url&#39; dictionary from parsed YAML. Expected to have keys</span>
+<span class="sd">            &#39;path&#39; and &#39;relative_to&#39;</span>
+
+<span class="sd">        :return: A tuple containing the relative path to the page and the full</span>
+<span class="sd">            URL</span>
+
+<span class="sd">        :raises YAMLKeyError: if ``url`` is missing either required key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: what if URL is an exact attribute in site config and not relative?</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="n">url</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_url</span><span class="p">(</span><span class="n">url</span><span class="p">[</span><span class="s1">&#39;relative_to&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="n">url</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span>
+                <span class="s2">&quot;Missing required </span><span class="si">{}</span><span class="s2"> key in web page &#39;url&#39; dictionary&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">relative_to</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for resolving url relative_to key</span>
+
+<span class="sd">        :param relative_to: Name of an attribute in :attr:`SITE_CONFIG` class</span>
+
+<span class="sd">        :return: The value of the specified attribute in :attr:`SITE_CONFIG`</span>
+<span class="sd">            class</span>
+
+<span class="sd">        :raises YAMLValueError: if ``relative_to`` is not a valid attribute</span>
+<span class="sd">            name of :attr:`SITE_CONFIG`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">base_url</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SITE_CONFIG</span><span class="p">,</span> <span class="n">relative_to</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;Invalid URL &#39;relative_to&#39; value (relative_to: </span><span class="si">{}</span><span class="s2">). &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">relative_to</span><span class="p">)</span>
+            <span class="n">error_msg</span> <span class="o">+=</span> <span class="s1">&#39;Must be a valid attribute declared in SiteConfig class&#39;</span>
+            <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">YAMLValueError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">base_url</span>
 
 <div class="viewcode-block" id="WebPageObject.get_page_title"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title">[docs]</a>    <span class="k">def</span> <span class="nf">get_page_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the title of the current page</span>

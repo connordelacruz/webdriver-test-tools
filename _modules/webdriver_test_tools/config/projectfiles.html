@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.test &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
+  <title>webdriver_test_tools.config.projectfiles &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
   
 
   
@@ -141,7 +141,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>webdriver_test_tools.config.test</li>
+      <li>webdriver_test_tools.config.projectfiles</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,52 +156,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for webdriver_test_tools.config.test</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">colour_runner.runner</span> <span class="k">import</span> <span class="n">ColourTextTestRunner</span>
+  <h1>Source code for webdriver_test_tools.config.projectfiles</h1><div class="highlight"><pre>
+<span></span>
+<div class="viewcode-block" id="ProjectFilesConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.projectfiles.html#webdriver_test_tools.config.projectfiles.ProjectFilesConfig">[docs]</a><span class="k">class</span> <span class="nc">ProjectFilesConfig</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Configurations for generated project files</span>
 
-
-<div class="viewcode-block" id="TestSuiteConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.test.html#webdriver_test_tools.config.test.TestSuiteConfig">[docs]</a><span class="k">class</span> <span class="nc">TestSuiteConfig</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Configurations for test suite</span>
-
-<span class="sd">    :var TestSuiteConfig.RUNNER_CLASS: ``unittest.TestRunner`` class to use when running</span>
-<span class="sd">        tests</span>
-<span class="sd">    :var TestSuiteConfig.RUNNER_KWARGS: Dictionary mapping parameter names to desired</span>
-<span class="sd">        values used to initialize the ``TestRunner`` configured in :attr:`RUNNER_CLASS`</span>
-<span class="sd">    :var TestSuiteConfig.DEFAULT_VERBOSITY: Value used if the ``verbosity`` parameter is</span>
-<span class="sd">        unspecified when calling :meth:`get_runner()`.</span>
-
-<span class="sd">        .. note::</span>
-
-<span class="sd">            - Conflict may occur if ``&#39;verbosity&#39;`` is set in :attr:`RUNNER_KWARGS`.</span>
-<span class="sd">              Be sure to use :attr:`DEFAULT_VERBOSITY` instead for setting this value.</span>
-<span class="sd">            - :meth:`get_runner()` assumes the :attr:`RUNNER_CLASS` constructor takes a</span>
-<span class="sd">              ``verbosity`` parameter in its constructor. If using a custom test runner</span>
-<span class="sd">              class that doesn&#39;t support this, you should override the</span>
-<span class="sd">              :meth:`get_runner()` method in your project&#39;s ``TestSuiteConfig`` class.</span>
+<span class="sd">    :var ENABLE_PAGE_OBJECT_YAML: The default YAML parsing setting to use when</span>
+<span class="sd">        creating page objects with the ``new page``. If True, generate .py and</span>
+<span class="sd">        .yml files for supported prototype by default unless the ``--no-yaml``</span>
+<span class="sd">        flag is specified. If False, just generate .py files for all prototypes</span>
+<span class="sd">        unless the ``--yaml`` flag is specified.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># Configure test runner</span>
-    <span class="n">RUNNER_CLASS</span> <span class="o">=</span> <span class="n">ColourTextTestRunner</span>
-    <span class="c1"># TODO: Enable warnings, only show deprecation</span>
-    <span class="c1"># RUNNER_KWARGS = {&#39;warnings&#39;: &#39;default&#39;}</span>
-    <span class="n">RUNNER_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">DEFAULT_VERBOSITY</span> <span class="o">=</span> <span class="mi">2</span>
-
-    <span class="c1"># Functions</span>
-
-<div class="viewcode-block" id="TestSuiteConfig.get_runner"><a class="viewcode-back" href="../../../webdriver_test_tools.config.test.html#webdriver_test_tools.config.test.TestSuiteConfig.get_runner">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_runner</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns :attr:`RUNNER_CLASS` object using :attr:`RUNNER_KWARGS` to</span>
-<span class="sd">        initialize</span>
-
-<span class="sd">        :param verbosity: (Optional) value to use for the ``verbosity`` parameter when</span>
-<span class="sd">            initializing the test runner. Uses :attr:`DEFAULT_VERBOSITY` if unspecified.</span>
-
-<span class="sd">        :return: The initialized ``TestRunner`` object</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">verbosity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">verbosity</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DEFAULT_VERBOSITY</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">RUNNER_CLASS</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">RUNNER_KWARGS</span><span class="p">)</span></div></div>
+    <span class="n">ENABLE_PAGE_OBJECT_YAML</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 </pre></div>
 

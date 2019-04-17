@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -205,6 +205,8 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">YAML_FILE</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">YAML_FILE</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;no_yaml_init&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">no_yaml_init</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">no_yaml_init</span><span class="p">()</span>
 
 <div class="viewcode-block" id="YAMLParsingPageObject.parse_yaml"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
@@ -223,7 +225,17 @@
             <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span>
                 <span class="s2">&quot;Missing top level &#39;</span><span class="si">{}</span><span class="s2">&#39; key in YAML&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_YAML_ROOT_KEY</span><span class="p">)</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="n">parsed_yaml</span></div></div>
+        <span class="k">return</span> <span class="n">parsed_yaml</span></div>
+
+<div class="viewcode-block" id="YAMLParsingPageObject.no_yaml_init"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.no_yaml_init">[docs]</a>    <span class="k">def</span> <span class="nf">no_yaml_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fallback method to call during ``__init__()`` if :attr:`YAML_FILE`</span>
+<span class="sd">        is not set.</span>
+
+<span class="sd">        Subclasses should implement this method if any part of the</span>
+<span class="sd">        initialization process needs to be handled differently when</span>
+<span class="sd">        :attr:`YAML_FILE` is not set.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
 
 </pre></div>
 

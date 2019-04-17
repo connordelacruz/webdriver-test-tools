@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -159,8 +159,9 @@
   <h1>Source code for webdriver_test_tools.project.cmd.new</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">argparse</span> <span class="k">import</span> <span class="n">RawTextHelpFormatter</span>
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="k">import</span> <span class="n">RawTextHelpFormatter</span><span class="p">,</span> <span class="n">SUPPRESS</span>
 
+<span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">config</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.common</span> <span class="k">import</span> <span class="n">cmd</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">new_file</span>
 
@@ -181,10 +182,15 @@
 <span class="sd">    will default to ``False`` unless the ``--force`` flag is used when calling</span>
 <span class="sd">    this method.</span>
 
-<span class="sd">    The ``new page`` command has an additional optional argument</span>
-<span class="sd">    ``--prototype``. If ``type``, ``module_name``, and ``class_name`` are all</span>
-<span class="sd">    set to something other than ``None``, this method will use the standart</span>
-<span class="sd">    page object template unless one is specified with ``prototype``.</span>
+<span class="sd">    The ``new page`` command has additional optional arguments ``--prototype``</span>
+<span class="sd">    and ``--yaml``/``--no-yaml`` (depending on the configuration of</span>
+<span class="sd">    ``ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML``). Prompt for ``--prototype``</span>
+<span class="sd">    will not be shown if ``type``, ``module_name``, and ``class_name`` are all</span>
+<span class="sd">    set to something other than ``None``. Instead, this method will use the</span>
+<span class="sd">    standard page object template unless one is specified with ``prototype``.</span>
+<span class="sd">    Currently there is no prompt for the ``--yaml``/``--no-yaml`` arguments, so</span>
+<span class="sd">    the value of ``ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML`` will always be</span>
+<span class="sd">    used unless ``--yaml``/``--no-yaml`` is specified.</span>
 
 <span class="sd">    :param test_package_path: The root directory of the test package</span>
 <span class="sd">    :param test_package: The python package name of the test package</span>
@@ -240,6 +246,7 @@
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="n">validated_file_type</span> <span class="o">==</span> <span class="n">new_file</span><span class="o">.</span><span class="n">PAGE_TYPE</span><span class="p">:</span>
             <span class="n">prototype</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;prototype&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">use_yaml</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;use_yaml&#39;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">ProjectFilesConfig</span><span class="o">.</span><span class="n">ENABLE_PAGE_OBJECT_YAML</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">prototype</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">minimum_required_args</span><span class="p">:</span>
                 <span class="n">prototype</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
             <span class="n">_prototype_choices</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">new_file</span><span class="o">.</span><span class="n">PROTOTYPE_NAMES</span><span class="p">]</span>
@@ -260,6 +267,8 @@
                 <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
                 <span class="n">parsed_input</span><span class="o">=</span><span class="n">prototype</span>
             <span class="p">)</span>
+            <span class="c1"># TODO: Add prompt if class supports it (will need to change arg default to None and pass config_module as param)</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;use_yaml&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">use_yaml</span>
         <span class="c1"># Start file creation</span>
         <span class="n">new_file_start</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">new_file_paths</span> <span class="o">=</span> <span class="n">new_file</span><span class="o">.</span><span class="n">new_file</span><span class="p">(</span>
@@ -284,18 +293,23 @@
 
 <span class="c1"># Subparser</span>
 
-<div class="viewcode-block" id="add_new_subparser"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.new.html#webdriver_test_tools.project.cmd.new.add_new_subparser">[docs]</a><span class="k">def</span> <span class="nf">add_new_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">formatter_class</span><span class="o">=</span><span class="n">RawTextHelpFormatter</span><span class="p">):</span>
+<div class="viewcode-block" id="add_new_subparser"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.new.html#webdriver_test_tools.project.cmd.new.add_new_subparser">[docs]</a><span class="k">def</span> <span class="nf">add_new_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">formatter_class</span><span class="o">=</span><span class="n">RawTextHelpFormatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Add subparser for the ``&lt;test_package&gt; new`` command</span>
 
 <span class="sd">    :param subparsers: ``argparse._SubParsersAction`` object for the test</span>
 <span class="sd">        package ArgumentParser (i.e. the object returned by the</span>
 <span class="sd">        ``add_subparsers()`` method)</span>
+<span class="sd">    :param config_module: The module object for ``&lt;test_project&gt;.config``</span>
 <span class="sd">    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class</span>
 <span class="sd">        to use for the ``formatter_class`` parameter</span>
 
 <span class="sd">    :return: ``argparse.ArgumentParser`` object for the newly added ``new``</span>
 <span class="sd">        subparser</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">config_module</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config_module</span> <span class="o">=</span> <span class="n">config</span>
+    <span class="c1"># Get ProjectFilesConfig</span>
+    <span class="n">project_files_config</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">ProjectFilesConfig</span> <span class="k">if</span> <span class="s1">&#39;ProjectFilesConfig&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">ProjectFilesConfig</span>
     <span class="c1"># TODO: add info on no args to description or help</span>
     <span class="c1"># Adds custom --help argument</span>
     <span class="n">generic_parent_parser</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">get_generic_parent_parser</span><span class="p">()</span>
@@ -313,6 +327,21 @@
         <span class="n">title</span><span class="o">=</span><span class="s1">&#39;File Types&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">new_type_desc</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;type&gt;&#39;</span>
     <span class="p">)</span>
     <span class="c1"># New test parser</span>
+    <span class="n">_add_new_test_subparser</span><span class="p">(</span><span class="n">formatter_class</span><span class="p">,</span> <span class="n">generic_parent_parser</span><span class="p">,</span> <span class="n">new_subparsers</span><span class="p">,</span> <span class="n">project_files_config</span><span class="p">)</span>
+    <span class="c1"># New page object parser</span>
+    <span class="n">_add_new_page_subparser</span><span class="p">(</span><span class="n">formatter_class</span><span class="p">,</span> <span class="n">generic_parent_parser</span><span class="p">,</span> <span class="n">new_subparsers</span><span class="p">,</span> <span class="n">project_files_config</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_parser</span></div>
+
+
+<span class="k">def</span> <span class="nf">_add_new_test_subparser</span><span class="p">(</span><span class="n">formatter_class</span><span class="p">,</span> <span class="n">generic_parent_parser</span><span class="p">,</span> <span class="n">new_subparsers</span><span class="p">,</span> <span class="n">project_files_config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add subparser for ``new test`` command</span>
+
+<span class="sd">    :param formatter_class: Class to use for the ``formatter_class`` parameter</span>
+<span class="sd">    :param generic_parent_parser: Generic parent parser to use for the</span>
+<span class="sd">        ``parents`` parameter</span>
+<span class="sd">    :param new_subparsers: The subparser for the ``new`` command</span>
+<span class="sd">    :param project_files_config: The ``ProjectFilesConfig`` class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">new_test_parent_parser</span> <span class="o">=</span> <span class="n">get_new_parent_parser</span><span class="p">(</span>
         <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">generic_parent_parser</span><span class="p">],</span> <span class="n">class_name_metavar</span><span class="o">=</span><span class="s1">&#39;&lt;TestCaseClass&gt;&#39;</span><span class="p">,</span>
         <span class="n">class_name_help</span><span class="o">=</span><span class="s1">&#39;Name to use for the initial test case class&#39;</span>
@@ -325,7 +354,17 @@
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">formatter_class</span><span class="p">,</span>
         <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
-    <span class="c1"># New page object parser</span>
+
+
+<span class="k">def</span> <span class="nf">_add_new_page_subparser</span><span class="p">(</span><span class="n">formatter_class</span><span class="p">,</span> <span class="n">generic_parent_parser</span><span class="p">,</span> <span class="n">new_subparsers</span><span class="p">,</span> <span class="n">project_files_config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add subparser for ``new page`` command</span>
+
+<span class="sd">    :param formatter_class: Class to use for the ``formatter_class`` parameter</span>
+<span class="sd">    :param generic_parent_parser: Generic parent parser to use for the</span>
+<span class="sd">        ``parents`` parameter</span>
+<span class="sd">    :param new_subparsers: The subparser for the ``new`` command</span>
+<span class="sd">    :param project_files_config: The ``ProjectFilesConfig`` class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">new_page_parent_parser</span> <span class="o">=</span> <span class="n">get_new_parent_parser</span><span class="p">(</span>
         <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">generic_parent_parser</span><span class="p">],</span> <span class="n">class_name_metavar</span><span class="o">=</span><span class="s1">&#39;&lt;PageObjectClass&gt;&#39;</span><span class="p">,</span>
         <span class="n">class_name_help</span><span class="o">=</span><span class="s1">&#39;Name to use for the initial page object class&#39;</span>
@@ -338,11 +377,24 @@
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">formatter_class</span><span class="p">,</span>
         <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
+    <span class="n">prototype_group</span> <span class="o">=</span> <span class="n">new_page_parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Prototype Options&#39;</span><span class="p">)</span>
     <span class="n">prototype_options_help</span> <span class="o">=</span> <span class="n">_format_prototype_choices</span><span class="p">()</span>
     <span class="n">prototype_help</span> <span class="o">=</span> <span class="s1">&#39;Page object prototype to subclass.&#39;</span> <span class="o">+</span> <span class="n">prototype_options_help</span>
-    <span class="n">new_page_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--prototype&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;prototype_choice&gt;&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">prototype_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--prototype&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;prototype_choice&gt;&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                  <span class="n">choices</span><span class="o">=</span><span class="n">new_file</span><span class="o">.</span><span class="n">PROTOTYPE_NAMES</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">prototype_help</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">new_parser</span></div>
+    <span class="n">yaml_default</span> <span class="o">=</span> <span class="n">project_files_config</span><span class="o">.</span><span class="n">ENABLE_PAGE_OBJECT_YAML</span>
+    <span class="c1"># Add options to negate YAML default config</span>
+    <span class="k">if</span> <span class="n">yaml_default</span><span class="p">:</span>
+        <span class="n">no_yaml_help</span> <span class="o">=</span> <span class="s1">&#39;Only generate .py files if using a --prototype that supports YAML parsing&#39;</span> <span class="o">+</span> <span class="n">_format_yaml_prototype_choices</span><span class="p">()</span>
+        <span class="n">yaml_help</span> <span class="o">=</span> <span class="n">SUPPRESS</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">yaml_help</span> <span class="o">=</span> <span class="s1">&#39;Generate .py and .yml files if using a --prototype that supports YAML parsing&#39;</span> <span class="o">+</span> <span class="n">_format_yaml_prototype_choices</span><span class="p">()</span>
+        <span class="n">no_yaml_help</span> <span class="o">=</span> <span class="n">SUPPRESS</span>
+    <span class="n">yaml_group</span> <span class="o">=</span> <span class="n">prototype_group</span><span class="o">.</span><span class="n">add_mutually_exclusive_group</span><span class="p">()</span>
+    <span class="n">yaml_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--yaml&#39;</span><span class="p">,</span> <span class="s1">&#39;-y&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">yaml_default</span><span class="p">,</span>
+                                 <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;use_yaml&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">yaml_help</span><span class="p">)</span>
+    <span class="n">yaml_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--no-yaml&#39;</span><span class="p">,</span> <span class="s1">&#39;-Y&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_false&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">yaml_default</span><span class="p">,</span>
+                                 <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;use_yaml&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">no_yaml_help</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_format_prototype_choices</span><span class="p">():</span>
@@ -364,6 +416,25 @@
     <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Options: {{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_prototype_names</span><span class="p">))</span>
 
 
+<span class="k">def</span> <span class="nf">_format_yaml_prototype_choices</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Format the help string for prototype choices with YAML support</span>
+
+<span class="sd">    The returned string will have the following format:</span>
+
+<span class="sd">    .. code:: python</span>
+
+<span class="sd">        &#39;\\nSupported Prototypes: {prototype,&quot;prototype with spaces&quot;}&#39;</span>
+
+<span class="sd">    :return: Formatted help string for prototype options</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Add quotes around names with spaces</span>
+    <span class="n">formatted_prototype_names</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39; &#39;</span> <span class="ow">in</span> <span class="n">name</span> <span class="k">else</span> <span class="n">name</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">new_file</span><span class="o">.</span><span class="n">YAML_PROTOTYPE_NAMES</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Supported Prototypes: {{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_prototype_names</span><span class="p">))</span>
+
+
 <div class="viewcode-block" id="get_new_parent_parser"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.new.html#webdriver_test_tools.project.cmd.new.get_new_parent_parser">[docs]</a><span class="k">def</span> <span class="nf">get_new_parent_parser</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="p">[],</span> <span class="n">class_name_metavar</span><span class="o">=</span><span class="s1">&#39;&lt;ClassName&gt;&#39;</span><span class="p">,</span>
                           <span class="n">class_name_help</span><span class="o">=</span><span class="s1">&#39;Name to use for the initial class&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns an :class:`ArgumentParser</span>
@@ -382,18 +453,20 @@
 <span class="sd">        ``&lt;module_name&gt;``, ``&lt;class_name&gt;``, and ``--description`` arguments</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">new_parent_parser</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="n">parents</span><span class="p">)</span>
+    <span class="n">positional_args_group</span> <span class="o">=</span> <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Positional Arguments&#39;</span><span class="p">)</span>
     <span class="c1"># Positional arguments</span>
     <span class="n">module_name_help</span> <span class="o">=</span> <span class="s1">&#39;Filename to use for the new python module&#39;</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;module_name&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;module_name&gt;&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">positional_args_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;module_name&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;module_name&gt;&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">help</span><span class="o">=</span><span class="n">module_name_help</span><span class="p">)</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;class_name&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="n">class_name_metavar</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">positional_args_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;class_name&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="n">class_name_metavar</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">help</span><span class="o">=</span><span class="n">class_name_help</span><span class="p">)</span>
     <span class="c1"># Optional arguments</span>
+    <span class="n">optional_args_group</span> <span class="o">=</span> <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Optional Arguments&#39;</span><span class="p">)</span>
     <span class="n">description_help</span><span class="o">=</span><span class="s1">&#39;Description for the initial class&#39;</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--description&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;description&gt;&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">optional_args_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--description&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;&lt;description&gt;&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">help</span><span class="o">=</span><span class="n">description_help</span><span class="p">)</span>
     <span class="n">force_help</span><span class="o">=</span><span class="s1">&#39;Force overwrite if a file with the same name already exists&#39;</span>
-    <span class="n">new_parent_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--force&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">optional_args_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--force&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                    <span class="n">help</span><span class="o">=</span><span class="n">force_help</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">new_parent_parser</span></div>

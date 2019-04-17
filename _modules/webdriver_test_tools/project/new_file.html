@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -183,15 +183,6 @@
 <span class="n">COLLAPSIBLE_NAV_PROTOTYPE</span> <span class="o">=</span> <span class="s1">&#39;collapsible nav&#39;</span>
 <span class="n">WEB_PAGE_PROTOTYPE</span> <span class="o">=</span> <span class="s1">&#39;web page&#39;</span>
 
-<span class="c1">#: List of valid prototype names</span>
-<span class="n">PROTOTYPE_NAMES</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">FORM_PROTOTYPE</span><span class="p">,</span>
-    <span class="n">MODAL_PROTOTYPE</span><span class="p">,</span>
-    <span class="n">NAV_PROTOTYPE</span><span class="p">,</span>
-    <span class="n">COLLAPSIBLE_NAV_PROTOTYPE</span><span class="p">,</span>
-    <span class="n">WEB_PAGE_PROTOTYPE</span><span class="p">,</span>
-<span class="p">]</span>
-
 <span class="c1">#: Maps prototype names to the base name of the corresponding template files</span>
 <span class="c1">#: and a list of file extensions for each file.</span>
 <span class="c1">#: Empty string maps to generic BasePage template</span>
@@ -218,9 +209,21 @@
     <span class="p">},</span>
     <span class="n">WEB_PAGE_PROTOTYPE</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;name&#39;</span> <span class="p">:</span> <span class="s1">&#39;web_page_object&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;py&#39;</span><span class="p">]</span>
+        <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;py&#39;</span><span class="p">,</span> <span class="s1">&#39;yml&#39;</span><span class="p">]</span>
     <span class="p">},</span>
 <span class="p">}</span>
+
+<span class="c1">#: List of valid prototype names</span>
+<span class="n">PROTOTYPE_NAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">prototype</span> <span class="k">for</span> <span class="n">prototype</span> <span class="ow">in</span> <span class="n">PAGE_OBJECT_TEMPLATE_MAP</span>
+    <span class="k">if</span> <span class="n">prototype</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span>
+<span class="p">]</span>
+
+<span class="c1">#: List of prototype names that support YAML parsing</span>
+<span class="n">YAML_PROTOTYPE_NAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">prototype</span> <span class="k">for</span> <span class="n">prototype</span><span class="p">,</span> <span class="n">options</span> <span class="ow">in</span> <span class="n">PAGE_OBJECT_TEMPLATE_MAP</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s1">&#39;yml&#39;</span> <span class="ow">in</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;types&#39;</span><span class="p">,</span> <span class="p">[])</span>
+<span class="p">]</span>
 
 <span class="c1">#: Maps file type to corresponding subdirectory in a test package</span>
 <span class="n">DIRECTORY_MAP</span> <span class="o">=</span> <span class="p">{</span>
@@ -270,13 +273,14 @@
     <span class="k">if</span> <span class="n">file_type</span> <span class="o">==</span> <span class="n">PAGE_TYPE</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_new_page</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span>
                          <span class="n">prototype</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+                         <span class="n">use_yaml</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;use_yaml&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
                          <span class="n">overwrite</span><span class="o">=</span><span class="n">force</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_new_test</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span>
                          <span class="n">overwrite</span><span class="o">=</span><span class="n">force</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">_new_page</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">prototype</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_new_page</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">prototype</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">use_yaml</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create a new page object file</span>
 
 <span class="sd">    :param test_package_path: The root directory of the test package</span>
@@ -285,6 +289,9 @@
 <span class="sd">    :param prototype: (Default: &#39;&#39;) Key in :data:`PAGE_OBJECT_TEMPLATE_MAP`</span>
 <span class="sd">        specifying the prototype template to use. Defaults to empty string</span>
 <span class="sd">        (generic page object)</span>
+<span class="sd">    :param use_yaml: (Default: True) If True, generate .py and .yml files for</span>
+<span class="sd">        supported prototypes. If False, just generate .py files. Templates will</span>
+<span class="sd">        render different attributes based on this setting</span>
 <span class="sd">    :param overwrite: (Default: False) If True, force overwrite if attempting</span>
 <span class="sd">        to create a file that already exists</span>
 
@@ -294,9 +301,16 @@
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">DIRECTORY_MAP</span><span class="p">[</span><span class="n">PAGE_TYPE</span><span class="p">])</span>
     <span class="c1"># Get info on template(s) for prototype</span>
     <span class="n">template_map</span> <span class="o">=</span> <span class="n">PAGE_OBJECT_TEMPLATE_MAP</span><span class="p">[</span><span class="n">prototype</span><span class="p">]</span>
+    <span class="c1"># Add &#39;use_yaml&#39; to context</span>
+    <span class="n">context</span><span class="p">[</span><span class="s1">&#39;use_yaml&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">use_yaml</span>
+    <span class="c1"># If not using YAML, exclude .yml templates</span>
+    <span class="n">file_types</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">ext</span> <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">template_map</span><span class="p">[</span><span class="s1">&#39;types&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">use_yaml</span> <span class="ow">or</span> <span class="n">ext</span> <span class="o">!=</span> <span class="s1">&#39;yml&#39;</span>
+    <span class="p">]</span>
     <span class="c1"># Keep track of files created</span>
     <span class="n">new_files</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">template_map</span><span class="p">[</span><span class="s1">&#39;types&#39;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">file_types</span><span class="p">:</span>
         <span class="n">template_filename</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">template_map</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">ext</span><span class="p">)</span>
         <span class="n">target_filename</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context</span><span class="p">[</span><span class="s1">&#39;module_name&#39;</span><span class="p">],</span> <span class="n">ext</span><span class="p">)</span>
         <span class="n">new_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">create_file_from_template</span><span class="p">(</span>
