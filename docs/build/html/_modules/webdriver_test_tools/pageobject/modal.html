@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -180,7 +180,8 @@
 <span class="sd">        :meth:`get_modal_body()` will return an instance of this object.</span>
 
 <span class="sd">    The following attributes are determined based on the contents of</span>
-<span class="sd">    :attr:`YAML_FILE`:</span>
+<span class="sd">    :attr:`YAML_FILE` (or should be set in subclasses if :attr:`YAML_FILE` is</span>
+<span class="sd">    ``None``):</span>
 
 <span class="sd">    :var ModalObject.MODAL_LOCATOR: Locator for the modal element. Override in</span>
 <span class="sd">        subclasses</span>

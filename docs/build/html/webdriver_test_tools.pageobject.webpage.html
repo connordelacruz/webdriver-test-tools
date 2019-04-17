@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -182,22 +182,54 @@
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.webpage.WebPageObject">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.webpage.</code><code class="descname">WebPageObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/webpage.html#WebPageObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.base.BasePage</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject</span></code></a></p>
 <p>Page object prototype for web pages</p>
+<p>Subclasses should set the following attributes:</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME"><strong>WebPageObject.PAGE_FILENAME</strong></a> – File name of the page relative to a base
-URL declared in <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code></li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL"><strong>WebPageObject.PAGE_URL</strong></a> – Full URL of the page (e.g.
-<code class="docutils literal notranslate"><span class="pre">SiteConfig.BASE_URL</span> <span class="pre">+</span> <span class="pre">PAGE_FILENAME</span></code>)</li>
+<li><strong>WebPageObject.YAML_FILE</strong> – Path to a YAML file representing the web
+page. This file is parsed during initialization using
+<a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml" title="webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> and is used to determine <a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PAGE_FILENAME</span></code></a> and
+<a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PAGE_URL</span></code></a></li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG" title="webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG"><strong>WebPageObject.SITE_CONFIG</strong></a> – Test project’s <code class="xref py py-class docutils literal notranslate"><span class="pre">SiteConfig</span></code> class.
+Used in <a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml" title="webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> to determine page url attributes if the YAML
+‘url’ value is a dictionary with a path relative to a configured URL</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<p>The following attributes are determined based on the contents of
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> (or parsed from <code class="xref py py-attr docutils literal notranslate"><span class="pre">INPUT_DICTS</span></code>, which should be set
+in subclasses if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME"><strong>WebPageObject.PAGE_FILENAME</strong></a> – <p>File name of the page relative to a base
+URL declared in <code class="docutils literal notranslate"><span class="pre">SITE_CONFIG</span></code> class.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the ‘url’ key in the YAML file is set to a full URL,
+<a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PAGE_FILENAME</span></code></a> will be set to <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</div>
+</li>
+<li><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL"><strong>WebPageObject.PAGE_URL</strong></a> – Full URL of the page (e.g.
+<code class="docutils literal notranslate"><span class="pre">SITE_CONFIG.BASE_URL</span> <span class="pre">+</span> <span class="pre">PAGE_FILENAME</span></code>)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG">
+<code class="descname">SITE_CONFIG</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME">
 <code class="descname">PAGE_FILENAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="Permalink to this definition">¶</a></dt>
@@ -207,6 +239,23 @@ URL declared in <code class="docutils literal notranslate"><span class="pre">Sit
 <dt id="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL">
 <code class="descname">PAGE_URL</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml">
+<code class="descname">parse_yaml</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/webpage.html#WebPageObject.parse_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a YAML representation of the web page object and set
+attributes accordingly</p>
+<p>See <a class="reference internal" href="yaml.html#yaml-web-page-objects"><span class="std std-ref">YAML WebPageObjects doc</span></a> for details
+on syntax.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> – Full path to the YAML file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title">

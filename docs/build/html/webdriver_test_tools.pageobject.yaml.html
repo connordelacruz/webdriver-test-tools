@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -248,6 +248,16 @@ at <a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAM
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.no_yaml_init">
+<code class="descname">no_yaml_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/yaml.html#YAMLParsingPageObject.no_yaml_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.no_yaml_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fallback method to call during <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> if <a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code></a>
+is not set.</p>
+<p>Subclasses should implement this method if any part of the
+initialization process needs to be handled differently when
+<a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code></a> is not set.</p>
 </dd></dl>
 
 <dl class="attribute">

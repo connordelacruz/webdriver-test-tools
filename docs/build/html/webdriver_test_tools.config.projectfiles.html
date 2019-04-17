@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject package &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
+  <title>webdriver_test_tools.config.projectfiles module &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
   
 
   
@@ -31,8 +31,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="webdriver_test_tools.pageobject.base module" href="webdriver_test_tools.pageobject.base.html" />
-    <link rel="prev" title="webdriver_test_tools.config.webdriver module" href="webdriver_test_tools.config.webdriver.html" /> 
+    <link rel="next" title="webdriver_test_tools.config.site module" href="webdriver_test_tools.config.site.html" />
+    <link rel="prev" title="webdriver_test_tools.config.browserstack module" href="webdriver_test_tools.config.browserstack.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -98,8 +98,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">webdriver_test_tools.pageobject package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.pageobject.html">webdriver_test_tools.pageobject package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="webdriver_test_tools.testcase.html">webdriver_test_tools.testcase package</a></li>
 </ul>
 </li>
@@ -156,13 +156,15 @@
         
           <li><a href="webdriver_test_tools.html">webdriver_test_tools API</a> &raquo;</li>
         
-      <li>webdriver_test_tools.pageobject package</li>
+          <li><a href="webdriver_test_tools.config.html">webdriver_test_tools.config package</a> &raquo;</li>
+        
+      <li>webdriver_test_tools.config.projectfiles module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/webdriver_test_tools.pageobject.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/webdriver_test_tools.config.projectfiles.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -175,43 +177,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-webdriver_test_tools.pageobject">
-<span id="webdriver-test-tools-pageobject-package"></span><h1>webdriver_test_tools.pageobject package<a class="headerlink" href="#module-webdriver_test_tools.pageobject" title="Permalink to this headline">¶</a></h1>
-<p>Page object classes.</p>
-<p>This module imports <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.base.BasePage</span></code></a> and
-<a class="reference internal" href="webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject</span></code></a>.</p>
-<div class="section" id="main-modules">
-<h2>Main Modules<a class="headerlink" href="#main-modules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.pageobject.base.html">webdriver_test_tools.pageobject.base module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.pageobject.prototypes.html">webdriver_test_tools.pageobject.prototypes module</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="prototype-modules">
-<h2>Prototype Modules<a class="headerlink" href="#prototype-modules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.pageobject.form.html">webdriver_test_tools.pageobject.form module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html">webdriver_test_tools.pageobject.modal module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html">webdriver_test_tools.pageobject.nav module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html">webdriver_test_tools.pageobject.webpage module</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="internal-modules">
-<h2>Internal Modules<a class="headerlink" href="#internal-modules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.pageobject.yaml.html">webdriver_test_tools.pageobject.yaml module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.pageobject.utils.html">webdriver_test_tools.pageobject.utils package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="webdriver_test_tools.pageobject.utils.yaml.html">webdriver_test_tools.pageobject.utils.yaml module</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
+  <div class="section" id="module-webdriver_test_tools.config.projectfiles">
+<span id="webdriver-test-tools-config-projectfiles-module"></span><h1>webdriver_test_tools.config.projectfiles module<a class="headerlink" href="#module-webdriver_test_tools.config.projectfiles" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="webdriver_test_tools.config.projectfiles.ProjectFilesConfig">
+<em class="property">class </em><code class="descclassname">webdriver_test_tools.config.projectfiles.</code><code class="descname">ProjectFilesConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/projectfiles.html#ProjectFilesConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.projectfiles.ProjectFilesConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Configurations for generated project files</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.config.projectfiles.ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML" title="webdriver_test_tools.config.projectfiles.ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML"><strong>ENABLE_PAGE_OBJECT_YAML</strong></a> – The default YAML parsing setting to use when
+creating page objects with the <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">page</span></code>. If True, generate .py and
+.yml files for supported prototype by default unless the <code class="docutils literal notranslate"><span class="pre">--no-yaml</span></code>
+flag is specified. If False, just generate .py files for all prototypes
+unless the <code class="docutils literal notranslate"><span class="pre">--yaml</span></code> flag is specified.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.projectfiles.ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML">
+<code class="descname">ENABLE_PAGE_OBJECT_YAML</code><em class="property"> = True</em><a class="headerlink" href="#webdriver_test_tools.config.projectfiles.ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -222,10 +213,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webdriver_test_tools.pageobject.base.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.base module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="webdriver_test_tools.config.site.html" class="btn btn-neutral float-right" title="webdriver_test_tools.config.site module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.config.webdriver.html" class="btn btn-neutral" title="webdriver_test_tools.config.webdriver module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.config.browserstack.html" class="btn btn-neutral" title="webdriver_test_tools.config.browserstack module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

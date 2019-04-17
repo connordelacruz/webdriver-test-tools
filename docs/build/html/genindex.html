@@ -92,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -436,15 +436,17 @@
 </li>
       <li><a href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE">ENABLE (webdriver_test_tools.config.browser.BrowserStackConfig attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.enable_browserstack">enable_browserstack() (in module webdriver_test_tools.project.test_factory)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS">ENABLE_BS (webdriver_test_tools.testcase.webdriver.WebDriverTestCase attribute)</a>
 </li>
       <li><a href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS">ENABLE_HEADLESS (webdriver_test_tools.testcase.webdriver.WebDriverTestCase attribute)</a>
 </li>
       <li><a href="webdriver_test_tools.project.test_factory.html#webdriver_test_tools.project.test_factory.enable_headless">enable_headless() (in module webdriver_test_tools.project.test_factory)</a>
+</li>
+      <li><a href="webdriver_test_tools.config.projectfiles.html#webdriver_test_tools.config.projectfiles.ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML">ENABLE_PAGE_OBJECT_YAML (webdriver_test_tools.config.projectfiles.ProjectFilesConfig attribute)</a>
 </li>
       <li><a href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS">ENABLED_BROWSERS (webdriver_test_tools.config.browser.BrowserConfig attribute)</a>
 </li>
@@ -680,10 +682,12 @@
 </li>
       <li><a href="webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.initialize">initialize() (in module webdriver_test_tools.project.initialize)</a>
 </li>
-      <li><a href="webdriver_test_tools.webdriver.locate.html#webdriver_test_tools.webdriver.locate.input_elements">input_elements() (in module webdriver_test_tools.webdriver.locate)</a>
+      <li><a href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS">INPUT_DICTS (webdriver_test_tools.pageobject.form.FormObject attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="webdriver_test_tools.webdriver.locate.html#webdriver_test_tools.webdriver.locate.input_elements">input_elements() (in module webdriver_test_tools.webdriver.locate)</a>
+</li>
       <li><a href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject">InputObject (class in webdriver_test_tools.pageobject.form)</a>
 </li>
       <li><a href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject.Type">InputObject.Type (class in webdriver_test_tools.pageobject.form)</a>
@@ -770,10 +774,16 @@
 </li>
       <li><a href="webdriver_test_tools.project.new_file.html#webdriver_test_tools.project.new_file.new_file">new_file() (in module webdriver_test_tools.project.new_file)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file">new_screenshot_file() (webdriver_test_tools.config.webdriver.WebDriverConfig class method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.no_yaml_init">no_yaml_init() (webdriver_test_tools.pageobject.form.FormObject method)</a>
+
+      <ul>
+        <li><a href="webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.no_yaml_init">(webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject method)</a>
+</li>
+      </ul></li>
       <li><a href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject.Type.NUMBER">NUMBER (webdriver_test_tools.pageobject.form.InputObject.Type attribute)</a>
 </li>
   </ul></td>
@@ -810,16 +820,18 @@
 </li>
       <li><a href="webdriver_test_tools.project.cmd.common.html#webdriver_test_tools.project.cmd.common.parse_test_names">parse_test_names() (in module webdriver_test_tools.project.cmd.common)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.parse_yaml">parse_yaml() (webdriver_test_tools.pageobject.form.FormObject method)</a>
 
       <ul>
         <li><a href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.parse_yaml">(webdriver_test_tools.pageobject.modal.ModalObject method)</a>
 </li>
+        <li><a href="webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml">(webdriver_test_tools.pageobject.webpage.WebPageObject method)</a>
+</li>
         <li><a href="webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml">(webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webdriver_test_tools.pageobject.utils.yaml.html#webdriver_test_tools.pageobject.utils.yaml.parse_yaml_file">parse_yaml_file() (in module webdriver_test_tools.pageobject.utils.yaml)</a>
 </li>
       <li><a href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject.Type.PASSWORD">PASSWORD (webdriver_test_tools.pageobject.form.InputObject.Type attribute)</a>
@@ -831,6 +843,8 @@
       <li><a href="webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.print_validation_change">print_validation_change() (in module webdriver_test_tools.common.cmd.cmd)</a>
 </li>
       <li><a href="webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.print_warning">print_warning() (in module webdriver_test_tools.common.cmd.cmd)</a>
+</li>
+      <li><a href="webdriver_test_tools.config.projectfiles.html#webdriver_test_tools.config.projectfiles.ProjectFilesConfig">ProjectFilesConfig (class in webdriver_test_tools.config.projectfiles)</a>
 </li>
       <li><a href="webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.prompt">prompt() (in module webdriver_test_tools.common.cmd.cmd)</a>
 </li>
@@ -920,6 +934,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG">SITE_CONFIG (webdriver_test_tools.pageobject.webpage.WebPageObject attribute)</a>
+</li>
       <li><a href="webdriver_test_tools.config.site.html#webdriver_test_tools.config.site.SiteConfig.SITE_URL">SITE_URL (webdriver_test_tools.config.site.SiteConfig attribute)</a>
 
       <ul>
@@ -1078,6 +1094,8 @@
 </li>
       <li><a href="webdriver_test_tools.config.browserstack.html#module-webdriver_test_tools.config.browserstack">webdriver_test_tools.config.browserstack (module)</a>
 </li>
+      <li><a href="webdriver_test_tools.config.projectfiles.html#module-webdriver_test_tools.config.projectfiles">webdriver_test_tools.config.projectfiles (module)</a>
+</li>
       <li><a href="webdriver_test_tools.config.site.html#module-webdriver_test_tools.config.site">webdriver_test_tools.config.site (module)</a>
 </li>
       <li><a href="webdriver_test_tools.config.test.html#module-webdriver_test_tools.config.test">webdriver_test_tools.config.test (module)</a>
@@ -1177,6 +1195,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE">YAML_FILE (webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject attribute)</a>
+</li>
+      <li><a href="webdriver_test_tools.project.new_file.html#webdriver_test_tools.project.new_file.YAML_PROTOTYPE_NAMES">YAML_PROTOTYPE_NAMES (in module webdriver_test_tools.project.new_file)</a>
 </li>
       <li><a href="webdriver_test_tools.pageobject.utils.yaml.html#webdriver_test_tools.pageobject.utils.yaml.YAMLKeyError">YAMLKeyError</a>
 </li>
