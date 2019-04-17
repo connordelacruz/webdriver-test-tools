@@ -39,6 +39,7 @@ class NavLinkObject(BasePage):
         self.hover_action = link_dict.get('hover', None)
         # Get target attribute if required
         if self.click_action in self.ActionTypes.REQUIRES_TARGET:
+            # TODO: handle relative_to target
             self.target = link_dict['target']
         # Parse menu if applicable
         if self.ActionTypes.MENU in [self.click_action, self.hover_action]:
@@ -142,7 +143,7 @@ class NavMenuObject(BasePage):
 # Navbar Page Objects
 
 # TODO: YAML support, implement new objects, update docs
-class NavObject(BasePage):
+class NavObject(YAMLParsingPageObject):
     """Page object prototype for navbars
 
     :var NavObject.LINK_MAP: Maps link text to a tuple containing its locator
@@ -157,15 +158,82 @@ class NavObject(BasePage):
         scroll the target link into view before interacting with it
     """
 
+    _YAML_ROOT_KEY = 'nav'
+
+    # Nav attributes
+    FIXED = True
     # TODO: deprecate workflow
     # Link maps
     LINK_MAP = {}
     HOVER_MAP = {}
-    # Nav attributes
-    FIXED = True
+    # Link objects TODO: doc
+    LINK_DICTS = []
+    links = {}
 
+    # Initialization
+
+    def parse_yaml(self, file_path):
+        """Parse a YAML representation of the nav object and set attributes
+        accordingly
+
+        See :ref:`YAML NavObjects doc <yaml-nav-objects>` for details on
+        syntax.
+
+        :param file_path: Full path to the YAML file
+        """
+        parsed_yaml = super().parse_yaml(file_path)
+        self.FIXED = parsed_yaml.get('fixed', True)
+        # TODO: collapsible stuff
+        self._initialize_links(parsed_yaml['links'])
+
+    def no_yaml_init(self):
+        """Initialize ``self.links`` using values in :attr:`LINK_DICTS`"""
+        self._initialize_links(self.LINK_DICTS, from_yaml=False)
+
+    def _initialize_links(self, link_dicts, from_yaml=True):
+        """Initialize :class:`NavLinkObject` instances in ``self.links``
+
+        :param link_dicts: List of link dictionaries
+        :param from_yaml: (Default: True) Whether or not this was parsed from
+            YAML. Exceptions raised will be different based on this
+        """
+        # TODO: verify exceptions
+        self.links = {}
+        for link_dict in link_dicts:
+            try:
+                link_name = link_dict['name']
+                # Link names must be unique
+                if link_name in self.links:
+                    error_msg = "Multiple links with the same 'name' value (name: {}). ".format(link_name)
+                    error_msg += 'link names must be unique'
+                    raise utils.yaml.YAMLValueError(error_msg) if from_yaml else ValueError(error_msg)
+                # Initialize NavLinkObject
+                self.links[link_name] = NavLinkObject(self.driver, link_dict)
+            except KeyError as e:
+                if from_yaml:
+                    error_message = 'Missing required {} key in link YAML (link: {})'.format(e, str(link_dict))
+                    raise utils.yaml.YAMLKeyError(error_message)
+                # Preserve stack trace for key error if not parsing YAML
+                else:
+                    raise
+
+    # Actions
+
+    def click_link(self, link_name):
+        # TODO: doc
+        return self.links[link_name].click_link()
+
+    def hover_over_link(self, link_name):
+        # TODO: doc
+        return self.links[link_name].hover_over_link()
+
+    # TODO: deprecate old link map workflow
     def click_page_link(self, link_map_key):
-        """Click one of the page links and return a page object class for the link
+        """
+        .. deprecated:: 2.8.0
+            Use :meth:`click_link` instead
+
+        Click one of the page links and return a page object class for the link
         target
 
         :param link_map_key: Key into :attr:`LINK_MAP` for the link to click on
@@ -181,8 +249,13 @@ class NavObject(BasePage):
             # Initialize the target page object and return it
             return None if link_tuple[1] is None else link_tuple[1](self.driver)
 
+    # TODO: deprecate old link map workflow
     def hover_over_page_link(self, link_map_key):
-        """Hover mouse over one of the page links
+        """
+        .. deprecated:: 2.8.0
+            Use :meth:`hover_over_link` instead
+
+        Hover mouse over one of the page links
 
         :param link_map_key: Key into :attr:`HOVER_MAP` for the link to hover mouse over
 
