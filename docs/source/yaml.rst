@@ -243,7 +243,16 @@ Navbar objects have the following keys:
    * ``links``: **(Required)** List of :ref:`links <yaml-links>`.
    * ``fixed``: *(Default:* ``true`` *)* Whether or not the navbar is fixed to
      the screen
-   .. todo collapsible stuff
+   * ``collapsible``: *(Default:* ``false`` *)* Whether or not the navbar is
+     collapsible (e.g. for hamburger menus)
+   * ``menu_locator``: **(Required if** ``collapsible`` **is** ``true`` **)**
+     :ref:`Locator dictionary <yaml-locators>` for the collapsible menu element
+   * ``expand_button_locator``: **(Required if** ``collapsible`` **is** ``true`` **)**
+     :ref:`Locator dictionary <yaml-locators>` for the button that expands the
+     menu
+   * ``collapse_button_locator`` *(Optional)* Locator for the button that
+     collapses the menu. Only needed if ``collapsible`` is ``true`` and the
+     collapse button isn't the same as the expand button
 
 .. _yaml-links:
 
@@ -295,5 +304,5 @@ The items in the nav ``links`` list have the following keys:
 Example
 -------
 
-.. todo
+.. todo normal and collapsible examples
 
