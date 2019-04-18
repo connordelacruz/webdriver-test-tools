@@ -5,6 +5,7 @@ from webdriver_test_tools.testcase import *
 
 from page_object_tests import config
 from page_object_tests.pages.yaml_nav import YAMLNavObject, YAMLCollapsibleNavObject
+from page_object_tests.pages.no_yaml_nav import NoYAMLNavObject, NoYAMLCollapsibleNavObject
 
 
 class NavObjectTestCase(WebDriverTestCase):
@@ -19,6 +20,11 @@ class NavObjectTestCase(WebDriverTestCase):
     def test_nav_object_yaml(self):
         """(Non-collapsible) Test links for pages and sections, hover and click dropdowns (YAML)"""
         nav_object = YAMLNavObject(self.driver)
+        self._test_nav_object(nav_object)
+
+    def test_nav_object_no_yaml(self):
+        """(Non-collapsible) Test links for pages and sections, hover and click dropdowns (no YAML)"""
+        nav_object = NoYAMLNavObject(self.driver)
         self._test_nav_object(nav_object)
 
     def _test_nav_object(self, nav_object):
