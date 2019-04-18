@@ -1,20 +1,26 @@
-{% extends "base_page.py.j2" %}
+{% if use_yaml %}{% extends "yaml_page.py.j2" %}{% else %}{% extends "base_page.py.j2" %}{% endif %}
+
+{% block additional_imports %}
+
+from {{test_package}}.config import SiteConfig
+{% endblock %}
 
 {% block parent_class %}prototypes.NavObject{% endblock %}
 
 {% block additional_attributes %}
+{% if use_yaml %}{{super()}}
+{% endif %}
+    # Used for internal methods (do not modify)
+    SITE_CONFIG = SiteConfig
+
+{% if not use_yaml %}
     # SET THE FOLLOWING ATTRIBUTES TO USE IN {% block nav_class_prefix %}{% endblock %}NavObject METHODS
 
-    # Maps link text (or any helpful string) to a tuple containing its locator
-    # and the page object class for the target page, modal, section, etc (or
-    # None if need be). E.g.:
-    # LINK_MAP = { 'About': (Locator.ABOUT_LINK, AboutPage), ... }
-    LINK_MAP = {}
-    # Maps link text (or any helpful string) to a tuple containing its locator
-    # and the page object class for the menu, dropdown, etc that should appear
-    # on hover (or None if need be). E.g.:
-    # HOVER_MAP = { 'Products': (Locator.PRODUCTS_LINK, ProductsHoverMenu), ... }
-    HOVER_MAP = {}
+    # REQUIRED: List of link dictionaries. These will be used to initialize
+    # NavLinkObject instances at runtime.
+    # Dictionaries use same keys as YAML links. For syntax, see:
+    # https://connordelacruz.com/webdriver-test-tools/yaml.html#yaml-links
+    LINK_DICTS = []
     {% block nav_additional_attributes %}{% endblock %}
 
     # UNCOMMENT BELOW TO OVERRIDE NavObject DEFAULTS
@@ -23,5 +29,6 @@
     # set to False, click_page_link() and hover_over_page_link() will scroll
     # the target link into view before interacting with it
     # FIXED = True
+{% endif %}
 {% endblock %}
 
