@@ -58,14 +58,15 @@ class InputObject(BasePage):
 
 
     def __init__(self, driver, input_dict):
-        """Initialize ``InputObject`` using parsed YAML
+        """Initialize ``InputObject`` using parsed YAML or input dictionary
 
-        See :ref:`YAML inputs doc <yaml-inputs>` for details on ``input_dict``
-        syntax.
+        See :ref:`YAML inputs documentation <yaml-inputs>` for details on
+        ``input_dict`` syntax.
 
         :param driver: Selenium WebDriver object
-        :param input_dict: Parsed dictionary from YAML file inputs list. Must
-            have 'name' key set
+        :param input_dict: Input dictionary using syntax specified in
+            :ref:`YAML inputs documentation <yaml-inputs>`. Must have 'name'
+            key set
         """
         super().__init__(driver)
         # 'name' is required, so assume that it's a valid key and raise errors
@@ -361,7 +362,8 @@ class FormObject(YAMLParsingPageObject):
 
     :var FormObject.inputs: A dictionary mapping input names to the
         corresponding :class:`InputObject` instances. The keys correspond with
-        the ``name`` keys in the YAML representation of the form
+        the ``name`` keys in the YAML representation of the form (or the 'name'
+        keys in :attr:`INPUT_DICTS` if :attr:`YAML_FILE` is ``None``)
 
     If :attr:`YAML_FILE` is ``None``, subclasses must set the following
     attribute:
@@ -369,7 +371,7 @@ class FormObject(YAMLParsingPageObject):
     :var FormObject.INPUT_DICTS: List of input dictionaries. These are used to
         initialize the :class:`InputObject` instances in :attr:`inputs` at
         runtime. These dictionaries use the same syntax as :ref:`YAML inputs
-        <yaml-inputs>`.
+        <yaml-inputs>`
     """
 
     _YAML_ROOT_KEY = 'form'

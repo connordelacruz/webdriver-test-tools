@@ -280,6 +280,8 @@ The items in the nav ``links`` list have the following keys:
       * (``click: section``) The ``id`` attribute of the section element (i.e.
         the link's ``href`` attribute)
 
+   .. _yaml-nav-menus:
+
    * ``menu``: **(Required if** ``click`` **or** ``hover`` **is** ``menu`` **)**
      A dictionary representing the menu that appears on click or hover. Contains
      the following **required** keys:

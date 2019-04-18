@@ -18,30 +18,49 @@ class NavLinkObject(BasePage):
         NONE = 'none'
         # Click/hover support for each type
         CLICK_ACTIONS = [
-            PAGE, SECTION, MENU
+            PAGE, SECTION, MENU, NONE
         ]
         HOVER_ACTIONS = [
-            MENU
+            MENU, NONE
         ]
         # Required attributes for types
         REQUIRES_TARGET = [
             PAGE, SECTION
         ]
 
+    # TODO: document exceptions
     def __init__(self, driver, link_dict, site_config):
-        # TODO: doc, link to YAML
+        """Initialize ``NavLinkObject`` using parsed YAML or link dictionary
+
+        See :ref:`YAML links documentation <yaml-links>` for details on
+        ``link_dict`` syntax
+
+        :param driver: Selenium WebDriver object
+        :param link_dict: Link dictionary using syntax specified in :ref:`YAML
+            links documentation <yaml-links>`. Must have 'name' and
+            'link_locator' keys set
+        :param site_config: Test project's :class:`SiteConfig` class. Used to
+            determine any relative URLs specified in the 'target'
+        """
         super().__init__(driver)
         # 'name' and 'link_locator' required, so assume that they're valid keys
         # and raise errors otherwise
         self.name = link_dict['name']
         self.locator = utils.yaml.to_locator(link_dict['link_locator'])
-        # TODO: raise value errors if invalid (allow either to be None though)
         self.click_action = link_dict.get('click', self.ActionTypes.PAGE)
+        if self.click_action not in self.ActionTypes.CLICK_ACTIONS:
+            # TODO: appropriate msg
+            error_msg = ''
+            raise ValueError(error_msg)
         if self.click_action == self.ActionTypes.NONE:
             self.click_action = None
             # Click target should also be None
             self.target = None
         self.hover_action = link_dict.get('hover', None)
+        if self.hover_action and self.hover_action not in self.ActionTypes.HOVER_ACTIONS:
+            # TODO: appropriate msg
+            error_msg = ''
+            raise ValueError(error_msg)
         if self.hover_action == self.ActionTypes.NONE:
             self.hover_action = None
         # Get target attribute if required
@@ -98,18 +117,31 @@ class NavLinkObject(BasePage):
 class NavMenuObject(BasePage):
     """Page object prototype for dropdown/collapsible nav menus"""
 
+    # TODO: document exceptions
     def __init__(self, driver, menu_dict, site_config):
-        # TODO: doc
+        """Initialize ``NavMenuObject`` using parsed YAML or the 'menu' key in
+        a link dictionary
+
+        See :ref:`YAML nav menus documentation <yaml-nav-menus>` for details on
+        ``menu_dict`` syntax
+
+        :param driver: Selenium WebDriver object
+        :param menu_dict: Nav menu dictionary using syntax specified in
+            :ref:`YAML nav menus documentation <yaml-nav-menus>`. Must have
+            'menu_locator' and 'links' keys set
+        :param site_config: Test project's :class:`SiteConfig` class. Used when
+            initializing :class:`NavLinkObject` instances to determine any
+            relative URLs specified in the 'target'
+        """
         super().__init__(driver)
         # 'menu_locator' is required, so assume it's a valid key and raise
         # errors otherwise
         self.locator = utils.yaml.to_locator(menu_dict['menu_locator'])
-        # TODO: link map
         self.links = {}
         for link_dict in menu_dict['links']:
-            # TODO: except key error
+            # TODO: except key error? (or let it get handled by calling object)
             link_name = link_dict['name']
-            # TODO: raise (yaml) value error if name not unique
+            # TODO: raise value error if name not unique (specify that this is a menu)
             self.links[link_name] = NavLinkObject(self.driver, link_dict, site_config)
 
     # WebElement retrieval
@@ -150,7 +182,10 @@ class NavMenuObject(BasePage):
         return self.links[link_name].hover_over_link()
 
     def is_visible(self):
-        # TODO: doc
+        """Check if the menu element is visible
+
+        :return: True if the element is displayed, False if not
+        """
         try:
             visible = self.find_menu_element().is_displayed()
         except NoSuchElementException:
@@ -164,32 +199,75 @@ class NavMenuObject(BasePage):
 class NavObject(YAMLParsingPageObject):
     """Page object prototype for navbars
 
-    :var NavObject.LINK_MAP: Maps link text to a tuple containing its locator
-        and the page object class for the target page, modal, section, etc (or
-        None if need be). Override in subclasses
-    :var NavObject.HOVER_MAP: Maps link text to a tuple containing its locator
-        and the page object class for the menu, dropdown, etc that should
-        appear on hover (or None if need be). Override in subclasses
+    Subclasses should set the following attributes:
+
+    :var NavObject.YAML_FILE: Path to a YAML file representing the navbar
+    :var NavObject.SITE_CONFIG: Test project's :class:`SiteConfig` class.
+        Used for :class:`NavLinkObject` instances to determine any relative
+        URLs specified for link targets
+
+    The following attributes are determined based on the contents of
+    :attr:`YAML_FILE` (or should be set in subclasses if :attr:`YAML_FILE` is
+    ``None``):
+
     :var NavObject.FIXED: (Default = True) True if element is a fixed navbar,
         False otherwise. If set to False in a subclass,
         :meth:`click_page_link()` and :meth:`hover_over_page_link()` will
         scroll the target link into view before interacting with it
+
+    The following attribute is set based on the 'links' key parsed from
+    :attr:`YAML_FILE` (or parsed from :attr:`LINK_DICTS`, which should be set
+    in subclasses if :attr:`YAML_FILE` is ``None``):
+
+    :var NavObject.links: A dictionary mapping link names to the corresponding
+        :class:`NavLinkObject` instances. The keys correspond with the ``name``
+        keys in the YAML representation of the navbar (or the 'name' keys in
+        :attr:`LINK_DICTS` if :attr:`YAML_FILE` is ``None``)
+
+    If :attr:`YAML_FILE` is ``None``, subclasses must set the following
+    attribute:
+
+    :var NavObject.LINK_DICTS: List of link dictionaries. These are used to
+        initialize the :class:`NavLinkObject` instances in :attr:`links` at
+        runtime. These dictionaries use the same syntax as :ref:`YAML links
+        <yaml-links>`
+
+    ---
+
+    The following attributes are deprecated as of version 2.9.0, and will be
+    removed in future versions:
+
+    :var NavObject.LINK_MAP: Maps link text to a tuple containing its locator
+        and the page object class for the target page, modal, section, etc (or
+        None if need be). Override in subclasses
+
+        .. deprecated:: 2.9.0
+            :attr:`links` should be used instead
+
+    :var NavObject.HOVER_MAP: Maps link text to a tuple containing its locator
+        and the page object class for the menu, dropdown, etc that should
+        appear on hover (or None if need be). Override in subclasses
+
+        .. deprecated:: 2.9.0
+            :attr:`links` should be used instead
     """
 
     _YAML_ROOT_KEY = 'nav'
 
-    # TODO: doc
     SITE_CONFIG = None
 
     # Nav attributes
     FIXED = True
+    # TODO: Collapsible attributes
+
+    # Link objects
+    LINK_DICTS = []
+    links = {}
+
     # TODO: deprecate workflow
     # Link maps
     LINK_MAP = {}
     HOVER_MAP = {}
-    # Link objects TODO: doc
-    LINK_DICTS = []
-    links = {}
 
     # Initialization
 
@@ -231,6 +309,7 @@ class NavObject(YAMLParsingPageObject):
                     raise utils.yaml.YAMLValueError(error_msg) if from_yaml else ValueError(error_msg)
                 # Initialize NavLinkObject
                 self.links[link_name] = NavLinkObject(self.driver, link_dict, self.SITE_CONFIG)
+            # TODO: except value errors as well?
             except KeyError as e:
                 if from_yaml:
                     error_message = 'Missing required {} key in link YAML (link: {})'.format(e, str(link_dict))
@@ -242,17 +321,31 @@ class NavObject(YAMLParsingPageObject):
     # Actions
 
     def click_link(self, link_name):
-        # TODO: doc
+        """Click a link on the navbar
+
+        :param link_name: Name of the link (specified in YAML or link
+            dictionary) i.e. a valid key in ``self.links``
+
+        :return: The returned value of clicking the link. See
+            :meth:`NavLinkObject.click_link` for possible values
+        """
         return self.links[link_name].click_link()
 
     def hover_over_link(self, link_name):
-        # TODO: doc
+        """Hover over a link in the navbar
+
+        :param link_name: Name of the link (specified in YAML or link
+            dictionary) i.e. a valid key in ``self.links``
+
+        :return: The returned value of hovering over the link. See
+            :meth:`NavLinkObject.hover_over_link` for possible values
+        """
         return self.links[link_name].hover_over_link()
 
     # TODO: deprecate old link map workflow
     def click_page_link(self, link_map_key):
         """
-        .. deprecated:: 2.8.0
+        .. deprecated:: 2.9.0
             Use :meth:`click_link` instead
 
         Click one of the page links and return a page object class for the link
@@ -274,7 +367,7 @@ class NavObject(YAMLParsingPageObject):
     # TODO: deprecate old link map workflow
     def hover_over_page_link(self, link_map_key):
         """
-        .. deprecated:: 2.8.0
+        .. deprecated:: 2.9.0
             Use :meth:`hover_over_link` instead
 
         Hover mouse over one of the page links
