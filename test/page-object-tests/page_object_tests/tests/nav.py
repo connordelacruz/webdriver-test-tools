@@ -15,7 +15,7 @@ class NavObjectTestCase(WebDriverTestCase):
     SITE_URL = config.SiteConfig.SITE_URL + YAMLNavObject.PAGE_FILENAME
 
     # Test Methods
-    # TODO: fixed navs, collapsible navs
+    # TODO: fixed navs
 
     def test_nav_object_yaml(self):
         """(Non-collapsible) Test links for pages and sections, hover and click dropdowns (YAML)"""
@@ -53,11 +53,16 @@ class CollapsibleNavObjectTestCase(WebDriverTestCase):
     SITE_URL = config.SiteConfig.SITE_URL + YAMLCollapsibleNavObject.PAGE_FILENAME
 
     # Test Methods
-    # TODO: fixed navs, collapsible navs
+    # TODO: fixed navs
 
     def test_nav_object_yaml(self):
         """(Collapsible) Test links for pages and sections and click dropdowns (YAML)"""
         nav_object = YAMLCollapsibleNavObject(self.driver)
+        self._test_nav_object(nav_object)
+
+    def test_nav_object_no_yaml(self):
+        """(Collapsible) Test links for pages and sections and click dropdowns (no YAML)"""
+        nav_object = NoYAMLCollapsibleNavObject(self.driver)
         self._test_nav_object(nav_object)
 
     def _test_nav_object(self, nav_object):

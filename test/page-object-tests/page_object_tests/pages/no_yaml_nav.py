@@ -136,11 +136,64 @@ class NoYAMLCollapsibleNavObject(prototypes.NavObject):
     # NavLinkObject instances at runtime.
     # Dictionaries use same keys as YAML links. For syntax, see:
     # https://connordelacruz.com/webdriver-test-tools/yaml.html#yaml-links
-    LINK_DICTS = []
+    LINK_DICTS = [
+        {
+            'name': 'home',
+            'link_locator': {
+                'by': 'CLASS_NAME', 'locator': 'navbar-brand'
+            },
+            'target': {'path': 'index.html', 'relative_to': 'BASE_URL'}
+        },
+        {
+            'name': 'section3',
+            'link_locator': {
+                'by': 'CSS_SELECTOR', 'locator': 'a[href="#section3"]'
+            },
+            'click': 'section',
+            'target': '#section3'
+        },
+        {
+            'name': 'click-menu',
+            'link_locator': {
+                'by': 'ID', 'locator': 'click-menu-link'
+            },
+            'click': 'menu',
+            'menu': {
+                'menu_locator': {
+                    'by': 'ID', 'locator': 'click-menu'
+                },
+                'links': [
+                    {
+                        'name': 'home',
+                        'link_locator': {
+                            'by': 'CSS_SELECTOR', 'locator': '#click-menu a[href="index.html"]'
+                        },
+                        'target': {'path': 'index.html', 'relative_to': 'BASE_URL'}
+                    },
+                    {
+                        'name': 'form',
+                        'link_locator': {
+                            'by': 'CSS_SELECTOR', 'locator': '#click-menu a[href="form.html"]'
+                        },
+                        'target': {'path': 'form.html', 'relative_to': 'BASE_URL'}
+                    },
+                    {
+                        'name': 'modal',
+                        'link_locator': {
+                            'by': 'CSS_SELECTOR', 'locator': '#click-menu a[href="modal.html"]'
+                        },
+                        'target': {'path': 'modal.html', 'relative_to': 'BASE_URL'}
+                    },
+                ]
+            }
+        },
+    ]
+    # (Default: False) Whether or not the navbar is collapsible
+    COLLAPSIBLE = True
     # REQUIRED: Locator for the collapsible menu element
-    MENU_LOCATOR = None
+    MENU_LOCATOR = (By.ID, 'nav-menu')
     # REQUIRED: Locator for the button that expands the nav menu
-    EXPAND_BUTTON_LOCATOR = None
+    EXPAND_BUTTON_LOCATOR = (By.ID, 'navbar-toggle')
     # (Optional) Locator for the button that collapses the nav menu.
     # If not set, the value from EXPAND_BUTTON_LOCATOR will be used
     COLLAPSE_BUTTON_LOCATOR = None
@@ -150,5 +203,5 @@ class NoYAMLCollapsibleNavObject(prototypes.NavObject):
     # (Default = True) True if element is a fixed navbar, False otherwise. If
     # set to False, click_page_link() and hover_over_page_link() will scroll
     # the target link into view before interacting with it
-    # FIXED = True
+    FIXED = False
 

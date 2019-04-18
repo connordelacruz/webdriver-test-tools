@@ -324,6 +324,9 @@ class NavObject(YAMLParsingPageObject):
 
     def no_yaml_init(self):
         """Initialize ``self.links`` using values in :attr:`LINK_DICTS`"""
+        if self.COLLAPSIBLE:
+            if not self.COLLAPSE_BUTTON_LOCATOR:
+                self.COLLAPSE_BUTTON_LOCATOR = self.EXPAND_BUTTON_LOCATOR
         self._initialize_links(self.LINK_DICTS, from_yaml=False)
 
     # TODO: overlaps w/ menu, merge?
