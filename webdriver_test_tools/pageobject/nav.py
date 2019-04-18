@@ -1,3 +1,5 @@
+import warnings
+
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 
@@ -195,7 +197,6 @@ class NavMenuObject(BasePage):
 
 # Navbar Page Objects
 
-# TODO: YAML support, implement new objects, update docs
 class NavObject(YAMLParsingPageObject):
     """Page object prototype for navbars
 
@@ -210,10 +211,26 @@ class NavObject(YAMLParsingPageObject):
     :attr:`YAML_FILE` (or should be set in subclasses if :attr:`YAML_FILE` is
     ``None``):
 
-    :var NavObject.FIXED: (Default = True) True if element is a fixed navbar,
+    :var NavObject.FIXED: (Default: True) True if element is a fixed navbar,
         False otherwise. If set to False in a subclass,
         :meth:`click_page_link()` and :meth:`hover_over_page_link()` will
         scroll the target link into view before interacting with it
+    :var NavObject.COLLAPSIBLE: (Default: False) True if the navbar is
+        collapsible (e.g. for hamburger menus). If set to True,
+        :attr:`MENU_LOCATOR`, :attr:`EXPAND_BUTTON_LOCATOR`, and (optionally)
+        :attr:`COLLAPSE_BUTTON_LOCATOR` should also be set
+
+    For collapsible navs, these additional attributes should also be specified
+    in :attr:`YAML_FILE` (or should be set in subclasses if :attr:`YAML_FILE`
+    is ``None``):
+
+    :var NavObject.MENU_LOCATOR: (Required for collapsible) Locator for the
+        collapsible menu element
+    :var NavObject.EXPAND_BUTTON_LOCATOR: (Required for collapsible) Locator
+        for the button that expands the nav menu
+    :var NavObject.COLLAPSE_BUTTON_LOCATOR: (Optional) Locator for the button
+        that collapses the nav menu. If unspecified, this will be set to the
+        same value as :attr:`EXPAND_BUTTON_LOCATOR`
 
     The following attribute is set based on the 'links' key parsed from
     :attr:`YAML_FILE` (or parsed from :attr:`LINK_DICTS`, which should be set
@@ -256,9 +273,13 @@ class NavObject(YAMLParsingPageObject):
 
     SITE_CONFIG = None
 
-    # Nav attributes
+    # General nav attributes
     FIXED = True
-    # TODO: Collapsible attributes
+    # Collapsible attributes
+    COLLAPSIBLE = False
+    MENU_LOCATOR = None
+    COLLAPSE_BUTTON_LOCATOR = None
+    EXPAND_BUTTON_LOCATOR = None
 
     # Link objects
     LINK_DICTS = []
@@ -282,7 +303,23 @@ class NavObject(YAMLParsingPageObject):
         """
         parsed_yaml = super().parse_yaml(file_path)
         self.FIXED = parsed_yaml.get('fixed', True)
-        # TODO: collapsible stuff
+        # Only retrieve if attribute is present (allows deprecated
+        # CollapsibleNavObject to override default)
+        if 'collapsible' in parsed_yaml:
+            self.COLLAPSIBLE = parsed_yaml['collapsible']
+        # Collapsible nav configurations
+        if self.COLLAPSIBLE:
+            try:
+                self.MENU_LOCATOR = utils.yaml.to_locator(parsed_yaml['menu_locator'])
+                self.EXPAND_BUTTON_LOCATOR = utils.yaml.to_locator(parsed_yaml['expand_button_locator'])
+                if 'collapse_button_locator' in parsed_yaml:
+                    self.COLLAPSE_BUTTON_LOCATOR = utils.yaml.to_locator(parsed_yaml['collapse_button_locator'])
+                else:
+                    self.COLLAPSE_BUTTON_LOCATOR = self.EXPAND_BUTTON_LOCATOR
+            except KeyError as e:
+                error_msg = 'Missing required {} key in collapsible nav YAML. '.format(e)
+                error_msg += "If 'collapsible' is set to true, 'expand_button_locator' and 'menu_locator' must also be set"
+                raise utils.yaml.YAMLKeyError(error_msg)
         self._initialize_links(parsed_yaml['links'])
 
     def no_yaml_init(self):
@@ -318,7 +355,7 @@ class NavObject(YAMLParsingPageObject):
                 else:
                     raise
 
-    # Actions
+    # Nav Actions
 
     def click_link(self, link_name):
         """Click a link on the navbar
@@ -342,6 +379,72 @@ class NavObject(YAMLParsingPageObject):
         """
         return self.links[link_name].hover_over_link()
 
+    # Collapsible Nav Actions
+
+    def click_expand_button(self):
+        """Click the button to expand the nav menu
+
+        .. note::
+
+            For collapsible navs only. If :attr:`COLLAPSIBLE` is ``False``, a
+            warning will be raised and the method will return
+        """
+        if not self.COLLAPSIBLE:
+            warnings.warn(
+                'NavObject.click_expand_button() called on a non-collapsible NavObject, method will not be executed'
+            )
+            return
+        button = self.find_element(self.EXPAND_BUTTON_LOCATOR)
+        if not self.FIXED:
+            actions.scroll.into_view(self.driver, button)
+        button.click()
+
+    def click_collapse_button(self):
+        """Click the button to collapse the nav menu
+
+        .. note::
+
+            For collapsible navs only. If :attr:`COLLAPSIBLE` is ``False``, a
+            warning will be raised and the method will return
+        """
+        if not self.COLLAPSIBLE:
+            warnings.warn(
+                'NavObject.click_collapse_button() called on a non-collapsible NavObject, method will not be executed'
+            )
+            return
+        button = self.find_element(self.COLLAPSE_BUTTON_LOCATOR)
+        if not self.FIXED:
+            actions.scroll.into_view(self.driver, button)
+        button.click()
+
+    def is_expanded(self):
+        """Check if the nav menu is expanded
+
+        .. note::
+
+            For collapsible navs only. If :attr:`COLLAPSIBLE` is ``False``, a
+            warning will be raised and the method will return
+
+        This method checks if the element located by :attr:`MENU_LOCATOR`
+        exists and is visible. This should be sufficient for many common
+        implementations of collapsible navs, but can be overridden if this
+        isn't a reliable detection method for an implementation
+
+        :return: True if the nav menu is expanded, False if it's collapsed
+        """
+        if not self.COLLAPSIBLE:
+            warnings.warn(
+                'NavObject.is_expanded() called on a non-collapsible NavObject, method will not be executed'
+            )
+            return
+        try:
+            expanded = self.find_element(self.MENU_LOCATOR).is_displayed()
+        except NoSuchElementException:
+            expanded = False
+        return expanded
+
+    # Deprecated Methods
+
     # TODO: deprecate old link map workflow
     def click_page_link(self, link_map_key):
         """
@@ -355,6 +458,10 @@ class NavObject(YAMLParsingPageObject):
 
         :return: Corresponding page object class for the link target (if applicable)
         """
+        warnings.warn(
+            'NavObject.click_page_link() is deprecated and may be removed in future versions, use click_link() instead',
+            DeprecationWarning
+        )
         if link_map_key in self.LINK_MAP:
             link_tuple = self.LINK_MAP[link_map_key]
             link = self.find_element(link_tuple[0])
@@ -377,6 +484,10 @@ class NavObject(YAMLParsingPageObject):
         :return: Corresponding page object class for the hover dropdown/container/etc
             (if applicable)
         """
+        warnings.warn(
+            'NavObject.hover_over_page_link() is deprecated and may be removed in future versions, use hover_over_link() instead',
+            DeprecationWarning
+        )
         if link_map_key in self.HOVER_MAP:
             link_tuple = self.HOVER_MAP[link_map_key]
             link = self.find_element(link_tuple[0])
@@ -389,10 +500,15 @@ class NavObject(YAMLParsingPageObject):
 
 
 class CollapsibleNavObject(NavObject):
-    """Subclass of :class:`NavObject` with additional methods for collapsible nav menus
+    """
+    .. deprecated:: 2.9.0
+        Use :class:`NavObject` with ``COLLAPSIBLE = True`` instead
 
-    In addition to the variables for :class:`NavObject`, the following variables need to
-    be defined for collapsible navs
+    Subclass of :class:`NavObject` with additional methods for collapsible nav
+    menus
+
+    In addition to the variables for :class:`NavObject`, the following
+    variables need to be defined for collapsible navs
 
     :var CollapsibleNavObject.EXPAND_BUTTON_LOCATOR: Locator for the button
         that expands the nav menu
@@ -402,37 +518,17 @@ class CollapsibleNavObject(NavObject):
         collapsing/expanding container of the navigation menu
     """
 
-    EXPAND_BUTTON_LOCATOR = None
-    COLLAPSE_BUTTON_LOCATOR = None
+    COLLAPSIBLE = True
+    # Deprecated
     MENU_CONTAINER_LOCATOR = None
 
-    def is_expanded(self):
-        """Check if the nav menu is expanded
-
-        This method checks if the element located by :attr:`MENU_CONTAINER_LOCATOR`
-        exists and is visible. This should be sufficient for many common implementations
-        of collapsible navs, but can be overridden if this isn't a reliable detection
-        method for an implementation
-
-        :return: True if the nav menu is expanded, False if it's collapsed
-        """
-        try:
-            expanded = self.find_element(self.MENU_CONTAINER_LOCATOR).is_displayed()
-        except NoSuchElementException:
-            expanded = False
-        return expanded
-
-    def click_expand_button(self):
-        """Click the button to expand the nav menu"""
-        button = self.find_element(self.EXPAND_BUTTON_LOCATOR)
-        if not self.FIXED:
-            actions.scroll.into_view(self.driver, button)
-        button.click()
-
-    def click_collapse_button(self):
-        """Click the button to collapse the nav menu"""
-        button = self.find_element(self.COLLAPSE_BUTTON_LOCATOR)
-        if not self.FIXED:
-            actions.scroll.into_view(self.driver, button)
-        button.click()
+    def __init__(self, driver):
+        warnings.warn(
+            'CollapsibleNavObject is deprecated, use NavObject with COLLAPSIBLE set to True instead',
+            DeprecationWarning
+        )
+        super().__init__(driver)
+        # Set MENU_LOCATOR to match deprecated attribute if specified
+        if self.MENU_CONTAINER_LOCATOR:
+            self.MENU_LOCATOR = self.MENU_CONTAINER_LOCATOR
 
