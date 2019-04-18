@@ -51,8 +51,8 @@ class NavLinkObject(BasePage):
         self.locator = utils.yaml.to_locator(link_dict['link_locator'])
         self.click_action = link_dict.get('click', self.ActionTypes.PAGE)
         if self.click_action not in self.ActionTypes.CLICK_ACTIONS:
-            # TODO: appropriate msg
-            error_msg = ''
+            error_msg = "Invalid value 'click' action for link (link: {}). ".format(str(link_dict))
+            error_msg += 'Valid click actions: {}'.format(str(self.ActionTypes.CLICK_ACTIONS))
             raise ValueError(error_msg)
         if self.click_action == self.ActionTypes.NONE:
             self.click_action = None
@@ -60,8 +60,8 @@ class NavLinkObject(BasePage):
             self.target = None
         self.hover_action = link_dict.get('hover', None)
         if self.hover_action and self.hover_action not in self.ActionTypes.HOVER_ACTIONS:
-            # TODO: appropriate msg
-            error_msg = ''
+            error_msg = "Invalid value 'hover' action for link (link: {}). ".format(str(link_dict))
+            error_msg += 'Valid hover actions: {}'.format(str(self.ActionTypes.HOVER_ACTIONS))
             raise ValueError(error_msg)
         if self.hover_action == self.ActionTypes.NONE:
             self.hover_action = None
@@ -141,7 +141,7 @@ class NavMenuObject(BasePage):
         self.locator = utils.yaml.to_locator(menu_dict['menu_locator'])
         self.links = {}
         for link_dict in menu_dict['links']:
-            # TODO: except key error? (or let it get handled by calling object)
+            # TODO: except key error, update message to show menu
             link_name = link_dict['name']
             # TODO: raise value error if name not unique (specify that this is a menu)
             self.links[link_name] = NavLinkObject(self.driver, link_dict, site_config)

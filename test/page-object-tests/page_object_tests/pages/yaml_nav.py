@@ -28,6 +28,8 @@ class YAMLNavObject(prototypes.NavObject):
 
 class YAMLCollapsibleNavObject(prototypes.NavObject):
 
+    PAGE_FILENAME = 'collapsible_navbar.html'
+
     class Locator:
         """WebDriver locator tuples for any elements that will need to be
         accessed by this page object.
