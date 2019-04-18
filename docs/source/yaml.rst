@@ -29,7 +29,9 @@ Currently, the following prototype classes support YAML parsing:
    * :class:`FormObject <webdriver_test_tools.pageobject.form.FormObject>`
    * :class:`ModalObject <webdriver_test_tools.pageobject.modal.ModalObject>`
    * :class:`WebPageObject <webdriver_test_tools.pageobject.webpage.WebPageObject>`
+   * :class:`NavObject <webdriver_test_tools.pageobject.nav.NavObject>`
 
+.. todo remove this comment after finishing nav objects
 YAML support will be added to more in future releases.
 
 
@@ -90,6 +92,27 @@ required keys:
 
    * ``locator``: Value used to locate element with the specified locator
      strategy
+
+
+.. _yaml-relative-urls:
+
+Relative URL Dictionaries
+-------------------------
+
+URLs that are relative to attributes specified in a project's ``SiteConfig`` are
+specified with dictionaries using the following keys:
+
+   * ``path``: The path to the page, relative to the ``SiteConfig`` attribute
+     specified in ``relative_to``
+   * ``relative_to``: A valid attribute declared in the project's ``SiteConfig``
+     class to use as a base URL
+
+.. note::
+
+   Internally, these URL dictionaries are parsed using
+   :meth:`SiteConfig.parse_relative_url_dict`. If the attribute that
+   ``relative_to`` specifies does not have a trailing '/', this method adds one
+   before building the full URL
 
 
 .. todo document root keys for each
@@ -184,13 +207,7 @@ Syntax
 ------
 
 Web page objects have one required key ``url``, which can be set to either the
-full URL to the page, or a dictionary containing the following keys:
-
-   * ``path``: The path to the page, relative to the ``SiteConfig`` attribute
-     specified in ``relative_to``
-   * ``relative_to``: A valid attribute declared in the project's ``SiteConfig``
-     class to use as a base URL. It is assumed that the value of this attribute
-     has a trailing '/'
+full URL to the page or a :ref:`relative URL dictionary <yaml-relative-urls>`
 
 .. note::
 
@@ -258,14 +275,8 @@ The items in the nav ``links`` list have the following keys:
      ``click`` type):
 
       * (``click: page``) The full URL to the target page
-      * (``click: page``) A dictionary containing the following keys:
-
-         * ``path``: The path to the target page, relative to the ``SiteConfig``
-           attribute specified in ``relative_to``
-         * ``relative_to``: A valid attribute declared in the project's
-           ``SiteConfig`` class to use as a base URL. It is assumed that the
-           value of this attribute has a trailing '/'
-
+      * (``click: page``) :ref:`Relative URL dictionary <yaml-relative-urls>`
+        with the path to the target page
       * (``click: section``) The ``id`` attribute of the section element (i.e.
         the link's ``href`` attribute)
 

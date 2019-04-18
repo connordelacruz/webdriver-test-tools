@@ -29,7 +29,7 @@ class NavLinkObject(BasePage):
         ]
 
     def __init__(self, driver, link_dict, site_config):
-        # TODO: doc
+        # TODO: doc, link to YAML
         super().__init__(driver)
         # 'name' and 'link_locator' required, so assume that they're valid keys
         # and raise errors otherwise
@@ -49,9 +49,8 @@ class NavLinkObject(BasePage):
             target = link_dict['target']
             # TODO: if section type and target doesn't start w/ #, add one?
             if isinstance(target, dict):
-                # TODO: extract to method, error handling, figure out if this is the best way to handle this
-                base_url = getattr(site_config, target['relative_to'])
-                target = base_url + target['path']
+                # TODO: exceptions?
+                target = site_config.parse_relative_url_dict(target)
             self.target = target
         # Parse menu if applicable
         if self.ActionTypes.MENU in [self.click_action, self.hover_action]:

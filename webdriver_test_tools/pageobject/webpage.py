@@ -75,36 +75,23 @@ class WebPageObject(YAMLParsingPageObject):
             URL
 
         :raises YAMLKeyError: if ``url`` is missing either required key
+        :raises YAMLValueError: if ``url['relative_to']`` is not a valid
+            attribute name of :attr:`SITE_CONFIG` class
         """
         # TODO: what if URL is an exact attribute in site config and not relative?
         try:
             return (
                 url['path'],
-                self._get_base_url(url['relative_to']) + url['path']
+                self.SITE_CONFIG.parse_relative_url_dict(url)
             )
         except KeyError as e:
             raise utils.yaml.YAMLKeyError(
                 "Missing required {} key in web page 'url' dictionary"
             )
-
-    def _get_base_url(self, relative_to):
-        """Helper method for resolving url relative_to key
-
-        :param relative_to: Name of an attribute in :attr:`SITE_CONFIG` class
-
-        :return: The value of the specified attribute in :attr:`SITE_CONFIG`
-            class
-
-        :raises YAMLValueError: if ``relative_to`` is not a valid attribute
-            name of :attr:`SITE_CONFIG`
-        """
-        try:
-            base_url = getattr(self.SITE_CONFIG, relative_to)
-        except AttributeError as e:
-            error_msg = "Invalid URL 'relative_to' value (relative_to: {}). ".format(relative_to)
+        except ValueError as e:
+            error_msg = "Invalid URL 'relative_to' value (relative_to: {}). ".format(url['relative_to'])
             error_msg += 'Must be a valid attribute declared in SiteConfig class'
             raise utils.YAMLValueError(error_msg)
-        return base_url
 
     def get_page_title(self):
         """Get the title of the current page
