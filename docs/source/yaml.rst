@@ -304,5 +304,7 @@ The items in the nav ``links`` list have the following keys:
 Example
 -------
 
-.. todo normal and collapsible examples
+.. literalinclude:: ../example/yaml-example/nav.yml
+
+.. literalinclude:: ../example/yaml-example/collapsible_nav.yml
 
