@@ -24,15 +24,14 @@ see `Ansible's YAML documentation`_.
 Supported Prototype Classes
 ---------------------------
 
+.. todo Is this section necessary?
+
 Currently, the following prototype classes support YAML parsing:  
 
    * :class:`FormObject <webdriver_test_tools.pageobject.form.FormObject>`
    * :class:`ModalObject <webdriver_test_tools.pageobject.modal.ModalObject>`
    * :class:`WebPageObject <webdriver_test_tools.pageobject.webpage.WebPageObject>`
    * :class:`NavObject <webdriver_test_tools.pageobject.nav.NavObject>`
-
-.. todo remove this comment after finishing nav objects
-YAML support will be added to more in future releases.
 
 
 Configure Defaults

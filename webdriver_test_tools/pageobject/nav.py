@@ -68,7 +68,9 @@ class NavLinkObject(BasePage):
         # Get target attribute if required
         if self.click_action in self.ActionTypes.REQUIRES_TARGET:
             target = link_dict['target']
-            # TODO: if section type and target doesn't start w/ #, add one?
+            # Add '#' to the front of section targets if not present
+            if self.click_action == self.ActionTypes.SECTION and not self.target.startswith('#'):
+                target = '#' + target
             if isinstance(target, dict):
                 # TODO: exceptions?
                 target = site_config.parse_relative_url_dict(target)
@@ -93,10 +95,12 @@ class NavLinkObject(BasePage):
     def click_link(self):
         """Click the link
 
-        :return: Link target (url or section ID) if ``self.click_action`` is
-            'page' or 'section', or a :class:`NavMenuObject` instance if
-            ``self.click_action`` is 'menu' (or ``None`` if
-            ``self.click_action`` is ``None``)
+        :return: Return value depends on ``self.click_action``:
+
+            * 'page': Returns the URL to the link target
+            * 'section': Returns the target section ID (prefixed with '#')
+            * 'menu': Returns a :class:`NavMenuObject` instance
+            * None: Returns ``None``
         """
         actions.scroll.to_and_click(self.driver, self.find_link_element(), False)
         return self.menu if self.click_action == self.ActionTypes.MENU else self.target
@@ -167,8 +171,9 @@ class NavMenuObject(BasePage):
 
         :return: The returned value of clicking the link. See
             :meth:`NavLinkObject.click_link` for possible values
+
+        :raises KeyError: If ``link_name`` is not a valid key in ``self.links``
         """
-        # TODO: KeyError message?
         return self.links[link_name].click_link()
 
     def hover_over_link(self, link_name):
@@ -179,8 +184,9 @@ class NavMenuObject(BasePage):
 
         :return: The returned value of hovering over the link. See
             :meth:`NavLinkObject.hover_over_link` for possible values
+
+        :raises KeyError: If ``link_name`` is not a valid key in ``self.links``
         """
-        # TODO: KeyError message?
         return self.links[link_name].hover_over_link()
 
     def is_visible(self):
@@ -329,7 +335,6 @@ class NavObject(YAMLParsingPageObject):
                 self.COLLAPSE_BUTTON_LOCATOR = self.EXPAND_BUTTON_LOCATOR
         self._initialize_links(self.LINK_DICTS, from_yaml=False)
 
-    # TODO: overlaps w/ menu, merge?
     def _initialize_links(self, link_dicts, from_yaml=True):
         """Initialize :class:`NavLinkObject` instances in ``self.links``
 
@@ -368,6 +373,8 @@ class NavObject(YAMLParsingPageObject):
 
         :return: The returned value of clicking the link. See
             :meth:`NavLinkObject.click_link` for possible values
+
+        :raises KeyError: If ``link_name`` is not a valid key in ``self.links``
         """
         return self.links[link_name].click_link()
 
@@ -379,6 +386,8 @@ class NavObject(YAMLParsingPageObject):
 
         :return: The returned value of hovering over the link. See
             :meth:`NavLinkObject.hover_over_link` for possible values
+
+        :raises KeyError: If ``link_name`` is not a valid key in ``self.links``
         """
         return self.links[link_name].hover_over_link()
 
