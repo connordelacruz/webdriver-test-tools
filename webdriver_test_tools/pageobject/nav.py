@@ -265,6 +265,11 @@ class NavObject(YAMLParsingPageObject):
         runtime. These dictionaries use the same syntax as :ref:`YAML links
         <yaml-links>`
 
+        .. todo::
+
+            ``LINK_DICTS`` syntax is kind of cluttered, will likely re-work to
+            be cleaner in future versions
+
     ---
 
     The following attributes are deprecated as of version 2.9.0, and will be
