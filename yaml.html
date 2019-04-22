@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Page Object YAML Files &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
+  <title>Page Object YAML Files &mdash; WebDriver Test Tools 2.9.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.8
+                2.9
               </div>
             
           
@@ -102,6 +102,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#general-syntax">General Syntax</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#locator-dictionaries">Locator Dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relative-url-dictionaries">Relative URL Dictionaries</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#formobjects">FormObjects</a><ul>
@@ -118,9 +119,18 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#webpageobjects">WebPageObjects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navobjects">NavObjects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Syntax</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#navbars">Navbars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#links">Links</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#webpageobjects">WebPageObjects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -192,38 +202,48 @@
            <div itemprop="articleBody">
             
   <div class="section" id="page-object-yaml-files">
-<span id="yaml-page-objects"></span><h1><a class="toc-backref" href="#id5">Page Object YAML Files</a><a class="headerlink" href="#page-object-yaml-files" title="Permalink to this headline">¶</a></h1>
+<span id="yaml-page-objects"></span><h1><a class="toc-backref" href="#id7">Page Object YAML Files</a><a class="headerlink" href="#page-object-yaml-files" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#page-object-yaml-files" id="id5">Page Object YAML Files</a><ul>
-<li><a class="reference internal" href="#overview" id="id6">Overview</a><ul>
-<li><a class="reference internal" href="#supported-prototype-classes" id="id7">Supported Prototype Classes</a></li>
-<li><a class="reference internal" href="#configure-defaults" id="id8">Configure Defaults</a></li>
-<li><a class="reference internal" href="#override-default-setting" id="id9">Override Default Setting</a></li>
+<li><a class="reference internal" href="#page-object-yaml-files" id="id7">Page Object YAML Files</a><ul>
+<li><a class="reference internal" href="#overview" id="id8">Overview</a><ul>
+<li><a class="reference internal" href="#supported-prototype-classes" id="id9">Supported Prototype Classes</a></li>
+<li><a class="reference internal" href="#configure-defaults" id="id10">Configure Defaults</a></li>
+<li><a class="reference internal" href="#override-default-setting" id="id11">Override Default Setting</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#general-syntax" id="id10">General Syntax</a><ul>
-<li><a class="reference internal" href="#locator-dictionaries" id="id11">Locator Dictionaries</a></li>
+<li><a class="reference internal" href="#general-syntax" id="id12">General Syntax</a><ul>
+<li><a class="reference internal" href="#locator-dictionaries" id="id13">Locator Dictionaries</a></li>
+<li><a class="reference internal" href="#relative-url-dictionaries" id="id14">Relative URL Dictionaries</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#formobjects" id="id12">FormObjects</a><ul>
-<li><a class="reference internal" href="#syntax" id="id13">Syntax</a><ul>
-<li><a class="reference internal" href="#forms" id="id14">Forms</a></li>
-<li><a class="reference internal" href="#inputs" id="id15">Inputs</a></li>
+<li><a class="reference internal" href="#formobjects" id="id15">FormObjects</a><ul>
+<li><a class="reference internal" href="#syntax" id="id16">Syntax</a><ul>
+<li><a class="reference internal" href="#forms" id="id17">Forms</a></li>
+<li><a class="reference internal" href="#inputs" id="id18">Inputs</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#example" id="id16">Example</a></li>
+<li><a class="reference internal" href="#example" id="id19">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#modalobjects" id="id17">ModalObjects</a><ul>
-<li><a class="reference internal" href="#id1" id="id18">Syntax</a></li>
-<li><a class="reference internal" href="#id2" id="id19">Example</a></li>
+<li><a class="reference internal" href="#modalobjects" id="id20">ModalObjects</a><ul>
+<li><a class="reference internal" href="#id1" id="id21">Syntax</a></li>
+<li><a class="reference internal" href="#id2" id="id22">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#webpageobjects" id="id20">WebPageObjects</a><ul>
-<li><a class="reference internal" href="#id3" id="id21">Syntax</a></li>
-<li><a class="reference internal" href="#id4" id="id22">Example</a></li>
+<li><a class="reference internal" href="#navobjects" id="id23">NavObjects</a><ul>
+<li><a class="reference internal" href="#id3" id="id24">Syntax</a><ul>
+<li><a class="reference internal" href="#navbars" id="id25">Navbars</a></li>
+<li><a class="reference internal" href="#links" id="id26">Links</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4" id="id27">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#webpageobjects" id="id28">WebPageObjects</a><ul>
+<li><a class="reference internal" href="#id5" id="id29">Syntax</a></li>
+<li><a class="reference internal" href="#id6" id="id30">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -231,7 +251,7 @@
 </ul>
 </div>
 <div class="section" id="overview">
-<h2><a class="toc-backref" href="#id6">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>To simplify the process of creating new page objects, some page object prototype
 classes support YAML representations of the object. Prototype classes that
 support this will generate a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file in addition to a Python module when
@@ -240,26 +260,26 @@ using the <code class="docutils literal notranslate"><span class="pre">new</span
 <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code>. For a basic introduction to YAML syntax in general,
 see <a class="reference external" href="https://docs.ansible.com/ansible/2.7/reference_appendices/YAMLSyntax.html">Ansible’s YAML documentation</a>.</p>
 <div class="section" id="supported-prototype-classes">
-<h3><a class="toc-backref" href="#id7">Supported Prototype Classes</a><a class="headerlink" href="#supported-prototype-classes" title="Permalink to this headline">¶</a></h3>
-<p>Currently, the following prototype classes support YAML parsing:</p>
+<h3><a class="toc-backref" href="#id9">Supported Prototype Classes</a><a class="headerlink" href="#supported-prototype-classes" title="Permalink to this headline">¶</a></h3>
+<p>The following prototype classes support YAML parsing:</p>
 <blockquote>
 <div><ul class="simple">
 <li><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject" title="webdriver_test_tools.pageobject.form.FormObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">FormObject</span></code></a></li>
 <li><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject" title="webdriver_test_tools.pageobject.modal.ModalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalObject</span></code></a></li>
+<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code></a></li>
 <li><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject" title="webdriver_test_tools.pageobject.webpage.WebPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebPageObject</span></code></a></li>
 </ul>
 </div></blockquote>
-<p>YAML support will be added to more in future releases.</p>
 </div>
 <div class="section" id="configure-defaults">
-<h3><a class="toc-backref" href="#id8">Configure Defaults</a><a class="headerlink" href="#configure-defaults" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">Configure Defaults</a><a class="headerlink" href="#configure-defaults" title="Permalink to this headline">¶</a></h3>
 <p>Whether YAML files or Python-only files are generated by default when using the
 <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">page</span></code> command is configured in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/projectfiles.py</span></code>
 by setting the <code class="docutils literal notranslate"><span class="pre">ENABLE_PAGE_OBJECT_YAML</span></code> variable of the
 <code class="docutils literal notranslate"><span class="pre">ProjectFilesConfig</span></code> class.</p>
 </div>
 <div class="section" id="override-default-setting">
-<h3><a class="toc-backref" href="#id9">Override Default Setting</a><a class="headerlink" href="#override-default-setting" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Override Default Setting</a><a class="headerlink" href="#override-default-setting" title="Permalink to this headline">¶</a></h3>
 <p>The default setting can be overridden using command line arguments. If
 <code class="docutils literal notranslate"><span class="pre">ENABLE_PAGE_OBJECT_YAML</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the <code class="docutils literal notranslate"><span class="pre">--no-yaml</span></code> (or <code class="docutils literal notranslate"><span class="pre">-Y</span></code>) argument
 can be used to only generate <code class="docutils literal notranslate"><span class="pre">.py</span></code> files:</p>
@@ -274,10 +294,10 @@ can be used to generate <code class="docutils literal notranslate"><span class="
 </div>
 </div>
 <div class="section" id="general-syntax">
-<h2><a class="toc-backref" href="#id10">General Syntax</a><a class="headerlink" href="#general-syntax" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">General Syntax</a><a class="headerlink" href="#general-syntax" title="Permalink to this headline">¶</a></h2>
 <p>This section documents the syntax of general page object constructs.</p>
 <div class="section" id="locator-dictionaries">
-<span id="yaml-locators"></span><h3><a class="toc-backref" href="#id11">Locator Dictionaries</a><a class="headerlink" href="#locator-dictionaries" title="Permalink to this headline">¶</a></h3>
+<span id="yaml-locators"></span><h3><a class="toc-backref" href="#id13">Locator Dictionaries</a><a class="headerlink" href="#locator-dictionaries" title="Permalink to this headline">¶</a></h3>
 <p>Element locators are represented by YAML dictionaries with the following
 required keys:</p>
 <blockquote>
@@ -303,15 +323,35 @@ strategy</p>
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="relative-url-dictionaries">
+<span id="yaml-relative-urls"></span><h3><a class="toc-backref" href="#id14">Relative URL Dictionaries</a><a class="headerlink" href="#relative-url-dictionaries" title="Permalink to this headline">¶</a></h3>
+<p>URLs that are relative to attributes specified in a project’s <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code> are
+specified with dictionaries using the following keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">path</span></code>: The path to the page, relative to the <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code> attribute
+specified in <code class="docutils literal notranslate"><span class="pre">relative_to</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">relative_to</span></code>: A valid attribute declared in the project’s <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code>
+class to use as a base URL</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Internally, these URL dictionaries are parsed using
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">SiteConfig.parse_relative_url_dict()</span></code>. If the attribute that
+<code class="docutils literal notranslate"><span class="pre">relative_to</span></code> specifies does not have a trailing ‘/’, this method adds one
+before building the full URL</p>
+</div>
+</div>
 </div>
 <div class="section" id="formobjects">
-<span id="yaml-form-objects"></span><h2><a class="toc-backref" href="#id12">FormObjects</a><a class="headerlink" href="#formobjects" title="Permalink to this headline">¶</a></h2>
+<span id="yaml-form-objects"></span><h2><a class="toc-backref" href="#id15">FormObjects</a><a class="headerlink" href="#formobjects" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject" title="webdriver_test_tools.pageobject.form.FormObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">FormObjects</span></code></a> support
 YAML representations of the form element using the following syntax.</p>
 <div class="section" id="syntax">
-<h3><a class="toc-backref" href="#id13">Syntax</a><a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Syntax</a><a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="forms">
-<span id="yaml-forms"></span><h4><a class="toc-backref" href="#id14">Forms</a><a class="headerlink" href="#forms" title="Permalink to this headline">¶</a></h4>
+<span id="yaml-forms"></span><h4><a class="toc-backref" href="#id17">Forms</a><a class="headerlink" href="#forms" title="Permalink to this headline">¶</a></h4>
 <p>Form objects have 3 required keys:</p>
 <blockquote>
 <div><ul class="simple">
@@ -324,7 +364,7 @@ form’s submit button</li>
 </div></blockquote>
 </div>
 <div class="section" id="inputs">
-<span id="yaml-inputs"></span><h4><a class="toc-backref" href="#id15">Inputs</a><a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h4>
+<span id="yaml-inputs"></span><h4><a class="toc-backref" href="#id18">Inputs</a><a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h4>
 <p>The items in the form <code class="docutils literal notranslate"><span class="pre">inputs</span></code> list have the following keys:</p>
 <blockquote>
 <div><ul class="simple">
@@ -347,7 +387,7 @@ only the map keys will be used, so the labels can be set to anything)</li>
 </div>
 </div>
 <div class="section" id="example">
-<h3><a class="toc-backref" href="#id16">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="p">:</span>
   <span class="c1"># Locator for the form</span>
   <span class="n">form_locator</span><span class="p">:</span>
@@ -415,11 +455,11 @@ only the map keys will be used, so the labels can be set to anything)</li>
 </div>
 </div>
 <div class="section" id="modalobjects">
-<span id="yaml-modal-objects"></span><h2><a class="toc-backref" href="#id17">ModalObjects</a><a class="headerlink" href="#modalobjects" title="Permalink to this headline">¶</a></h2>
+<span id="yaml-modal-objects"></span><h2><a class="toc-backref" href="#id20">ModalObjects</a><a class="headerlink" href="#modalobjects" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject" title="webdriver_test_tools.pageobject.modal.ModalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalObjects</span></code></a>
 support YAML representations of the modal using the following syntax.</p>
 <div class="section" id="id1">
-<h3><a class="toc-backref" href="#id18">Syntax</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">Syntax</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Modal objects have 2 required keys:</p>
 <blockquote>
 <div><ul class="simple">
@@ -431,7 +471,7 @@ close button</li>
 </div></blockquote>
 </div>
 <div class="section" id="id2">
-<h3><a class="toc-backref" href="#id19">Example</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">Example</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modal</span><span class="p">:</span>
   <span class="c1"># Locator for the modal</span>
   <span class="n">modal_locator</span><span class="p">:</span>
@@ -445,23 +485,245 @@ close button</li>
 </div>
 </div>
 </div>
-<div class="section" id="webpageobjects">
-<span id="yaml-web-page-objects"></span><h2><a class="toc-backref" href="#id20">WebPageObjects</a><a class="headerlink" href="#webpageobjects" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject" title="webdriver_test_tools.pageobject.webpage.WebPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebPageObjects</span></code></a>
-support YAML representations of the modal using the following syntax.</p>
+<div class="section" id="navobjects">
+<span id="yaml-nav-objects"></span><h2><a class="toc-backref" href="#id23">NavObjects</a><a class="headerlink" href="#navobjects" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObjects</span></code></a> support YAML
+representations of the nav using the following syntax.</p>
 <div class="section" id="id3">
-<h3><a class="toc-backref" href="#id21">Syntax</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>Web page objects have one required key <code class="docutils literal notranslate"><span class="pre">url</span></code>, which can be set to either the
-full URL to the page, or a dictionary containing the following keys:</p>
+<h3><a class="toc-backref" href="#id24">Syntax</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="navbars">
+<span id="yaml-navs"></span><h4><a class="toc-backref" href="#id25">Navbars</a><a class="headerlink" href="#navbars" title="Permalink to this headline">¶</a></h4>
+<p>Navbar objects have the following keys:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">path</span></code>: The path to the page, relative to the <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code> attribute
-specified in <code class="docutils literal notranslate"><span class="pre">relative_to</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">relative_to</span></code>: A valid attribute declared in the project’s <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code>
-class to use as a base URL. It is assumed that the value of this attribute
-has a trailing ‘/’</li>
+<li><code class="docutils literal notranslate"><span class="pre">links</span></code>: <strong>(Required)</strong> List of <a class="reference internal" href="#yaml-links"><span class="std std-ref">links</span></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">fixed</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">true</span></code> <em>)</em> Whether or not the navbar is fixed to
+the screen</li>
+<li><code class="docutils literal notranslate"><span class="pre">collapsible</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">false</span></code> <em>)</em> Whether or not the navbar is
+collapsible (e.g. for hamburger menus)</li>
+<li><code class="docutils literal notranslate"><span class="pre">menu_locator</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">collapsible</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code> <strong>)</strong>
+<a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the collapsible menu element</li>
+<li><code class="docutils literal notranslate"><span class="pre">expand_button_locator</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">collapsible</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code> <strong>)</strong>
+<a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the button that expands the
+menu</li>
+<li><code class="docutils literal notranslate"><span class="pre">collapse_button_locator</span></code> <em>(Optional)</em> Locator for the button that
+collapses the menu. Only needed if <code class="docutils literal notranslate"><span class="pre">collapsible</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> and the
+collapse button isn’t the same as the expand button</li>
 </ul>
 </div></blockquote>
+</div>
+<div class="section" id="links">
+<span id="yaml-links"></span><h4><a class="toc-backref" href="#id26">Links</a><a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h4>
+<p>The items in the nav <code class="docutils literal notranslate"><span class="pre">links</span></code> list have the following keys:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">name</span></code>: <strong>(Required)</strong> Name used to refer to this link. Must be unique
+from other links in the same list</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">link_locator</span></code>: <strong>(Required)</strong> <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a>
+for the link element</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">click</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">page</span></code> <em>)</em> One of the following values describing
+the expected action on click:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">page</span></code>: <em>(Default)</em> Go to another page</li>
+<li><code class="docutils literal notranslate"><span class="pre">section</span></code>: Jump to a section in the current page</li>
+<li><code class="docutils literal notranslate"><span class="pre">menu</span></code>: Toggle a dropdown menu</li>
+<li><code class="docutils literal notranslate"><span class="pre">none</span></code>: No expected action</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">hover</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">none</span></code> <em>)</em> One of the following values describing
+the expected action on hover:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">none</span></code>: <em>(Default)</em> No expected action</li>
+<li><code class="docutils literal notranslate"><span class="pre">menu</span></code>: Show dropdown menu</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">target</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">click</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">page</span></code> <strong>or</strong> <code class="docutils literal notranslate"><span class="pre">section</span></code>
+<strong>)</strong> The link target, formatted in one of the following ways (depending on
+<code class="docutils literal notranslate"><span class="pre">click</span></code> type):</p>
+<blockquote>
+<div><ul class="simple">
+<li>(<code class="docutils literal notranslate"><span class="pre">click:</span> <span class="pre">page</span></code>) The full URL to the target page</li>
+<li>(<code class="docutils literal notranslate"><span class="pre">click:</span> <span class="pre">page</span></code>) <a class="reference internal" href="#yaml-relative-urls"><span class="std std-ref">Relative URL dictionary</span></a>
+with the path to the target page</li>
+<li>(<code class="docutils literal notranslate"><span class="pre">click:</span> <span class="pre">section</span></code>) The <code class="docutils literal notranslate"><span class="pre">id</span></code> attribute of the section element (i.e.
+the link’s <code class="docutils literal notranslate"><span class="pre">href</span></code> attribute)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul id="yaml-nav-menus">
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">menu</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">click</span></code> <strong>or</strong> <code class="docutils literal notranslate"><span class="pre">hover</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">menu</span></code> <strong>)</strong>
+A dictionary representing the menu that appears on click or hover. Contains
+the following <strong>required</strong> keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">menu_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the menu
+element</li>
+<li><code class="docutils literal notranslate"><span class="pre">links</span></code>: List of <a class="reference internal" href="#yaml-links"><span class="std std-ref">links</span></a>. Same syntax as the nav
+object links list</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id27">Example</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example 1: Standard navbar</span>
+<span class="n">nav</span><span class="p">:</span>
+  <span class="c1"># (Default: true) Whether the navbar is fixed to the window.</span>
+  <span class="n">fixed</span><span class="p">:</span> <span class="n">false</span>
+  <span class="n">links</span><span class="p">:</span>
+    <span class="c1"># Page link</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">home</span>
+      <span class="n">link_locator</span><span class="p">:</span>
+        <span class="n">by</span><span class="p">:</span> <span class="n">CLASS_NAME</span>
+        <span class="n">locator</span><span class="p">:</span> <span class="n">navbar</span><span class="o">-</span><span class="n">brand</span>
+      <span class="n">target</span><span class="p">:</span>
+        <span class="n">path</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">html</span>
+        <span class="n">relative_to</span><span class="p">:</span> <span class="n">BASE_URL</span>
+    <span class="c1"># Section link</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">section1</span>
+      <span class="n">link_locator</span><span class="p">:</span>
+        <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+        <span class="n">locator</span><span class="p">:</span> <span class="s1">&#39;a[href=&quot;#section1&quot;]&#39;</span>
+      <span class="n">click</span><span class="p">:</span> <span class="n">section</span>
+      <span class="n">target</span><span class="p">:</span> <span class="s1">&#39;#section1&#39;</span>
+    <span class="c1"># Dropdown menu (hover)</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">hover</span><span class="o">-</span><span class="n">menu</span>
+      <span class="n">link_locator</span><span class="p">:</span>
+        <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+        <span class="n">locator</span><span class="p">:</span> <span class="n">hover</span><span class="o">-</span><span class="n">menu</span><span class="o">-</span><span class="n">link</span>
+      <span class="c1"># Set click action to &#39;none&#39;, hover to &#39;menu&#39;</span>
+      <span class="n">click</span><span class="p">:</span> <span class="n">none</span>
+      <span class="n">hover</span><span class="p">:</span> <span class="n">menu</span>
+      <span class="n">menu</span><span class="p">:</span>
+        <span class="n">menu_locator</span><span class="p">:</span>
+          <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+          <span class="n">locator</span><span class="p">:</span> <span class="n">hover</span><span class="o">-</span><span class="n">menu</span>
+        <span class="c1"># Dropdown menu links (same syntax as nav links)</span>
+        <span class="n">links</span><span class="p">:</span>
+          <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">page1</span>
+            <span class="n">link_locator</span><span class="p">:</span>
+              <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+              <span class="n">locator</span><span class="p">:</span> <span class="s1">&#39;#hover-menu a[href=&quot;page1.html&quot;]&#39;</span>
+            <span class="n">target</span><span class="p">:</span>
+              <span class="n">path</span><span class="p">:</span> <span class="n">page1</span><span class="o">.</span><span class="n">html</span>
+              <span class="n">relative_to</span><span class="p">:</span> <span class="n">BASE_URL</span>
+          <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">page2</span>
+            <span class="n">link_locator</span><span class="p">:</span>
+              <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+              <span class="n">locator</span><span class="p">:</span> <span class="s1">&#39;#hover-menu a[href=&quot;page2.html&quot;]&#39;</span>
+            <span class="n">target</span><span class="p">:</span>
+              <span class="n">path</span><span class="p">:</span> <span class="n">page2</span><span class="o">.</span><span class="n">html</span>
+              <span class="n">relative_to</span><span class="p">:</span> <span class="n">BASE_URL</span>
+    <span class="c1"># Dropdown menu (click)</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">click</span><span class="o">-</span><span class="n">menu</span>
+      <span class="n">link_locator</span><span class="p">:</span>
+        <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+        <span class="n">locator</span><span class="p">:</span> <span class="n">click</span><span class="o">-</span><span class="n">menu</span><span class="o">-</span><span class="n">link</span>
+      <span class="c1"># Set click action to &#39;menu&#39;</span>
+      <span class="n">click</span><span class="p">:</span> <span class="n">menu</span>
+      <span class="n">menu</span><span class="p">:</span>
+        <span class="n">menu_locator</span><span class="p">:</span>
+          <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+          <span class="n">locator</span><span class="p">:</span> <span class="n">click</span><span class="o">-</span><span class="n">menu</span>
+        <span class="c1"># Dropdown menu links</span>
+        <span class="n">links</span><span class="p">:</span>
+          <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">page1</span>
+            <span class="n">link_locator</span><span class="p">:</span>
+              <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+              <span class="n">locator</span><span class="p">:</span> <span class="s1">&#39;#click-menu a[href=&quot;page1.html&quot;]&#39;</span>
+            <span class="n">target</span><span class="p">:</span>
+              <span class="n">path</span><span class="p">:</span> <span class="n">page1</span><span class="o">.</span><span class="n">html</span>
+              <span class="n">relative_to</span><span class="p">:</span> <span class="n">BASE_URL</span>
+          <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">page2</span>
+            <span class="n">link_locator</span><span class="p">:</span>
+              <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+              <span class="n">locator</span><span class="p">:</span> <span class="s1">&#39;#click-menu a[href=&quot;page2.html&quot;]&#39;</span>
+            <span class="n">target</span><span class="p">:</span>
+              <span class="n">path</span><span class="p">:</span> <span class="n">page2</span><span class="o">.</span><span class="n">html</span>
+              <span class="n">relative_to</span><span class="p">:</span> <span class="n">BASE_URL</span>
+
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example 2: Collapsible navbar</span>
+<span class="n">nav</span><span class="p">:</span>
+  <span class="n">collapsible</span><span class="p">:</span> <span class="n">true</span>
+  <span class="c1"># REQUIRED: Locator for the collapsible menu element</span>
+  <span class="n">menu_locator</span><span class="p">:</span>
+    <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+    <span class="n">locator</span><span class="p">:</span> <span class="n">nav</span><span class="o">-</span><span class="n">menu</span>
+  <span class="c1"># REQUIRED: Locator for the button that collapses the nav menu</span>
+  <span class="n">expand_button_locator</span><span class="p">:</span>
+    <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+    <span class="n">locator</span><span class="p">:</span> <span class="n">navbar</span><span class="o">-</span><span class="n">toggle</span>
+  <span class="c1"># Expand and collapse button are the same in this example</span>
+  <span class="c1"># collapse_button_locator:</span>
+  <span class="c1">#   by: &lt;BY&gt;</span>
+  <span class="c1">#   locator: &lt;LOCATOR&gt;</span>
+  <span class="n">links</span><span class="p">:</span>
+    <span class="c1"># Page link</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">home</span>
+      <span class="n">link_locator</span><span class="p">:</span>
+        <span class="n">by</span><span class="p">:</span> <span class="n">CLASS_NAME</span>
+        <span class="n">locator</span><span class="p">:</span> <span class="n">navbar</span><span class="o">-</span><span class="n">brand</span>
+      <span class="n">target</span><span class="p">:</span>
+        <span class="n">path</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">html</span>
+        <span class="n">relative_to</span><span class="p">:</span> <span class="n">BASE_URL</span>
+    <span class="c1"># Section link</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">section1</span>
+      <span class="n">link_locator</span><span class="p">:</span>
+        <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+        <span class="n">locator</span><span class="p">:</span> <span class="s1">&#39;a[href=&quot;#section1&quot;]&#39;</span>
+      <span class="n">click</span><span class="p">:</span> <span class="n">section</span>
+      <span class="n">target</span><span class="p">:</span> <span class="s1">&#39;#section1&#39;</span>
+    <span class="c1"># Dropdown menu</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">click</span><span class="o">-</span><span class="n">menu</span>
+      <span class="n">link_locator</span><span class="p">:</span>
+        <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+        <span class="n">locator</span><span class="p">:</span> <span class="n">click</span><span class="o">-</span><span class="n">menu</span><span class="o">-</span><span class="n">link</span>
+      <span class="n">click</span><span class="p">:</span> <span class="n">menu</span>
+      <span class="n">menu</span><span class="p">:</span>
+        <span class="n">menu_locator</span><span class="p">:</span>
+          <span class="n">by</span><span class="p">:</span> <span class="n">ID</span>
+          <span class="n">locator</span><span class="p">:</span> <span class="n">click</span><span class="o">-</span><span class="n">menu</span>
+        <span class="c1"># Dropdown menu links</span>
+        <span class="n">links</span><span class="p">:</span>
+          <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">page1</span>
+            <span class="n">link_locator</span><span class="p">:</span>
+              <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+              <span class="n">locator</span><span class="p">:</span> <span class="s1">&#39;#click-menu a[href=&quot;page1.html&quot;]&#39;</span>
+            <span class="n">target</span><span class="p">:</span>
+              <span class="n">path</span><span class="p">:</span> <span class="n">page1</span><span class="o">.</span><span class="n">html</span>
+              <span class="n">relative_to</span><span class="p">:</span> <span class="n">BASE_URL</span>
+          <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">page2</span>
+            <span class="n">link_locator</span><span class="p">:</span>
+              <span class="n">by</span><span class="p">:</span> <span class="n">CSS_SELECTOR</span>
+              <span class="n">locator</span><span class="p">:</span> <span class="s1">&#39;#click-menu a[href=&quot;page2.html&quot;]&#39;</span>
+            <span class="n">target</span><span class="p">:</span>
+              <span class="n">path</span><span class="p">:</span> <span class="n">page2</span><span class="o">.</span><span class="n">html</span>
+              <span class="n">relative_to</span><span class="p">:</span> <span class="n">BASE_URL</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="webpageobjects">
+<span id="yaml-web-page-objects"></span><h2><a class="toc-backref" href="#id28">WebPageObjects</a><a class="headerlink" href="#webpageobjects" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject" title="webdriver_test_tools.pageobject.webpage.WebPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebPageObjects</span></code></a>
+support YAML representations of the modal using the following syntax.</p>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id29">Syntax</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Web page objects have one required key <code class="docutils literal notranslate"><span class="pre">url</span></code>, which can be set to either the
+full URL to the page or a <a class="reference internal" href="#yaml-relative-urls"><span class="std std-ref">relative URL dictionary</span></a></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If ‘url’ is set to just the full URL to the page, the attribute
@@ -469,8 +731,8 @@ has a trailing ‘/’</li>
 dictionary, <code class="docutils literal notranslate"><span class="pre">PAGE_FILENAME</span></code> will be set to the value of ‘path’</p>
 </div>
 </div>
-<div class="section" id="id4">
-<h3><a class="toc-backref" href="#id22">Example</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id30">Example</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 <span class="c1"># Example 1: Full URL to page</span>
 <span class="n">web_page</span><span class="p">:</span>
@@ -532,7 +794,7 @@ dictionary, <code class="docutils literal notranslate"><span class="pre">PAGE_FI
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.8.1-alpha',
+            VERSION:'2.9.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

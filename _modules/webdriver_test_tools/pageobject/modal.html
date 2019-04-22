@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.modal &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.modal &mdash; WebDriver Test Tools 2.9.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.8
+                2.9
               </div>
             
           
@@ -158,7 +158,6 @@
             
   <h1>Source code for webdriver_test_tools.pageobject.modal</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="k">import</span> <span class="n">NoSuchElementException</span>
 
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">,</span> <span class="n">YAMLParsingPageObject</span>
@@ -208,8 +207,8 @@
         <span class="n">parsed_yaml</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_yaml</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
         <span class="c1"># Initialize locators</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">MODAL_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">to_locator</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;modal_locator&#39;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">CLOSE_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">to_locator</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;close_locator&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">MODAL_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_locator_dict</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;modal_locator&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CLOSE_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_locator_dict</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;close_locator&#39;</span><span class="p">])</span>
         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span>
                 <span class="s1">&#39;Missing required </span><span class="si">{}</span><span class="s1"> key in modal YAML&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -277,7 +276,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.8.1-alpha',
+            VERSION:'2.9.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

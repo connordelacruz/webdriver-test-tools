@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.site module &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
+  <title>webdriver_test_tools.config.site module &mdash; WebDriver Test Tools 2.9.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.8
+                2.9
               </div>
             
           
@@ -208,6 +208,42 @@ the 2 variables that need to be declared in SiteConfig.</p>
 <code class="descname">BASE_URL</code><em class="property"> = ''</em><a class="headerlink" href="#webdriver_test_tools.config.site.SiteConfig.BASE_URL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="classmethod">
+<dt id="webdriver_test_tools.config.site.SiteConfig.parse_relative_url_dict">
+<em class="property">classmethod </em><code class="descname">parse_relative_url_dict</code><span class="sig-paren">(</span><em>url_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/site.html#SiteConfig.parse_relative_url_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.site.SiteConfig.parse_relative_url_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a URL dictionary and returns a full URL based on the values.
+Used to parse <a class="reference internal" href="yaml.html#yaml-relative-urls"><span class="std std-ref">YAML URL dictionaries</span></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>url_dict</strong> – <p>A dictionary with the following keys:</p>
+<ul class="simple">
+<li>’path’: The path to a page, relative ot the <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code>
+attribute specified in ‘relative_to’</li>
+<li>’relative_to’: A valid attribute in the <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code> class to
+use as a base URL. If the value of that attribute does not have a
+trailing ‘/’, one will be added before appending the value of
+‘path’</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A full URL based on the values of the URL dictionary</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">url_dict['relative_to']</span></code> is not a valid
+attribute name in this class</li>
+<li><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><strong>KeyError</strong></a> – if ‘path’ or ‘relative_to’ are not keys in
+<code class="docutils literal notranslate"><span class="pre">url_dict</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -254,7 +290,7 @@ the 2 variables that need to be declared in SiteConfig.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.8.1-alpha',
+            VERSION:'2.9.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

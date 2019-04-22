@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.site &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
+  <title>webdriver_test_tools.config.site &mdash; WebDriver Test Tools 2.9.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.8
+                2.9
               </div>
             
           
@@ -167,7 +167,41 @@
 <span class="sd">    :var SiteConfig.BASE_URL: Base URL for site pages (followed by a &#39;/&#39;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">SITE_URL</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></div>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<div class="viewcode-block" id="SiteConfig.parse_relative_url_dict"><a class="viewcode-back" href="../../../webdriver_test_tools.config.site.html#webdriver_test_tools.config.site.SiteConfig.parse_relative_url_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse_relative_url_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">url_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Takes a URL dictionary and returns a full URL based on the values.</span>
+<span class="sd">        Used to parse :ref:`YAML URL dictionaries &lt;yaml-relative-urls&gt;`</span>
+
+<span class="sd">        :param url_dict: A dictionary with the following keys:</span>
+
+<span class="sd">            * &#39;path&#39;: The path to a page, relative ot the ``SiteConfig``</span>
+<span class="sd">              attribute specified in &#39;relative_to&#39;</span>
+<span class="sd">            * &#39;relative_to&#39;: A valid attribute in the ``SiteConfig`` class to</span>
+<span class="sd">              use as a base URL. If the value of that attribute does not have a</span>
+<span class="sd">              trailing &#39;/&#39;, one will be added before appending the value of</span>
+<span class="sd">              &#39;path&#39;</span>
+
+<span class="sd">        :return: A full URL based on the values of the URL dictionary</span>
+
+<span class="sd">        :raises ValueError: if ``url_dict[&#39;relative_to&#39;]`` is not a valid</span>
+<span class="sd">            attribute name in this class</span>
+<span class="sd">        :raises KeyError: if &#39;path&#39; or &#39;relative_to&#39; are not keys in</span>
+<span class="sd">            ``url_dict``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">relative_to</span> <span class="o">=</span> <span class="n">url_dict</span><span class="p">[</span><span class="s1">&#39;relative_to&#39;</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">base_url</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">relative_to</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;Invalid URL &#39;relative_to&#39; value (relative_to: </span><span class="si">{}</span><span class="s2">). &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">relative_to</span><span class="p">)</span>
+            <span class="n">error_msg</span> <span class="o">+=</span> <span class="s1">&#39;Must be a valid attribute declared in SiteConfig class&#39;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+        <span class="c1"># Append a &#39;/&#39; if not present</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">base_url</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+            <span class="n">base_url</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span>
+        <span class="k">return</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">url_dict</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span></div></div>
+
 
 </pre></div>
 
@@ -203,7 +237,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.8.1-alpha',
+            VERSION:'2.9.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
