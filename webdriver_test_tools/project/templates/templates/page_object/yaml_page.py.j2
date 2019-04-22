@@ -1,0 +1,12 @@
+{% extends "base_page.py.j2" %}
+
+{% block standard_library_imports %}
+import os
+
+{% endblock %}
+
+{% block additional_attributes %}
+    # Path to YAML file representing the object
+    YAML_FILE = os.path.join(os.path.dirname(__file__), '{{module_name}}.yml')
+{% endblock %}
+

@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
@@ -223,7 +223,7 @@
     <span class="p">)</span>
     <span class="n">run_parser</span> <span class="o">=</span> <span class="n">add_run_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">test_parent_parser</span><span class="p">])</span>
     <span class="n">list_parser</span> <span class="o">=</span> <span class="n">add_list_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">test_parent_parser</span><span class="p">])</span>
-    <span class="n">new_parser</span> <span class="o">=</span> <span class="n">add_new_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">)</span>
+    <span class="n">new_parser</span> <span class="o">=</span> <span class="n">add_new_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">config_module</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">parser</span></div>
 </pre></div>
 

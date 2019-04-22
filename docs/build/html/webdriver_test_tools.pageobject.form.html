@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
@@ -357,7 +357,8 @@ subclass set to a subclass of <a class="reference internal" href="webdriver_test
 </tbody>
 </table>
 <p>The following attributes are determined based on the contents of
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code>:</p>
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> (or should be set in subclasses if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is
+<code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -365,11 +366,33 @@ subclass set to a subclass of <a class="reference internal" href="webdriver_test
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><strong>FormObject.FORM_LOCATOR</strong></a> – Locator for the form element</li>
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><strong>FormObject.SUBMIT_LOCATOR</strong></a> – Locator for the submit button</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><strong>FormObject.inputs</strong></a> – A dictionary mapping input names to the
-corresponding <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances. The keys correspond with
-the <code class="docutils literal notranslate"><span class="pre">name</span></code> keys in the YAML representation of the form</li>
 </ul>
 </td>
+</tr>
+</tbody>
+</table>
+<p>The following attribute is set based on the ‘inputs’ key parsed from
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> (or parsed from <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">INPUT_DICTS</span></code></a>, which should be set
+in subclasses if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><strong>FormObject.inputs</strong></a> – A dictionary mapping input names to the
+corresponding <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances. The keys correspond with
+the <code class="docutils literal notranslate"><span class="pre">name</span></code> keys in the YAML representation of the form</td>
+</tr>
+</tbody>
+</table>
+<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, subclasses must set the following
+attribute:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><strong>FormObject.INPUT_DICTS</strong></a> – List of input dictionaries. These are used to
+initialize the <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inputs</span></code></a> at
+runtime. These dictionaries use the same syntax as <a class="reference internal" href="yaml.html#yaml-inputs"><span class="std std-ref">YAML inputs</span></a>.</td>
 </tr>
 </tbody>
 </table>
@@ -386,6 +409,11 @@ the <code class="docutils literal notranslate"><span class="pre">name</span></co
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR">
 <code class="descname">SUBMIT_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS">
+<code class="descname">INPUT_DICTS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -436,6 +464,12 @@ syntax.</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webdriver_test_tools.pageobject.form.FormObject.no_yaml_init">
+<code class="descname">no_yaml_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.no_yaml_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.no_yaml_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize <code class="docutils literal notranslate"><span class="pre">self.inputs</span></code> using values in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">INPUT_DICTS</span></code></a></p>
 </dd></dl>
 
 <dl class="method">

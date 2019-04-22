@@ -1,4 +1,4 @@
-{% extends "base_page.py.j2" %}
+{% if use_yaml %}{% extends "yaml_page.py.j2" %}{% else %}{% extends "base_page.py.j2" %}{% endif %}
 
 {% block additional_imports %}
 
@@ -8,10 +8,16 @@ from {{test_package}}.config import SiteConfig
 {% block parent_class %}prototypes.WebPageObject{% endblock %}
 
 {% block additional_attributes %}
+{% if use_yaml %}
+{{super()}}
+    # Used for internal methods (do not modify)
+    SITE_CONFIG = SiteConfig
+{% else %}
     # File name of the page relative to a base URL declared in SiteConfig
     PAGE_FILENAME = ''
     # Full URL of the page. E.g.:
     # PAGE_URL = SiteConfig.BASE_URL + PAGE_FILENAME
     PAGE_URL = SiteConfig.BASE_URL + PAGE_FILENAME
+{% endif %}
 {% endblock %}
 

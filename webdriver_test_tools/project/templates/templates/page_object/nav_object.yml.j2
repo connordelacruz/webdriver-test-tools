@@ -1,0 +1,37 @@
+# NavObject YAML Documentation: 
+# https://connordelacruz.com/webdriver-test-tools/yaml.html#navobjects
+
+# REPLACE <PLACEHOLDER VALUES> BELOW AND ADD ITEMS TO THE links LIST:
+
+nav:
+  # NAV ATTRIBUTES -------------------------------------------------------------
+  # (Default: true) Whether the navbar is fixed to the window. Uncomment to
+  # override
+  # fixed: false
+  {% block nav_additional_attributes %}
+  {% endblock %}
+  # NAV LINKS ------------------------------------------------------------------
+  # REQUIRED: List of links in the navbar
+  links:
+    # Example syntax:
+    #
+    # # REQUIRED
+    # - name: <UNIQUE NAME>
+    #   # REQUIRED
+    #   link_locator:
+    #     by: <BY>
+    #     locator: <LOCATOR>
+    #   # (Default: page)
+    #   click: <page, section, menu, none>
+    #   # (Default: none)
+    #   hover: <none, menu>
+    #   # REQUIRED IF 'click' is 'page' or 'section'
+    #   target: <URL, SECTION ID, or RELATIVE URL DICT>
+    #   # REQUIRED IF 'click' or 'hover' is 'menu'
+    #   menu:
+    #     menu_locator:
+    #       by: <BY>
+    #       locator: <LOCATOR>
+    #     links:
+    #       - <SAME SYNTAX AS NAV LINKS>
+

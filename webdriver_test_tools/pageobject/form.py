@@ -1,5 +1,4 @@
 import inspect
-import os
 import warnings
 
 from selenium.common.exceptions import NoSuchElementException
@@ -58,13 +57,15 @@ class InputObject(BasePage):
 
 
     def __init__(self, driver, input_dict):
-        """Initialize ``InputObject`` using parsed YAML
+        """Initialize ``InputObject`` using parsed YAML or input dictionary
 
-        See :ref:`YAML inputs doc <yaml-inputs>` for details on syntax.
+        See :ref:`YAML inputs documentation <yaml-inputs>` for details on
+        ``input_dict`` syntax.
 
         :param driver: Selenium WebDriver object
-        :param input_dict: Parsed dictionary from YAML file inputs list. Must
-            have 'name' key set
+        :param input_dict: Input dictionary using syntax specified in
+            :ref:`YAML inputs documentation <yaml-inputs>`. Must have 'name'
+            key set
         """
         super().__init__(driver)
         # 'name' is required, so assume that it's a valid key and raise errors
@@ -73,7 +74,7 @@ class InputObject(BasePage):
         # If 'input_locator' is specified, use that as the locator, otherwise
         # find using self.name
         if 'input_locator' in input_dict:
-            self.locator = utils.yaml.to_locator(input_dict['input_locator'])
+            self.locator = utils.yaml.parse_locator_dict(input_dict['input_locator'])
         else:
             self.locator = (By.NAME, self.name)
         # Get input type, default to 'text' if unspecified
@@ -348,14 +349,28 @@ class FormObject(YAMLParsingPageObject):
         :meth:`click_submit()` will return an instance of this object.
 
     The following attributes are determined based on the contents of
-    :attr:`YAML_FILE`:
+    :attr:`YAML_FILE` (or should be set in subclasses if :attr:`YAML_FILE` is
+    ``None``):
 
     :var FormObject.FORM_LOCATOR: Locator for the form element
     :var FormObject.SUBMIT_LOCATOR: Locator for the submit button
 
+    The following attribute is set based on the 'inputs' key parsed from
+    :attr:`YAML_FILE` (or parsed from :attr:`INPUT_DICTS`, which should be set
+    in subclasses if :attr:`YAML_FILE` is ``None``):
+
     :var FormObject.inputs: A dictionary mapping input names to the
         corresponding :class:`InputObject` instances. The keys correspond with
-        the ``name`` keys in the YAML representation of the form
+        the ``name`` keys in the YAML representation of the form (or the 'name'
+        keys in :attr:`INPUT_DICTS` if :attr:`YAML_FILE` is ``None``)
+
+    If :attr:`YAML_FILE` is ``None``, subclasses must set the following
+    attribute:
+
+    :var FormObject.INPUT_DICTS: List of input dictionaries. These are used to
+        initialize the :class:`InputObject` instances in :attr:`inputs` at
+        runtime. These dictionaries use the same syntax as :ref:`YAML inputs
+        <yaml-inputs>`
     """
 
     _YAML_ROOT_KEY = 'form'
@@ -365,6 +380,7 @@ class FormObject(YAMLParsingPageObject):
     FORM_LOCATOR = None
     SUBMIT_LOCATOR = None
     # Input objects
+    INPUT_DICTS = []
     inputs = {}
 
     class Input:
@@ -402,15 +418,28 @@ class FormObject(YAMLParsingPageObject):
         parsed_yaml = super().parse_yaml(file_path)
         # Initialize locators
         try:
-            self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
-            self.SUBMIT_LOCATOR = utils.yaml.to_locator(parsed_yaml['submit_locator'])
+            self.FORM_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['form_locator'])
+            self.SUBMIT_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['submit_locator'])
         except KeyError as e:
             raise utils.yaml.YAMLKeyError(
                 'Missing required {} key in form YAML'.format(e)
             )
         # Initialize inputs
+        self._initialize_inputs(parsed_yaml['inputs'])
+
+    def no_yaml_init(self):
+        """Initialize ``self.inputs`` using values in :attr:`INPUT_DICTS`"""
+        self._initialize_inputs(self.INPUT_DICTS, from_yaml=False)
+
+    def _initialize_inputs(self, input_dicts, from_yaml=True):
+        """Initialize :class:`InputObject` instances in ``self.inputs``
+
+        :param input_dicts: List of input dictionaries
+        :param from_yaml: (Default: True) Whether or not this was parsed from
+            YAML. Exceptions raised will be different based on this
+        """
         self.inputs = {}
-        for input_dict in parsed_yaml['inputs']:
+        for input_dict in input_dicts:
             try:
                 # TODO: Use different attribute as key so name can change without affecting code?
                 input_name = input_dict['name']
@@ -418,12 +447,17 @@ class FormObject(YAMLParsingPageObject):
                 if input_name in self.inputs:
                     error_msg = "Multiple inputs with the same 'name' value (name: {}). ".format(input_name)
                     error_msg += 'Input names must be unique'
-                    raise utils.yaml.YAMLValueError(error_msg)
+                    raise utils.yaml.YAMLValueError(error_msg) if from_yaml else ValueError(error_msg)
                 # Initialize InputObject
                 self.inputs[input_name] = InputObject(self.driver, input_dict)
             except KeyError as e:
-                error_msg = "Missing required 'name' key in input YAML (input: {})".format(str(input_dict))
-                raise utils.yaml.YAMLKeyError(error_msg)
+                if from_yaml:
+                    error_msg = "Missing required 'name' key in input YAML (input: {})".format(str(input_dict))
+                    raise utils.yaml.YAMLKeyError(error_msg)
+                # Preserve stack trace for key error if not parsing YAML
+                else:
+                    raise
+
 
     # TODO: deprecate old fill_form workflow
     def fill_form(self, input_map):
@@ -465,7 +499,6 @@ class FormObject(YAMLParsingPageObject):
                 else:
                     warnings.warn('Invalid input name {}, skipping'.format(e))
 
-    # TODO: test
     def get_input_values(self, name_list=None):
         """Get the current values of form inputs
 

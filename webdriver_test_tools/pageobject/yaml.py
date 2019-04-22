@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-import os
 from webdriver_test_tools.pageobject import utils, BasePage
 
 
@@ -46,6 +45,8 @@ class YAMLParsingPageObject(BasePage, ABC):
         super().__init__(driver)
         if self.YAML_FILE:
             self.parse_yaml(self.YAML_FILE)
+        elif hasattr(self, 'no_yaml_init') and callable(self.no_yaml_init):
+            self.no_yaml_init()
 
     @abstractmethod
     def parse_yaml(self, file_path):
@@ -65,4 +66,14 @@ class YAMLParsingPageObject(BasePage, ABC):
                 "Missing top level '{}' key in YAML".format(self._YAML_ROOT_KEY)
             )
         return parsed_yaml
+
+    def no_yaml_init(self):
+        """Fallback method to call during ``__init__()`` if :attr:`YAML_FILE`
+        is not set.
+
+        Subclasses should implement this method if any part of the
+        initialization process needs to be handled differently when
+        :attr:`YAML_FILE` is not set.
+        """
+        pass
 

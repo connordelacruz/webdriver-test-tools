@@ -1,5 +1,4 @@
 import inspect
-import os
 from selenium.common.exceptions import NoSuchElementException
 
 from webdriver_test_tools.pageobject import utils, BasePage, YAMLParsingPageObject
@@ -21,7 +20,8 @@ class ModalObject(YAMLParsingPageObject):
         :meth:`get_modal_body()` will return an instance of this object.
 
     The following attributes are determined based on the contents of
-    :attr:`YAML_FILE`:
+    :attr:`YAML_FILE` (or should be set in subclasses if :attr:`YAML_FILE` is
+    ``None``):
 
     :var ModalObject.MODAL_LOCATOR: Locator for the modal element. Override in
         subclasses
@@ -48,8 +48,8 @@ class ModalObject(YAMLParsingPageObject):
         parsed_yaml = super().parse_yaml(file_path)
         # Initialize locators
         try:
-            self.MODAL_LOCATOR = utils.yaml.to_locator(parsed_yaml['modal_locator'])
-            self.CLOSE_LOCATOR = utils.yaml.to_locator(parsed_yaml['close_locator'])
+            self.MODAL_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['modal_locator'])
+            self.CLOSE_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['close_locator'])
         except KeyError as e:
             raise utils.yaml.YAMLKeyError(
                 'Missing required {} key in modal YAML'.format(e)

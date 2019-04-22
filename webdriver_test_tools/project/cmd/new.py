@@ -1,7 +1,8 @@
 import os
 import sys
-from argparse import RawTextHelpFormatter
+from argparse import RawTextHelpFormatter, SUPPRESS
 
+from webdriver_test_tools import config
 from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project import new_file
 
@@ -22,10 +23,15 @@ def main(test_package_path, test_package, args):
     will default to ``False`` unless the ``--force`` flag is used when calling
     this method.
 
-    The ``new page`` command has an additional optional argument
-    ``--prototype``. If ``type``, ``module_name``, and ``class_name`` are all
-    set to something other than ``None``, this method will use the standart
-    page object template unless one is specified with ``prototype``.
+    The ``new page`` command has additional optional arguments ``--prototype``
+    and ``--yaml``/``--no-yaml`` (depending on the configuration of
+    ``ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML``). Prompt for ``--prototype``
+    will not be shown if ``type``, ``module_name``, and ``class_name`` are all
+    set to something other than ``None``. Instead, this method will use the
+    standard page object template unless one is specified with ``prototype``.
+    Currently there is no prompt for the ``--yaml``/``--no-yaml`` arguments, so
+    the value of ``ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML`` will always be
+    used unless ``--yaml``/``--no-yaml`` is specified.
 
     :param test_package_path: The root directory of the test package
     :param test_package: The python package name of the test package
@@ -81,6 +87,7 @@ def main(test_package_path, test_package, args):
         kwargs = {}
         if validated_file_type == new_file.PAGE_TYPE:
             prototype = getattr(args, 'prototype', None)
+            use_yaml = getattr(args, 'use_yaml', config.ProjectFilesConfig.ENABLE_PAGE_OBJECT_YAML)
             if prototype is None and minimum_required_args:
                 prototype = ''
             _prototype_choices = [name for name in new_file.PROTOTYPE_NAMES]
@@ -101,6 +108,8 @@ def main(test_package_path, test_package, args):
                 default='',
                 parsed_input=prototype
             )
+            # TODO: Add prompt if class supports it (will need to change arg default to None and pass config_module as param)
+            kwargs['use_yaml'] = use_yaml
         # Start file creation
         new_file_start = True
         new_file_paths = new_file.new_file(
@@ -125,18 +134,23 @@ def main(test_package_path, test_package, args):
 
 # Subparser
 
-def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
+def add_new_subparser(subparsers, config_module, formatter_class=RawTextHelpFormatter):
     """Add subparser for the ``<test_package> new`` command
 
     :param subparsers: ``argparse._SubParsersAction`` object for the test
         package ArgumentParser (i.e. the object returned by the
         ``add_subparsers()`` method)
+    :param config_module: The module object for ``<test_project>.config``
     :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class
         to use for the ``formatter_class`` parameter
 
     :return: ``argparse.ArgumentParser`` object for the newly added ``new``
         subparser
     """
+    if config_module is None:
+        config_module = config
+    # Get ProjectFilesConfig
+    project_files_config = config_module.ProjectFilesConfig if 'ProjectFilesConfig' in dir(config_module) else config.ProjectFilesConfig
     # TODO: add info on no args to description or help
     # Adds custom --help argument
     generic_parent_parser = cmd.argparse.get_generic_parent_parser()
@@ -154,6 +168,21 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
         title='File Types', description=new_type_desc, dest='type', metavar='<type>'
     )
     # New test parser
+    _add_new_test_subparser(formatter_class, generic_parent_parser, new_subparsers, project_files_config)
+    # New page object parser
+    _add_new_page_subparser(formatter_class, generic_parent_parser, new_subparsers, project_files_config)
+    return new_parser
+
+
+def _add_new_test_subparser(formatter_class, generic_parent_parser, new_subparsers, project_files_config):
+    """Add subparser for ``new test`` command
+
+    :param formatter_class: Class to use for the ``formatter_class`` parameter
+    :param generic_parent_parser: Generic parent parser to use for the
+        ``parents`` parameter
+    :param new_subparsers: The subparser for the ``new`` command
+    :param project_files_config: The ``ProjectFilesConfig`` class
+    """
     new_test_parent_parser = get_new_parent_parser(
         parents=[generic_parent_parser], class_name_metavar='<TestCaseClass>',
         class_name_help='Name to use for the initial test case class'
@@ -166,7 +195,17 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
         formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
-    # New page object parser
+
+
+def _add_new_page_subparser(formatter_class, generic_parent_parser, new_subparsers, project_files_config):
+    """Add subparser for ``new page`` command
+
+    :param formatter_class: Class to use for the ``formatter_class`` parameter
+    :param generic_parent_parser: Generic parent parser to use for the
+        ``parents`` parameter
+    :param new_subparsers: The subparser for the ``new`` command
+    :param project_files_config: The ``ProjectFilesConfig`` class
+    """
     new_page_parent_parser = get_new_parent_parser(
         parents=[generic_parent_parser], class_name_metavar='<PageObjectClass>',
         class_name_help='Name to use for the initial page object class'
@@ -179,11 +218,24 @@ def add_new_subparser(subparsers, formatter_class=RawTextHelpFormatter):
         formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
+    prototype_group = new_page_parser.add_argument_group('Prototype Options')
     prototype_options_help = _format_prototype_choices()
     prototype_help = 'Page object prototype to subclass.' + prototype_options_help
-    new_page_parser.add_argument('-p', '--prototype', metavar='<prototype_choice>', default=None,
+    prototype_group.add_argument('-p', '--prototype', metavar='<prototype_choice>', default=None,
                                  choices=new_file.PROTOTYPE_NAMES, help=prototype_help)
-    return new_parser
+    yaml_default = project_files_config.ENABLE_PAGE_OBJECT_YAML
+    # Add options to negate YAML default config
+    if yaml_default:
+        no_yaml_help = 'Only generate .py files if using a --prototype that supports YAML parsing' + _format_yaml_prototype_choices()
+        yaml_help = SUPPRESS
+    else:
+        yaml_help = 'Generate .py and .yml files if using a --prototype that supports YAML parsing' + _format_yaml_prototype_choices()
+        no_yaml_help = SUPPRESS
+    yaml_group = prototype_group.add_mutually_exclusive_group()
+    yaml_group.add_argument('--yaml', '-y', action='store_true', default=yaml_default,
+                                 dest='use_yaml', help=yaml_help)
+    yaml_group.add_argument('--no-yaml', '-Y', action='store_false', default=yaml_default,
+                                 dest='use_yaml', help=no_yaml_help)
 
 
 def _format_prototype_choices():
@@ -205,6 +257,25 @@ def _format_prototype_choices():
     return '\nOptions: {{{}}}'.format(','.join(formatted_prototype_names))
 
 
+def _format_yaml_prototype_choices():
+    """Format the help string for prototype choices with YAML support
+
+    The returned string will have the following format:
+
+    .. code:: python
+
+        '\\nSupported Prototypes: {prototype,"prototype with spaces"}'
+
+    :return: Formatted help string for prototype options
+    """
+    # Add quotes around names with spaces
+    formatted_prototype_names = [
+        '"{}"'.format(name) if ' ' in name else name
+        for name in new_file.YAML_PROTOTYPE_NAMES
+    ]
+    return '\nSupported Prototypes: {{{}}}'.format(','.join(formatted_prototype_names))
+
+
 def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
                           class_name_help='Name to use for the initial class'):
     """Returns an :class:`ArgumentParser
@@ -223,18 +294,20 @@ def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
         ``<module_name>``, ``<class_name>``, and ``--description`` arguments
     """
     new_parent_parser = cmd.argparse.ArgumentParser(add_help=False, parents=parents)
+    positional_args_group = new_parent_parser.add_argument_group('Positional Arguments')
     # Positional arguments
     module_name_help = 'Filename to use for the new python module'
-    new_parent_parser.add_argument('module_name', metavar='<module_name>', nargs='?', default=None,
+    positional_args_group.add_argument('module_name', metavar='<module_name>', nargs='?', default=None,
                                    help=module_name_help)
-    new_parent_parser.add_argument('class_name', metavar=class_name_metavar, nargs='?', default=None,
+    positional_args_group.add_argument('class_name', metavar=class_name_metavar, nargs='?', default=None,
                                    help=class_name_help)
     # Optional arguments
+    optional_args_group = new_parent_parser.add_argument_group('Optional Arguments')
     description_help='Description for the initial class'
-    new_parent_parser.add_argument('-d', '--description', metavar='<description>', default=None,
+    optional_args_group.add_argument('-d', '--description', metavar='<description>', default=None,
                                    help=description_help)
     force_help='Force overwrite if a file with the same name already exists'
-    new_parent_parser.add_argument('-f', '--force', action='store_true', default=False,
+    optional_args_group.add_argument('-f', '--force', action='store_true', default=False,
                                    help=force_help)
 
     return new_parent_parser

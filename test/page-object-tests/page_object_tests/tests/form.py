@@ -3,7 +3,9 @@ import webdriver_test_tools
 from webdriver_test_tools.testcase import *
 
 from page_object_tests import config
+# TODO: rename to clarify it's using YAML
 from page_object_tests.pages.form import TestFormObject
+from page_object_tests.pages.no_yaml_form import NoYAMLFormObject
 
 
 class FormObjectTestCase(WebDriverTestCase):
@@ -16,9 +18,18 @@ class FormObjectTestCase(WebDriverTestCase):
 
     # TODO: test_input_get_methods with pre-filled form
 
-    def test_input_set_methods(self):
-        """Test set_value() and get_value() methods"""
+    def test_input_set_methods_yaml(self):
+        """Test set_value() and get_value() methods (YAML)"""
         form_object = TestFormObject(self.driver)
+        self._test_input_set_methods(form_object)
+
+    def test_input_set_methods_no_yaml(self):
+        """Test set_value() and get_value() methods (no YAML)"""
+        form_object = NoYAMLFormObject(self.driver)
+        self._test_input_set_methods(form_object)
+
+    def _test_input_set_methods(self, form_object):
+        # TODO: doc
         # Subtest message format string
         subtest_msg_fmt = 'Call get_value() and compare with values used in fill_form() [{val_type} value input types]'
         # Single value input types

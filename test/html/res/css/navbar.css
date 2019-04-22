@@ -1,0 +1,9 @@
+/* Custom navbar styles */
+
+.hover-dropdown:hover .dropdown-menu {
+    display: block;
+}
+.collapsing {
+    /* Fix false positives caused by animations */
+    transition: height .05s ease;
+}
