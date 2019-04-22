@@ -1,5 +1,4 @@
 import inspect
-import os
 from selenium.common.exceptions import NoSuchElementException
 
 from webdriver_test_tools.pageobject import utils, BasePage, YAMLParsingPageObject

@@ -1,5 +1,4 @@
 import inspect
-import os
 import warnings
 
 from selenium.common.exceptions import NoSuchElementException

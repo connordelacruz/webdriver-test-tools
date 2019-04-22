@@ -1,4 +1,4 @@
-from webdriver_test_tools.pageobject import utils, BasePage, YAMLParsingPageObject
+from webdriver_test_tools.pageobject import utils, YAMLParsingPageObject
 
 
 class WebPageObject(YAMLParsingPageObject):

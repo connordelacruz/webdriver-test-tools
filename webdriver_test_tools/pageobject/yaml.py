@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-import os
 from webdriver_test_tools.pageobject import utils, BasePage
 
 
