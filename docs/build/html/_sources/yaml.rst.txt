@@ -24,13 +24,14 @@ see `Ansible's YAML documentation`_.
 Supported Prototype Classes
 ---------------------------
 
-Currently, the following prototype classes support YAML parsing:  
+.. todo Is this section necessary now that all prototypes are supported?
+
+The following prototype classes support YAML parsing:  
 
    * :class:`FormObject <webdriver_test_tools.pageobject.form.FormObject>`
    * :class:`ModalObject <webdriver_test_tools.pageobject.modal.ModalObject>`
+   * :class:`NavObject <webdriver_test_tools.pageobject.nav.NavObject>`
    * :class:`WebPageObject <webdriver_test_tools.pageobject.webpage.WebPageObject>`
-
-YAML support will be added to more in future releases.
 
 
 Configure Defaults
@@ -91,6 +92,29 @@ required keys:
    * ``locator``: Value used to locate element with the specified locator
      strategy
 
+
+.. _yaml-relative-urls:
+
+Relative URL Dictionaries
+-------------------------
+
+URLs that are relative to attributes specified in a project's ``SiteConfig`` are
+specified with dictionaries using the following keys:
+
+   * ``path``: The path to the page, relative to the ``SiteConfig`` attribute
+     specified in ``relative_to``
+   * ``relative_to``: A valid attribute declared in the project's ``SiteConfig``
+     class to use as a base URL
+
+.. note::
+
+   Internally, these URL dictionaries are parsed using
+   :meth:`SiteConfig.parse_relative_url_dict`. If the attribute that
+   ``relative_to`` specifies does not have a trailing '/', this method adds one
+   before building the full URL
+
+
+.. todo document root keys for each
 
 .. _yaml-form-objects:
 
@@ -170,6 +194,93 @@ Example
 .. literalinclude:: ../example/yaml-example/modal.yml
 
 
+.. _yaml-nav-objects:
+
+NavObjects
+==========
+
+:class:`NavObjects <webdriver_test_tools.pageobject.nav.NavObject>` support YAML
+representations of the nav using the following syntax.
+
+Syntax
+------
+
+.. _yaml-navs:
+
+Navbars
+~~~~~~~
+
+Navbar objects have the following keys: 
+
+   * ``links``: **(Required)** List of :ref:`links <yaml-links>`.
+   * ``fixed``: *(Default:* ``true`` *)* Whether or not the navbar is fixed to
+     the screen
+   * ``collapsible``: *(Default:* ``false`` *)* Whether or not the navbar is
+     collapsible (e.g. for hamburger menus)
+   * ``menu_locator``: **(Required if** ``collapsible`` **is** ``true`` **)**
+     :ref:`Locator dictionary <yaml-locators>` for the collapsible menu element
+   * ``expand_button_locator``: **(Required if** ``collapsible`` **is** ``true`` **)**
+     :ref:`Locator dictionary <yaml-locators>` for the button that expands the
+     menu
+   * ``collapse_button_locator`` *(Optional)* Locator for the button that
+     collapses the menu. Only needed if ``collapsible`` is ``true`` and the
+     collapse button isn't the same as the expand button
+
+.. _yaml-links:
+
+Links
+~~~~~
+
+The items in the nav ``links`` list have the following keys:
+
+   * ``name``: **(Required)** Name used to refer to this link. Must be unique
+     from other links in the same list
+   * ``link_locator``: **(Required)** :ref:`Locator dictionary <yaml-locators>`
+     for the link element
+   * ``click``: *(Default:* ``page`` *)* One of the following values describing
+     the expected action on click:
+
+      * ``page``: *(Default)* Go to another page
+      * ``section``: Jump to a section in the current page
+      * ``menu``: Toggle a dropdown menu
+      * ``none``: No expected action
+
+   * ``hover``: *(Default:* ``none`` *)* One of the following values describing
+     the expected action on hover:
+
+      * ``none``: *(Default)* No expected action
+      * ``menu``: Show dropdown menu
+
+   * ``target``: **(Required if** ``click`` **is** ``page`` **or** ``section``
+     **)** The link target, formatted in one of the following ways (depending on
+     ``click`` type):
+
+      * (``click: page``) The full URL to the target page
+      * (``click: page``) :ref:`Relative URL dictionary <yaml-relative-urls>`
+        with the path to the target page
+      * (``click: section``) The ``id`` attribute of the section element (i.e.
+        the link's ``href`` attribute)
+
+   .. _yaml-nav-menus:
+
+   * ``menu``: **(Required if** ``click`` **or** ``hover`` **is** ``menu`` **)**
+     A dictionary representing the menu that appears on click or hover. Contains
+     the following **required** keys:
+
+      * ``menu_locator``: :ref:`Locator dictionary <yaml-locators>` for the menu
+        element
+      * ``links``: List of :ref:`links <yaml-links>`. Same syntax as the nav
+        object links list
+
+
+Example
+-------
+
+.. literalinclude:: ../example/yaml-example/nav.yml
+
+.. literalinclude:: ../example/yaml-example/collapsible_nav.yml
+
+
 .. _yaml-web-page-objects:
 
 WebPageObjects
@@ -182,13 +293,7 @@ Syntax
 ------
 
 Web page objects have one required key ``url``, which can be set to either the
-full URL to the page, or a dictionary containing the following keys:
-
-   * ``path``: The path to the page, relative to the ``SiteConfig`` attribute
-     specified in ``relative_to``
-   * ``relative_to``: A valid attribute declared in the project's ``SiteConfig``
-     class to use as a base URL. It is assumed that the value of this attribute
-     has a trailing '/'
+full URL to the page or a :ref:`relative URL dictionary <yaml-relative-urls>`
 
 .. note::
 
@@ -201,5 +306,4 @@ Example
 -------
 
 .. literalinclude:: ../example/yaml-example/web_page.yml
-
 

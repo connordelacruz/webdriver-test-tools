@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.webpage &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.webpage &mdash; WebDriver Test Tools 2.9.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.8
+                2.9
               </div>
             
           
@@ -157,7 +157,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.pageobject.webpage</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">BasePage</span><span class="p">,</span> <span class="n">YAMLParsingPageObject</span>
+<span></span><span class="kn">from</span> <span class="nn">webdriver_test_tools.pageobject</span> <span class="k">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">YAMLParsingPageObject</span>
 
 
 <div class="viewcode-block" id="WebPageObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject">[docs]</a><span class="k">class</span> <span class="nc">WebPageObject</span><span class="p">(</span><span class="n">YAMLParsingPageObject</span><span class="p">):</span>
@@ -234,36 +234,23 @@
 <span class="sd">            URL</span>
 
 <span class="sd">        :raises YAMLKeyError: if ``url`` is missing either required key</span>
+<span class="sd">        :raises YAMLValueError: if ``url[&#39;relative_to&#39;]`` is not a valid</span>
+<span class="sd">            attribute name of :attr:`SITE_CONFIG` class</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: what if URL is an exact attribute in site config and not relative?</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="n">url</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_url</span><span class="p">(</span><span class="n">url</span><span class="p">[</span><span class="s1">&#39;relative_to&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="n">url</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SITE_CONFIG</span><span class="o">.</span><span class="n">parse_relative_url_dict</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span>
                 <span class="s2">&quot;Missing required </span><span class="si">{}</span><span class="s2"> key in web page &#39;url&#39; dictionary&quot;</span>
             <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_get_base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">relative_to</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Helper method for resolving url relative_to key</span>
-
-<span class="sd">        :param relative_to: Name of an attribute in :attr:`SITE_CONFIG` class</span>
-
-<span class="sd">        :return: The value of the specified attribute in :attr:`SITE_CONFIG`</span>
-<span class="sd">            class</span>
-
-<span class="sd">        :raises YAMLValueError: if ``relative_to`` is not a valid attribute</span>
-<span class="sd">            name of :attr:`SITE_CONFIG`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">base_url</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SITE_CONFIG</span><span class="p">,</span> <span class="n">relative_to</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;Invalid URL &#39;relative_to&#39; value (relative_to: </span><span class="si">{}</span><span class="s2">). &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">relative_to</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;Invalid URL &#39;relative_to&#39; value (relative_to: </span><span class="si">{}</span><span class="s2">). &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">[</span><span class="s1">&#39;relative_to&#39;</span><span class="p">])</span>
             <span class="n">error_msg</span> <span class="o">+=</span> <span class="s1">&#39;Must be a valid attribute declared in SiteConfig class&#39;</span>
             <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">YAMLValueError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">base_url</span>
 
 <div class="viewcode-block" id="WebPageObject.get_page_title"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title">[docs]</a>    <span class="k">def</span> <span class="nf">get_page_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the title of the current page</span>
@@ -306,7 +293,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.8.1-alpha',
+            VERSION:'2.9.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

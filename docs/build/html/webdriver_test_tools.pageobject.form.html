@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.form module &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.form module &mdash; WebDriver Test Tools 2.9.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.8
+                2.9
               </div>
             
           
@@ -380,7 +380,8 @@ in subclasses if <code class="xref py py-attr docutils literal notranslate"><spa
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><strong>FormObject.inputs</strong></a> – A dictionary mapping input names to the
 corresponding <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances. The keys correspond with
-the <code class="docutils literal notranslate"><span class="pre">name</span></code> keys in the YAML representation of the form</td>
+the <code class="docutils literal notranslate"><span class="pre">name</span></code> keys in the YAML representation of the form (or the ‘name’
+keys in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">INPUT_DICTS</span></code></a> if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>)</td>
 </tr>
 </tbody>
 </table>
@@ -392,7 +393,7 @@ attribute:</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><strong>FormObject.INPUT_DICTS</strong></a> – List of input dictionaries. These are used to
 initialize the <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inputs</span></code></a> at
-runtime. These dictionaries use the same syntax as <a class="reference internal" href="yaml.html#yaml-inputs"><span class="std std-ref">YAML inputs</span></a>.</td>
+runtime. These dictionaries use the same syntax as <a class="reference internal" href="yaml.html#yaml-inputs"><span class="std std-ref">YAML inputs</span></a></td>
 </tr>
 </tbody>
 </table>
@@ -601,7 +602,7 @@ object will be returned</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.8.1-alpha',
+            VERSION:'2.9.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

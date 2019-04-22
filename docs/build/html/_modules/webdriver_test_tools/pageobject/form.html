@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.form &mdash; WebDriver Test Tools 2.8.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.form &mdash; WebDriver Test Tools 2.9.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.8
+                2.9
               </div>
             
           
@@ -158,7 +158,6 @@
             
   <h1>Source code for webdriver_test_tools.pageobject.form</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="k">import</span> <span class="n">NoSuchElementException</span>
@@ -217,14 +216,15 @@
 
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">input_dict</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize ``InputObject`` using parsed YAML</span>
+        <span class="sd">&quot;&quot;&quot;Initialize ``InputObject`` using parsed YAML or input dictionary</span>
 
-<span class="sd">        See :ref:`YAML inputs doc &lt;yaml-inputs&gt;` for details on ``input_dict``</span>
-<span class="sd">        syntax.</span>
+<span class="sd">        See :ref:`YAML inputs documentation &lt;yaml-inputs&gt;` for details on</span>
+<span class="sd">        ``input_dict`` syntax.</span>
 
 <span class="sd">        :param driver: Selenium WebDriver object</span>
-<span class="sd">        :param input_dict: Parsed dictionary from YAML file inputs list. Must</span>
-<span class="sd">            have &#39;name&#39; key set</span>
+<span class="sd">        :param input_dict: Input dictionary using syntax specified in</span>
+<span class="sd">            :ref:`YAML inputs documentation &lt;yaml-inputs&gt;`. Must have &#39;name&#39;</span>
+<span class="sd">            key set</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
         <span class="c1"># &#39;name&#39; is required, so assume that it&#39;s a valid key and raise errors</span>
@@ -233,7 +233,7 @@
         <span class="c1"># If &#39;input_locator&#39; is specified, use that as the locator, otherwise</span>
         <span class="c1"># find using self.name</span>
         <span class="k">if</span> <span class="s1">&#39;input_locator&#39;</span> <span class="ow">in</span> <span class="n">input_dict</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">to_locator</span><span class="p">(</span><span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;input_locator&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_locator_dict</span><span class="p">(</span><span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;input_locator&#39;</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="c1"># Get input type, default to &#39;text&#39; if unspecified</span>
@@ -520,7 +520,8 @@
 
 <span class="sd">    :var FormObject.inputs: A dictionary mapping input names to the</span>
 <span class="sd">        corresponding :class:`InputObject` instances. The keys correspond with</span>
-<span class="sd">        the ``name`` keys in the YAML representation of the form</span>
+<span class="sd">        the ``name`` keys in the YAML representation of the form (or the &#39;name&#39;</span>
+<span class="sd">        keys in :attr:`INPUT_DICTS` if :attr:`YAML_FILE` is ``None``)</span>
 
 <span class="sd">    If :attr:`YAML_FILE` is ``None``, subclasses must set the following</span>
 <span class="sd">    attribute:</span>
@@ -528,7 +529,7 @@
 <span class="sd">    :var FormObject.INPUT_DICTS: List of input dictionaries. These are used to</span>
 <span class="sd">        initialize the :class:`InputObject` instances in :attr:`inputs` at</span>
 <span class="sd">        runtime. These dictionaries use the same syntax as :ref:`YAML inputs</span>
-<span class="sd">        &lt;yaml-inputs&gt;`.</span>
+<span class="sd">        &lt;yaml-inputs&gt;`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_YAML_ROOT_KEY</span> <span class="o">=</span> <span class="s1">&#39;form&#39;</span>
@@ -576,8 +577,8 @@
         <span class="n">parsed_yaml</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_yaml</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
         <span class="c1"># Initialize locators</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">to_locator</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;form_locator&#39;</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">to_locator</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;submit_locator&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_locator_dict</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;form_locator&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_locator_dict</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;submit_locator&#39;</span><span class="p">])</span>
         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLKeyError</span><span class="p">(</span>
                 <span class="s1">&#39;Missing required </span><span class="si">{}</span><span class="s1"> key in form YAML&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -730,7 +731,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.8.1-alpha',
+            VERSION:'2.9.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
