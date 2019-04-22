@@ -49,8 +49,8 @@ class ModalObject(YAMLParsingPageObject):
         parsed_yaml = super().parse_yaml(file_path)
         # Initialize locators
         try:
-            self.MODAL_LOCATOR = utils.yaml.to_locator(parsed_yaml['modal_locator'])
-            self.CLOSE_LOCATOR = utils.yaml.to_locator(parsed_yaml['close_locator'])
+            self.MODAL_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['modal_locator'])
+            self.CLOSE_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['close_locator'])
         except KeyError as e:
             raise utils.yaml.YAMLKeyError(
                 'Missing required {} key in modal YAML'.format(e)

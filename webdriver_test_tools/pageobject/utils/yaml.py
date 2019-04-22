@@ -33,8 +33,7 @@ def parse_yaml_file(path):
 
 # WebDriver YAML constructs
 
-# TODO: better name (refactor usages)
-def to_locator(locator_dict):
+def parse_locator_dict(locator_dict):
     """Takes a locator dictionary from a parsed YAML file and returns the
     locator tuple
 

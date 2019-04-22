@@ -75,7 +75,7 @@ class InputObject(BasePage):
         # If 'input_locator' is specified, use that as the locator, otherwise
         # find using self.name
         if 'input_locator' in input_dict:
-            self.locator = utils.yaml.to_locator(input_dict['input_locator'])
+            self.locator = utils.yaml.parse_locator_dict(input_dict['input_locator'])
         else:
             self.locator = (By.NAME, self.name)
         # Get input type, default to 'text' if unspecified
@@ -419,8 +419,8 @@ class FormObject(YAMLParsingPageObject):
         parsed_yaml = super().parse_yaml(file_path)
         # Initialize locators
         try:
-            self.FORM_LOCATOR = utils.yaml.to_locator(parsed_yaml['form_locator'])
-            self.SUBMIT_LOCATOR = utils.yaml.to_locator(parsed_yaml['submit_locator'])
+            self.FORM_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['form_locator'])
+            self.SUBMIT_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['submit_locator'])
         except KeyError as e:
             raise utils.yaml.YAMLKeyError(
                 'Missing required {} key in form YAML'.format(e)

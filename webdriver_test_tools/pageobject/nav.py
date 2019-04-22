@@ -52,7 +52,7 @@ class NavLinkObject(BasePage):
         # 'name' and 'link_locator' required, so assume that they're valid keys
         # and raise errors otherwise
         self.name = link_dict['name']
-        self.locator = utils.yaml.to_locator(link_dict['link_locator'])
+        self.locator = utils.yaml.parse_locator_dict(link_dict['link_locator'])
         self.click_action = link_dict.get('click', self.ActionTypes.PAGE)
         if self.click_action not in self.ActionTypes.CLICK_ACTIONS:
             error_msg = "Invalid value 'click' action for link (link: {}). ".format(str(link_dict))
@@ -149,7 +149,7 @@ class NavMenuObject(BasePage):
         super().__init__(driver)
         # 'menu_locator' is required, so assume it's a valid key and raise
         # errors otherwise
-        self.locator = utils.yaml.to_locator(menu_dict['menu_locator'])
+        self.locator = utils.yaml.parse_locator_dict(menu_dict['menu_locator'])
         self.links = {}
         for link_dict in menu_dict['links']:
             # TODO: except key error, update message to show menu?
@@ -330,10 +330,10 @@ class NavObject(YAMLParsingPageObject):
         # Collapsible nav configurations
         if self.COLLAPSIBLE:
             try:
-                self.MENU_LOCATOR = utils.yaml.to_locator(parsed_yaml['menu_locator'])
-                self.EXPAND_BUTTON_LOCATOR = utils.yaml.to_locator(parsed_yaml['expand_button_locator'])
+                self.MENU_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['menu_locator'])
+                self.EXPAND_BUTTON_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['expand_button_locator'])
                 if 'collapse_button_locator' in parsed_yaml:
-                    self.COLLAPSE_BUTTON_LOCATOR = utils.yaml.to_locator(parsed_yaml['collapse_button_locator'])
+                    self.COLLAPSE_BUTTON_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['collapse_button_locator'])
                 else:
                     self.COLLAPSE_BUTTON_LOCATOR = self.EXPAND_BUTTON_LOCATOR
             except KeyError as e:
