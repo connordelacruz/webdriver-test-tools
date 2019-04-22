@@ -73,7 +73,7 @@ class NavLinkObject(BasePage):
         if self.click_action in self.ActionTypes.REQUIRES_TARGET:
             target = link_dict['target']
             # Add '#' to the front of section targets if not present
-            if self.click_action == self.ActionTypes.SECTION and not self.target.startswith('#'):
+            if self.click_action == self.ActionTypes.SECTION and not target.startswith('#'):
                 target = '#' + target
             if isinstance(target, dict):
                 target = site_config.parse_relative_url_dict(target)
