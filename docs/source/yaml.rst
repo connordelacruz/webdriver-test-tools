@@ -24,14 +24,14 @@ see `Ansible's YAML documentation`_.
 Supported Prototype Classes
 ---------------------------
 
-.. todo Is this section necessary?
+.. todo Is this section necessary now that all prototypes are supported?
 
-Currently, the following prototype classes support YAML parsing:  
+The following prototype classes support YAML parsing:  
 
    * :class:`FormObject <webdriver_test_tools.pageobject.form.FormObject>`
    * :class:`ModalObject <webdriver_test_tools.pageobject.modal.ModalObject>`
-   * :class:`WebPageObject <webdriver_test_tools.pageobject.webpage.WebPageObject>`
    * :class:`NavObject <webdriver_test_tools.pageobject.nav.NavObject>`
+   * :class:`WebPageObject <webdriver_test_tools.pageobject.webpage.WebPageObject>`
 
 
 Configure Defaults
@@ -194,33 +194,6 @@ Example
 .. literalinclude:: ../example/yaml-example/modal.yml
 
 
-.. _yaml-web-page-objects:
-
-WebPageObjects
-==============
-
-:class:`WebPageObjects <webdriver_test_tools.pageobject.webpage.WebPageObject>`
-support YAML representations of the modal using the following syntax.
-
-Syntax
-------
-
-Web page objects have one required key ``url``, which can be set to either the
-full URL to the page or a :ref:`relative URL dictionary <yaml-relative-urls>`
-
-.. note::
-
-   If 'url' is set to just the full URL to the page, the attribute
-   ``PAGE_FILENAME`` will not be set in the ``WebPageObject``. If it is set to a
-   dictionary, ``PAGE_FILENAME`` will be set to the value of 'path'
-
-
-Example
--------
-
-.. literalinclude:: ../example/yaml-example/web_page.yml
-
-
 .. _yaml-nav-objects:
 
 NavObjects
@@ -306,4 +279,31 @@ Example
 .. literalinclude:: ../example/yaml-example/nav.yml
 
 .. literalinclude:: ../example/yaml-example/collapsible_nav.yml
+
+
+.. _yaml-web-page-objects:
+
+WebPageObjects
+==============
+
+:class:`WebPageObjects <webdriver_test_tools.pageobject.webpage.WebPageObject>`
+support YAML representations of the modal using the following syntax.
+
+Syntax
+------
+
+Web page objects have one required key ``url``, which can be set to either the
+full URL to the page or a :ref:`relative URL dictionary <yaml-relative-urls>`
+
+.. note::
+
+   If 'url' is set to just the full URL to the page, the attribute
+   ``PAGE_FILENAME`` will not be set in the ``WebPageObject``. If it is set to a
+   dictionary, ``PAGE_FILENAME`` will be set to the value of 'path'
+
+
+Example
+-------
+
+.. literalinclude:: ../example/yaml-example/web_page.yml
 

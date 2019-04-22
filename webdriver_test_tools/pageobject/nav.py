@@ -30,7 +30,6 @@ class NavLinkObject(BasePage):
             PAGE, SECTION
         ]
 
-    # TODO: document exceptions
     def __init__(self, driver, link_dict, site_config):
         """Initialize ``NavLinkObject`` using parsed YAML or link dictionary
 
@@ -43,6 +42,11 @@ class NavLinkObject(BasePage):
             'link_locator' keys set
         :param site_config: Test project's :class:`SiteConfig` class. Used to
             determine any relative URLs specified in the 'target'
+
+        :raises ValueError: if any of the keys in ``link_dict`` are set to
+            invalid values
+        :raises KeyError: if any of the required keys in ``link_dict`` are
+            missing
         """
         super().__init__(driver)
         # 'name' and 'link_locator' required, so assume that they're valid keys
@@ -72,7 +76,6 @@ class NavLinkObject(BasePage):
             if self.click_action == self.ActionTypes.SECTION and not self.target.startswith('#'):
                 target = '#' + target
             if isinstance(target, dict):
-                # TODO: exceptions?
                 target = site_config.parse_relative_url_dict(target)
             self.target = target
         # Parse menu if applicable
@@ -123,7 +126,6 @@ class NavLinkObject(BasePage):
 class NavMenuObject(BasePage):
     """Page object prototype for dropdown/collapsible nav menus"""
 
-    # TODO: document exceptions
     def __init__(self, driver, menu_dict, site_config):
         """Initialize ``NavMenuObject`` using parsed YAML or the 'menu' key in
         a link dictionary
@@ -138,6 +140,11 @@ class NavMenuObject(BasePage):
         :param site_config: Test project's :class:`SiteConfig` class. Used when
             initializing :class:`NavLinkObject` instances to determine any
             relative URLs specified in the 'target'
+
+        :raises ValueError: if any of the keys in ``menu_dict`` are set to
+            invalid values or if 2+ items in 'links' list have the same 'name'
+        :raises KeyError: if any of the required keys in ``menu_dict`` are
+            missing
         """
         super().__init__(driver)
         # 'menu_locator' is required, so assume it's a valid key and raise
@@ -145,9 +152,12 @@ class NavMenuObject(BasePage):
         self.locator = utils.yaml.to_locator(menu_dict['menu_locator'])
         self.links = {}
         for link_dict in menu_dict['links']:
-            # TODO: except key error, update message to show menu
+            # TODO: except key error, update message to show menu?
             link_name = link_dict['name']
-            # TODO: raise value error if name not unique (specify that this is a menu)
+            if link_name in self.links:
+                error_msg = "Multiple links with the same 'name' value in menu (name: {}). ".format(link_name)
+                error_msg += 'link names must be unique'
+                raise ValueError(error_msg)
             self.links[link_name] = NavLinkObject(self.driver, link_dict, site_config)
 
     # WebElement retrieval
@@ -291,7 +301,6 @@ class NavObject(YAMLParsingPageObject):
     LINK_DICTS = []
     links = {}
 
-    # TODO: deprecate workflow
     # Link maps
     LINK_MAP = {}
     HOVER_MAP = {}
@@ -342,7 +351,7 @@ class NavObject(YAMLParsingPageObject):
         :param from_yaml: (Default: True) Whether or not this was parsed from
             YAML. Exceptions raised will be different based on this
         """
-        # TODO: verify exceptions
+        # TODO: verify and document exceptions
         self.links = {}
         for link_dict in link_dicts:
             try:
@@ -354,11 +363,17 @@ class NavObject(YAMLParsingPageObject):
                     raise utils.yaml.YAMLValueError(error_msg) if from_yaml else ValueError(error_msg)
                 # Initialize NavLinkObject
                 self.links[link_name] = NavLinkObject(self.driver, link_dict, self.SITE_CONFIG)
-            # TODO: except value errors as well?
             except KeyError as e:
                 if from_yaml:
                     error_message = 'Missing required {} key in link YAML (link: {})'.format(e, str(link_dict))
                     raise utils.yaml.YAMLKeyError(error_message)
+                # Preserve stack trace for key error if not parsing YAML
+                else:
+                    raise
+            except ValueError as e:
+                # Raise YAML error if applicable
+                if from_yaml:
+                    raise utils.yaml.YAMLKeyError(error_msg)
                 # Preserve stack trace for key error if not parsing YAML
                 else:
                     raise
@@ -457,7 +472,6 @@ class NavObject(YAMLParsingPageObject):
 
     # Deprecated Methods
 
-    # TODO: deprecate old link map workflow
     def click_page_link(self, link_map_key):
         """
         .. deprecated:: 2.9.0
@@ -483,7 +497,6 @@ class NavObject(YAMLParsingPageObject):
             # Initialize the target page object and return it
             return None if link_tuple[1] is None else link_tuple[1](self.driver)
 
-    # TODO: deprecate old link map workflow
     def hover_over_page_link(self, link_map_key):
         """
         .. deprecated:: 2.9.0
