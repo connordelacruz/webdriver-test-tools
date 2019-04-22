@@ -42,11 +42,11 @@ PAGE_OBJECT_TEMPLATE_MAP = {
     },
     NAV_PROTOTYPE: {
         'name' : 'nav_object',
-        'types': ['py']
+        'types': ['py', 'yml']
     },
     COLLAPSIBLE_NAV_PROTOTYPE: {
         'name' : 'collapsible_nav_object',
-        'types': ['py']
+        'types': ['py', 'yml']
     },
     WEB_PAGE_PROTOTYPE: {
         'name' : 'web_page_object',

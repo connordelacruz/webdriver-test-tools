@@ -1,0 +1,76 @@
+# Example 1: Standard navbar
+nav:
+  # (Default: true) Whether the navbar is fixed to the window.
+  fixed: false
+  links:
+    # Page link
+    - name: home
+      link_locator:
+        by: CLASS_NAME
+        locator: navbar-brand
+      target:
+        path: index.html
+        relative_to: BASE_URL
+    # Section link
+    - name: section1
+      link_locator:
+        by: CSS_SELECTOR
+        locator: 'a[href="#section1"]'
+      click: section
+      target: '#section1'
+    # Dropdown menu (hover)
+    - name: hover-menu
+      link_locator:
+        by: ID
+        locator: hover-menu-link
+      # Set click action to 'none', hover to 'menu'
+      click: none
+      hover: menu
+      menu:
+        menu_locator:
+          by: ID
+          locator: hover-menu
+        # Dropdown menu links (same syntax as nav links)
+        links:
+          - name: page1
+            link_locator:
+              by: CSS_SELECTOR
+              locator: '#hover-menu a[href="page1.html"]'
+            target:
+              path: page1.html
+              relative_to: BASE_URL
+          - name: page2
+            link_locator:
+              by: CSS_SELECTOR
+              locator: '#hover-menu a[href="page2.html"]'
+            target:
+              path: page2.html
+              relative_to: BASE_URL
+    # Dropdown menu (click)
+    - name: click-menu
+      link_locator:
+        by: ID
+        locator: click-menu-link
+      # Set click action to 'menu'
+      click: menu
+      menu:
+        menu_locator:
+          by: ID
+          locator: click-menu
+        # Dropdown menu links
+        links:
+          - name: page1
+            link_locator:
+              by: CSS_SELECTOR
+              locator: '#click-menu a[href="page1.html"]'
+            target:
+              path: page1.html
+              relative_to: BASE_URL
+          - name: page2
+            link_locator:
+              by: CSS_SELECTOR
+              locator: '#click-menu a[href="page2.html"]'
+            target:
+              path: page2.html
+              relative_to: BASE_URL
+

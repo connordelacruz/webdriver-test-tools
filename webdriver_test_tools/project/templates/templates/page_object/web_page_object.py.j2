@@ -10,7 +10,7 @@ from {{test_package}}.config import SiteConfig
 {% block additional_attributes %}
 {% if use_yaml %}
 {{super()}}
-    # Used for internal WebPageObject methods (do not modify)
+    # Used for internal methods (do not modify)
     SITE_CONFIG = SiteConfig
 {% else %}
     # File name of the page relative to a base URL declared in SiteConfig

@@ -1,0 +1,19 @@
+{% extends "nav_object.yml.j2" %}
+
+{% block nav_additional_attributes %}
+  # (Default: false) Whether the navbar menu is collapsible
+  collapsible: true
+  # REQUIRED IF COLLAPSIBLE: Locator for the collapsible menu element
+  menu_locator:
+    by: <BY>
+    locator: <LOCATOR>
+  # REQUIRED IF COLLAPSIBLE: Locator for the button that collapses the nav menu
+  expand_button_locator:
+    by: <BY>
+    locator: <LOCATOR>
+  # (Optional) Locator for the button that collapses the nav menu.
+  # Uncomment if expand and collapse buttons have different locators
+  # collapse_button_locator:
+  #   by: <BY>
+  #   locator: <LOCATOR>
+{% endblock %}
