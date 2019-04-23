@@ -6,7 +6,11 @@ setup(
     name='{{ test_package }}',
     version='0.1.0',
     packages=find_packages(),
+    entry_points={
+        'console_scripts': [
+            '{{ test_package }}={{ test_package }}.__main__:main',
+        ]
+    },
     install_requires=[
         'webdriver-test-tools>={{ test_tools_version }}',
-        'selenium>={{ selenium_version }}',
     ])
