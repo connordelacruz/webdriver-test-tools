@@ -14,6 +14,7 @@ def get_package_data():
         'package_root',
         'project_root',
         'templates',
+        'templates/page_object',
         'tests',
     ]
     # Get .j2 template files
@@ -92,6 +93,7 @@ setup(
     license=about['__license__'],
     classifiers=[x for x in CLASSIFIERS.split("\n") if x],
     packages=find_packages(),
+    include_package_data=True,
     package_data=get_package_data(),
     entry_points=entry_points,
     install_requires=install_requires,
