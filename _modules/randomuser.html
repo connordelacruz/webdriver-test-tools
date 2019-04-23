@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>randomuser &mdash; WebDriver Test Tools 2.9.0-alpha documentation</title>
+  <title>randomuser &mdash; WebDriver Test Tools 2.9.1-alpha documentation</title>
   
 
   
@@ -171,10 +171,10 @@
 <span class="c1"># ----------------------------------------------------------------</span>
 
 <span class="c1"># Python module version</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.4.0&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.5.0&#39;</span>
 
 <span class="c1"># Version of the random user API</span>
-<span class="n">API_VERSION</span> <span class="o">=</span> <span class="s1">&#39;1.1&#39;</span>
+<span class="n">API_VERSION</span> <span class="o">=</span> <span class="s1">&#39;1.2&#39;</span>
 
 <span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;https://randomuser.me/api/</span><span class="si">{}</span><span class="s1">/&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">API_VERSION</span><span class="p">)</span>
 
@@ -182,22 +182,22 @@
 <span class="c1"># Classes</span>
 <span class="c1"># ----------------------------------------------------------------</span>
 
-<div class="viewcode-block" id="RandomUser"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser">[docs]</a><span class="k">class</span> <span class="nc">RandomUser</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="c1"># Dictionary where the random user _data will be stored</span>
+<div class="viewcode-block" id="RandomUser"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser">[docs]</a><span class="k">class</span> <span class="nc">RandomUser</span><span class="p">:</span>
+    <span class="c1">#: Dictionary where the random user data will be stored</span>
     <span class="n">_data</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="c1"># Dictionary where _info section of results will be stored</span>
+    <span class="c1">#: Dictionary where info section of results will be stored</span>
     <span class="n">_info</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="c1"># Constants</span>
 
-<div class="viewcode-block" id="RandomUser.PictureSize"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.PictureSize">[docs]</a>    <span class="k">class</span> <span class="nc">PictureSize</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Constants for size parameter in get_picture()&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="RandomUser.PictureSize"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.PictureSize">[docs]</a>    <span class="k">class</span> <span class="nc">PictureSize</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Constants for size parameter in :meth:`RandomUser.get_picture()`&quot;&quot;&quot;</span>
         <span class="n">LARGE</span> <span class="o">=</span> <span class="s1">&#39;large&#39;</span>
         <span class="n">MEDIUM</span> <span class="o">=</span> <span class="s1">&#39;medium&#39;</span>
         <span class="n">THUMBNAIL</span> <span class="o">=</span> <span class="s1">&#39;thumbnail&#39;</span></div>
 
-<div class="viewcode-block" id="RandomUser.Info"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.Info">[docs]</a>    <span class="k">class</span> <span class="nc">Info</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Constants for _info dictionary keys&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="RandomUser.Info"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.Info">[docs]</a>    <span class="k">class</span> <span class="nc">Info</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Constants for :attr:`RandomUser._info` dictionary keys&quot;&quot;&quot;</span>
         <span class="n">SEED</span> <span class="o">=</span> <span class="s1">&#39;seed&#39;</span>
         <span class="n">RESULTS</span> <span class="o">=</span> <span class="s1">&#39;results&#39;</span>
         <span class="n">PAGE</span> <span class="o">=</span> <span class="s1">&#39;page&#39;</span>
@@ -212,16 +212,26 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;API returned an error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">))</span></div>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+                <span class="s1">&#39;randomuser.me API returned an error: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="p">)</span></div>
 
     <span class="c1"># Functions</span>
 
 <div class="viewcode-block" id="RandomUser.__init__"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">get_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">user_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize RandomUser object</span>
 
-<span class="sd">        :param get_params: (Optional) Dictionary mapping query parameter names to their values. See https://randomuser.me/documentation for details on parameters.</span>
-<span class="sd">        :param user_data: (Optional) If specified, this _data will be used instead of querying the API for user _data. Use in instances where the user _data has already been generated (e.g. restoring user _data, creating multiple users with single call to API using the &#39;results&#39; parameter)</span>
-<span class="sd">        :param api_info: (Optional) If the user is being generated with the user_data parameter, the _info variable will be set to this. Otherwise, it will be ignored when generating a random user.</span>
+<span class="sd">        :param get_params: (Optional) Dictionary mapping query parameter names</span>
+<span class="sd">            to their values. See https://randomuser.me/documentation for</span>
+<span class="sd">            details on parameters.</span>
+<span class="sd">        :param user_data: (Optional) If specified, this _data will be used</span>
+<span class="sd">            instead of querying the API for user _data. Use in instances where</span>
+<span class="sd">            the user _data has already been generated (e.g. restoring user</span>
+<span class="sd">            _data, creating multiple users with single call to API using the</span>
+<span class="sd">            &#39;results&#39; parameter)</span>
+<span class="sd">        :param api_info: (Optional) If the user is being generated with the</span>
+<span class="sd">            user_data parameter, the _info variable will be set to this.</span>
+<span class="sd">            Otherwise, it will be ignored when generating a random user.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">global</span> <span class="n">URL</span>
         <span class="k">if</span> <span class="n">user_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -234,7 +244,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_generate_user</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_generate_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Query the randomuser.me API and store parsed results in _data and _info&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Query the randomuser.me API and store results in _data and _info&quot;&quot;&quot;</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request_url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
         <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">RandomUser</span><span class="o">.</span><span class="n">APIError</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">])</span>
@@ -263,7 +273,8 @@
 <div class="viewcode-block" id="RandomUser.get_full_name"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_full_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capitalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns first and last name separated by a space</span>
 
-<span class="sd">        :param capitalize: (Default = True) Capitalize first letter of each name if True</span>
+<span class="sd">        :param capitalize: (Default = True) Capitalize first letter of each</span>
+<span class="sd">            name if True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">first_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_first_name</span><span class="p">(</span><span class="n">capitalize</span><span class="p">)</span>
         <span class="n">last_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_last_name</span><span class="p">(</span><span class="n">capitalize</span><span class="p">)</span>
@@ -277,7 +288,9 @@
 <div class="viewcode-block" id="RandomUser.get_dob"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_dob">[docs]</a>    <span class="k">def</span> <span class="nf">get_dob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parse_time</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns date of birth as a string in the format &#39;%Y-%m-%d %H:%M:%S&#39;</span>
 
-<span class="sd">        :param parse_time: (Default = False) If True, parse date of birth string using time.strptime() and return the results instead of a string</span>
+<span class="sd">        :param parse_time: (Default = False) If True, parse date of birth</span>
+<span class="sd">            string using time.strptime() and return the results instead of a</span>
+<span class="sd">            string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;dob&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">parse_time</span><span class="p">:</span>
@@ -294,7 +307,8 @@
 <div class="viewcode-block" id="RandomUser.get_street"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_street">[docs]</a>    <span class="k">def</span> <span class="nf">get_street</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capitalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns street address</span>
 
-<span class="sd">        :param capitalize: (Default = True) Capitalize first letter of words if True</span>
+<span class="sd">        :param capitalize: (Default = True) Capitalize first letter of words if</span>
+<span class="sd">            True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">street</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;street&#39;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">street</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">street</span></div>
@@ -302,7 +316,8 @@
 <div class="viewcode-block" id="RandomUser.get_city"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_city">[docs]</a>    <span class="k">def</span> <span class="nf">get_city</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capitalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns city</span>
 
-<span class="sd">        :param capitalize: (Default = True) Capitalize first letter of words if True</span>
+<span class="sd">        :param capitalize: (Default = True) Capitalize first letter of words if</span>
+<span class="sd">            True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">city</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;city&#39;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">city</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">city</span></div>
@@ -310,7 +325,8 @@
 <div class="viewcode-block" id="RandomUser.get_state"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_state">[docs]</a>    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capitalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns state</span>
 
-<span class="sd">        :param capitalize: (Default = True) Capitalize first letter of words if True</span>
+<span class="sd">        :param capitalize: (Default = True) Capitalize first letter of words if</span>
+<span class="sd">            True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">if</span> <span class="n">capitalize</span> <span class="k">else</span> <span class="n">state</span></div>
@@ -326,11 +342,14 @@
     <span class="c1"># Contact</span>
     <span class="c1"># --------------------------------</span>
 
-    <span class="k">def</span> <span class="nf">_format_phone_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phone_string</span><span class="p">,</span> <span class="n">strip_parentheses</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">strip_hyphens</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Takes a string representation of a phone number and strips characters based on parameter values</span>
+    <span class="k">def</span> <span class="nf">_format_phone_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phone_string</span><span class="p">,</span>
+                             <span class="n">strip_parentheses</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">strip_hyphens</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Takes a string representation of a phone number and strips</span>
+<span class="sd">        characters based on parameter values</span>
 
 <span class="sd">        :param phone_string: The phone number as a string</span>
-<span class="sd">        :param strip_parentheses: (Default = True) Remove &#39;(&#39; and &#39;)&#39; characters if True</span>
+<span class="sd">        :param strip_parentheses: (Default = True) Remove &#39;(&#39; and &#39;)&#39;</span>
+<span class="sd">            characters if True</span>
 <span class="sd">        :param strip_hyphens: (Default = True) Remove &#39;-&#39; characters if True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">strip_parentheses</span><span class="p">:</span>
@@ -345,7 +364,9 @@
 <span class="sd">        :param strip_parentheses: (Default = False) Omit parentheses if True</span>
 <span class="sd">        :param strip_hyphens: (Default = False) Omit hyphens if True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_phone_number</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;phone&#39;</span><span class="p">],</span> <span class="n">strip_parentheses</span><span class="p">,</span> <span class="n">strip_hyphens</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_phone_number</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;phone&#39;</span><span class="p">],</span>
+                                         <span class="n">strip_parentheses</span><span class="o">=</span><span class="n">strip_parentheses</span><span class="p">,</span>
+                                         <span class="n">strip_hyphens</span><span class="o">=</span><span class="n">strip_hyphens</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RandomUser.get_cell"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_cell">[docs]</a>    <span class="k">def</span> <span class="nf">get_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip_parentheses</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">strip_hyphens</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns cell phone number as a string in the format &#39;(###)-###-####&#39;</span>
@@ -353,7 +374,9 @@
 <span class="sd">        :param strip_parentheses: (Default = False) Omit parentheses if True</span>
 <span class="sd">        :param strip_hyphens: (Default = False) Omit hyphens if True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_phone_number</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;cell&#39;</span><span class="p">],</span> <span class="n">strip_parentheses</span><span class="p">,</span> <span class="n">strip_hyphens</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_phone_number</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;cell&#39;</span><span class="p">],</span>
+                                         <span class="n">strip_parentheses</span><span class="o">=</span><span class="n">strip_parentheses</span><span class="p">,</span>
+                                         <span class="n">strip_hyphens</span><span class="o">=</span><span class="n">strip_hyphens</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RandomUser.get_email"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_email">[docs]</a>    <span class="k">def</span> <span class="nf">get_email</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns email address&quot;&quot;&quot;</span>
@@ -371,9 +394,11 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="RandomUser.get_registered"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_registered">[docs]</a>    <span class="k">def</span> <span class="nf">get_registered</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parse_time</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns registration date as a string in the format &#39;%Y-%m-%d %H:%M:%S&#39;</span>
+        <span class="sd">&quot;&quot;&quot;Returns registration date as a string in the format</span>
+<span class="sd">        &#39;%Y-%m-%d %H:%M:%S&#39;</span>
 
-<span class="sd">        :param parse_time: (Default = False) If True, parse date string using time.strptime() and return the results instead of a string</span>
+<span class="sd">        :param parse_time: (Default = False) If True, parse date string using</span>
+<span class="sd">            time.strptime() and return the results instead of a string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">registered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;registered&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">parse_time</span><span class="p">:</span>
@@ -408,7 +433,8 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="RandomUser.get_id"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns a dictionary mapping &#39;type&#39; to ID type and &#39;number&#39; to ID number</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary mapping &#39;type&#39; to ID type and &#39;number&#39; to ID</span>
+<span class="sd">        number</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id_type</span><span class="p">(),</span> <span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id_number</span><span class="p">()}</span></div>
 
@@ -418,14 +444,17 @@
 <div class="viewcode-block" id="RandomUser.get_picture"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_picture">[docs]</a>    <span class="k">def</span> <span class="nf">get_picture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">PictureSize</span><span class="o">.</span><span class="n">LARGE</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns url to a .jpg of the generated user</span>
 
-<span class="sd">        :param size: (Default = PictureSize.LARGE) The size of picture to return the url for. Size values are stored as constants in PictureSize subclass.</span>
+<span class="sd">        :param size: (Default = :attr:`PictureSize.LARGE`) The size of picture</span>
+<span class="sd">            to return the url for. Size values are stored as constants in</span>
+<span class="sd">            :class:`PictureSize` nested class.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;picture&#39;</span><span class="p">][</span><span class="n">size</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="RandomUser.get_info"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.get_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a dictionary with information about the API query</span>
 
-<span class="sd">        Keys for the info dictionary are stored as constants in Info subclass.</span>
+<span class="sd">        Keys for the info dictionary are stored as constants in :class:`Info`</span>
+<span class="sd">        nested class.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span></div>
 
@@ -433,7 +462,8 @@
     <span class="c1"># --------------------------------</span>
 
     <span class="k">def</span> <span class="nf">_parse_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date_string</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Parses the date string format returned by the API and returns the time tuple result of time.strptime()</span>
+        <span class="sd">&quot;&quot;&quot;Parses the date string format returned by the API and returns the</span>
+<span class="sd">        time tuple result of time.strptime()</span>
 
 <span class="sd">        :param date_string: The date string in the format &#39;%Y-%m-%d %H:%M:%S&#39;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -445,18 +475,23 @@
 
 <div class="viewcode-block" id="RandomUser.generate_users"><a class="viewcode-back" href="../webdriver_test_tools.data.html#randomuser.RandomUser.generate_users">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">generate_users</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span> <span class="n">get_params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns a list containing the specified amount of randomly generated users.</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list containing the specified amount of randomly generated</span>
+<span class="sd">        users.</span>
 
-<span class="sd">        The Random User Generator API can generate multiple users in a single query</span>
-<span class="sd">        instead of connecting once for each user and increasing load on both ends.</span>
+<span class="sd">        The Random User Generator API can generate multiple users in a single</span>
+<span class="sd">        query instead of connecting once for each user and increasing load on</span>
+<span class="sd">        both ends.</span>
 
 <span class="sd">        :param amount: The number of users to generate.</span>
-<span class="sd">        :param get_params: (Optional) Dictionary mapping query parameter names to their values. See https://randomuser.me/documentation for details on parameters.</span>
+<span class="sd">        :param get_params: (Optional) Dictionary mapping query parameter names</span>
+<span class="sd">            to their values. See https://randomuser.me/documentation for</span>
+<span class="sd">            details on parameters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">global</span> <span class="n">URL</span>
         <span class="k">if</span> <span class="n">get_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">get_params</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="c1"># Max amount allowed is 5,000 (https://randomuser.me/documentation#multiple)</span>
+        <span class="c1"># Max amount allowed is 5,000</span>
+        <span class="c1"># (https://randomuser.me/documentation#multiple)</span>
         <span class="n">get_params</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">amount</span> <span class="k">if</span> <span class="n">amount</span> <span class="o">&lt;=</span> <span class="mi">5000</span> <span class="k">else</span> <span class="mi">5000</span>
         <span class="n">request_url</span> <span class="o">=</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;?&#39;</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">get_params</span><span class="p">)</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request_url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
@@ -468,6 +503,7 @@
             <span class="n">user</span> <span class="o">=</span> <span class="n">RandomUser</span><span class="p">(</span><span class="n">user_data</span><span class="o">=</span><span class="n">user_data</span><span class="p">,</span> <span class="n">api_info</span><span class="o">=</span><span class="n">info</span><span class="p">)</span>
             <span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">users</span></div></div>
+
 </pre></div>
 
            </div>
@@ -502,7 +538,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.9.0-alpha',
+            VERSION:'2.9.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
