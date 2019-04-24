@@ -38,7 +38,7 @@ with open(os.path.join(base_path, 'webdriver_test_tools', '__about__.py')) as f:
 install_requires = [
     'selenium>={}'.format(about['__selenium__']),
     'colour-runner>=0.1.1,<0.2',
-    'randomuser>=1.5.0,<1.6',
+    'randomuser>=1.5.1,<1.6',
     'py-loremipsum>=1.0.0',
     'Jinja2>=2.10',
     'urllib3>=1.22',
