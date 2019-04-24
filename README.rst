@@ -465,8 +465,8 @@ browsers, use the ``--browser`` (or ``-b``) argument:
 
     <test_package> <args> --browser <browser> [<browser ...]
 
-For a list of options you can specify with ``--browser``, run ``python -m
-<test_package> --help``.
+For a list of options you can specify with ``--browser``, run ``<test_package>
+--help``.
 
 
 Using Headless Browsers
