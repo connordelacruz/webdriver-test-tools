@@ -24,8 +24,6 @@ see `Ansible's YAML documentation`_.
 Supported Prototype Classes
 ---------------------------
 
-.. todo Is this section necessary now that all prototypes are supported?
-
 The following prototype classes support YAML parsing:  
 
    * :class:`FormObject <webdriver_test_tools.pageobject.form.FormObject>`
@@ -52,14 +50,14 @@ can be used to only generate ``.py`` files:
 
 ::
    
-   python -m <test_package> new page <args> --no-yaml
+   <test_package> new page <args> --no-yaml
 
 If ``ENABLE_PAGE_OBJECT_YAML`` is ``False``, the ``--yaml`` (or ``-y``) argument
 can be used to generate ``.py`` and ``.yml`` files for supported prototypes:
 
 ::
 
-   python -m <test_package> new page <args> --yaml
+   <test_package> new page <args> --yaml
 
 .. todo briefly go over YAML_FILE attribute
 

@@ -235,6 +235,18 @@ This will generate a new test package with template files and project
 directories.
 
 
+(Optional) Setup Virtual Environment
+------------------------------------
+
+If using `virtualenv <https://virtualenv.pypa.io/en/latest/>`_, initialize the
+virtual environment before installing the test package:
+
+::
+   
+   virtualenv venv
+   source ./venv/bin/activate
+
+
 Test Package Installation
 -------------------------
 
@@ -247,8 +259,6 @@ root directory:
 
 Installing with the ``-e`` flag will update the package automatically when
 changes are made to the source code.
-
-**Note:** Command may be ``pip3`` instead of ``pip`` depending on the system
 
 
 Configuration
@@ -267,17 +277,19 @@ Basic Command Line Usage
 
 ::
 
-    python -m <test_package> [-h] <command>
+    <test_package> [-h] <command>
 
-**Note:** If no ``<command>`` is specified, the ``run`` command will be
-executed by default.
+If no ``<command>`` is specified, the ``run`` command will be executed by
+default.
 
+**Note:** If the test package was not installed with ``pip``, run test packages
+commands using ``python -m <test_package> <command>``.
 
 For info on command line arguments, use the ``--help`` (or ``-h``) argument:
 
 ::
 
-    python -m <test_package> --help
+    <test_package> --help
 
 
 Creating New Project Files
@@ -287,7 +299,7 @@ New tests and page objects can be generated using the ``new`` command:
 
 ::
 
-    python -m <test_package> new [<type>] [<module_name>] [<ClassName>] [-d <description>] [-f]
+    <test_package> new [<type>] [<module_name>] [<ClassName>] [-d <description>] [-f]
 
 Where:
 
@@ -309,7 +321,7 @@ New test modules can be generated using the ``new test`` command:
 
 ::
 
-    python -m <test_package> new test <module_name> <TestCaseClass>
+    <test_package> new test <module_name> <TestCaseClass>
 
 Where ``<module_name>`` is the filename for the new test and ``<TestCaseClass>``
 is the class name for the test case.
@@ -320,7 +332,7 @@ the initial test case class:
 
 ::
 
-    python -m <test_package> new test <module_name> <TestCaseClass> -d "Test case description"
+    <test_package> new test <module_name> <TestCaseClass> -d "Test case description"
 
 
 If a test module with the same ``<module_name>`` already exists, ``new test``
@@ -329,7 +341,7 @@ used to force overwrite existing files:
 
 ::
 
-    python -m <test_package> new test <module_name> <TestCaseClass> --force
+    <test_package> new test <module_name> <TestCaseClass> --force
 
 
 Creating New Page Objects
@@ -339,7 +351,7 @@ New page object modules can be generated using the ``new page`` command:
 
 ::
 
-    python -m <test_package> new page <module_name> <PageObjectClass>
+    <test_package> new page <module_name> <PageObjectClass>
 
 Where ``<module_name>`` is the filename for the new module and
 ``<PageObjectClass>`` is the class name for the page object.
@@ -349,7 +361,7 @@ the initial page object class:
 
 ::
 
-    python -m <test_package> new page <module_name> <PageObjectClass> -d "Page object description"
+    <test_package> new page <module_name> <PageObjectClass> -d "Page object description"
 
 By default, the new class will be a generic ``BasePage`` subclass. The
 ``--prototype`` (or ``-p``) argument can be used to specify a `page object
@@ -357,10 +369,10 @@ prototype`_ class to use as a parent class for the new page object:
 
 ::
 
-   python -m <test_package> new page <module_name> <PageObjectClass> -p <prototype>
+   <test_package> new page <module_name> <PageObjectClass> -p <prototype>
 
-For a list of valid ``<prototype>`` options, run ``python -m <test_package>
-new page --help``.
+For a list of valid ``<prototype>`` options, run ``<test_package> new page
+--help``.
 
 .. _page object prototype: https://connordelacruz.com/webdriver-test-tools/utilities.html#page-object-prototypes
 
@@ -375,14 +387,14 @@ can be used to only generate ``.py`` files:
 
 ::
    
-   python -m <test_package> new page <args> --no-yaml
+   <test_package> new page <args> --no-yaml
 
 If ``ENABLE_PAGE_OBJECT_YAML`` is ``False``, the ``--yaml`` (or ``-y``) argument
 can be used to generate ``.py`` and ``.yml`` files for supported prototypes:
 
 ::
 
-   python -m <test_package> new page <args> --yaml
+   <test_package> new page <args> --yaml
 
 .. _Page Object YAML Files documentation: https://connordelacruz.com/webdriver-test-tools/yaml.html
 
@@ -392,7 +404,7 @@ used to force overwrite existing files:
 
 ::
 
-    python -m <test_package> new page <module_name> <PageObjectClass> --force
+    <test_package> new page <module_name> <PageObjectClass> --force
 
 
 Running Tests
@@ -405,7 +417,7 @@ To run all tests:
 
 ::
 
-    python -m <test_package>
+    <test_package>
 
 
 Running Specific Tests
@@ -416,20 +428,20 @@ argument:
 
 ::
 
-    python -m <test_package> --module <test_module> [<test_module> ...]
+    <test_package> --module <test_module> [<test_module> ...]
 
 To run specific test case classes or methods, use the ``--test`` (or ``-t``)
 argument:
 
 ::
 
-    python -m <test_package> --test <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
+    <test_package> --test <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
 
 To skip certain test cases or methods, use the ``--skip`` (or ``-s``) argument:
 
 ::
 
-    python -m <test_package> --skip <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
+    <test_package> --skip <TestClass>[.<test_method>] [<TestClass>[.<test_method>] ...]
 
 
 The ``--test`` and ``--skip`` arguments both support wildcards (``*``) in class
@@ -451,10 +463,10 @@ browsers, use the ``--browser`` (or ``-b``) argument:
 
 ::
 
-    python -m <test_package> <args> --browser <browser> [<browser ...]
+    <test_package> <args> --browser <browser> [<browser ...]
 
-For a list of options you can specify with ``--browser``, run ``python -m
-<test_package> --help``.
+For a list of options you can specify with ``--browser``, run ``<test_package>
+--help``.
 
 
 Using Headless Browsers
@@ -469,7 +481,7 @@ To improve performance, tests can be run in `headless browsers`_ using the
 
 ::
 
-    python -m <test_package> <args> --headless
+    <test_package> <args> --headless
 
 **Note:** When using the ``--headless`` argument, tests will only be run with
 the following web drivers that support running in a headless environment:
@@ -489,7 +501,7 @@ BrowserStack support is enabled, tests can be run on BrowserStack using the
 
 ::
 
-    python -m <test_package> <args> --browserstack
+    <test_package> <args> --browserstack
 
 See the documentation on `BrowserStack Support`_ for more details and setup
 instructions.
@@ -506,7 +518,7 @@ suppress output, use the ``--verbosity`` (or ``-v``) argument:
 
 ::
 
-    python -m <test_package> <args> --verbosity <level>
+    <test_package> <args> --verbosity <level>
 
 Where ``<level>`` is one of the following:
 
@@ -526,19 +538,19 @@ To print a list of available test classes and methods:
 
 ::
 
-    python -m <test_package> list
+    <test_package> list
 
 To only list test classes from specific modules:
 
 ::
 
-    python -m <test_package> list --module <test_module> [<test_module> ...]
+    <test_package> list --module <test_module> [<test_module> ...]
 
 To only list specific test classes:
 
 ::
 
-    python -m <test_package> list --test <TestClass> [<TestClass> ...]
+    <test_package> list --test <TestClass> [<TestClass> ...]
 
 
 
