@@ -11,6 +11,9 @@ example project can be found `here
 Initialize the project
 ----------------------
 
+Create project files
+~~~~~~~~~~~~~~~~~~~~
+
 First, create a directory for the test project:
 
 .. code-block:: none
@@ -77,6 +80,7 @@ Initializing the project should create the following files and directories:
     │   │   ├── __init__.py
     │   │   ├── browser.py
     │   │   ├── browserstack.py
+    │   │   ├── projectfiles.py
     │   │   ├── site.py
     │   │   ├── test.py
     │   │   └── webdriver.py
@@ -89,6 +93,26 @@ Initializing the project should create the following files and directories:
     │       └── __init__.py
     └── setup.py
 
+
+(Optional) Setup virtualenv
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If using ``virtualenv``, initialize the virtual environment before installing
+the test package:
+
+.. code-block:: none
+   
+   virtualenv venv
+   source ./venv/bin/activate
+
+``virtualenv`` allows the test package to be installed in an isolated python
+environment, ensuring any dependencies won't overlap with other packages that
+may require different versions. For more information, see `virtualenv
+documentation <https://virtualenv.pypa.io/en/latest/>`_.
+
+
+Install test package
+~~~~~~~~~~~~~~~~~~~~
 
 After initializing the test project, run:
 
@@ -146,7 +170,7 @@ module:
 
 .. code-block:: none
 
-    python -m example_package new page
+    example_package new page
 
 You will be prompted to enter a name for the new module, a class name for the
 new page object, and an optional description for the page object. We'll call the
@@ -181,7 +205,7 @@ This will create the file ``example_package/pages/home.py``.
 
    ::
 
-      python -m example_package new page --help
+      example_package new page --help
 
 
 Locating page elements
@@ -240,7 +264,7 @@ test case. Run the following command to create a new test module:
 
 .. code-block:: none
 
-    python -m example_package new test
+    example_package new test
 
 You will be prompted to enter a name for the new module, a class name for the
 test case, and an optional description for the test case class. We'll call the
@@ -268,7 +292,7 @@ This will create the file ``example_package/tests/home.py``.
 
    ::
 
-      python -m example_package new test --help
+      example_package new test --help
 
 
 Adding test functions
@@ -314,7 +338,7 @@ framework is able to detect the tests, run:
 
 .. code-block:: none
 
-    python -m example_package list
+    example_package list
 
 This prints a list of test cases and their test methods in the package. The
 output should look like this:
@@ -339,7 +363,7 @@ To run our test suite:
 
 .. code-block:: none
 
-    python -m example_package
+    example_package
 
 This will generate new test case classes for Chrome and Firefox based on the
 test case classes we wrote and run them. If all tests pass, the output should
@@ -369,7 +393,7 @@ arguments, run:
 
 .. code-block:: none
 
-    python -m example_package run --help
+    example_package run --help
 
 Running in a specific browser
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -380,7 +404,7 @@ Firefox test cases:
 
 .. code-block:: none
 
-    python -m example_package --browser firefox
+    example_package --browser firefox
 
 Running specific test modules
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -391,7 +415,7 @@ command line argument. For example, if we just wanted to run
 
 .. code-block:: none
 
-    python -m example_package --module home
+    example_package --module home
 
 Since we only have one test module in this example, this doesn’t do anything
 different than normal, but this can be useful in test projects with multiple
@@ -406,7 +430,7 @@ run HomePageTestCase:
 
 .. code-block:: none
 
-    python -m example_package --test HomePageTestCase
+    example_package --test HomePageTestCase
 
 Since we only have one test case class in this example, this doesn’t do anything
 different than normal, but this can be useful in test projects with multiple
@@ -416,7 +440,7 @@ If we just wanted to run the ``test_more_information_link`` function:
 
 .. code-block:: none
 
-    python -m example_package --test HomePageTestCase.test_more_information_link
+    example_package --test HomePageTestCase.test_more_information_link
 
 The ``--test`` argument also supports wildcards in both the test case class and
 method names. For example, if we wanted to run all test case classes beginning
@@ -424,20 +448,20 @@ with the word ``Home``:
 
 .. code-block:: none
 
-   python -m example_package --test Home*
+   example_package --test Home*
 
 Or if we wanted to run all methods in ``HomePageTestCase`` containing the word
 ``page``:
 
 .. code-block:: none
 
-   python -m example_package --test HomePageTestCase.*page*
+   example_package --test HomePageTestCase.*page*
 
 Or if we wanted to run all test methods ending with the word ``link``:
 
 .. code-block:: none
 
-   python -m example_package --test *.*_link
+   example_package --test *.*_link
 
 Obviously this isn't particularly useful in our simple example, but can allow
 for a lot more control in larger test projects without needing to type out long
@@ -453,7 +477,7 @@ example, if we wanted to run all tests except for the
 
 .. code-block:: none
 
-    python -m example_package --skip HomePageTestCase.test_more_information_link
+    example_package --skip HomePageTestCase.test_more_information_link
 
 Like the ``--test`` argument, ``--skip`` also supports wildcards in class and
 method names. E.g. if we wanted to skip all methods in all test cases that
@@ -461,7 +485,7 @@ contain the word ``page``:
 
 .. code-block:: none
 
-    python -m example_package --skip *.*page*
+    example_package --skip *.*page*
 
 Again, this isn't particularly interesting since we only have 2 test functions,
 but can be useful in larger test projects.
@@ -475,7 +499,7 @@ headless browsers:
 
 .. code-block:: none
 
-    python -m example_package --headless
+    example_package --headless
 
 For more information and a list of compatible browsers, see 
 :ref:`headless browsers documentation <headless-browsers>`. 
@@ -489,13 +513,13 @@ tests:
 
 .. code-block:: none
 
-    python -m example_package --verbosity 1
+    example_package --verbosity 1
 
 To suppress output entirely and just get the final results:
 
 .. code-block:: none
 
-    python -m example_package --verbosity 0
+    example_package --verbosity 0
 
 
 

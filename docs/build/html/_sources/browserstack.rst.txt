@@ -68,19 +68,19 @@ examples:
 
 ::
 
-    python -m <test_package> --browserstack
+    <test_package> --browserstack
 
 ::
 
-    python -m <test_package> --module <test_module> --browserstack
+    <test_package> --module <test_module> --browserstack
 
 ::
 
-    python -m <test_package> --test <TestClass> --browserstack
+    <test_package> --test <TestClass> --browserstack
 
 ::
 
-    python -m <test_package> --browser <browser> --browserstack
+    <test_package> --browser <browser> --browserstack
 
 
 Configuring Browsers
@@ -142,7 +142,7 @@ specify the build name for the group of tests being run:
 
 ::
 
-    python -m <test_package> <args> --browserstack --build <name>
+    <test_package> <args> --browserstack --build <name>
 
 **Note:** Quotation marks must be used for build names containing spaces (e.g.
 ``--build 'Example Build'``).
@@ -180,13 +180,13 @@ To enable video recording:
 
 ::
 
-    python -m <test_package> <args> --browserstack --video
+    <test_package> <args> --browserstack --video
 
 To disable video recording:
 
 ::
 
-    python -m <test_package> <args> --browserstack --no-video
+    <test_package> <args> --browserstack --no-video
 
 
 

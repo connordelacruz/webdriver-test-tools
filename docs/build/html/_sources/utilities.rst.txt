@@ -105,7 +105,7 @@ argument:
 
 ::
 
-   python -m <test_package> new page <module_name> <PageObjectClass> -p <prototype>
+   <test_package> new page <module_name> <PageObjectClass> -p <prototype>
 
 Where ``<prototype>`` is one of the options listed when calling ``python -m
 <test_package> new page --help``:
