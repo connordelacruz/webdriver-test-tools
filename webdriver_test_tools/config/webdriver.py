@@ -53,6 +53,9 @@ class WebDriverConfig:
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
     LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
     SCREENSHOT_PATH = os.path.join(_PACKAGE_ROOT, 'screenshot')
+    # TODO: doc, organize, add to templates
+    DEFAULT_ASSERTION_TIMEOUT=10
+
 
     IMPLICIT_WAIT = 0
 
