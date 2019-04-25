@@ -46,8 +46,8 @@ has additional assertions:
 Each of these assertion methods accepts the following optional keyword arguments:
 
 - ``msg``: If specified, used as the error message on failure
-- ``wait_timeout``: (Default = 10) Number of seconds to wait for expected
-  conditions to occur before test fails
+- ``wait_timeout``: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``) Number of
+  seconds to wait for expected conditions to occur before test fails
 
 Some assertions have other optional keyword arguments specific to what they are
 testing. For details, check the documentation for :class:`WebDriverTestCase`.
@@ -94,6 +94,12 @@ class WebDriverTestCase(unittest.TestCase):
         ``True``, don't generate tests for mobile browsers. This can be helpful if the
         layout changes between desktop and mobile viewports would alter the test
         procedures.
+    :var WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT: (Optional) Default number
+        of seconds for :ref:`WebDriverTestCase assertion methods
+        <assertion-methods>` to wait for expected conditions to occur before
+        test fails. Defaults to the value of ``DEFAULT_ASSERTION_TIMEOUT`` set
+        in the test project's
+        <webdriver_test_tools.config.webdriver.WebDriverConfig>` class
 
     **Browser-specific implementations of this class need to override the following:**
 
@@ -127,13 +133,11 @@ class WebDriverTestCase(unittest.TestCase):
     driver = None
     WebDriverConfig = WebDriverConfig
 
-    # TODO: doc, organize
-    DEFAULT_ASSERTION_TIMEOUT = None
-
     # Test case attributes
     SITE_URL = None
     SKIP_BROWSERS = []
     SKIP_MOBILE = None
+    DEFAULT_ASSERTION_TIMEOUT = None
 
     # Browser implementation attributes
     DRIVER_NAME = None
@@ -164,14 +168,18 @@ class WebDriverTestCase(unittest.TestCase):
         """
         pass
 
-    # TODO: update docs
     def setUp(self):
         """Initialize driver and call ``self.driver.get(self.SITE_URL)``
 
-        If ``self.ENABLE_BS`` is ``False``, ``self.driver`` gets the returned results of
-        :meth:`self.driver_init() <WebDriverTestCase.driver_init>`. If ``self.ENABLE_BS``
-        is ``True``, ``self.driver`` gets the returned results of :meth:`self.bs_driver_init()
+        If ``self.ENABLE_BS`` is ``False``, ``self.driver`` gets the returned
+        results of :meth:`self.driver_init() <WebDriverTestCase.driver_init>`.
+        If ``self.ENABLE_BS`` is ``True``, ``self.driver`` gets the returned
+        results of :meth:`self.bs_driver_init()
         <WebDriverTestCase.bs_driver_init>`
+
+        Also checks if ``self.DEFAULT_ASSERTION_TIMEOUT`` is set and defaults
+        to ``self.WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT`` if it's
+        unspecified
         """
         self.driver = self.bs_driver_init() if self.ENABLE_BS else self.driver_init()
         if not self.DEFAULT_ASSERTION_TIMEOUT or not isinstance(self.DEFAULT_ASSERTION_TIMEOUT, int):
@@ -190,8 +198,6 @@ class WebDriverTestCase(unittest.TestCase):
         :param locator: WebDriver locator tuple in the format ``(By.<attr>, <locator string>)``
         """
         return '("{0}", "{1}")'.format(*locator)
-
-    # TODO: update assertion docstrings
 
     def assertExists(self, element_locator, msg=None, wait_timeout=None):
         """Fail if element doesn't exist
