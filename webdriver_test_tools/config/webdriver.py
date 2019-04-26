@@ -14,6 +14,10 @@ class WebDriverConfig:
         subdirectory in the webdriver_test_tools package root directory
     :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory. Defaults
         to the screenshot subdirectory in the webdriver_test_tools package root directory
+    :var WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT: (Default: 10) Default
+        number of seconds for :ref:`WebDriverTestCase assertion methods
+        <assertion-methods>` to wait for expected conditions to occur before
+        test fails
     :var WebDriverConfig.IMPLICIT_WAIT: Implicit wait time for webdriver to poll DOM
 
         .. note::
@@ -54,6 +58,8 @@ class WebDriverConfig:
     LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
     SCREENSHOT_PATH = os.path.join(_PACKAGE_ROOT, 'screenshot')
 
+    DEFAULT_ASSERTION_TIMEOUT=10
+    # TODO: Deprecate
     IMPLICIT_WAIT = 0
 
     FIREFOX_KWARGS = {}
@@ -154,6 +160,7 @@ class WebDriverConfig:
     def set_driver_implicit_wait(cls, driver):
         """Returns driver with implicit wait time set"""
         if cls.IMPLICIT_WAIT > 0:
+            # TODO: Deprecation warning
             driver.implicitly_wait(cls.IMPLICIT_WAIT)
         return driver
 
