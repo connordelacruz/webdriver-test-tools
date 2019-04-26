@@ -24,7 +24,8 @@ class WebDriverConfig:
 
             * `{date}`: Replaced with the date the screenshot was taken
               (YYYY-MM-DD)
-            * `{time}`: Replaced with the time the screenshot was taken (HHMM)
+            * `{time}`: Replaced with the time the screenshot was taken
+              (HHMMSS)
             * `{test}`: Replaced with the test method running when screenshot
               was taken
             * `{browser}`: Replaced with the browser used when screenshot was
@@ -206,7 +207,7 @@ class WebDriverConfig:
         now = datetime.now()
         path = cls.SCREENSHOT_FILENAME_FORMAT.format(
             date=now.strftime('%Y-%m-%d'),
-            time=now.strftime('%H%M'),
+            time=now.strftime('%H%M%S'),
             test=test_name,
             browser=browser_name
         )
