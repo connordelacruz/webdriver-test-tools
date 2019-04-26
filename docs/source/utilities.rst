@@ -186,6 +186,9 @@ updated in a single place without altering the tests.
 Screenshots
 ===========
 
+Take Screenshot on Test Failure
+-------------------------------
+
 The :meth:`WebDriverTestCase.screenshotOnFail()
 <webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail>`
 decorator method can be used to save screenshots when a test assertion fails.
@@ -201,9 +204,8 @@ This can be particularly useful when running tests using :ref:`headless browsers
         def test_method(self):
             ...
 
-Screenshots are saved to the directory configured in
-``WebDriverConfig.SCREENSHOT_PATH``, which is set to
-``<test_package>/screenshot/`` by default.
+See :ref:`screenshot-configs` for details on screenshot filename and path
+configurations.
 
 .. note::
 
@@ -211,4 +213,62 @@ Screenshots are saved to the directory configured in
     within a subTest. See the :meth:`method's documentation
     <webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail>`
     for more information.
+
+
+Take Screenshots During Test Execution
+--------------------------------------
+
+The :meth:`WebDriverTestCase.takeScreenshot()
+<webdriver_test_tools.testcase.webdriver.WebDriverTestCase.takeScreenshot>`
+method can be used to take screenshots at arbitrary points during test
+execution.
+
+.. code-block:: python
+    :caption: Usage example:
+
+    class ExampleTestCase(WebDriverTestCase):
+        ...
+        def test_method(self):
+            ...
+            self.takeScreenshot()
+
+This method accepts optional parameter ``print_filename``, which will print the
+path to the new file to standard output.
+
+See :ref:`screenshot-configs` for details on screenshot filename and path
+configurations.
+
+
+.. _screenshot-configs:
+
+Configure Screenshot Directory and Filename Format
+--------------------------------------------------
+
+Screenshots are saved to the directory configured in
+``WebDriverConfig.SCREENSHOT_PATH``, which is set to
+``<test_package>/screenshot/`` by default.
+
+Screenshot filenames are determined by the format string configured in
+``WebDriverConfig.SCREENSHOT_FILENAME_FORMAT``. The format string can include
+the following parameters:
+
+   * ``{date}``: Replaced with the date the screenshot was taken (YYYY-MM-DD)
+   * ``{time}``: Replaced with the time the screenshot was taken (HHMMSS)
+   * ``{test}``: Replaced with the test method running when screenshot was taken
+   * ``{browser}``: Replaced with the browser used when screenshot was taken
+
+The format string can include '/' directory separators to save screenshots in
+subdirectories of ``WebDriverConfig.SCREENSHOT_PATH``.
+
+.. code-block:: python
+   :caption: Example filename formats:
+ 
+   # The default output format
+   SCREENSHOT_FILENAME_FORMAT = '{date}/{time}-{test}-{browser}.png'
+
+   # Parameters can be used more than once
+   SCREENSHOT_FILENAME_FORMAT = '{date}-{time}/{time}-{test}-{browser}.png'
+
+   # Can include multiple subdirectories
+   SCREENSHOT_FILENAME_FORMAT = '{date}/{time}/{test}/{browser}.png'
 

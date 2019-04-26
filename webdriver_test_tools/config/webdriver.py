@@ -5,15 +5,36 @@ from selenium import webdriver
 
 import webdriver_test_tools
 from webdriver_test_tools.common import utils
+from webdriver_test_tools.common.files import create_directory
 
 
 class WebDriverConfig:
     """Configurations for webdriver
 
-    :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the log
-        subdirectory in the webdriver_test_tools package root directory
-    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory. Defaults
-        to the screenshot subdirectory in the webdriver_test_tools package root directory
+    :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the
+        log subdirectory in the webdriver_test_tools package root directory
+    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory.
+        Defaults to the screenshot subdirectory in the webdriver_test_tools
+        package root directory
+    :var WebDriverConfig.SCREENSHOT_FILENAME_FORMAT: (Default:
+        '{date}/{time}-{test}-{browser}.png') Format string used to determine
+        filenames for screenshots (relative to
+        :attr:`WebDriverConfig.SCREENSHOT_PATH`). The format string can include
+        the following parameters:
+
+            * ``{date}``: Replaced with the date the screenshot was taken
+              (YYYY-MM-DD)
+            * ``{time}``: Replaced with the time the screenshot was taken
+              (HHMMSS)
+            * ``{test}``: Replaced with the test method running when screenshot
+              was taken
+            * ``{browser}``: Replaced with the browser used when screenshot was
+              taken
+
+        The format string can include '/' directory separators to save
+        screenshots in subdirectories of
+        :attr:`WebDriverConfig.SCREENSHOT_PATH`.
+
     :var WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT: (Default: 10) Default
         number of seconds for :ref:`WebDriverTestCase assertion methods
         <assertion-methods>` to wait for expected conditions to occur before
@@ -57,6 +78,7 @@ class WebDriverConfig:
     _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
     LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
     SCREENSHOT_PATH = os.path.join(_PACKAGE_ROOT, 'screenshot')
+    SCREENSHOT_FILENAME_FORMAT = '{date}/{time}-{test}-{browser}.png'
 
     DEFAULT_ASSERTION_TIMEOUT=10
     # TODO: Deprecate
@@ -167,16 +189,37 @@ class WebDriverConfig:
     # Misc
 
     @classmethod
-    def new_screenshot_file(cls, browser_name, test_name):
-        """Return the full filepath and filename for the screenshot
+    def new_screenshot_file(cls, browser_name, test_name, makedirs=True):
+        """Return the full path and filename for the screenshot
+
+        The filename is determined by the format set in
+        :attr:`WebDriverConfig.SCREENSHOT_FILENAME_FORMAT`. If the format doesn't
+        end with '.png', the extension will be appended to the resulting
+        filename
 
         :param browser_name: Name of the browser (for screenshot filename)
         :param test_name: Name of the current test (for screenshot filename)
+        :param makedirs: (Default = True) If True, create any subdirectories of
+            screenshot/ if they don't already exist
 
         :return: Filename for the screenshot
         """
-        filename_fmt = '{time}-{browser}-{test}.png'
-        timestamp = datetime.now().strftime('%Y%m%d-%H%M')
-        filename = filename_fmt.format(time=timestamp, browser=browser_name, test=test_name)
+        now = datetime.now()
+        path = cls.SCREENSHOT_FILENAME_FORMAT.format(
+            date=now.strftime('%Y-%m-%d'),
+            time=now.strftime('%H%M%S'),
+            test=test_name,
+            browser=browser_name
+        )
+        # Ensure .png extension is present
+        if not path.lower().endswith('.png'):
+            path += '.png'
         # Validate string characters for file name
-        return os.path.join(cls.SCREENSHOT_PATH, utils.validate_filename(filename))
+        filename = utils.validate_filename(os.path.basename(path))
+        # Get any subdirectory names
+        dirname = os.path.dirname(path)
+        # Create subdirectories if they don't already exist
+        if makedirs:
+            create_directory(cls.SCREENSHOT_PATH, dirname)
+        return os.path.join(cls.SCREENSHOT_PATH, dirname, filename)
+
