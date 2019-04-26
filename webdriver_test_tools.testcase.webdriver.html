@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.testcase.webdriver module &mdash; WebDriver Test Tools 2.10.2-alpha documentation</title>
+  <title>webdriver_test_tools.testcase.webdriver module &mdash; WebDriver Test Tools 2.11.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.10
+                2.11
               </div>
             
           
@@ -705,11 +705,30 @@ test fails</li>
 </div>
 </dd></dl>
 
+<dl class="method">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.takeScreenshot">
+<code class="descname">takeScreenshot</code><span class="sig-paren">(</span><em>print_filename=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.takeScreenshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.takeScreenshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a screenshot using
+<a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file" title="webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">self.WebDriverConfig.new_screenshot_file</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>print_filename</strong> – (Default = False) If True, print the path to the
+new file to standard out</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Path to the new screenshot file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="staticmethod">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail">
 <em class="property">static </em><code class="descname">screenshotOnFail</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.screenshotOnFail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator for test methods that takes a screenshot if an assertion fails.
-Screenshots are saved to the directory configured in <code class="docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_PATH</span></code></p>
+<dd><p>Decorator for test methods that takes a screenshot if an assertion
+fails. See <a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file" title="webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">WebDriverConfig.new_screenshot_file</span></code></a>
+for details on filename and output directory</p>
 <p>Usage Example:</p>
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase</span><span class="o">.</span><span class="n">screenshotOnFail</span><span class="p">()</span>
 <span class="n">test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -720,9 +739,10 @@ Screenshots are saved to the directory configured in <code class="docutils liter
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Currently, this method does not take a screenshot for assertions that fail within a subTest.
-Since subTests are designed to continue test execution if an assertion fails, they don’t
-raise exceptions outside of their context.</p>
+<p class="last">Currently, this method does not take a screenshot for assertions
+that fail within a subTest. Since subTests are designed to
+continue test execution if an assertion fails, they don’t raise
+exceptions outside of their context.</p>
 </div>
 </dd></dl>
 
@@ -787,7 +807,7 @@ will only be generated for mobile browsers</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.10.2-alpha',
+            VERSION:'2.11.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
