@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.webdriver module &mdash; WebDriver Test Tools 2.10.2-alpha documentation</title>
+  <title>webdriver_test_tools.config.webdriver module &mdash; WebDriver Test Tools 2.11.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.10
+                2.11
               </div>
             
           
@@ -188,10 +188,32 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>WebDriverConfig.LOG_PATH</strong> – Path to the log directory. Defaults to the log
-subdirectory in the webdriver_test_tools package root directory</li>
-<li><strong>WebDriverConfig.SCREENSHOT_PATH</strong> – Path to the screenshot directory. Defaults
-to the screenshot subdirectory in the webdriver_test_tools package root directory</li>
+<li><strong>WebDriverConfig.LOG_PATH</strong> – Path to the log directory. Defaults to the
+log subdirectory in the webdriver_test_tools package root directory</li>
+<li><strong>WebDriverConfig.SCREENSHOT_PATH</strong> – Path to the screenshot directory.
+Defaults to the screenshot subdirectory in the webdriver_test_tools
+package root directory</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT" title="webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT"><strong>WebDriverConfig.SCREENSHOT_FILENAME_FORMAT</strong></a> – <p>(Default:
+‘{date}/{time}-{test}-{browser}.png’) Format string used to determine
+filenames for screenshots (relative to
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_PATH</span></code>). The format string can include
+the following parameters:</p>
+<blockquote>
+<div><ul>
+<li><code class="docutils literal notranslate"><span class="pre">{date}</span></code>: Replaced with the date the screenshot was taken
+(YYYY-MM-DD)</li>
+<li><code class="docutils literal notranslate"><span class="pre">{time}</span></code>: Replaced with the time the screenshot was taken
+(HHMMSS)</li>
+<li><code class="docutils literal notranslate"><span class="pre">{test}</span></code>: Replaced with the test method running when screenshot
+was taken</li>
+<li><code class="docutils literal notranslate"><span class="pre">{browser}</span></code>: Replaced with the browser used when screenshot was
+taken</li>
+</ul>
+</div></blockquote>
+<p>The format string can include ‘/’ directory separators to save
+screenshots in subdirectories of
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_PATH</span></code>.</p>
+</li>
 <li><a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT" title="webdriver_test_tools.config.webdriver.WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT"><strong>WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT</strong></a> – (Default: 10) Default
 number of seconds for <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#assertion-methods"><span class="std std-ref">WebDriverTestCase assertion methods</span></a> to wait for expected conditions to occur before
 test fails</li>
@@ -255,6 +277,11 @@ to the <code class="docutils literal notranslate"><span class="pre">-headless</s
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT">
+<code class="descname">SCREENSHOT_FILENAME_FORMAT</code><em class="property"> = '{date}/{time}-{test}-{browser}.png'</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT">
 <code class="descname">DEFAULT_ASSERTION_TIMEOUT</code><em class="property"> = 10</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT" title="Permalink to this definition">¶</a></dt>
@@ -379,8 +406,12 @@ headless browser</td>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file">
-<em class="property">classmethod </em><code class="descname">new_screenshot_file</code><span class="sig-paren">(</span><em>browser_name</em>, <em>test_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.new_screenshot_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the full filepath and filename for the screenshot</p>
+<em class="property">classmethod </em><code class="descname">new_screenshot_file</code><span class="sig-paren">(</span><em>browser_name</em>, <em>test_name</em>, <em>makedirs=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.new_screenshot_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the full path and filename for the screenshot</p>
+<p>The filename is determined by the format set in
+<a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT" title="webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT"><code class="xref py py-attr docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_FILENAME_FORMAT</span></code></a>. If the format doesn’t
+end with ‘.png’, the extension will be appended to the resulting
+filename</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -388,6 +419,8 @@ headless browser</td>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>browser_name</strong> – Name of the browser (for screenshot filename)</li>
 <li><strong>test_name</strong> – Name of the current test (for screenshot filename)</li>
+<li><strong>makedirs</strong> – (Default = True) If True, create any subdirectories of
+screenshot/ if they don’t already exist</li>
 </ul>
 </td>
 </tr>
@@ -444,7 +477,7 @@ headless browser</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.10.2-alpha',
+            VERSION:'2.11.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

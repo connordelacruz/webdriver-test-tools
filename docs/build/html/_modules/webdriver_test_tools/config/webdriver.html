@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.webdriver &mdash; WebDriver Test Tools 2.10.2-alpha documentation</title>
+  <title>webdriver_test_tools.config.webdriver &mdash; WebDriver Test Tools 2.11.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.10
+                2.11
               </div>
             
           
@@ -164,15 +164,36 @@
 
 <span class="kn">import</span> <span class="nn">webdriver_test_tools</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.common</span> <span class="k">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.common.files</span> <span class="k">import</span> <span class="n">create_directory</span>
 
 
 <div class="viewcode-block" id="WebDriverConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig">[docs]</a><span class="k">class</span> <span class="nc">WebDriverConfig</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Configurations for webdriver</span>
 
-<span class="sd">    :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the log</span>
-<span class="sd">        subdirectory in the webdriver_test_tools package root directory</span>
-<span class="sd">    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory. Defaults</span>
-<span class="sd">        to the screenshot subdirectory in the webdriver_test_tools package root directory</span>
+<span class="sd">    :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the</span>
+<span class="sd">        log subdirectory in the webdriver_test_tools package root directory</span>
+<span class="sd">    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory.</span>
+<span class="sd">        Defaults to the screenshot subdirectory in the webdriver_test_tools</span>
+<span class="sd">        package root directory</span>
+<span class="sd">    :var WebDriverConfig.SCREENSHOT_FILENAME_FORMAT: (Default:</span>
+<span class="sd">        &#39;{date}/{time}-{test}-{browser}.png&#39;) Format string used to determine</span>
+<span class="sd">        filenames for screenshots (relative to</span>
+<span class="sd">        :attr:`WebDriverConfig.SCREENSHOT_PATH`). The format string can include</span>
+<span class="sd">        the following parameters:</span>
+
+<span class="sd">            * ``{date}``: Replaced with the date the screenshot was taken</span>
+<span class="sd">              (YYYY-MM-DD)</span>
+<span class="sd">            * ``{time}``: Replaced with the time the screenshot was taken</span>
+<span class="sd">              (HHMMSS)</span>
+<span class="sd">            * ``{test}``: Replaced with the test method running when screenshot</span>
+<span class="sd">              was taken</span>
+<span class="sd">            * ``{browser}``: Replaced with the browser used when screenshot was</span>
+<span class="sd">              taken</span>
+
+<span class="sd">        The format string can include &#39;/&#39; directory separators to save</span>
+<span class="sd">        screenshots in subdirectories of</span>
+<span class="sd">        :attr:`WebDriverConfig.SCREENSHOT_PATH`.</span>
+
 <span class="sd">    :var WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT: (Default: 10) Default</span>
 <span class="sd">        number of seconds for :ref:`WebDriverTestCase assertion methods</span>
 <span class="sd">        &lt;assertion-methods&gt;` to wait for expected conditions to occur before</span>
@@ -216,6 +237,7 @@
     <span class="n">_PACKAGE_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
     <span class="n">LOG_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_PACKAGE_ROOT</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">)</span>
     <span class="n">SCREENSHOT_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_PACKAGE_ROOT</span><span class="p">,</span> <span class="s1">&#39;screenshot&#39;</span><span class="p">)</span>
+    <span class="n">SCREENSHOT_FILENAME_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{date}</span><span class="s1">/</span><span class="si">{time}</span><span class="s1">-</span><span class="si">{test}</span><span class="s1">-</span><span class="si">{browser}</span><span class="s1">.png&#39;</span>
 
     <span class="n">DEFAULT_ASSERTION_TIMEOUT</span><span class="o">=</span><span class="mi">10</span>
     <span class="c1"># TODO: Deprecate</span>
@@ -326,19 +348,40 @@
     <span class="c1"># Misc</span>
 
 <div class="viewcode-block" id="WebDriverConfig.new_screenshot_file"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">new_screenshot_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">browser_name</span><span class="p">,</span> <span class="n">test_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the full filepath and filename for the screenshot</span>
+    <span class="k">def</span> <span class="nf">new_screenshot_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">browser_name</span><span class="p">,</span> <span class="n">test_name</span><span class="p">,</span> <span class="n">makedirs</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the full path and filename for the screenshot</span>
+
+<span class="sd">        The filename is determined by the format set in</span>
+<span class="sd">        :attr:`WebDriverConfig.SCREENSHOT_FILENAME_FORMAT`. If the format doesn&#39;t</span>
+<span class="sd">        end with &#39;.png&#39;, the extension will be appended to the resulting</span>
+<span class="sd">        filename</span>
 
 <span class="sd">        :param browser_name: Name of the browser (for screenshot filename)</span>
 <span class="sd">        :param test_name: Name of the current test (for screenshot filename)</span>
+<span class="sd">        :param makedirs: (Default = True) If True, create any subdirectories of</span>
+<span class="sd">            screenshot/ if they don&#39;t already exist</span>
 
 <span class="sd">        :return: Filename for the screenshot</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">filename_fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{time}</span><span class="s1">-</span><span class="si">{browser}</span><span class="s1">-</span><span class="si">{test}</span><span class="s1">.png&#39;</span>
-        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">-%H%M&#39;</span><span class="p">)</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">filename_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">browser</span><span class="o">=</span><span class="n">browser_name</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">test_name</span><span class="p">)</span>
+        <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">SCREENSHOT_FILENAME_FORMAT</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">date</span><span class="o">=</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span>
+            <span class="n">time</span><span class="o">=</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H%M%S&#39;</span><span class="p">),</span>
+            <span class="n">test</span><span class="o">=</span><span class="n">test_name</span><span class="p">,</span>
+            <span class="n">browser</span><span class="o">=</span><span class="n">browser_name</span>
+        <span class="p">)</span>
+        <span class="c1"># Ensure .png extension is present</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.png&#39;</span><span class="p">):</span>
+            <span class="n">path</span> <span class="o">+=</span> <span class="s1">&#39;.png&#39;</span>
         <span class="c1"># Validate string characters for file name</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">SCREENSHOT_PATH</span><span class="p">,</span> <span class="n">utils</span><span class="o">.</span><span class="n">validate_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span></div></div>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">validate_filename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+        <span class="c1"># Get any subdirectory names</span>
+        <span class="n">dirname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="c1"># Create subdirectories if they don&#39;t already exist</span>
+        <span class="k">if</span> <span class="n">makedirs</span><span class="p">:</span>
+            <span class="n">create_directory</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">SCREENSHOT_PATH</span><span class="p">,</span> <span class="n">dirname</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">SCREENSHOT_PATH</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></div></div>
+
 </pre></div>
 
            </div>
@@ -373,7 +416,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.10.2-alpha',
+            VERSION:'2.11.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

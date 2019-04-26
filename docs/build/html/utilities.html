@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Testing Utilities &mdash; WebDriver Test Tools 2.10.2-alpha documentation</title>
+  <title>Testing Utilities &mdash; WebDriver Test Tools 2.11.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.10
+                2.11
               </div>
             
           
@@ -106,7 +106,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#screenshots">Screenshots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#screenshots">Screenshots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#take-screenshot-on-test-failure">Take Screenshot on Test Failure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#take-screenshots-during-test-execution">Take Screenshots During Test Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-screenshot-directory-and-filename-format">Configure Screenshot Directory and Filename Format</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object YAML Files</a></li>
@@ -177,31 +182,36 @@
            <div itemprop="articleBody">
             
   <div class="section" id="testing-utilities">
-<h1><a class="toc-backref" href="#id10">Testing Utilities</a><a class="headerlink" href="#testing-utilities" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id12">Testing Utilities</a><a class="headerlink" href="#testing-utilities" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#testing-utilities" id="id10">Testing Utilities</a><ul>
-<li><a class="reference internal" href="#page-object-prototypes" id="id11">Page Object Prototypes</a><ul>
-<li><a class="reference internal" href="#example" id="id12">Example</a></li>
-<li><a class="reference internal" href="#using-prototypes-in-new-page-objects" id="id13">Using Prototypes in New Page Objects</a></li>
+<li><a class="reference internal" href="#testing-utilities" id="id12">Testing Utilities</a><ul>
+<li><a class="reference internal" href="#page-object-prototypes" id="id13">Page Object Prototypes</a><ul>
+<li><a class="reference internal" href="#example" id="id14">Example</a></li>
+<li><a class="reference internal" href="#using-prototypes-in-new-page-objects" id="id15">Using Prototypes in New Page Objects</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#test-data-generation" id="id14">Test Data Generation</a><ul>
-<li><a class="reference internal" href="#id1" id="id15">Example</a></li>
+<li><a class="reference internal" href="#test-data-generation" id="id16">Test Data Generation</a><ul>
+<li><a class="reference internal" href="#id1" id="id17">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#static-test-data" id="id16">Static Test Data</a><ul>
-<li><a class="reference internal" href="#id2" id="id17">Example</a></li>
+<li><a class="reference internal" href="#static-test-data" id="id18">Static Test Data</a><ul>
+<li><a class="reference internal" href="#id2" id="id19">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#screenshots" id="id18">Screenshots</a></li>
+<li><a class="reference internal" href="#screenshots" id="id20">Screenshots</a><ul>
+<li><a class="reference internal" href="#take-screenshot-on-test-failure" id="id21">Take Screenshot on Test Failure</a></li>
+<li><a class="reference internal" href="#take-screenshots-during-test-execution" id="id22">Take Screenshots During Test Execution</a></li>
+<li><a class="reference internal" href="#configure-screenshot-directory-and-filename-format" id="id23">Configure Screenshot Directory and Filename Format</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="page-object-prototypes">
-<h2><a class="toc-backref" href="#id11">Page Object Prototypes</a><a class="headerlink" href="#page-object-prototypes" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Page Object Prototypes</a><a class="headerlink" href="#page-object-prototypes" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code> package includes pre-defined subclasses of
 <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a> for common
 components like forms and navbars. These classes define common methods and
@@ -209,7 +219,7 @@ attributes to reduce the amount of code needed to create page objects.</p>
 <p>For more information and a list of currently implemented page object
 prototypes, see the <a class="reference internal" href="webdriver_test_tools.pageobject.prototypes.html"><span class="doc">full documentation</span></a>.</p>
 <div class="section" id="example">
-<h3><a class="toc-backref" href="#id12">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p>Add examples of each page object prototype, and both YAML and non-YAML
@@ -344,7 +354,7 @@ Generation</a> section, we will create the <code class="docutils literal notrans
 used to assign <code class="docutils literal notranslate"><span class="pre">contact_form_data</span></code> in the above example.</p>
 </div>
 <div class="section" id="using-prototypes-in-new-page-objects">
-<h3><a class="toc-backref" href="#id13">Using Prototypes in New Page Objects</a><a class="headerlink" href="#using-prototypes-in-new-page-objects" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Using Prototypes in New Page Objects</a><a class="headerlink" href="#using-prototypes-in-new-page-objects" title="Permalink to this headline">¶</a></h3>
 <p>By default, page objects generated using the <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">page</span></code> command use a basic
 template and subclass <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>. You can specify a page object
 prototype to use as a basis for a new page using the <code class="docutils literal notranslate"><span class="pre">--prototype</span></code> (or <code class="docutils literal notranslate"><span class="pre">-p</span></code>)
@@ -366,7 +376,7 @@ include any variable declarations used by that prototype’s methods.</p>
 </div>
 </div>
 <div class="section" id="test-data-generation">
-<h2><a class="toc-backref" href="#id14">Test Data Generation</a><a class="headerlink" href="#test-data-generation" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">Test Data Generation</a><a class="headerlink" href="#test-data-generation" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code> package includes some utility packages for
 generating random user information and placeholder text to use for sample data:</p>
 <blockquote>
@@ -385,7 +395,7 @@ convenience. To use them, add the following import statement:</p>
 </pre></div>
 </div>
 <div class="section" id="id1">
-<h3><a class="toc-backref" href="#id15">Example</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Example</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Continuing from the above example, we’ll add the following method to
 <code class="docutils literal notranslate"><span class="pre">ContactTestCase</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id7">
@@ -409,12 +419,12 @@ mapping form input names to the corresponding values.</p>
 </div>
 </div>
 <div class="section" id="static-test-data">
-<h2><a class="toc-backref" href="#id16">Static Test Data</a><a class="headerlink" href="#static-test-data" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id18">Static Test Data</a><a class="headerlink" href="#static-test-data" title="Permalink to this headline">¶</a></h2>
 <p>Some tests may require static data for testing (e.g. login info for a registered
 user). These values can be stored in inside the <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/data.py</span></code>
 module to keep them independent of test modules or page objects.</p>
 <div class="section" id="id2">
-<h3><a class="toc-backref" href="#id17">Example</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">Example</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Suppose we have a user registration form that displays an error when registering
 with an email of an existing user. To test this functionality, we’ll need to use
 an email that we know is already registered. We can add the following value to
@@ -433,7 +443,9 @@ updated in a single place without altering the tests.</p>
 </div>
 </div>
 <div class="section" id="screenshots">
-<h2><a class="toc-backref" href="#id18">Screenshots</a><a class="headerlink" href="#screenshots" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id20">Screenshots</a><a class="headerlink" href="#screenshots" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="take-screenshot-on-test-failure">
+<h3><a class="toc-backref" href="#id21">Take Screenshot on Test Failure</a><a class="headerlink" href="#take-screenshot-on-test-failure" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail"><code class="xref py py-meth docutils literal notranslate"><span class="pre">WebDriverTestCase.screenshotOnFail()</span></code></a>
 decorator method can be used to save screenshots when a test assertion fails.
 This can be particularly useful when running tests using <a class="reference internal" href="additional_browsers.html#headless-browsers"><span class="std std-ref">headless browsers</span></a>.</p>
@@ -447,14 +459,66 @@ This can be particularly useful when running tests using <a class="reference int
 </pre></div>
 </div>
 </div>
-<p>Screenshots are saved to the directory configured in
-<code class="docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_PATH</span></code>, which is set to
-<code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/screenshot/</span></code> by default.</p>
+<p>See <a class="reference internal" href="#screenshot-configs"><span class="std std-ref">Configure Screenshot Directory and Filename Format</span></a> for details on screenshot filename and path
+configurations.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Currently, this method does not take a screenshot for assertions that fail
 within a subTest. See the <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail"><code class="xref py py-meth docutils literal notranslate"><span class="pre">method's</span> <span class="pre">documentation</span></code></a>
 for more information.</p>
+</div>
+</div>
+<div class="section" id="take-screenshots-during-test-execution">
+<h3><a class="toc-backref" href="#id22">Take Screenshots During Test Execution</a><a class="headerlink" href="#take-screenshots-during-test-execution" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.takeScreenshot" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.takeScreenshot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">WebDriverTestCase.takeScreenshot()</span></code></a>
+method can be used to take screenshots at arbitrary points during test
+execution.</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">Usage example:</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">takeScreenshot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>This method accepts optional parameter <code class="docutils literal notranslate"><span class="pre">print_filename</span></code>, which will print the
+path to the new file to standard output.</p>
+<p>See <a class="reference internal" href="#screenshot-configs"><span class="std std-ref">Configure Screenshot Directory and Filename Format</span></a> for details on screenshot filename and path
+configurations.</p>
+</div>
+<div class="section" id="configure-screenshot-directory-and-filename-format">
+<span id="screenshot-configs"></span><h3><a class="toc-backref" href="#id23">Configure Screenshot Directory and Filename Format</a><a class="headerlink" href="#configure-screenshot-directory-and-filename-format" title="Permalink to this headline">¶</a></h3>
+<p>Screenshots are saved to the directory configured in
+<code class="docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_PATH</span></code>, which is set to
+<code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/screenshot/</span></code> by default.</p>
+<p>Screenshot filenames are determined by the format string configured in
+<code class="docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_FILENAME_FORMAT</span></code>. The format string can include
+the following parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">{date}</span></code>: Replaced with the date the screenshot was taken (YYYY-MM-DD)</li>
+<li><code class="docutils literal notranslate"><span class="pre">{time}</span></code>: Replaced with the time the screenshot was taken (HHMMSS)</li>
+<li><code class="docutils literal notranslate"><span class="pre">{test}</span></code>: Replaced with the test method running when screenshot was taken</li>
+<li><code class="docutils literal notranslate"><span class="pre">{browser}</span></code>: Replaced with the browser used when screenshot was taken</li>
+</ul>
+</div></blockquote>
+<p>The format string can include ‘/’ directory separators to save screenshots in
+subdirectories of <code class="docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_PATH</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">Example filename formats:</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The default output format</span>
+<span class="n">SCREENSHOT_FILENAME_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;{date}/{time}-{test}-{browser}.png&#39;</span>
+
+<span class="c1"># Parameters can be used more than once</span>
+<span class="n">SCREENSHOT_FILENAME_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;{date}-{time}/{time}-{test}-{browser}.png&#39;</span>
+
+<span class="c1"># Can include multiple subdirectories</span>
+<span class="n">SCREENSHOT_FILENAME_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;{date}/{time}/{test}/{browser}.png&#39;</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -501,7 +565,7 @@ for more information.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.10.2-alpha',
+            VERSION:'2.11.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
