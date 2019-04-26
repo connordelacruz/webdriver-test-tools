@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.data package &mdash; WebDriver Test Tools 2.10.0-alpha documentation</title>
+  <title>webdriver_test_tools.data package &mdash; WebDriver Test Tools 2.10.2-alpha documentation</title>
   
 
   
@@ -322,7 +322,8 @@ name if True</td>
 <dl class="method">
 <dt id="randomuser.RandomUser.get_dob">
 <code class="descname">get_dob</code><span class="sig-paren">(</span><em>parse_time=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/randomuser.html#RandomUser.get_dob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#randomuser.RandomUser.get_dob" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns date of birth as a string in the format ‘%Y-%m-%d %H:%M:%S’</p>
+<dd><p>Returns date of birth as a string in the format ‘%Y-%m-%dT%H:%M:%SZ’
+(ISO 8601 standard)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -333,6 +334,12 @@ string</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="randomuser.RandomUser.get_age">
+<code class="descname">get_age</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/randomuser.html#RandomUser.get_age"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#randomuser.RandomUser.get_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the age of the user</p>
 </dd></dl>
 
 <dl class="method">
@@ -399,6 +406,13 @@ True</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="randomuser.RandomUser.get_coordinates">
+<code class="descname">get_coordinates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/randomuser.html#RandomUser.get_coordinates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#randomuser.RandomUser.get_coordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary with keys ‘longitude’ and ‘latitude’ mapped to
+their respective values</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="randomuser.RandomUser.get_phone">
 <code class="descname">get_phone</code><span class="sig-paren">(</span><em>strip_parentheses=False</em>, <em>strip_hyphens=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/randomuser.html#RandomUser.get_phone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#randomuser.RandomUser.get_phone" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns phone number as a string in the format ‘(###)-###-####’</p>
@@ -456,7 +470,7 @@ True</td>
 <dt id="randomuser.RandomUser.get_registered">
 <code class="descname">get_registered</code><span class="sig-paren">(</span><em>parse_time=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/randomuser.html#RandomUser.get_registered"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#randomuser.RandomUser.get_registered" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns registration date as a string in the format
-‘%Y-%m-%d %H:%M:%S’</p>
+‘%Y-%m-%dT%H:%M:%SZ’ (ISO 8601 standard)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -466,6 +480,12 @@ time.strptime() and return the results instead of a string</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="randomuser.RandomUser.get_registered_age">
+<code class="descname">get_registered_age</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/randomuser.html#RandomUser.get_registered_age"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#randomuser.RandomUser.get_registered_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the age (in years) since registration date</p>
 </dd></dl>
 
 <dl class="method">
@@ -490,6 +510,12 @@ time.strptime() and return the results instead of a string</td>
 <dt id="randomuser.RandomUser.get_login_sha256">
 <code class="descname">get_login_sha256</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/randomuser.html#RandomUser.get_login_sha256"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#randomuser.RandomUser.get_login_sha256" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns user login sha256</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="randomuser.RandomUser.get_login_uuid">
+<code class="descname">get_login_uuid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/randomuser.html#RandomUser.get_login_uuid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#randomuser.RandomUser.get_login_uuid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns user login uuid</p>
 </dd></dl>
 
 <dl class="method">
@@ -728,7 +754,7 @@ in generated text. If True, leave trailing new lines in.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.10.0-alpha',
+            VERSION:'2.10.2-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
