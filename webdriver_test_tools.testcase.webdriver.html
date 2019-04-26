@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.testcase.webdriver module &mdash; WebDriver Test Tools 2.10.0-alpha documentation</title>
+  <title>webdriver_test_tools.testcase.webdriver module &mdash; WebDriver Test Tools 2.10.2-alpha documentation</title>
   
 
   
@@ -231,8 +231,8 @@ matches <code class="docutils literal notranslate"><span class="pre">expected_ur
 <p>Each of these assertion methods accepts the following optional keyword arguments:</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">msg</span></code>: If specified, used as the error message on failure</li>
-<li><code class="docutils literal notranslate"><span class="pre">wait_timeout</span></code>: (Default = 10) Number of seconds to wait for expected
-conditions to occur before test fails</li>
+<li><code class="docutils literal notranslate"><span class="pre">wait_timeout</span></code>: (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>) Number of
+seconds to wait for expected conditions to occur before test fails</li>
 </ul>
 <p>Some assertions have other optional keyword arguments specific to what they are
 testing. For details, check the documentation for <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>.</p>
@@ -275,6 +275,11 @@ generated for all enabled browsers, including mobile. If <code class="docutils l
 <code class="docutils literal notranslate"><span class="pre">True</span></code>, don’t generate tests for mobile browsers. This can be helpful if the
 layout changes between desktop and mobile viewports would alter the test
 procedures.</li>
+<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT"><strong>WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT</strong></a> – (Optional) Default number
+of seconds for <a class="reference internal" href="#assertion-methods"><span class="std std-ref">WebDriverTestCase assertion methods</span></a> to wait for expected conditions to occur before
+test fails. Defaults to the value of <code class="docutils literal notranslate"><span class="pre">DEFAULT_ASSERTION_TIMEOUT</span></code> set
+in the test project’s
+&lt;webdriver_test_tools.config.webdriver.WebDriverConfig&gt;` class</li>
 </ul>
 </td>
 </tr>
@@ -351,6 +356,11 @@ run tests in a headless browser</td>
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT">
+<code class="descname">DEFAULT_ASSERTION_TIMEOUT</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME">
 <code class="descname">DRIVER_NAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -407,9 +417,13 @@ implement this.</p>
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp">
 <code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize driver and call <code class="docutils literal notranslate"><span class="pre">self.driver.get(self.SITE_URL)</span></code></p>
-<p>If <code class="docutils literal notranslate"><span class="pre">self.ENABLE_BS</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">self.driver</span></code> gets the returned results of
-<a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">self.driver_init()</span></code></a>. If <code class="docutils literal notranslate"><span class="pre">self.ENABLE_BS</span></code>
-is <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">self.driver</span></code> gets the returned results of <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">self.bs_driver_init()</span></code></a></p>
+<p>If <code class="docutils literal notranslate"><span class="pre">self.ENABLE_BS</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">self.driver</span></code> gets the returned
+results of <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">self.driver_init()</span></code></a>.
+If <code class="docutils literal notranslate"><span class="pre">self.ENABLE_BS</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">self.driver</span></code> gets the returned
+results of <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">self.bs_driver_init()</span></code></a></p>
+<p>Also checks if <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code> is set and defaults
+to <code class="docutils literal notranslate"><span class="pre">self.WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT</span></code> if it’s
+unspecified</p>
 </dd></dl>
 
 <dl class="method">
@@ -420,7 +434,7 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists">
-<code class="descname">assertExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element doesn’t exist</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -431,8 +445,9 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 <code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
-expected conditions to occur before test fails</li>
+<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+Number of seconds to wait for expected conditions to occur before
+test fails</li>
 </ul>
 </td>
 </tr>
@@ -442,7 +457,7 @@ expected conditions to occur before test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists">
-<code class="descname">assertNotExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertNotExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element exists</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -453,8 +468,9 @@ expected conditions to occur before test fails</li>
 <code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
-expected conditions to occur before test fails</li>
+<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+Number of seconds to wait for expected conditions to occur before
+test fails</li>
 </ul>
 </td>
 </tr>
@@ -464,7 +480,7 @@ expected conditions to occur before test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView">
-<code class="descname">assertInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element isn’t scrolled into view</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -475,8 +491,9 @@ expected conditions to occur before test fails</li>
 <code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
-expected conditions to occur before test fails</li>
+<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+Number of seconds to wait for expected conditions to occur before
+test fails</li>
 </ul>
 </td>
 </tr>
@@ -486,7 +503,7 @@ expected conditions to occur before test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView">
-<code class="descname">assertNotInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertNotInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is scrolled into view</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -497,8 +514,9 @@ expected conditions to occur before test fails</li>
 <code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
-expected conditions to occur before test fails</li>
+<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+Number of seconds to wait for expected conditions to occur before
+test fails</li>
 </ul>
 </td>
 </tr>
@@ -508,7 +526,7 @@ expected conditions to occur before test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible">
-<code class="descname">assertVisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertVisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertVisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertVisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element isn’t visible</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -519,8 +537,9 @@ expected conditions to occur before test fails</li>
 <code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
-expected conditions to occur before test fails</li>
+<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+Number of seconds to wait for expected conditions to occur before
+test fails</li>
 </ul>
 </td>
 </tr>
@@ -530,7 +549,7 @@ expected conditions to occur before test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible">
-<code class="descname">assertInvisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInvisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertInvisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInvisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is visible</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -541,8 +560,9 @@ expected conditions to occur before test fails</li>
 <code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
-expected conditions to occur before test fails</li>
+<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+Number of seconds to wait for expected conditions to occur before
+test fails</li>
 </ul>
 </td>
 </tr>
@@ -552,7 +572,7 @@ expected conditions to occur before test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled">
-<code class="descname">assertEnabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertEnabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertEnabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertEnabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is disabled</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -563,8 +583,9 @@ expected conditions to occur before test fails</li>
 <code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
-expected conditions to occur before test fails</li>
+<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+Number of seconds to wait for expected conditions to occur before
+test fails</li>
 </ul>
 </td>
 </tr>
@@ -574,7 +595,7 @@ expected conditions to occur before test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled">
-<code class="descname">assertDisabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertDisabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertDisabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertDisabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is enabled</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -585,8 +606,9 @@ expected conditions to occur before test fails</li>
 <code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
-expected conditions to occur before test fails</li>
+<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+Number of seconds to wait for expected conditions to occur before
+test fails</li>
 </ul>
 </td>
 </tr>
@@ -596,7 +618,7 @@ expected conditions to occur before test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange">
-<code class="descname">assertUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if the URL doesn’t match the expected URL.</p>
 <p>Assertion uses webdriver_test_tools.test.url_change_test() using the
 specified <code class="docutils literal notranslate"><span class="pre">wait_timeout</span></code> before determining that expected_url does
@@ -609,8 +631,9 @@ not match the current URL.</p>
 <li><strong>expected_url</strong> – The expected URL</li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
-expected conditions to occur before test fails</li>
+<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+Number of seconds to wait for expected conditions to occur before
+test fails</li>
 </ul>
 </td>
 </tr>
@@ -620,7 +643,7 @@ expected conditions to occur before test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange">
-<code class="descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>ignore_trailing_slash=True</em>, <em>msg=None</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>ignore_trailing_slash=True</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if the URL (ignoring query strings) doesn’t match the expected
 URL.</p>
 <p>Assertion uses webdriver_test_tools.test.url_change_test() using the
@@ -636,8 +659,9 @@ not match the current URL.</p>
 ‘/’ in the expected url and current base URL when comparing</li>
 <li><strong>msg</strong> – (Optional) if specified, used as the error message on
 failure</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for
-expected conditions to occur before test fails</li>
+<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+Number of seconds to wait for expected conditions to occur before
+test fails</li>
 </ul>
 </td>
 </tr>
@@ -763,7 +787,7 @@ will only be generated for mobile browsers</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.10.0-alpha',
+            VERSION:'2.10.2-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

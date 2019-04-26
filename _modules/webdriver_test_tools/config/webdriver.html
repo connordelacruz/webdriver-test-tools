@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.webdriver &mdash; WebDriver Test Tools 2.10.0-alpha documentation</title>
+  <title>webdriver_test_tools.config.webdriver &mdash; WebDriver Test Tools 2.10.2-alpha documentation</title>
   
 
   
@@ -173,6 +173,10 @@
 <span class="sd">        subdirectory in the webdriver_test_tools package root directory</span>
 <span class="sd">    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory. Defaults</span>
 <span class="sd">        to the screenshot subdirectory in the webdriver_test_tools package root directory</span>
+<span class="sd">    :var WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT: (Default: 10) Default</span>
+<span class="sd">        number of seconds for :ref:`WebDriverTestCase assertion methods</span>
+<span class="sd">        &lt;assertion-methods&gt;` to wait for expected conditions to occur before</span>
+<span class="sd">        test fails</span>
 <span class="sd">    :var WebDriverConfig.IMPLICIT_WAIT: Implicit wait time for webdriver to poll DOM</span>
 
 <span class="sd">        .. note::</span>
@@ -213,6 +217,8 @@
     <span class="n">LOG_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_PACKAGE_ROOT</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">)</span>
     <span class="n">SCREENSHOT_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_PACKAGE_ROOT</span><span class="p">,</span> <span class="s1">&#39;screenshot&#39;</span><span class="p">)</span>
 
+    <span class="n">DEFAULT_ASSERTION_TIMEOUT</span><span class="o">=</span><span class="mi">10</span>
+    <span class="c1"># TODO: Deprecate</span>
     <span class="n">IMPLICIT_WAIT</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="n">FIREFOX_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
@@ -313,6 +319,7 @@
     <span class="k">def</span> <span class="nf">set_driver_implicit_wait</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns driver with implicit wait time set&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">IMPLICIT_WAIT</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># TODO: Deprecation warning</span>
             <span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">IMPLICIT_WAIT</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">driver</span></div>
 
@@ -366,7 +373,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.10.0-alpha',
+            VERSION:'2.10.2-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

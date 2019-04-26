@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.testcase.webdriver &mdash; WebDriver Test Tools 2.10.0-alpha documentation</title>
+  <title>webdriver_test_tools.testcase.webdriver &mdash; WebDriver Test Tools 2.10.2-alpha documentation</title>
   
 
   
@@ -205,8 +205,8 @@
 <span class="sd">Each of these assertion methods accepts the following optional keyword arguments:</span>
 
 <span class="sd">- ``msg``: If specified, used as the error message on failure</span>
-<span class="sd">- ``wait_timeout``: (Default = 10) Number of seconds to wait for expected</span>
-<span class="sd">  conditions to occur before test fails</span>
+<span class="sd">- ``wait_timeout``: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``) Number of</span>
+<span class="sd">  seconds to wait for expected conditions to occur before test fails</span>
 
 <span class="sd">Some assertions have other optional keyword arguments specific to what they are</span>
 <span class="sd">testing. For details, check the documentation for :class:`WebDriverTestCase`.</span>
@@ -253,6 +253,12 @@
 <span class="sd">        ``True``, don&#39;t generate tests for mobile browsers. This can be helpful if the</span>
 <span class="sd">        layout changes between desktop and mobile viewports would alter the test</span>
 <span class="sd">        procedures.</span>
+<span class="sd">    :var WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT: (Optional) Default number</span>
+<span class="sd">        of seconds for :ref:`WebDriverTestCase assertion methods</span>
+<span class="sd">        &lt;assertion-methods&gt;` to wait for expected conditions to occur before</span>
+<span class="sd">        test fails. Defaults to the value of ``DEFAULT_ASSERTION_TIMEOUT`` set</span>
+<span class="sd">        in the test project&#39;s</span>
+<span class="sd">        &lt;webdriver_test_tools.config.webdriver.WebDriverConfig&gt;` class</span>
 
 <span class="sd">    **Browser-specific implementations of this class need to override the following:**</span>
 
@@ -290,6 +296,7 @@
     <span class="n">SITE_URL</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">SKIP_BROWSERS</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">SKIP_MOBILE</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">DEFAULT_ASSERTION_TIMEOUT</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="c1"># Browser implementation attributes</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="kc">None</span>
@@ -323,12 +330,19 @@
 <div class="viewcode-block" id="WebDriverTestCase.setUp"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize driver and call ``self.driver.get(self.SITE_URL)``</span>
 
-<span class="sd">        If ``self.ENABLE_BS`` is ``False``, ``self.driver`` gets the returned results of</span>
-<span class="sd">        :meth:`self.driver_init() &lt;WebDriverTestCase.driver_init&gt;`. If ``self.ENABLE_BS``</span>
-<span class="sd">        is ``True``, ``self.driver`` gets the returned results of :meth:`self.bs_driver_init()</span>
+<span class="sd">        If ``self.ENABLE_BS`` is ``False``, ``self.driver`` gets the returned</span>
+<span class="sd">        results of :meth:`self.driver_init() &lt;WebDriverTestCase.driver_init&gt;`.</span>
+<span class="sd">        If ``self.ENABLE_BS`` is ``True``, ``self.driver`` gets the returned</span>
+<span class="sd">        results of :meth:`self.bs_driver_init()</span>
 <span class="sd">        &lt;WebDriverTestCase.bs_driver_init&gt;`</span>
+
+<span class="sd">        Also checks if ``self.DEFAULT_ASSERTION_TIMEOUT`` is set and defaults</span>
+<span class="sd">        to ``self.WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT`` if it&#39;s</span>
+<span class="sd">        unspecified</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bs_driver_init</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ENABLE_BS</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver_init</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">WebDriverConfig</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SITE_URL</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="WebDriverTestCase.tearDown"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -344,127 +358,143 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s1">&#39;(&quot;</span><span class="si">{0}</span><span class="s1">&quot;, &quot;</span><span class="si">{1}</span><span class="s1">&quot;)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertExists"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists">[docs]</a>    <span class="k">def</span> <span class="nf">assertExists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertExists"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists">[docs]</a>    <span class="k">def</span> <span class="nf">assertExists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element doesn&#39;t exist</span>
 
 <span class="sd">        :param element_locator: webdriver locator tuple in the format</span>
 <span class="sd">            ``(by.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
-<span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
-<span class="sd">            expected conditions to occur before test fails</span>
+<span class="sd">        :param wait_timeout: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``)</span>
+<span class="sd">            Number of seconds to wait for expected conditions to occur before</span>
+<span class="sd">            test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wait_timeout</span> <span class="o">=</span> <span class="n">wait_timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">existence_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">test_exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;No elements located using &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_locator_string</span><span class="p">(</span><span class="n">element_locator</span><span class="p">)</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">failure_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertNotExists"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists">[docs]</a>    <span class="k">def</span> <span class="nf">assertNotExists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertNotExists"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists">[docs]</a>    <span class="k">def</span> <span class="nf">assertNotExists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element exists</span>
 
 <span class="sd">        :param element_locator: webdriver locator tuple in the format</span>
 <span class="sd">            ``(by.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
-<span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
-<span class="sd">            expected conditions to occur before test fails</span>
+<span class="sd">        :param wait_timeout: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``)</span>
+<span class="sd">            Number of seconds to wait for expected conditions to occur before</span>
+<span class="sd">            test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wait_timeout</span> <span class="o">=</span> <span class="n">wait_timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">existence_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">test_exists</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Elements located using &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_locator_string</span><span class="p">(</span><span class="n">element_locator</span><span class="p">)</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">failure_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertInView"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView">[docs]</a>    <span class="k">def</span> <span class="nf">assertInView</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertInView"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView">[docs]</a>    <span class="k">def</span> <span class="nf">assertInView</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element isn&#39;t scrolled into view</span>
 
 <span class="sd">        :param element_locator: webdriver locator tuple in the format</span>
 <span class="sd">            ``(by.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
-<span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
-<span class="sd">            expected conditions to occur before test fails</span>
+<span class="sd">        :param wait_timeout: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``)</span>
+<span class="sd">            Number of seconds to wait for expected conditions to occur before</span>
+<span class="sd">            test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wait_timeout</span> <span class="o">=</span> <span class="n">wait_timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">in_view_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is not scrolled into view&#39;</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">failure_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertNotInView"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView">[docs]</a>    <span class="k">def</span> <span class="nf">assertNotInView</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertNotInView"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView">[docs]</a>    <span class="k">def</span> <span class="nf">assertNotInView</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element is scrolled into view</span>
 
 <span class="sd">        :param element_locator: webdriver locator tuple in the format</span>
 <span class="sd">            ``(by.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
-<span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
-<span class="sd">            expected conditions to occur before test fails</span>
+<span class="sd">        :param wait_timeout: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``)</span>
+<span class="sd">            Number of seconds to wait for expected conditions to occur before</span>
+<span class="sd">            test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wait_timeout</span> <span class="o">=</span> <span class="n">wait_timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">in_view_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is scrolled into view&#39;</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">failure_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertVisible"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible">[docs]</a>    <span class="k">def</span> <span class="nf">assertVisible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertVisible"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible">[docs]</a>    <span class="k">def</span> <span class="nf">assertVisible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element isn&#39;t visible</span>
 
 <span class="sd">        :param element_locator: webdriver locator tuple in the format</span>
 <span class="sd">            ``(by.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
-<span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
-<span class="sd">            expected conditions to occur before test fails</span>
+<span class="sd">        :param wait_timeout: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``)</span>
+<span class="sd">            Number of seconds to wait for expected conditions to occur before</span>
+<span class="sd">            test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wait_timeout</span> <span class="o">=</span> <span class="n">wait_timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">visibility_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is not visible&#39;</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">failure_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertInvisible"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible">[docs]</a>    <span class="k">def</span> <span class="nf">assertInvisible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertInvisible"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible">[docs]</a>    <span class="k">def</span> <span class="nf">assertInvisible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element is visible</span>
 
 <span class="sd">        :param element_locator: webdriver locator tuple in the format</span>
 <span class="sd">            ``(by.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
-<span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
-<span class="sd">            expected conditions to occur before test fails</span>
+<span class="sd">        :param wait_timeout: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``)</span>
+<span class="sd">            Number of seconds to wait for expected conditions to occur before</span>
+<span class="sd">            test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wait_timeout</span> <span class="o">=</span> <span class="n">wait_timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">visibility_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">test_visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is visible&#39;</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">failure_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertEnabled"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled">[docs]</a>    <span class="k">def</span> <span class="nf">assertEnabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertEnabled"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled">[docs]</a>    <span class="k">def</span> <span class="nf">assertEnabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element is disabled</span>
 
 <span class="sd">        :param element_locator: webdriver locator tuple in the format</span>
 <span class="sd">            ``(by.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
-<span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
-<span class="sd">            expected conditions to occur before test fails</span>
+<span class="sd">        :param wait_timeout: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``)</span>
+<span class="sd">            Number of seconds to wait for expected conditions to occur before</span>
+<span class="sd">            test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wait_timeout</span> <span class="o">=</span> <span class="n">wait_timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">enabled_state_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">test_enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is disabled&#39;</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">failure_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertDisabled"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled">[docs]</a>    <span class="k">def</span> <span class="nf">assertDisabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertDisabled"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled">[docs]</a>    <span class="k">def</span> <span class="nf">assertDisabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if element is enabled</span>
 
 <span class="sd">        :param element_locator: webdriver locator tuple in the format</span>
 <span class="sd">            ``(by.&lt;attr&gt;, &lt;locator string&gt;)``</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
-<span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
-<span class="sd">            expected conditions to occur before test fails</span>
+<span class="sd">        :param wait_timeout: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``)</span>
+<span class="sd">            Number of seconds to wait for expected conditions to occur before</span>
+<span class="sd">            test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wait_timeout</span> <span class="o">=</span> <span class="n">wait_timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">enabled_state_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">,</span> <span class="n">test_enabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Element is enabled&#39;</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">failure_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertUrlChange"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange">[docs]</a>    <span class="k">def</span> <span class="nf">assertUrlChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertUrlChange"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange">[docs]</a>    <span class="k">def</span> <span class="nf">assertUrlChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if the URL doesn&#39;t match the expected URL.</span>
 
 <span class="sd">        Assertion uses webdriver_test_tools.test.url_change_test() using the</span>
@@ -474,9 +504,11 @@
 <span class="sd">        :param expected_url: The expected URL</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
-<span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
-<span class="sd">            expected conditions to occur before test fails</span>
+<span class="sd">        :param wait_timeout: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``)</span>
+<span class="sd">            Number of seconds to wait for expected conditions to occur before</span>
+<span class="sd">            test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wait_timeout</span> <span class="o">=</span> <span class="n">wait_timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">url_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Current URL = </span><span class="si">{}</span><span class="s1">, expected URL = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">current_url</span><span class="p">,</span> <span class="n">expected_url</span>
@@ -484,7 +516,7 @@
             <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">failure_message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WebDriverTestCase.assertBaseUrlChange"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange">[docs]</a>    <span class="k">def</span> <span class="nf">assertBaseUrlChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">ignore_trailing_slash</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="WebDriverTestCase.assertBaseUrlChange"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange">[docs]</a>    <span class="k">def</span> <span class="nf">assertBaseUrlChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">ignore_trailing_slash</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fail if the URL (ignoring query strings) doesn&#39;t match the expected</span>
 <span class="sd">        URL.</span>
 
@@ -497,9 +529,11 @@
 <span class="sd">            &#39;/&#39; in the expected url and current base URL when comparing</span>
 <span class="sd">        :param msg: (Optional) if specified, used as the error message on</span>
 <span class="sd">            failure</span>
-<span class="sd">        :param wait_timeout: (Default = 10) Number of seconds to wait for</span>
-<span class="sd">            expected conditions to occur before test fails</span>
+<span class="sd">        :param wait_timeout: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``)</span>
+<span class="sd">            Number of seconds to wait for expected conditions to occur before</span>
+<span class="sd">            test fails</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wait_timeout</span> <span class="o">=</span> <span class="n">wait_timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_ASSERTION_TIMEOUT</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="o">.</span><span class="n">base_url_change_test</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span>
                                          <span class="n">ignore_trailing_slash</span><span class="o">=</span><span class="n">ignore_trailing_slash</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="n">wait_timeout</span><span class="p">):</span>
             <span class="n">failure_message</span> <span class="o">=</span> <span class="s1">&#39;Current base URL = </span><span class="si">{}</span><span class="s1">, expected base URL = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -661,7 +695,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.10.0-alpha',
+            VERSION:'2.10.2-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
