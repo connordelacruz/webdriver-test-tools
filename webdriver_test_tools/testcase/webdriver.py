@@ -488,6 +488,7 @@ class WebDriverTestCase(unittest.TestCase):
                 except self.failureException as e:
                     screenshot_file = self.WebDriverConfig.new_screenshot_file(self.SHORT_NAME, self._testMethodName)
                     self.driver.get_screenshot_as_file(screenshot_file)
+                    # TODO: update error message to include screenshot path
                     raise
             return wrapper
         return decorator
