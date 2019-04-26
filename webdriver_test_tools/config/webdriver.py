@@ -22,13 +22,13 @@ class WebDriverConfig:
         :attr:`WebDriverConfig.SCREENSHOT_PATH`). The format string can include
         the following parameters:
 
-            * `{date}`: Replaced with the date the screenshot was taken
+            * ``{date}``: Replaced with the date the screenshot was taken
               (YYYY-MM-DD)
-            * `{time}`: Replaced with the time the screenshot was taken
+            * ``{time}``: Replaced with the time the screenshot was taken
               (HHMMSS)
-            * `{test}`: Replaced with the test method running when screenshot
+            * ``{test}``: Replaced with the test method running when screenshot
               was taken
-            * `{browser}`: Replaced with the browser used when screenshot was
+            * ``{browser}``: Replaced with the browser used when screenshot was
               taken
 
         The format string can include '/' directory separators to save

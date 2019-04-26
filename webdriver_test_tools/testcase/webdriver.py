@@ -462,8 +462,9 @@ class WebDriverTestCase(unittest.TestCase):
     # Screenshots
 
     def takeScreenshot(self, print_filename=False):
-        """Capture screenshot and save it to the directory configured in
-        ``WebDriverConfig.SCREENSHOT_PATH``
+        """Save a screenshot using
+        :meth:`self.WebDriverConfig.new_screenshot_file
+        <webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file>`
 
         :param print_filename: (Default = False) If True, print the path to the
             new file to standard out
@@ -478,8 +479,10 @@ class WebDriverTestCase(unittest.TestCase):
 
     @staticmethod
     def screenshotOnFail():
-        """Decorator for test methods that takes a screenshot if an assertion fails.
-        Screenshots are saved to the directory configured in ``WebDriverConfig.SCREENSHOT_PATH``
+        """Decorator for test methods that takes a screenshot if an assertion
+        fails. See :meth:`WebDriverConfig.new_screenshot_file
+        <webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file>`
+        for details on filename and output directory
 
         Usage Example:
 
@@ -493,9 +496,10 @@ class WebDriverTestCase(unittest.TestCase):
 
         .. note::
 
-            Currently, this method does not take a screenshot for assertions that fail within a subTest.
-            Since subTests are designed to continue test execution if an assertion fails, they don't
-            raise exceptions outside of their context.
+            Currently, this method does not take a screenshot for assertions
+            that fail within a subTest. Since subTests are designed to
+            continue test execution if an assertion fails, they don't raise
+            exceptions outside of their context.
         """
         def decorator(test_method):
             @wraps(test_method)
