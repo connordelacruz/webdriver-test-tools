@@ -37,6 +37,10 @@ def parse_locator_dict(locator_dict):
     """Takes a locator dictionary from a parsed YAML file and returns the
     locator tuple
 
+    If ``locator_dict`` is already a tuple, it will be returned as-is under the
+    assumption that it's already a locator. This allows non-YAML
+    representations to just use normal locators
+
     :param locator_dict: Locator dictionary from a parsed YAML file. A valid
         locator dict must have the following keys:
 
@@ -50,6 +54,9 @@ def parse_locator_dict(locator_dict):
 
     :return: Parsed WebDriver locator tuple
     """
+    # If argument is already a tuple, return it assuming it's already a locator
+    if isinstance(locator_dict, tuple):
+        return locator_dict
     try:
         locate_by_attr = locator_dict['by'].upper()
         locate_by = getattr(By, locate_by_attr)
