@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.utils.yaml &mdash; WebDriver Test Tools 2.11.0-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.utils.yaml &mdash; WebDriver Test Tools 2.11.1-alpha documentation</title>
   
 
   
@@ -196,6 +196,10 @@
     <span class="sd">&quot;&quot;&quot;Takes a locator dictionary from a parsed YAML file and returns the</span>
 <span class="sd">    locator tuple</span>
 
+<span class="sd">    If ``locator_dict`` is already a tuple, it will be returned as-is under the</span>
+<span class="sd">    assumption that it&#39;s already a locator. This allows non-YAML</span>
+<span class="sd">    representations to just use normal locators</span>
+
 <span class="sd">    :param locator_dict: Locator dictionary from a parsed YAML file. A valid</span>
 <span class="sd">        locator dict must have the following keys:</span>
 
@@ -209,6 +213,9 @@
 
 <span class="sd">    :return: Parsed WebDriver locator tuple</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># If argument is already a tuple, return it assuming it&#39;s already a locator</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">locator_dict</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">locator_dict</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">locate_by_attr</span> <span class="o">=</span> <span class="n">locator_dict</span><span class="p">[</span><span class="s1">&#39;by&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
         <span class="n">locate_by</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">By</span><span class="p">,</span> <span class="n">locate_by_attr</span><span class="p">)</span>
@@ -257,7 +264,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.11.0-alpha',
+            VERSION:'2.11.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
