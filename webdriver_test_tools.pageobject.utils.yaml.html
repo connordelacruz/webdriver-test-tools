@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.utils.yaml module &mdash; WebDriver Test Tools 2.11.0-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.utils.yaml module &mdash; WebDriver Test Tools 2.11.1-alpha documentation</title>
   
 
   
@@ -224,6 +224,9 @@
 <code class="descclassname">webdriver_test_tools.pageobject.utils.yaml.</code><code class="descname">parse_locator_dict</code><span class="sig-paren">(</span><em>locator_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/utils/yaml.html#parse_locator_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.utils.yaml.parse_locator_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes a locator dictionary from a parsed YAML file and returns the
 locator tuple</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">locator_dict</span></code> is already a tuple, it will be returned as-is under the
+assumption that it’s already a locator. This allows non-YAML
+representations to just use normal locators</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -293,7 +296,7 @@ checking if it’s a valid attribute of the <code class="docutils literal notran
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.11.0-alpha',
+            VERSION:'2.11.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
