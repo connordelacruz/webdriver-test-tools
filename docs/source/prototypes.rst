@@ -97,10 +97,46 @@ is used to represent navbars.
 Attributes
 ----------
 
-``NavObject`` subclasses define the following attributes:
+``NavObject`` subclasses may define the following optional attributes:
 
-.. todo
+   * ``FIXED``: (Default: ``True``) True if the navbar is fixed to the window
+   * ``COLLAPSIBLE``: (Default: ``False``) True if the navbar is collapsible
+     (e.g. uses a hamburger menu)
 
+If ``COLLAPSIBLE`` is set to ``True``, subclasses should define the following
+attributes:
+
+   * ``MENU_LOCATOR``: Locator for the collapsible menu element
+   * ``EXPAND_BUTTON_LOCATOR``: Locator for the button that expands the nav menu
+   * ``COLLAPSE_BUTTON_LOCATOR``: (Optional) Locator for the button that
+     collapses the nav menu. Leave unset if this is the same as
+     ``EXPAND_BUTTON_LOCATOR``
+
+``NavObject`` subclasses will have the following attributes at runtime. These
+are populated based on the contents of ``YAML_FILE`` or ``LINK_DICTS``:
+
+   * ``links``: A dictionary mapping link names to the corresponding
+     :class:`NavLinkObject <webdriver_test_tools.pageobject.nav.NavLinkObject>`
+     instances
+
+
+Methods
+-------
+
+.. todo verify reference syntax
+
+All ``NavObject`` subclasses have the following methods:
+
+   * :meth:`NavObject.click_link`: Click a link in the navbar
+   * :meth:`NavObject.hover_over_link`: Hover over a link in the navbar
+
+Collapsible ``NavObject`` subclasses have additional methods:
+
+   * :meth:`NavObject.click_expand_button`: Click the button to expand the nav
+     menu
+   * :meth:`NavObject.click_collapse_button`: Click the button to collapse the
+     nav menu
+   * :meth:`NavObject.is_expanded`: Check if the nav menu is expanded
 
 
 WebPageObject
