@@ -11,6 +11,7 @@ WebDriver Test Tools
    example_project
    additional_browsers
    utilities
+   prototypes
    yaml
    browserstack
    webdriver_test_tools
