@@ -22,89 +22,67 @@ class NoYAMLNavObject(prototypes.NavObject):
     # NavLinkObject instances at runtime.
     # Dictionaries use same keys as YAML links. For syntax, see:
     # https://connordelacruz.com/webdriver-test-tools/yaml.html#yaml-links
+
+    # TODO: update to support new syntax
     LINK_DICTS = [
         {
             'name': 'home',
-            'link_locator': {
-                'by': 'CLASS_NAME', 'locator': 'navbar-brand'
-            },
-            'target': {'path': 'index.html', 'relative_to': 'BASE_URL'}
+            'link_locator': (By.CLASS_NAME, 'navbar-brand'),
+            'target': SiteConfig.BASE_URL + 'index.html'
         },
         {
             'name': 'section3',
-            'link_locator': {
-                'by': 'CSS_SELECTOR', 'locator': 'a[href="#section3"]'
-            },
+            'link_locator': (By.CSS_SELECTOR, 'a[href="#section3"]'),
             'click': 'section',
             'target': '#section3'
         },
         {
             'name': 'hover-menu',
-            'link_locator': {
-                'by': 'ID', 'locator': 'hover-menu-link'
-            },
+            'link_locator': (By.ID, 'hover-menu-link'),
             'click': 'none',
             'hover': 'menu',
             'menu': {
-                'menu_locator': {
-                    'by': 'ID', 'locator': 'hover-menu'
-                },
+                'menu_locator': (By.ID, 'hover-menu'),
                 'links': [
                     {
                         'name': 'home',
-                        'link_locator': {
-                            'by': 'CSS_SELECTOR', 'locator': '#hover-menu a[href="index.html"]'
-                        },
-                        'target': {'path': 'index.html', 'relative_to': 'BASE_URL'}
+                        'link_locator': (By.CSS_SELECTOR, '#hover-menu a[href="index.html"]'),
+                        'target': SiteConfig.BASE_URL + 'index.html'
                     },
                     {
                         'name': 'form',
-                        'link_locator': {
-                            'by': 'CSS_SELECTOR', 'locator': '#hover-menu a[href="form.html"]'
-                        },
-                        'target': {'path': 'form.html', 'relative_to': 'BASE_URL'}
+                        'link_locator': (By.CSS_SELECTOR, '#hover-menu a[href="form.html"]'),
+                        'target': SiteConfig.BASE_URL + 'form.html'
                     },
                     {
                         'name': 'modal',
-                        'link_locator': {
-                            'by': 'CSS_SELECTOR', 'locator': '#hover-menu a[href="modal.html"]'
-                        },
-                        'target': {'path': 'modal.html', 'relative_to': 'BASE_URL'}
+                        'link_locator': (By.CSS_SELECTOR, '#hover-menu a[href="modal.html"]'),
+                        'target': SiteConfig.BASE_URL + 'modal.html'
                     },
                 ]
             }
         },
         {
             'name': 'click-menu',
-            'link_locator': {
-                'by': 'ID', 'locator': 'click-menu-link'
-            },
+            'link_locator': (By.ID, 'click-menu-link'),
             'click': 'menu',
             'menu': {
-                'menu_locator': {
-                    'by': 'ID', 'locator': 'click-menu'
-                },
+                'menu_locator': (By.ID, 'click-menu'),
                 'links': [
                     {
                         'name': 'home',
-                        'link_locator': {
-                            'by': 'CSS_SELECTOR', 'locator': '#click-menu a[href="index.html"]'
-                        },
-                        'target': {'path': 'index.html', 'relative_to': 'BASE_URL'}
+                        'link_locator': (By.CSS_SELECTOR, '#click-menu a[href="index.html"]'),
+                        'target': SiteConfig.BASE_URL + 'index.html'
                     },
                     {
                         'name': 'form',
-                        'link_locator': {
-                            'by': 'CSS_SELECTOR', 'locator': '#click-menu a[href="form.html"]'
-                        },
-                        'target': {'path': 'form.html', 'relative_to': 'BASE_URL'}
+                        'link_locator': (By.CSS_SELECTOR, '#click-menu a[href="form.html"]'),
+                        'target': SiteConfig.BASE_URL + 'form.html'
                     },
                     {
                         'name': 'modal',
-                        'link_locator': {
-                            'by': 'CSS_SELECTOR', 'locator': '#click-menu a[href="modal.html"]'
-                        },
-                        'target': {'path': 'modal.html', 'relative_to': 'BASE_URL'}
+                        'link_locator': (By.CSS_SELECTOR, '#click-menu a[href="modal.html"]'),
+                        'target': SiteConfig.BASE_URL + 'modal.html'
                     },
                 ]
             }
@@ -139,50 +117,36 @@ class NoYAMLCollapsibleNavObject(prototypes.NavObject):
     LINK_DICTS = [
         {
             'name': 'home',
-            'link_locator': {
-                'by': 'CLASS_NAME', 'locator': 'navbar-brand'
-            },
-            'target': {'path': 'index.html', 'relative_to': 'BASE_URL'}
+            'link_locator': (By.CLASS_NAME, 'navbar-brand'),
+            'target': SiteConfig.BASE_URL + 'index.html'
         },
         {
             'name': 'section3',
-            'link_locator': {
-                'by': 'CSS_SELECTOR', 'locator': 'a[href="#section3"]'
-            },
+            'link_locator': (By.CSS_SELECTOR, 'a[href="#section3"]'),
             'click': 'section',
             'target': '#section3'
         },
         {
             'name': 'click-menu',
-            'link_locator': {
-                'by': 'ID', 'locator': 'click-menu-link'
-            },
+            'link_locator': (By.ID, 'click-menu-link'),
             'click': 'menu',
             'menu': {
-                'menu_locator': {
-                    'by': 'ID', 'locator': 'click-menu'
-                },
+                'menu_locator': (By.ID, 'click-menu'),
                 'links': [
                     {
                         'name': 'home',
-                        'link_locator': {
-                            'by': 'CSS_SELECTOR', 'locator': '#click-menu a[href="index.html"]'
-                        },
-                        'target': {'path': 'index.html', 'relative_to': 'BASE_URL'}
+                        'link_locator': (By.CSS_SELECTOR, '#click-menu a[href="index.html"]'),
+                        'target': SiteConfig.BASE_URL + 'index.html'
                     },
                     {
                         'name': 'form',
-                        'link_locator': {
-                            'by': 'CSS_SELECTOR', 'locator': '#click-menu a[href="form.html"]'
-                        },
-                        'target': {'path': 'form.html', 'relative_to': 'BASE_URL'}
+                        'link_locator': (By.CSS_SELECTOR, '#click-menu a[href="form.html"]'),
+                        'target': SiteConfig.BASE_URL + 'form.html'
                     },
                     {
                         'name': 'modal',
-                        'link_locator': {
-                            'by': 'CSS_SELECTOR', 'locator': '#click-menu a[href="modal.html"]'
-                        },
-                        'target': {'path': 'modal.html', 'relative_to': 'BASE_URL'}
+                        'link_locator': (By.CSS_SELECTOR, '#click-menu a[href="modal.html"]'),
+                        'target': SiteConfig.BASE_URL + 'modal.html'
                     },
                 ]
             }
