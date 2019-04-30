@@ -168,7 +168,15 @@ The items in the form ``inputs`` list have the following keys:
 Example
 -------
 
+With YAML
+~~~~~~~~~
+
 .. literalinclude:: ../example/yaml-example/form.yml
+
+Without YAML
+~~~~~~~~~~~~
+
+.. literalinclude:: ../example/no-yaml-example/form.py
 
 
 .. _yaml-modal-objects:
