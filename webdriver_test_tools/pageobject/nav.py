@@ -95,8 +95,11 @@ class NavLinkObject(BasePage):
 
     # Actions
 
-    def click_link(self):
+    def click_link(self, scroll_to=False):
         """Click the link
+
+        :param scroll_to: (Default: False) If True, scroll to the link first
+            before clicking (used for non-fixed navs)
 
         :return: Return value depends on ``self.click_action``:
 
@@ -105,17 +108,24 @@ class NavLinkObject(BasePage):
             * 'menu': Returns a :class:`NavMenuObject` instance
             * None: Returns ``None``
         """
-        actions.scroll.to_and_click(self.driver, self.find_link_element(), False)
+        link_element = self.find_link_element()
+        if scroll_to:
+            actions.scroll.into_view(self.driver, link_element, False)
+        link_element.click()
         return self.menu if self.click_action == self.ActionTypes.MENU else self.target
 
-    def hover_over_link(self):
+    def hover_over_link(self, scroll_to=False):
         """Hover over the link element
+
+        :param scroll_to: (Default: False) If True, scroll to the link first
+            before hovering (used for non-fixed navs)
 
         :return: :class:`NavMenuObject` instance (or ``None`` if no hover
             action is defined)
         """
         link_element = self.find_link_element()
-        actions.scroll.into_view(self.driver, link_element, False)
+        if scroll_to:
+            actions.scroll.into_view(self.driver, link_element, False)
         action_chain = ActionChains(self.driver)
         action_chain.move_to_element(link_element).perform()
         return self.menu if self.hover_action == self.ActionTypes.MENU else None
@@ -396,7 +406,7 @@ class NavObject(YAMLParsingPageObject):
 
         :raises KeyError: If ``link_name`` is not a valid key in ``self.links``
         """
-        return self.links[link_name].click_link()
+        return self.links[link_name].click_link(scroll_to=not self.FIXED)
 
     def hover_over_link(self, link_name):
         """Hover over a link in the navbar
@@ -409,7 +419,7 @@ class NavObject(YAMLParsingPageObject):
 
         :raises KeyError: If ``link_name`` is not a valid key in ``self.links``
         """
-        return self.links[link_name].hover_over_link()
+        return self.links[link_name].hover_over_link(scroll_to=not self.FIXED)
 
     # Collapsible Nav Actions
 
