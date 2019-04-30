@@ -258,6 +258,16 @@ class NavObject(YAMLParsingPageObject):
         that collapses the nav menu. If unspecified, this will be set to the
         same value as :attr:`EXPAND_BUTTON_LOCATOR`
 
+    .. note::
+
+        ``MENU_LOCATOR``, ``EXPAND_BUTTON_LOCATOR``, and
+        ``COLLAPSE_BUTTON_LOCATOR`` will only be parsed from YAML if not
+        already set in the subclass. This allows for a non-collapsible nav that
+        parses YAML to be extended in a subclass with ``COLLAPSIBLE = True``
+        without re-writing the YAML file. The subclass would only need to set
+        ``MENU_LOCATOR``, ``EXPAND_BUTTON_LOCATOR``, and (optionally)
+        ``COLLAPSE_BUTTON_LOCATOR``
+
     The following attribute is set based on the 'links' key parsed from
     :attr:`YAML_FILE` (or parsed from :attr:`LINK_DICTS`, which should be set
     in subclasses if :attr:`YAML_FILE` is ``None``):
@@ -340,9 +350,14 @@ class NavObject(YAMLParsingPageObject):
         # Collapsible nav configurations
         if self.COLLAPSIBLE:
             try:
-                self.MENU_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['menu_locator'])
-                self.EXPAND_BUTTON_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['expand_button_locator'])
-                if 'collapse_button_locator' in parsed_yaml:
+                # Only do the following if these elements weren't explicitly
+                # defined in the class. This allows for collapsible variants of
+                # existing nav classes to be defined using subclasses
+                if self.MENU_LOCATOR is None:
+                    self.MENU_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['menu_locator'])
+                if self.EXPAND_BUTTON_LOCATOR is None:
+                    self.EXPAND_BUTTON_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['expand_button_locator'])
+                if self.COLLAPSE_BUTTON_LOCATOR is None and 'collapse_button_locator' in parsed_yaml:
                     self.COLLAPSE_BUTTON_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['collapse_button_locator'])
                 else:
                     self.COLLAPSE_BUTTON_LOCATOR = self.EXPAND_BUTTON_LOCATOR
