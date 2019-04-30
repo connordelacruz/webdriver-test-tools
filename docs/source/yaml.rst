@@ -90,7 +90,10 @@ required keys:
    * ``locator``: Value used to locate element with the specified locator
      strategy
 
-.. todo non-YAML locators
+.. note::
+
+   For non-YAML page objects, any instances of a locator dictionary can be
+   replaced with a Python locator tuple i.e. ``(By.<STRATEGY>, '<locator>')``
 
 
 .. _yaml-relative-urls:
@@ -123,8 +126,6 @@ FormObjects
 
 :class:`FormObjects <webdriver_test_tools.pageobject.form.FormObject>` support
 YAML representations of the form element using the following syntax.
-
-.. todo YAML syntax and non-YAML
 
 Syntax
 ------
@@ -201,7 +202,15 @@ Modal objects have 2 required keys:
 Example
 -------
 
+With YAML
+~~~~~~~~~
+
 .. literalinclude:: ../example/yaml-example/modal.yml
+
+Without YAML
+~~~~~~~~~~~~
+
+.. literalinclude:: ../example/no-yaml-example/modal.py
 
 
 .. _yaml-nav-objects:
@@ -286,9 +295,34 @@ The items in the nav ``links`` list have the following keys:
 Example
 -------
 
+With YAML
+~~~~~~~~~
+
+Regular Navbar
+^^^^^^^^^^^^^^
+
 .. literalinclude:: ../example/yaml-example/nav.yml
 
+Collapsible Navbar
+^^^^^^^^^^^^^^^^^^
+
 .. literalinclude:: ../example/yaml-example/collapsible_nav.yml
+
+.. todo collapsible from yaml nav
+
+
+Without YAML
+~~~~~~~~~~~~
+
+Regular Navbar
+^^^^^^^^^^^^^^
+
+.. literalinclude:: ../example/no-yaml-example/nav.py
+
+Collapsible Navbar
+^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: ../example/no-yaml-example/collapsible_nav.py
 
 
 .. _yaml-web-page-objects:
@@ -315,5 +349,13 @@ full URL to the page or a :ref:`relative URL dictionary <yaml-relative-urls>`
 Example
 -------
 
+With YAML
+~~~~~~~~~
+
 .. literalinclude:: ../example/yaml-example/web_page.yml
+
+Without YAML
+~~~~~~~~~~~~
+
+.. literalinclude:: ../example/no-yaml-example/web_page.py
 
