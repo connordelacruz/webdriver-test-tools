@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.nav module &mdash; WebDriver Test Tools 2.11.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.nav module &mdash; WebDriver Test Tools 2.11.2-alpha documentation</title>
   
 
   
@@ -243,13 +243,16 @@
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.click_link">
-<code class="descname">click_link</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.click_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.click_link" title="Permalink to this definition">¶</a></dt>
+<code class="descname">click_link</code><span class="sig-paren">(</span><em>scroll_to=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.click_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.click_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Click the link</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Return value depends on <code class="docutils literal notranslate"><span class="pre">self.click_action</span></code>:<ul class="simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scroll_to</strong> – (Default: False) If True, scroll to the link first
+before clicking (used for non-fixed navs)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Return value depends on <code class="docutils literal notranslate"><span class="pre">self.click_action</span></code>:<ul class="simple">
 <li>’page’: Returns the URL to the link target</li>
 <li>’section’: Returns the target section ID (prefixed with ‘#’)</li>
 <li>’menu’: Returns a <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavMenuObject" title="webdriver_test_tools.pageobject.nav.NavMenuObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavMenuObject</span></code></a> instance</li>
@@ -263,13 +266,16 @@
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link">
-<code class="descname">hover_over_link</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.hover_over_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link" title="Permalink to this definition">¶</a></dt>
+<code class="descname">hover_over_link</code><span class="sig-paren">(</span><em>scroll_to=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.hover_over_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hover over the link element</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavMenuObject" title="webdriver_test_tools.pageobject.nav.NavMenuObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavMenuObject</span></code></a> instance (or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no hover
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scroll_to</strong> – (Default: False) If True, scroll to the link first
+before hovering (used for non-fixed navs)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavMenuObject" title="webdriver_test_tools.pageobject.nav.NavMenuObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavMenuObject</span></code></a> instance (or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no hover
 action is defined)</td>
 </tr>
 </tbody>
@@ -757,7 +763,7 @@ collapsing/expanding container of the navigation menu</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.11.1-alpha',
+            VERSION:'2.11.2-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
