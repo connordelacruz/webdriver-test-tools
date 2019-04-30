@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.nav module &mdash; WebDriver Test Tools 2.11.2-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.nav module &mdash; WebDriver Test Tools 2.12.0-alpha documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.11
+                2.12
               </div>
             
           
@@ -421,6 +421,16 @@ same value as <a class="reference internal" href="#webdriver_test_tools.pageobje
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">MENU_LOCATOR</span></code>, <code class="docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">COLLAPSE_BUTTON_LOCATOR</span></code> will only be parsed from YAML if not
+already set in the subclass. This allows for a non-collapsible nav that
+parses YAML to be extended in a subclass with <code class="docutils literal notranslate"><span class="pre">COLLAPSIBLE</span> <span class="pre">=</span> <span class="pre">True</span></code>
+without re-writing the YAML file. The subclass would only need to set
+<code class="docutils literal notranslate"><span class="pre">MENU_LOCATOR</span></code>, <code class="docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code>, and (optionally)
+<code class="docutils literal notranslate"><span class="pre">COLLAPSE_BUTTON_LOCATOR</span></code></p>
+</div>
 <p>The following attribute is set based on the ‘links’ key parsed from
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> (or parsed from <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LINK_DICTS</span></code></a>, which should be set
 in subclasses if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
@@ -763,7 +773,7 @@ collapsing/expanding container of the navigation menu</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.11.2-alpha',
+            VERSION:'2.12.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
