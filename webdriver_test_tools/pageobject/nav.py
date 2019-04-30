@@ -223,6 +223,7 @@ class NavMenuObject(BasePage):
 
 # Navbar Page Objects
 
+# TODO: document subclassing for collapsible
 class NavObject(YAMLParsingPageObject):
     """Page object prototype for navbars
 
@@ -340,9 +341,14 @@ class NavObject(YAMLParsingPageObject):
         # Collapsible nav configurations
         if self.COLLAPSIBLE:
             try:
-                self.MENU_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['menu_locator'])
-                self.EXPAND_BUTTON_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['expand_button_locator'])
-                if 'collapse_button_locator' in parsed_yaml:
+                # Only do the following if these elements weren't explicitly
+                # defined in the class. This allows for collapsible variants of
+                # existing nav classes to be defined using subclasses
+                if self.MENU_LOCATOR is None:
+                    self.MENU_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['menu_locator'])
+                if self.EXPAND_BUTTON_LOCATOR is None:
+                    self.EXPAND_BUTTON_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['expand_button_locator'])
+                if self.COLLAPSE_BUTTON_LOCATOR is None and 'collapse_button_locator' in parsed_yaml:
                     self.COLLAPSE_BUTTON_LOCATOR = utils.yaml.parse_locator_dict(parsed_yaml['collapse_button_locator'])
                 else:
                     self.COLLAPSE_BUTTON_LOCATOR = self.EXPAND_BUTTON_LOCATOR
