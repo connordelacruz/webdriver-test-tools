@@ -90,6 +90,8 @@ required keys:
    * ``locator``: Value used to locate element with the specified locator
      strategy
 
+.. todo non-YAML locators
+
 
 .. _yaml-relative-urls:
 
@@ -121,6 +123,8 @@ FormObjects
 
 :class:`FormObjects <webdriver_test_tools.pageobject.form.FormObject>` support
 YAML representations of the form element using the following syntax.
+
+.. todo YAML syntax and non-YAML
 
 Syntax
 ------
