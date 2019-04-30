@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.nav &mdash; WebDriver Test Tools 2.11.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.nav &mdash; WebDriver Test Tools 2.11.2-alpha documentation</title>
   
 
   
@@ -254,8 +254,11 @@
 
     <span class="c1"># Actions</span>
 
-<div class="viewcode-block" id="NavLinkObject.click_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavLinkObject.click_link">[docs]</a>    <span class="k">def</span> <span class="nf">click_link</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="NavLinkObject.click_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavLinkObject.click_link">[docs]</a>    <span class="k">def</span> <span class="nf">click_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scroll_to</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Click the link</span>
+
+<span class="sd">        :param scroll_to: (Default: False) If True, scroll to the link first</span>
+<span class="sd">            before clicking (used for non-fixed navs)</span>
 
 <span class="sd">        :return: Return value depends on ``self.click_action``:</span>
 
@@ -264,17 +267,24 @@
 <span class="sd">            * &#39;menu&#39;: Returns a :class:`NavMenuObject` instance</span>
 <span class="sd">            * None: Returns ``None``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">to_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_link_element</span><span class="p">(),</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">link_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_link_element</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">scroll_to</span><span class="p">:</span>
+            <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">link_element</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">link_element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">menu</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">click_action</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ActionTypes</span><span class="o">.</span><span class="n">MENU</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span></div>
 
-<div class="viewcode-block" id="NavLinkObject.hover_over_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link">[docs]</a>    <span class="k">def</span> <span class="nf">hover_over_link</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="NavLinkObject.hover_over_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link">[docs]</a>    <span class="k">def</span> <span class="nf">hover_over_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scroll_to</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Hover over the link element</span>
+
+<span class="sd">        :param scroll_to: (Default: False) If True, scroll to the link first</span>
+<span class="sd">            before hovering (used for non-fixed navs)</span>
 
 <span class="sd">        :return: :class:`NavMenuObject` instance (or ``None`` if no hover</span>
 <span class="sd">            action is defined)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">link_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_link_element</span><span class="p">()</span>
-        <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">link_element</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scroll_to</span><span class="p">:</span>
+            <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">link_element</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="n">action_chain</span> <span class="o">=</span> <span class="n">ActionChains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
         <span class="n">action_chain</span><span class="o">.</span><span class="n">move_to_element</span><span class="p">(</span><span class="n">link_element</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">menu</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hover_action</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ActionTypes</span><span class="o">.</span><span class="n">MENU</span> <span class="k">else</span> <span class="kc">None</span></div></div>
@@ -555,7 +565,7 @@
 
 <span class="sd">        :raises KeyError: If ``link_name`` is not a valid key in ``self.links``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">[</span><span class="n">link_name</span><span class="p">]</span><span class="o">.</span><span class="n">click_link</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">[</span><span class="n">link_name</span><span class="p">]</span><span class="o">.</span><span class="n">click_link</span><span class="p">(</span><span class="n">scroll_to</span><span class="o">=</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">FIXED</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NavObject.hover_over_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.hover_over_link">[docs]</a>    <span class="k">def</span> <span class="nf">hover_over_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Hover over a link in the navbar</span>
@@ -568,7 +578,7 @@
 
 <span class="sd">        :raises KeyError: If ``link_name`` is not a valid key in ``self.links``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">[</span><span class="n">link_name</span><span class="p">]</span><span class="o">.</span><span class="n">hover_over_link</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">[</span><span class="n">link_name</span><span class="p">]</span><span class="o">.</span><span class="n">hover_over_link</span><span class="p">(</span><span class="n">scroll_to</span><span class="o">=</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">FIXED</span><span class="p">)</span></div>
 
     <span class="c1"># Collapsible Nav Actions</span>
 
@@ -755,7 +765,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.11.1-alpha',
+            VERSION:'2.11.2-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
