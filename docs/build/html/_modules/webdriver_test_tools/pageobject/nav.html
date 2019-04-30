@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.nav &mdash; WebDriver Test Tools 2.11.2-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.nav &mdash; WebDriver Test Tools 2.12.0-alpha documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.11
+                2.12
               </div>
             
           
@@ -417,6 +417,16 @@
 <span class="sd">        that collapses the nav menu. If unspecified, this will be set to the</span>
 <span class="sd">        same value as :attr:`EXPAND_BUTTON_LOCATOR`</span>
 
+<span class="sd">    .. note::</span>
+
+<span class="sd">        ``MENU_LOCATOR``, ``EXPAND_BUTTON_LOCATOR``, and</span>
+<span class="sd">        ``COLLAPSE_BUTTON_LOCATOR`` will only be parsed from YAML if not</span>
+<span class="sd">        already set in the subclass. This allows for a non-collapsible nav that</span>
+<span class="sd">        parses YAML to be extended in a subclass with ``COLLAPSIBLE = True``</span>
+<span class="sd">        without re-writing the YAML file. The subclass would only need to set</span>
+<span class="sd">        ``MENU_LOCATOR``, ``EXPAND_BUTTON_LOCATOR``, and (optionally)</span>
+<span class="sd">        ``COLLAPSE_BUTTON_LOCATOR``</span>
+
 <span class="sd">    The following attribute is set based on the &#39;links&#39; key parsed from</span>
 <span class="sd">    :attr:`YAML_FILE` (or parsed from :attr:`LINK_DICTS`, which should be set</span>
 <span class="sd">    in subclasses if :attr:`YAML_FILE` is ``None``):</span>
@@ -499,9 +509,14 @@
         <span class="c1"># Collapsible nav configurations</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">COLLAPSIBLE</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">MENU_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_locator_dict</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;menu_locator&#39;</span><span class="p">])</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">EXPAND_BUTTON_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_locator_dict</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;expand_button_locator&#39;</span><span class="p">])</span>
-                <span class="k">if</span> <span class="s1">&#39;collapse_button_locator&#39;</span> <span class="ow">in</span> <span class="n">parsed_yaml</span><span class="p">:</span>
+                <span class="c1"># Only do the following if these elements weren&#39;t explicitly</span>
+                <span class="c1"># defined in the class. This allows for collapsible variants of</span>
+                <span class="c1"># existing nav classes to be defined using subclasses</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">MENU_LOCATOR</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">MENU_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_locator_dict</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;menu_locator&#39;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">EXPAND_BUTTON_LOCATOR</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">EXPAND_BUTTON_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_locator_dict</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;expand_button_locator&#39;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">COLLAPSE_BUTTON_LOCATOR</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s1">&#39;collapse_button_locator&#39;</span> <span class="ow">in</span> <span class="n">parsed_yaml</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">COLLAPSE_BUTTON_LOCATOR</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">yaml</span><span class="o">.</span><span class="n">parse_locator_dict</span><span class="p">(</span><span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;collapse_button_locator&#39;</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">COLLAPSE_BUTTON_LOCATOR</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EXPAND_BUTTON_LOCATOR</span>
@@ -765,7 +780,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.11.2-alpha',
+            VERSION:'2.12.0-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
