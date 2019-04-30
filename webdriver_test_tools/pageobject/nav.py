@@ -223,7 +223,6 @@ class NavMenuObject(BasePage):
 
 # Navbar Page Objects
 
-# TODO: document subclassing for collapsible
 class NavObject(YAMLParsingPageObject):
     """Page object prototype for navbars
 
@@ -258,6 +257,16 @@ class NavObject(YAMLParsingPageObject):
     :var NavObject.COLLAPSE_BUTTON_LOCATOR: (Optional) Locator for the button
         that collapses the nav menu. If unspecified, this will be set to the
         same value as :attr:`EXPAND_BUTTON_LOCATOR`
+
+    .. note::
+
+        ``MENU_LOCATOR``, ``EXPAND_BUTTON_LOCATOR``, and
+        ``COLLAPSE_BUTTON_LOCATOR`` will only be parsed from YAML if not
+        already set in the subclass. This allows for a non-collapsible nav that
+        parses YAML to be extended in a subclass with ``COLLAPSIBLE = True``
+        without re-writing the YAML file. The subclass would only need to set
+        ``MENU_LOCATOR``, ``EXPAND_BUTTON_LOCATOR``, and (optionally)
+        ``COLLAPSE_BUTTON_LOCATOR``
 
     The following attribute is set based on the 'links' key parsed from
     :attr:`YAML_FILE` (or parsed from :attr:`LINK_DICTS`, which should be set
