@@ -172,12 +172,17 @@ Example
 With YAML
 ~~~~~~~~~
 
+.. literalinclude:: ../example/yaml-example/form.py
+   :caption: form.py
+
 .. literalinclude:: ../example/yaml-example/form.yml
+   :caption: form.yml
 
 Without YAML
 ~~~~~~~~~~~~
 
 .. literalinclude:: ../example/no-yaml-example/form.py
+   :caption: form.py
 
 
 .. _yaml-modal-objects:
@@ -205,12 +210,17 @@ Example
 With YAML
 ~~~~~~~~~
 
+.. literalinclude:: ../example/yaml-example/modal.py
+   :caption: modal.py
+
 .. literalinclude:: ../example/yaml-example/modal.yml
+   :caption: modal.yml
 
 Without YAML
 ~~~~~~~~~~~~
 
 .. literalinclude:: ../example/no-yaml-example/modal.py
+   :caption: modal.py
 
 
 .. _yaml-nav-objects:
@@ -301,14 +311,26 @@ With YAML
 Regular Navbar
 ^^^^^^^^^^^^^^
 
+.. literalinclude:: ../example/yaml-example/nav.py
+   :caption: nav.py
+
 .. literalinclude:: ../example/yaml-example/nav.yml
+   :caption: nav.yml
 
 Collapsible Navbar
 ^^^^^^^^^^^^^^^^^^
 
-.. literalinclude:: ../example/yaml-example/collapsible_nav.yml
+.. literalinclude:: ../example/yaml-example/collapsible_nav.py
+   :caption: collapsible_nav.py
 
-.. todo collapsible from yaml nav
+.. literalinclude:: ../example/yaml-example/collapsible_nav.yml
+   :caption: collapsible_nav.yml
+
+Collapsible Navbar (Subclassing Non-Collapsible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. todo title rephrase
+.. todo add files
 
 
 Without YAML
@@ -318,11 +340,13 @@ Regular Navbar
 ^^^^^^^^^^^^^^
 
 .. literalinclude:: ../example/no-yaml-example/nav.py
+   :caption: nav.py
 
 Collapsible Navbar
 ^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: ../example/no-yaml-example/collapsible_nav.py
+   :caption: collapsible_nav.py
 
 
 .. _yaml-web-page-objects:
@@ -352,10 +376,20 @@ Example
 With YAML
 ~~~~~~~~~
 
-.. literalinclude:: ../example/yaml-example/web_page.yml
+.. todo Explain examples?
+
+.. literalinclude:: ../example/yaml-example/web_page.py
+   :caption: web_page.py
+
+.. literalinclude:: ../example/yaml-example/web_page_full.yml
+   :caption: web_page_full.yml
+
+.. literalinclude:: ../example/yaml-example/web_page_relative.yml
+   :caption: web_page_relative.yml
 
 Without YAML
 ~~~~~~~~~~~~
 
 .. literalinclude:: ../example/no-yaml-example/web_page.py
+   :caption: web_page.py
 
