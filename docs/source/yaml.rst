@@ -4,6 +4,8 @@
 Page Object YAML Files
 ======================
 
+.. todo update title to Page Object Prototype Syntax
+
 .. contents::
 
 Overview
@@ -15,8 +17,9 @@ support this will generate a ``.yml`` file in addition to a Python module when
 using the ``new page --prototype <prototype>`` command.
 
 The following sections detail YAML syntax specifically for
-``webdriver_test_tools``. For a basic introduction to YAML syntax in general,
-see `Ansible's YAML documentation`_.
+``webdriver_test_tools`` as well as the non-YAML alternative syntax for each
+:doc:`page object prototype <prototypes>`. For a basic introduction to YAML
+syntax in general, see `Ansible's YAML documentation`_.
 
 .. _Ansible's YAML documentation: https://docs.ansible.com/ansible/2.7/reference_appendices/YAMLSyntax.html
 
@@ -30,6 +33,10 @@ The following prototype classes support YAML parsing:
    * :class:`ModalObject <webdriver_test_tools.pageobject.modal.ModalObject>`
    * :class:`NavObject <webdriver_test_tools.pageobject.nav.NavObject>`
    * :class:`WebPageObject <webdriver_test_tools.pageobject.webpage.WebPageObject>`
+
+When initialized, these classes check to see if the ``YAML_FILE`` attribute is
+set. If ``YAML_FILE`` is not ``None``, the contents will be parsed and used to
+set the page object's attributes.
 
 
 Configure Defaults
@@ -58,8 +65,6 @@ can be used to generate ``.py`` and ``.yml`` files for supported prototypes:
 ::
 
    <test_package> new page <args> --yaml
-
-.. todo briefly go over YAML_FILE attribute
 
 
 General Syntax
@@ -112,9 +117,10 @@ specified with dictionaries using the following keys:
 .. note::
 
    Internally, these URL dictionaries are parsed using
-   :meth:`SiteConfig.parse_relative_url_dict`. If the attribute that
-   ``relative_to`` specifies does not have a trailing '/', this method adds one
-   before building the full URL
+   :meth:`SiteConfig.parse_relative_url_dict
+   <webdriver_test_tools.config.site.SiteConfig.parse_relative_url_dict>`. If
+   the attribute that ``relative_to`` specifies does not have a trailing '/',
+   this method adds one before building the full URL
 
 
 .. todo document root keys for each
@@ -386,8 +392,6 @@ Example
 With YAML
 ~~~~~~~~~
 
-.. todo Explain examples?
-
 .. literalinclude:: ../example/yaml-example/web_page.py
    :caption: web_page.py
 
@@ -399,8 +403,6 @@ With YAML
 
 Without YAML
 ~~~~~~~~~~~~
-
-.. todo make consistent with YAML example
 
 .. literalinclude:: ../example/no-yaml-example/web_page.py
    :caption: web_page.py

@@ -13,9 +13,11 @@ The ``webdriver_test_tools`` package includes pre-defined subclasses of
 components like forms and navbars. These classes define common methods and
 attributes to reduce the amount of code needed to create page objects.
 
-For more information and a list of currently implemented page object 
-prototypes, see the :doc:`full documentation
-<webdriver_test_tools.pageobject.prototypes>`.
+For more information on usage and the different prototypes available, see the
+following documentation: 
+
+   * :doc:`prototypes`
+   * :doc:`Prototypes API docs <webdriver_test_tools.pageobject.prototypes>`
 
 
 Example

@@ -7,15 +7,15 @@ Page Object Prototypes Overview
 Overview
 ========
 
-.. todo expand
-
 The ``webdriver_test_tools`` package includes pre-defined subclasses of
 :class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>` for common
 components like forms and navbars. These classes define common methods and
 attributes to reduce the amount of code needed to create page objects.
 
 Prototype classes support simplified YAML representations as well as pure
-Python. For details on YAML syntax, see :doc:`yaml`.
+Python. This page is an overview of available prototypes and their attributes
+and pre-defined methods. For details on syntax and example usages, see
+:doc:`yaml`.
 
 
 FormObject

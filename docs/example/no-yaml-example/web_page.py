@@ -5,9 +5,14 @@ from webdriver_test_tools.webdriver import actions, locate
 from no_yaml_example.config import SiteConfig
 
 
-class ExampleWebPageObject(prototypes.WebPageObject):
-    """Non-YAML WebPageObject example"""
+class FullURLExampleWebPageObject(prototypes.WebPageObject):
+    """Non-YAML WebPageObject example (full URL)"""
+    # Full URL of the page
+    PAGE_URL = 'http://example.com/'
 
+
+class RelativeURLExampleWebPageObject(prototypes.WebPageObject):
+    """Non-YAML WebPageObject example (relative URL)"""
     # File name of the page relative to a base URL declared in SiteConfig
     PAGE_FILENAME = 'page.html'
     # Full URL of the page
