@@ -48,12 +48,18 @@ are populated based on the contents of ``YAML_FILE`` or ``INPUT_DICT``:
 Methods
 -------
 
-.. todo verify reference syntax
-
-* :meth:`FormObject.fill_inputs`: Fill form inputs
-* :meth:`FormObject.get_input_values`: Get the current values of form inputs
-* :meth:`FormObject.submit_is_enabled`: Checks if the submit button is enabled
-* :meth:`FormObject.click_submit`: Click the submit button
+* :meth:`FormObject.fill_inputs
+  <webdriver_test_tools.pageobject.form.FormObject.fill_inputs>`: Fill form
+  inputs
+* :meth:`FormObject.get_input_values
+  <webdriver_test_tools.pageobject.form.FormObject.get_input_values>`: Get the
+  current values of form inputs
+* :meth:`FormObject.submit_is_enabled
+  <webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled>`: Checks
+  if the submit button is enabled
+* :meth:`FormObject.click_submit
+  <webdriver_test_tools.pageobject.form.FormObject.click_submit>`: Click the
+  submit button
 
 
 ModalObject
@@ -80,12 +86,16 @@ Attributes
 Methods
 -------
 
-.. todo verify reference syntax
-
-* :meth:`ModalObject.is_displayed`: Checks if the modal is currently visible
-* :meth:`ModalObject.click_close_button`: Click the modal's close button
-* :meth:`ModalObject.get_modal_body`: Returns an instance of the class defined
-  in ``MODAL_BODY_CLASS`` (or ``None`` if not set)
+* :meth:`ModalObject.is_displayed
+  <webdriver_test_tools.pageobject.modal.ModalObject.is_displayed>`: Checks if
+  the modal is currently visible
+* :meth:`ModalObject.click_close_button
+  <webdriver_test_tools.pageobject.modal.ModalObject.click_close_button>`: Click
+  the modal's close button
+* :meth:`ModalObject.get_modal_body
+  <webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body>`: Returns
+  an instance of the class defined in ``MODAL_BODY_CLASS`` (or ``None`` if not
+  set)
 
 
 NavObject
@@ -123,20 +133,26 @@ are populated based on the contents of ``YAML_FILE`` or ``LINK_DICTS``:
 Methods
 -------
 
-.. todo verify reference syntax
-
 All ``NavObject`` subclasses have the following methods:
 
-   * :meth:`NavObject.click_link`: Click a link in the navbar
-   * :meth:`NavObject.hover_over_link`: Hover over a link in the navbar
+   * :meth:`NavObject.click_link
+     <webdriver_test_tools.pageobject.nav.NavObject.click_link>`: Click a link
+     in the navbar
+   * :meth:`NavObject.hover_over_link
+     <webdriver_test_tools.pageobject.nav.NavObject.hover_over_link>`: Hover
+     over a link in the navbar
 
 Collapsible ``NavObject`` subclasses have additional methods:
 
-   * :meth:`NavObject.click_expand_button`: Click the button to expand the nav
-     menu
-   * :meth:`NavObject.click_collapse_button`: Click the button to collapse the
-     nav menu
-   * :meth:`NavObject.is_expanded`: Check if the nav menu is expanded
+   * :meth:`NavObject.click_expand_button
+     <webdriver_test_tools.pageobject.nav.NavObject.click_expand_button>`: Click
+     the button to expand the nav menu
+   * :meth:`NavObject.click_collapse_button
+     <webdriver_test_tools.pageobject.nav.NavObject.click_collapse_button>`:
+     Click the button to collapse the nav menu
+   * :meth:`NavObject.is_expanded
+     <webdriver_test_tools.pageobject.nav.NavObject.is_expanded>`: Check if the
+     nav menu is expanded
 
 
 WebPageObject
@@ -166,7 +182,7 @@ Attributes
 Methods
 -------
 
-.. todo verify reference syntax
-
-* :meth:`WebPageObject.get_page_title`: Returns the title of the current page
+* :meth:`WebPageObject.get_page_title
+  <webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title>`:
+  Returns the title of the current page
 

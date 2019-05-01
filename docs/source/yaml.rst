@@ -255,6 +255,14 @@ Navbar objects have the following keys:
      collapses the menu. Only needed if ``collapsible`` is ``true`` and the
      collapse button isn't the same as the expand button
 
+.. note::
+
+   It's possible to re-use the YAML from a non-collapsible navbar to create a
+   collapsible variant. This can be useful for responsive navbars that collapse
+   on mobile viewports. For an example of how to do this, see the
+   :ref:`collapsible-nav-variant` example.
+
+
 .. _yaml-links:
 
 Links
@@ -326,11 +334,13 @@ Collapsible Navbar
 .. literalinclude:: ../example/yaml-example/collapsible_nav.yml
    :caption: collapsible_nav.yml
 
-Collapsible Navbar (Subclassing Non-Collapsible)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _collapsible-nav-variant:
 
-.. todo title rephrase
-.. todo add files
+Collapsible Navbar (Reusing YAML from Non-Collapsible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: ../example/yaml-example/collapsible_nav_variant.py
+   :caption: collapsible_nav_variant.py
 
 
 Without YAML
@@ -389,6 +399,8 @@ With YAML
 
 Without YAML
 ~~~~~~~~~~~~
+
+.. todo make consistent with YAML example
 
 .. literalinclude:: ../example/no-yaml-example/web_page.py
    :caption: web_page.py
