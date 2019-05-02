@@ -3,7 +3,7 @@ from webdriver_test_tools.pageobject import *
 from webdriver_test_tools.webdriver import actions, locate
 
 
-class ExampleModalObject(prototypes.ModalObject):
+class ExampleModal(prototypes.ModalObject):
     """Non-YAML ModalObject example"""
 
     # REQUIRED: Locator for the modal element

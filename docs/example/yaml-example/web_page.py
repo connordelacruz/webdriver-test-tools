@@ -7,7 +7,7 @@ from webdriver_test_tools.webdriver import actions, locate
 from yaml_example.config import SiteConfig
 
 
-class FullURLExampleWebPageObject(prototypes.WebPageObject):
+class FullURLExampleWebPage(prototypes.WebPageObject):
     """YAML WebPageObject example (full URL)"""
 
     # Path to YAML file representing the object
@@ -16,7 +16,7 @@ class FullURLExampleWebPageObject(prototypes.WebPageObject):
     SITE_CONFIG = SiteConfig
 
 
-class RelativeURLExampleWebPageObject(prototypes.WebPageObject):
+class RelativeURLExampleWebPage(prototypes.WebPageObject):
     """YAML WebPageObject example (relative URL)"""
 
     # Path to YAML file representing the object

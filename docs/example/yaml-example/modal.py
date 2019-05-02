@@ -5,7 +5,7 @@ from webdriver_test_tools.pageobject import *
 from webdriver_test_tools.webdriver import actions, locate
 
 
-class ExampleModalObject(prototypes.ModalObject):
+class ExampleModal(prototypes.ModalObject):
     """YAML ModalObject example"""
 
     # Path to YAML file representing the object

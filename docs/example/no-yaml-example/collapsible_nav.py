@@ -5,7 +5,7 @@ from webdriver_test_tools.webdriver import actions, locate
 from no_yaml_example.config import SiteConfig
 
 
-class ExampleCollapsibleNavObject(prototypes.NavObject):
+class ExampleCollapsibleNav(prototypes.NavObject):
     """Non-YAML collapsible NavObject example"""
 
     # Used for internal methods (do not modify)

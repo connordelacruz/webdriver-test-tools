@@ -3,7 +3,7 @@ from webdriver_test_tools.pageobject import *
 from webdriver_test_tools.webdriver import actions, locate
 
 
-class ExampleFormObject(prototypes.FormObject):
+class ExampleForm(prototypes.FormObject):
     """Non-YAML FormObject example"""
 
     # REQUIRED: Locator for the form element

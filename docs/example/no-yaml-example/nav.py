@@ -5,7 +5,7 @@ from webdriver_test_tools.webdriver import actions, locate
 from no_yaml_example.config import SiteConfig
 
 
-class ExampleNavObject(prototypes.NavObject):
+class ExampleNav(prototypes.NavObject):
     """Non-YAML NavObject example"""
 
     # Used for internal methods (do not modify)

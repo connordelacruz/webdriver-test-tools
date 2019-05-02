@@ -7,7 +7,7 @@ from webdriver_test_tools.webdriver import actions, locate
 from yaml_example.config import SiteConfig
 
 
-class ExampleNavObject(prototypes.NavObject):
+class ExampleNav(prototypes.NavObject):
     """YAML NavObject example"""
 
     # Path to YAML file representing the object

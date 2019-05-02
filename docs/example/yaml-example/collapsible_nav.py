@@ -7,7 +7,7 @@ from webdriver_test_tools.webdriver import actions, locate
 from yaml_example.config import SiteConfig
 
 
-class ExampleCollapsibleNavObject(prototypes.NavObject):
+class ExampleCollapsibleNav(prototypes.NavObject):
     """YAML collapsible NavObject example"""
 
     # Path to YAML file representing the object
