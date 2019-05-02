@@ -1,10 +1,11 @@
+================================
 Testing with Additional Browsers
 ================================
 
 .. contents::
 
 Enabling additional browsers
-----------------------------
+============================
 
 By default, tests are generated for Firefox and Chrome. Additional browsers can
 be enabled in ``<test_package>/config/browser.py``. For example, to generate
@@ -28,7 +29,7 @@ test cases for Safari, set ``Browsers.SAFARI`` to ``True`` in
 
 
 Skipping tests for certain browsers
------------------------------------
+===================================
 
 Some browser drivers don't support certain features of the Selenium WebDriver
 API. If a test method or class requires these features to run, drivers that lack
@@ -37,7 +38,7 @@ support for them will likely encounter errors leading to false failures. The
 browsers for these instances.
 
 Skipping browsers for test methods
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 To skip test methods for specific browsers, use the
 ``@WebDriverTestTools.skipBrowsers()`` decorator method:
@@ -56,7 +57,7 @@ To skip test methods for specific browsers, use the
 
 
 Skipping browsers for test case classes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 To skip an entire test case class, override ``WebDriverTestCase.SKIP_BROWSERS``
 with a list of browser names to skip:
@@ -73,7 +74,7 @@ is imported from ``webdriver_test_tools.testcase``.
 
 
 Enabling mobile browsers
-------------------------
+========================
 
 Test cases that emulate mobile browser layouts are also enabled in
 ``<test_package>/config/browser.py``. For example, to generate test cases for
@@ -97,7 +98,7 @@ Chrome emulating a mobile layout, set ``Browsers.CHROME_MOBILE`` to ``True`` in
 
 
 Skipping tests for mobile browsers
-----------------------------------
+==================================
 
 Responsive site layouts can change significantly on mobile viewports, so the
 procedure for testing a feature may require different steps. The
@@ -105,10 +106,10 @@ procedure for testing a feature may require different steps. The
 for mobile or non-mobile browsers.
 
 Skipping mobile browsers
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 Test methods
-^^^^^^^^^^^^
+~~~~~~~~~~~~
 
 To skip test methods for mobile browsers, use the ``@WebDriverTestTools.skipMobile()`` decorator method:
 
@@ -122,7 +123,7 @@ To skip test methods for mobile browsers, use the ``@WebDriverTestTools.skipMobi
 
 
 Test case classes
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 To skip an entire test case class, set ``WebDriverTestCase.SKIP_MOBILE`` to ``True``:
 
@@ -134,12 +135,12 @@ To skip an entire test case class, set ``WebDriverTestCase.SKIP_MOBILE`` to ``Tr
 
 
 Skipping non-mobile browsers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 Utilities are also provided for running tests exclusively in mobile browsers.
 
 Test methods
-^^^^^^^^^^^^
+~~~~~~~~~~~~
 
 To skip test methods for non-mobile browsers, use the
 ``@WebDriverTestTools.mobileOnly()`` decorator method:
@@ -154,7 +155,7 @@ To skip test methods for non-mobile browsers, use the
 
 
 Test case classes
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 To only use mobile browsers for a test case class, subclass
 ``WebDriverMobileTestCase``:
@@ -166,7 +167,7 @@ To only use mobile browsers for a test case class, subclass
 
 
 Modify test steps for mobile browsers
--------------------------------------
+=====================================
 
 .. todo better title?
 
@@ -176,7 +177,7 @@ the steps for a test might vary slightly on mobile browsers.
 
 
 Example
-~~~~~~~
+-------
 
 Suppose we have a responsive navbar that collapses on mobile viewports, adding
 the extra step of expanding the navigation menu before clicking on a link. We
@@ -209,7 +210,7 @@ click the expand button based on ``self.is_mobile()``:
 .. _headless-browsers:
 
 Using headless browsers
------------------------
+=======================
 
 By default, tests run using the browser's GUI. While it can be helpful to see
 what's going on during test execution, loading and rendering the browser window
