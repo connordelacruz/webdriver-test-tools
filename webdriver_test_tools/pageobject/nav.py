@@ -20,10 +20,10 @@ class NavLinkObject(BasePage):
         NONE = 'none'
         # Click/hover support for each type
         CLICK_ACTIONS = [
-            PAGE, SECTION, MENU, NONE
+            PAGE, SECTION, MENU, NONE, None
         ]
         HOVER_ACTIONS = [
-            MENU, NONE
+            MENU, NONE, None
         ]
         # Required attributes for types
         REQUIRES_TARGET = [
