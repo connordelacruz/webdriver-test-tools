@@ -1,10 +1,8 @@
 .. _yaml-page-objects:
 
-======================
-Page Object YAML Files
-======================
-
-.. todo update title to Page Object Prototype Syntax
+============================
+Page Object Prototype Syntax
+============================
 
 .. contents::
 
