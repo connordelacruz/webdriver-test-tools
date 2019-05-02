@@ -1,17 +1,74 @@
-=================
-Testing Utilities
-=================
+==========================
+Testing Utilities Overview
+==========================
 
 .. contents::
+
+.. _assertion-methods:
+
+WebDriverTestCase Assertion Methods
+===================================
+
+.. currentmodule:: webdriver_test_tools.testcase.webdriver
+
+In addition to the ``unittest.TestCase`` `assertion methods`_, ``WebDriverTestCase``
+has additional assertions:
+
++------------------------------------------+-------------------------------------+
+| Method                                   | Checks That                         |
++==========================================+=====================================+
+| :meth:`assertExists(element_locator)     | Element exists on the page          |
+| <WebDriverTestCase.assertExists>`        |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertNotExists(element_locator)  | Element does not exists on the page |
+| <WebDriverTestCase.assertNotExists>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertInView(element_locator)     | Element is scrolled into view       |
+| <WebDriverTestCase.assertInView>`        |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertNotInView(element_locator)  | Element is not scrolled into view   |
+| <WebDriverTestCase.assertNotInView>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertVisible(element_locator)    | Element is visible                  |
+| <WebDriverTestCase.assertVisible>`       |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertInvisible(element_locator)  | Element is not visible              |
+| <WebDriverTestCase.assertInvisible>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertEnabled(element_locator)    | Element is enabled                  |
+| <WebDriverTestCase.assertEnabled>`       |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertDisabled(element_locator)   | Element is disabled                 |
+| <WebDriverTestCase.assertDisabled>`      |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertUrlChange(expected_url)     | URL matches ``expected_url``        |
+| <WebDriverTestCase.assertUrlChange>`     |                                     |
++------------------------------------------+-------------------------------------+
+| :meth:`assertBaseUrlChange(expected_url) | Base URL (ignoring query strings)   |
+| <WebDriverTestCase.assertBaseUrlChange>` | matches ``expected_url``            |
++------------------------------------------+-------------------------------------+
+
+Each of these assertion methods accepts the following optional keyword arguments:
+
+- ``msg``: If specified, used as the error message on failure
+- ``wait_timeout``: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``) Number of
+  seconds to wait for expected conditions to occur before test fails
+
+Some assertions have other optional keyword arguments specific to what they are
+testing. For details, check the documentation for :class:`WebDriverTestCase`.
+
+.. _assertion methods: https://docs.python.org/library/unittest.html#assert-methods
 
 
 Page Object Prototypes
 ======================
 
+.. currentmodule:: webdriver_test_tools.pageobject
+
 The ``webdriver_test_tools`` package includes pre-defined subclasses of
-:class:`BasePage <webdriver_test_tools.pageobject.base.BasePage>` for common
-components like forms and navbars. These classes define common methods and
-attributes to reduce the amount of code needed to create page objects.
+:class:`BasePage <base.BasePage>` for common components like forms and navbars.
+These classes define common methods and attributes to reduce the amount of code
+needed to create page objects.
 
 For more information on usage and the different prototypes available, see the
 following documentation: 
@@ -38,10 +95,10 @@ classes for the "Contact Us" page and submission success modal respectively.
 We'll then need to create ``tests/contact.py`` with test class
 ``ContactTestCase``.
 
-To save time writing tests, we can use the :mod:`prototypes.FormObject
-<webdriver_test_tools.pageobject.form>` and :mod:`prototypes.ModalObject
-<webdriver_test_tools.pageobject.modal>` classes, which have pre-defined methods
-for most of the tasks we want them to do.
+To save time writing tests, we can use the :class:`prototypes.FormObject
+<form.FormObject>` and :class:`prototypes.ModalObject <modal.ModalObject>`
+classes, which have pre-defined methods for most of the tasks we want them to
+do.
 
 .. literalinclude:: ../example/util-example/util_example/pages/contact.py
     :caption: pages/contact.py
@@ -80,8 +137,7 @@ write our test in ``ContactTestCase``:
     :caption: tests/contact.py
     :pyobject: ContactTestCase.test_contact_form
     
-The :meth:`fill_inputs()
-<webdriver_test_tools.pageobject.form.FormObject.fill_inputs>` method takes a
+The :meth:`fill_inputs() <form.FormObject.fill_inputs>` method takes a
 dictionary mapping input names to the values to set them to. In the `Test Data
 Generation`_ section, we will create the ``generate_contact_form_data()`` method
 used to assign ``contact_form_data`` in the above example.
@@ -93,10 +149,9 @@ Using Prototypes in New Page Objects
 .. todo rephrase title?
 
 By default, page objects generated using the ``new page`` command use a basic
-template and subclass :class:`BasePage
-<webdriver_test_tools.pageobject.base.BasePage>`. You can specify a page object
-prototype to use as a basis for a new page using the ``--prototype`` (or ``-p``)
-argument:
+template and subclass :class:`BasePage <base.BasePage>`. You can specify a page
+object prototype to use as a basis for a new page using the ``--prototype`` (or
+``-p``) argument:
 
 ::
 
@@ -184,11 +239,11 @@ Screenshots
 Take Screenshot on Test Failure
 -------------------------------
 
-The :meth:`WebDriverTestCase.screenshotOnFail()
-<webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail>`
-decorator method can be used to save screenshots when a test assertion fails.
-This can be particularly useful when running tests using :ref:`headless browsers
-<headless-browsers>`.
+.. currentmodule:: webdriver_test_tools.testcase.webdriver
+
+The :meth:`WebDriverTestCase.screenshotOnFail` decorator method can be used to
+save screenshots when a test assertion fails.  This can be particularly useful
+when running tests using :ref:`headless browsers <headless-browsers>`.
 
 .. code-block:: python
     :caption: Usage example:

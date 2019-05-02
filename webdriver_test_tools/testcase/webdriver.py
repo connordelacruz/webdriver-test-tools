@@ -466,6 +466,7 @@ class WebDriverTestCase(unittest.TestCase):
         :return: True if running in a mobile browser (or emulated one), False
             if running in a desktop
         """
+        # WebDriverMobileTestCase overrides this method and returns True
         return False
 
 
