@@ -92,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_project.html">Example Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="additional_browsers.html">Testing with Additional Browsers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
@@ -181,62 +181,6 @@
   <div class="section" id="module-webdriver_test_tools.testcase.webdriver">
 <span id="webdriver-test-tools-testcase-webdriver-module"></span><h1>webdriver_test_tools.testcase.webdriver module<a class="headerlink" href="#module-webdriver_test_tools.testcase.webdriver" title="Permalink to this headline">¶</a></h1>
 <p>Base test case classes.</p>
-<div class="section" id="assertion-methods">
-<span id="id1"></span><h2>Assertion Methods<a class="headerlink" href="#assertion-methods" title="Permalink to this headline">¶</a></h2>
-<p>In addition to the <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code> <a class="reference external" href="https://docs.python.org/library/unittest.html#assert-methods">assertion methods</a>, <code class="docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code>
-has additional assertions:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="53%" />
-<col width="47%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Checks That</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertExists(element_locator)</span></code></a></td>
-<td>Element exists on the page</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertNotExists(element_locator)</span></code></a></td>
-<td>Element does not exists on the page</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertInView(element_locator)</span></code></a></td>
-<td>Element is scrolled into view</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertNotInView(element_locator)</span></code></a></td>
-<td>Element is not scrolled into view</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertVisible(element_locator)</span></code></a></td>
-<td>Element is visible</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertInvisible(element_locator)</span></code></a></td>
-<td>Element is not visible</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertEnabled(element_locator)</span></code></a></td>
-<td>Element is enabled</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertDisabled(element_locator)</span></code></a></td>
-<td>Element is disabled</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertUrlChange(expected_url)</span></code></a></td>
-<td>URL matches <code class="docutils literal notranslate"><span class="pre">expected_url</span></code></td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assertBaseUrlChange(expected_url)</span></code></a></td>
-<td>Base URL (ignoring query strings)
-matches <code class="docutils literal notranslate"><span class="pre">expected_url</span></code></td>
-</tr>
-</tbody>
-</table>
-<p>Each of these assertion methods accepts the following optional keyword arguments:</p>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">msg</span></code>: If specified, used as the error message on failure</li>
-<li><code class="docutils literal notranslate"><span class="pre">wait_timeout</span></code>: (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>) Number of
-seconds to wait for expected conditions to occur before test fails</li>
-</ul>
-<p>Some assertions have other optional keyword arguments specific to what they are
-testing. For details, check the documentation for <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a>.</p>
 <dl class="class">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase">
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="descname">WebDriverTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="Permalink to this definition">¶</a></dt>
@@ -277,7 +221,7 @@ generated for all enabled browsers, including mobile. If <code class="docutils l
 layout changes between desktop and mobile viewports would alter the test
 procedures.</li>
 <li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT"><strong>WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT</strong></a> – (Optional) Default number
-of seconds for <a class="reference internal" href="#assertion-methods"><span class="std std-ref">WebDriverTestCase assertion methods</span></a> to wait for expected conditions to occur before
+of seconds for <a class="reference internal" href="utilities.html#assertion-methods"><span class="std std-ref">WebDriverTestCase assertion methods</span></a> to wait for expected conditions to occur before
 test fails. Defaults to the value of <code class="docutils literal notranslate"><span class="pre">DEFAULT_ASSERTION_TIMEOUT</span></code> set
 in the test project’s
 &lt;webdriver_test_tools.config.webdriver.WebDriverConfig&gt;` class</li>
@@ -747,6 +691,21 @@ exceptions outside of their context.</p>
 </div>
 </dd></dl>
 
+<dl class="method">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.is_mobile">
+<code class="descname">is_mobile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.is_mobile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.is_mobile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the test case is running in a mobile browser</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if running in a mobile browser (or emulated one), False
+if running in a desktop</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -754,16 +713,30 @@ exceptions outside of their context.</p>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="descname">WebDriverMobileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverMobileTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.testcase.webdriver.WebDriverTestCase</span></code></a></p>
 <p>Base class for mobile web driver test cases</p>
-<p>If a test subclasses <code class="docutils literal notranslate"><span class="pre">WebDriverMobileTestCase</span></code> instead of <code class="docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code>, tests
-will only be generated for mobile browsers</p>
+<p>If a test subclasses <code class="docutils literal notranslate"><span class="pre">WebDriverMobileTestCase</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code>, tests will only be generated for mobile browsers</p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.SKIP_MOBILE">
 <code class="descname">SKIP_MOBILE</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.SKIP_MOBILE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.is_mobile">
+<code class="descname">is_mobile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverMobileTestCase.is_mobile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.is_mobile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the test case is running in a mobile browser</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if running in a mobile browser (or emulated one), False
+if running in a desktop</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-</div>
+</dd></dl>
+
 </div>
 
 

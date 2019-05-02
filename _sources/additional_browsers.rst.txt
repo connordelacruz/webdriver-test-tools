@@ -165,6 +165,49 @@ To only use mobile browsers for a test case class, subclass
         ...
 
 
+Modify test for mobile browsers
+-------------------------------
+
+.. todo better title
+
+Tests can check at runtime if the browser is mobile using the
+``WebDriverTestCase.is_mobile()`` method. This can be useful in instances where
+the steps for a test might vary slightly on mobile browsers. 
+
+
+Example
+~~~~~~~
+
+.. todo more details about example
+
+Suppose we have a responsive navbar that collapses on mobile viewports, adding
+the extra step of expanding the navigation menu before clicking on a link. We
+can determine what page object class to use for the navbar and conditionally
+click the expand button based on ``self.is_mobile()``:
+
+.. code-block:: python
+   :caption: test/navbar.py
+   :emphasize-lines: 10,13-14
+
+   ...
+   from example_project.pages.navbar import PrimaryNav, MobilePrimaryNav
+   ...
+
+   class PrimaryNavTestCase(WebDriverTestCase):
+      ...
+      def test_navbar_links(self):
+        """Click links on the primary nav"""
+         # Use collapsible NavObject class for mobile browsers
+         navbar = MobilePrimaryNav(self.driver) if self.is_mobile() else PrimaryNav(self.driver)
+         for link in navbar.links:
+            # Expand collapsed menu first in mobile
+            if self.is_mobile():
+               navbar.click_expand_button()
+            with self.subTest('Click navbar link', link=link):
+               expected_url = navbar.click_link(link)
+               self.assertUrlChange(expected_url)
+
+
 .. _headless-browsers:
 
 Using headless browsers
