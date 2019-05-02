@@ -13,21 +13,16 @@ The ``webdriver_test_tools`` package includes pre-defined subclasses of
 components like forms and navbars. These classes define common methods and
 attributes to reduce the amount of code needed to create page objects.
 
-For more information and a list of currently implemented page object 
-prototypes, see the :doc:`full documentation
-<webdriver_test_tools.pageobject.prototypes>`.
+For more information on usage and the different prototypes available, see the
+following documentation: 
+
+   * :doc:`prototypes`
+   * :doc:`yaml`
+   * :doc:`Prototypes API docs <webdriver_test_tools.pageobject.prototypes>`
 
 
 Example
 -------
-
-.. todo::
-
-   Add examples of each page object prototype, and both YAML and non-YAML
-   examples for prototypes that support it.
-
-   For some more examples, see the `page object tests for the framework on
-   Github <https://github.com/connordelacruz/webdriver-test-tools/tree/develop/test/page-object-tests/page_object_tests/pages>`_.
 
 Suppose we have a "Contact Us" form with form validation that disables the
 submit button until required inputs are filled. When submit is clicked, a modal

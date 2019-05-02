@@ -1,8 +1,8 @@
 .. _yaml-page-objects:
 
-======================
-Page Object YAML Files
-======================
+============================
+Page Object Prototype Syntax
+============================
 
 .. contents::
 
@@ -15,8 +15,9 @@ support this will generate a ``.yml`` file in addition to a Python module when
 using the ``new page --prototype <prototype>`` command.
 
 The following sections detail YAML syntax specifically for
-``webdriver_test_tools``. For a basic introduction to YAML syntax in general,
-see `Ansible's YAML documentation`_.
+``webdriver_test_tools`` as well as the non-YAML alternative syntax for each
+:doc:`page object prototype <prototypes>`. For a basic introduction to YAML
+syntax in general, see `Ansible's YAML documentation`_.
 
 .. _Ansible's YAML documentation: https://docs.ansible.com/ansible/2.7/reference_appendices/YAMLSyntax.html
 
@@ -30,6 +31,10 @@ The following prototype classes support YAML parsing:
    * :class:`ModalObject <webdriver_test_tools.pageobject.modal.ModalObject>`
    * :class:`NavObject <webdriver_test_tools.pageobject.nav.NavObject>`
    * :class:`WebPageObject <webdriver_test_tools.pageobject.webpage.WebPageObject>`
+
+When initialized, these classes check to see if the ``YAML_FILE`` attribute is
+set. If ``YAML_FILE`` is not ``None``, the contents will be parsed and used to
+set the page object's attributes.
 
 
 Configure Defaults
@@ -58,8 +63,6 @@ can be used to generate ``.py`` and ``.yml`` files for supported prototypes:
 ::
 
    <test_package> new page <args> --yaml
-
-.. todo briefly go over YAML_FILE attribute
 
 
 General Syntax
@@ -90,6 +93,11 @@ required keys:
    * ``locator``: Value used to locate element with the specified locator
      strategy
 
+.. note::
+
+   For non-YAML page objects, any instances of a locator dictionary can be
+   replaced with a Python locator tuple i.e. ``(By.<STRATEGY>, '<locator>')``
+
 
 .. _yaml-relative-urls:
 
@@ -107,9 +115,10 @@ specified with dictionaries using the following keys:
 .. note::
 
    Internally, these URL dictionaries are parsed using
-   :meth:`SiteConfig.parse_relative_url_dict`. If the attribute that
-   ``relative_to`` specifies does not have a trailing '/', this method adds one
-   before building the full URL
+   :meth:`SiteConfig.parse_relative_url_dict
+   <webdriver_test_tools.config.site.SiteConfig.parse_relative_url_dict>`. If
+   the attribute that ``relative_to`` specifies does not have a trailing '/',
+   this method adds one before building the full URL
 
 
 .. todo document root keys for each
@@ -164,7 +173,20 @@ The items in the form ``inputs`` list have the following keys:
 Example
 -------
 
+With YAML
+~~~~~~~~~
+
+.. literalinclude:: ../example/yaml-example/form.py
+   :caption: form.py
+
 .. literalinclude:: ../example/yaml-example/form.yml
+   :caption: form.yml
+
+Without YAML
+~~~~~~~~~~~~
+
+.. literalinclude:: ../example/no-yaml-example/form.py
+   :caption: form.py
 
 
 .. _yaml-modal-objects:
@@ -189,7 +211,20 @@ Modal objects have 2 required keys:
 Example
 -------
 
+With YAML
+~~~~~~~~~
+
+.. literalinclude:: ../example/yaml-example/modal.py
+   :caption: modal.py
+
 .. literalinclude:: ../example/yaml-example/modal.yml
+   :caption: modal.yml
+
+Without YAML
+~~~~~~~~~~~~
+
+.. literalinclude:: ../example/no-yaml-example/modal.py
+   :caption: modal.py
 
 
 .. _yaml-nav-objects:
@@ -223,6 +258,14 @@ Navbar objects have the following keys:
    * ``collapse_button_locator`` *(Optional)* Locator for the button that
      collapses the menu. Only needed if ``collapsible`` is ``true`` and the
      collapse button isn't the same as the expand button
+
+.. note::
+
+   It's possible to re-use the YAML from a non-collapsible navbar to create a
+   collapsible variant. This can be useful for responsive navbars that collapse
+   on mobile viewports. For an example of how to do this, see the
+   :ref:`collapsible-nav-variant` example.
+
 
 .. _yaml-links:
 
@@ -274,9 +317,50 @@ The items in the nav ``links`` list have the following keys:
 Example
 -------
 
+With YAML
+~~~~~~~~~
+
+Regular Navbar
+^^^^^^^^^^^^^^
+
+.. literalinclude:: ../example/yaml-example/nav.py
+   :caption: nav.py
+
 .. literalinclude:: ../example/yaml-example/nav.yml
+   :caption: nav.yml
+
+Collapsible Navbar
+^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: ../example/yaml-example/collapsible_nav.py
+   :caption: collapsible_nav.py
 
 .. literalinclude:: ../example/yaml-example/collapsible_nav.yml
+   :caption: collapsible_nav.yml
+
+.. _collapsible-nav-variant:
+
+Collapsible Navbar (Reusing YAML from Non-Collapsible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: ../example/yaml-example/collapsible_nav_variant.py
+   :caption: collapsible_nav_variant.py
+
+
+Without YAML
+~~~~~~~~~~~~
+
+Regular Navbar
+^^^^^^^^^^^^^^
+
+.. literalinclude:: ../example/no-yaml-example/nav.py
+   :caption: nav.py
+
+Collapsible Navbar
+^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: ../example/no-yaml-example/collapsible_nav.py
+   :caption: collapsible_nav.py
 
 
 .. _yaml-web-page-objects:
@@ -303,5 +387,21 @@ full URL to the page or a :ref:`relative URL dictionary <yaml-relative-urls>`
 Example
 -------
 
-.. literalinclude:: ../example/yaml-example/web_page.yml
+With YAML
+~~~~~~~~~
+
+.. literalinclude:: ../example/yaml-example/web_page.py
+   :caption: web_page.py
+
+.. literalinclude:: ../example/yaml-example/web_page_full.yml
+   :caption: web_page_full.yml
+
+.. literalinclude:: ../example/yaml-example/web_page_relative.yml
+   :caption: web_page_relative.yml
+
+Without YAML
+~~~~~~~~~~~~
+
+.. literalinclude:: ../example/no-yaml-example/web_page.py
+   :caption: web_page.py
 
