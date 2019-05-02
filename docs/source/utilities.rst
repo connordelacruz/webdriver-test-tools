@@ -17,6 +17,7 @@ For more information on usage and the different prototypes available, see the
 following documentation: 
 
    * :doc:`prototypes`
+   * :doc:`yaml`
    * :doc:`Prototypes API docs <webdriver_test_tools.pageobject.prototypes>`
 
 
