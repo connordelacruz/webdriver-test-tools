@@ -1,9 +1,9 @@
 # Example 1: Standard navbar
 nav:
-  # (Default: true) Whether the navbar is fixed to the window.
+  # (Default: true) Whether the navbar is fixed to the window
   fixed: false
   links:
-    # Page link
+    # Page link:
     - name: home
       link_locator:
         by: CLASS_NAME
@@ -11,26 +11,27 @@ nav:
       target:
         path: index.html
         relative_to: BASE_URL
-    # Section link
+    # Section link:
     - name: section1
       link_locator:
         by: CSS_SELECTOR
         locator: 'a[href="#section1"]'
       click: section
       target: '#section1'
-    # Dropdown menu (hover)
+    # Dropdown menu (hover):
     - name: hover-menu
       link_locator:
         by: ID
         locator: hover-menu-link
-      # Set click action to 'none', hover to 'menu'
+      # Set click action to 'none' (unless link also has a click action)
       click: none
+      # Set hover action to 'menu'
       hover: menu
       menu:
         menu_locator:
           by: ID
           locator: hover-menu
-        # Dropdown menu links (same syntax as nav links)
+        # Dropdown menu links (same syntax as nav links):
         links:
           - name: page1
             link_locator:
@@ -46,7 +47,7 @@ nav:
             target:
               path: page2.html
               relative_to: BASE_URL
-    # Dropdown menu (click)
+    # Dropdown menu (click):
     - name: click-menu
       link_locator:
         by: ID
@@ -57,7 +58,7 @@ nav:
         menu_locator:
           by: ID
           locator: click-menu
-        # Dropdown menu links
+        # Dropdown menu links:
         links:
           - name: page1
             link_locator:

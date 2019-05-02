@@ -14,18 +14,19 @@ form:
       type: email
     # 'type' defaults to 'text' if not specified:
     - name: text_input
-    # Assume required by default, specify otherwise:
-    - name: phone
-      type: text
+    # Inputs are assumed to be required by default, use 'required' to specify
+    # otherwise:
+    - name: optional_input
       required: false
-    # Supports inputs with no 'name' attribute (though the name key is still
-    # required for identification):
+    # For input elements with no name attribute, the 'input_locator' key is
+    # used to locate the element (though the 'name' key is still required for
+    # identification):
     - name: unique_identifier
       input_locator:
         by: CLASS_NAME
         locator: input-with-no-name-attribute
       type: text
-    # Specify list of options for selects and radios:
+    # Selects and radios take a list of options:
     - name: select_example
       type: select
       options:
@@ -42,7 +43,7 @@ form:
         '001': Helpful label
         '002': Another helpful label
         '003': An even more helpful label
-    # Support select elements with the 'multiple' attribute:
+    # Supports select elements with the 'multiple' attribute:
     - name: multiple_select_example
       type: select
       multiple: true

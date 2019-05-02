@@ -14,7 +14,7 @@ nav:
   #   by: <BY>
   #   locator: <LOCATOR>
   links:
-    # Page link
+    # Page link:
     - name: home
       link_locator:
         by: CLASS_NAME
@@ -22,24 +22,25 @@ nav:
       target:
         path: index.html
         relative_to: BASE_URL
-    # Section link
+    # Section link:
     - name: section1
       link_locator:
         by: CSS_SELECTOR
         locator: 'a[href="#section1"]'
       click: section
       target: '#section1'
-    # Dropdown menu
+    # Dropdown menu (click):
     - name: click-menu
       link_locator:
         by: ID
         locator: click-menu-link
+      # Set click action to 'menu'
       click: menu
       menu:
         menu_locator:
           by: ID
           locator: click-menu
-        # Dropdown menu links
+        # Dropdown menu links:
         links:
           - name: page1
             link_locator:
