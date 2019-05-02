@@ -1,60 +1,4 @@
-"""Base test case classes.
-
-
-.. _assertion-methods:
-
-Assertion Methods
------------------
-
-In addition to the ``unittest.TestCase`` `assertion methods`_, ``WebDriverTestCase``
-has additional assertions:
-
-+------------------------------------------+-------------------------------------+
-| Method                                   | Checks That                         |
-+==========================================+=====================================+
-| :meth:`assertExists(element_locator)     | Element exists on the page          |
-| <WebDriverTestCase.assertExists>`        |                                     |
-+------------------------------------------+-------------------------------------+
-| :meth:`assertNotExists(element_locator)  | Element does not exists on the page |
-| <WebDriverTestCase.assertNotExists>`     |                                     |
-+------------------------------------------+-------------------------------------+
-| :meth:`assertInView(element_locator)     | Element is scrolled into view       |
-| <WebDriverTestCase.assertInView>`        |                                     |
-+------------------------------------------+-------------------------------------+
-| :meth:`assertNotInView(element_locator)  | Element is not scrolled into view   |
-| <WebDriverTestCase.assertNotInView>`     |                                     |
-+------------------------------------------+-------------------------------------+
-| :meth:`assertVisible(element_locator)    | Element is visible                  |
-| <WebDriverTestCase.assertVisible>`       |                                     |
-+------------------------------------------+-------------------------------------+
-| :meth:`assertInvisible(element_locator)  | Element is not visible              |
-| <WebDriverTestCase.assertInvisible>`     |                                     |
-+------------------------------------------+-------------------------------------+
-| :meth:`assertEnabled(element_locator)    | Element is enabled                  |
-| <WebDriverTestCase.assertEnabled>`       |                                     |
-+------------------------------------------+-------------------------------------+
-| :meth:`assertDisabled(element_locator)   | Element is disabled                 |
-| <WebDriverTestCase.assertDisabled>`      |                                     |
-+------------------------------------------+-------------------------------------+
-| :meth:`assertUrlChange(expected_url)     | URL matches ``expected_url``        |
-| <WebDriverTestCase.assertUrlChange>`     |                                     |
-+------------------------------------------+-------------------------------------+
-| :meth:`assertBaseUrlChange(expected_url) | Base URL (ignoring query strings)   |
-| <WebDriverTestCase.assertBaseUrlChange>` | matches ``expected_url``            |
-+------------------------------------------+-------------------------------------+
-
-Each of these assertion methods accepts the following optional keyword arguments:
-
-- ``msg``: If specified, used as the error message on failure
-- ``wait_timeout``: (Default = ``self.DEFAULT_ASSERTION_TIMEOUT``) Number of
-  seconds to wait for expected conditions to occur before test fails
-
-Some assertions have other optional keyword arguments specific to what they are
-testing. For details, check the documentation for :class:`WebDriverTestCase`.
-
-.. _assertion methods: https://docs.python.org/library/unittest.html#assert-methods
-
-"""
+"""Base test case classes."""
 import unittest
 from functools import wraps
 
@@ -384,6 +328,7 @@ class WebDriverTestCase(unittest.TestCase):
             raise self.failureException(msg)
 
     # Skipping Browsers
+
     @staticmethod
     def skipBrowsers(*browsers):
         """Conditionally skip a test method for certain browsers
@@ -513,13 +458,27 @@ class WebDriverTestCase(unittest.TestCase):
             return wrapper
         return decorator
 
+    # Misc Utility Methods
+
+    def is_mobile(self):
+        """Check whether the test case is running in a mobile browser
+
+        :return: True if running in a mobile browser (or emulated one), False
+            if running in a desktop
+        """
+        # WebDriverMobileTestCase overrides this method and returns True
+        return False
+
 
 class WebDriverMobileTestCase(WebDriverTestCase):
     """Base class for mobile web driver test cases
 
-    If a test subclasses ``WebDriverMobileTestCase`` instead of ``WebDriverTestCase``, tests
-    will only be generated for mobile browsers
+    If a test subclasses ``WebDriverMobileTestCase`` instead of
+    ``WebDriverTestCase``, tests will only be generated for mobile browsers
     """
     SKIP_MOBILE = False
+
+    def is_mobile(self):
+        return True
 
 

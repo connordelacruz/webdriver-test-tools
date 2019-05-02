@@ -33,8 +33,8 @@ class ExampleNav(prototypes.NavObject):
         {
             'name': 'hover-menu',
             'link_locator': (By.ID, 'hover-menu-link'),
-            # Set click action to 'none' (unless link also has a click action)
-            'click': 'none',
+            # Set click action to None (unless link also has a click action)
+            'click': None,
             # Set hover action to 'menu'
             'hover': 'menu',
             'menu': [

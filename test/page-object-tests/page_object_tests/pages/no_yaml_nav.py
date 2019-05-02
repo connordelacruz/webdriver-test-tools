@@ -23,7 +23,6 @@ class NoYAMLNavObject(prototypes.NavObject):
     # Dictionaries use same keys as YAML links. For syntax, see:
     # https://connordelacruz.com/webdriver-test-tools/yaml.html#yaml-links
 
-    # TODO: update to support new syntax
     LINK_DICTS = [
         {
             'name': 'home',
@@ -39,7 +38,7 @@ class NoYAMLNavObject(prototypes.NavObject):
         {
             'name': 'hover-menu',
             'link_locator': (By.ID, 'hover-menu-link'),
-            'click': 'none',
+            'click': None,
             'hover': 'menu',
             'menu': {
                 'menu_locator': (By.ID, 'hover-menu'),

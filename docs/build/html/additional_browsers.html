@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Testing Utilities" href="utilities.html" />
+    <link rel="next" title="Testing Utilities Overview" href="utilities.html" />
     <link rel="prev" title="Example Project" href="example_project.html" /> 
 
   
@@ -112,10 +112,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#modify-test-steps-for-mobile-browsers">Modify test steps for mobile browsers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#using-headless-browsers">Using headless browsers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Testing Utilities Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
@@ -185,38 +189,42 @@
            <div itemprop="articleBody">
             
   <div class="section" id="testing-with-additional-browsers">
-<h1><a class="toc-backref" href="#id6">Testing with Additional Browsers</a><a class="headerlink" href="#testing-with-additional-browsers" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id7">Testing with Additional Browsers</a><a class="headerlink" href="#testing-with-additional-browsers" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#testing-with-additional-browsers" id="id6">Testing with Additional Browsers</a><ul>
-<li><a class="reference internal" href="#enabling-additional-browsers" id="id7">Enabling additional browsers</a></li>
-<li><a class="reference internal" href="#skipping-tests-for-certain-browsers" id="id8">Skipping tests for certain browsers</a><ul>
-<li><a class="reference internal" href="#skipping-browsers-for-test-methods" id="id9">Skipping browsers for test methods</a></li>
-<li><a class="reference internal" href="#skipping-browsers-for-test-case-classes" id="id10">Skipping browsers for test case classes</a></li>
+<li><a class="reference internal" href="#testing-with-additional-browsers" id="id7">Testing with Additional Browsers</a><ul>
+<li><a class="reference internal" href="#enabling-additional-browsers" id="id8">Enabling additional browsers</a></li>
+<li><a class="reference internal" href="#skipping-tests-for-certain-browsers" id="id9">Skipping tests for certain browsers</a><ul>
+<li><a class="reference internal" href="#skipping-browsers-for-test-methods" id="id10">Skipping browsers for test methods</a></li>
+<li><a class="reference internal" href="#skipping-browsers-for-test-case-classes" id="id11">Skipping browsers for test case classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#enabling-mobile-browsers" id="id11">Enabling mobile browsers</a></li>
-<li><a class="reference internal" href="#skipping-tests-for-mobile-browsers" id="id12">Skipping tests for mobile browsers</a><ul>
-<li><a class="reference internal" href="#skipping-mobile-browsers" id="id13">Skipping mobile browsers</a><ul>
-<li><a class="reference internal" href="#test-methods" id="id14">Test methods</a></li>
-<li><a class="reference internal" href="#test-case-classes" id="id15">Test case classes</a></li>
+<li><a class="reference internal" href="#enabling-mobile-browsers" id="id12">Enabling mobile browsers</a></li>
+<li><a class="reference internal" href="#skipping-tests-for-mobile-browsers" id="id13">Skipping tests for mobile browsers</a><ul>
+<li><a class="reference internal" href="#skipping-mobile-browsers" id="id14">Skipping mobile browsers</a><ul>
+<li><a class="reference internal" href="#test-methods" id="id15">Test methods</a></li>
+<li><a class="reference internal" href="#test-case-classes" id="id16">Test case classes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#skipping-non-mobile-browsers" id="id16">Skipping non-mobile browsers</a><ul>
-<li><a class="reference internal" href="#id1" id="id17">Test methods</a></li>
-<li><a class="reference internal" href="#id2" id="id18">Test case classes</a></li>
+<li><a class="reference internal" href="#skipping-non-mobile-browsers" id="id17">Skipping non-mobile browsers</a><ul>
+<li><a class="reference internal" href="#id1" id="id18">Test methods</a></li>
+<li><a class="reference internal" href="#id2" id="id19">Test case classes</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-headless-browsers" id="id19">Using headless browsers</a></li>
+<li><a class="reference internal" href="#modify-test-steps-for-mobile-browsers" id="id20">Modify test steps for mobile browsers</a><ul>
+<li><a class="reference internal" href="#example" id="id21">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-headless-browsers" id="id22">Using headless browsers</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="enabling-additional-browsers">
-<h2><a class="toc-backref" href="#id7">Enabling additional browsers</a><a class="headerlink" href="#enabling-additional-browsers" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Enabling additional browsers</a><a class="headerlink" href="#enabling-additional-browsers" title="Permalink to this headline">¶</a></h2>
 <p>By default, tests are generated for Firefox and Chrome. Additional browsers can
 be enabled in <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code>. For example, to generate
 test cases for Safari, set <code class="docutils literal notranslate"><span class="pre">Browsers.SAFARI</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> in
@@ -237,16 +245,17 @@ test cases for Safari, set <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="section" id="skipping-tests-for-certain-browsers">
-<h2><a class="toc-backref" href="#id8">Skipping tests for certain browsers</a><a class="headerlink" href="#skipping-tests-for-certain-browsers" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">Skipping tests for certain browsers</a><a class="headerlink" href="#skipping-tests-for-certain-browsers" title="Permalink to this headline">¶</a></h2>
 <p>Some browser drivers don’t support certain features of the Selenium WebDriver
 API. If a test method or class requires these features to run, drivers that lack
 support for them will likely encounter errors leading to false failures. The
-<code class="docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code> class provides utilities for skipping tests in certain
-browsers for these instances.</p>
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a> class provides utilities for skipping tests in
+certain browsers for these instances.</p>
 <div class="section" id="skipping-browsers-for-test-methods">
-<h3><a class="toc-backref" href="#id9">Skipping browsers for test methods</a><a class="headerlink" href="#skipping-browsers-for-test-methods" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">Skipping browsers for test methods</a><a class="headerlink" href="#skipping-browsers-for-test-methods" title="Permalink to this headline">¶</a></h3>
 <p>To skip test methods for specific browsers, use the
-<code class="docutils literal notranslate"><span class="pre">&#64;WebDriverTestTools.skipBrowsers()</span></code> decorator method:</p>
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.skipBrowsers" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.skipBrowsers"><code class="xref py py-meth docutils literal notranslate"><span class="pre">&#64;WebDriverTestCase.skipBrowsers()</span></code></a>
+decorator method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="nd">@WebDriverTestCase.skipBrowsers</span><span class="p">(</span><span class="n">Browsers</span><span class="o">.</span><span class="n">SAFARI</span><span class="p">)</span>
@@ -260,20 +269,21 @@ browsers for these instances.</p>
 </div>
 </div>
 <div class="section" id="skipping-browsers-for-test-case-classes">
-<h3><a class="toc-backref" href="#id10">Skipping browsers for test case classes</a><a class="headerlink" href="#skipping-browsers-for-test-case-classes" title="Permalink to this headline">¶</a></h3>
-<p>To skip an entire test case class, override <code class="docutils literal notranslate"><span class="pre">WebDriverTestCase.SKIP_BROWSERS</span></code>
-with a list of browser names to skip:</p>
+<h3><a class="toc-backref" href="#id11">Skipping browsers for test case classes</a><a class="headerlink" href="#skipping-browsers-for-test-case-classes" title="Permalink to this headline">¶</a></h3>
+<p>To skip an entire test case class, override
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">WebDriverTestCase.SKIP_BROWSERS</span></code></a> with a list of browser names to skip:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="n">SKIP_BROWSERS</span> <span class="o">=</span> <span class="p">[</span><span class="n">Browsers</span><span class="o">.</span><span class="n">SAFARI</span><span class="p">,</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">IE</span><span class="p">,]</span>
 </pre></div>
 </div>
-<p>Valid browser names are declared as constants in the <code class="docutils literal notranslate"><span class="pre">Browsers</span></code> class, which
-is imported from <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools.testcase</span></code>.</p>
+<p>Valid browser names are declared as constants in the
+<a class="reference internal" href="webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.browsers.Browsers" title="webdriver_test_tools.testcase.browsers.Browsers"><code class="xref py py-class docutils literal notranslate"><span class="pre">Browsers</span></code></a> class, which is
+imported from <a class="reference internal" href="webdriver_test_tools.testcase.html#module-webdriver_test_tools.testcase" title="webdriver_test_tools.testcase"><code class="xref py py-mod docutils literal notranslate"><span class="pre">webdriver_test_tools.testcase</span></code></a>.</p>
 </div>
 </div>
 <div class="section" id="enabling-mobile-browsers">
-<h2><a class="toc-backref" href="#id11">Enabling mobile browsers</a><a class="headerlink" href="#enabling-mobile-browsers" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Enabling mobile browsers</a><a class="headerlink" href="#enabling-mobile-browsers" title="Permalink to this headline">¶</a></h2>
 <p>Test cases that emulate mobile browser layouts are also enabled in
 <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;/config/browser.py</span></code>. For example, to generate test cases for
 Chrome emulating a mobile layout, set <code class="docutils literal notranslate"><span class="pre">Browsers.CHROME_MOBILE</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> in
@@ -294,16 +304,18 @@ Chrome emulating a mobile layout, set <code class="docutils literal notranslate"
 </div>
 </div>
 <div class="section" id="skipping-tests-for-mobile-browsers">
-<h2><a class="toc-backref" href="#id12">Skipping tests for mobile browsers</a><a class="headerlink" href="#skipping-tests-for-mobile-browsers" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Skipping tests for mobile browsers</a><a class="headerlink" href="#skipping-tests-for-mobile-browsers" title="Permalink to this headline">¶</a></h2>
 <p>Responsive site layouts can change significantly on mobile viewports, so the
 procedure for testing a feature may require different steps. The
-<code class="docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code> class provides utilities for conditionally skipping tests
-for mobile or non-mobile browsers.</p>
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a> class provides utilities for conditionally skipping
+tests for mobile or non-mobile browsers.</p>
 <div class="section" id="skipping-mobile-browsers">
-<h3><a class="toc-backref" href="#id13">Skipping mobile browsers</a><a class="headerlink" href="#skipping-mobile-browsers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Skipping mobile browsers</a><a class="headerlink" href="#skipping-mobile-browsers" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="test-methods">
-<h4><a class="toc-backref" href="#id14">Test methods</a><a class="headerlink" href="#test-methods" title="Permalink to this headline">¶</a></h4>
-<p>To skip test methods for mobile browsers, use the <code class="docutils literal notranslate"><span class="pre">&#64;WebDriverTestTools.skipMobile()</span></code> decorator method:</p>
+<h4><a class="toc-backref" href="#id15">Test methods</a><a class="headerlink" href="#test-methods" title="Permalink to this headline">¶</a></h4>
+<p>To skip test methods for mobile browsers, use the
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.skipMobile" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.skipMobile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">&#64;WebDriverTestCase.skipMobile()</span></code></a> decorator
+method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="nd">@WebDriverTestCase.skipMobile</span><span class="p">()</span>
@@ -313,7 +325,7 @@ for mobile or non-mobile browsers.</p>
 </div>
 </div>
 <div class="section" id="test-case-classes">
-<h4><a class="toc-backref" href="#id15">Test case classes</a><a class="headerlink" href="#test-case-classes" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id16">Test case classes</a><a class="headerlink" href="#test-case-classes" title="Permalink to this headline">¶</a></h4>
 <p>To skip an entire test case class, set <code class="docutils literal notranslate"><span class="pre">WebDriverTestCase.SKIP_MOBILE</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="o">...</span>
@@ -323,12 +335,13 @@ for mobile or non-mobile browsers.</p>
 </div>
 </div>
 <div class="section" id="skipping-non-mobile-browsers">
-<h3><a class="toc-backref" href="#id16">Skipping non-mobile browsers</a><a class="headerlink" href="#skipping-non-mobile-browsers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Skipping non-mobile browsers</a><a class="headerlink" href="#skipping-non-mobile-browsers" title="Permalink to this headline">¶</a></h3>
 <p>Utilities are also provided for running tests exclusively in mobile browsers.</p>
 <div class="section" id="id1">
-<h4><a class="toc-backref" href="#id17">Test methods</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id18">Test methods</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>To skip test methods for non-mobile browsers, use the
-<code class="docutils literal notranslate"><span class="pre">&#64;WebDriverTestTools.mobileOnly()</span></code> decorator method:</p>
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.mobileOnly" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.mobileOnly"><code class="xref py py-meth docutils literal notranslate"><span class="pre">&#64;WebDriverTestCase.mobileOnly()</span></code></a> decorator
+method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="nd">@WebDriverTestCase.mobileOnly</span><span class="p">()</span>
@@ -338,9 +351,9 @@ for mobile or non-mobile browsers.</p>
 </div>
 </div>
 <div class="section" id="id2">
-<h4><a class="toc-backref" href="#id18">Test case classes</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id19">Test case classes</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>To only use mobile browsers for a test case class, subclass
-<code class="docutils literal notranslate"><span class="pre">WebDriverMobileTestCase</span></code>:</p>
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverMobileTestCase</span></code></a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleMobileTestCase</span><span class="p">(</span><span class="n">WebDriverMobileTestCase</span><span class="p">):</span>
     <span class="o">...</span>
 </pre></div>
@@ -348,8 +361,43 @@ for mobile or non-mobile browsers.</p>
 </div>
 </div>
 </div>
+<div class="section" id="modify-test-steps-for-mobile-browsers">
+<h2><a class="toc-backref" href="#id20">Modify test steps for mobile browsers</a><a class="headerlink" href="#modify-test-steps-for-mobile-browsers" title="Permalink to this headline">¶</a></h2>
+<p>Tests can check at runtime if the browser is mobile using the
+<a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.is_mobile" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.is_mobile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">WebDriverTestCase.is_mobile()</span></code></a> method. This can be useful in instances
+where the steps for a test might vary slightly on mobile browsers.</p>
+<div class="section" id="example">
+<h3><a class="toc-backref" href="#id21">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>Suppose we have a responsive navbar that collapses on mobile viewports, adding
+the extra step of expanding the navigation menu before clicking on a link. We
+can determine what page object class to use for the navbar and conditionally
+click the expand button based on <code class="docutils literal notranslate"><span class="pre">self.is_mobile()</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">test/navbar.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="kn">from</span> <span class="nn">example_project.pages.navbar</span> <span class="kn">import</span> <span class="n">PrimaryNav</span><span class="p">,</span> <span class="n">MobilePrimaryNav</span>
+<span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">PrimaryNavTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
+   <span class="o">...</span>
+   <span class="k">def</span> <span class="nf">test_navbar_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot;Click links on the primary nav&quot;&quot;&quot;</span>
+      <span class="c1"># Use collapsible NavObject class for mobile browsers</span>
+<span class="hll">      <span class="n">navbar</span> <span class="o">=</span> <span class="n">MobilePrimaryNav</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_mobile</span><span class="p">()</span> <span class="k">else</span> <span class="n">PrimaryNav</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
+</span>      <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">navbar</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
+         <span class="c1"># Expand collapsed menu first in mobile</span>
+<span class="hll">         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_mobile</span><span class="p">():</span>
+</span><span class="hll">            <span class="n">navbar</span><span class="o">.</span><span class="n">click_expand_button</span><span class="p">()</span>
+</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="s1">&#39;Click navbar link&#39;</span><span class="p">,</span> <span class="n">link</span><span class="o">=</span><span class="n">link</span><span class="p">):</span>
+            <span class="n">expected_url</span> <span class="o">=</span> <span class="n">navbar</span><span class="o">.</span><span class="n">click_link</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertUrlChange</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="using-headless-browsers">
-<span id="headless-browsers"></span><h2><a class="toc-backref" href="#id19">Using headless browsers</a><a class="headerlink" href="#using-headless-browsers" title="Permalink to this headline">¶</a></h2>
+<span id="headless-browsers"></span><h2><a class="toc-backref" href="#id22">Using headless browsers</a><a class="headerlink" href="#using-headless-browsers" title="Permalink to this headline">¶</a></h2>
 <p>By default, tests run using the browser’s GUI. While it can be helpful to see
 what’s going on during test execution, loading and rendering the browser window
 can be resource-intensive and slows down performance during test execution.</p>
@@ -381,7 +429,7 @@ the following web drivers that support running in a headless environment:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="utilities.html" class="btn btn-neutral float-right" title="Testing Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="utilities.html" class="btn btn-neutral float-right" title="Testing Utilities Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="example_project.html" class="btn btn-neutral" title="Example Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
