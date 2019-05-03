@@ -1,3 +1,5 @@
+import os
+
 from selenium.webdriver.common.by import By
 from webdriver_test_tools.pageobject import *
 from webdriver_test_tools.webdriver import actions, locate
@@ -5,18 +7,48 @@ from webdriver_test_tools.webdriver import actions, locate
 from page_object_tests.config import SiteConfig
 
 
-class NoYAMLNavObject(prototypes.NavObject):
+# YAML
 
-    class Locator:
-        """WebDriver locator tuples for any elements that will need to be
-        accessed by this page object.
-        """
-        pass
+class YAMLNav(prototypes.NavObject):
+    """Regular nav object"""
+
+    PAGE_FILENAME = 'navbar.html'
+
+    # Path to YAML file representing the object
+    YAML_FILE = os.path.join(os.path.dirname(__file__), 'nav.yml')
 
     # Used for internal methods (do not modify)
     SITE_CONFIG = SiteConfig
 
-    # SET THE FOLLOWING ATTRIBUTES TO USE IN NavObject METHODS
+
+class YAMLCollapsibleNav(prototypes.NavObject):
+    """Collapsible nav object"""
+
+    PAGE_FILENAME = 'collapsible_navbar.html'
+
+    # Path to YAML file representing the object
+    YAML_FILE = os.path.join(os.path.dirname(__file__), 'collapsible_nav.yml')
+
+    # Used for internal methods (do not modify)
+    SITE_CONFIG = SiteConfig
+
+
+class YAMLNavCollapsibleSubclass(YAMLNav):
+    """Collapsible nav subclassing a YAML parsing non-collapsible nav"""
+
+    PAGE_FILENAME = 'collapsible_navbar.html'
+
+    COLLAPSIBLE = True
+    MENU_LOCATOR = (By.ID, 'nav-menu')
+    EXPAND_BUTTON_LOCATOR = (By.ID, 'navbar-toggle')
+
+
+# No YAML
+
+class NoYAMLNav(prototypes.NavObject):
+
+    # Used for internal methods (do not modify)
+    SITE_CONFIG = SiteConfig
 
     # REQUIRED: List of link dictionaries. These will be used to initialize
     # NavLinkObject instances at runtime.
@@ -88,26 +120,16 @@ class NoYAMLNavObject(prototypes.NavObject):
         },
     ]
 
-    # UNCOMMENT BELOW TO OVERRIDE NavObject DEFAULTS
-
     # (Default = True) True if element is a fixed navbar, False otherwise. If
     # set to False, click_page_link() and hover_over_page_link() will scroll
     # the target link into view before interacting with it
     FIXED = False
 
 
-class NoYAMLCollapsibleNavObject(prototypes.NavObject):
-
-    class Locator:
-        """WebDriver locator tuples for any elements that will need to be
-        accessed by this page object.
-        """
-        pass
+class NoYAMLCollapsibleNav(prototypes.NavObject):
 
     # Used for internal methods (do not modify)
     SITE_CONFIG = SiteConfig
-
-    # SET THE FOLLOWING ATTRIBUTES TO USE IN NavObject METHODS
 
     # REQUIRED: List of link dictionaries. These will be used to initialize
     # NavLinkObject instances at runtime.
@@ -161,10 +183,9 @@ class NoYAMLCollapsibleNavObject(prototypes.NavObject):
     # If not set, the value from EXPAND_BUTTON_LOCATOR will be used
     COLLAPSE_BUTTON_LOCATOR = None
 
-    # UNCOMMENT BELOW TO OVERRIDE NavObject DEFAULTS
-
     # (Default = True) True if element is a fixed navbar, False otherwise. If
     # set to False, click_page_link() and hover_over_page_link() will scroll
     # the target link into view before interacting with it
     FIXED = False
+
 
