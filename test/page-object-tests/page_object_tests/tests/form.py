@@ -3,16 +3,14 @@ import webdriver_test_tools
 from webdriver_test_tools.testcase import *
 
 from page_object_tests import config
-# TODO: rename to clarify it's using YAML
-from page_object_tests.pages.form import TestFormObject
-from page_object_tests.pages.no_yaml_form import NoYAMLFormObject
+from page_object_tests.pages.form import YAMLForm, NoYAMLForm
 
 
 class FormObjectTestCase(WebDriverTestCase):
     """Test FormObject prototype"""
 
     # URL to go to at the start of each test
-    SITE_URL = config.SiteConfig.BASE_URL + TestFormObject.PAGE_FILENAME
+    SITE_URL = config.SiteConfig.BASE_URL + YAMLForm.PAGE_FILENAME
 
     # Test Methods
 
@@ -20,12 +18,12 @@ class FormObjectTestCase(WebDriverTestCase):
 
     def test_input_set_methods_yaml(self):
         """Test set_value() and get_value() methods (YAML)"""
-        form_object = TestFormObject(self.driver)
+        form_object = YAMLForm(self.driver)
         self._test_input_set_methods(form_object)
 
     def test_input_set_methods_no_yaml(self):
         """Test set_value() and get_value() methods (no YAML)"""
-        form_object = NoYAMLFormObject(self.driver)
+        form_object = NoYAMLForm(self.driver)
         self._test_input_set_methods(form_object)
 
     def _test_input_set_methods(self, form_object):
