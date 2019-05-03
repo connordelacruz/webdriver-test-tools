@@ -3,9 +3,7 @@ import webdriver_test_tools
 from webdriver_test_tools.testcase import *
 
 from page_object_tests import config
-# TODO: rename to clarify it's using YAML
-from page_object_tests.pages.modal import ModalPage
-from page_object_tests.pages.no_yaml_modal import NoYAMLModalPage
+from page_object_tests.pages.modal import ModalPage, YAMLModal, NoYAMLModal
 
 
 class ModalObjectTestCase(WebDriverTestCase):
@@ -18,12 +16,12 @@ class ModalObjectTestCase(WebDriverTestCase):
 
     def test_modal_object_yaml(self):
         """Test is_displayed() and click_close_button() (YAML)"""
-        modal_page = ModalPage(self.driver)
+        modal_page = ModalPage(self.driver, modal_class=YAMLModal)
         self._test_modal_object(modal_page)
 
     def test_modal_object_no_yaml(self):
         """Test is_displayed() and click_close_button() (no YAML)"""
-        modal_page = NoYAMLModalPage(self.driver)
+        modal_page = ModalPage(self.driver, modal_class=NoYAMLModal)
         self._test_modal_object(modal_page)
 
     def _test_modal_object(self, modal_page):
