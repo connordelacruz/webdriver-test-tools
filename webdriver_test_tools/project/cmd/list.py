@@ -41,9 +41,10 @@ def parse_list_args(tests_module, args):
     list_tests(tests_module, **kwargs)
 
 
-# TODO: params for verbosity
+# TODO: params for verbosity default to False
 def list_tests(tests_module,
-               test_module_names=None, test_class_map=None, skip_class_map=None):
+               test_module_names=None, test_class_map=None, skip_class_map=None,
+               verbose=True):
     """Print a list of available tests
 
     :param tests_module: The module object for ``<test_project>.tests``
@@ -57,13 +58,7 @@ def list_tests(tests_module,
     tests = load_tests(tests_module, test_module_names, test_class_map, skip_class_map)
     module_map = _module_map(tests, tests_module)
     for module, test_list in module_map.items():
-        print(cmd.COLORS['prompt'](module) + ':')
-        for test_class in test_list:
-            print(textwrap.indent(cmd.COLORS['title'](test_class.__name__) + ':', cmd.INDENT))
-            test_cases = unittest.loader.getTestCaseNames(test_class, 'test')
-            print(*[
-                textwrap.indent(test_case, cmd.INDENT * 2) for test_case in test_cases
-            ], sep='\n')
+        _print_module(module, test_list, verbose=verbose)
 
 
 def _module_map(tests, tests_module):
@@ -84,3 +79,29 @@ def _module_map(tests, tests_module):
             module_map[module] = []
         module_map[module].append(test)
     return module_map
+
+
+def _print_module(module, test_list, verbose=False):
+    # TODO: doc
+    print(cmd.COLORS['prompt'](module) + ':')
+    for test_class in test_list:
+        _print_test_case(test_class, verbose=verbose)
+
+
+def _print_test_case(test_class, verbose=False):
+    # TODO: doc, indent param?
+    print(textwrap.indent(cmd.COLORS['title'](test_class.__name__) + ':', cmd.INDENT))
+    if verbose and hasattr(test_class, '__doc__'):
+        # TODO: common.cmd method to truncate string based on terminal size
+        case_info = textwrap.shorten(test_class.__doc__, width=20, placeholder='...')
+        print(textwrap.indent(cmd.COLORS['info'](case_info), cmd.INDENT))
+    methods = unittest.loader.getTestCaseNames(test_class, 'test')
+    for method in methods:
+        _print_method(method, verbose=verbose)
+
+
+def _print_method(method, verbose=False):
+    # TODO: doc, indent param?
+    print(textwrap.indent(method, cmd.INDENT * 2))
+    # TODO: figure out how to get docstring (currently only retrieving names, not methods)
+
