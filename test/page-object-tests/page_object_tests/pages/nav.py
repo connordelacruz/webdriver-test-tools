@@ -33,6 +33,8 @@ class YAMLNavFixed(prototypes.NavObject):
     SITE_CONFIG = SiteConfig
 
 
+# Collapsible
+
 class YAMLCollapsibleNav(prototypes.NavObject):
     """Collapsible nav object"""
 
@@ -40,6 +42,18 @@ class YAMLCollapsibleNav(prototypes.NavObject):
 
     # Path to YAML file representing the object
     YAML_FILE = os.path.join(os.path.dirname(__file__), 'collapsible_nav.yml')
+
+    # Used for internal methods (do not modify)
+    SITE_CONFIG = SiteConfig
+
+
+class YAMLCollapsibleNavFixed(prototypes.NavObject):
+    """Fixed collapsible nav object"""
+
+    PAGE_FILENAME = 'fixed_collapsible_navbar.html'
+
+    # Path to YAML file representing the object
+    YAML_FILE = os.path.join(os.path.dirname(__file__), 'collapsible_nav_fixed.yml')
 
     # Used for internal methods (do not modify)
     SITE_CONFIG = SiteConfig
@@ -203,5 +217,9 @@ class NoYAMLCollapsibleNav(prototypes.NavObject):
     # set to False, click_page_link() and hover_over_page_link() will scroll
     # the target link into view before interacting with it
     FIXED = False
+
+
+class NoYAMLCollapsibleNavFixed(NoYAMLCollapsibleNav):
+    FIXED = True
 
 
