@@ -10,12 +10,15 @@ from webdriver_test_tools.project.cmd.new import add_new_subparser, parse_new_ar
 
 
 def main(tests_module, config_module=None, package_name=None):
-    """Function to call in test modules ``if __name__ == '__main__'`` at run time
+    """Function to call in test modules ``if __name__ == '__main__'`` at run
+    time
 
     :param tests_module: The module object for ``<test_project>.tests``
-    :param config_module: (Optional) The module object for ``<test_project>.config``.
-        Will use :mod:`webdriver_test_tools.config` if not specified
-    :param package_name: (Optional) The name of the package (i.e. ``__package__``)
+    :param config_module: (Optional) The module object for
+        ``<test_project>.config``. Will use :mod:`webdriver_test_tools.config`
+        if not specified
+    :param package_name: (Optional) The name of the package (i.e.
+        ``__package__``)
     """
     # Parse arguments
     parser = get_parser(config_module, package_name)
@@ -37,10 +40,11 @@ def main(tests_module, config_module=None, package_name=None):
 def get_parser(config_module=None, package_name=None):
     """Returns the ``ArgumentParser`` object for use with ``main()``
 
-    :param config_module: (Optional) The module object for ``<test_project>.config``.
-        Will use :mod:`webdriver_test_tools.config` if not specified
-        if unspecified
-    :param package_name: (Optional) The name of the package (i.e. ``__package__``)
+    :param config_module: (Optional) The module object for
+        ``<test_project>.config``. Will use :mod:`webdriver_test_tools.config`
+        if not specified if unspecified
+    :param package_name: (Optional) The name of the package (i.e.
+        ``__package__``)
 
     :return: ``ArgumentParser`` for the test package
     """
