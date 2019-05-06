@@ -6,6 +6,13 @@ from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project.cmd.common import parse_test_args, load_tests
 
 
+# Tree characters (for verbose output)
+_TREE_CHILD = '├── '
+_TREE_LAST_CHILD = '└── '
+_TREE_NESTED_PREFIX = '│   '
+_TREE_LAST_CHILD_NESTED_PREFIX = '    '
+
+
 def add_list_subparser(subparsers, parents=[],
                        formatter_class=RawTextHelpFormatter):
     """Add subparser for the ``<test_package> list`` command
@@ -100,42 +107,71 @@ def _print_module(module, test_list, verbose=False):
         docstrings
     """
     print(cmd.COLORS['prompt'](module) + ':')
-    for test_class in test_list:
-        _print_test_case(test_class, verbose=verbose)
+    for i, test_class in enumerate(test_list):
+        _print_test_case(test_class, verbose=verbose, last_child=i==len(test_list)-1)
 
 
-def _print_test_case(test_class, verbose=False, indent=cmd.INDENT):
+def _print_test_case(test_class, verbose=False, last_child=False):
     """Print a test case class
 
     :param test_class: The test case class to print
     :param verbose: (Default = False) If True, print class and test method
         docstrings
-    :param indent: (Default = :const:`cmd.INDENT
-        <webdriver_test_tools.common.cmd.cmd.INDENT>`) The string to use for
-        indentation when printing the class
+    :param last_child: (Default = False) If True and ``verbose`` is True, use
+        different tree characters when printing this test
     """
+    if verbose:
+        if last_child:
+            indent = _TREE_LAST_CHILD
+            doc_indent = _TREE_LAST_CHILD_NESTED_PREFIX
+            method_indent_prefix = _TREE_LAST_CHILD_NESTED_PREFIX
+        else:
+            indent = _TREE_CHILD
+            doc_indent = _TREE_NESTED_PREFIX
+            method_indent_prefix = _TREE_NESTED_PREFIX
+    else:
+        indent = cmd.INDENT
+        method_indent_prefix = indent
     print(textwrap.indent(cmd.COLORS['title'](test_class.__name__) + ':', indent))
     if verbose and hasattr(test_class, '__doc__'):
-        cmd.print_shortened(test_class.__doc__, indent=indent, fmt='info')
+        cmd.print_shortened(test_class.__doc__, indent=doc_indent, fmt='info')
     methods = unittest.loader.getTestCaseNames(test_class, 'test')
-    for method in methods:
-        _print_method(method, test_class=test_class, verbose=verbose)
+    for i,method in enumerate(methods):
+        _print_method(method,
+                      test_class=test_class,
+                      verbose=verbose,
+                      indent_prefix=method_indent_prefix,
+                      last_child=i==len(methods)-1)
 
 
-def _print_method(method, test_class, verbose=False, indent=cmd.INDENT*2):
+def _print_method(method, test_class, verbose=False, indent_prefix=cmd.INDENT, last_child=False):
     """Print a test method
 
     :param method: The name of the method to print
     :param test_class: The test case class containing the method to print
     :param verbose: (Default = False) If True, print test method docstrings
-    :param indent: (Default = :const:`cmd.INDENT
-        <webdriver_test_tools.common.cmd.cmd.INDENT>` * 2) The string to use
-        for indentation when printing the class
+    :param indent_prefix: (Default = :const:`cmd.INDENT
+        <webdriver_test_tools.common.cmd.cmd.INDENT>`) The string to use
+        as a prefix for indentation when printing the class (mostly used for
+        tree output when ``verbose`` is True)
+    :param last_child: (Default = False) If True and ``verbose`` is True, use
+        different tree characters when printing this test
     """
+    if verbose:
+        if last_child:
+            indent = indent_prefix + _TREE_LAST_CHILD
+            doc_indent = indent_prefix + _TREE_LAST_CHILD_NESTED_PREFIX
+        else:
+            indent = indent_prefix + _TREE_CHILD
+            doc_indent = indent_prefix + _TREE_NESTED_PREFIX
+    else:
+        indent = indent_prefix * 2
     print(textwrap.indent(method, indent))
     if verbose:
-        # TODO: catch attribute error
-        func = getattr(test_class, method)
-        if hasattr(func, '__doc__'):
-            cmd.print_shortened(func.__doc__, indent=indent, fmt='info')
+        try:
+            func = getattr(test_class, method)
+            if hasattr(func, '__doc__'):
+                cmd.print_shortened(func.__doc__, indent=doc_indent, fmt='info')
+        except AttributeError as e:
+            pass
 

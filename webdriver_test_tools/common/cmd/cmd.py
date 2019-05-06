@@ -75,11 +75,11 @@ def print_shortened(text, placeholder='...', indent='', fmt=None):
         printing the text
     """
     width = _term.width - len(indent)
-    text = textwrap.indent(textwrap.shorten(text, width=width, placeholder=placeholder),
-                           indent)
-    # Get fmt method
     fmt_method = COLORS.get(fmt, str)
-    print(fmt_method(text))
+    text = textwrap.indent(
+        fmt_method(textwrap.shorten(text, width=width, placeholder=placeholder)),
+        indent)
+    print(text)
 
 
 # User Input
