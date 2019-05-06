@@ -58,7 +58,6 @@ def to_element(driver, element, offset=0, align_to_top=True):
         scroll_y += int(element.get_property('offsetHeight')) - viewport_height + offset
     to_position(driver, 0, scroll_y)
 
-# TODO: not exactly working, fix
 def into_view_fixed_nav(driver, target_element, fixed_element,
                         additional_offset=0, align_to_top=True):
     """Scroll an element into view offset by the height of a fixed element so
