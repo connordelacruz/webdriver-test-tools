@@ -3,96 +3,84 @@ from datetime import datetime
 
 from selenium import webdriver
 
+import webdriver_test_tools
 from webdriver_test_tools.common.files import create_directory, validate_filename
 
 
 class WebDriverConfig:
-    """Configurations for webdriver
+    """Configurations for webdriver"""
+    # Root directory of webdriver_test_tools package
+    _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
+    #: Path to the log directory. Defaults to the log subdirectory in the
+    #: ``webdriver_test_tools`` package root directory
+    LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
+    #: Path to the screenshot directory. Defaults to the screenshot
+    #: subdirectory in the ``webdriver_test_tools`` package root directory
+    SCREENSHOT_PATH = os.path.join(_PACKAGE_ROOT, 'screenshot')
 
-    :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the
-        log subdirectory in the webdriver_test_tools package root directory
-    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory.
-        Defaults to the screenshot subdirectory in the webdriver_test_tools
-        package root directory
-    :var WebDriverConfig.SCREENSHOT_FILENAME_FORMAT: (Default:
-        '{date}/{time}-{test}-{browser}.png') Format string used to determine
-        filenames for screenshots (relative to
-        :attr:`WebDriverConfig.SCREENSHOT_PATH`). The format string can include
-        the following parameters:
+    SCREENSHOT_FILENAME_FORMAT = '{date}/{time}-{test}-{browser}.png'
+    """Format string used to determine filenames for screenshots (relative to
+    :attr:`WebDriverConfig.SCREENSHOT_PATH`). The format string can include the
+    following parameters:
 
-            * ``{date}``: Replaced with the date the screenshot was taken
-              (YYYY-MM-DD)
-            * ``{time}``: Replaced with the time the screenshot was taken
-              (HHMMSS)
-            * ``{test}``: Replaced with the test method running when screenshot
-              was taken
-            * ``{browser}``: Replaced with the browser used when screenshot was
-              taken
+        * ``{date}``: Replaced with the date the screenshot was taken
+          (YYYY-MM-DD)
+        * ``{time}``: Replaced with the time the screenshot was taken
+          (HHMMSS)
+        * ``{test}``: Replaced with the test method running when screenshot
+          was taken
+        * ``{browser}``: Replaced with the browser used when screenshot was
+          taken
 
-        The format string can include '/' directory separators to save
-        screenshots in subdirectories of
-        :attr:`WebDriverConfig.SCREENSHOT_PATH`.
+    The format string can include '/' directory separators to save screenshots
+    in subdirectories of :attr:`WebDriverConfig.SCREENSHOT_PATH`.
+    """
 
-    :var WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT: (Default: 10) Default
-        number of seconds for :ref:`WebDriverTestCase assertion methods
-        <assertion-methods>` to wait for expected conditions to occur before
-        test fails
-    :var WebDriverConfig.IMPLICIT_WAIT: Implicit wait time for webdriver to poll DOM
+    DEFAULT_ASSERTION_TIMEOUT=10
+    """Default number of seconds for :ref:`WebDriverTestCase assertion methods
+    <assertion-methods>` to wait for expected conditions to occur before test
+    fails
+    """
 
-        .. note::
-
-            Documentation says not to mix this with explicit waits and some instability
-            was noticed when it was set to 10. Projects can override this if necessary.
-            `Implicit wait documentation
-            <https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits>`__
-
-    Browser driver initialization arguments:
-
-    :var WebDriverConfig.FIREFOX_KWARGS: Keyword args for ``webdriver.Firefox()``
-    :var WebDriverConfig.CHROME_KWARGS: Keyword args for ``webdriver.Chrome()``
-    :var WebDriverConfig.SAFARI_KWARGS: Keyword args for ``webdriver.Safari()``
-    :var WebDriverConfig.IE_KWARGS: Keyword args for ``webdriver.Ie()``
-    :var WebDriverConfig.EDGE_KWARGS: Keyword args for ``webdriver.Edge()``
+    # TODO: Deprecate
+    IMPLICIT_WAIT = 0
+    """Implicit wait time for webdriver to poll DOM
 
     .. note::
 
-        Logging configurations are set when the corresponding ``get_<browser>_driver()``
-        method is called. This allows for projects to override the ``LOG_PATH`` variable
-        without having to also override all ``<browser>_KWARGS`` variables as well.
-
-    Mobile configurations:
-
-    :var WebDriverConfig.CHROME_MOBILE_EMULATION: Dictionary with 'mobileEmulation'
-        options for Chrome
-
-    Headless browser configurations:
-
-    :var WebDriverConfig.CHROME_HEADLESS_ARGS: Command line arguments to use in addition
-        to the ``--headless`` flag
-    :var WebDriverConfig.FIREFOX_HEADLESS_ARGS: Command line arguments to use in addition
-        to the ``-headless`` flag
+        Documentation says not to mix this with explicit waits and some instability
+        was noticed when it was set to 10. Projects can override this if necessary.
+        `Implicit wait documentation
+        <https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits>`__
     """
-    # Root directory of webdriver_test_tools package
-    _PACKAGE_ROOT = os.path.dirname(os.path.abspath(webdriver_test_tools.__file__))
-    LOG_PATH = os.path.join(_PACKAGE_ROOT, 'log')
-    SCREENSHOT_PATH = os.path.join(_PACKAGE_ROOT, 'screenshot')
-    SCREENSHOT_FILENAME_FORMAT = '{date}/{time}-{test}-{browser}.png'
 
-    DEFAULT_ASSERTION_TIMEOUT=10
-    # TODO: Deprecate
-    IMPLICIT_WAIT = 0
+    # Browser driver initialization arguments
 
+    #: Keyword args for ``webdriver.Firefox()``
     FIREFOX_KWARGS = {}
+    #: Keyword args for ``webdriver.Chrome()``
     CHROME_KWARGS = {}
+    #: Keyword args for ``webdriver.Safari()``
     SAFARI_KWARGS = {}
+    #: Keyword args for ``webdriver.Ie()``
     IE_KWARGS = {}
+    #: Keyword args for ``webdriver.Edge()``
     EDGE_KWARGS = {}
 
+    # Mobile configurations
+
+    #: Dictionary with 'mobileEmulation' options for Chrome
     CHROME_MOBILE_EMULATION = {"deviceName": "Pixel 2"}
-    CHROME_HEADLESS_ARGS = ['--window-size=1920x1080', ]
+
+    # Headless browser configurations
+
+    #: Command line arguments to use in addition to the ``--headless`` flag
+    CHROME_HEADLESS_ARGS = ['--window-size=1920x1080']
+    #: Command line arguments to use in addition to the ``-headless`` flag
     FIREFOX_HEADLESS_ARGS = []
 
-    # Functions
+
+    # Methods
 
     @classmethod
     def get_firefox_driver(cls, headless=False):
