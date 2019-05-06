@@ -10,13 +10,15 @@ def add_list_subparser(subparsers, parents=[],
                        formatter_class=RawTextHelpFormatter):
     """Add subparser for the ``<test_package> list`` command
 
-    :param subparsers: ``argparse._SubParsersAction`` object for the test package ArgumentParser (i.e. the object
-        returned by the ``add_subparsers()`` method)
+    :param subparsers: ``argparse._SubParsersAction`` object for the test
+        package ArgumentParser (i.e. the object returned by the
+        ``add_subparsers()`` method)
     :param parents: (Default: ``[]``) Parent parsers for the list subparser
-    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class to use for the ``formatter_class``
-        parameter
+    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class
+        to use for the ``formatter_class`` parameter
 
-    :return: ``argparse.ArgumentParser`` object for the newly added ``list`` subparser
+    :return: ``argparse.ArgumentParser`` object for the newly added ``list``
+        subparser
     """
     list_description = 'Print a list of available tests and exit'
     list_help = list_description
@@ -26,6 +28,12 @@ def add_list_subparser(subparsers, parents=[],
         formatter_class=formatter_class,
         add_help=False, epilog=cmd.argparse.ARGPARSE_EPILOG
     )
+    # Output Arguments
+    group = list_parser.add_argument_group('Output Options')
+    # TODO: better help?
+    verbose_help = 'Show class and method docstrings'
+    group.add_argument('-v', '--verbose', action='store_true', default=False,
+                       help=verbose_help)
     return list_parser
 
 
@@ -38,13 +46,13 @@ def parse_list_args(tests_module, args):
     :param args: The namespace returned by parser.parse_args()
     """
     kwargs = parse_test_args(args)
+    kwargs['verbose'] = args.verbose
     list_tests(tests_module, **kwargs)
 
 
-# TODO: params for verbosity default to False
 def list_tests(tests_module,
                test_module_names=None, test_class_map=None, skip_class_map=None,
-               verbose=True):
+               verbose=False):
     """Print a list of available tests
 
     :param tests_module: The module object for ``<test_project>.tests``
@@ -54,6 +62,8 @@ def list_tests(tests_module,
         ``--test`` command line argument to :func:`parse_test_names()`
     :param skip_class_map: (Optional) Result of passing parsed arg for
         ``--skip`` command line argument to :func:`parse_test_names()`
+    :param verbose: (Default = False) If True, print class and test method
+        docstrings
     """
     tests = load_tests(tests_module, test_module_names, test_class_map, skip_class_map)
     module_map = _module_map(tests, tests_module)
@@ -82,26 +92,54 @@ def _module_map(tests, tests_module):
 
 
 def _print_module(module, test_list, verbose=False):
-    # TODO: doc
+    """Print a test module
+
+    :param module: The name of the test module to print
+    :param test_list: The list of test classes in the module to print
+    :param verbose: (Default = False) If True, print class and test method
+        docstrings
+    """
     print(cmd.COLORS['prompt'](module) + ':')
     for test_class in test_list:
         _print_test_case(test_class, verbose=verbose)
 
 
-def _print_test_case(test_class, verbose=False):
-    # TODO: doc, indent param?
-    print(textwrap.indent(cmd.COLORS['title'](test_class.__name__) + ':', cmd.INDENT))
+def _print_test_case(test_class, verbose=False, indent=cmd.INDENT):
+    """Print a test case class
+
+    :param test_class: The test case class to print
+    :param verbose: (Default = False) If True, print class and test method
+        docstrings
+    :param indent: (Default = :const:`cmd.INDENT
+        <webdriver_test_tools.common.cmd.cmd.INDENT>`) The string to use for
+        indentation when printing the class
+    """
+    print(textwrap.indent(cmd.COLORS['title'](test_class.__name__) + ':', indent))
     if verbose and hasattr(test_class, '__doc__'):
         # TODO: common.cmd method to truncate string based on terminal size
         case_info = textwrap.shorten(test_class.__doc__, width=20, placeholder='...')
-        print(textwrap.indent(cmd.COLORS['info'](case_info), cmd.INDENT))
+        print(textwrap.indent(cmd.COLORS['info'](case_info), indent))
     methods = unittest.loader.getTestCaseNames(test_class, 'test')
     for method in methods:
-        _print_method(method, verbose=verbose)
+        _print_method(method, test_class=test_class, verbose=verbose)
 
 
-def _print_method(method, verbose=False):
-    # TODO: doc, indent param?
-    print(textwrap.indent(method, cmd.INDENT * 2))
-    # TODO: figure out how to get docstring (currently only retrieving names, not methods)
+def _print_method(method, test_class, verbose=False, indent=cmd.INDENT*2):
+    """Print a test method
+
+    :param method: The name of the method to print
+    :param test_class: The test case class containing the method to print
+    :param verbose: (Default = False) If True, print test method docstrings
+    :param indent: (Default = :const:`cmd.INDENT
+        <webdriver_test_tools.common.cmd.cmd.INDENT>` * 2) The string to use
+        for indentation when printing the class
+    """
+    print(textwrap.indent(method, indent))
+    if verbose:
+        # TODO: catch attribute error
+        func = getattr(test_class, method)
+        if hasattr(func, '__doc__'):
+            # TODO: common.cmd method to truncate string based on terminal size
+            method_info = textwrap.shorten(func.__doc__, width=20, placeholder='...')
+            print(textwrap.indent(cmd.COLORS['info'](method_info), indent))
 
