@@ -3,10 +3,12 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class EdgeTestCase(WebDriverTestCase):
-    """Implementation of :class:`WebDriverTestCase <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
-    using Edge webdriver
+    """Implementation of :class:`WebDriverTestCase
+    <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` using Edge
+    webdriver
 
-    `Driver download <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>`_
+    `Driver download
+    <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>`_
 
     .. note::
 

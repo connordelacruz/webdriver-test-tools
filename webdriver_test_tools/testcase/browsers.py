@@ -19,20 +19,14 @@ from .ie import *
 from .safari import *
 
 class Browsers:
-    """Constants for browser short names
-
-    :var Browsers.TEST_CLASSES: Dictionary mapping browser names to their corresponding test classes
-    :var Browsers.HEADLESS_COMPATIBLE: List of :class:`WebDriverTestCase
-        <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` subclasses that
-        support test execution in a headless browser
-    """
+    """Constants for browser short names"""
     FIREFOX = FirefoxTestCase.SHORT_NAME
     CHROME = ChromeTestCase.SHORT_NAME
     SAFARI = SafariTestCase.SHORT_NAME
     IE = IETestCase.SHORT_NAME
     EDGE = EdgeTestCase.SHORT_NAME
     CHROME_MOBILE = ChromeMobileTestCase.SHORT_NAME
-    # Map of short names to the browser class
+    #: Dictionary mapping browser names to their corresponding test classes
     TEST_CLASSES = {
         FIREFOX: FirefoxTestCase,
         CHROME: ChromeTestCase,
@@ -41,7 +35,9 @@ class Browsers:
         EDGE: EdgeTestCase,
         CHROME_MOBILE: ChromeMobileTestCase,
     }
-    # List of browser classes that support headless browsing
+    #: List of :class:`WebDriverTestCase
+    #: <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` subclasses
+    #: that support test execution in a headless browser
     HEADLESS_COMPATIBLE = [
         FirefoxTestCase,
         ChromeTestCase,

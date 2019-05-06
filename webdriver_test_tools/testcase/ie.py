@@ -3,10 +3,12 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class IETestCase(WebDriverTestCase):
-    """Implementation of :class:`WebDriverTestCase <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
-    using Internet Explorer webdriver
+    """Implementation of :class:`WebDriverTestCase
+    <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` using Internet
+    Explorer webdriver
 
-    `Driver info <https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver>`__
+    `Driver info
+    <https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver>`__
 
     .. note::
 
