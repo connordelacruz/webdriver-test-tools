@@ -27,10 +27,10 @@ def main(args):
         ``ArgumentParser`` that returned this ``Namespace``
     """
     # Retrieve values from args
-    package_name=args.package_name
-    project_title=args.project_title
-    gitignore=args.no_gitignore
-    readme=args.no_readme
+    package_name = args.package_name
+    project_title = args.project_title
+    gitignore = args.no_gitignore
+    readme = args.no_readme
     # For Ctrl + C handling
     initialize_start = False
     # Handle any optional arguments

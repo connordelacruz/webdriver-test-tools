@@ -3,9 +3,7 @@ from datetime import datetime
 
 from selenium import webdriver
 
-import webdriver_test_tools
-from webdriver_test_tools.common import utils
-from webdriver_test_tools.common.files import create_directory
+from webdriver_test_tools.common.files import create_directory, validate_filename
 
 
 class WebDriverConfig:
@@ -215,7 +213,7 @@ class WebDriverConfig:
         if not path.lower().endswith('.png'):
             path += '.png'
         # Validate string characters for file name
-        filename = utils.validate_filename(os.path.basename(path))
+        filename = validate_filename(os.path.basename(path))
         # Get any subdirectory names
         dirname = os.path.dirname(path)
         # Create subdirectories if they don't already exist
