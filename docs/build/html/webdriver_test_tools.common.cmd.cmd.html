@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.common.cmd.cmd module &mdash; WebDriver Test Tools 2.13.0-alpha documentation</title>
+  <title>webdriver_test_tools.common.cmd.cmd module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
   
 
   
@@ -231,6 +231,34 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> – Info message to print</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="webdriver_test_tools.common.cmd.cmd.print_shortened">
+<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">print_shortened</code><span class="sig-paren">(</span><em>text</em>, <em>placeholder='...'</em>, <em>indent=''</em>, <em>fmt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_shortened"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_shortened" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a string, shorten if it’s longer than the current terminal width</p>
+<p>Essentially a wrapper around <code class="xref py py-meth docutils literal notranslate"><span class="pre">textwrap.shorten()</span></code> (and optionally
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">textwrap.indent()</span></code>) that truncates based on the terminal width</p>
+<p>If the printed string should be formatted, it is recommended to set the
+<code class="docutils literal notranslate"><span class="pre">fmt</span></code> parameter instead of passing in a formatted string. If a formatted
+string is truncated, then the colors aren’t reset, causing subsequent
+terminal output to be formatted as well</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>text</strong> – Text to print</li>
+<li><strong>placeholder</strong> – (Default = ‘…’) Placeholder to use when truncating
+the string</li>
+<li><strong>indent</strong> – (Optional) If set, indent using this string</li>
+<li><strong>fmt</strong> – (Optional) A key in <code class="xref py py-const docutils literal notranslate"><span class="pre">COLORS</span></code> to use for formatting when
+printing the text</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -509,7 +537,7 @@ input and successfully validating</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.0-alpha',
+            VERSION:'2.13.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

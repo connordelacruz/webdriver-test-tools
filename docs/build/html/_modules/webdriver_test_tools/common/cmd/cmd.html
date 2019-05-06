@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.common.cmd.cmd &mdash; WebDriver Test Tools 2.13.0-alpha documentation</title>
+  <title>webdriver_test_tools.common.cmd.cmd &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
   
 
   
@@ -165,8 +165,9 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="c1"># TODO: rename to something less confusing than cmd.cmd</span>
 
-<span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">from</span> <span class="nn">blessings</span> <span class="k">import</span> <span class="n">Terminal</span>
 
 <span class="c1"># Formatting</span>
@@ -213,6 +214,32 @@
 <span class="sd">    :param text: Info message to print</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;info&#39;</span><span class="p">](</span><span class="n">text</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="print_shortened"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.print_shortened">[docs]</a><span class="k">def</span> <span class="nf">print_shortened</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;...&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print a string, shorten if it&#39;s longer than the current terminal width</span>
+
+<span class="sd">    Essentially a wrapper around :meth:`textwrap.shorten` (and optionally</span>
+<span class="sd">    :meth:`textwrap.indent`) that truncates based on the terminal width</span>
+
+<span class="sd">    If the printed string should be formatted, it is recommended to set the</span>
+<span class="sd">    ``fmt`` parameter instead of passing in a formatted string. If a formatted</span>
+<span class="sd">    string is truncated, then the colors aren&#39;t reset, causing subsequent</span>
+<span class="sd">    terminal output to be formatted as well</span>
+
+<span class="sd">    :param text: Text to print</span>
+<span class="sd">    :param placeholder: (Default = &#39;...&#39;) Placeholder to use when truncating</span>
+<span class="sd">        the string</span>
+<span class="sd">    :param indent: (Optional) If set, indent using this string</span>
+<span class="sd">    :param fmt: (Optional) A key in :const:`COLORS` to use for formatting when</span>
+<span class="sd">        printing the text</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">_term</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">indent</span><span class="p">)</span>
+    <span class="n">fmt_method</span> <span class="o">=</span> <span class="n">COLORS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span>
+        <span class="n">fmt_method</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">shorten</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">placeholder</span><span class="o">=</span><span class="n">placeholder</span><span class="p">)),</span>
+        <span class="n">indent</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
 
 
 <span class="c1"># User Input</span>
@@ -520,7 +547,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.13.0-alpha',
+            VERSION:'2.13.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

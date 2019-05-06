@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.cmd.list module &mdash; WebDriver Test Tools 2.13.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.cmd.list module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
   
 
   
@@ -192,15 +192,17 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the test package ArgumentParser (i.e. the object
-returned by the <code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</li>
+<li><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the test
+package ArgumentParser (i.e. the object returned by the
+<code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</li>
 <li><strong>parents</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">[]</span></code>) Parent parsers for the list subparser</li>
-<li><strong>formatter_class</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">argparse.RawTextHelpFormatter</span></code>) Class to use for the <code class="docutils literal notranslate"><span class="pre">formatter_class</span></code>
-parameter</li>
+<li><strong>formatter_class</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">argparse.RawTextHelpFormatter</span></code>) Class
+to use for the <code class="docutils literal notranslate"><span class="pre">formatter_class</span></code> parameter</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code> object for the newly added <code class="docutils literal notranslate"><span class="pre">list</span></code> subparser</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code> object for the newly added <code class="docutils literal notranslate"><span class="pre">list</span></code>
+subparser</p>
 </td>
 </tr>
 </tbody>
@@ -227,7 +229,7 @@ parameter</li>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.list.list_tests">
-<code class="descclassname">webdriver_test_tools.project.cmd.list.</code><code class="descname">list_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/list.html#list_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.list.list_tests" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">webdriver_test_tools.project.cmd.list.</code><code class="descname">list_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/list.html#list_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.list.list_tests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print a list of available tests</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -235,12 +237,14 @@ parameter</li>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></li>
-<li><strong>test_module_names</strong> – (Optional) Parsed arg for <code class="docutils literal notranslate"><span class="pre">--module</span></code> command line
-argument</li>
-<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for <code class="docutils literal notranslate"><span class="pre">--test</span></code>
-command line argument to <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></li>
-<li><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for <code class="docutils literal notranslate"><span class="pre">--skip</span></code>
-command line argument to <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></li>
+<li><strong>test_module_names</strong> – (Optional) Parsed arg for <code class="docutils literal notranslate"><span class="pre">--module</span></code> command
+line argument</li>
+<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for
+<code class="docutils literal notranslate"><span class="pre">--test</span></code> command line argument to <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></li>
+<li><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for
+<code class="docutils literal notranslate"><span class="pre">--skip</span></code> command line argument to <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></li>
+<li><strong>verbose</strong> – (Default = False) If True, print class and test method
+docstrings</li>
 </ul>
 </td>
 </tr>
@@ -292,7 +296,7 @@ command line argument to <code class="xref py py-func docutils literal notransla
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.0-alpha',
+            VERSION:'2.13.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

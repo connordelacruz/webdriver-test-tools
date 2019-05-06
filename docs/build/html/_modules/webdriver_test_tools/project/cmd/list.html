@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.cmd.list &mdash; WebDriver Test Tools 2.13.0-alpha documentation</title>
+  <title>webdriver_test_tools.project.cmd.list &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
   
 
   
@@ -166,27 +166,41 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project.cmd.common</span> <span class="k">import</span> <span class="n">parse_test_args</span><span class="p">,</span> <span class="n">load_tests</span>
 
 
+<span class="c1"># Tree characters (for verbose output)</span>
+<span class="n">_TREE_CHILD</span> <span class="o">=</span> <span class="s1">&#39;├── &#39;</span>
+<span class="n">_TREE_LAST_CHILD</span> <span class="o">=</span> <span class="s1">&#39;└── &#39;</span>
+<span class="n">_TREE_NESTED_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;│   &#39;</span>
+<span class="n">_TREE_LAST_CHILD_NESTED_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;    &#39;</span>
+
+
 <div class="viewcode-block" id="add_list_subparser"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.list.html#webdriver_test_tools.project.cmd.list.add_list_subparser">[docs]</a><span class="k">def</span> <span class="nf">add_list_subparser</span><span class="p">(</span><span class="n">subparsers</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[],</span>
                        <span class="n">formatter_class</span><span class="o">=</span><span class="n">RawTextHelpFormatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Add subparser for the ``&lt;test_package&gt; list`` command</span>
 
-<span class="sd">    :param subparsers: ``argparse._SubParsersAction`` object for the test package ArgumentParser (i.e. the object</span>
-<span class="sd">        returned by the ``add_subparsers()`` method)</span>
+<span class="sd">    :param subparsers: ``argparse._SubParsersAction`` object for the test</span>
+<span class="sd">        package ArgumentParser (i.e. the object returned by the</span>
+<span class="sd">        ``add_subparsers()`` method)</span>
 <span class="sd">    :param parents: (Default: ``[]``) Parent parsers for the list subparser</span>
-<span class="sd">    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class to use for the ``formatter_class``</span>
-<span class="sd">        parameter</span>
+<span class="sd">    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class</span>
+<span class="sd">        to use for the ``formatter_class`` parameter</span>
 
-<span class="sd">    :return: ``argparse.ArgumentParser`` object for the newly added ``list`` subparser</span>
+<span class="sd">    :return: ``argparse.ArgumentParser`` object for the newly added ``list``</span>
+<span class="sd">        subparser</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">list_description</span> <span class="o">=</span> <span class="s1">&#39;Print a list of available tests and exit&#39;</span>
     <span class="n">list_help</span> <span class="o">=</span> <span class="n">list_description</span>
-    <span class="c1"># TODO: aliases=[&#39;ls&#39;]</span>
     <span class="n">list_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
         <span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">list_description</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">list_help</span><span class="p">,</span>
         <span class="n">parents</span><span class="o">=</span><span class="n">parents</span><span class="p">,</span>  <span class="c1"># TODO: always use test_parent_parser?</span>
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">formatter_class</span><span class="p">,</span>
         <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epilog</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">argparse</span><span class="o">.</span><span class="n">ARGPARSE_EPILOG</span>
     <span class="p">)</span>
+    <span class="c1"># Output Arguments</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">list_parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s1">&#39;Output Options&#39;</span><span class="p">)</span>
+    <span class="c1"># TODO: better help?</span>
+    <span class="n">verbose_help</span> <span class="o">=</span> <span class="s1">&#39;Show class and method docstrings&#39;</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="n">verbose_help</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">list_parser</span></div>
 
 
@@ -199,27 +213,128 @@
 <span class="sd">    :param args: The namespace returned by parser.parse_args()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">kwargs</span> <span class="o">=</span> <span class="n">parse_test_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span>
     <span class="n">list_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="list_tests"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.list.html#webdriver_test_tools.project.cmd.list.list_tests">[docs]</a><span class="k">def</span> <span class="nf">list_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span>
-               <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+               <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Print a list of available tests</span>
 
 <span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
-<span class="sd">    :param test_module_names: (Optional) Parsed arg for ``--module`` command line</span>
-<span class="sd">        argument</span>
-<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for ``--test``</span>
-<span class="sd">        command line argument to :func:`parse_test_names()`</span>
-<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip``</span>
-<span class="sd">        command line argument to :func:`parse_test_names()`</span>
+<span class="sd">    :param test_module_names: (Optional) Parsed arg for ``--module`` command</span>
+<span class="sd">        line argument</span>
+<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for</span>
+<span class="sd">        ``--test`` command line argument to :func:`parse_test_names()`</span>
+<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for</span>
+<span class="sd">        ``--skip`` command line argument to :func:`parse_test_names()`</span>
+<span class="sd">    :param verbose: (Default = False) If True, print class and test method</span>
+<span class="sd">        docstrings</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">tests</span> <span class="o">=</span> <span class="n">load_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">](</span><span class="n">test_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
-        <span class="n">test_cases</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">getTestCaseNames</span><span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="n">test_cases</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">test_case</span><span class="p">,</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span><span class="p">))</span></div>
+    <span class="n">module_map</span> <span class="o">=</span> <span class="n">_module_map</span><span class="p">(</span><span class="n">tests</span><span class="p">,</span> <span class="n">tests_module</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">module</span><span class="p">,</span> <span class="n">test_list</span> <span class="ow">in</span> <span class="n">module_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">_print_module</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">test_list</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_module_map</span><span class="p">(</span><span class="n">tests</span><span class="p">,</span> <span class="n">tests_module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a dictionary mapping test module names to a list of the test</span>
+<span class="sd">    case classes in the module</span>
+
+<span class="sd">    :param tests: List of test case classes</span>
+<span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
+
+<span class="sd">    :return: Dictionary mapping test module names to a list of the test</span>
+<span class="sd">        case classes in the module</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">module_prefix</span> <span class="o">=</span> <span class="n">tests_module</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span>
+    <span class="n">module_map</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
+        <span class="n">module</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="vm">__module__</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">module_prefix</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">module</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">module_map</span><span class="p">:</span>
+            <span class="n">module_map</span><span class="p">[</span><span class="n">module</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">module_map</span><span class="p">[</span><span class="n">module</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">module_map</span>
+
+
+<span class="k">def</span> <span class="nf">_print_module</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">test_list</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print a test module</span>
+
+<span class="sd">    :param module: The name of the test module to print</span>
+<span class="sd">    :param test_list: The list of test classes in the module to print</span>
+<span class="sd">    :param verbose: (Default = False) If True, print class and test method</span>
+<span class="sd">        docstrings</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;prompt&#39;</span><span class="p">](</span><span class="n">module</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_list</span><span class="p">):</span>
+        <span class="n">_print_test_case</span><span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">last_child</span><span class="o">=</span><span class="n">i</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">test_list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_print_test_case</span><span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">last_child</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print a test case class</span>
+
+<span class="sd">    :param test_class: The test case class to print</span>
+<span class="sd">    :param verbose: (Default = False) If True, print class and test method</span>
+<span class="sd">        docstrings</span>
+<span class="sd">    :param last_child: (Default = False) If True and ``verbose`` is True, use</span>
+<span class="sd">        different tree characters when printing this test</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">last_child</span><span class="p">:</span>
+            <span class="n">indent</span> <span class="o">=</span> <span class="n">_TREE_LAST_CHILD</span>
+            <span class="n">doc_indent</span> <span class="o">=</span> <span class="n">_TREE_LAST_CHILD_NESTED_PREFIX</span>
+            <span class="n">method_indent_prefix</span> <span class="o">=</span> <span class="n">_TREE_LAST_CHILD_NESTED_PREFIX</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">indent</span> <span class="o">=</span> <span class="n">_TREE_CHILD</span>
+            <span class="n">doc_indent</span> <span class="o">=</span> <span class="n">_TREE_NESTED_PREFIX</span>
+            <span class="n">method_indent_prefix</span> <span class="o">=</span> <span class="n">_TREE_NESTED_PREFIX</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">indent</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span>
+        <span class="n">method_indent_prefix</span> <span class="o">=</span> <span class="n">indent</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">](</span><span class="n">test_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">):</span>
+        <span class="n">cmd</span><span class="o">.</span><span class="n">print_shortened</span><span class="p">(</span><span class="n">test_class</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">doc_indent</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">)</span>
+    <span class="n">methods</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">getTestCaseNames</span><span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">method</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">methods</span><span class="p">):</span>
+        <span class="n">_print_method</span><span class="p">(</span><span class="n">method</span><span class="p">,</span>
+                      <span class="n">test_class</span><span class="o">=</span><span class="n">test_class</span><span class="p">,</span>
+                      <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+                      <span class="n">indent_prefix</span><span class="o">=</span><span class="n">method_indent_prefix</span><span class="p">,</span>
+                      <span class="n">last_child</span><span class="o">=</span><span class="n">i</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">methods</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_print_method</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">test_class</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">indent_prefix</span><span class="o">=</span><span class="n">cmd</span><span class="o">.</span><span class="n">INDENT</span><span class="p">,</span> <span class="n">last_child</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print a test method</span>
+
+<span class="sd">    :param method: The name of the method to print</span>
+<span class="sd">    :param test_class: The test case class containing the method to print</span>
+<span class="sd">    :param verbose: (Default = False) If True, print test method docstrings</span>
+<span class="sd">    :param indent_prefix: (Default = :const:`cmd.INDENT</span>
+<span class="sd">        &lt;webdriver_test_tools.common.cmd.cmd.INDENT&gt;`) The string to use</span>
+<span class="sd">        as a prefix for indentation when printing the class (mostly used for</span>
+<span class="sd">        tree output when ``verbose`` is True)</span>
+<span class="sd">    :param last_child: (Default = False) If True and ``verbose`` is True, use</span>
+<span class="sd">        different tree characters when printing this test</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">last_child</span><span class="p">:</span>
+            <span class="n">indent</span> <span class="o">=</span> <span class="n">indent_prefix</span> <span class="o">+</span> <span class="n">_TREE_LAST_CHILD</span>
+            <span class="n">doc_indent</span> <span class="o">=</span> <span class="n">indent_prefix</span> <span class="o">+</span> <span class="n">_TREE_LAST_CHILD_NESTED_PREFIX</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">indent</span> <span class="o">=</span> <span class="n">indent_prefix</span> <span class="o">+</span> <span class="n">_TREE_CHILD</span>
+            <span class="n">doc_indent</span> <span class="o">=</span> <span class="n">indent_prefix</span> <span class="o">+</span> <span class="n">_TREE_NESTED_PREFIX</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">indent</span> <span class="o">=</span> <span class="n">indent_prefix</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">indent</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">):</span>
+                <span class="n">cmd</span><span class="o">.</span><span class="n">print_shortened</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">doc_indent</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">pass</span>
+
 </pre></div>
 
            </div>
@@ -254,7 +369,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.13.0-alpha',
+            VERSION:'2.13.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

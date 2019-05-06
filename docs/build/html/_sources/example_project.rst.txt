@@ -345,9 +345,23 @@ output should look like this:
 
 .. code-block:: none
 
-    HomePageTestCase:
-       test_more_information_link
-       test_page_heading
+   home:
+      HomePageTestCase:
+         test_more_information_link
+         test_page_heading
+
+You can also run ``example_package list --verbose`` to view the docstring for
+each class and method:
+
+.. code-block:: none
+
+   home:
+   └── HomePageTestCase:
+       Really contrived example test case
+       ├── test_more_information_link
+       │   Test that the 'More information...' link goes to the correct URL
+       └── test_page_heading
+           Ensure that the page heading text is correct
 
 
 Run the tests
