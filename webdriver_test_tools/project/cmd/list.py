@@ -116,9 +116,7 @@ def _print_test_case(test_class, verbose=False, indent=cmd.INDENT):
     """
     print(textwrap.indent(cmd.COLORS['title'](test_class.__name__) + ':', indent))
     if verbose and hasattr(test_class, '__doc__'):
-        # TODO: common.cmd method to truncate string based on terminal size
-        case_info = textwrap.shorten(test_class.__doc__, width=20, placeholder='...')
-        print(textwrap.indent(cmd.COLORS['info'](case_info), indent))
+        cmd.print_shortened(test_class.__doc__, indent=indent, fmt='info')
     methods = unittest.loader.getTestCaseNames(test_class, 'test')
     for method in methods:
         _print_method(method, test_class=test_class, verbose=verbose)
@@ -139,7 +137,5 @@ def _print_method(method, test_class, verbose=False, indent=cmd.INDENT*2):
         # TODO: catch attribute error
         func = getattr(test_class, method)
         if hasattr(func, '__doc__'):
-            # TODO: common.cmd method to truncate string based on terminal size
-            method_info = textwrap.shorten(func.__doc__, width=20, placeholder='...')
-            print(textwrap.indent(cmd.COLORS['info'](method_info), indent))
+            cmd.print_shortened(func.__doc__, indent=indent, fmt='info')
 
