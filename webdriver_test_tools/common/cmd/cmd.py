@@ -5,8 +5,9 @@
 """
 # TODO: rename to something less confusing than cmd.cmd
 
-import re
 import os
+import re
+import textwrap
 from blessings import Terminal
 
 # Formatting
@@ -53,6 +54,32 @@ def print_info(text):
     :param text: Info message to print
     """
     print(COLORS['info'](text))
+
+
+def print_shortened(text, placeholder='...', indent='', fmt=None):
+    """Print a string, shorten if it's longer than the current terminal width
+
+    Essentially a wrapper around :meth:`textwrap.shorten` (and optionally
+    :meth:`textwrap.indent`) that truncates based on the terminal width
+
+    If the printed string should be formatted, it is recommended to set the
+    ``fmt`` parameter instead of passing in a formatted string. If a formatted
+    string is truncated, then the colors aren't reset, causing subsequent
+    terminal output to be formatted as well
+
+    :param text: Text to print
+    :param placeholder: (Default = '...') Placeholder to use when truncating
+        the string
+    :param indent: (Optional) If set, indent using this string
+    :param fmt: (Optional) A key in :const:`COLORS` to use for formatting when
+        printing the text
+    """
+    width = _term.width - len(indent)
+    fmt_method = COLORS.get(fmt, str)
+    text = textwrap.indent(
+        fmt_method(textwrap.shorten(text, width=width, placeholder=placeholder)),
+        indent)
+    print(text)
 
 
 # User Input

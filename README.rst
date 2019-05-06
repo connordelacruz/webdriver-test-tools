@@ -540,6 +540,12 @@ To print a list of available test classes and methods:
 
     <test_package> list
 
+To include docstrings for each test class and method in output:
+
+::
+
+    <test_package> list --verbose
+
 To only list test classes from specific modules:
 
 ::
@@ -552,6 +558,11 @@ To only list specific test classes:
 
     <test_package> list --test <TestClass> [<TestClass> ...]
 
+To skip certain test classes in output:
+
+::
+
+    <test_package> --skip <TestClass> [<TestClass> ...]
 
 
 Project Structure
