@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Test Project Overview &mdash; WebDriver Test Tools 2.13.0-alpha documentation</title>
+  <title>Test Project Overview &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
   
 
   
@@ -486,12 +486,20 @@ attribute of the <code class="docutils literal notranslate"><span class="pre">Te
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="nb">list</span>
 </pre></div>
 </div>
+<p>To include docstrings for each test class and method in output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="nb">list</span> <span class="o">--</span><span class="n">verbose</span>
+</pre></div>
+</div>
 <p>To only list test classes from specific modules:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="nb">list</span> <span class="o">--</span><span class="n">module</span> <span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">test_module</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>To only list specific test classes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="nb">list</span> <span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To skip certain test classes in output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">test_package</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">skip</span> <span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&gt;</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -627,7 +635,7 @@ generating new test modules.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.0-alpha',
+            VERSION:'2.13.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

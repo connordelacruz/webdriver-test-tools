@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Example Project &mdash; WebDriver Test Tools 2.13.0-alpha documentation</title>
+  <title>Example Project &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
   
 
   
@@ -603,9 +603,21 @@ framework is able to detect the tests, run:</p>
 </div>
 <p>This prints a list of test cases and their test methods in the package. The
 output should look like this:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>HomePageTestCase:
-   test_more_information_link
-   test_page_heading
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>home:
+   HomePageTestCase:
+      test_more_information_link
+      test_page_heading
+</pre></div>
+</div>
+<p>You can also run <code class="docutils literal notranslate"><span class="pre">example_package</span> <span class="pre">list</span> <span class="pre">--verbose</span></code> to view the docstring for
+each class and method:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>home:
+└── HomePageTestCase:
+    Really contrived example test case
+    ├── test_more_information_link
+    │   Test that the &#39;More information...&#39; link goes to the correct URL
+    └── test_page_heading
+        Ensure that the page heading text is correct
 </pre></div>
 </div>
 </div>
@@ -787,7 +799,7 @@ tests:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.0-alpha',
+            VERSION:'2.13.1-alpha',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
