@@ -39,10 +39,9 @@ install_requires = [
     'selenium>={}'.format(about['__selenium__']),
     'colour-runner>=0.1.1,<0.2',
     'randomuser>=1.5.1,<1.6',
-    'py-loremipsum>=1.0.0',
-    'Jinja2>=2.10',
-    'urllib3>=1.22',
-    'blessings>=1.6.1',
+    'py-loremipsum>=1.1.0,<1.2.0',
+    'Jinja2>=2.10,<2.2',
+    'blessings>=1.7,<1.8',
     'PyYAML>=5.1,<5.2',
 ]
 
