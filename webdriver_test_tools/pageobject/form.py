@@ -44,12 +44,13 @@ class InputObject(BasePage):
         # Non-<input> tag inputs
         SELECT = 'select'
         TEXTAREA = 'textarea'
-        # Attribute support based on input types
+        #: Input types that support the 'options' key
         SUPPORTS_OPTIONS = [
             SELECT,
             RADIO,
             CHECKBOX,
         ]
+        #: Input types that support the 'multiple' key
         SUPPORTS_MULTIPLE = [
             SELECT,
             CHECKBOX,
@@ -482,9 +483,9 @@ class FormObject(YAMLParsingPageObject):
     def fill_inputs(self, input_map, strict=False):
         """Fill form inputs
 
-        :param input_map: Dictionary mapping input `name` key to the values to set
-            them to. See :meth:`InputObject.set_value` for value formats for
-            different input types
+        :param input_map: Dictionary mapping input `name` key to the values to
+            set them to. See :meth:`InputObject.set_value` for value formats
+            for different input types
         :param strict: (Default = False) If True, throw an exception if a key
             in ``input_map`` is not a valid key in ``self.inputs``. Otherwise
             throw a warning and continue
@@ -518,15 +519,16 @@ class FormObject(YAMLParsingPageObject):
         }
 
     def submit_is_enabled(self):
-        """Short hand function for checking if the submit button is enabled. Useful
-        for forms with JavaScript input validation
+        """Short hand function for checking if the submit button is enabled.
+        Useful for forms with JavaScript input validation
 
         :return: True if submit is enabled, False if it's disabled
         """
         return self.find_element(self.SUBMIT_LOCATOR).is_enabled()
 
     def click_submit(self):
-        """Shorthand function for scrolling to the submit button and clicking it.
+        """Shorthand function for scrolling to the submit button and clicking
+        it.
 
         If :attr:`self.SUBMIT_SUCCESS_CLASS <SUBMIT_SUCCESS_CLASS>` is set to a
         subclass of :class:`BasePage

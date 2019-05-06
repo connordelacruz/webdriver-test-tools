@@ -1,19 +1,20 @@
-# Base class for page objects
 
-# TODO: Clean up for consistency with other modules
-
-class BasePage(object):
+class BasePage:
     """Base class for page objects"""
 
-    class Locator(object):
-        """WebDriver locator tuples for any elements that will need to be accessed by
-        this page object.
+    class Locator:
+        """WebDriver locator tuples for any elements that will need to be
+        accessed by this page object.
 
         :Example:
 
             .. code-block:: python
 
                 SOME_ELEMENT = (By.ID, 'some-element')
+
+        This nested class is not technically required, but for consistency it's
+        recommended to use this convention for storing locators relevant to a
+        page object
         """
         pass
 
@@ -41,7 +42,8 @@ class BasePage(object):
         return self.driver.find_element(*locator)
 
     def find_elements(self, locator):
-        """Returns a list of WebElement objects based on the locator tuple passed
+        """Returns a list of WebElement objects based on the locator tuple
+        passed
 
         Shorthand for :
 
