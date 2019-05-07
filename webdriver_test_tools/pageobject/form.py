@@ -384,29 +384,6 @@ class FormObject(YAMLParsingPageObject):
     INPUT_DICTS = []
     inputs = {}
 
-    class Input:
-        """
-        .. deprecated:: 2.7.0
-            Use :class:`InputObject` and :attr:`FormObject.inputs` instead
-
-        Subclass used to contain name attributes and select/radio option lists
-        for inputs
-
-        :Example:
-
-            .. code-block:: python
-
-                SOME_INPUT = 'someInput'
-
-                SOME_SELECT = 'someSelect'
-                SOME_SELECT_OPTIONS = [
-                        'vaule1',
-                        'value2',
-                ]
-
-        """
-        pass
-
     def parse_yaml(self, file_path):
         """Parse a YAML representation of the form object and set attributes
         accordingly
@@ -458,27 +435,6 @@ class FormObject(YAMLParsingPageObject):
                 # Preserve stack trace for key error if not parsing YAML
                 else:
                     raise
-
-
-    def fill_form(self, input_map):
-        """
-        .. deprecated:: 2.7.0
-           Use :meth:`fill_inputs` instead
-
-        Fill the form element inputs
-
-        As of version 3.0, this method is just a wrapper for
-        :meth:`FormObject.fill_inputs()`
-
-        :param input_map: Dictionary mapping input names to the values to set
-            them to. See
-            :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`
-            for values to use for different input types
-        """
-        warnings.warn(
-            'FormObject.fill_form() is deprecated and may be removed in future versions, use fill_inputs() instead'
-        )
-        self.fill_inputs(input_map)
 
     def fill_inputs(self, input_map, strict=False):
         """Fill form inputs

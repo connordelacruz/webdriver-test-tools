@@ -26,17 +26,9 @@ class FormObjectTestCase(WebDriverTestCase):
         form_object = NoYAMLForm(self.driver)
         self._test_input_set_methods(form_object)
 
-    def test_deprecated_input_set_methods(self):
-        """Test deprecated fill_form() method"""
-        form_object = YAMLForm(self.driver)
-        self._test_input_set_methods(form_object, use_deprecated=True)
-
-    def _test_input_set_methods(self, form_object, use_deprecated=False):
-        # TODO: doc, assertWarns for fill_form()?
+    def _test_input_set_methods(self, form_object):
         # Subtest message format string
         subtest_msg_fmt = 'Call get_value() and compare with values used in fill_form() [{val_type} value input types]'
-        # Test fill_inputs() or deprecated fill_form()
-        fill_method = form_object.fill_inputs if not use_deprecated else form_object.fill_form
         # Single value input types
         input_map = {
             'optText': 'Sample text entry',
@@ -44,7 +36,7 @@ class FormObjectTestCase(WebDriverTestCase):
             'optCheckbox': True,
             'optSelect': '2',
         }
-        fill_method(input_map)
+        form_object.fill_inputs(input_map)
         for input_name, set_val in input_map.items():
             get_val = form_object.inputs[input_name].get_value()
             with self.subTest(subtest_msg_fmt.format(val_type='single'),
@@ -55,7 +47,7 @@ class FormObjectTestCase(WebDriverTestCase):
         input_map = {
             'optCheckboxGroup[]': {'1': True, '3': True},
         }
-        fill_method(input_map)
+        form_object.fill_inputs(input_map)
         for input_name, set_val in input_map.items():
             get_val = form_object.inputs[input_name].get_value()
             for key, val in set_val.items():
@@ -73,7 +65,7 @@ class FormObjectTestCase(WebDriverTestCase):
         input_map = {
             'optMultipleSelect': ['1', '3'],
         }
-        fill_method(input_map)
+        form_object.fill_inputs(input_map)
         for input_name, set_val in input_map.items():
             get_val = form_object.inputs[input_name].get_value()
             with self.subTest(subtest_msg_fmt.format(val_type='list'),

@@ -284,30 +284,6 @@ class NavObject(YAMLParsingPageObject):
         initialize the :class:`NavLinkObject` instances in :attr:`links` at
         runtime. These dictionaries use the same syntax as :ref:`YAML links
         <yaml-links>`
-
-        .. todo::
-
-            ``LINK_DICTS`` syntax is kind of cluttered, will likely re-work to
-            be cleaner in future versions
-
-    ---
-
-    The following attributes are deprecated as of version 2.9.0, and will be
-    removed in future versions:
-
-    :var NavObject.LINK_MAP: Maps link text to a tuple containing its locator
-        and the page object class for the target page, modal, section, etc (or
-        None if need be). Override in subclasses
-
-        .. deprecated:: 2.9.0
-            :attr:`links` should be used instead
-
-    :var NavObject.HOVER_MAP: Maps link text to a tuple containing its locator
-        and the page object class for the menu, dropdown, etc that should
-        appear on hover (or None if need be). Override in subclasses
-
-        .. deprecated:: 2.9.0
-            :attr:`links` should be used instead
     """
 
     _YAML_ROOT_KEY = 'nav'
@@ -326,10 +302,6 @@ class NavObject(YAMLParsingPageObject):
     LINK_DICTS = []
     links = {}
 
-    # Link maps
-    LINK_MAP = {}
-    HOVER_MAP = {}
-
     # Initialization
 
     def parse_yaml(self, file_path):
@@ -343,8 +315,8 @@ class NavObject(YAMLParsingPageObject):
         """
         parsed_yaml = super().parse_yaml(file_path)
         self.FIXED = parsed_yaml.get('fixed', True)
-        # Only retrieve if attribute is present (allows deprecated
-        # CollapsibleNavObject to override default)
+        # Only assign if attribute is present (allows subclasses of
+        # non-collapsible navs to override COLLAPSIBLE)
         if 'collapsible' in parsed_yaml:
             self.COLLAPSIBLE = parsed_yaml['collapsible']
         # Collapsible nav configurations
@@ -500,90 +472,4 @@ class NavObject(YAMLParsingPageObject):
             expanded = False
         return expanded
 
-    # Deprecated Methods
-
-    def click_page_link(self, link_map_key):
-        """
-        .. deprecated:: 2.9.0
-            Use :meth:`click_link` instead
-
-        Click one of the page links and return a page object class for the link
-        target
-
-        :param link_map_key: Key into :attr:`LINK_MAP` for the link to click on
-
-        :return: Corresponding page object class for the link target (if applicable)
-        """
-        warnings.warn(
-            'NavObject.click_page_link() is deprecated and may be removed in future versions, use click_link() instead',
-            DeprecationWarning
-        )
-        if link_map_key in self.LINK_MAP:
-            link_tuple = self.LINK_MAP[link_map_key]
-            link = self.find_element(link_tuple[0])
-            if not self.FIXED:
-                actions.scroll.into_view(self.driver, link)
-            link.click()
-            # Initialize the target page object and return it
-            return None if link_tuple[1] is None else link_tuple[1](self.driver)
-
-    def hover_over_page_link(self, link_map_key):
-        """
-        .. deprecated:: 2.9.0
-            Use :meth:`hover_over_link` instead
-
-        Hover mouse over one of the page links
-
-        :param link_map_key: Key into :attr:`HOVER_MAP` for the link to hover mouse over
-
-        :return: Corresponding page object class for the hover dropdown/container/etc
-            (if applicable)
-        """
-        warnings.warn(
-            'NavObject.hover_over_page_link() is deprecated and may be removed in future versions, use hover_over_link() instead',
-            DeprecationWarning
-        )
-        if link_map_key in self.HOVER_MAP:
-            link_tuple = self.HOVER_MAP[link_map_key]
-            link = self.find_element(link_tuple[0])
-            if not self.FIXED:
-                actions.scroll.into_view(self.driver, link)
-            action_chain = ActionChains(self.driver)
-            action_chain.move_to_element(link).perform()
-            # Initialize the target page object and return it
-            return None if link_tuple[1] is None else link_tuple[1](self.driver)
-
-
-class CollapsibleNavObject(NavObject):
-    """
-    .. deprecated:: 2.9.0
-        Use :class:`NavObject` with ``COLLAPSIBLE = True`` instead
-
-    Subclass of :class:`NavObject` with additional methods for collapsible nav
-    menus
-
-    In addition to the variables for :class:`NavObject`, the following
-    variables need to be defined for collapsible navs
-
-    :var CollapsibleNavObject.EXPAND_BUTTON_LOCATOR: Locator for the button
-        that expands the nav menu
-    :var CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR: Locator for the button
-        that expands the nav menu
-    :var CollapsibleNavObject.MENU_CONTAINER_LOCATOR: Locator for the
-        collapsing/expanding container of the navigation menu
-    """
-
-    COLLAPSIBLE = True
-    # Deprecated
-    MENU_CONTAINER_LOCATOR = None
-
-    def __init__(self, driver):
-        warnings.warn(
-            'CollapsibleNavObject is deprecated, use NavObject with COLLAPSIBLE set to True instead',
-            DeprecationWarning
-        )
-        super().__init__(driver)
-        # Set MENU_LOCATOR to match deprecated attribute if specified
-        if self.MENU_CONTAINER_LOCATOR:
-            self.MENU_LOCATOR = self.MENU_CONTAINER_LOCATOR
 
