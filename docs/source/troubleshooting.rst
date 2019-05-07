@@ -60,7 +60,71 @@ For more information, see the API documentation for
 Accounting for timeouts on slow sites or pages
 ----------------------------------------------
 
-.. todo Accounting for slow pages
+By default, :ref:`WebDriverTestCase assertion methods <assertion-methods>` wait
+10 seconds for the expected condition to occur before failing. There are some
+instances where the default assertion wait time might not be long enough for a
+slower site or page, causing tests to timeout prematurely. This default time can
+be overridden for a specific assertion, an entire test case, or for the entire
+test project.
+
+
+Set timeout for a single assertion
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Each of the :ref:`WebDriverTestCase assertion methods <assertion-methods>`
+accepts an optional parameter ``wait_timeout``, which overrides the default
+timeout for a single assertion. E.g.:
+
+.. code-block:: python
+
+   self.assertVisible(element_locator, wait_timeout=30)
+
+
+Set default timeout for a test case
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If there are many assertions in a test case that are timing out prematurely, you
+can set the ``DEFAULT_ASSERTION_TIMEOUT`` attribute, which will be used as the
+default timeout value for all assertions in that class. E.g.:
+
+.. code-block:: python
+
+   class SlowPageTestCase(WebDriverTestCase):
+      """Example test of a slow page"""
+      SITE_URL = config.SiteConfig.SLOW_PAGE_URL
+      # Set the default timeout for this class to 30 seconds
+      DEFAULT_ASSERTION_TIMEOUT = 30
+
+      def test_something(self):
+         """Test a thing"""
+         ...
+         # Will wait 30 seconds
+         self.assertExists(element_locator)
+
+      def test_something_else(self):
+         """Test another thing"""
+         ...
+         # Will wait 30 seconds
+         self.assertInvisible(element_locator)
+         # wait_timeout parameter takes precedence
+         self.assertUrlChange(expected_url, wait_timeout=10)
+
+
+Set default timeout for entire test project
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also set the default timeout for all test cases in a project by setting
+``WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT``. E.g.:
+
+.. code-block:: python
+   :caption: <test_package>/config/webdriver.py
+
+   class WebDriverConfig(config.WebDriverConfig):
+      ...
+      DEFAULT_ASSERTION_TIMEOUT = 30
+
+As mentioned previously, this default can be overridden per-test case and
+per-assertion.
 
 
 Issues with specific browsers
