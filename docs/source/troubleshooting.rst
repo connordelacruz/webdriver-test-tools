@@ -150,9 +150,36 @@ browser-specific driver issue, you can skip these tests for the problem browser.
 See :ref:`skip-browsers` for more info.
 
 
-Tools for Troubleshooting
+Tools for Debugging Tests
 =========================
 
-.. todo Screenshots, input() pausing
+Screenshots
+-----------
+
+When troubleshooting a test, it can be useful to take screenshots to get a
+visual of the window during testing. This framework includes utilities for
+taking screenshots on test failure or at arbitrary points of a test. See the
+:ref:`screenshots` documentation for details.
+
+
+Pausing test execution
+----------------------
+
+When troubleshooting, it can be helpful to pause test execution at certain
+points review things step-by-step. A simple way to insert a pause is using
+Python's :func:`input` function. This function is meant to be used to prompt for
+user input, but it can also be used to pause a test until hitting 'Enter',
+allowing you to look at the browser window before continuing. E.g.:
+
+.. code-block:: python
+
+   ...
+   def test_pause_example(self):
+      ...
+      # This will pause test execution until you hit enter
+      # NOTE: you don't need to pass any parameters to input, this is just what
+      # will be printed to standard output
+      input('Paused')
+      ...
 
 
