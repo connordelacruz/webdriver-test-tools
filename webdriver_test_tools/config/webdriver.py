@@ -42,18 +42,6 @@ class WebDriverConfig:
     fails
     """
 
-    # TODO: Deprecate
-    IMPLICIT_WAIT = 0
-    """Implicit wait time for webdriver to poll DOM
-
-    .. note::
-
-        Documentation says not to mix this with explicit waits and some instability
-        was noticed when it was set to 10. Projects can override this if necessary.
-        `Implicit wait documentation
-        <https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits>`__
-    """
-
     # Browser driver initialization arguments
 
     #: Keyword args for ``webdriver.Firefox()``
@@ -92,7 +80,8 @@ class WebDriverConfig:
         """
         log_path = os.path.join(cls.LOG_PATH, 'geckodriver.log')
         options = cls._get_firefox_headless_options() if headless else None
-        return cls.set_driver_implicit_wait(webdriver.Firefox(log_path=log_path, options=options, **cls.FIREFOX_KWARGS))
+        return webdriver.Firefox(log_path=log_path, options=options,
+                                 **cls.FIREFOX_KWARGS)
 
     @classmethod
     def get_chrome_driver(cls, headless=False):
@@ -104,25 +93,25 @@ class WebDriverConfig:
         """
         service_log_path = os.path.join(cls.LOG_PATH, 'chromedriver.log')
         options = cls._get_chrome_headless_options() if headless else None
-        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options,
-                                                             **cls.CHROME_KWARGS))
+        return webdriver.Chrome(service_log_path=service_log_path,
+                                options=options, **cls.CHROME_KWARGS)
 
     @classmethod
     def get_safari_driver(cls):
         """Returns ``webdriver.Safari`` object using :attr:`SAFARI_KWARGS` to initialize"""
-        return cls.set_driver_implicit_wait(webdriver.Safari(**cls.SAFARI_KWARGS))
+        return webdriver.Safari(**cls.SAFARI_KWARGS)
 
     @classmethod
     def get_ie_driver(cls):
         """Returns ``webdriver.Ie`` object using :attr:`IE_KWARGS` and :attr:`LOG_PATH` to initialize"""
         log_file = os.path.join(cls.LOG_PATH, 'iedriver.log')
-        return cls.set_driver_implicit_wait(webdriver.Ie(log_file=log_file, **cls.IE_KWARGS))
+        return webdriver.Ie(log_file=log_file, **cls.IE_KWARGS)
 
     @classmethod
     def get_edge_driver(cls):
         """Returns ``webdriver.Edge`` object using :attr:`EDGE_KWARGS` and :attr:`LOG_PATH` to initialize"""
         log_path = os.path.join(cls.LOG_PATH, 'edgedriver.log')
-        return cls.set_driver_implicit_wait(webdriver.Edge(log_path=log_path, **cls.EDGE_KWARGS))
+        return webdriver.Edge(log_path=log_path, **cls.EDGE_KWARGS)
 
     @classmethod
     def get_chrome_mobile_driver(cls, headless=False):
@@ -137,8 +126,8 @@ class WebDriverConfig:
         options.add_experimental_option("mobileEmulation", cls.CHROME_MOBILE_EMULATION)
         if headless:
             options.add_argument('--headless')
-        return cls.set_driver_implicit_wait(webdriver.Chrome(service_log_path=service_log_path, options=options,
-                                                             **cls.CHROME_KWARGS))
+        return webdriver.Chrome(service_log_path=service_log_path,
+                                options=options, **cls.CHROME_KWARGS)
 
     # Driver Options
 
@@ -163,14 +152,6 @@ class WebDriverConfig:
             options.add_argument(arg)
         options.add_argument('--headless')
         return options
-
-    @classmethod
-    def set_driver_implicit_wait(cls, driver):
-        """Returns driver with implicit wait time set"""
-        if cls.IMPLICIT_WAIT > 0:
-            # TODO: Deprecation warning
-            driver.implicitly_wait(cls.IMPLICIT_WAIT)
-        return driver
 
     # Misc
 
