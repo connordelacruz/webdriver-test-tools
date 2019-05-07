@@ -38,12 +38,8 @@ values):
 
 .. note::
 
-   Prior to ``webdriver_test_tools`` 2.5.0, the default ``browserstack.py``
-   generated with ``wtt init`` was set up to store the values of
-   ``BrowserStackConfig.USERNAME`` and ``BrowserStackConfig.ACCESS_KEY`` as
-   string literals, rather than retrieving those values from environment
-   variables. If for whatever reason you don't want to use environment variables
-   for these values, you can just set assign them directly:
+   If for whatever reason you don't want to use environment variables for these
+   values, you can just assign them directly:
 
    .. code-block:: python
       :caption: config/browserstack.py
@@ -62,9 +58,9 @@ values):
 Running tests with BrowserStack
 ===============================
 
-After enabling and configuring BrowserStack, use the ``--browserstack`` command
-line argument to run tests on BrowserStack instead of running locally. Some
-examples:
+After enabling and configuring BrowserStack, use the ``--browserstack`` (or
+``-B``) command line argument to run tests on BrowserStack instead of running
+locally. Some examples:
 
 ::
 
