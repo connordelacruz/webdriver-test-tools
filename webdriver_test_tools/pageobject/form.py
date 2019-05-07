@@ -460,7 +460,6 @@ class FormObject(YAMLParsingPageObject):
                     raise
 
 
-    # TODO: deprecate old fill_form workflow
     def fill_form(self, input_map):
         """
         .. deprecated:: 2.7.0
@@ -468,17 +467,18 @@ class FormObject(YAMLParsingPageObject):
 
         Fill the form element inputs
 
+        As of version 3.0, this method is just a wrapper for
+        :meth:`FormObject.fill_inputs()`
+
         :param input_map: Dictionary mapping input names to the values to set
             them to. See
             :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`
             for values to use for different input types
         """
         warnings.warn(
-            'FormObject.fill_form() is deprecated and may be removed in future versions, use fill_inputs() instead',
-            DeprecationWarning
+            'FormObject.fill_form() is deprecated and may be removed in future versions, use fill_inputs() instead'
         )
-        form = self.find_element(self.FORM_LOCATOR)
-        actions.form.fill_form_inputs(self.driver, form, input_map)
+        self.fill_inputs(input_map)
 
     def fill_inputs(self, input_map, strict=False):
         """Fill form inputs
