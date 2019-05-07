@@ -31,24 +31,31 @@ class ContactTestCase(WebDriverTestCase):
 
     def test_contact_form(self):
         """Send message through contact form"""
+        # Initialize ContactPage form object
         contact_page = ContactPage(self.driver)
+        # Generate form data
+        # NOTE: We'll write generate_contact_form_data() in the following section
         contact_form_data = self.generate_contact_form_data()
 
-        with self.subTest('Fill all required fields'):
-            contact_page.fill_inputs(contact_form_data)
-            # Assert submit is enabled after filling required fields
-            # (SUBMIT_LOCATOR is set based on the submit_locator value in contact.yml)
-            self.assertEnabled(contact_page.SUBMIT_LOCATOR)
+        # Fill all required fields
+        contact_page.fill_inputs(contact_form_data)
+        # Assert submit is enabled after filling required fields
+        # NOTE: SUBMIT_LOCATOR is set based on the 'submit_locator' value in contact.yml
+        self.assertEnabled(contact_page.SUBMIT_LOCATOR,
+                           msg='Submit was disabled after filling form inputs')
 
-        with self.subTest('Submit contact form'):
-            # click_submit() returns a SuccessModal page object
-            success_modal = contact_page.click_submit()
-            # Assert success modal is visible on submit
-            # (MODAL_LOCATOR is set based on the modal_locator value in success_modal.yml)
-            self.assertVisible(success_modal.MODAL_LOCATOR)
+        # Submit contact form
+        # NOTE: click_submit() returns an instance of SUBMIT_SUCCESS_CLASS
+        # (which we set to SuccessModal)
+        success_modal = contact_page.click_submit()
+        # Assert success modal is visible on submit
+        # NOTE: MODAL_LOCATOR is set based on the 'modal_locator' value in success_modal.yml
+        self.assertVisible(success_modal.MODAL_LOCATOR,
+                           msg='Success modal was not visible after clicking submit')
 
-        with self.subTest('Close success modal'):
-            success_modal.click_close_button()
-            # Assert success modal is no longer visible
-            self.assertInvisible(success_modal.MODAL_LOCATOR)
+        # Close success modal
+        success_modal.click_close_button()
+        # Assert success modal is no longer visible
+        self.assertInvisible(success_modal.MODAL_LOCATOR,
+                             msg='Success modal still visible after clicking close button')
 
