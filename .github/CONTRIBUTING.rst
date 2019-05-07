@@ -9,6 +9,9 @@ Issue Reporting
 
 **Before Creating an Issue:**
 
+   * Make sure you're using the most up-to-date version of the
+     ``webdriver_test_tools`` package (e.g. run ``pip install --upgrade
+     webdriver_test_tools``)
    * Check the open `GitHub Issues`_ to see if the issue has already been
      reported
    * If the issue hasn't been reported yet but appears to be related to
