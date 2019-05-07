@@ -127,10 +127,27 @@ As mentioned previously, this default can be overridden per-test case and
 per-assertion.
 
 
-Issues with specific browsers
------------------------------
+Issues with specific browser drivers
+------------------------------------
 
-.. todo Specific browser drivers
+Browser-specific WebDrivers occasionally have bugs or quirks specific to them.
+You may notice that a test is failing in a specific browser due to an exception
+raised by the driver, rather than an assertion failing, which may be a sign that
+your test is using a feature that isn't working or is handled differently in
+that browser. 
+
+Driver-specific issues can be difficult to pinpoint. If the test failure is only
+happening for a certain browser, or you notice a pattern of tests failing in a
+browser with similar exceptions, it can be useful to research that issue and see
+if it's a known bug or if a workaround exists.
+
+You may also want to check the links to each browser's Selenium driver in the
+:ref:`driver table <driver-table>` to see if everything's up-to-date or if the
+issue you're experiencing is documented.
+
+If a workaround can't be found and the test failure seems to be a
+browser-specific driver issue, you can skip these tests for the problem browser.
+See :ref:`skip-browsers` for more info.
 
 
 Tools for Troubleshooting
