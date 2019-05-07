@@ -9,12 +9,15 @@ Issue Reporting
 
 **Before Creating an Issue:**
 
-- Check `GitHub Issues`_ to see if the issue already exists
-- If the issue hasn't been reported yet and appears to be related to selenium,
-  check `Selenium's GitHub Issues`_ to see if the issue exists
-- If the issue isn't reported there and appears to be specific to WebDriver Test
-  Tools, `open a new issue`_ and fill out the required details, being as
-  specific as possible
+   * Check the open `GitHub Issues`_ to see if the issue has already been
+     reported
+   * If the issue hasn't been reported yet but appears to be related to
+     Selenium, check `Selenium's GitHub Issues`_ to see if the issue has already
+     been reported
+
+If the issue isn't reported there and appears to be specific to WebDriver Test
+Tools, `open a new issue`_ and fill out the required details, being as specific
+as possible.
 
 .. _Github Issues: https://github.com/connordelacruz/webdriver-test-tools/issues
 .. _Selenium's GitHub Issues: https://github.com/SeleniumHQ/selenium/issues
