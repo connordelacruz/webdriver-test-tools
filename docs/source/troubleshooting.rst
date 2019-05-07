@@ -4,7 +4,6 @@ Troubleshooting Tests
 
 .. contents::
 
-.. todo doc overview
 
 Common Issues
 =============
