@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.cmd.run &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.project.cmd.run &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -173,16 +174,18 @@
                       <span class="n">formatter_class</span><span class="o">=</span><span class="n">RawTextHelpFormatter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Add subparser for the ``&lt;test_package&gt; run`` command</span>
 
-<span class="sd">    :param subparsers: ``argparse._SubParsersAction`` object for the test package ArgumentParser (i.e. the object</span>
-<span class="sd">        returned by the ``add_subparsers()`` method)</span>
-<span class="sd">    :param config_module: (Optional) The module object for ``&lt;test_project&gt;.config``.</span>
-<span class="sd">        Will use :mod:`webdriver_test_tools.config` if not specified</span>
-<span class="sd">        if unspecified</span>
+<span class="sd">    :param subparsers: ``argparse._SubParsersAction`` object for the test</span>
+<span class="sd">        package ArgumentParser (i.e. the object returned by the</span>
+<span class="sd">        ``add_subparsers()`` method)</span>
+<span class="sd">    :param config_module: (Optional) The module object for</span>
+<span class="sd">        ``&lt;test_project&gt;.config``.  Will use :mod:`webdriver_test_tools.config`</span>
+<span class="sd">        if not specified if unspecified</span>
 <span class="sd">    :param parents: (Default: ``[]``) Parent parsers for the run subparser</span>
-<span class="sd">    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class to use for the ``formatter_class``</span>
-<span class="sd">        parameter</span>
+<span class="sd">    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class</span>
+<span class="sd">        to use for the ``formatter_class`` parameter</span>
 
-<span class="sd">    :return: ``argparse.ArgumentParser`` object for the newly added ``run`` subparser</span>
+<span class="sd">    :return: ``argparse.ArgumentParser`` object for the newly added ``run``</span>
+<span class="sd">        subparser</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Get browser config classes</span>
     <span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span> <span class="o">=</span> <span class="n">get_browser_config_classes</span><span class="p">(</span><span class="n">config_module</span><span class="p">)</span>
@@ -242,15 +245,16 @@
 <span class="k">def</span> <span class="nf">_format_browser_choices</span><span class="p">(</span><span class="n">browser_config</span><span class="p">,</span> <span class="n">browserstack_config</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Format the help string for browser choices</span>
 
-<span class="sd">    If BrowserStack is disabled or doesn&#39;t have any browsers enabled that aren&#39;t also in</span>
-<span class="sd">    the local browser config, output string will have the following format:</span>
+<span class="sd">    If BrowserStack is disabled or doesn&#39;t have any browsers enabled that</span>
+<span class="sd">    aren&#39;t also in the local browser config, output string will have the</span>
+<span class="sd">    following format:</span>
 
 <span class="sd">    .. code:: python</span>
 
 <span class="sd">        &#39;\\nOptions: {browser0,browser1}&#39;</span>
 
-<span class="sd">    If BrowserStack is enabled and there are different browsers enabled for local and</span>
-<span class="sd">    BrowserStack, output string will have the following format:</span>
+<span class="sd">    If BrowserStack is enabled and there are different browsers enabled for</span>
+<span class="sd">    local and BrowserStack, output string will have the following format:</span>
 
 <span class="sd">    .. code:: python</span>
 
@@ -286,9 +290,11 @@
 
 
 <span class="k">def</span> <span class="nf">_format_headless_browsers</span><span class="p">(</span><span class="n">browser_config</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Format the help string for compatible browsers in ``--headless`` argument help string</span>
+    <span class="sd">&quot;&quot;&quot;Format the help string for compatible browsers in ``--headless``</span>
+<span class="sd">    argument help string</span>
 
-<span class="sd">    :param browser_config: :class:`BrowserConfig &lt;webdriver_test_tools.config.browser.BrowserConfig&gt;` class</span>
+<span class="sd">    :param browser_config: :class:`BrowserConfig</span>
+<span class="sd">    &lt;webdriver_test_tools.config.browser.BrowserConfig&gt;` class</span>
 
 <span class="sd">    :return: Formatted help string for browser options</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -301,8 +307,8 @@
 
 
 <span class="k">def</span> <span class="nf">_browser_list_string</span><span class="p">(</span><span class="n">browser_names</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Takes a list of browser names and returns a string representation in the format</span>
-<span class="sd">    &#39;{browser0,browser1,browser2}&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Takes a list of browser names and returns a string representation in the</span>
+<span class="sd">    format &#39;{browser0,browser1,browser2}&#39;</span>
 
 <span class="sd">    :param browser_names: List of browser names</span>
 
@@ -314,7 +320,8 @@
 <span class="c1"># Config module helper functions</span>
 
 <div class="viewcode-block" id="get_browser_config_classes"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.run.html#webdriver_test_tools.project.cmd.run.get_browser_config_classes">[docs]</a><span class="k">def</span> <span class="nf">get_browser_config_classes</span><span class="p">(</span><span class="n">config_module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get the ``BrowserConfig`` and ``BrowserStackConfig`` classes from a project.</span>
+    <span class="sd">&quot;&quot;&quot;Get the ``BrowserConfig`` and ``BrowserStackConfig`` classes from a</span>
+<span class="sd">    project.</span>
 
 <span class="sd">    :param config_module: The module object for ``&lt;test_project&gt;.config``</span>
 
@@ -378,19 +385,19 @@
 <span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
 <span class="sd">    :param config_module: The module object for ``&lt;test_project&gt;.config`` or</span>
 <span class="sd">        :mod:`webdriver_test_tools.config` if not specified</span>
-<span class="sd">    :param browser_classes: (Optional) List of browser test classes from parsed arg</span>
-<span class="sd">        for ``--browser`` command line argument</span>
-<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for ``--test``</span>
-<span class="sd">        command line argument to :func:`parse_test_names()`</span>
-<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip``</span>
-<span class="sd">        command line argument to :func:`parse_test_names()`</span>
-<span class="sd">    :param test_module_names: (Optional) Parsed arg for ``--module`` command line</span>
-<span class="sd">        argument</span>
-<span class="sd">    :param browserstack: (Default = False) If True, generated test cases should run on</span>
-<span class="sd">        BrowserStack</span>
-<span class="sd">    :param headless: (Default = False) If True, configure driver to run tests in a</span>
-<span class="sd">        headless browser. Tests will only be generated for drivers that support</span>
-<span class="sd">        running headless browsers</span>
+<span class="sd">    :param browser_classes: (Optional) List of browser test classes from parsed</span>
+<span class="sd">        arg for ``--browser`` command line argument</span>
+<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for</span>
+<span class="sd">        ``--test`` command line argument to :func:`parse_test_names()`</span>
+<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for</span>
+<span class="sd">        ``--skip`` command line argument to :func:`parse_test_names()`</span>
+<span class="sd">    :param test_module_names: (Optional) Parsed arg for ``--module`` command</span>
+<span class="sd">        line argument</span>
+<span class="sd">    :param browserstack: (Default = False) If True, generated test cases should</span>
+<span class="sd">        run on BrowserStack</span>
+<span class="sd">    :param headless: (Default = False) If True, configure driver to run tests</span>
+<span class="sd">        in a headless browser. Tests will only be generated for drivers that</span>
+<span class="sd">        support running headless browsers</span>
 <span class="sd">    :param verbosity: (Optional) Output verbosity level for the test runner.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Enable graceful Ctrl+C handling</span>
@@ -443,7 +450,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

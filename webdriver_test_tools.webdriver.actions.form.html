@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.actions.form module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.webdriver.actions.form module &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a></li>
@@ -181,7 +182,13 @@
             
   <div class="section" id="module-webdriver_test_tools.webdriver.actions.form">
 <span id="webdriver-test-tools-webdriver-actions-form-module"></span><h1>webdriver_test_tools.webdriver.actions.form module<a class="headerlink" href="#module-webdriver_test_tools.webdriver.actions.form" title="Permalink to this headline">¶</a></h1>
-<p>Functions for interacting with forms</p>
+<p>Helper functions for interacting with forms</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As of version 3.0, the methods in this module for filling/retrieving form
+values have been removed. Use
+<a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject" title="webdriver_test_tools.pageobject.form.FormObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">FormObject</span></code></a> instead.</p>
+</div>
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.actions.form.toggle_checkbox">
 <code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">toggle_checkbox</code><span class="sig-paren">(</span><em>driver</em>, <em>checkbox_element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#toggle_checkbox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.toggle_checkbox" title="Permalink to this definition">¶</a></dt>
@@ -200,310 +207,6 @@ styling reasons, try to find the corresponding label and click that</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the checkbox is checked after toggling, False if unchecked</p>
 </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.fill_form_inputs">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">fill_form_inputs</code><span class="sig-paren">(</span><em>driver</em>, <em>form_element</em>, <em>input_name_map</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#fill_form_inputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.fill_form_inputs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Takes a dictionary mapping input names to the desired values and fill out the form accordingly</p>
-<p>Iterates through input_name_map and calls fill_form_input() to handle filling in the input based on its type</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium webdriver object (largely for scrolling into view)</li>
-<li><strong>form_element</strong> – The Selenium WebElement for the form or container with the
-desired inputs. Used for locating the input elements by name in case there are
-other elements on the page with the same name attribute</li>
-<li><strong>input_name_map</strong> – A dictionary mapping the name of the input to the value to
-set it to. See the documentation for fill_form_input() for value types for the
-different inputs.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.fill_form_input">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">fill_form_input</code><span class="sig-paren">(</span><em>driver</em>, <em>form_element</em>, <em>name</em>, <em>value</em>, <em>input_type=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#fill_form_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.fill_form_input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Takes the name and value of a form input and determines what type it is to fill
-it appropriately.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium webdriver object (largely for scrolling clickable inputs
-into view)</li>
-<li><strong>form_element</strong> – The Selenium WebElement for the form or container with the
-desired inputs. Used for locating the input elements by name in case there are
-other elements on the page with the same name attribute</li>
-<li><strong>name</strong> – The name attribute of the input</li>
-<li><strong>value</strong> – <p>The desired value to set the input to.</p>
-<ul>
-<li>For checkbox elements, this value should be a boolean (True=checked,
-False=unchecked).</li>
-<li>For radio elements, this should be the value attribute of the radio to select.</li>
-<li>For single select elements, this value should be the value of the option to
-select.</li>
-<li>For multiple select elements, this value should be a list of values of the
-options to select.</li>
-<li>For file inputs, this value should be a filepath to the desired file.</li>
-<li>For other input types (text, number, etc) this should be a string
-representation of the values to enter into it.</li>
-</ul>
-</li>
-<li><strong>input_type</strong> – (Optional) If known, the <code class="docutils literal notranslate"><span class="pre">type</span></code> attribute of the input
-or tag name for non-input elements (e.g. select). If unspecified, this
-method will determine the type using element attributes</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.select_radio_input">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">select_radio_input</code><span class="sig-paren">(</span><em>driver</em>, <em>form_element</em>, <em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#select_radio_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.select_radio_input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Selects a radio input with the specified name and value attributes</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium webdriver object. Used for scrolling the element into view
-before clicking element</li>
-<li><strong>form_element</strong> – The Selenium WebElement for the form or container with the
-desired inputs. Used for locating the input elements by name in case there are
-other elements on the page with the same name attribute</li>
-<li><strong>name</strong> – Name attribute of the radio input(s)</li>
-<li><strong>value</strong> – Value attribute of the radio input to select</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.toggle_checkbox_input">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">toggle_checkbox_input</code><span class="sig-paren">(</span><em>driver</em>, <em>checkbox_element</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#toggle_checkbox_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.toggle_checkbox_input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the checked state of a checkbox input</p>
-<p>First checks if the checkbox value doesn’t match the desired value. If not, it then
-checks if element is visible. If it is, scroll to it and click it. If it isn’t, it
-tries to find a label for the element by getting the element id and selecting a
-label with that id as the for attribute. If it finds one, it scrolls to that and
-clicks it.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium webdriver object. Used for scrolling the element into view
-before clicking element</li>
-<li><strong>checkbox_element</strong> – WebElement for the checkbox to toggle</li>
-<li><strong>value</strong> – True to ensure box is checked, False to ensure it’s unchecked</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.fill_field_input">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">fill_field_input</code><span class="sig-paren">(</span><em>input_element</em>, <em>value</em>, <em>clear_current_value=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#fill_field_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.fill_field_input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fill an input that is normally typed into (e.g. inputs of type text, password,
-number, etc)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>input_element</strong> – WebElement for the input</li>
-<li><strong>value</strong> – String of key presses to simulate using the send_keys() function</li>
-<li><strong>clear_current_value</strong> – (Default = False) If True, clear out any existing value
-in the input before entering the new one</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.select_option">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">select_option</code><span class="sig-paren">(</span><em>select_element</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#select_option"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.select_option" title="Permalink to this definition">¶</a></dt>
-<dd><p>Select an option in a select element</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>select_element</strong> – WebElement for the select input</li>
-<li><strong>value</strong> – Value of the option to select</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.select_multiple_options">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">select_multiple_options</code><span class="sig-paren">(</span><em>select_element</em>, <em>values</em>, <em>clear_current_selection=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#select_multiple_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.select_multiple_options" title="Permalink to this definition">¶</a></dt>
-<dd><p>Select options in a multiple select element</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>select_element</strong> – WebElement for the select input</li>
-<li><strong>values</strong> – List of values of the options to select</li>
-<li><strong>clear_current_selection</strong> – (Default = False) If True, deselect all currently
-selected options before selection the new ones</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.get_form_input_values">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">get_form_input_values</code><span class="sig-paren">(</span><em>form_element</em>, <em>input_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#get_form_input_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.get_form_input_values" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a dictionary mapping input names to their current values</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>form_element</strong> – WebElement for the form or container where the inputs are
-located. Alternatively, a WebDriver element can be used to retrieve all inputs
-on the current page.</li>
-<li><strong>input_names</strong> – (Optional) List of input names to get the values of. If
-provided, only elements whose names are listed will be checked</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Dictionary mapping input names to their current values. See the
-documentation for the <code class="docutils literal notranslate"><span class="pre">value</span></code> parameter of <a class="reference internal" href="#webdriver_test_tools.webdriver.actions.form.fill_form_input" title="webdriver_test_tools.webdriver.actions.form.fill_form_input"><code class="xref py py-func docutils literal notranslate"><span class="pre">fill_form_input()</span></code></a> for value
-types of different inputs.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.get_form_input_value">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">get_form_input_value</code><span class="sig-paren">(</span><em>input_element</em>, <em>input_type=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#get_form_input_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.get_form_input_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the value of an input</p>
-<p>This function contains the logic to determine what kind of input this is
-and uses the appropriate function to retrieve its value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>input_element</strong> – WebElement for the input</li>
-<li><strong>input_type</strong> – (Optional) If known, the <code class="docutils literal notranslate"><span class="pre">type</span></code> attribute of the input
-or tag name for non-input elements (e.g. select). If unspecified, this
-method will determine the type using element attributes</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The value of the input</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.get_radio_value">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">get_radio_value</code><span class="sig-paren">(</span><em>input_element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#get_radio_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.get_radio_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the value of a radio input (if it’s selected)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_element</strong> – WebElement for the input</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value attribute of the radio button if input_element is selected, None
-if it’s not selected</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.get_checkbox_value">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">get_checkbox_value</code><span class="sig-paren">(</span><em>input_element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#get_checkbox_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.get_checkbox_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the value of a checkbox input</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_element</strong> – WebElement for the input</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if element is checked, False if it’s unchecked</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.get_field_value">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">get_field_value</code><span class="sig-paren">(</span><em>input_element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#get_field_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.get_field_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the value of a text input or similar input type (number, password, etc)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_element</strong> – WebElement for the input</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Value of the input</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.get_select_value">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">get_select_value</code><span class="sig-paren">(</span><em>input_element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#get_select_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.get_select_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the value of the selected option in a single select element</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_element</strong> – WebElement for the input</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value attribute of the selected option or None if nothing is
-selected</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.webdriver.actions.form.get_select_multiple_values">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.form.</code><code class="descname">get_select_multiple_values</code><span class="sig-paren">(</span><em>input_element</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/form.html#get_select_multiple_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.form.get_select_multiple_values" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the values of the selected options in a multiple select element</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_element</strong> – WebElement for the input</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List containing the value attribute of the selected options</td>
 </tr>
 </tbody>
 </table>
@@ -553,7 +256,7 @@ selected</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

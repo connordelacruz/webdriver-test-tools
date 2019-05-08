@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.webdriver &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.config.webdriver &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -164,97 +165,71 @@
 <span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
 
 <span class="kn">import</span> <span class="nn">webdriver_test_tools</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.common</span> <span class="k">import</span> <span class="n">utils</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.common.files</span> <span class="k">import</span> <span class="n">create_directory</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.common.files</span> <span class="k">import</span> <span class="n">create_directory</span><span class="p">,</span> <span class="n">validate_filename</span>
 
 
 <div class="viewcode-block" id="WebDriverConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig">[docs]</a><span class="k">class</span> <span class="nc">WebDriverConfig</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Configurations for webdriver</span>
-
-<span class="sd">    :var WebDriverConfig.LOG_PATH: Path to the log directory. Defaults to the</span>
-<span class="sd">        log subdirectory in the webdriver_test_tools package root directory</span>
-<span class="sd">    :var WebDriverConfig.SCREENSHOT_PATH: Path to the screenshot directory.</span>
-<span class="sd">        Defaults to the screenshot subdirectory in the webdriver_test_tools</span>
-<span class="sd">        package root directory</span>
-<span class="sd">    :var WebDriverConfig.SCREENSHOT_FILENAME_FORMAT: (Default:</span>
-<span class="sd">        &#39;{date}/{time}-{test}-{browser}.png&#39;) Format string used to determine</span>
-<span class="sd">        filenames for screenshots (relative to</span>
-<span class="sd">        :attr:`WebDriverConfig.SCREENSHOT_PATH`). The format string can include</span>
-<span class="sd">        the following parameters:</span>
-
-<span class="sd">            * ``{date}``: Replaced with the date the screenshot was taken</span>
-<span class="sd">              (YYYY-MM-DD)</span>
-<span class="sd">            * ``{time}``: Replaced with the time the screenshot was taken</span>
-<span class="sd">              (HHMMSS)</span>
-<span class="sd">            * ``{test}``: Replaced with the test method running when screenshot</span>
-<span class="sd">              was taken</span>
-<span class="sd">            * ``{browser}``: Replaced with the browser used when screenshot was</span>
-<span class="sd">              taken</span>
-
-<span class="sd">        The format string can include &#39;/&#39; directory separators to save</span>
-<span class="sd">        screenshots in subdirectories of</span>
-<span class="sd">        :attr:`WebDriverConfig.SCREENSHOT_PATH`.</span>
-
-<span class="sd">    :var WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT: (Default: 10) Default</span>
-<span class="sd">        number of seconds for :ref:`WebDriverTestCase assertion methods</span>
-<span class="sd">        &lt;assertion-methods&gt;` to wait for expected conditions to occur before</span>
-<span class="sd">        test fails</span>
-<span class="sd">    :var WebDriverConfig.IMPLICIT_WAIT: Implicit wait time for webdriver to poll DOM</span>
-
-<span class="sd">        .. note::</span>
-
-<span class="sd">            Documentation says not to mix this with explicit waits and some instability</span>
-<span class="sd">            was noticed when it was set to 10. Projects can override this if necessary.</span>
-<span class="sd">            `Implicit wait documentation</span>
-<span class="sd">            &lt;https://www.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits&gt;`__</span>
-
-<span class="sd">    Browser driver initialization arguments:</span>
-
-<span class="sd">    :var WebDriverConfig.FIREFOX_KWARGS: Keyword args for ``webdriver.Firefox()``</span>
-<span class="sd">    :var WebDriverConfig.CHROME_KWARGS: Keyword args for ``webdriver.Chrome()``</span>
-<span class="sd">    :var WebDriverConfig.SAFARI_KWARGS: Keyword args for ``webdriver.Safari()``</span>
-<span class="sd">    :var WebDriverConfig.IE_KWARGS: Keyword args for ``webdriver.Ie()``</span>
-<span class="sd">    :var WebDriverConfig.EDGE_KWARGS: Keyword args for ``webdriver.Edge()``</span>
-
-<span class="sd">    .. note::</span>
-
-<span class="sd">        Logging configurations are set when the corresponding ``get_&lt;browser&gt;_driver()``</span>
-<span class="sd">        method is called. This allows for projects to override the ``LOG_PATH`` variable</span>
-<span class="sd">        without having to also override all ``&lt;browser&gt;_KWARGS`` variables as well.</span>
-
-<span class="sd">    Mobile configurations:</span>
-
-<span class="sd">    :var WebDriverConfig.CHROME_MOBILE_EMULATION: Dictionary with &#39;mobileEmulation&#39;</span>
-<span class="sd">        options for Chrome</span>
-
-<span class="sd">    Headless browser configurations:</span>
-
-<span class="sd">    :var WebDriverConfig.CHROME_HEADLESS_ARGS: Command line arguments to use in addition</span>
-<span class="sd">        to the ``--headless`` flag</span>
-<span class="sd">    :var WebDriverConfig.FIREFOX_HEADLESS_ARGS: Command line arguments to use in addition</span>
-<span class="sd">        to the ``-headless`` flag</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Configurations for webdriver&quot;&quot;&quot;</span>
     <span class="c1"># Root directory of webdriver_test_tools package</span>
     <span class="n">_PACKAGE_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">webdriver_test_tools</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="c1">#: Path to the log directory. Defaults to the log subdirectory in the</span>
+    <span class="c1">#: ``webdriver_test_tools`` package root directory</span>
     <span class="n">LOG_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_PACKAGE_ROOT</span><span class="p">,</span> <span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="c1">#: Path to the screenshot directory. Defaults to the screenshot</span>
+    <span class="c1">#: subdirectory in the ``webdriver_test_tools`` package root directory</span>
     <span class="n">SCREENSHOT_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_PACKAGE_ROOT</span><span class="p">,</span> <span class="s1">&#39;screenshot&#39;</span><span class="p">)</span>
+
     <span class="n">SCREENSHOT_FILENAME_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{date}</span><span class="s1">/</span><span class="si">{time}</span><span class="s1">-</span><span class="si">{test}</span><span class="s1">-</span><span class="si">{browser}</span><span class="s1">.png&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Format string used to determine filenames for screenshots (relative to</span>
+<span class="sd">    :attr:`WebDriverConfig.SCREENSHOT_PATH`). The format string can include the</span>
+<span class="sd">    following parameters:</span>
+
+<span class="sd">        * ``{date}``: Replaced with the date the screenshot was taken</span>
+<span class="sd">          (YYYY-MM-DD)</span>
+<span class="sd">        * ``{time}``: Replaced with the time the screenshot was taken</span>
+<span class="sd">          (HHMMSS)</span>
+<span class="sd">        * ``{test}``: Replaced with the test method running when screenshot</span>
+<span class="sd">          was taken</span>
+<span class="sd">        * ``{browser}``: Replaced with the browser used when screenshot was</span>
+<span class="sd">          taken</span>
+
+<span class="sd">    The format string can include &#39;/&#39; directory separators to save screenshots</span>
+<span class="sd">    in subdirectories of :attr:`WebDriverConfig.SCREENSHOT_PATH`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">DEFAULT_ASSERTION_TIMEOUT</span><span class="o">=</span><span class="mi">10</span>
-    <span class="c1"># TODO: Deprecate</span>
-    <span class="n">IMPLICIT_WAIT</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="sd">&quot;&quot;&quot;Default number of seconds for :ref:`WebDriverTestCase assertion methods</span>
+<span class="sd">    &lt;assertion-methods&gt;` to wait for expected conditions to occur before test</span>
+<span class="sd">    fails</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># Browser driver initialization arguments</span>
+
+    <span class="c1">#: Keyword args for ``webdriver.Firefox()``</span>
     <span class="n">FIREFOX_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1">#: Keyword args for ``webdriver.Chrome()``</span>
     <span class="n">CHROME_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1">#: Keyword args for ``webdriver.Safari()``</span>
     <span class="n">SAFARI_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1">#: Keyword args for ``webdriver.Ie()``</span>
     <span class="n">IE_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1">#: Keyword args for ``webdriver.Edge()``</span>
     <span class="n">EDGE_KWARGS</span> <span class="o">=</span> <span class="p">{}</span>
 
+    <span class="c1"># Mobile configurations</span>
+
+    <span class="c1">#: Dictionary with &#39;mobileEmulation&#39; options for Chrome</span>
     <span class="n">CHROME_MOBILE_EMULATION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;Pixel 2&quot;</span><span class="p">}</span>
-    <span class="n">CHROME_HEADLESS_ARGS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--window-size=1920x1080&#39;</span><span class="p">,</span> <span class="p">]</span>
+
+    <span class="c1"># Headless browser configurations</span>
+
+    <span class="c1">#: Command line arguments to use in addition to the ``--headless`` flag</span>
+    <span class="n">CHROME_HEADLESS_ARGS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--window-size=1920x1080&#39;</span><span class="p">]</span>
+    <span class="c1">#: Command line arguments to use in addition to the ``-headless`` flag</span>
     <span class="n">FIREFOX_HEADLESS_ARGS</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="c1"># Functions</span>
+
+    <span class="c1"># Methods</span>
 
 <div class="viewcode-block" id="WebDriverConfig.get_firefox_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_firefox_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -266,7 +241,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">LOG_PATH</span><span class="p">,</span> <span class="s1">&#39;geckodriver.log&#39;</span><span class="p">)</span>
         <span class="n">options</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_firefox_headless_options</span><span class="p">()</span> <span class="k">if</span> <span class="n">headless</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">(</span><span class="n">log_path</span><span class="o">=</span><span class="n">log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">FIREFOX_KWARGS</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">(</span><span class="n">log_path</span><span class="o">=</span><span class="n">log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
+                                 <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">FIREFOX_KWARGS</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="WebDriverConfig.get_chrome_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_chrome_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -278,25 +254,25 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">service_log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">LOG_PATH</span><span class="p">,</span> <span class="s1">&#39;chromedriver.log&#39;</span><span class="p">)</span>
         <span class="n">options</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_chrome_headless_options</span><span class="p">()</span> <span class="k">if</span> <span class="n">headless</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
-                                                             <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span>
+                                <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="WebDriverConfig.get_safari_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_safari_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_safari_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns ``webdriver.Safari`` object using :attr:`SAFARI_KWARGS` to initialize&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Safari</span><span class="p">(</span><span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">SAFARI_KWARGS</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Safari</span><span class="p">(</span><span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">SAFARI_KWARGS</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="WebDriverConfig.get_ie_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_ie_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_ie_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns ``webdriver.Ie`` object using :attr:`IE_KWARGS` and :attr:`LOG_PATH` to initialize&quot;&quot;&quot;</span>
         <span class="n">log_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">LOG_PATH</span><span class="p">,</span> <span class="s1">&#39;iedriver.log&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Ie</span><span class="p">(</span><span class="n">log_file</span><span class="o">=</span><span class="n">log_file</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">IE_KWARGS</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Ie</span><span class="p">(</span><span class="n">log_file</span><span class="o">=</span><span class="n">log_file</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">IE_KWARGS</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="WebDriverConfig.get_edge_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_edge_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_edge_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns ``webdriver.Edge`` object using :attr:`EDGE_KWARGS` and :attr:`LOG_PATH` to initialize&quot;&quot;&quot;</span>
         <span class="n">log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">LOG_PATH</span><span class="p">,</span> <span class="s1">&#39;edgedriver.log&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Edge</span><span class="p">(</span><span class="n">log_path</span><span class="o">=</span><span class="n">log_path</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">EDGE_KWARGS</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Edge</span><span class="p">(</span><span class="n">log_path</span><span class="o">=</span><span class="n">log_path</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">EDGE_KWARGS</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="WebDriverConfig.get_chrome_mobile_driver"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_mobile_driver">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_chrome_mobile_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -311,8 +287,8 @@
         <span class="n">options</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s2">&quot;mobileEmulation&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_MOBILE_EMULATION</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">headless</span><span class="p">:</span>
             <span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--headless&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">set_driver_implicit_wait</span><span class="p">(</span><span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
-                                                             <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">service_log_path</span><span class="o">=</span><span class="n">service_log_path</span><span class="p">,</span>
+                                <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="bp">cls</span><span class="o">.</span><span class="n">CHROME_KWARGS</span><span class="p">)</span></div>
 
     <span class="c1"># Driver Options</span>
 
@@ -337,14 +313,6 @@
             <span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
         <span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--headless&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">options</span>
-
-<div class="viewcode-block" id="WebDriverConfig.set_driver_implicit_wait"><a class="viewcode-back" href="../../../webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.set_driver_implicit_wait">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">set_driver_implicit_wait</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns driver with implicit wait time set&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">IMPLICIT_WAIT</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c1"># TODO: Deprecation warning</span>
-            <span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">IMPLICIT_WAIT</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">driver</span></div>
 
     <span class="c1"># Misc</span>
 
@@ -375,7 +343,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.png&#39;</span><span class="p">):</span>
             <span class="n">path</span> <span class="o">+=</span> <span class="s1">&#39;.png&#39;</span>
         <span class="c1"># Validate string characters for file name</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">validate_filename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">validate_filename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
         <span class="c1"># Get any subdirectory names</span>
         <span class="n">dirname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="c1"># Create subdirectories if they don&#39;t already exist</span>
@@ -417,7 +385,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

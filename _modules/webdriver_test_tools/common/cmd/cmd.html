@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.common.cmd.cmd &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.common.cmd.cmd &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -158,12 +159,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.common.cmd.cmd</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Functions for common command line formatting and procedures.</span>
-
-<span class="sd">:var cmd.INDENT: Constant for terminal indentation</span>
-<span class="sd">:var cmd.COLORS: Color/formatting functions for different types of output</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="c1"># TODO: rename to something less confusing than cmd.cmd</span>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for common command line formatting and procedures.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -173,11 +169,11 @@
 <span class="c1"># Formatting</span>
 
 <span class="n">_term</span> <span class="o">=</span> <span class="n">Terminal</span><span class="p">()</span>
-
-<span class="c1"># Prepend to input prompts</span>
+<span class="c1">#: Constant for string prepended to input prompts</span>
 <span class="n">PROMPT_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;&gt; &#39;</span>
+<span class="c1">#: Constant for string used for terminal indentation</span>
 <span class="n">INDENT</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">3</span>
-
+<span class="c1">#: Color/formatting functions for different types of output</span>
 <span class="n">COLORS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="kc">None</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="n">_term</span><span class="o">.</span><span class="n">bold_red</span><span class="p">,</span>
@@ -279,7 +275,6 @@
     <span class="k">return</span> <span class="n">text</span></div>
 
 
-<span class="c1"># TODO: rename to avoid confusion?</span>
 <div class="viewcode-block" id="validate_choice"><a class="viewcode-back" href="../../../../webdriver_test_tools.common.cmd.cmd.html#webdriver_test_tools.common.cmd.cmd.validate_choice">[docs]</a><span class="k">def</span> <span class="nf">validate_choice</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="n">shorthand_choices</span><span class="o">=</span><span class="p">{},</span> <span class="n">error_msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a validation function for input with specific choice options</span>
 
@@ -547,7 +542,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

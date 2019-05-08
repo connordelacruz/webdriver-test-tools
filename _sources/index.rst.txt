@@ -14,6 +14,7 @@ WebDriver Test Tools
    prototypes
    yaml
    browserstack
+   troubleshooting
    webdriver_test_tools
 
 

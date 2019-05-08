@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.testcase.browsers module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.testcase.browsers module &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
@@ -194,19 +195,6 @@
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.browsers.</code><code class="descname">Browsers</code><a class="reference internal" href="_modules/webdriver_test_tools/testcase/browsers.html#Browsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.browsers.Browsers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Constants for browser short names</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.browsers.Browsers.TEST_CLASSES" title="webdriver_test_tools.testcase.browsers.Browsers.TEST_CLASSES"><strong>Browsers.TEST_CLASSES</strong></a> – Dictionary mapping browser names to their corresponding test classes</li>
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.browsers.Browsers.HEADLESS_COMPATIBLE" title="webdriver_test_tools.testcase.browsers.Browsers.HEADLESS_COMPATIBLE"><strong>Browsers.HEADLESS_COMPATIBLE</strong></a> – List of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a> subclasses that
-support test execution in a headless browser</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.browsers.Browsers.FIREFOX">
 <code class="descname">FIREFOX</code><em class="property"> = 'firefox'</em><a class="headerlink" href="#webdriver_test_tools.testcase.browsers.Browsers.FIREFOX" title="Permalink to this definition">¶</a></dt>
@@ -240,12 +228,15 @@ support test execution in a headless browser</li>
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.browsers.Browsers.TEST_CLASSES">
 <code class="descname">TEST_CLASSES</code><em class="property"> = {'chrome': &lt;class 'webdriver_test_tools.testcase.chrome.ChromeTestCase'&gt;, 'chrome-mobile': &lt;class 'webdriver_test_tools.testcase.chrome.ChromeMobileTestCase'&gt;, 'edge': &lt;class 'webdriver_test_tools.testcase.edge.EdgeTestCase'&gt;, 'firefox': &lt;class 'webdriver_test_tools.testcase.firefox.FirefoxTestCase'&gt;, 'ie': &lt;class 'webdriver_test_tools.testcase.ie.IETestCase'&gt;, 'safari': &lt;class 'webdriver_test_tools.testcase.safari.SafariTestCase'&gt;}</em><a class="headerlink" href="#webdriver_test_tools.testcase.browsers.Browsers.TEST_CLASSES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Dictionary mapping browser names to their corresponding test classes</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.browsers.Browsers.HEADLESS_COMPATIBLE">
 <code class="descname">HEADLESS_COMPATIBLE</code><em class="property"> = [&lt;class 'webdriver_test_tools.testcase.firefox.FirefoxTestCase'&gt;, &lt;class 'webdriver_test_tools.testcase.chrome.ChromeTestCase'&gt;, &lt;class 'webdriver_test_tools.testcase.chrome.ChromeMobileTestCase'&gt;]</em><a class="headerlink" href="#webdriver_test_tools.testcase.browsers.Browsers.HEADLESS_COMPATIBLE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>List of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a> subclasses
+that support test execution in a headless browser</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -293,7 +284,7 @@ support test execution in a headless browser</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

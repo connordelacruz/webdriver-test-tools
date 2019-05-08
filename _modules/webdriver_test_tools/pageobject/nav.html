@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.nav &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.nav &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -444,30 +445,6 @@
 <span class="sd">        initialize the :class:`NavLinkObject` instances in :attr:`links` at</span>
 <span class="sd">        runtime. These dictionaries use the same syntax as :ref:`YAML links</span>
 <span class="sd">        &lt;yaml-links&gt;`</span>
-
-<span class="sd">        .. todo::</span>
-
-<span class="sd">            ``LINK_DICTS`` syntax is kind of cluttered, will likely re-work to</span>
-<span class="sd">            be cleaner in future versions</span>
-
-<span class="sd">    ---</span>
-
-<span class="sd">    The following attributes are deprecated as of version 2.9.0, and will be</span>
-<span class="sd">    removed in future versions:</span>
-
-<span class="sd">    :var NavObject.LINK_MAP: Maps link text to a tuple containing its locator</span>
-<span class="sd">        and the page object class for the target page, modal, section, etc (or</span>
-<span class="sd">        None if need be). Override in subclasses</span>
-
-<span class="sd">        .. deprecated:: 2.9.0</span>
-<span class="sd">            :attr:`links` should be used instead</span>
-
-<span class="sd">    :var NavObject.HOVER_MAP: Maps link text to a tuple containing its locator</span>
-<span class="sd">        and the page object class for the menu, dropdown, etc that should</span>
-<span class="sd">        appear on hover (or None if need be). Override in subclasses</span>
-
-<span class="sd">        .. deprecated:: 2.9.0</span>
-<span class="sd">            :attr:`links` should be used instead</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_YAML_ROOT_KEY</span> <span class="o">=</span> <span class="s1">&#39;nav&#39;</span>
@@ -486,10 +463,6 @@
     <span class="n">LINK_DICTS</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">links</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="c1"># Link maps</span>
-    <span class="n">LINK_MAP</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">HOVER_MAP</span> <span class="o">=</span> <span class="p">{}</span>
-
     <span class="c1"># Initialization</span>
 
 <div class="viewcode-block" id="NavObject.parse_yaml"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.parse_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
@@ -503,8 +476,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">parsed_yaml</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse_yaml</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">FIXED</span> <span class="o">=</span> <span class="n">parsed_yaml</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="c1"># Only retrieve if attribute is present (allows deprecated</span>
-        <span class="c1"># CollapsibleNavObject to override default)</span>
+        <span class="c1"># Only assign if attribute is present (allows subclasses of</span>
+        <span class="c1"># non-collapsible navs to override COLLAPSIBLE)</span>
         <span class="k">if</span> <span class="s1">&#39;collapsible&#39;</span> <span class="ow">in</span> <span class="n">parsed_yaml</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">COLLAPSIBLE</span> <span class="o">=</span> <span class="n">parsed_yaml</span><span class="p">[</span><span class="s1">&#39;collapsible&#39;</span><span class="p">]</span>
         <span class="c1"># Collapsible nav configurations</span>
@@ -658,94 +631,8 @@
             <span class="n">expanded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MENU_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_displayed</span><span class="p">()</span>
         <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
             <span class="n">expanded</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="n">expanded</span></div>
+        <span class="k">return</span> <span class="n">expanded</span></div></div>
 
-    <span class="c1"># Deprecated Methods</span>
-
-<div class="viewcode-block" id="NavObject.click_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.click_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">click_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        .. deprecated:: 2.9.0</span>
-<span class="sd">            Use :meth:`click_link` instead</span>
-
-<span class="sd">        Click one of the page links and return a page object class for the link</span>
-<span class="sd">        target</span>
-
-<span class="sd">        :param link_map_key: Key into :attr:`LINK_MAP` for the link to click on</span>
-
-<span class="sd">        :return: Corresponding page object class for the link target (if applicable)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s1">&#39;NavObject.click_page_link() is deprecated and may be removed in future versions, use click_link() instead&#39;</span><span class="p">,</span>
-            <span class="ne">DeprecationWarning</span>
-        <span class="p">)</span>
-        <span class="k">if</span> <span class="n">link_map_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">LINK_MAP</span><span class="p">:</span>
-            <span class="n">link_tuple</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">LINK_MAP</span><span class="p">[</span><span class="n">link_map_key</span><span class="p">]</span>
-            <span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">link_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">FIXED</span><span class="p">:</span>
-                <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">link</span><span class="p">)</span>
-            <span class="n">link</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-            <span class="c1"># Initialize the target page object and return it</span>
-            <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="NavObject.hover_over_page_link"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link">[docs]</a>    <span class="k">def</span> <span class="nf">hover_over_page_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_map_key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        .. deprecated:: 2.9.0</span>
-<span class="sd">            Use :meth:`hover_over_link` instead</span>
-
-<span class="sd">        Hover mouse over one of the page links</span>
-
-<span class="sd">        :param link_map_key: Key into :attr:`HOVER_MAP` for the link to hover mouse over</span>
-
-<span class="sd">        :return: Corresponding page object class for the hover dropdown/container/etc</span>
-<span class="sd">            (if applicable)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s1">&#39;NavObject.hover_over_page_link() is deprecated and may be removed in future versions, use hover_over_link() instead&#39;</span><span class="p">,</span>
-            <span class="ne">DeprecationWarning</span>
-        <span class="p">)</span>
-        <span class="k">if</span> <span class="n">link_map_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">HOVER_MAP</span><span class="p">:</span>
-            <span class="n">link_tuple</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">HOVER_MAP</span><span class="p">[</span><span class="n">link_map_key</span><span class="p">]</span>
-            <span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">link_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">FIXED</span><span class="p">:</span>
-                <span class="n">actions</span><span class="o">.</span><span class="n">scroll</span><span class="o">.</span><span class="n">into_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">link</span><span class="p">)</span>
-            <span class="n">action_chain</span> <span class="o">=</span> <span class="n">ActionChains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span>
-            <span class="n">action_chain</span><span class="o">.</span><span class="n">move_to_element</span><span class="p">(</span><span class="n">link</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
-            <span class="c1"># Initialize the target page object and return it</span>
-            <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">link_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">)</span></div></div>
-
-
-<div class="viewcode-block" id="CollapsibleNavObject"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.CollapsibleNavObject">[docs]</a><span class="k">class</span> <span class="nc">CollapsibleNavObject</span><span class="p">(</span><span class="n">NavObject</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    .. deprecated:: 2.9.0</span>
-<span class="sd">        Use :class:`NavObject` with ``COLLAPSIBLE = True`` instead</span>
-
-<span class="sd">    Subclass of :class:`NavObject` with additional methods for collapsible nav</span>
-<span class="sd">    menus</span>
-
-<span class="sd">    In addition to the variables for :class:`NavObject`, the following</span>
-<span class="sd">    variables need to be defined for collapsible navs</span>
-
-<span class="sd">    :var CollapsibleNavObject.EXPAND_BUTTON_LOCATOR: Locator for the button</span>
-<span class="sd">        that expands the nav menu</span>
-<span class="sd">    :var CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR: Locator for the button</span>
-<span class="sd">        that expands the nav menu</span>
-<span class="sd">    :var CollapsibleNavObject.MENU_CONTAINER_LOCATOR: Locator for the</span>
-<span class="sd">        collapsing/expanding container of the navigation menu</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">COLLAPSIBLE</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="c1"># Deprecated</span>
-    <span class="n">MENU_CONTAINER_LOCATOR</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s1">&#39;CollapsibleNavObject is deprecated, use NavObject with COLLAPSIBLE set to True instead&#39;</span><span class="p">,</span>
-            <span class="ne">DeprecationWarning</span>
-        <span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
-        <span class="c1"># Set MENU_LOCATOR to match deprecated attribute if specified</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">MENU_LOCATOR</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MENU_CONTAINER_LOCATOR</span></div>
 
 </pre></div>
 
@@ -781,7 +668,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

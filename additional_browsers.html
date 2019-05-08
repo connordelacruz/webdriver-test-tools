@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Testing with Additional Browsers &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>Testing with Additional Browsers &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -123,6 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -245,7 +246,7 @@ test cases for Safari, set <code class="docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="section" id="skipping-tests-for-certain-browsers">
-<h2><a class="toc-backref" href="#id9">Skipping tests for certain browsers</a><a class="headerlink" href="#skipping-tests-for-certain-browsers" title="Permalink to this headline">¶</a></h2>
+<span id="skip-browsers"></span><h2><a class="toc-backref" href="#id9">Skipping tests for certain browsers</a><a class="headerlink" href="#skipping-tests-for-certain-browsers" title="Permalink to this headline">¶</a></h2>
 <p>Some browser drivers don’t support certain features of the Selenium WebDriver
 API. If a test method or class requires these features to run, drivers that lack
 support for them will likely encounter errors leading to false failures. The
@@ -463,7 +464,7 @@ the following web drivers that support running in a headless environment:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

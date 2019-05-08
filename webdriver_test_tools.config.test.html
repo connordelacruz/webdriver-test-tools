@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.test module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.config.test module &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
@@ -185,34 +186,6 @@
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.config.test.</code><code class="descname">TestSuiteConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/test.html#TestSuiteConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Configurations for test suite</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><strong>TestSuiteConfig.RUNNER_CLASS</strong></a> – <code class="docutils literal notranslate"><span class="pre">unittest.TestRunner</span></code> class to use when running
-tests</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS"><strong>TestSuiteConfig.RUNNER_KWARGS</strong></a> – Dictionary mapping parameter names to desired
-values used to initialize the <code class="docutils literal notranslate"><span class="pre">TestRunner</span></code> configured in <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_CLASS</span></code></a></li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY"><strong>TestSuiteConfig.DEFAULT_VERBOSITY</strong></a> – <p>Value used if the <code class="docutils literal notranslate"><span class="pre">verbosity</span></code> parameter is
-unspecified when calling <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="webdriver_test_tools.config.test.TestSuiteConfig.get_runner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_runner()</span></code></a>.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<ul class="last">
-<li>Conflict may occur if <code class="docutils literal notranslate"><span class="pre">'verbosity'</span></code> is set in <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_KWARGS</span></code></a>.
-Be sure to use <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DEFAULT_VERBOSITY</span></code></a> instead for setting this value.</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="webdriver_test_tools.config.test.TestSuiteConfig.get_runner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_runner()</span></code></a> assumes the <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_CLASS</span></code></a> constructor takes a
-<code class="docutils literal notranslate"><span class="pre">verbosity</span></code> parameter in its constructor. If using a custom test runner
-class that doesn’t support this, you should override the
-<a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="webdriver_test_tools.config.test.TestSuiteConfig.get_runner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_runner()</span></code></a> method in your project’s <code class="docutils literal notranslate"><span class="pre">TestSuiteConfig</span></code> class.</li>
-</ul>
-</div>
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS">
 <code class="descname">RUNNER_CLASS</code><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="Permalink to this definition">¶</a></dt>
@@ -222,12 +195,29 @@ class that doesn’t support this, you should override the
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS">
 <code class="descname">RUNNER_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Dictionary mapping parameter names to desired values used to initialize
+the <code class="docutils literal notranslate"><span class="pre">TestRunner</span></code> configured in <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_CLASS</span></code></a></p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY">
 <code class="descname">DEFAULT_VERBOSITY</code><em class="property"> = 2</em><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Value used if the <code class="docutils literal notranslate"><span class="pre">verbosity</span></code> parameter is unspecified when calling
+<a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="webdriver_test_tools.config.test.TestSuiteConfig.get_runner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_runner()</span></code></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>Conflict may occur if <code class="docutils literal notranslate"><span class="pre">'verbosity'</span></code> is set in <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_KWARGS</span></code></a>.
+Be sure to use <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DEFAULT_VERBOSITY</span></code></a> instead for setting this
+value.</li>
+<li><a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="webdriver_test_tools.config.test.TestSuiteConfig.get_runner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_runner()</span></code></a> assumes the <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_CLASS</span></code></a> constructor
+takes a <code class="docutils literal notranslate"><span class="pre">verbosity</span></code> parameter in its constructor. If using a custom
+test runner class that doesn’t support this, you should override the
+<a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="webdriver_test_tools.config.test.TestSuiteConfig.get_runner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_runner()</span></code></a> method in your project’s <code class="docutils literal notranslate"><span class="pre">TestSuiteConfig</span></code>
+class.</li>
+</ul>
+</div>
+</dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.test.TestSuiteConfig.get_runner">
@@ -238,8 +228,9 @@ initialize</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbosity</strong> – (Optional) value to use for the <code class="docutils literal notranslate"><span class="pre">verbosity</span></code> parameter when
-initializing the test runner. Uses <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DEFAULT_VERBOSITY</span></code></a> if unspecified.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbosity</strong> – (Optional) value to use for the <code class="docutils literal notranslate"><span class="pre">verbosity</span></code>
+parameter when initializing the test runner. Uses
+<a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DEFAULT_VERBOSITY</span></code></a> if unspecified.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The initialized <code class="docutils literal notranslate"><span class="pre">TestRunner</span></code> object</td>
 </tr>
@@ -293,7 +284,7 @@ initializing the test runner. Uses <a class="reference internal" href="#webdrive
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

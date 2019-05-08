@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.base &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.base &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -158,22 +159,23 @@
            <div itemprop="articleBody">
             
   <h1>Source code for webdriver_test_tools.pageobject.base</h1><div class="highlight"><pre>
-<span></span><span class="c1"># Base class for page objects</span>
-
-<span class="c1"># TODO: Clean up for consistency with other modules</span>
-
-<div class="viewcode-block" id="BasePage"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage">[docs]</a><span class="k">class</span> <span class="nc">BasePage</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span></span>
+<div class="viewcode-block" id="BasePage"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage">[docs]</a><span class="k">class</span> <span class="nc">BasePage</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Base class for page objects&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="BasePage.Locator"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage.Locator">[docs]</a>    <span class="k">class</span> <span class="nc">Locator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;WebDriver locator tuples for any elements that will need to be accessed by</span>
-<span class="sd">        this page object.</span>
+<div class="viewcode-block" id="BasePage.Locator"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage.Locator">[docs]</a>    <span class="k">class</span> <span class="nc">Locator</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;WebDriver locator tuples for any elements that will need to be</span>
+<span class="sd">        accessed by this page object.</span>
 
 <span class="sd">        :Example:</span>
 
 <span class="sd">            .. code-block:: python</span>
 
 <span class="sd">                SOME_ELEMENT = (By.ID, &#39;some-element&#39;)</span>
+
+<span class="sd">        This nested class is not technically required, but for consistency it&#39;s</span>
+<span class="sd">        recommended to use this convention for storing locators relevant to a</span>
+<span class="sd">        page object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
@@ -201,7 +203,8 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BasePage.find_elements"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage.find_elements">[docs]</a>    <span class="k">def</span> <span class="nf">find_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locator</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns a list of WebElement objects based on the locator tuple passed</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of WebElement objects based on the locator tuple</span>
+<span class="sd">        passed</span>
 
 <span class="sd">        Shorthand for :</span>
 
@@ -250,7 +253,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
