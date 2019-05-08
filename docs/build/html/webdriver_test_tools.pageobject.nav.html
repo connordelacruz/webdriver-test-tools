@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.nav module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.nav module &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
@@ -391,7 +392,7 @@ URLs specified for link targets</li>
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.FIXED" title="webdriver_test_tools.pageobject.nav.NavObject.FIXED"><strong>NavObject.FIXED</strong></a> – (Default: True) True if element is a fixed navbar,
 False otherwise. If set to False in a subclass,
-<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.click_page_link" title="webdriver_test_tools.pageobject.nav.NavObject.click_page_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">click_page_link()</span></code></a> and <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link" title="webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hover_over_page_link()</span></code></a> will
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">click_page_link()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">hover_over_page_link()</span></code> will
 scroll the target link into view before interacting with it</li>
 <li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE"><strong>NavObject.COLLAPSIBLE</strong></a> – (Default: False) True if the navbar is
 collapsible (e.g. for hamburger menus). If set to True,
@@ -452,42 +453,9 @@ attribute:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS"><strong>NavObject.LINK_DICTS</strong></a> – <p>List of link dictionaries. These are used to
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS"><strong>NavObject.LINK_DICTS</strong></a> – List of link dictionaries. These are used to
 initialize the <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject" title="webdriver_test_tools.pageobject.nav.NavLinkObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavLinkObject</span></code></a> instances in <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.links" title="webdriver_test_tools.pageobject.nav.NavObject.links"><code class="xref py py-attr docutils literal notranslate"><span class="pre">links</span></code></a> at
-runtime. These dictionaries use the same syntax as <a class="reference internal" href="yaml.html#yaml-links"><span class="std std-ref">YAML links</span></a></p>
-<span class="target" id="index-0"></span><div class="admonition-todo admonition">
-<p class="first admonition-title">Todo</p>
-<p class="last"><code class="docutils literal notranslate"><span class="pre">LINK_DICTS</span></code> syntax is kind of cluttered, will likely re-work to
-be cleaner in future versions</p>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-<p>—</p>
-<p>The following attributes are deprecated as of version 2.9.0, and will be
-removed in future versions:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP"><strong>NavObject.LINK_MAP</strong></a> – <p>Maps link text to a tuple containing its locator
-and the page object class for the target page, modal, section, etc (or
-None if need be). Override in subclasses</p>
-<div class="deprecated">
-<p><span class="versionmodified">Deprecated since version 2.9.0: </span><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.links" title="webdriver_test_tools.pageobject.nav.NavObject.links"><code class="xref py py-attr docutils literal notranslate"><span class="pre">links</span></code></a> should be used instead</p>
-</div>
-</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP"><strong>NavObject.HOVER_MAP</strong></a> – <p>Maps link text to a tuple containing its locator
-and the page object class for the menu, dropdown, etc that should
-appear on hover (or None if need be). Override in subclasses</p>
-<div class="deprecated">
-<p><span class="versionmodified">Deprecated since version 2.9.0: </span><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.links" title="webdriver_test_tools.pageobject.nav.NavObject.links"><code class="xref py py-attr docutils literal notranslate"><span class="pre">links</span></code></a> should be used instead</p>
-</div>
-</li>
-</ul>
-</td>
+runtime. These dictionaries use the same syntax as <a class="reference internal" href="yaml.html#yaml-links"><span class="std std-ref">YAML links</span></a></td>
 </tr>
 </tbody>
 </table>
@@ -529,16 +497,6 @@ appear on hover (or None if need be). Override in subclasses</p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.links">
 <code class="descname">links</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.links" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP">
-<code class="descname">LINK_MAP</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP">
-<code class="descname">HOVER_MAP</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -649,85 +607,6 @@ isn’t a reliable detection method for an implementation</p>
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="webdriver_test_tools.pageobject.nav.NavObject.click_page_link">
-<code class="descname">click_page_link</code><span class="sig-paren">(</span><em>link_map_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.click_page_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.click_page_link" title="Permalink to this definition">¶</a></dt>
-<dd><div class="deprecated">
-<p><span class="versionmodified">Deprecated since version 2.9.0: </span>Use <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.click_link" title="webdriver_test_tools.pageobject.nav.NavObject.click_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">click_link()</span></code></a> instead</p>
-</div>
-<p>Click one of the page links and return a page object class for the link
-target</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_map_key</strong> – Key into <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_MAP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LINK_MAP</span></code></a> for the link to click on</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Corresponding page object class for the link target (if applicable)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link">
-<code class="descname">hover_over_page_link</code><span class="sig-paren">(</span><em>link_map_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.hover_over_page_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.hover_over_page_link" title="Permalink to this definition">¶</a></dt>
-<dd><div class="deprecated">
-<p><span class="versionmodified">Deprecated since version 2.9.0: </span>Use <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.hover_over_link" title="webdriver_test_tools.pageobject.nav.NavObject.hover_over_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hover_over_link()</span></code></a> instead</p>
-</div>
-<p>Hover mouse over one of the page links</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_map_key</strong> – Key into <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP" title="webdriver_test_tools.pageobject.nav.NavObject.HOVER_MAP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HOVER_MAP</span></code></a> for the link to hover mouse over</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Corresponding page object class for the hover dropdown/container/etc
-(if applicable)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.nav.</code><code class="descname">CollapsibleNavObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#CollapsibleNavObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.nav.NavObject</span></code></a></p>
-<div class="deprecated">
-<p><span class="versionmodified">Deprecated since version 2.9.0: </span>Use <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code></a> with <code class="docutils literal notranslate"><span class="pre">COLLAPSIBLE</span> <span class="pre">=</span> <span class="pre">True</span></code> instead</p>
-</div>
-<p>Subclass of <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code></a> with additional methods for collapsible nav
-menus</p>
-<p>In addition to the variables for <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code></a>, the following
-variables need to be defined for collapsible navs</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>CollapsibleNavObject.EXPAND_BUTTON_LOCATOR</strong> – Locator for the button
-that expands the nav menu</li>
-<li><strong>CollapsibleNavObject.COLLAPSE_BUTTON_LOCATOR</strong> – Locator for the button
-that expands the nav menu</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR" title="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR"><strong>CollapsibleNavObject.MENU_CONTAINER_LOCATOR</strong></a> – Locator for the
-collapsing/expanding container of the navigation menu</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSIBLE">
-<code class="descname">COLLAPSIBLE</code><em class="property"> = True</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.COLLAPSIBLE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR">
-<code class="descname">MENU_CONTAINER_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.CollapsibleNavObject.MENU_CONTAINER_LOCATOR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </div>
@@ -774,7 +653,7 @@ collapsing/expanding container of the navigation menu</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

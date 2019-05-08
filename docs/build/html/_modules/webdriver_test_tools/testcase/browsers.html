@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.testcase.browsers &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.testcase.browsers &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -179,20 +180,14 @@
 <span class="kn">from</span> <span class="nn">.safari</span> <span class="k">import</span> <span class="o">*</span>
 
 <div class="viewcode-block" id="Browsers"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.browsers.Browsers">[docs]</a><span class="k">class</span> <span class="nc">Browsers</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Constants for browser short names</span>
-
-<span class="sd">    :var Browsers.TEST_CLASSES: Dictionary mapping browser names to their corresponding test classes</span>
-<span class="sd">    :var Browsers.HEADLESS_COMPATIBLE: List of :class:`WebDriverTestCase</span>
-<span class="sd">        &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;` subclasses that</span>
-<span class="sd">        support test execution in a headless browser</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Constants for browser short names&quot;&quot;&quot;</span>
     <span class="n">FIREFOX</span> <span class="o">=</span> <span class="n">FirefoxTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">CHROME</span> <span class="o">=</span> <span class="n">ChromeTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">SAFARI</span> <span class="o">=</span> <span class="n">SafariTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">IE</span> <span class="o">=</span> <span class="n">IETestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">EDGE</span> <span class="o">=</span> <span class="n">EdgeTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
     <span class="n">CHROME_MOBILE</span> <span class="o">=</span> <span class="n">ChromeMobileTestCase</span><span class="o">.</span><span class="n">SHORT_NAME</span>
-    <span class="c1"># Map of short names to the browser class</span>
+    <span class="c1">#: Dictionary mapping browser names to their corresponding test classes</span>
     <span class="n">TEST_CLASSES</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">FIREFOX</span><span class="p">:</span> <span class="n">FirefoxTestCase</span><span class="p">,</span>
         <span class="n">CHROME</span><span class="p">:</span> <span class="n">ChromeTestCase</span><span class="p">,</span>
@@ -201,7 +196,9 @@
         <span class="n">EDGE</span><span class="p">:</span> <span class="n">EdgeTestCase</span><span class="p">,</span>
         <span class="n">CHROME_MOBILE</span><span class="p">:</span> <span class="n">ChromeMobileTestCase</span><span class="p">,</span>
     <span class="p">}</span>
-    <span class="c1"># List of browser classes that support headless browsing</span>
+    <span class="c1">#: List of :class:`WebDriverTestCase</span>
+    <span class="c1">#: &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;` subclasses</span>
+    <span class="c1">#: that support test execution in a headless browser</span>
     <span class="n">HEADLESS_COMPATIBLE</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">FirefoxTestCase</span><span class="p">,</span>
         <span class="n">ChromeTestCase</span><span class="p">,</span>
@@ -242,7 +239,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

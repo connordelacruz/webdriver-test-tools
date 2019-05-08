@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.browser module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.config.browser module &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
@@ -185,20 +186,13 @@
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.config.browser.</code><code class="descname">BrowserConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Configurations for which browsers to generate tests for</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS" title="webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS"><strong>BrowserConfig.ENABLED_BROWSERS</strong></a> – Dictionary mapping browser names to a boolean.
-True enables the browser, False disables it. Defaults to Chrome and
-Firefox since they’re not platform specific</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS">
 <code class="descname">ENABLED_BROWSERS</code><em class="property"> = {'chrome': True, 'chrome-mobile': False, 'edge': False, 'firefox': True, 'ie': False, 'safari': False}</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserConfig.ENABLED_BROWSERS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Dictionary mapping browser names to a boolean. True enables the browser,
+False disables it. Defaults to Chrome and Firefox since they’re not
+platform specific</p>
+</dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.browser.BrowserConfig.get_browser_classes">
@@ -208,7 +202,8 @@ Firefox since they’re not platform specific</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>browser_names</strong> – (Optional) List of browser names to get classes for</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>browser_names</strong> – (Optional) List of browser names to get classes
+for</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of enabled browser test case classes</td>
 </tr>
@@ -237,43 +232,30 @@ Firefox since they’re not platform specific</td>
 <em class="property">class </em><code class="descclassname">webdriver_test_tools.config.browser.</code><code class="descname">BrowserStackConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserStackConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserConfig" title="webdriver_test_tools.config.browser.BrowserConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.config.browser.BrowserConfig</span></code></a></p>
 <p>Global configurations for BrowserStack testing</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE" title="webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE"><strong>BrowserStackConfig.ENABLE</strong></a> – Set to True to enable BrowserStack testing</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME" title="webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME"><strong>BrowserStackConfig.USERNAME</strong></a> – Account username. Projects will need to override this</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY" title="webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY"><strong>BrowserStackConfig.ACCESS_KEY</strong></a> – Access key. Projects will need to override this</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES" title="webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES"><strong>BrowserStackConfig.BS_CAPABILITIES</strong></a> – BrowserStack test configurations.
-<a class="reference external" href="https://www.browserstack.com/automate/capabilities#">Capabilities reference</a></li>
-<li><strong>BrowserStackConfig.ENABLED_BROWSERS</strong> – Dictionary mapping browser names to a boolean.
-True enables the browser, False disables it. Defaults to Chrome and
-Firefox since they’re not platform specific</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE">
 <code class="descname">ENABLE</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ENABLE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Set to True to enable BrowserStack testing</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME">
 <code class="descname">USERNAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Account username. Projects will need to override this</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY">
 <code class="descname">ACCESS_KEY</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Access key. Projects will need to override this</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES">
 <code class="descname">BS_CAPABILITIES</code><em class="property"> = {'browserstack.video': False, 'project': None}</em><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>BrowserStack test configurations.
+<a class="reference external" href="https://www.browserstack.com/automate/capabilities">Capabilities reference</a></p>
+</dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.browser.BrowserStackConfig.get_command_executor">
@@ -283,7 +265,8 @@ Firefox since they’re not platform specific</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Command executor URL formatted with <a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME" title="webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME"><code class="xref py py-attr docutils literal notranslate"><span class="pre">USERNAME</span></code></a> and <a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY" title="webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ACCESS_KEY</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Command executor URL formatted with <a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME" title="webdriver_test_tools.config.browser.BrowserStackConfig.USERNAME"><code class="xref py py-attr docutils literal notranslate"><span class="pre">USERNAME</span></code></a> and
+<a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY" title="webdriver_test_tools.config.browser.BrowserStackConfig.ACCESS_KEY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ACCESS_KEY</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -292,7 +275,8 @@ Firefox since they’re not platform specific</li>
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities">
 <em class="property">classmethod </em><code class="descname">add_browserstack_capabilities</code><span class="sig-paren">(</span><em>desired_capabilities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/browser.html#BrowserStackConfig.add_browserstack_capabilities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update a desired capabilities dictionary to include items from <a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES" title="webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">BS_CAPABILITIES</span></code></a></p>
+<dd><p>Update a desired capabilities dictionary to include items from
+<a class="reference internal" href="#webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES" title="webdriver_test_tools.config.browser.BrowserStackConfig.BS_CAPABILITIES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">BS_CAPABILITIES</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -311,12 +295,13 @@ Firefox since they’re not platform specific</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**capabilities</strong> – <p>Keyword arguments for BrowserStack configurations.
-Possible arguments include:</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**capabilities</strong> – <p>Keyword arguments for BrowserStack
+configurations. Possible arguments include:</p>
 <blockquote>
 <div><ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">build</span></code> (string) - Name for the group of tests</li>
-<li><code class="docutils literal notranslate"><span class="pre">video</span></code> (boolean) - True to enable video recording, False to disable it</li>
+<li><code class="docutils literal notranslate"><span class="pre">video</span></code> (boolean) - True to enable video recording, False
+to disable it</li>
 </ul>
 </div></blockquote>
 </td>
@@ -371,7 +356,7 @@ Possible arguments include:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

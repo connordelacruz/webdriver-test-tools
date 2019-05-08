@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.form &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.form &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -204,12 +205,13 @@
         <span class="c1"># Non-&lt;input&gt; tag inputs</span>
         <span class="n">SELECT</span> <span class="o">=</span> <span class="s1">&#39;select&#39;</span>
         <span class="n">TEXTAREA</span> <span class="o">=</span> <span class="s1">&#39;textarea&#39;</span>
-        <span class="c1"># Attribute support based on input types</span>
+        <span class="c1">#: Input types that support the &#39;options&#39; key</span>
         <span class="n">SUPPORTS_OPTIONS</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">SELECT</span><span class="p">,</span>
             <span class="n">RADIO</span><span class="p">,</span>
             <span class="n">CHECKBOX</span><span class="p">,</span>
         <span class="p">]</span>
+        <span class="c1">#: Input types that support the &#39;multiple&#39; key</span>
         <span class="n">SUPPORTS_MULTIPLE</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">SELECT</span><span class="p">,</span>
             <span class="n">CHECKBOX</span><span class="p">,</span>
@@ -543,29 +545,6 @@
     <span class="n">INPUT_DICTS</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">inputs</span> <span class="o">=</span> <span class="p">{}</span>
 
-<div class="viewcode-block" id="FormObject.Input"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.Input">[docs]</a>    <span class="k">class</span> <span class="nc">Input</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        .. deprecated:: 2.7.0</span>
-<span class="sd">            Use :class:`InputObject` and :attr:`FormObject.inputs` instead</span>
-
-<span class="sd">        Subclass used to contain name attributes and select/radio option lists</span>
-<span class="sd">        for inputs</span>
-
-<span class="sd">        :Example:</span>
-
-<span class="sd">            .. code-block:: python</span>
-
-<span class="sd">                SOME_INPUT = &#39;someInput&#39;</span>
-
-<span class="sd">                SOME_SELECT = &#39;someSelect&#39;</span>
-<span class="sd">                SOME_SELECT_OPTIONS = [</span>
-<span class="sd">                        &#39;vaule1&#39;,</span>
-<span class="sd">                        &#39;value2&#39;,</span>
-<span class="sd">                ]</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
-
 <div class="viewcode-block" id="FormObject.parse_yaml"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.parse_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">parse_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Parse a YAML representation of the form object and set attributes</span>
 <span class="sd">        accordingly</span>
@@ -618,33 +597,12 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">raise</span>
 
-
-    <span class="c1"># TODO: deprecate old fill_form workflow</span>
-<div class="viewcode-block" id="FormObject.fill_form"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_form">[docs]</a>    <span class="k">def</span> <span class="nf">fill_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_map</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        .. deprecated:: 2.7.0</span>
-<span class="sd">           Use :meth:`fill_inputs` instead</span>
-
-<span class="sd">        Fill the form element inputs</span>
-
-<span class="sd">        :param input_map: Dictionary mapping input names to the values to set</span>
-<span class="sd">            them to. See</span>
-<span class="sd">            :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`</span>
-<span class="sd">            for values to use for different input types</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s1">&#39;FormObject.fill_form() is deprecated and may be removed in future versions, use fill_inputs() instead&#39;</span><span class="p">,</span>
-            <span class="ne">DeprecationWarning</span>
-        <span class="p">)</span>
-        <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">FORM_LOCATOR</span><span class="p">)</span>
-        <span class="n">actions</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">fill_form_inputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">input_map</span><span class="p">)</span></div>
-
 <div class="viewcode-block" id="FormObject.fill_inputs"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_inputs">[docs]</a>    <span class="k">def</span> <span class="nf">fill_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_map</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fill form inputs</span>
 
-<span class="sd">        :param input_map: Dictionary mapping input `name` key to the values to set</span>
-<span class="sd">            them to. See :meth:`InputObject.set_value` for value formats for</span>
-<span class="sd">            different input types</span>
+<span class="sd">        :param input_map: Dictionary mapping input `name` key to the values to</span>
+<span class="sd">            set them to. See :meth:`InputObject.set_value` for value formats</span>
+<span class="sd">            for different input types</span>
 <span class="sd">        :param strict: (Default = False) If True, throw an exception if a key</span>
 <span class="sd">            in ``input_map`` is not a valid key in ``self.inputs``. Otherwise</span>
 <span class="sd">            throw a warning and continue</span>
@@ -678,15 +636,16 @@
         <span class="p">}</span></div>
 
 <div class="viewcode-block" id="FormObject.submit_is_enabled"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled">[docs]</a>    <span class="k">def</span> <span class="nf">submit_is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Short hand function for checking if the submit button is enabled. Useful</span>
-<span class="sd">        for forms with JavaScript input validation</span>
+        <span class="sd">&quot;&quot;&quot;Short hand function for checking if the submit button is enabled.</span>
+<span class="sd">        Useful for forms with JavaScript input validation</span>
 
 <span class="sd">        :return: True if submit is enabled, False if it&#39;s disabled</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBMIT_LOCATOR</span><span class="p">)</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="FormObject.click_submit"><a class="viewcode-back" href="../../../webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.click_submit">[docs]</a>    <span class="k">def</span> <span class="nf">click_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Shorthand function for scrolling to the submit button and clicking it.</span>
+        <span class="sd">&quot;&quot;&quot;Shorthand function for scrolling to the submit button and clicking</span>
+<span class="sd">        it.</span>
 
 <span class="sd">        If :attr:`self.SUBMIT_SUCCESS_CLASS &lt;SUBMIT_SUCCESS_CLASS&gt;` is set to a</span>
 <span class="sd">        subclass of :class:`BasePage</span>
@@ -732,7 +691,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

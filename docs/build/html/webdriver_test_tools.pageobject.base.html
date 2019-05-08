@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.pageobject.base module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.pageobject.base module &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
@@ -189,8 +190,8 @@
 <dt id="webdriver_test_tools.pageobject.base.BasePage.Locator">
 <em class="property">class </em><code class="descname">Locator</code><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.Locator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage.Locator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>WebDriver locator tuples for any elements that will need to be accessed by
-this page object.</p>
+<p>WebDriver locator tuples for any elements that will need to be
+accessed by this page object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -202,6 +203,9 @@ this page object.</p>
 </tr>
 </tbody>
 </table>
+<p>This nested class is not technically required, but for consistency it’s
+recommended to use this convention for storing locators relevant to a
+page object</p>
 </dd></dl>
 
 <dl class="method">
@@ -230,7 +234,8 @@ this page object.</p>
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.base.BasePage.find_elements">
 <code class="descname">find_elements</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.find_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage.find_elements" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of WebElement objects based on the locator tuple passed</p>
+<dd><p>Returns a list of WebElement objects based on the locator tuple
+passed</p>
 <p>Shorthand for :</p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="o">*</span><span class="n">locator</span><span class="p">)</span>
@@ -296,7 +301,7 @@ this page object.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

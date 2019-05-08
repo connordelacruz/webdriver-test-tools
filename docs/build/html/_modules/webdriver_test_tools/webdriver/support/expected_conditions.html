@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.support.expected_conditions &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.webdriver.support.expected_conditions &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -273,14 +274,15 @@
 <span class="k">def</span> <span class="nf">_is_scrolled_into_view</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">fully_in_view</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns True if the element is scrolled into view, False otherwise</span>
 
-<span class="sd">    Currently, Selenium doesn&#39;t offer a means of getting an element&#39;s location relative</span>
-<span class="sd">    to the viewport, so using JavaScript to determine whether the element is visible</span>
-<span class="sd">    within the viewport.</span>
+<span class="sd">    Currently, Selenium doesn&#39;t offer a means of getting an element&#39;s location</span>
+<span class="sd">    relative to the viewport, so using JavaScript to determine whether the</span>
+<span class="sd">    element is visible within the viewport.</span>
 
 <span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param element: WebElement for the element to check</span>
-<span class="sd">    :param fully_in_view: (Default = True) If True, check that the element is fully in</span>
-<span class="sd">        view and not cut off. If False, check that it&#39;s at least partially in view</span>
+<span class="sd">    :param fully_in_view: (Default = True) If True, check that the element is</span>
+<span class="sd">        fully in view and not cut off. If False, check that it&#39;s at least</span>
+<span class="sd">        partially in view</span>
 
 <span class="sd">    :return: True if the element is scrolled into view, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -304,12 +306,13 @@
 <span class="k">def</span> <span class="nf">_element_exists</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">element_locator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns True if the element exists, False if not</span>
 
-<span class="sd">    This function is just a wrapper that catches the NoSuchElementException thrown by</span>
-<span class="sd">    driver.find_element() and returns a boolean based on whether the exception occurred.</span>
-<span class="sd">    Used for test assertions.</span>
+<span class="sd">    This function is just a wrapper that catches the NoSuchElementException</span>
+<span class="sd">    thrown by driver.find_element() and returns a boolean based on whether the</span>
+<span class="sd">    exception occurred.  Used for test assertions.</span>
 
 <span class="sd">    :param driver: Selenium WebDriver object</span>
-<span class="sd">    :param element_locator: Tuple in the format (by,selector) used to locate target</span>
+<span class="sd">    :param element_locator: Tuple in the format (by,selector) used to locate</span>
+<span class="sd">        target</span>
 
 <span class="sd">    :return: True if the element exists, False if not</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -353,7 +356,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

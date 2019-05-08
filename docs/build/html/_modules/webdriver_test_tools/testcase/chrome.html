@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.testcase.chrome &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.testcase.chrome &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -163,14 +164,17 @@
 
 
 <div class="viewcode-block" id="ChromeTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeTestCase</span><span class="p">(</span><span class="n">WebDriverTestCase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implementation of :class:`WebDriverTestCase &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
-<span class="sd">    using Chrome webdriver</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of :class:`WebDriverTestCase</span>
+<span class="sd">    &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;` using Chrome</span>
+<span class="sd">    webdriver</span>
 
-<span class="sd">    `Driver download &lt;https://sites.google.com/a/chromium.org/chromedriver/downloads&gt;`__</span>
+<span class="sd">    `Driver download</span>
+<span class="sd">    &lt;https://sites.google.com/a/chromium.org/chromedriver/downloads&gt;`__</span>
 
 <span class="sd">    This driver supports headless browsing:</span>
 
-<span class="sd">        `Headless browser info &lt;https://developers.google.com/web/updates/2017/04/headless-chrome&gt;`__</span>
+<span class="sd">        `Headless browser info</span>
+<span class="sd">        &lt;https://developers.google.com/web/updates/2017/04/headless-chrome&gt;`__</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Chrome&#39;</span>
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="n">DRIVER_NAME</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
@@ -183,20 +187,24 @@
 <span class="c1"># Mobile browser emulation</span>
 
 <div class="viewcode-block" id="ChromeMobileTestCase"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase">[docs]</a><span class="k">class</span> <span class="nc">ChromeMobileTestCase</span><span class="p">(</span><span class="n">WebDriverMobileTestCase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implementation of :class:`WebDriverTestCase &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;`</span>
-<span class="sd">    using Chrome webdriver. Emulates mobile device layout.</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of :class:`WebDriverTestCase</span>
+<span class="sd">    &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;` using Chrome</span>
+<span class="sd">    webdriver. Emulates mobile device layout.</span>
 
-<span class="sd">    `Driver download &lt;https://sites.google.com/a/chromium.org/chromedriver/downloads&gt;`__</span>
+<span class="sd">    `Driver download</span>
+<span class="sd">    &lt;https://sites.google.com/a/chromium.org/chromedriver/downloads&gt;`__</span>
 
-<span class="sd">    `Mobile emulation info &lt;https://sites.google.com/a/chromium.org/chromedriver/mobile-emulation&gt;`__</span>
+<span class="sd">    `Mobile emulation info</span>
+<span class="sd">    &lt;https://sites.google.com/a/chromium.org/chromedriver/mobile-emulation&gt;`__</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">DRIVER_NAME</span> <span class="o">=</span> <span class="s1">&#39;Chrome Mobile [Emulated]&#39;</span>
     <span class="n">SHORT_NAME</span> <span class="o">=</span> <span class="s1">&#39;chrome-mobile&#39;</span>
     <span class="n">CAPABILITIES</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">CHROME</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 <div class="viewcode-block" id="ChromeMobileTestCase.bs_driver_init"><a class="viewcode-back" href="../../../webdriver_test_tools.testcase.chrome.html#webdriver_test_tools.testcase.chrome.ChromeMobileTestCase.bs_driver_init">[docs]</a>    <span class="k">def</span> <span class="nf">bs_driver_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Configures ``CAPABILITIES[&#39;chromeOptions&#39;]`` for mobile emulation before calling</span>
-<span class="sd">        :meth:`super().bs_driver_init() &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init&gt;`</span>
+        <span class="sd">&quot;&quot;&quot;Configures ``CAPABILITIES[&#39;chromeOptions&#39;]`` for mobile emulation</span>
+<span class="sd">        before calling :meth:`super().bs_driver_init()</span>
+<span class="sd">        &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init&gt;`</span>
 
 <span class="sd">        :return: webdriver.Remote object with the command_executor and</span>
 <span class="sd">            desired_capabilities parameters set to ``self.COMMAND_EXECUTOR`` and</span>
@@ -245,7 +253,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

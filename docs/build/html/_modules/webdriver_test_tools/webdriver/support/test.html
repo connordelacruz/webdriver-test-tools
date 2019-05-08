@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.support.test &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.webdriver.support.test &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -189,24 +190,29 @@
 
 
 <div class="viewcode-block" id="in_view_change_test"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.in_view_change_test">[docs]</a><span class="k">def</span> <span class="nf">in_view_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Expected condition test for an element to scroll into view (e.g. same-page link with scroll animation)</span>
+    <span class="sd">&quot;&quot;&quot;Expected condition test for an element to scroll into view (e.g.</span>
+<span class="sd">    same-page link with scroll animation)</span>
 
 <span class="sd">    :param driver: Selenium WebDriver object</span>
-<span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate target</span>
+<span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate</span>
+<span class="sd">        target</span>
 <span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected</span>
 <span class="sd">        conditions to occur before timing out</span>
 
-<span class="sd">    :return: True if target is scrolled into view before timeout, False otherwise</span>
+<span class="sd">    :return: True if target is scrolled into view before timeout, False</span>
+<span class="sd">        otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">in_view_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">element_to_be_in_view</span><span class="p">(</span><span class="n">target_locator</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">in_view_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="visibility_change_test"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.visibility_change_test">[docs]</a><span class="k">def</span> <span class="nf">visibility_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span> <span class="n">test_visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="visibility_change_test"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.visibility_change_test">[docs]</a><span class="k">def</span> <span class="nf">visibility_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">target_locator</span><span class="p">,</span>
+                           <span class="n">test_visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Expected condition test for visibility changes (e.g. modals)</span>
 
 <span class="sd">    :param driver: Selenium WebDriver object</span>
-<span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate target</span>
+<span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate</span>
+<span class="sd">        target</span>
 <span class="sd">    :param test_visible: (Default=True) An optional variable describing what the</span>
 <span class="sd">        visibility change is supposed to be. If True, test if the target becomes</span>
 <span class="sd">        visible. If False, test if the target becomes invisible</span>
@@ -228,15 +234,16 @@
 <span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected</span>
 <span class="sd">        conditions to occur before timing out</span>
 
-<span class="sd">    :return: True if the current URL matches the expected URL before timeout, False</span>
-<span class="sd">        otherwise</span>
+<span class="sd">    :return: True if the current URL matches the expected URL before timeout,</span>
+<span class="sd">        False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">url_checker</span> <span class="o">=</span> <span class="n">EC</span><span class="o">.</span><span class="n">url_to_be</span><span class="p">(</span><span class="n">expected_url</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="base_url_change_test"><a class="viewcode-back" href="../../../../webdriver_test_tools.webdriver.support.test.html#webdriver_test_tools.webdriver.support.test.base_url_change_test">[docs]</a><span class="k">def</span> <span class="nf">base_url_change_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">expected_url</span><span class="p">,</span> <span class="n">ignore_trailing_slash</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Expected condition test for URL change. Ignores query strings in current url</span>
+    <span class="sd">&quot;&quot;&quot;Expected condition test for URL change. Ignores query strings in current</span>
+<span class="sd">    url</span>
 
 <span class="sd">    :param driver: Selenium WebDriver object</span>
 <span class="sd">    :param expected_url: The expected base URL</span>
@@ -245,8 +252,8 @@
 <span class="sd">    :param wait_timeout: (Default = 10) Number of seconds to wait for expected</span>
 <span class="sd">        conditions to occur before timing out</span>
 
-<span class="sd">    :return: True if the current URL (ignoring query strings) matches the expected URL</span>
-<span class="sd">        before timeout, False otherwise</span>
+<span class="sd">    :return: True if the current URL (ignoring query strings) matches the</span>
+<span class="sd">        expected URL before timeout, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">url_checker</span> <span class="o">=</span> <span class="n">customEC</span><span class="o">.</span><span class="n">base_url_to_be</span><span class="p">(</span><span class="n">expected_url</span><span class="p">,</span> <span class="n">ignore_trailing_slash</span><span class="o">=</span><span class="n">ignore_trailing_slash</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">expected_condition_test</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url_checker</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="p">)</span></div>
@@ -257,7 +264,8 @@
 <span class="sd">    gets added/removed dynamically)</span>
 
 <span class="sd">    :param driver: Selenium WebDriver object</span>
-<span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate target</span>
+<span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate</span>
+<span class="sd">        target</span>
 <span class="sd">    :param test_exists: (Default = True) An optional variable describing what</span>
 <span class="sd">        the existence change is supposed to be. If True, test if the target does</span>
 <span class="sd">        exist. If False, test if the target no longer exists</span>
@@ -275,7 +283,8 @@
     <span class="sd">&quot;&quot;&quot;Expected condition test for element enabled/disabled state changes</span>
 
 <span class="sd">    :param driver: Selenium WebDriver object</span>
-<span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate target</span>
+<span class="sd">    :param target_locator: Tuple in the format (by,selector) used to locate</span>
+<span class="sd">        target</span>
 <span class="sd">    :param test_enabled: (Default = True) An optional variable describing what</span>
 <span class="sd">        the enabled/disabled state change is supposed to be. If True, test if</span>
 <span class="sd">        the target is enabled. If False, test if the target is disabled</span>
@@ -319,7 +328,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

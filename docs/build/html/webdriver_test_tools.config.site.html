@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.site module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.config.site module &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a><ul class="current">
@@ -187,27 +188,17 @@
 <p>Basic class for SiteConfig. Since this is specific to a project, this
 particular class isn’t implemented, but exists to define an interface for
 the 2 variables that need to be declared in SiteConfig.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.config.site.SiteConfig.SITE_URL" title="webdriver_test_tools.config.site.SiteConfig.SITE_URL"><strong>SiteConfig.SITE_URL</strong></a> – URL of the home page</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.site.SiteConfig.BASE_URL" title="webdriver_test_tools.config.site.SiteConfig.BASE_URL"><strong>SiteConfig.BASE_URL</strong></a> – Base URL for site pages (followed by a ‘/’)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.site.SiteConfig.SITE_URL">
 <code class="descname">SITE_URL</code><em class="property"> = ''</em><a class="headerlink" href="#webdriver_test_tools.config.site.SiteConfig.SITE_URL" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>URL of the home page</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.site.SiteConfig.BASE_URL">
 <code class="descname">BASE_URL</code><em class="property"> = ''</em><a class="headerlink" href="#webdriver_test_tools.config.site.SiteConfig.BASE_URL" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Base URL for site pages (followed by a ‘/’)</p>
+</dd></dl>
 
 <dl class="classmethod">
 <dt id="webdriver_test_tools.config.site.SiteConfig.parse_relative_url_dict">
@@ -291,7 +282,7 @@ attribute name in this class</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

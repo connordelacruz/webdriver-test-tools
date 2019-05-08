@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.common.cmd.cmd module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.common.cmd.cmd module &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a></li>
@@ -184,16 +185,24 @@
   <div class="section" id="module-webdriver_test_tools.common.cmd.cmd">
 <span id="webdriver-test-tools-common-cmd-cmd-module"></span><h1>webdriver_test_tools.common.cmd.cmd module<a class="headerlink" href="#module-webdriver_test_tools.common.cmd.cmd" title="Permalink to this headline">¶</a></h1>
 <p>Functions for common command line formatting and procedures.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">var cmd.INDENT:</th><td class="field-body">Constant for terminal indentation</td>
-</tr>
-<tr class="field-even field"><th class="field-name">var cmd.COLORS:</th><td class="field-body">Color/formatting functions for different types of output</td>
-</tr>
-</tbody>
-</table>
+<dl class="data">
+<dt id="webdriver_test_tools.common.cmd.cmd.PROMPT_PREFIX">
+<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">PROMPT_PREFIX</code><em class="property"> = '&gt; '</em><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.PROMPT_PREFIX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constant for string prepended to input prompts</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="webdriver_test_tools.common.cmd.cmd.INDENT">
+<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">INDENT</code><em class="property"> = '   '</em><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.INDENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constant for string used for terminal indentation</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="webdriver_test_tools.common.cmd.cmd.COLORS">
+<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">COLORS</code><em class="property"> = {None: &lt;class 'str'&gt;, 'error': '\x1b[1m\x1b[31m', 'warning': '\x1b[33m', 'success': '\x1b[32m', 'info': '\x1b[36m', 'prompt': '\x1b[35m', 'title': '\x1b[34m', 'emphasize': '\x1b[1m'}</em><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.COLORS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Color/formatting functions for different types of output</p>
+</dd></dl>
+
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.print_exception">
 <code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">print_exception</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_exception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_exception" title="Permalink to this definition">¶</a></dt>
@@ -255,7 +264,7 @@ terminal output to be formatted as well</p>
 <li><strong>placeholder</strong> – (Default = ‘…’) Placeholder to use when truncating
 the string</li>
 <li><strong>indent</strong> – (Optional) If set, indent using this string</li>
-<li><strong>fmt</strong> – (Optional) A key in <code class="xref py py-const docutils literal notranslate"><span class="pre">COLORS</span></code> to use for formatting when
+<li><strong>fmt</strong> – (Optional) A key in <a class="reference internal" href="#webdriver_test_tools.common.cmd.cmd.COLORS" title="webdriver_test_tools.common.cmd.cmd.COLORS"><code class="xref py py-const docutils literal notranslate"><span class="pre">COLORS</span></code></a> to use for formatting when
 printing the text</li>
 </ul>
 </td>
@@ -537,7 +546,7 @@ input and successfully validating</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

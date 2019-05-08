@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.webdriver.locate module &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.webdriver.locate module &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -96,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="webdriver_test_tools.html">webdriver_test_tools API</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="webdriver_test_tools.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="webdriver_test_tools.html#framework">Framework</a></li>
@@ -190,11 +191,11 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>element_text</strong> – The text of the element to locate.</li>
-<li><strong>element_type</strong> – (Optional) The tag type of the element. If unspecified, will
-search all tag types for the specified text.</li>
-<li><strong>exact_match</strong> – (Default = False) If True, will only match elements with the
-exact string as its text. If False, match elements whose text contains the
-specified string but may also contain other text.</li>
+<li><strong>element_type</strong> – (Optional) The tag type of the element. If
+unspecified, will search all tag types for the specified text.</li>
+<li><strong>exact_match</strong> – (Default = False) If True, will only match elements
+with the exact string as its text. If False, match elements whose text
+contains the specified string but may also contain other text.</li>
 </ul>
 </td>
 </tr>
@@ -208,10 +209,10 @@ specified string but may also contain other text.</li>
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.locate.input_elements">
 <code class="descclassname">webdriver_test_tools.webdriver.locate.</code><code class="descname">input_elements</code><span class="sig-paren">(</span><em>exclude_buttons=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/locate.html#input_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.locate.input_elements" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a locator that selects <code class="docutils literal notranslate"><span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">textarea</span></code>, and (optionally)
-<code class="docutils literal notranslate"><span class="pre">button</span></code> elements</p>
-<p>To narrow down results, this is best used on the conainer element where the desired
-inputs are located. E.g.:</p>
+<dd><p>Return a locator that selects <code class="docutils literal notranslate"><span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">textarea</span></code>, and
+(optionally) <code class="docutils literal notranslate"><span class="pre">button</span></code> elements</p>
+<p>To narrow down results, this is best used on the conainer element where the
+desired inputs are located. E.g.:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form_element</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;form-id&#39;</span><span class="p">)</span>
 <span class="n">input_elements</span> <span class="o">=</span> <span class="n">form_element</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="o">*</span><span class="n">locate</span><span class="o">.</span><span class="n">input_elements</span><span class="p">())</span>
 </pre></div>
@@ -220,8 +221,8 @@ inputs are located. E.g.:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>exclude_buttons</strong> – (Default = False) If set to True, omit button elements from
-selector</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>exclude_buttons</strong> – (Default = False) If set to True, omit button
+elements from selector</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Locator selecting input elements</td>
 </tr>
@@ -273,7 +274,7 @@ selector</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

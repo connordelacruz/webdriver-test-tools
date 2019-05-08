@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.project.initialize &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -174,8 +175,8 @@
 <div class="viewcode-block" id="create_setup_file"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_setup_file">[docs]</a><span class="k">def</span> <span class="nf">create_setup_file</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates setup.py for test project</span>
 
-<span class="sd">    :param target_path: The path to the outer directory where the package directory is</span>
-<span class="sd">        contained</span>
+<span class="sd">    :param target_path: The path to the outer directory where the package</span>
+<span class="sd">        directory is contained</span>
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
@@ -186,8 +187,8 @@
 <div class="viewcode-block" id="create_readme"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_readme">[docs]</a><span class="k">def</span> <span class="nf">create_readme</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create README.rst for test project</span>
 
-<span class="sd">    :param target_path: The path to the outer directory where the package directory is</span>
-<span class="sd">        contained</span>
+<span class="sd">    :param target_path: The path to the outer directory where the package</span>
+<span class="sd">        directory is contained</span>
 <span class="sd">    :param context: Jinja context used to render template</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
@@ -198,8 +199,8 @@
 <div class="viewcode-block" id="create_gitignore"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_gitignore">[docs]</a><span class="k">def</span> <span class="nf">create_gitignore</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create .gitignore file at the root of the test project</span>
 
-<span class="sd">    :param target_path: The path to the outer directory where the package directory is</span>
-<span class="sd">        contained</span>
+<span class="sd">    :param target_path: The path to the outer directory where the package</span>
+<span class="sd">        directory is contained</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
     <span class="n">source_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">project_root</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
@@ -209,7 +210,8 @@
 <div class="viewcode-block" id="create_package_directory"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_package_directory">[docs]</a><span class="k">def</span> <span class="nf">create_package_directory</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates package directory for test project</span>
 
-<span class="sd">    :param target_path: The path to the outer directory where initialize was called</span>
+<span class="sd">    :param target_path: The path to the outer directory where initialize was</span>
+<span class="sd">        called</span>
 <span class="sd">    :param package_name: The desired name of the package</span>
 
 <span class="sd">    :return: Path to created package directory</span>
@@ -254,8 +256,8 @@
     <span class="sd">&quot;&quot;&quot;Creates log/ and screenshot/ directories and their .gitignore files</span>
 
 <span class="sd">    :param target_path: The path to the test package directory</span>
-<span class="sd">    :param gitignore_files: (Default = True) Copy template .gitignore files to log/</span>
-<span class="sd">        and screenshot/ directories if True</span>
+<span class="sd">    :param gitignore_files: (Default = True) Copy template .gitignore files to</span>
+<span class="sd">        log/ and screenshot/ directories if True</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
     <span class="n">source_path</span> <span class="o">=</span> <span class="n">templates</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
@@ -307,8 +309,8 @@
 <div class="viewcode-block" id="create_init"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.create_init">[docs]</a><span class="k">def</span> <span class="nf">create_init</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create an empty __init__.py file in the target path</span>
 
-<span class="sd">    :param target_path: The path to the directory that will contain the new __init__.py</span>
-<span class="sd">        file</span>
+<span class="sd">    :param target_path: The path to the directory that will contain the new</span>
+<span class="sd">        __init__.py file</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># &quot;Touch&quot; __init__.py to create an empty file</span>
     <span class="n">init_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;__init__.py&#39;</span><span class="p">)</span>
@@ -319,8 +321,8 @@
     <span class="sd">&quot;&quot;&quot;Returns a jinja context to use for rendering templates</span>
 
 <span class="sd">    :param test_package: Name of the python test package</span>
-<span class="sd">    :param project_title: (Default = test_package) Human-readable title for the test</span>
-<span class="sd">        project. Defaults to the value of test_package if not provided</span>
+<span class="sd">    :param project_title: (Default = test_package) Human-readable title for the</span>
+<span class="sd">        test project. Defaults to the value of test_package if not provided</span>
 <span class="sd">    :param version_badge: (Default = True) Include &quot;generated using</span>
 <span class="sd">        webdriver_test_tools &lt;version&gt;&quot; badge on README if True</span>
 
@@ -339,7 +341,8 @@
     <span class="k">return</span> <span class="n">context</span></div>
 
 
-<div class="viewcode-block" id="initialize"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.initialize">[docs]</a><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">project_title</span><span class="p">,</span> <span class="n">gitignore_files</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readme_file</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="initialize"><a class="viewcode-back" href="../../../webdriver_test_tools.project.initialize.html#webdriver_test_tools.project.initialize.initialize">[docs]</a><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">project_title</span><span class="p">,</span>
+               <span class="n">gitignore_files</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readme_file</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Initializes new project package</span>
 
 <span class="sd">    This method assumes parameters have been validated. :func:`main()</span>
@@ -403,7 +406,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

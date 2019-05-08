@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.config.browser &mdash; WebDriver Test Tools 2.13.1-alpha documentation</title>
+  <title>webdriver_test_tools.config.browser &mdash; WebDriver Test Tools 3.0.0-beta documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.13
+                3.0
               </div>
             
           
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../prototypes.html">Page Object Prototypes Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../yaml.html">Page Object Prototype Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../browserstack.html">BrowserStack Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../webdriver_test_tools.html">webdriver_test_tools API</a></li>
 </ul>
 
@@ -162,13 +163,10 @@
 
 
 <div class="viewcode-block" id="BrowserConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig">[docs]</a><span class="k">class</span> <span class="nc">BrowserConfig</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Configurations for which browsers to generate tests for</span>
-
-<span class="sd">    :var BrowserConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.</span>
-<span class="sd">        True enables the browser, False disables it. Defaults to Chrome and</span>
-<span class="sd">        Firefox since they&#39;re not platform specific</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
+    <span class="sd">&quot;&quot;&quot;Configurations for which browsers to generate tests for&quot;&quot;&quot;</span>
+    <span class="c1">#: Dictionary mapping browser names to a boolean. True enables the browser,</span>
+    <span class="c1">#: False disables it. Defaults to Chrome and Firefox since they&#39;re not</span>
+    <span class="c1">#: platform specific</span>
     <span class="n">ENABLED_BROWSERS</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">Browsers</span><span class="o">.</span><span class="n">FIREFOX</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">Browsers</span><span class="o">.</span><span class="n">CHROME</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -182,7 +180,8 @@
     <span class="k">def</span> <span class="nf">get_browser_classes</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">browser_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get a list of enabled browser classes</span>
 
-<span class="sd">        :param browser_names: (Optional) List of browser names to get classes for</span>
+<span class="sd">        :param browser_names: (Optional) List of browser names to get classes</span>
+<span class="sd">            for</span>
 
 <span class="sd">        :return: List of enabled browser test case classes</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -213,22 +212,17 @@
 
 
 <div class="viewcode-block" id="BrowserStackConfig"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig">[docs]</a><span class="k">class</span> <span class="nc">BrowserStackConfig</span><span class="p">(</span><span class="n">BrowserConfig</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Global configurations for BrowserStack testing</span>
+    <span class="sd">&quot;&quot;&quot;Global configurations for BrowserStack testing&quot;&quot;&quot;</span>
 
-<span class="sd">    :var BrowserStackConfig.ENABLE: Set to True to enable BrowserStack testing</span>
-<span class="sd">    :var BrowserStackConfig.USERNAME: Account username. Projects will need to override this</span>
-<span class="sd">    :var BrowserStackConfig.ACCESS_KEY: Access key. Projects will need to override this</span>
-<span class="sd">    :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations.</span>
-<span class="sd">        `Capabilities reference &lt;https://www.browserstack.com/automate/capabilities#&gt;`__</span>
-<span class="sd">    :var BrowserStackConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.</span>
-<span class="sd">        True enables the browser, False disables it. Defaults to Chrome and</span>
-<span class="sd">        Firefox since they&#39;re not platform specific</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
+    <span class="c1">#: Set to True to enable BrowserStack testing</span>
     <span class="n">ENABLE</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="c1">#: Account username. Projects will need to override this</span>
     <span class="n">USERNAME</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Access key. Projects will need to override this</span>
     <span class="n">ACCESS_KEY</span> <span class="o">=</span> <span class="kc">None</span>
-
+    <span class="c1">#: BrowserStack test configurations.</span>
+    <span class="c1">#: `Capabilities reference</span>
+    <span class="c1">#: &lt;https://www.browserstack.com/automate/capabilities&gt;`__</span>
     <span class="n">BS_CAPABILITIES</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;project&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="s1">&#39;browserstack.video&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
@@ -240,7 +234,8 @@
     <span class="k">def</span> <span class="nf">get_command_executor</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the command executor URL</span>
 
-<span class="sd">        :return: Command executor URL formatted with :attr:`USERNAME` and :attr:`ACCESS_KEY`</span>
+<span class="sd">        :return: Command executor URL formatted with :attr:`USERNAME` and</span>
+<span class="sd">            :attr:`ACCESS_KEY`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">USERNAME</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ACCESS_KEY</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;USERNAME or ACCESS_KEY not set in BrowserStackConfig&#39;</span><span class="p">)</span>
@@ -250,7 +245,8 @@
 
 <div class="viewcode-block" id="BrowserStackConfig.add_browserstack_capabilities"><a class="viewcode-back" href="../../../webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig.add_browserstack_capabilities">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">add_browserstack_capabilities</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">desired_capabilities</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Update a desired capabilities dictionary to include items from :attr:`BS_CAPABILITIES`</span>
+        <span class="sd">&quot;&quot;&quot;Update a desired capabilities dictionary to include items from</span>
+<span class="sd">        :attr:`BS_CAPABILITIES`</span>
 
 <span class="sd">        :param desired_capabilities: Desired capabilities dictionary to update</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -260,11 +256,12 @@
     <span class="k">def</span> <span class="nf">update_configurations</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">capabilities</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update BrowserStack configurations at runtime</span>
 
-<span class="sd">        :param \**capabilities: Keyword arguments for BrowserStack configurations.</span>
-<span class="sd">            Possible arguments include:</span>
+<span class="sd">        :param \**capabilities: Keyword arguments for BrowserStack</span>
+<span class="sd">            configurations. Possible arguments include:</span>
 
 <span class="sd">                - ``build`` (string) - Name for the group of tests</span>
-<span class="sd">                - ``video`` (boolean) - True to enable video recording, False to disable it</span>
+<span class="sd">                - ``video`` (boolean) - True to enable video recording, False</span>
+<span class="sd">                  to disable it</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">caps_map</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;build&#39;</span><span class="p">:</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span>
@@ -308,7 +305,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.13.1-alpha',
+            VERSION:'3.0.0-beta',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
