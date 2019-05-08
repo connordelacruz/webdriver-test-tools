@@ -1,5 +1,5 @@
-"""Modules for test project creation, test loading, browser test generation, and
-the test project command line interface.
+"""Modules for test project creation, test loading, browser test generation,
+and the test project command line interface.
 
 .. toctree::
 

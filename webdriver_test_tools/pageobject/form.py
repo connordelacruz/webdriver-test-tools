@@ -44,12 +44,13 @@ class InputObject(BasePage):
         # Non-<input> tag inputs
         SELECT = 'select'
         TEXTAREA = 'textarea'
-        # Attribute support based on input types
+        #: Input types that support the 'options' key
         SUPPORTS_OPTIONS = [
             SELECT,
             RADIO,
             CHECKBOX,
         ]
+        #: Input types that support the 'multiple' key
         SUPPORTS_MULTIPLE = [
             SELECT,
             CHECKBOX,
@@ -383,29 +384,6 @@ class FormObject(YAMLParsingPageObject):
     INPUT_DICTS = []
     inputs = {}
 
-    class Input:
-        """
-        .. deprecated:: 2.7.0
-            Use :class:`InputObject` and :attr:`FormObject.inputs` instead
-
-        Subclass used to contain name attributes and select/radio option lists
-        for inputs
-
-        :Example:
-
-            .. code-block:: python
-
-                SOME_INPUT = 'someInput'
-
-                SOME_SELECT = 'someSelect'
-                SOME_SELECT_OPTIONS = [
-                        'vaule1',
-                        'value2',
-                ]
-
-        """
-        pass
-
     def parse_yaml(self, file_path):
         """Parse a YAML representation of the form object and set attributes
         accordingly
@@ -458,33 +436,12 @@ class FormObject(YAMLParsingPageObject):
                 else:
                     raise
 
-
-    # TODO: deprecate old fill_form workflow
-    def fill_form(self, input_map):
-        """
-        .. deprecated:: 2.7.0
-           Use :meth:`fill_inputs` instead
-
-        Fill the form element inputs
-
-        :param input_map: Dictionary mapping input names to the values to set
-            them to. See
-            :func:`webdriver_test_tools.webdriver.actions.form.fill_form_input`
-            for values to use for different input types
-        """
-        warnings.warn(
-            'FormObject.fill_form() is deprecated and may be removed in future versions, use fill_inputs() instead',
-            DeprecationWarning
-        )
-        form = self.find_element(self.FORM_LOCATOR)
-        actions.form.fill_form_inputs(self.driver, form, input_map)
-
     def fill_inputs(self, input_map, strict=False):
         """Fill form inputs
 
-        :param input_map: Dictionary mapping input `name` key to the values to set
-            them to. See :meth:`InputObject.set_value` for value formats for
-            different input types
+        :param input_map: Dictionary mapping input `name` key to the values to
+            set them to. See :meth:`InputObject.set_value` for value formats
+            for different input types
         :param strict: (Default = False) If True, throw an exception if a key
             in ``input_map`` is not a valid key in ``self.inputs``. Otherwise
             throw a warning and continue
@@ -518,15 +475,16 @@ class FormObject(YAMLParsingPageObject):
         }
 
     def submit_is_enabled(self):
-        """Short hand function for checking if the submit button is enabled. Useful
-        for forms with JavaScript input validation
+        """Short hand function for checking if the submit button is enabled.
+        Useful for forms with JavaScript input validation
 
         :return: True if submit is enabled, False if it's disabled
         """
         return self.find_element(self.SUBMIT_LOCATOR).is_enabled()
 
     def click_submit(self):
-        """Shorthand function for scrolling to the submit button and clicking it.
+        """Shorthand function for scrolling to the submit button and clicking
+        it.
 
         If :attr:`self.SUBMIT_SUCCESS_CLASS <SUBMIT_SUCCESS_CLASS>` is set to a
         subclass of :class:`BasePage

@@ -42,7 +42,7 @@ class WebDriverTestCase(unittest.TestCase):
         of seconds for :ref:`WebDriverTestCase assertion methods
         <assertion-methods>` to wait for expected conditions to occur before
         test fails. Defaults to the value of ``DEFAULT_ASSERTION_TIMEOUT`` set
-        in the test project's
+        in the test project's :class:`WebDriverConfig
         <webdriver_test_tools.config.webdriver.WebDriverConfig>` class
 
     **Browser-specific implementations of this class need to override the following:**

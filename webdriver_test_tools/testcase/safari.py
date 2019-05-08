@@ -3,10 +3,12 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class SafariTestCase(WebDriverTestCase):
-    """Implementation of :class:`WebDriverTestCase <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>`
-    using Safari webdriver
+    """Implementation of :class:`WebDriverTestCase
+    <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` using Safari
+    webdriver
 
-    `Driver info <https://webkit.org/blog/6900/webdriver-support-in-safari-10/>`__
+    `Driver info
+    <https://webkit.org/blog/6900/webdriver-support-in-safari-10/>`__
 
     .. note::
 
@@ -18,9 +20,9 @@ class SafariTestCase(WebDriverTestCase):
 
     .. warning::
 
-        Safari's webdriver is missing certain features of the webdriver API, which can
-        cause test failures. As of Safari 11.0.3, issues with the following modules
-        have been encountered during testing:
+        Safari's webdriver is missing certain features of the webdriver API,
+        which can cause test failures. As of Safari 11.0.3, issues with the
+        following modules have been encountered during testing:
 
             - ``selenium.webdriver.common.action_chains``
             - ``selenium.webdriver.support.select``

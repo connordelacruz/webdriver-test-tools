@@ -12,16 +12,11 @@ This module imports the following classes:
     :class:`webdriver_test_tools.pageobject.nav.NavMenuObject`
     :class:`webdriver_test_tools.pageobject.nav.NavObject`
     :class:`webdriver_test_tools.pageobject.webpage.WebPageObject`
-
-The following deprecated classes are also imported, but may be removed in
-future versions:
-
-    :class:`webdriver_test_tools.pageobject.nav.CollapsibleNavObject`
 """
 
 from .webpage import WebPageObject
 from .nav import (
-    NavLinkObject, NavMenuObject, NavObject, CollapsibleNavObject
+    NavLinkObject, NavMenuObject, NavObject
 )
 from .form import FormObject, InputObject
 from .modal import ModalObject

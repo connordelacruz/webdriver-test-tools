@@ -13,16 +13,18 @@ def add_run_subparser(subparsers, config_module=None, parents=[],
                       formatter_class=RawTextHelpFormatter):
     """Add subparser for the ``<test_package> run`` command
 
-    :param subparsers: ``argparse._SubParsersAction`` object for the test package ArgumentParser (i.e. the object
-        returned by the ``add_subparsers()`` method)
-    :param config_module: (Optional) The module object for ``<test_project>.config``.
-        Will use :mod:`webdriver_test_tools.config` if not specified
-        if unspecified
+    :param subparsers: ``argparse._SubParsersAction`` object for the test
+        package ArgumentParser (i.e. the object returned by the
+        ``add_subparsers()`` method)
+    :param config_module: (Optional) The module object for
+        ``<test_project>.config``.  Will use :mod:`webdriver_test_tools.config`
+        if not specified if unspecified
     :param parents: (Default: ``[]``) Parent parsers for the run subparser
-    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class to use for the ``formatter_class``
-        parameter
+    :param formatter_class: (Default: ``argparse.RawTextHelpFormatter``) Class
+        to use for the ``formatter_class`` parameter
 
-    :return: ``argparse.ArgumentParser`` object for the newly added ``run`` subparser
+    :return: ``argparse.ArgumentParser`` object for the newly added ``run``
+        subparser
     """
     # Get browser config classes
     browser_config, browserstack_config = get_browser_config_classes(config_module)
@@ -82,15 +84,16 @@ def add_run_subparser(subparsers, config_module=None, parents=[],
 def _format_browser_choices(browser_config, browserstack_config):
     """Format the help string for browser choices
 
-    If BrowserStack is disabled or doesn't have any browsers enabled that aren't also in
-    the local browser config, output string will have the following format:
+    If BrowserStack is disabled or doesn't have any browsers enabled that
+    aren't also in the local browser config, output string will have the
+    following format:
 
     .. code:: python
 
         '\\nOptions: {browser0,browser1}'
 
-    If BrowserStack is enabled and there are different browsers enabled for local and
-    BrowserStack, output string will have the following format:
+    If BrowserStack is enabled and there are different browsers enabled for
+    local and BrowserStack, output string will have the following format:
 
     .. code:: python
 
@@ -126,9 +129,11 @@ def _format_browser_choices(browser_config, browserstack_config):
 
 
 def _format_headless_browsers(browser_config):
-    """Format the help string for compatible browsers in ``--headless`` argument help string
+    """Format the help string for compatible browsers in ``--headless``
+    argument help string
 
-    :param browser_config: :class:`BrowserConfig <webdriver_test_tools.config.browser.BrowserConfig>` class
+    :param browser_config: :class:`BrowserConfig
+    <webdriver_test_tools.config.browser.BrowserConfig>` class
 
     :return: Formatted help string for browser options
     """
@@ -141,8 +146,8 @@ def _format_headless_browsers(browser_config):
 
 
 def _browser_list_string(browser_names):
-    """Takes a list of browser names and returns a string representation in the format
-    '{browser0,browser1,browser2}'
+    """Takes a list of browser names and returns a string representation in the
+    format '{browser0,browser1,browser2}'
 
     :param browser_names: List of browser names
 
@@ -154,7 +159,8 @@ def _browser_list_string(browser_names):
 # Config module helper functions
 
 def get_browser_config_classes(config_module):
-    """Get the ``BrowserConfig`` and ``BrowserStackConfig`` classes from a project.
+    """Get the ``BrowserConfig`` and ``BrowserStackConfig`` classes from a
+    project.
 
     :param config_module: The module object for ``<test_project>.config``
 
@@ -218,19 +224,19 @@ def run_tests(tests_module, config_module,
     :param tests_module: The module object for ``<test_project>.tests``
     :param config_module: The module object for ``<test_project>.config`` or
         :mod:`webdriver_test_tools.config` if not specified
-    :param browser_classes: (Optional) List of browser test classes from parsed arg
-        for ``--browser`` command line argument
-    :param test_class_map: (Optional) Result of passing parsed arg for ``--test``
-        command line argument to :func:`parse_test_names()`
-    :param skip_class_map: (Optional) Result of passing parsed arg for ``--skip``
-        command line argument to :func:`parse_test_names()`
-    :param test_module_names: (Optional) Parsed arg for ``--module`` command line
-        argument
-    :param browserstack: (Default = False) If True, generated test cases should run on
-        BrowserStack
-    :param headless: (Default = False) If True, configure driver to run tests in a
-        headless browser. Tests will only be generated for drivers that support
-        running headless browsers
+    :param browser_classes: (Optional) List of browser test classes from parsed
+        arg for ``--browser`` command line argument
+    :param test_class_map: (Optional) Result of passing parsed arg for
+        ``--test`` command line argument to :func:`parse_test_names()`
+    :param skip_class_map: (Optional) Result of passing parsed arg for
+        ``--skip`` command line argument to :func:`parse_test_names()`
+    :param test_module_names: (Optional) Parsed arg for ``--module`` command
+        line argument
+    :param browserstack: (Default = False) If True, generated test cases should
+        run on BrowserStack
+    :param headless: (Default = False) If True, configure driver to run tests
+        in a headless browser. Tests will only be generated for drivers that
+        support running headless browsers
     :param verbosity: (Optional) Output verbosity level for the test runner.
     """
     # Enable graceful Ctrl+C handling

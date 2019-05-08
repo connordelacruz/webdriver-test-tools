@@ -30,6 +30,8 @@ test cases for Safari, set ``Browsers.SAFARI`` to ``True`` in
         }
 
 
+.. _skip-browsers:
+
 Skipping tests for certain browsers
 ===================================
 

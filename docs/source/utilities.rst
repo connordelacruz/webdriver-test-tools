@@ -233,6 +233,8 @@ Additionally, if the registered user email changes at any point, it can be
 updated in a single place without altering the tests.
 
 
+.. _screenshots:
+
 Screenshots
 ===========
 

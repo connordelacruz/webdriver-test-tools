@@ -2,13 +2,10 @@ from webdriver_test_tools.testcase.browsers import *
 
 
 class BrowserConfig:
-    """Configurations for which browsers to generate tests for
-
-    :var BrowserConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.
-        True enables the browser, False disables it. Defaults to Chrome and
-        Firefox since they're not platform specific
-    """
-
+    """Configurations for which browsers to generate tests for"""
+    #: Dictionary mapping browser names to a boolean. True enables the browser,
+    #: False disables it. Defaults to Chrome and Firefox since they're not
+    #: platform specific
     ENABLED_BROWSERS = {
         Browsers.FIREFOX: True,
         Browsers.CHROME: True,
@@ -22,7 +19,8 @@ class BrowserConfig:
     def get_browser_classes(cls, browser_names=None):
         """Get a list of enabled browser classes
 
-        :param browser_names: (Optional) List of browser names to get classes for
+        :param browser_names: (Optional) List of browser names to get classes
+            for
 
         :return: List of enabled browser test case classes
         """
@@ -53,22 +51,17 @@ class BrowserConfig:
 
 
 class BrowserStackConfig(BrowserConfig):
-    """Global configurations for BrowserStack testing
+    """Global configurations for BrowserStack testing"""
 
-    :var BrowserStackConfig.ENABLE: Set to True to enable BrowserStack testing
-    :var BrowserStackConfig.USERNAME: Account username. Projects will need to override this
-    :var BrowserStackConfig.ACCESS_KEY: Access key. Projects will need to override this
-    :var BrowserStackConfig.BS_CAPABILITIES: BrowserStack test configurations.
-        `Capabilities reference <https://www.browserstack.com/automate/capabilities#>`__
-    :var BrowserStackConfig.ENABLED_BROWSERS: Dictionary mapping browser names to a boolean.
-        True enables the browser, False disables it. Defaults to Chrome and
-        Firefox since they're not platform specific
-    """
-
+    #: Set to True to enable BrowserStack testing
     ENABLE = False
+    #: Account username. Projects will need to override this
     USERNAME = None
+    #: Access key. Projects will need to override this
     ACCESS_KEY = None
-
+    #: BrowserStack test configurations.
+    #: `Capabilities reference
+    #: <https://www.browserstack.com/automate/capabilities>`__
     BS_CAPABILITIES = {
         'project': None,
         'browserstack.video': False,
@@ -80,7 +73,8 @@ class BrowserStackConfig(BrowserConfig):
     def get_command_executor(cls):
         """Returns the command executor URL
 
-        :return: Command executor URL formatted with :attr:`USERNAME` and :attr:`ACCESS_KEY`
+        :return: Command executor URL formatted with :attr:`USERNAME` and
+            :attr:`ACCESS_KEY`
         """
         if not cls.USERNAME or not cls.ACCESS_KEY:
             raise Exception('USERNAME or ACCESS_KEY not set in BrowserStackConfig')
@@ -90,7 +84,8 @@ class BrowserStackConfig(BrowserConfig):
 
     @classmethod
     def add_browserstack_capabilities(cls, desired_capabilities):
-        """Update a desired capabilities dictionary to include items from :attr:`BS_CAPABILITIES`
+        """Update a desired capabilities dictionary to include items from
+        :attr:`BS_CAPABILITIES`
 
         :param desired_capabilities: Desired capabilities dictionary to update
         """
@@ -100,11 +95,12 @@ class BrowserStackConfig(BrowserConfig):
     def update_configurations(cls, **capabilities):
         """Update BrowserStack configurations at runtime
 
-        :param \**capabilities: Keyword arguments for BrowserStack configurations.
-            Possible arguments include:
+        :param \**capabilities: Keyword arguments for BrowserStack
+            configurations. Possible arguments include:
 
                 - ``build`` (string) - Name for the group of tests
-                - ``video`` (boolean) - True to enable video recording, False to disable it
+                - ``video`` (boolean) - True to enable video recording, False
+                  to disable it
         """
         caps_map = {
             'build': 'build',

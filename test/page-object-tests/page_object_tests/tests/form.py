@@ -27,7 +27,6 @@ class FormObjectTestCase(WebDriverTestCase):
         self._test_input_set_methods(form_object)
 
     def _test_input_set_methods(self, form_object):
-        # TODO: doc
         # Subtest message format string
         subtest_msg_fmt = 'Call get_value() and compare with values used in fill_form() [{val_type} value input types]'
         # Single value input types

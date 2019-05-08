@@ -37,7 +37,6 @@ def add_list_subparser(subparsers, parents=[],
     )
     # Output Arguments
     group = list_parser.add_argument_group('Output Options')
-    # TODO: better help?
     verbose_help = 'Show class and method docstrings'
     group.add_argument('-v', '--verbose', action='store_true', default=False,
                        help=verbose_help)

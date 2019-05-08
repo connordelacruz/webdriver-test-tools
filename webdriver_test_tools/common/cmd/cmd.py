@@ -1,9 +1,4 @@
-"""Functions for common command line formatting and procedures.
-
-:var cmd.INDENT: Constant for terminal indentation
-:var cmd.COLORS: Color/formatting functions for different types of output
-"""
-# TODO: rename to something less confusing than cmd.cmd
+"""Functions for common command line formatting and procedures."""
 
 import os
 import re
@@ -13,11 +8,11 @@ from blessings import Terminal
 # Formatting
 
 _term = Terminal()
-
-# Prepend to input prompts
+#: Constant for string prepended to input prompts
 PROMPT_PREFIX = '> '
+#: Constant for string used for terminal indentation
 INDENT = ' ' * 3
-
+#: Color/formatting functions for different types of output
 COLORS = {
     None: str,
     'error': _term.bold_red,
@@ -119,7 +114,6 @@ def validate_nonempty(text):
     return text
 
 
-# TODO: rename to avoid confusion?
 def validate_choice(choices, shorthand_choices={}, error_msg=None):
     """Returns a validation function for input with specific choice options
 

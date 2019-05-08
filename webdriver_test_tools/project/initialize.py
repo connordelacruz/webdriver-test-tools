@@ -14,8 +14,8 @@ from webdriver_test_tools.project import templates
 def create_setup_file(target_path, context):
     """Creates setup.py for test project
 
-    :param target_path: The path to the outer directory where the package directory is
-        contained
+    :param target_path: The path to the outer directory where the package
+        directory is contained
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
@@ -26,8 +26,8 @@ def create_setup_file(target_path, context):
 def create_readme(target_path, context):
     """Create README.rst for test project
 
-    :param target_path: The path to the outer directory where the package directory is
-        contained
+    :param target_path: The path to the outer directory where the package
+        directory is contained
     :param context: Jinja context used to render template
     """
     target_path = os.path.abspath(target_path)
@@ -38,8 +38,8 @@ def create_readme(target_path, context):
 def create_gitignore(target_path):
     """Create .gitignore file at the root of the test project
 
-    :param target_path: The path to the outer directory where the package directory is
-        contained
+    :param target_path: The path to the outer directory where the package
+        directory is contained
     """
     target_path = os.path.abspath(target_path)
     source_path = templates.project_root.get_path()
@@ -49,7 +49,8 @@ def create_gitignore(target_path):
 def create_package_directory(target_path, package_name):
     """Creates package directory for test project
 
-    :param target_path: The path to the outer directory where initialize was called
+    :param target_path: The path to the outer directory where initialize was
+        called
     :param package_name: The desired name of the package
 
     :return: Path to created package directory
@@ -94,8 +95,8 @@ def create_output_directories(target_path, gitignore_files=True):
     """Creates log/ and screenshot/ directories and their .gitignore files
 
     :param target_path: The path to the test package directory
-    :param gitignore_files: (Default = True) Copy template .gitignore files to log/
-        and screenshot/ directories if True
+    :param gitignore_files: (Default = True) Copy template .gitignore files to
+        log/ and screenshot/ directories if True
     """
     target_path = os.path.abspath(target_path)
     source_path = templates.log.get_path()
@@ -147,8 +148,8 @@ def create_config_files(target_path, context):
 def create_init(target_path):
     """Create an empty __init__.py file in the target path
 
-    :param target_path: The path to the directory that will contain the new __init__.py
-        file
+    :param target_path: The path to the directory that will contain the new
+        __init__.py file
     """
     # "Touch" __init__.py to create an empty file
     init_path = os.path.join(target_path, '__init__.py')
@@ -159,8 +160,8 @@ def generate_context(test_package, project_title=None, version_badge=True):
     """Returns a jinja context to use for rendering templates
 
     :param test_package: Name of the python test package
-    :param project_title: (Default = test_package) Human-readable title for the test
-        project. Defaults to the value of test_package if not provided
+    :param project_title: (Default = test_package) Human-readable title for the
+        test project. Defaults to the value of test_package if not provided
     :param version_badge: (Default = True) Include "generated using
         webdriver_test_tools <version>" badge on README if True
 
@@ -179,7 +180,8 @@ def generate_context(test_package, project_title=None, version_badge=True):
     return context
 
 
-def initialize(target_path, package_name, project_title, gitignore_files=True, readme_file=True):
+def initialize(target_path, package_name, project_title,
+               gitignore_files=True, readme_file=True):
     """Initializes new project package
 
     This method assumes parameters have been validated. :func:`main()

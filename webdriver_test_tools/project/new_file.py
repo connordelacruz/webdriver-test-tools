@@ -121,7 +121,8 @@ def new_file(test_package_path, test_package, file_type, module_name, class_name
                          overwrite=force)
 
 
-def _new_page(test_package_path, context, prototype='', use_yaml=True, overwrite=False):
+def _new_page(test_package_path, context,
+              prototype='', use_yaml=True, overwrite=False):
     """Create a new page object file
 
     :param test_package_path: The root directory of the test package
