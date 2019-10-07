@@ -250,8 +250,12 @@ def run_tests(tests_module, config_module,
     )
     # Get configured test runner and run suite
     test_runner = config_module.TestSuiteConfig.get_runner(verbosity=verbosity)
-    test_runner.run(browser_test_suite)
+    # Capture result for exit code
+    result = test_runner.run(browser_test_suite)
     # Link to BrowserStack automation dashboard if applicable
     if browserstack:
         print('', 'See BrowserStack Automation Dashboard for Detailed Results:',
               'https://automate.browserstack.com', sep='\n')
+    # Propagate exit code
+    # TODO return code and have calling method handle?
+    exit(0 if result.wasSuccessful() else 1)
