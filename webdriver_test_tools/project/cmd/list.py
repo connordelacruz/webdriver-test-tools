@@ -50,10 +50,15 @@ def parse_list_args(tests_module, args):
 
     :param tests_module: The module object for ``<test_project>.tests``
     :param args: The namespace returned by parser.parse_args()
+
+    :return: Exit code, 0 if no exceptions were encountered, 1 otherwise
     """
+    # TODO is there ever an event where exit_code would not be 0? Update doc either way
+    exit_code = 0
     kwargs = parse_test_args(args)
     kwargs['verbose'] = args.verbose
     list_tests(tests_module, **kwargs)
+    return exit_code
 
 
 def list_tests(tests_module,

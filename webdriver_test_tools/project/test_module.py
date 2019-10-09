@@ -1,5 +1,6 @@
 """Functions for test project ``__main__`` modules"""
 
+import sys
 from argparse import RawTextHelpFormatter
 
 from webdriver_test_tools.common import cmd
@@ -9,6 +10,7 @@ from webdriver_test_tools.project.cmd.list import add_list_subparser, parse_list
 from webdriver_test_tools.project.cmd.new import add_new_subparser, parse_new_args
 
 
+# TODO EXIT CODES; have all cmd functions return one, call exit here
 def main(tests_module, config_module=None, package_name=None):
     """Function to call in test modules ``if __name__ == '__main__'`` at run
     time
@@ -25,14 +27,18 @@ def main(tests_module, config_module=None, package_name=None):
     # Set run as the default command parser
     parser.set_default_subparser('run')
     args = parser.parse_args()
+    # Default to 0 exit code
+    exit_code = 0
     if args.command == 'list':
-        parse_list_args(tests_module, args)
+        exit_code = parse_list_args(tests_module, args)
     elif args.command == 'new':
-        parse_new_args(package_name, tests_module, args)
+        exit_code = parse_new_args(package_name, tests_module, args)
     elif args.command == 'run' or args.command is None:
-        parse_run_args(tests_module, config_module, args)
+        exit_code = parse_run_args(tests_module, config_module, args)
     else:
+        exit_code = 1
         parser.print_help()
+    sys.exit(exit_code)
 
 
 # Argument Parser

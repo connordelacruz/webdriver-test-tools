@@ -106,6 +106,7 @@ def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_c
 
     :return: List of test classes
     """
+    # TODO RETURN/RAISE EXIT CODE instead of handling it here
     try:
         return test_loader.load_project_tests(
             tests_module, test_module_names, test_class_map, skip_class_map
@@ -113,6 +114,6 @@ def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_c
     except test_loader.TestCasesNotFoundException as e:
         print('')
         cmd.print_exception(e)
-        sys.exit()
+        sys.exit(1)
 
 

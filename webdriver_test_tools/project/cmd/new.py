@@ -322,14 +322,19 @@ def parse_new_args(package_name, tests_module, args):
     :param tests_module: The module object for ``<test_project>.tests``. Used
         to determine the filepath of the package
     :param args: The namespace returned by parser.parse_args()
+
+    :return: Exit code, 0 if files were created without exceptions, 1 otherwise
     """
+    exit_code = 0
     # Get package path based on tests_module path
     test_package_path = os.path.dirname(os.path.dirname(tests_module.__file__))
     try:
         main(test_package_path, package_name, args)
     except Exception as e:
+        exit_code = 1
         print('')
         cmd.print_exception(e)
+    return exit_code
 
 
 # User Input Prompts
