@@ -3,7 +3,8 @@ import unittest
 from argparse import RawTextHelpFormatter
 
 from webdriver_test_tools.common import cmd
-from webdriver_test_tools.project.cmd.common import parse_test_args, load_tests
+from webdriver_test_tools.project.test_loader import load_project_tests
+from webdriver_test_tools.project.cmd.common import parse_test_args
 
 
 # Tree characters (for verbose output)
@@ -81,7 +82,7 @@ def list_tests(tests_module,
     :param verbose: (Default = False) If True, print class and test method
         docstrings
     """
-    tests = load_tests(tests_module, test_module_names, test_class_map, skip_class_map)
+    tests = load_project_tests(tests_module, test_module_names, test_class_map, skip_class_map)
     module_map = _module_map(tests, tests_module)
     for module, test_list in module_map.items():
         _print_module(module, test_list, verbose=verbose)

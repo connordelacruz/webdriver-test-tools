@@ -18,6 +18,10 @@ def main(tests_module, config_module=None, package_name=None):
     exception is caught during execution, the exit code is set to 1 and the
     error message is printed out.
 
+    If the command is not recognized, but somehow execution continues after
+    ``parser.parse_args()`` is called, a help message will be printed and the
+    exit code will be set to 1.
+
     :param tests_module: The module object for ``<test_project>.tests``
     :param config_module: (Optional) The module object for
         ``<test_project>.config``. Will use :mod:`webdriver_test_tools.config`
@@ -40,6 +44,8 @@ def main(tests_module, config_module=None, package_name=None):
         elif args.command == 'run' or args.command is None:
             exit_code = parse_run_args(tests_module, config_module, args)
         else:
+            # Technically this should never be hit, as parse_args() stops
+            # execution if the command is not recognized
             exit_code = 1
             parser.print_help()
     except Exception as e:

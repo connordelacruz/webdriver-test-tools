@@ -85,30 +85,4 @@ def parse_test_args(args):
     }
 
 
-# Test Loading Functions
-
-# TODO: Now that test_module.main() handles exception printing, this isn't really necessary as it just wraps test_loader.load_project_tests() with the same method signature
-def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
-    """Return a list of test classes from a project based on the --module,
-    --test, and --skip arguments
-
-    If a :exc:`TestCasesNotFoundException
-    <webdriver_test_tools.projects.test_loader.TestCasesNotFoundException>` is
-    raised when trying to load tests, the error message will be printed and
-    :func:`sys.exit` will be called, ending execution
-
-    :param tests_module: The module object for <test_project>.tests
-    :param test_module_names: (Optional) Parsed arg for --module command line
-        argument
-    :param test_class_map: (Optional) Result of passing parsed arg for --test
-        command line argument to parse_test_names()
-    :param skip_class_map: (Optional) Result of passing parsed arg for --skip
-        command line argument to parse_test_names()
-
-    :return: List of test classes
-    """
-    return test_loader.load_project_tests(
-        tests_module, test_module_names, test_class_map, skip_class_map
-    )
-
 

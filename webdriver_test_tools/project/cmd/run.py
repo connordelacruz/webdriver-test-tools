@@ -5,7 +5,8 @@ from argparse import RawTextHelpFormatter
 from webdriver_test_tools import config
 from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project import test_factory
-from webdriver_test_tools.project.cmd.common import parse_test_args, load_tests
+from webdriver_test_tools.project.test_loader import load_project_tests
+from webdriver_test_tools.project.cmd.common import parse_test_args
 from webdriver_test_tools.testcase import Browsers
 
 
@@ -247,7 +248,7 @@ def run_tests(tests_module, config_module,
     # Enable graceful Ctrl+C handling
     unittest.installHandler()
     # Load WebDriverTestCase subclasses from project tests
-    tests = load_tests(tests_module, test_module_names, test_class_map, skip_class_map)
+    tests = load_project_tests(tests_module, test_module_names, test_class_map, skip_class_map)
     # Generate browser test cases from the loaded WebDriverTestCase classes
     browser_test_suite = test_factory.generate_browser_test_suite(
         tests, browser_classes, test_class_map, skip_class_map,
