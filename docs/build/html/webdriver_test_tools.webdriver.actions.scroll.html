@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.webdriver.support package" href="webdriver_test_tools.webdriver.support.html" />
     <link rel="prev" title="webdriver_test_tools.webdriver.actions.form module" href="webdriver_test_tools.webdriver.actions.form.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -185,112 +186,92 @@
 <p>Functions for scrolling elements into view</p>
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.actions.scroll.into_view">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">into_view</code><span class="sig-paren">(</span><em>driver</em>, <em>element</em>, <em>align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#into_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.into_view" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="sig-name descname">into_view</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">element</em>, <em class="sig-param">align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#into_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.into_view" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scroll to an element</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>element</strong> – WebElement to scroll to</li>
-<li><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable
-parent if True, aligns it to the bottom if False</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>element</strong> – WebElement to scroll to</p></li>
+<li><p><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable
+parent if True, aligns it to the bottom if False</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.actions.scroll.to_and_click">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">to_and_click</code><span class="sig-paren">(</span><em>driver</em>, <em>element</em>, <em>align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#to_and_click"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.to_and_click" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="sig-name descname">to_and_click</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">element</em>, <em class="sig-param">align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#to_and_click"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.to_and_click" title="Permalink to this definition">¶</a></dt>
 <dd><p>Short hand function for scrolling an element into view and clicking it</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>element</strong> – WebElement to scroll to and click on</li>
-<li><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable
-parent if True, aligns it to the bottom if False</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>element</strong> – WebElement to scroll to and click on</p></li>
+<li><p><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable
+parent if True, aligns it to the bottom if False</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.actions.scroll.to_position">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">to_position</code><span class="sig-paren">(</span><em>driver</em>, <em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#to_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.to_position" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="sig-name descname">to_position</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#to_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.to_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scroll window to the specified x,y coordinates</p>
 <p>Executes JavaScript window.scroll(x,y)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>x</strong> – Horizontal scroll coordinate</li>
-<li><strong>y</strong> – Vertical scroll coordinate</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>x</strong> – Horizontal scroll coordinate</p></li>
+<li><p><strong>y</strong> – Vertical scroll coordinate</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.actions.scroll.to_element">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">to_element</code><span class="sig-paren">(</span><em>driver</em>, <em>element</em>, <em>offset=0</em>, <em>align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#to_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.to_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="sig-name descname">to_element</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">element</em>, <em class="sig-param">offset=0</em>, <em class="sig-param">align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#to_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.to_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Vertically scroll to an element with an optional offset</p>
-<dl class="docutils">
-<dt>When align_to_top=True, the scroll y coordinate is calculated:</dt>
-<dd>element.offsetTop - offset</dd>
-<dt>When align_to_top=False, the scroll y coordinate is calculated:</dt>
-<dd>element.offsetTop + element.offsetHeight - window.innerHeight + offset</dd>
+<dl class="simple">
+<dt>When align_to_top=True, the scroll y coordinate is calculated:</dt><dd><p>element.offsetTop - offset</p>
+</dd>
+<dt>When align_to_top=False, the scroll y coordinate is calculated:</dt><dd><p>element.offsetTop + element.offsetHeight - window.innerHeight + offset</p>
+</dd>
 </dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>element</strong> – WebElement object for the target element</li>
-<li><strong>offset</strong> – (Default = 0) Scroll offset</li>
-<li><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable
-parent if True, aligns it to the bottom if False</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>element</strong> – WebElement object for the target element</p></li>
+<li><p><strong>offset</strong> – (Default = 0) Scroll offset</p></li>
+<li><p><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable
+parent if True, aligns it to the bottom if False</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.actions.scroll.into_view_fixed_nav">
-<code class="descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="descname">into_view_fixed_nav</code><span class="sig-paren">(</span><em>driver</em>, <em>target_element</em>, <em>fixed_element</em>, <em>additional_offset=0</em>, <em>align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#into_view_fixed_nav"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.into_view_fixed_nav" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.actions.scroll.</code><code class="sig-name descname">into_view_fixed_nav</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">target_element</em>, <em class="sig-param">fixed_element</em>, <em class="sig-param">additional_offset=0</em>, <em class="sig-param">align_to_top=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/actions/scroll.html#into_view_fixed_nav"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.actions.scroll.into_view_fixed_nav" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scroll an element into view offset by the height of a fixed element so
 it’s not obstructed</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>target_element</strong> – WebElement object for the target element</li>
-<li><strong>fixed_element</strong> – WebElement object for the fixed nav</li>
-<li><strong>additional_offset</strong> – (Default = 0) Additional offset from the top</li>
-<li><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable
-parent if True, aligns it to the bottom if False</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>target_element</strong> – WebElement object for the target element</p></li>
+<li><p><strong>fixed_element</strong> – WebElement object for the fixed nav</p></li>
+<li><p><strong>additional_offset</strong> – (Default = 0) Additional offset from the top</p></li>
+<li><p><strong>align_to_top</strong> – (Default = True) Aligns element to top of scrollable
+parent if True, aligns it to the bottom if False</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -306,7 +287,7 @@ parent if True, aligns it to the bottom if False</li>
         <a href="webdriver_test_tools.webdriver.support.html" class="btn btn-neutral float-right" title="webdriver_test_tools.webdriver.support package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.webdriver.actions.form.html" class="btn btn-neutral" title="webdriver_test_tools.webdriver.actions.form module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.webdriver.actions.form.html" class="btn btn-neutral float-left" title="webdriver_test_tools.webdriver.actions.form module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -315,7 +296,7 @@ parent if True, aligns it to the bottom if False</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -332,38 +313,16 @@ parent if True, aligns it to the bottom if False</li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

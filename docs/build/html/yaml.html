@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="BrowserStack Support" href="browserstack.html" />
     <link rel="prev" title="Page Object Prototypes Overview" href="prototypes.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -224,67 +225,82 @@
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#page-object-prototype-syntax" id="id32">Page Object Prototype Syntax</a><ul>
-<li><a class="reference internal" href="#overview" id="id33">Overview</a><ul>
-<li><a class="reference internal" href="#supported-prototype-classes" id="id34">Supported Prototype Classes</a></li>
-<li><a class="reference internal" href="#configure-defaults" id="id35">Configure Defaults</a></li>
-<li><a class="reference internal" href="#override-default-setting" id="id36">Override Default Setting</a></li>
+<li><p><a class="reference internal" href="#page-object-prototype-syntax" id="id32">Page Object Prototype Syntax</a></p>
+<ul>
+<li><p><a class="reference internal" href="#overview" id="id33">Overview</a></p>
+<ul>
+<li><p><a class="reference internal" href="#supported-prototype-classes" id="id34">Supported Prototype Classes</a></p></li>
+<li><p><a class="reference internal" href="#configure-defaults" id="id35">Configure Defaults</a></p></li>
+<li><p><a class="reference internal" href="#override-default-setting" id="id36">Override Default Setting</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#general-syntax" id="id37">General Syntax</a><ul>
-<li><a class="reference internal" href="#locator-dictionaries" id="id38">Locator Dictionaries</a></li>
-<li><a class="reference internal" href="#relative-url-dictionaries" id="id39">Relative URL Dictionaries</a></li>
+<li><p><a class="reference internal" href="#general-syntax" id="id37">General Syntax</a></p>
+<ul>
+<li><p><a class="reference internal" href="#locator-dictionaries" id="id38">Locator Dictionaries</a></p></li>
+<li><p><a class="reference internal" href="#relative-url-dictionaries" id="id39">Relative URL Dictionaries</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#formobjects" id="id40">FormObjects</a><ul>
-<li><a class="reference internal" href="#syntax" id="id41">Syntax</a><ul>
-<li><a class="reference internal" href="#forms" id="id42">Forms</a></li>
-<li><a class="reference internal" href="#inputs" id="id43">Inputs</a></li>
+<li><p><a class="reference internal" href="#formobjects" id="id40">FormObjects</a></p>
+<ul>
+<li><p><a class="reference internal" href="#syntax" id="id41">Syntax</a></p>
+<ul>
+<li><p><a class="reference internal" href="#forms" id="id42">Forms</a></p></li>
+<li><p><a class="reference internal" href="#inputs" id="id43">Inputs</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#example" id="id44">Example</a><ul>
-<li><a class="reference internal" href="#with-yaml" id="id45">With YAML</a></li>
-<li><a class="reference internal" href="#without-yaml" id="id46">Without YAML</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#modalobjects" id="id47">ModalObjects</a><ul>
-<li><a class="reference internal" href="#id1" id="id48">Syntax</a></li>
-<li><a class="reference internal" href="#id2" id="id49">Example</a><ul>
-<li><a class="reference internal" href="#id3" id="id50">With YAML</a></li>
-<li><a class="reference internal" href="#id4" id="id51">Without YAML</a></li>
+<li><p><a class="reference internal" href="#example" id="id44">Example</a></p>
+<ul>
+<li><p><a class="reference internal" href="#with-yaml" id="id45">With YAML</a></p></li>
+<li><p><a class="reference internal" href="#without-yaml" id="id46">Without YAML</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#navobjects" id="id52">NavObjects</a><ul>
-<li><a class="reference internal" href="#id5" id="id53">Syntax</a><ul>
-<li><a class="reference internal" href="#navbars" id="id54">Navbars</a></li>
-<li><a class="reference internal" href="#links" id="id55">Links</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id6" id="id56">Example</a><ul>
-<li><a class="reference internal" href="#id7" id="id57">With YAML</a><ul>
-<li><a class="reference internal" href="#regular-navbar" id="id58">Regular Navbar</a></li>
-<li><a class="reference internal" href="#collapsible-navbar" id="id59">Collapsible Navbar</a></li>
-<li><a class="reference internal" href="#collapsible-navbar-reusing-yaml-from-non-collapsible" id="id60">Collapsible Navbar (Reusing YAML from Non-Collapsible)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id8" id="id61">Without YAML</a><ul>
-<li><a class="reference internal" href="#id9" id="id62">Regular Navbar</a></li>
-<li><a class="reference internal" href="#id10" id="id63">Collapsible Navbar</a></li>
+<li><p><a class="reference internal" href="#modalobjects" id="id47">ModalObjects</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id48">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id49">Example</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id50">With YAML</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id51">Without YAML</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#navobjects" id="id52">NavObjects</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id53">Syntax</a></p>
+<ul>
+<li><p><a class="reference internal" href="#navbars" id="id54">Navbars</a></p></li>
+<li><p><a class="reference internal" href="#links" id="id55">Links</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#webpageobjects" id="id64">WebPageObjects</a><ul>
-<li><a class="reference internal" href="#id11" id="id65">Syntax</a></li>
-<li><a class="reference internal" href="#id12" id="id66">Example</a><ul>
-<li><a class="reference internal" href="#id13" id="id67">With YAML</a></li>
-<li><a class="reference internal" href="#id14" id="id68">Without YAML</a></li>
+<li><p><a class="reference internal" href="#id6" id="id56">Example</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id7" id="id57">With YAML</a></p>
+<ul>
+<li><p><a class="reference internal" href="#regular-navbar" id="id58">Regular Navbar</a></p></li>
+<li><p><a class="reference internal" href="#collapsible-navbar" id="id59">Collapsible Navbar</a></p></li>
+<li><p><a class="reference internal" href="#collapsible-navbar-reusing-yaml-from-non-collapsible" id="id60">Collapsible Navbar (Reusing YAML from Non-Collapsible)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id8" id="id61">Without YAML</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id9" id="id62">Regular Navbar</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id63">Collapsible Navbar</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#webpageobjects" id="id64">WebPageObjects</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id11" id="id65">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id66">Example</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id13" id="id67">With YAML</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id68">Without YAML</a></p></li>
 </ul>
 </li>
 </ul>
@@ -308,10 +324,10 @@ syntax in general, see <a class="reference external" href="https://docs.ansible.
 <p>The following prototype classes support YAML parsing:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject" title="webdriver_test_tools.pageobject.form.FormObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">FormObject</span></code></a></li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject" title="webdriver_test_tools.pageobject.modal.ModalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalObject</span></code></a></li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code></a></li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject" title="webdriver_test_tools.pageobject.webpage.WebPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebPageObject</span></code></a></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject" title="webdriver_test_tools.pageobject.form.FormObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">FormObject</span></code></a></p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject" title="webdriver_test_tools.pageobject.modal.ModalObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalObject</span></code></a></p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject" title="webdriver_test_tools.pageobject.nav.NavObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavObject</span></code></a></p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject" title="webdriver_test_tools.pageobject.webpage.WebPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebPageObject</span></code></a></p></li>
 </ul>
 </div></blockquote>
 <p>When initialized, these classes check to see if the <code class="docutils literal notranslate"><span class="pre">YAML_FILE</span></code> attribute is
@@ -349,29 +365,28 @@ can be used to generate <code class="docutils literal notranslate"><span class="
 required keys:</p>
 <blockquote>
 <div><ul>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">by</span></code>: Locator strategy to use when finding the element. Use variable
+<li><p><code class="docutils literal notranslate"><span class="pre">by</span></code>: Locator strategy to use when finding the element. Use variable
 names of attributes in <code class="docutils literal notranslate"><span class="pre">selenium.webdriver.common.by.By</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">CLASS_NAME</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">CSS_SELECTOR</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">ID</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">LINK_TEXT</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">NAME</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">PARTIAL_LINK_TEXT</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">TAG_NAME</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">XPATH</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CLASS_NAME</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CSS_SELECTOR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ID</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LINK_TEXT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NAME</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PARTIAL_LINK_TEXT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TAG_NAME</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">XPATH</span></code></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">locator</span></code>: Value used to locate element with the specified locator
-strategy</p>
-</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">locator</span></code>: Value used to locate element with the specified locator
+strategy</p></li>
 </ul>
 </div></blockquote>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">For non-YAML page objects, any instances of a locator dictionary can be
+<p class="admonition-title">Note</p>
+<p>For non-YAML page objects, any instances of a locator dictionary can be
 replaced with a Python locator tuple i.e. <code class="docutils literal notranslate"><span class="pre">(By.&lt;STRATEGY&gt;,</span> <span class="pre">'&lt;locator&gt;')</span></code></p>
 </div>
 </div>
@@ -381,15 +396,15 @@ replaced with a Python locator tuple i.e. <code class="docutils literal notransl
 specified with dictionaries using the following keys:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">path</span></code>: The path to the page, relative to the <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code> attribute
-specified in <code class="docutils literal notranslate"><span class="pre">relative_to</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">relative_to</span></code>: A valid attribute declared in the project’s <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code>
-class to use as a base URL</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: The path to the page, relative to the <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code> attribute
+specified in <code class="docutils literal notranslate"><span class="pre">relative_to</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relative_to</span></code>: A valid attribute declared in the project’s <code class="docutils literal notranslate"><span class="pre">SiteConfig</span></code>
+class to use as a base URL</p></li>
 </ul>
 </div></blockquote>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Internally, these URL dictionaries are parsed using
+<p class="admonition-title">Note</p>
+<p>Internally, these URL dictionaries are parsed using
 <a class="reference internal" href="webdriver_test_tools.config.site.html#webdriver_test_tools.config.site.SiteConfig.parse_relative_url_dict" title="webdriver_test_tools.config.site.SiteConfig.parse_relative_url_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SiteConfig.parse_relative_url_dict</span></code></a>. If
 the attribute that <code class="docutils literal notranslate"><span class="pre">relative_to</span></code> specifies does not have a trailing ‘/’,
 this method adds one before building the full URL</p>
@@ -407,11 +422,11 @@ YAML representations of the form element using the following syntax.</p>
 <p>Form objects have 3 required keys:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">form_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the
-<code class="docutils literal notranslate"><span class="pre">&lt;form&gt;</span></code> element</li>
-<li><code class="docutils literal notranslate"><span class="pre">submit_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the
-form’s submit button</li>
-<li><code class="docutils literal notranslate"><span class="pre">inputs</span></code>: List of form <a class="reference internal" href="#yaml-inputs"><span class="std std-ref">inputs</span></a></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">form_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the
+<code class="docutils literal notranslate"><span class="pre">&lt;form&gt;</span></code> element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">submit_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the
+form’s submit button</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inputs</span></code>: List of form <a class="reference internal" href="#yaml-inputs"><span class="std std-ref">inputs</span></a></p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -420,20 +435,20 @@ form’s submit button</li>
 <p>The items in the form <code class="docutils literal notranslate"><span class="pre">inputs</span></code> list have the following keys:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">name</span></code>: <strong>(Required)</strong> The <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute of the element. If the
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: <strong>(Required)</strong> The <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute of the element. If the
 element doesn’t have a name attribute, set this to any unique identifier
-(i.e. not used as the <code class="docutils literal notranslate"><span class="pre">name</span></code> value for another input in the form)</li>
-<li><code class="docutils literal notranslate"><span class="pre">input_locator</span></code>: <strong>(Required if element has no</strong> <code class="docutils literal notranslate"><span class="pre">name</span></code> <strong>attribute)</strong>
+(i.e. not used as the <code class="docutils literal notranslate"><span class="pre">name</span></code> value for another input in the form)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_locator</span></code>: <strong>(Required if element has no</strong> <code class="docutils literal notranslate"><span class="pre">name</span></code> <strong>attribute)</strong>
 <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the element. If provided,
-this will be used instead of <code class="docutils literal notranslate"><span class="pre">name</span></code> to find the element</li>
-<li><code class="docutils literal notranslate"><span class="pre">type</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">text</span></code> <em>)</em> The <code class="docutils literal notranslate"><span class="pre">type</span></code> attribute of the input</li>
-<li><code class="docutils literal notranslate"><span class="pre">required</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">true</span></code> <em>)</em> Whether or not the input is required
-to submit the form</li>
-<li><code class="docutils literal notranslate"><span class="pre">options</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">type</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">radio</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <strong>or
+this will be used instead of <code class="docutils literal notranslate"><span class="pre">name</span></code> to find the element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">text</span></code> <em>)</em> The <code class="docutils literal notranslate"><span class="pre">type</span></code> attribute of the input</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">required</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">true</span></code> <em>)</em> Whether or not the input is required
+to submit the form</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">type</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">radio</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <strong>or
 a</strong> <code class="docutils literal notranslate"><span class="pre">checkbox</span></code> <strong>group (i.e. multiple checkboxes with the same name))</strong>
 List of <code class="docutils literal notranslate"><span class="pre">value</span></code> attributes of radio inputs, select options, or
 checkboxes. A dictionary mapping values to labels is also valid (though
-only the map keys will be used, so the labels can be set to anything)</li>
+only the map keys will be used, so the labels can be set to anything)</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -641,10 +656,10 @@ support YAML representations of the modal using the following syntax.</p>
 <p>Modal objects have 2 required keys:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">modal_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the modal
-container element</li>
-<li><code class="docutils literal notranslate"><span class="pre">close_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the modal
-close button</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">modal_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the modal
+container element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">close_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the modal
+close button</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -726,24 +741,24 @@ representations of the nav using the following syntax.</p>
 <p>Navbar objects have the following keys:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">links</span></code>: <strong>(Required)</strong> List of <a class="reference internal" href="#yaml-links"><span class="std std-ref">links</span></a>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">fixed</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">true</span></code> <em>)</em> Whether or not the navbar is fixed to
-the screen</li>
-<li><code class="docutils literal notranslate"><span class="pre">collapsible</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">false</span></code> <em>)</em> Whether or not the navbar is
-collapsible (e.g. for hamburger menus)</li>
-<li><code class="docutils literal notranslate"><span class="pre">menu_locator</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">collapsible</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code> <strong>)</strong>
-<a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the collapsible menu element</li>
-<li><code class="docutils literal notranslate"><span class="pre">expand_button_locator</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">collapsible</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code> <strong>)</strong>
+<li><p><code class="docutils literal notranslate"><span class="pre">links</span></code>: <strong>(Required)</strong> List of <a class="reference internal" href="#yaml-links"><span class="std std-ref">links</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fixed</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">true</span></code> <em>)</em> Whether or not the navbar is fixed to
+the screen</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">collapsible</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">false</span></code> <em>)</em> Whether or not the navbar is
+collapsible (e.g. for hamburger menus)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">menu_locator</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">collapsible</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code> <strong>)</strong>
+<a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the collapsible menu element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expand_button_locator</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">collapsible</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code> <strong>)</strong>
 <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the button that expands the
-menu</li>
-<li><code class="docutils literal notranslate"><span class="pre">collapse_button_locator</span></code> <em>(Optional)</em> Locator for the button that
+menu</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">collapse_button_locator</span></code> <em>(Optional)</em> Locator for the button that
 collapses the menu. Only needed if <code class="docutils literal notranslate"><span class="pre">collapsible</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> and the
-collapse button isn’t the same as the expand button</li>
+collapse button isn’t the same as the expand button</p></li>
 </ul>
 </div></blockquote>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">It’s possible to re-use the YAML from a non-collapsible navbar to create a
+<p class="admonition-title">Note</p>
+<p>It’s possible to re-use the YAML from a non-collapsible navbar to create a
 collapsible variant. This can be useful for responsive navbars that collapse
 on mobile viewports. For an example of how to do this, see the
 <a class="reference internal" href="#collapsible-nav-variant"><span class="std std-ref">Collapsible Navbar (Reusing YAML from Non-Collapsible)</span></a> example.</p>
@@ -754,56 +769,54 @@ on mobile viewports. For an example of how to do this, see the
 <p>The items in the nav <code class="docutils literal notranslate"><span class="pre">links</span></code> list have the following keys:</p>
 <blockquote>
 <div><ul>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">name</span></code>: <strong>(Required)</strong> Name used to refer to this link. Must be unique
-from other links in the same list</p>
-</li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">link_locator</span></code>: <strong>(Required)</strong> <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a>
-for the link element</p>
-</li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">click</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">page</span></code> <em>)</em> One of the following values describing
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: <strong>(Required)</strong> Name used to refer to this link. Must be unique
+from other links in the same list</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">link_locator</span></code>: <strong>(Required)</strong> <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a>
+for the link element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">click</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">page</span></code> <em>)</em> One of the following values describing
 the expected action on click:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">page</span></code>: <em>(Default)</em> Go to another page</li>
-<li><code class="docutils literal notranslate"><span class="pre">section</span></code>: Jump to a section in the current page</li>
-<li><code class="docutils literal notranslate"><span class="pre">menu</span></code>: Toggle a dropdown menu</li>
-<li><code class="docutils literal notranslate"><span class="pre">none</span></code>: No expected action</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">page</span></code>: <em>(Default)</em> Go to another page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">section</span></code>: Jump to a section in the current page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">menu</span></code>: Toggle a dropdown menu</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">none</span></code>: No expected action</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">hover</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">none</span></code> <em>)</em> One of the following values describing
+<li><p><code class="docutils literal notranslate"><span class="pre">hover</span></code>: <em>(Default:</em> <code class="docutils literal notranslate"><span class="pre">none</span></code> <em>)</em> One of the following values describing
 the expected action on hover:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">none</span></code>: <em>(Default)</em> No expected action</li>
-<li><code class="docutils literal notranslate"><span class="pre">menu</span></code>: Show dropdown menu</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">none</span></code>: <em>(Default)</em> No expected action</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">menu</span></code>: Show dropdown menu</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">target</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">click</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">page</span></code> <strong>or</strong> <code class="docutils literal notranslate"><span class="pre">section</span></code>
+<li><p><code class="docutils literal notranslate"><span class="pre">target</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">click</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">page</span></code> <strong>or</strong> <code class="docutils literal notranslate"><span class="pre">section</span></code>
 <strong>)</strong> The link target, formatted in one of the following ways (depending on
 <code class="docutils literal notranslate"><span class="pre">click</span></code> type):</p>
 <blockquote>
 <div><ul class="simple">
-<li>(<code class="docutils literal notranslate"><span class="pre">click:</span> <span class="pre">page</span></code>) The full URL to the target page</li>
-<li>(<code class="docutils literal notranslate"><span class="pre">click:</span> <span class="pre">page</span></code>) <a class="reference internal" href="#yaml-relative-urls"><span class="std std-ref">Relative URL dictionary</span></a>
-with the path to the target page</li>
-<li>(<code class="docutils literal notranslate"><span class="pre">click:</span> <span class="pre">section</span></code>) The <code class="docutils literal notranslate"><span class="pre">id</span></code> attribute of the section element (i.e.
-the link’s <code class="docutils literal notranslate"><span class="pre">href</span></code> attribute)</li>
+<li><p>(<code class="docutils literal notranslate"><span class="pre">click:</span> <span class="pre">page</span></code>) The full URL to the target page</p></li>
+<li><p>(<code class="docutils literal notranslate"><span class="pre">click:</span> <span class="pre">page</span></code>) <a class="reference internal" href="#yaml-relative-urls"><span class="std std-ref">Relative URL dictionary</span></a>
+with the path to the target page</p></li>
+<li><p>(<code class="docutils literal notranslate"><span class="pre">click:</span> <span class="pre">section</span></code>) The <code class="docutils literal notranslate"><span class="pre">id</span></code> attribute of the section element (i.e.
+the link’s <code class="docutils literal notranslate"><span class="pre">href</span></code> attribute)</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
 <ul id="yaml-nav-menus">
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">menu</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">click</span></code> <strong>or</strong> <code class="docutils literal notranslate"><span class="pre">hover</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">menu</span></code> <strong>)</strong>
+<li><p><code class="docutils literal notranslate"><span class="pre">menu</span></code>: <strong>(Required if</strong> <code class="docutils literal notranslate"><span class="pre">click</span></code> <strong>or</strong> <code class="docutils literal notranslate"><span class="pre">hover</span></code> <strong>is</strong> <code class="docutils literal notranslate"><span class="pre">menu</span></code> <strong>)</strong>
 A dictionary representing the menu that appears on click or hover. Contains
 the following <strong>required</strong> keys:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">menu_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the menu
-element</li>
-<li><code class="docutils literal notranslate"><span class="pre">links</span></code>: List of <a class="reference internal" href="#yaml-links"><span class="std std-ref">links</span></a>. Same syntax as the nav
-object links list</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">menu_locator</span></code>: <a class="reference internal" href="#yaml-locators"><span class="std std-ref">Locator dictionary</span></a> for the menu
+element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">links</span></code>: List of <a class="reference internal" href="#yaml-links"><span class="std std-ref">links</span></a>. Same syntax as the nav
+object links list</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -1212,8 +1225,8 @@ support YAML representations of the modal using the following syntax.</p>
 <p>Web page objects have one required key <code class="docutils literal notranslate"><span class="pre">url</span></code>, which can be set to either the
 full URL to the page or a <a class="reference internal" href="#yaml-relative-urls"><span class="std std-ref">relative URL dictionary</span></a></p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If ‘url’ is set to just the full URL to the page, the attribute
+<p class="admonition-title">Note</p>
+<p>If ‘url’ is set to just the full URL to the page, the attribute
 <code class="docutils literal notranslate"><span class="pre">PAGE_FILENAME</span></code> will not be set in the <code class="docutils literal notranslate"><span class="pre">WebPageObject</span></code>. If it is set to a
 dictionary, <code class="docutils literal notranslate"><span class="pre">PAGE_FILENAME</span></code> will be set to the value of ‘path’</p>
 </div>
@@ -1315,7 +1328,7 @@ dictionary, <code class="docutils literal notranslate"><span class="pre">PAGE_FI
         <a href="browserstack.html" class="btn btn-neutral float-right" title="BrowserStack Support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="prototypes.html" class="btn btn-neutral" title="Page Object Prototypes Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="prototypes.html" class="btn btn-neutral float-left" title="Page Object Prototypes Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1324,7 +1337,7 @@ dictionary, <code class="docutils literal notranslate"><span class="pre">PAGE_FI
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -1341,38 +1354,16 @@ dictionary, <code class="docutils literal notranslate"><span class="pre">PAGE_FI
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

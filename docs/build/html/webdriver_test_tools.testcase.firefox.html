@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.testcase.ie module" href="webdriver_test_tools.testcase.ie.html" />
     <link rel="prev" title="webdriver_test_tools.testcase.edge module" href="webdriver_test_tools.testcase.edge.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -183,32 +184,33 @@
 <span id="webdriver-test-tools-testcase-firefox-module"></span><h1>webdriver_test_tools.testcase.firefox module<a class="headerlink" href="#module-webdriver_test_tools.testcase.firefox" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="webdriver_test_tools.testcase.firefox.FirefoxTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.firefox.</code><code class="descname">FirefoxTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/firefox.html#FirefoxTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.firefox.FirefoxTestCase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.testcase.firefox.</code><code class="sig-name descname">FirefoxTestCase</code><span class="sig-paren">(</span><em class="sig-param">methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/firefox.html#FirefoxTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.firefox.FirefoxTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.testcase.webdriver.WebDriverTestCase</span></code></a></p>
 <p>Implementation of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a> using Firefox
 webdriver</p>
 <p><a class="reference external" href="https://github.com/mozilla/geckodriver/releases">Driver download</a></p>
 <p>This driver supports headless browsing:</p>
 <blockquote>
-<div><a class="reference external" href="https://developer.mozilla.org/en-US/Firefox/Headless_mode">Headless browser info</a></div></blockquote>
+<div><p><a class="reference external" href="https://developer.mozilla.org/en-US/Firefox/Headless_mode">Headless browser info</a></p>
+</div></blockquote>
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.firefox.FirefoxTestCase.DRIVER_NAME">
-<code class="descname">DRIVER_NAME</code><em class="property"> = 'Firefox'</em><a class="headerlink" href="#webdriver_test_tools.testcase.firefox.FirefoxTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">DRIVER_NAME</code><em class="property"> = 'Firefox'</em><a class="headerlink" href="#webdriver_test_tools.testcase.firefox.FirefoxTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.firefox.FirefoxTestCase.SHORT_NAME">
-<code class="descname">SHORT_NAME</code><em class="property"> = 'firefox'</em><a class="headerlink" href="#webdriver_test_tools.testcase.firefox.FirefoxTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SHORT_NAME</code><em class="property"> = 'firefox'</em><a class="headerlink" href="#webdriver_test_tools.testcase.firefox.FirefoxTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.firefox.FirefoxTestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = {'acceptInsecureCerts': True, 'browserName': 'firefox', 'marionette': True}</em><a class="headerlink" href="#webdriver_test_tools.testcase.firefox.FirefoxTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CAPABILITIES</code><em class="property"> = {'acceptInsecureCerts': True, 'browserName': 'firefox', 'marionette': True}</em><a class="headerlink" href="#webdriver_test_tools.testcase.firefox.FirefoxTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.firefox.FirefoxTestCase.driver_init">
-<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/firefox.html#FirefoxTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.firefox.FirefoxTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/firefox.html#FirefoxTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.firefox.FirefoxTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an initialized WebDriver object. Browser test case classes must
 implement this.</p>
 </dd></dl>
@@ -228,7 +230,7 @@ implement this.</p>
         <a href="webdriver_test_tools.testcase.ie.html" class="btn btn-neutral float-right" title="webdriver_test_tools.testcase.ie module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.testcase.edge.html" class="btn btn-neutral" title="webdriver_test_tools.testcase.edge module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.testcase.edge.html" class="btn btn-neutral float-left" title="webdriver_test_tools.testcase.edge module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -237,7 +239,7 @@ implement this.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -254,38 +256,16 @@ implement this.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

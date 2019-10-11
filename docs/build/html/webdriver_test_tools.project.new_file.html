@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.project.test_factory module" href="webdriver_test_tools.project.test_factory.html" />
     <link rel="prev" title="webdriver_test_tools.project.initialize module" href="webdriver_test_tools.project.initialize.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -185,14 +186,14 @@
 <p>Functions for creating a new test/page module.</p>
 <dl class="data">
 <dt id="webdriver_test_tools.project.new_file.TEMPLATE_MAP">
-<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">TEMPLATE_MAP</code><em class="property"> = {'page': 'page_object/', 'test': 'test_case.py'}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.TEMPLATE_MAP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.new_file.</code><code class="sig-name descname">TEMPLATE_MAP</code><em class="property"> = {'page': 'page_object/', 'test': 'test_case.py'}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.TEMPLATE_MAP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maps file type to corresponding template file/directory relative to the
 template path</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP">
-<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">PAGE_OBJECT_TEMPLATE_MAP</code><em class="property"> = {'': {'name': 'base_page', 'types': ['py']}, 'collapsible nav': {'name': 'collapsible_nav_object', 'types': ['py', 'yml']}, 'form': {'name': 'form_object', 'types': ['py', 'yml']}, 'modal': {'name': 'modal_object', 'types': ['py', 'yml']}, 'nav': {'name': 'nav_object', 'types': ['py', 'yml']}, 'web page': {'name': 'web_page_object', 'types': ['py', 'yml']}}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.new_file.</code><code class="sig-name descname">PAGE_OBJECT_TEMPLATE_MAP</code><em class="property"> = {'': {'name': 'base_page', 'types': ['py']}, 'collapsible nav': {'name': 'collapsible_nav_object', 'types': ['py', 'yml']}, 'form': {'name': 'form_object', 'types': ['py', 'yml']}, 'modal': {'name': 'modal_object', 'types': ['py', 'yml']}, 'nav': {'name': 'nav_object', 'types': ['py', 'yml']}, 'web page': {'name': 'web_page_object', 'types': ['py', 'yml']}}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maps prototype names to the base name of the corresponding template files
 and a list of file extensions for each file.
 Empty string maps to generic BasePage template</p>
@@ -200,68 +201,61 @@ Empty string maps to generic BasePage template</p>
 
 <dl class="data">
 <dt id="webdriver_test_tools.project.new_file.PROTOTYPE_NAMES">
-<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">PROTOTYPE_NAMES</code><em class="property"> = ['form', 'modal', 'nav', 'collapsible nav', 'web page']</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.PROTOTYPE_NAMES" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.new_file.</code><code class="sig-name descname">PROTOTYPE_NAMES</code><em class="property"> = ['form', 'modal', 'nav', 'collapsible nav', 'web page']</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.PROTOTYPE_NAMES" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of valid prototype names</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="webdriver_test_tools.project.new_file.YAML_PROTOTYPE_NAMES">
-<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">YAML_PROTOTYPE_NAMES</code><em class="property"> = ['form', 'modal', 'nav', 'collapsible nav', 'web page']</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.YAML_PROTOTYPE_NAMES" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.new_file.</code><code class="sig-name descname">YAML_PROTOTYPE_NAMES</code><em class="property"> = ['form', 'modal', 'nav', 'collapsible nav', 'web page']</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.YAML_PROTOTYPE_NAMES" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of prototype names that support YAML parsing</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="webdriver_test_tools.project.new_file.DIRECTORY_MAP">
-<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">DIRECTORY_MAP</code><em class="property"> = {'page': 'pages', 'test': 'tests'}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.DIRECTORY_MAP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.new_file.</code><code class="sig-name descname">DIRECTORY_MAP</code><em class="property"> = {'page': 'pages', 'test': 'tests'}</em><a class="headerlink" href="#webdriver_test_tools.project.new_file.DIRECTORY_MAP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maps file type to corresponding subdirectory in a test package</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.new_file.new_file">
-<code class="descclassname">webdriver_test_tools.project.new_file.</code><code class="descname">new_file</code><span class="sig-paren">(</span><em>test_package_path</em>, <em>test_package</em>, <em>file_type</em>, <em>module_name</em>, <em>class_name</em>, <em>description=None</em>, <em>force=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/new_file.html#new_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.new_file.new_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.new_file.</code><code class="sig-name descname">new_file</code><span class="sig-paren">(</span><em class="sig-param">test_package_path</em>, <em class="sig-param">test_package</em>, <em class="sig-param">file_type</em>, <em class="sig-param">module_name</em>, <em class="sig-param">class_name</em>, <em class="sig-param">description=None</em>, <em class="sig-param">force=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/new_file.html#new_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.new_file.new_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new project file</p>
 <p>This method assumes parameters have been validated. <code class="xref py py-func docutils literal notranslate"><span class="pre">main()</span></code> handles input validation
 before calling this function</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>test_package_path</strong> – The root directory of the test package</li>
-<li><strong>test_package</strong> – The python package name of the test package</li>
-<li><strong>file_type</strong> – The type of file to create. Valid file types are stored
-as global variables with the _TYPE suffix</li>
-<li><strong>module_name</strong> – Python module name to use when creating the new file
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_package_path</strong> – The root directory of the test package</p></li>
+<li><p><strong>test_package</strong> – The python package name of the test package</p></li>
+<li><p><strong>file_type</strong> – The type of file to create. Valid file types are stored
+as global variables with the _TYPE suffix</p></li>
+<li><p><strong>module_name</strong> – Python module name to use when creating the new file
 (without the .py extension, as this name is used when creating any
-additional non-Python files)</li>
-<li><strong>class_name</strong> – Name to use for the initial test class</li>
-<li><strong>description</strong> – (Optional) Description to use in the docstring of the
-initial class</li>
-<li><strong>force</strong> – (Default: False) If True, force overwrite if a file with the
-same name already exists</li>
+additional non-Python files)</p></li>
+<li><p><strong>class_name</strong> – Name to use for the initial test class</p></li>
+<li><p><strong>description</strong> – (Optional) Description to use in the docstring of the
+initial class</p></li>
+<li><p><strong>force</strong> – (Default: False) If True, force overwrite if a file with the
+same name already exists</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p>This method accepts additional keyword arguments for type-specific
 arguments.</p>
 <p>Page kwargs:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">prototype</span></code>: Key in <a class="reference internal" href="#webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP" title="webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP"><code class="xref py py-data docutils literal notranslate"><span class="pre">PAGE_OBJECT_TEMPLATE_MAP</span></code></a> specifying the
+<li><p><code class="docutils literal notranslate"><span class="pre">prototype</span></code>: Key in <a class="reference internal" href="#webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP" title="webdriver_test_tools.project.new_file.PAGE_OBJECT_TEMPLATE_MAP"><code class="xref py py-data docutils literal notranslate"><span class="pre">PAGE_OBJECT_TEMPLATE_MAP</span></code></a> specifying the
 prototype template to use. Defaults to empty string (generic page
-object)</li>
+object)</p></li>
 </ul>
 </div></blockquote>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of paths for each new file created</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of paths for each new file created</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -277,7 +271,7 @@ object)</li>
         <a href="webdriver_test_tools.project.test_factory.html" class="btn btn-neutral float-right" title="webdriver_test_tools.project.test_factory module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.project.initialize.html" class="btn btn-neutral" title="webdriver_test_tools.project.initialize module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.project.initialize.html" class="btn btn-neutral float-left" title="webdriver_test_tools.project.initialize module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -286,7 +280,7 @@ object)</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -303,38 +297,16 @@ object)</li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.project.cmd.list module" href="webdriver_test_tools.project.cmd.list.html" />
     <link rel="prev" title="webdriver_test_tools.project.cmd package" href="webdriver_test_tools.project.cmd.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -186,87 +187,51 @@
 <span id="webdriver-test-tools-project-cmd-common-module"></span><h1>webdriver_test_tools.project.cmd.common module<a class="headerlink" href="#module-webdriver_test_tools.project.cmd.common" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.common.get_test_parent_parser">
-<code class="descclassname">webdriver_test_tools.project.cmd.common.</code><code class="descname">get_test_parent_parser</code><span class="sig-paren">(</span><em>parents=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/common.html#get_test_parent_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.common.get_test_parent_parser" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.cmd.common.</code><code class="sig-name descname">get_test_parent_parser</code><span class="sig-paren">(</span><em class="sig-param">parents=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/common.html#get_test_parent_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.common.get_test_parent_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code> with <code class="docutils literal notranslate"><span class="pre">--test</span></code>,
 <code class="docutils literal notranslate"><span class="pre">--skip</span></code>, and <code class="docutils literal notranslate"><span class="pre">--module</span></code> arguments</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>parents</strong> – (Optional) List of <code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code> objects to use as
-parents for the test argument parser</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code> with <code class="docutils literal notranslate"><span class="pre">--test</span></code>,
-<code class="docutils literal notranslate"><span class="pre">--skip</span></code>, and <code class="docutils literal notranslate"><span class="pre">--module</span></code> arguments</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parents</strong> – (Optional) List of <code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code> objects to use as
+parents for the test argument parser</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code> with <code class="docutils literal notranslate"><span class="pre">--test</span></code>,
+<code class="docutils literal notranslate"><span class="pre">--skip</span></code>, and <code class="docutils literal notranslate"><span class="pre">--module</span></code> arguments</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.common.parse_test_names">
-<code class="descclassname">webdriver_test_tools.project.cmd.common.</code><code class="descname">parse_test_names</code><span class="sig-paren">(</span><em>test_name_args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/common.html#parse_test_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.common.parse_test_names" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.cmd.common.</code><code class="sig-name descname">parse_test_names</code><span class="sig-paren">(</span><em class="sig-param">test_name_args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/common.html#parse_test_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.common.parse_test_names" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a dictionary mapping test case names to a list of test functions</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>test_name_args</strong> – The parsed value of the <code class="docutils literal notranslate"><span class="pre">--test</span></code> or <code class="docutils literal notranslate"><span class="pre">--skip</span></code>
-arguments</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None if <code class="docutils literal notranslate"><span class="pre">test_name_args</span></code> is None, otherwise return a dictionary
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>test_name_args</strong> – The parsed value of the <code class="docutils literal notranslate"><span class="pre">--test</span></code> or <code class="docutils literal notranslate"><span class="pre">--skip</span></code>
+arguments</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None if <code class="docutils literal notranslate"><span class="pre">test_name_args</span></code> is None, otherwise return a dictionary
 mapping test case names to a list of test functions to run. If list is
-empty, no specific function was given for that class</td>
-</tr>
-</tbody>
-</table>
+empty, no specific function was given for that class</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.common.parse_test_args">
-<code class="descclassname">webdriver_test_tools.project.cmd.common.</code><code class="descname">parse_test_args</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/common.html#parse_test_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.common.parse_test_args" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.cmd.common.</code><code class="sig-name descname">parse_test_args</code><span class="sig-paren">(</span><em class="sig-param">args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/common.html#parse_test_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.common.parse_test_args" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse optional arguments for specifying/skipping tests and modules</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> – The namespace returned by parser.parse_args()</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary mapping ‘test_class_map’, ‘skip_class_map’, and
-‘test_module_names’ to the arguments passed via the command line</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="webdriver_test_tools.project.cmd.common.load_tests">
-<code class="descclassname">webdriver_test_tools.project.cmd.common.</code><code class="descname">load_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>test_module_names=None</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/common.html#load_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.common.load_tests" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of test classes from a project based on the –module,
-–test, and –skip arguments</p>
-<p>If a <code class="xref py py-exc docutils literal notranslate"><span class="pre">TestCasesNotFoundException</span></code> is
-raised when trying to load tests, the error message will be printed and
-<a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exit" title="(in Python v3.7)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exit()</span></code></a> will be called, ending execution</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tests_module</strong> – The module object for &lt;test_project&gt;.tests</li>
-<li><strong>test_module_names</strong> – (Optional) Parsed arg for –module command line
-argument</li>
-<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for –test
-command line argument to parse_test_names()</li>
-<li><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for –skip
-command line argument to parse_test_names()</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">List of test classes</p>
-</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> – The namespace returned by parser.parse_args()</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary mapping ‘test_class_map’, ‘skip_class_map’, and
+‘test_module_names’ to the arguments passed via the command line</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -282,7 +247,7 @@ command line argument to parse_test_names()</li>
         <a href="webdriver_test_tools.project.cmd.list.html" class="btn btn-neutral float-right" title="webdriver_test_tools.project.cmd.list module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.project.cmd.html" class="btn btn-neutral" title="webdriver_test_tools.project.cmd package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.project.cmd.html" class="btn btn-neutral float-left" title="webdriver_test_tools.project.cmd package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -291,7 +256,7 @@ command line argument to parse_test_names()</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -308,38 +273,16 @@ command line argument to parse_test_names()</li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

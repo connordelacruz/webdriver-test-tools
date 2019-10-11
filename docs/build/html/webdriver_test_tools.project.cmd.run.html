@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.project.initialize module" href="webdriver_test_tools.project.initialize.html" />
     <link rel="prev" title="webdriver_test_tools.project.cmd.new module" href="webdriver_test_tools.project.cmd.new.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -186,108 +187,101 @@
 <span id="webdriver-test-tools-project-cmd-run-module"></span><h1>webdriver_test_tools.project.cmd.run module<a class="headerlink" href="#module-webdriver_test_tools.project.cmd.run" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.run.add_run_subparser">
-<code class="descclassname">webdriver_test_tools.project.cmd.run.</code><code class="descname">add_run_subparser</code><span class="sig-paren">(</span><em>subparsers</em>, <em>config_module=None</em>, <em>parents=[]</em>, <em>formatter_class=&lt;class 'argparse.RawTextHelpFormatter'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/run.html#add_run_subparser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.run.add_run_subparser" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.cmd.run.</code><code class="sig-name descname">add_run_subparser</code><span class="sig-paren">(</span><em class="sig-param">subparsers</em>, <em class="sig-param">config_module=None</em>, <em class="sig-param">parents=[]</em>, <em class="sig-param">formatter_class=&lt;class 'argparse.RawTextHelpFormatter'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/run.html#add_run_subparser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.run.add_run_subparser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add subparser for the <code class="docutils literal notranslate"><span class="pre">&lt;test_package&gt;</span> <span class="pre">run</span></code> command</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the test
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the test
 package ArgumentParser (i.e. the object returned by the
-<code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</li>
-<li><strong>config_module</strong> – (Optional) The module object for
+<code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</p></li>
+<li><p><strong>config_module</strong> – (Optional) The module object for
 <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code>.  Will use <a class="reference internal" href="webdriver_test_tools.config.html#module-webdriver_test_tools.config" title="webdriver_test_tools.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">webdriver_test_tools.config</span></code></a>
-if not specified if unspecified</li>
-<li><strong>parents</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">[]</span></code>) Parent parsers for the run subparser</li>
-<li><strong>formatter_class</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">argparse.RawTextHelpFormatter</span></code>) Class
-to use for the <code class="docutils literal notranslate"><span class="pre">formatter_class</span></code> parameter</li>
+if not specified if unspecified</p></li>
+<li><p><strong>parents</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">[]</span></code>) Parent parsers for the run subparser</p></li>
+<li><p><strong>formatter_class</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">argparse.RawTextHelpFormatter</span></code>) Class
+to use for the <code class="docutils literal notranslate"><span class="pre">formatter_class</span></code> parameter</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code> object for the newly added <code class="docutils literal notranslate"><span class="pre">run</span></code>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code> object for the newly added <code class="docutils literal notranslate"><span class="pre">run</span></code>
 subparser</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.run.get_browser_config_classes">
-<code class="descclassname">webdriver_test_tools.project.cmd.run.</code><code class="descname">get_browser_config_classes</code><span class="sig-paren">(</span><em>config_module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/run.html#get_browser_config_classes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.run.get_browser_config_classes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.cmd.run.</code><code class="sig-name descname">get_browser_config_classes</code><span class="sig-paren">(</span><em class="sig-param">config_module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/run.html#get_browser_config_classes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.run.get_browser_config_classes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the <code class="docutils literal notranslate"><span class="pre">BrowserConfig</span></code> and <code class="docutils literal notranslate"><span class="pre">BrowserStackConfig</span></code> classes from a
 project.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tuple containing:<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">config_module.BrowserConfig</span></code> (or
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>Tuple containing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config_module.BrowserConfig</span></code> (or
 <a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserConfig" title="webdriver_test_tools.config.browser.BrowserConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.config.BrowserConfig</span></code></a> if not present in
-<code class="docutils literal notranslate"><span class="pre">config_module</span></code>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">config_module.BrowserStackConfig</span></code> (or
+<code class="docutils literal notranslate"><span class="pre">config_module</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config_module.BrowserStackConfig</span></code> (or
 <a class="reference internal" href="webdriver_test_tools.config.browser.html#webdriver_test_tools.config.browser.BrowserStackConfig" title="webdriver_test_tools.config.browser.BrowserStackConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.config.BrowserStackConfig</span></code></a> if not
-present in <code class="docutils literal notranslate"><span class="pre">config_module</span></code>)</li>
+present in <code class="docutils literal notranslate"><span class="pre">config_module</span></code>)</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.run.parse_run_args">
-<code class="descclassname">webdriver_test_tools.project.cmd.run.</code><code class="descname">parse_run_args</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/run.html#parse_run_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.run.parse_run_args" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.cmd.run.</code><code class="sig-name descname">parse_run_args</code><span class="sig-paren">(</span><em class="sig-param">tests_module</em>, <em class="sig-param">config_module</em>, <em class="sig-param">args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/run.html#parse_run_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.run.parse_run_args" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse arguments and run the ‘run’ command</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></li>
-<li><strong>config_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code></li>
-<li><strong>args</strong> – The namespace returned by parser.parse_args()</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></p></li>
+<li><p><strong>config_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code></p></li>
+<li><p><strong>args</strong> – The namespace returned by parser.parse_args()</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Exit code, 0 if tests were successful, 1 otherwise</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.run.run_tests">
-<code class="descclassname">webdriver_test_tools.project.cmd.run.</code><code class="descname">run_tests</code><span class="sig-paren">(</span><em>tests_module</em>, <em>config_module</em>, <em>browser_classes=None</em>, <em>test_class_map=None</em>, <em>skip_class_map=None</em>, <em>test_module_names=None</em>, <em>browserstack=False</em>, <em>headless=False</em>, <em>verbosity=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/run.html#run_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.run.run_tests" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.cmd.run.</code><code class="sig-name descname">run_tests</code><span class="sig-paren">(</span><em class="sig-param">tests_module</em>, <em class="sig-param">config_module</em>, <em class="sig-param">browser_classes=None</em>, <em class="sig-param">test_class_map=None</em>, <em class="sig-param">skip_class_map=None</em>, <em class="sig-param">test_module_names=None</em>, <em class="sig-param">browserstack=False</em>, <em class="sig-param">headless=False</em>, <em class="sig-param">verbosity=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/run.html#run_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.run.run_tests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run tests using parsed args and project modules</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></li>
-<li><strong>config_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code> or
-<a class="reference internal" href="webdriver_test_tools.config.html#module-webdriver_test_tools.config" title="webdriver_test_tools.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">webdriver_test_tools.config</span></code></a> if not specified</li>
-<li><strong>browser_classes</strong> – (Optional) List of browser test classes from parsed
-arg for <code class="docutils literal notranslate"><span class="pre">--browser</span></code> command line argument</li>
-<li><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for
-<code class="docutils literal notranslate"><span class="pre">--test</span></code> command line argument to <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></li>
-<li><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for
-<code class="docutils literal notranslate"><span class="pre">--skip</span></code> command line argument to <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></li>
-<li><strong>test_module_names</strong> – (Optional) Parsed arg for <code class="docutils literal notranslate"><span class="pre">--module</span></code> command
-line argument</li>
-<li><strong>browserstack</strong> – (Default = False) If True, generated test cases should
-run on BrowserStack</li>
-<li><strong>headless</strong> – (Default = False) If True, configure driver to run tests
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></p></li>
+<li><p><strong>config_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.config</span></code> or
+<a class="reference internal" href="webdriver_test_tools.config.html#module-webdriver_test_tools.config" title="webdriver_test_tools.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">webdriver_test_tools.config</span></code></a> if not specified</p></li>
+<li><p><strong>browser_classes</strong> – (Optional) List of browser test classes from parsed
+arg for <code class="docutils literal notranslate"><span class="pre">--browser</span></code> command line argument</p></li>
+<li><p><strong>test_class_map</strong> – (Optional) Result of passing parsed arg for
+<code class="docutils literal notranslate"><span class="pre">--test</span></code> command line argument to <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></p></li>
+<li><p><strong>skip_class_map</strong> – (Optional) Result of passing parsed arg for
+<code class="docutils literal notranslate"><span class="pre">--skip</span></code> command line argument to <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></p></li>
+<li><p><strong>test_module_names</strong> – (Optional) Parsed arg for <code class="docutils literal notranslate"><span class="pre">--module</span></code> command
+line argument</p></li>
+<li><p><strong>browserstack</strong> – (Default = False) If True, generated test cases should
+run on BrowserStack</p></li>
+<li><p><strong>headless</strong> – (Default = False) If True, configure driver to run tests
 in a headless browser. Tests will only be generated for drivers that
-support running headless browsers</li>
-<li><strong>verbosity</strong> – (Optional) Output verbosity level for the test runner.</li>
+support running headless browsers</p></li>
+<li><p><strong>verbosity</strong> – (Optional) Output verbosity level for the test runner.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Exit code, 0 if tests were successful, 1 otherwise</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -303,7 +297,7 @@ support running headless browsers</li>
         <a href="webdriver_test_tools.project.initialize.html" class="btn btn-neutral float-right" title="webdriver_test_tools.project.initialize module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.project.cmd.new.html" class="btn btn-neutral" title="webdriver_test_tools.project.cmd.new module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.project.cmd.new.html" class="btn btn-neutral float-left" title="webdriver_test_tools.project.cmd.new module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -312,7 +306,7 @@ support running headless browsers</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -329,38 +323,16 @@ support running headless browsers</li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

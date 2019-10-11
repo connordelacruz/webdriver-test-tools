@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.common.utils module" href="webdriver_test_tools.common.utils.html" />
     <link rel="prev" title="webdriver_test_tools.common.cmd.argparse module" href="webdriver_test_tools.common.cmd.argparse.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -185,145 +186,123 @@
 <p>Common functions for working with files and Jinja templates</p>
 <dl class="exception">
 <dt id="webdriver_test_tools.common.files.FileUtilError">
-<em class="property">exception </em><code class="descclassname">webdriver_test_tools.common.files.</code><code class="descname">FileUtilError</code><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#FileUtilError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.FileUtilError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">webdriver_test_tools.common.files.</code><code class="sig-name descname">FileUtilError</code><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#FileUtilError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.FileUtilError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 <p>Exception raised if utility functions fail</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.files.touch">
-<code class="descclassname">webdriver_test_tools.common.files.</code><code class="descname">touch</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#touch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.touch" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.files.</code><code class="sig-name descname">touch</code><span class="sig-paren">(</span><em class="sig-param">filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#touch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.touch" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘Touch’ a file. Creates an empty file if it doesn’t exist, leaves existing files
 unchanged</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath</strong> – Path of the file to touch</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filepath</strong> – Path of the file to touch</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.files.create_directory">
-<code class="descclassname">webdriver_test_tools.common.files.</code><code class="descname">create_directory</code><span class="sig-paren">(</span><em>target_path</em>, <em>directory_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#create_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.create_directory" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.files.</code><code class="sig-name descname">create_directory</code><span class="sig-paren">(</span><em class="sig-param">target_path</em>, <em class="sig-param">directory_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#create_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.create_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a directory in the target path if it doesn’t already exist</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>target_path</strong> – The path to the directory that will contain the new one</li>
-<li><strong>directory_name</strong> – The name of the directory to create in the target path</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_path</strong> – The path to the directory that will contain the new one</p></li>
+<li><p><strong>directory_name</strong> – The name of the directory to create in the target path</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The path to the newly created (or already existing) directory</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The path to the newly created (or already existing) directory</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.files.render_template">
-<code class="descclassname">webdriver_test_tools.common.files.</code><code class="descname">render_template</code><span class="sig-paren">(</span><em>template_path</em>, <em>context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#render_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.render_template" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.files.</code><code class="sig-name descname">render_template</code><span class="sig-paren">(</span><em class="sig-param">template_path</em>, <em class="sig-param">context</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#render_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.render_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the rendered contents of a jinja template</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>template_path</strong> – The path to the jinja template</li>
-<li><strong>context</strong> – Jinja context used to render template</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>template_path</strong> – The path to the jinja template</p></li>
+<li><p><strong>context</strong> – Jinja context used to render template</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Results of rendering jinja template</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Results of rendering jinja template</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.files.render_template_to_file">
-<code class="descclassname">webdriver_test_tools.common.files.</code><code class="descname">render_template_to_file</code><span class="sig-paren">(</span><em>template_path</em>, <em>context</em>, <em>target_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#render_template_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.render_template_to_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.files.</code><code class="sig-name descname">render_template_to_file</code><span class="sig-paren">(</span><em class="sig-param">template_path</em>, <em class="sig-param">context</em>, <em class="sig-param">target_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#render_template_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.render_template_to_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes rendered jinja template to a file</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>template_path</strong> – The path to the jinja template</li>
-<li><strong>context</strong> – Jinja context used to render template</li>
-<li><strong>target_path</strong> – File path to write the rendered template to</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>template_path</strong> – The path to the jinja template</p></li>
+<li><p><strong>context</strong> – Jinja context used to render template</p></li>
+<li><p><strong>target_path</strong> – File path to write the rendered template to</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.files.create_file_from_template">
-<code class="descclassname">webdriver_test_tools.common.files.</code><code class="descname">create_file_from_template</code><span class="sig-paren">(</span><em>template_path</em>, <em>target_path</em>, <em>filename</em>, <em>context</em>, <em>target_filename=None</em>, <em>overwrite=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#create_file_from_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.create_file_from_template" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.files.</code><code class="sig-name descname">create_file_from_template</code><span class="sig-paren">(</span><em class="sig-param">template_path</em>, <em class="sig-param">target_path</em>, <em class="sig-param">filename</em>, <em class="sig-param">context</em>, <em class="sig-param">target_filename=None</em>, <em class="sig-param">overwrite=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#create_file_from_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.create_file_from_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>Short hand function that renders a template with the specified filename followed
 by a ‘.j2’ extension from the template path to a file with the specified name in
 the target path</p>
 <p>The use of ‘.j2’ as a file extension is to distinguish templates from package
 modules.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>template_path</strong> – Path to template directory</li>
-<li><strong>target_path</strong> – Path to target directory</li>
-<li><strong>filename</strong> – Name of the template file. Will be used as the filename for the
-rendered file written to the target directory</li>
-<li><strong>context</strong> – Jinja context used to render template</li>
-<li><strong>target_filename</strong> – (Optional) If specified, use a different filename
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>template_path</strong> – Path to template directory</p></li>
+<li><p><strong>target_path</strong> – Path to target directory</p></li>
+<li><p><strong>filename</strong> – Name of the template file. Will be used as the filename for the
+rendered file written to the target directory</p></li>
+<li><p><strong>context</strong> – Jinja context used to render template</p></li>
+<li><p><strong>target_filename</strong> – (Optional) If specified, use a different filename
 for the created file. If not specified, will use the value of
-<code class="docutils literal notranslate"><span class="pre">filename</span></code></li>
-<li><strong>overwrite</strong> – (Default: True) If False, a FileUtilError will be raised
-when a file with the same name and path already exists</li>
+<code class="docutils literal notranslate"><span class="pre">filename</span></code></p></li>
+<li><p><strong>overwrite</strong> – (Default: True) If False, a FileUtilError will be raised
+when a file with the same name and path already exists</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The file path to the newly created file</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The file path to the newly created file</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.files.validate_filename">
-<code class="descclassname">webdriver_test_tools.common.files.</code><code class="descname">validate_filename</code><span class="sig-paren">(</span><em>filename</em>, <em>allow_spaces=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#validate_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.validate_filename" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.files.</code><code class="sig-name descname">validate_filename</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">allow_spaces=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/files.html#validate_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.files.validate_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Strips invalid characters from a filename</p>
 <p>Considers <a class="reference external" href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_282">POSIX “fully portable filenames”</a>
 valid. These include:</p>
 <blockquote>
-<div>A-Z a-z 0-9 ._-</div></blockquote>
+<div><p>A-Z a-z 0-9 ._-</p>
+</div></blockquote>
 <p>Filenames cannot begin with a hyphen.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> – The desired file name (without path)</li>
-<li><strong>allow_spaces</strong> – (Default = False) If True, spaces will be considered
-valid characters</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – The desired file name (without path)</p></li>
+<li><p><strong>allow_spaces</strong> – (Default = False) If True, spaces will be considered
+valid characters</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Filename with invalid characters removed</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Filename with invalid characters removed</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -339,7 +318,7 @@ valid characters</li>
         <a href="webdriver_test_tools.common.utils.html" class="btn btn-neutral float-right" title="webdriver_test_tools.common.utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.common.cmd.argparse.html" class="btn btn-neutral" title="webdriver_test_tools.common.cmd.argparse module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.common.cmd.argparse.html" class="btn btn-neutral float-left" title="webdriver_test_tools.common.cmd.argparse module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -348,7 +327,7 @@ valid characters</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -365,38 +344,16 @@ valid characters</li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

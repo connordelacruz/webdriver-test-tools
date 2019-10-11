@@ -19,33 +19,34 @@
   
 
   
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
-
-  
-  <script src="../../../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -166,7 +167,8 @@
 <span class="kn">from</span> <span class="nn">webdriver_test_tools</span> <span class="k">import</span> <span class="n">config</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.common</span> <span class="k">import</span> <span class="n">cmd</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.project</span> <span class="k">import</span> <span class="n">test_factory</span>
-<span class="kn">from</span> <span class="nn">webdriver_test_tools.project.cmd.common</span> <span class="k">import</span> <span class="n">parse_test_args</span><span class="p">,</span> <span class="n">load_tests</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.project.test_loader</span> <span class="k">import</span> <span class="n">load_project_tests</span>
+<span class="kn">from</span> <span class="nn">webdriver_test_tools.project.cmd.common</span> <span class="k">import</span> <span class="n">parse_test_args</span>
 <span class="kn">from</span> <span class="nn">webdriver_test_tools.testcase</span> <span class="k">import</span> <span class="n">Browsers</span>
 
 
@@ -354,6 +356,8 @@
 <span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
 <span class="sd">    :param config_module: The module object for ``&lt;test_project&gt;.config``</span>
 <span class="sd">    :param args: The namespace returned by parser.parse_args()</span>
+
+<span class="sd">    :return: Exit code, 0 if tests were successful, 1 otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">kwargs</span> <span class="o">=</span> <span class="n">parse_test_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
     <span class="c1"># Get browser config classes</span>
@@ -373,7 +377,8 @@
     <span class="n">browser_config_class</span> <span class="o">=</span> <span class="n">browserstack_config</span> <span class="k">if</span> <span class="s1">&#39;browserstack&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;browserstack&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">browser_config</span>
     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;browser_classes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">browser_config_class</span><span class="o">.</span><span class="n">get_browser_classes</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">browser</span><span class="p">)</span>
     <span class="c1"># Run tests using parsed args</span>
-    <span class="n">run_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="n">exit_code</span> <span class="o">=</span> <span class="n">run_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">exit_code</span></div>
 
 
 <div class="viewcode-block" id="run_tests"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.run.html#webdriver_test_tools.project.cmd.run.run_tests">[docs]</a><span class="k">def</span> <span class="nf">run_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">config_module</span><span class="p">,</span>
@@ -399,11 +404,13 @@
 <span class="sd">        in a headless browser. Tests will only be generated for drivers that</span>
 <span class="sd">        support running headless browsers</span>
 <span class="sd">    :param verbosity: (Optional) Output verbosity level for the test runner.</span>
+
+<span class="sd">    :return: Exit code, 0 if tests were successful, 1 otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Enable graceful Ctrl+C handling</span>
     <span class="n">unittest</span><span class="o">.</span><span class="n">installHandler</span><span class="p">()</span>
     <span class="c1"># Load WebDriverTestCase subclasses from project tests</span>
-    <span class="n">tests</span> <span class="o">=</span> <span class="n">load_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span>
+    <span class="n">tests</span> <span class="o">=</span> <span class="n">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span>
     <span class="c1"># Generate browser test cases from the loaded WebDriverTestCase classes</span>
     <span class="n">browser_test_suite</span> <span class="o">=</span> <span class="n">test_factory</span><span class="o">.</span><span class="n">generate_browser_test_suite</span><span class="p">(</span>
         <span class="n">tests</span><span class="p">,</span> <span class="n">browser_classes</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">,</span>
@@ -411,11 +418,16 @@
     <span class="p">)</span>
     <span class="c1"># Get configured test runner and run suite</span>
     <span class="n">test_runner</span> <span class="o">=</span> <span class="n">config_module</span><span class="o">.</span><span class="n">TestSuiteConfig</span><span class="o">.</span><span class="n">get_runner</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span>
-    <span class="n">test_runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">browser_test_suite</span><span class="p">)</span>
+    <span class="c1"># Capture result for exit code</span>
+    <span class="c1"># TODO see if there&#39;s anything else useful you can do with the result?</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">test_runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">browser_test_suite</span><span class="p">)</span>
     <span class="c1"># Link to BrowserStack automation dashboard if applicable</span>
     <span class="k">if</span> <span class="n">browserstack</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;See BrowserStack Automation Dashboard for Detailed Results:&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;https://automate.browserstack.com&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+              <span class="s1">&#39;https://automate.browserstack.com&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># Propagate exit code</span>
+    <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">wasSuccessful</span><span class="p">()</span> <span class="k">else</span> <span class="mi">1</span></div>
+
 </pre></div>
 
            </div>
@@ -428,7 +440,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -445,38 +457,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../../',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

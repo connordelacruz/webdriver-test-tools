@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.pageobject.modal module" href="webdriver_test_tools.pageobject.modal.html" />
     <link rel="prev" title="webdriver_test_tools.pageobject.prototypes module" href="webdriver_test_tools.pageobject.prototypes.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -183,78 +184,78 @@
 <span id="webdriver-test-tools-pageobject-form-module"></span><h1>webdriver_test_tools.pageobject.form module<a class="headerlink" href="#module-webdriver_test_tools.pageobject.form" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.form.InputObject">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.form.</code><code class="descname">InputObject</code><span class="sig-paren">(</span><em>driver</em>, <em>input_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.pageobject.form.</code><code class="sig-name descname">InputObject</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">input_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.base.BasePage</span></code></a></p>
 <p>Page object prototype for input elements</p>
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type">
-<em class="property">class </em><code class="descname">Type</code><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject.Type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-name descname">Type</code><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject.Type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Set of supported input types</p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.CHECKBOX">
-<code class="descname">CHECKBOX</code><em class="property"> = 'checkbox'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.CHECKBOX" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CHECKBOX</code><em class="property"> = 'checkbox'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.CHECKBOX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.EMAIL">
-<code class="descname">EMAIL</code><em class="property"> = 'email'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.EMAIL" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">EMAIL</code><em class="property"> = 'email'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.EMAIL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.FILE">
-<code class="descname">FILE</code><em class="property"> = 'file'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.FILE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">FILE</code><em class="property"> = 'file'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.FILE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.NUMBER">
-<code class="descname">NUMBER</code><em class="property"> = 'number'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.NUMBER" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NUMBER</code><em class="property"> = 'number'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.NUMBER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.PASSWORD">
-<code class="descname">PASSWORD</code><em class="property"> = 'password'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.PASSWORD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">PASSWORD</code><em class="property"> = 'password'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.PASSWORD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.RADIO">
-<code class="descname">RADIO</code><em class="property"> = 'radio'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.RADIO" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">RADIO</code><em class="property"> = 'radio'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.RADIO" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.SEARCH">
-<code class="descname">SEARCH</code><em class="property"> = 'search'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.SEARCH" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SEARCH</code><em class="property"> = 'search'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.SEARCH" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.TEXT">
-<code class="descname">TEXT</code><em class="property"> = 'text'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.TEXT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">TEXT</code><em class="property"> = 'text'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.TEXT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.URL">
-<code class="descname">URL</code><em class="property"> = 'url'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.URL" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">URL</code><em class="property"> = 'url'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.URL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.SELECT">
-<code class="descname">SELECT</code><em class="property"> = 'select'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.SELECT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SELECT</code><em class="property"> = 'select'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.SELECT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.TEXTAREA">
-<code class="descname">TEXTAREA</code><em class="property"> = 'textarea'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.TEXTAREA" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">TEXTAREA</code><em class="property"> = 'textarea'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.TEXTAREA" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.SUPPORTS_OPTIONS">
-<code class="descname">SUPPORTS_OPTIONS</code><em class="property"> = ['select', 'radio', 'checkbox']</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.SUPPORTS_OPTIONS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SUPPORTS_OPTIONS</code><em class="property"> = ['select', 'radio', 'checkbox']</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.SUPPORTS_OPTIONS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Input types that support the ‘options’ key</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.Type.SUPPORTS_MULTIPLE">
-<code class="descname">SUPPORTS_MULTIPLE</code><em class="property"> = ['select', 'checkbox']</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.SUPPORTS_MULTIPLE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SUPPORTS_MULTIPLE</code><em class="property"> = ['select', 'checkbox']</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.Type.SUPPORTS_MULTIPLE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Input types that support the ‘multiple’ key</p>
 </dd></dl>
 
@@ -262,66 +263,57 @@
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.find_input_element">
-<code class="descname">find_input_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject.find_input_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.find_input_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">find_input_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject.find_input_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.find_input_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">WebElement</span></code> object located by <code class="docutils literal notranslate"><span class="pre">self.locator</span></code></p>
 <p>Shorthand for <code class="docutils literal notranslate"><span class="pre">self.find_element(self.locator)</span></code></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">WebElement</span></code> object for the input</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">WebElement</span></code> object for the input</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.find_input_elements">
-<code class="descname">find_input_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject.find_input_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.find_input_elements" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">find_input_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject.find_input_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.find_input_elements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the list of <code class="docutils literal notranslate"><span class="pre">WebElement</span></code> objects located by
 <code class="docutils literal notranslate"><span class="pre">self.locator</span></code>. Used for input types that can have multiple elements
 corresponding to it (e.g. radios)</p>
 <p>Shorthand for <code class="docutils literal notranslate"><span class="pre">self.find_elements(self.locator)</span></code></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of <code class="docutils literal notranslate"><span class="pre">WebElement</span></code> objects for the inputs</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of <code class="docutils literal notranslate"><span class="pre">WebElement</span></code> objects for the inputs</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.set_value">
-<code class="descname">set_value</code><span class="sig-paren">(</span><em>value</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject.set_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.set_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_value</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject.set_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.set_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the value of the input</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> – <p>The value to set it to</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – <p>The value to set it to</p>
 <ul class="simple">
-<li>For radio elements, this should be the value attribute of the
-radio to select.</li>
-<li>For checkbox elements, this value should be a boolean
-(True=checked, False=unchecked).</li>
-<li>For checkbox groups, this value should be a dictionary mapping
+<li><p>For radio elements, this should be the value attribute of the
+radio to select.</p></li>
+<li><p>For checkbox elements, this value should be a boolean
+(True=checked, False=unchecked).</p></li>
+<li><p>For checkbox groups, this value should be a dictionary mapping
 checkbox input’s <code class="docutils literal notranslate"><span class="pre">value</span></code> attribute to the desired checked state
-(True = check, False = uncheck).</li>
-<li>For single select elements, this value should be the value of the
-option to select.</li>
-<li>For multiple select elements, this value should be a list of
-values of the options to select.</li>
-<li>For file inputs, this value should be a filepath to the desired
-file.</li>
-<li>For other input types (text, number, etc) this should be a string
-representation of the values to enter into it.</li>
+(True = check, False = uncheck).</p></li>
+<li><p>For single select elements, this value should be the value of the
+option to select.</p></li>
+<li><p>For multiple select elements, this value should be a list of
+values of the options to select.</p></li>
+<li><p>For file inputs, this value should be a filepath to the desired
+file.</p></li>
+<li><p>For other input types (text, number, etc) this should be a string
+representation of the values to enter into it.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</p>
+</dd>
+</dl>
 <p>Additionally accepts keyword arguments based on the type of input this
 <code class="docutils literal notranslate"><span class="pre">InputObject</span></code> represents. See the above <code class="docutils literal notranslate"><span class="pre">_set</span></code> methods for
 type-specific optional arguments</p>
@@ -329,7 +321,7 @@ type-specific optional arguments</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.form.InputObject.get_value">
-<code class="descname">get_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject.get_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.get_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#InputObject.get_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.InputObject.get_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the current value of the input</p>
 </dd></dl>
 
@@ -337,175 +329,149 @@ type-specific optional arguments</p>
 
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.form.FormObject">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.form.</code><code class="descname">FormObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.pageobject.form.</code><code class="sig-name descname">FormObject</code><span class="sig-paren">(</span><em class="sig-param">driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject</span></code></a></p>
 <p>Page object prototype for forms</p>
 <p>Subclasses should set the following attributes:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>FormObject.YAML_FILE</strong> – Path to a YAML file representing the form
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>FormObject.YAML_FILE</strong> – Path to a YAML file representing the form
 object. This file is parsed during initialization using
 <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.parse_yaml" title="webdriver_test_tools.pageobject.form.FormObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> and is used to determine <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">FORM_LOCATOR</span></code></a> and
 <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SUBMIT_LOCATOR</span></code></a> and create <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances for
-each input, which are stored in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inputs</span></code></a></li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><strong>FormObject.SUBMIT_SUCCESS_CLASS</strong></a> – (Optional) Page object of
+each input, which are stored in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inputs</span></code></a></p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><strong>FormObject.SUBMIT_SUCCESS_CLASS</strong></a> – (Optional) Page object of
 modal/webpage/etc that should appear on successful form submission. If
 subclass set to a subclass of <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a>,
-<a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="webdriver_test_tools.pageobject.form.FormObject.click_submit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">click_submit()</span></code></a> will return an instance of this object.</li>
+<a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="webdriver_test_tools.pageobject.form.FormObject.click_submit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">click_submit()</span></code></a> will return an instance of this object.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p>The following attributes are determined based on the contents of
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> (or should be set in subclasses if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is
 <code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><strong>FormObject.FORM_LOCATOR</strong></a> – Locator for the form element</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><strong>FormObject.SUBMIT_LOCATOR</strong></a> – Locator for the submit button</li>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR"><strong>FormObject.FORM_LOCATOR</strong></a> – Locator for the form element</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR"><strong>FormObject.SUBMIT_LOCATOR</strong></a> – Locator for the submit button</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p>The following attribute is set based on the ‘inputs’ key parsed from
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> (or parsed from <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">INPUT_DICTS</span></code></a>, which should be set
 in subclasses if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><strong>FormObject.inputs</strong></a> – A dictionary mapping input names to the
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><strong>FormObject.inputs</strong></a> – A dictionary mapping input names to the
 corresponding <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances. The keys correspond with
 the <code class="docutils literal notranslate"><span class="pre">name</span></code> keys in the YAML representation of the form (or the ‘name’
-keys in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">INPUT_DICTS</span></code></a> if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>)</td>
-</tr>
-</tbody>
-</table>
+keys in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">INPUT_DICTS</span></code></a> if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p>
+</dd>
+</dl>
 <p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, subclasses must set the following
 attribute:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><strong>FormObject.INPUT_DICTS</strong></a> – List of input dictionaries. These are used to
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><strong>FormObject.INPUT_DICTS</strong></a> – List of input dictionaries. These are used to
 initialize the <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a> instances in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="webdriver_test_tools.pageobject.form.FormObject.inputs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inputs</span></code></a> at
-runtime. These dictionaries use the same syntax as <a class="reference internal" href="yaml.html#yaml-inputs"><span class="std std-ref">YAML inputs</span></a></td>
-</tr>
-</tbody>
-</table>
+runtime. These dictionaries use the same syntax as <a class="reference internal" href="yaml.html#yaml-inputs"><span class="std std-ref">YAML inputs</span></a></p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS">
-<code class="descname">SUBMIT_SUCCESS_CLASS</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SUBMIT_SUCCESS_CLASS</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR">
-<code class="descname">FORM_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">FORM_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.FORM_LOCATOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR">
-<code class="descname">SUBMIT_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SUBMIT_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_LOCATOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS">
-<code class="descname">INPUT_DICTS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">INPUT_DICTS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.inputs">
-<code class="descname">inputs</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">inputs</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.inputs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.parse_yaml">
-<code class="descname">parse_yaml</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.parse_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.parse_yaml" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_yaml</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.parse_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.parse_yaml" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a YAML representation of the form object and set attributes
 accordingly</p>
 <p>See <a class="reference internal" href="yaml.html#yaml-form-objects"><span class="std std-ref">YAML FormObjects doc</span></a> for details on
 syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> – Full path to the YAML file</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – Full path to the YAML file</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.no_yaml_init">
-<code class="descname">no_yaml_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.no_yaml_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.no_yaml_init" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">no_yaml_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.no_yaml_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.no_yaml_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize <code class="docutils literal notranslate"><span class="pre">self.inputs</span></code> using values in <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS" title="webdriver_test_tools.pageobject.form.FormObject.INPUT_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">INPUT_DICTS</span></code></a></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.fill_inputs">
-<code class="descname">fill_inputs</code><span class="sig-paren">(</span><em>input_map</em>, <em>strict=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.fill_inputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.fill_inputs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fill_inputs</code><span class="sig-paren">(</span><em class="sig-param">input_map</em>, <em class="sig-param">strict=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.fill_inputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.fill_inputs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fill form inputs</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>input_map</strong> – Dictionary mapping input <cite>name</cite> key to the values to
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_map</strong> – Dictionary mapping input <cite>name</cite> key to the values to
 set them to. See <a class="reference internal" href="#webdriver_test_tools.pageobject.form.InputObject.set_value" title="webdriver_test_tools.pageobject.form.InputObject.set_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">InputObject.set_value()</span></code></a> for value formats
-for different input types</li>
-<li><strong>strict</strong> – (Default = False) If True, throw an exception if a key
+for different input types</p></li>
+<li><p><strong>strict</strong> – (Default = False) If True, throw an exception if a key
 in <code class="docutils literal notranslate"><span class="pre">input_map</span></code> is not a valid key in <code class="docutils literal notranslate"><span class="pre">self.inputs</span></code>. Otherwise
-throw a warning and continue</li>
+throw a warning and continue</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.get_input_values">
-<code class="descname">get_input_values</code><span class="sig-paren">(</span><em>name_list=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.get_input_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.get_input_values" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_input_values</code><span class="sig-paren">(</span><em class="sig-param">name_list=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.get_input_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.get_input_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the current values of form inputs</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name_list</strong> – (Optional) List of input names to get values for. If
-unspecified, will get values for all inputs</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Dictionary mapping names to the value of each input</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name_list</strong> – (Optional) List of input names to get values for. If
+unspecified, will get values for all inputs</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary mapping names to the value of each input</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled">
-<code class="descname">submit_is_enabled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.submit_is_enabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">submit_is_enabled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.submit_is_enabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled" title="Permalink to this definition">¶</a></dt>
 <dd><p>Short hand function for checking if the submit button is enabled.
 Useful for forms with JavaScript input validation</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if submit is enabled, False if it’s disabled</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if submit is enabled, False if it’s disabled</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.form.FormObject.click_submit">
-<code class="descname">click_submit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.click_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">click_submit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/form.html#FormObject.click_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shorthand function for scrolling to the submit button and clicking
 it.</p>
 <p>If <a class="reference internal" href="#webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS" title="webdriver_test_tools.pageobject.form.FormObject.SUBMIT_SUCCESS_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">self.SUBMIT_SUCCESS_CLASS</span></code></a> is set to a
@@ -528,7 +494,7 @@ object will be returned</p>
         <a href="webdriver_test_tools.pageobject.modal.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.modal module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.pageobject.prototypes.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.prototypes module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.pageobject.prototypes.html" class="btn btn-neutral float-left" title="webdriver_test_tools.pageobject.prototypes module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -537,7 +503,7 @@ object will be returned</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -554,38 +520,16 @@ object will be returned</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
