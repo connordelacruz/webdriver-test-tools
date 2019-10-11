@@ -22,16 +22,34 @@ def get_parser():
 
 
 def main():
-    """Parse command line arguments and handle appropriately"""
+    """Parse command line arguments and handle appropriately.
+
+    Commands will return an exit code, which is passed to ``sys.exit()``. If an
+    exception is caught during execution, the exit code is set to 1 and the
+    error message is printed out.
+
+    If no arguments are provided, a help message will be printed out and the
+    exit code will be set to 1.
+    """
     parser = get_parser()
     args = parser.parse_args()
-    if args.version is not None and args.version:
-        version.main()
-    elif args.command == 'init':
-        init.main(args)
-    # If no arguments were specified, print help
-    else:
-        parser.print_help()
+    # Default to 0 exit code
+    exit_code = 0
+    try:
+        if args.version is not None and args.version:
+            version.main()
+        elif args.command == 'init':
+            init.main(args)
+        # If no arguments were specified, print help
+        else:
+            exit_code = 1
+            parser.print_help()
+    except Exception as e:
+        # Set exit code and print exception
+        exit_code = 1
+        print('')
+        cmd.print_exception(e)
+    sys.exit(exit_code)
 
 
 if __name__ == '__main__':

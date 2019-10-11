@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.pageobject.prototypes module" href="webdriver_test_tools.pageobject.prototypes.html" />
     <link rel="prev" title="webdriver_test_tools.pageobject package" href="webdriver_test_tools.pageobject.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -183,26 +184,22 @@
 <span id="webdriver-test-tools-pageobject-base-module"></span><h1>webdriver_test_tools.pageobject.base module<a class="headerlink" href="#module-webdriver_test_tools.pageobject.base" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.base.BasePage">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.base.</code><code class="descname">BasePage</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.pageobject.base.</code><code class="sig-name descname">BasePage</code><span class="sig-paren">(</span><em class="sig-param">driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Base class for page objects</p>
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.base.BasePage.Locator">
-<em class="property">class </em><code class="descname">Locator</code><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.Locator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage.Locator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-name descname">Locator</code><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.Locator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage.Locator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>WebDriver locator tuples for any elements that will need to be
 accessed by this page object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SOME_ELEMENT</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;some-element&#39;</span><span class="p">)</span>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SOME_ELEMENT</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;some-element&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p>This nested class is not technically required, but for consistency it’s
 recommended to use this convention for storing locators relevant to a
 page object</p>
@@ -210,7 +207,7 @@ page object</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.base.BasePage.find_element">
-<code class="descname">find_element</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.find_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage.find_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">find_element</code><span class="sig-paren">(</span><em class="sig-param">locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.find_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage.find_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a WebElement object based on the locator tuple passed</p>
 <p>Shorthand for:</p>
 <blockquote>
@@ -218,22 +215,20 @@ page object</p>
 </pre></div>
 </div>
 </div></blockquote>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format
-<code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The located WebElement</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>locator</strong> – WebDriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The located WebElement</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.base.BasePage.find_elements">
-<code class="descname">find_elements</code><span class="sig-paren">(</span><em>locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.find_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage.find_elements" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">find_elements</code><span class="sig-paren">(</span><em class="sig-param">locator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/base.html#BasePage.find_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.base.BasePage.find_elements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of WebElement objects based on the locator tuple
 passed</p>
 <p>Shorthand for :</p>
@@ -242,17 +237,15 @@ passed</p>
 </pre></div>
 </div>
 </div></blockquote>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locator</strong> – WebDriver locator tuple in the format
-<code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of located WebElements</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>locator</strong> – WebDriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(By.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of located WebElements</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -270,7 +263,7 @@ passed</p>
         <a href="webdriver_test_tools.pageobject.prototypes.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.prototypes module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.pageobject.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.pageobject.html" class="btn btn-neutral float-left" title="webdriver_test_tools.pageobject package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -279,7 +272,7 @@ passed</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -296,38 +289,16 @@ passed</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Troubleshooting Tests" href="troubleshooting.html" />
     <link rel="prev" title="Page Object Prototype Syntax" href="yaml.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -181,15 +182,18 @@
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#browserstack-support" id="id6">BrowserStack Support</a><ul>
-<li><a class="reference internal" href="#enabling-browserstack-support" id="id7">Enabling BrowserStack support</a></li>
-<li><a class="reference internal" href="#running-tests-with-browserstack" id="id8">Running tests with BrowserStack</a></li>
-<li><a class="reference internal" href="#configuring-browsers" id="id9">Configuring Browsers</a></li>
-<li><a class="reference internal" href="#additional-configurations" id="id10">Additional Configurations</a><ul>
-<li><a class="reference internal" href="#rename-the-project" id="id11">Rename the Project</a></li>
-<li><a class="reference internal" href="#specifying-the-build-name" id="id12">Specifying the Build Name</a></li>
-<li><a class="reference internal" href="#enabling-video" id="id13">Enabling Video</a><ul>
-<li><a class="reference internal" href="#command-line-arguments" id="id14">Command Line Arguments</a></li>
+<li><p><a class="reference internal" href="#browserstack-support" id="id6">BrowserStack Support</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enabling-browserstack-support" id="id7">Enabling BrowserStack support</a></p></li>
+<li><p><a class="reference internal" href="#running-tests-with-browserstack" id="id8">Running tests with BrowserStack</a></p></li>
+<li><p><a class="reference internal" href="#configuring-browsers" id="id9">Configuring Browsers</a></p></li>
+<li><p><a class="reference internal" href="#additional-configurations" id="id10">Additional Configurations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#rename-the-project" id="id11">Rename the Project</a></p></li>
+<li><p><a class="reference internal" href="#specifying-the-build-name" id="id12">Specifying the Build Name</a></p></li>
+<li><p><a class="reference internal" href="#enabling-video" id="id13">Enabling Video</a></p>
+<ul>
+<li><p><a class="reference internal" href="#command-line-arguments" id="id14">Command Line Arguments</a></p></li>
 </ul>
 </li>
 </ul>
@@ -215,8 +219,8 @@ set <code class="docutils literal notranslate"><span class="pre">BrowserStackCon
 <p>Next, you’ll need to set the following environment variables on your machine:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">BROWSERSTACK_USERNAME</span></code>: BrowserStack account username</li>
-<li><code class="docutils literal notranslate"><span class="pre">BROWSERSTACK_ACCESS_KEY</span></code>: The access key for the above account</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BROWSERSTACK_USERNAME</span></code>: BrowserStack account username</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BROWSERSTACK_ACCESS_KEY</span></code>: The access key for the above account</p></li>
 </ul>
 </div></blockquote>
 <p>Both of these values can be found on the <a class="reference external" href="https://automate.browserstack.com">BrowserStack Automate dashboard</a>. You can add the following to your
@@ -227,7 +231,7 @@ values):</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>If for whatever reason you don’t want to use environment variables for these
 values, you can just assign them directly:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
@@ -239,7 +243,7 @@ values, you can just assign them directly:</p>
 </span></pre></div>
 </div>
 </div>
-<p class="last">However, it is not recommended to store credentials in a way that might be
+<p>However, it is not recommended to store credentials in a way that might be
 visible to users who should not have access, so using environment variables
 would be a more secure approach.</p>
 </div>
@@ -360,7 +364,7 @@ select the test on the left column.</p>
         <a href="troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting Tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="yaml.html" class="btn btn-neutral" title="Page Object Prototype Syntax" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="yaml.html" class="btn btn-neutral float-left" title="Page Object Prototype Syntax" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -369,7 +373,7 @@ select the test on the left column.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -386,38 +390,16 @@ select the test on the left column.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Testing with Additional Browsers" href="additional_browsers.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -200,34 +201,40 @@
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#example-project" id="id11">Example Project</a><ul>
-<li><a class="reference internal" href="#initialize-the-project" id="id12">Initialize the project</a><ul>
-<li><a class="reference internal" href="#create-project-files" id="id13">Create project files</a></li>
-<li><a class="reference internal" href="#optional-setup-virtualenv" id="id14">(Optional) Setup virtualenv</a></li>
-<li><a class="reference internal" href="#install-test-package" id="id15">Install test package</a></li>
+<li><p><a class="reference internal" href="#example-project" id="id11">Example Project</a></p>
+<ul>
+<li><p><a class="reference internal" href="#initialize-the-project" id="id12">Initialize the project</a></p>
+<ul>
+<li><p><a class="reference internal" href="#create-project-files" id="id13">Create project files</a></p></li>
+<li><p><a class="reference internal" href="#optional-setup-virtualenv" id="id14">(Optional) Setup virtualenv</a></p></li>
+<li><p><a class="reference internal" href="#install-test-package" id="id15">Install test package</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#configure-site-urls" id="id16">Configure site URLs</a></li>
-<li><a class="reference internal" href="#add-a-page-object" id="id17">Add a page object</a><ul>
-<li><a class="reference internal" href="#creating-a-new-page-object-module" id="id18">Creating a new page object module</a></li>
-<li><a class="reference internal" href="#locating-page-elements" id="id19">Locating page elements</a></li>
-<li><a class="reference internal" href="#interacting-with-page-elements" id="id20">Interacting with page elements</a></li>
+<li><p><a class="reference internal" href="#configure-site-urls" id="id16">Configure site URLs</a></p></li>
+<li><p><a class="reference internal" href="#add-a-page-object" id="id17">Add a page object</a></p>
+<ul>
+<li><p><a class="reference internal" href="#creating-a-new-page-object-module" id="id18">Creating a new page object module</a></p></li>
+<li><p><a class="reference internal" href="#locating-page-elements" id="id19">Locating page elements</a></p></li>
+<li><p><a class="reference internal" href="#interacting-with-page-elements" id="id20">Interacting with page elements</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#add-a-test" id="id21">Add a test</a><ul>
-<li><a class="reference internal" href="#creating-a-new-test-module" id="id22">Creating a new test module</a></li>
-<li><a class="reference internal" href="#adding-test-functions" id="id23">Adding test functions</a></li>
+<li><p><a class="reference internal" href="#add-a-test" id="id21">Add a test</a></p>
+<ul>
+<li><p><a class="reference internal" href="#creating-a-new-test-module" id="id22">Creating a new test module</a></p></li>
+<li><p><a class="reference internal" href="#adding-test-functions" id="id23">Adding test functions</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#run-the-tests" id="id24">Run the tests</a><ul>
-<li><a class="reference internal" href="#running-the-test-suite" id="id25">Running the test suite</a></li>
-<li><a class="reference internal" href="#optional-command-line-arguments" id="id26">Optional command line arguments</a><ul>
-<li><a class="reference internal" href="#running-in-a-specific-browser" id="id27">Running in a specific browser</a></li>
-<li><a class="reference internal" href="#running-specific-test-modules" id="id28">Running specific test modules</a></li>
-<li><a class="reference internal" href="#running-specific-test-cases-or-functions" id="id29">Running specific test cases or functions</a></li>
-<li><a class="reference internal" href="#skipping-test-cases-or-functions" id="id30">Skipping test cases or functions</a></li>
-<li><a class="reference internal" href="#running-tests-in-headless-browsers" id="id31">Running tests in headless browsers</a></li>
-<li><a class="reference internal" href="#running-tests-silently" id="id32">Running tests silently</a></li>
+<li><p><a class="reference internal" href="#run-the-tests" id="id24">Run the tests</a></p>
+<ul>
+<li><p><a class="reference internal" href="#running-the-test-suite" id="id25">Running the test suite</a></p></li>
+<li><p><a class="reference internal" href="#optional-command-line-arguments" id="id26">Optional command line arguments</a></p>
+<ul>
+<li><p><a class="reference internal" href="#running-in-a-specific-browser" id="id27">Running in a specific browser</a></p></li>
+<li><p><a class="reference internal" href="#running-specific-test-modules" id="id28">Running specific test modules</a></p></li>
+<li><p><a class="reference internal" href="#running-specific-test-cases-or-functions" id="id29">Running specific test cases or functions</a></p></li>
+<li><p><a class="reference internal" href="#skipping-test-cases-or-functions" id="id30">Skipping test cases or functions</a></p></li>
+<li><p><a class="reference internal" href="#running-tests-in-headless-browsers" id="id31">Running tests in headless browsers</a></p></li>
+<li><p><a class="reference internal" href="#running-tests-silently" id="id32">Running tests silently</a></p></li>
 </ul>
 </li>
 </ul>
@@ -339,8 +346,8 @@ documentation</a>.</p>
 <p>Installing with the <code class="docutils literal notranslate"><span class="pre">-e</span></code> flag will update the package automatically when
 changes are made to the source code.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If you don’t want to install test project packages, you can still run them
+<p class="admonition-title">Note</p>
+<p>If you don’t want to install test project packages, you can still run them
 from the project root directory using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">&lt;test_package&gt;</span></code>.</p>
 </div>
 </div>
@@ -429,9 +436,9 @@ Enter a name for the initial page object class
 </div>
 <p>This will create the file <code class="docutils literal notranslate"><span class="pre">example_package/pages/home.py</span></code>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>For more information on the <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">page</span></code> command, run:</p>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">example_package</span> <span class="n">new</span> <span class="n">page</span> <span class="o">--</span><span class="n">help</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">example_package</span> <span class="n">new</span> <span class="n">page</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 </div>
 </div>
@@ -462,8 +469,8 @@ text. Add <code class="docutils literal notranslate"><span class="pre">HEADING</
 </div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The utility function <code class="docutils literal notranslate"><span class="pre">locate.by_element_text()</span></code> returns an XPATH locator
+<p class="admonition-title">Note</p>
+<p>The utility function <code class="docutils literal notranslate"><span class="pre">locate.by_element_text()</span></code> returns an XPATH locator
 for elements with the specified text.</p>
 </div>
 </div>
@@ -493,8 +500,8 @@ for elements with the specified text.</p>
 </div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">BasePage</span></code> method <code class="docutils literal notranslate"><span class="pre">self.find_element(locator)</span></code> is shorthand for
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BasePage</span></code> method <code class="docutils literal notranslate"><span class="pre">self.find_element(locator)</span></code> is shorthand for
 <code class="docutils literal notranslate"><span class="pre">self.driver.find_element(*locator)</span></code>.</p>
 </div>
 </div>
@@ -527,9 +534,9 @@ Enter a name for the initial test case class
 </div>
 <p>This will create the file <code class="docutils literal notranslate"><span class="pre">example_package/tests/home.py</span></code>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>For more information on the <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">test</span></code> command, run:</p>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">example_package</span> <span class="n">new</span> <span class="n">test</span> <span class="o">--</span><span class="n">help</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">example_package</span> <span class="n">new</span> <span class="n">test</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 </div>
 </div>
@@ -557,9 +564,9 @@ for home page tests. Now we’re going to add some test functions to
 </div>
 <p>We’re going to add 2 test functions:</p>
 <ol class="arabic simple">
-<li>Retrieve the heading text and assert that it says ‘Example Domain’</li>
-<li>Click the ‘More information…’ link and assert that the URL matches
-<code class="docutils literal notranslate"><span class="pre">SiteConfig.INFO_URL</span></code></li>
+<li><p>Retrieve the heading text and assert that it says ‘Example Domain’</p></li>
+<li><p>Click the ‘More information…’ link and assert that the URL matches
+<code class="docutils literal notranslate"><span class="pre">SiteConfig.INFO_URL</span></code></p></li>
 </ol>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text">tests/home.py:</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
@@ -588,8 +595,8 @@ for home page tests. Now we’re going to add some test functions to
 </div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Test functions need to begin with the prefix <code class="docutils literal notranslate"><span class="pre">test_</span></code> in order for
+<p class="admonition-title">Note</p>
+<p>Test functions need to begin with the prefix <code class="docutils literal notranslate"><span class="pre">test_</span></code> in order for
 the python <code class="docutils literal notranslate"><span class="pre">unittest</span></code> library to recognize them as tests.</p>
 </div>
 <p>The method <code class="docutils literal notranslate"><span class="pre">WebDriverTestCase.assertUrlChange()</span></code> tests that the current URL
@@ -769,7 +776,7 @@ tests:</p>
         <a href="additional_browsers.html" class="btn btn-neutral float-right" title="Testing with Additional Browsers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -778,7 +785,7 @@ tests:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -795,38 +802,16 @@ tests:</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.cmd.version module" href="webdriver_test_tools.cmd.version.html" />
     <link rel="prev" title="webdriver_test_tools.cmd package" href="webdriver_test_tools.cmd.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -184,7 +185,7 @@
 <span id="webdriver-test-tools-cmd-init-module"></span><h1>webdriver_test_tools.cmd.init module<a class="headerlink" href="#module-webdriver_test_tools.cmd.init" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="webdriver_test_tools.cmd.init.main">
-<code class="descclassname">webdriver_test_tools.cmd.init.</code><code class="descname">main</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/init.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.init.main" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.cmd.init.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param">args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/init.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.init.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Command line dialogs for initializing a test project</p>
 <p>This method takes the parsed command line arguments as a parameter. It’s
 assumed that the <code class="docutils literal notranslate"><span class="pre">init</span></code> subparser was added to the <code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code>
@@ -196,56 +197,47 @@ something other than <code class="docutils literal notranslate"><span class="pre
 <p>If <code class="docutils literal notranslate"><span class="pre">package_name</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> but one or more of the other parameters are
 not <code class="docutils literal notranslate"><span class="pre">None</span></code>, this method will attempt to bypass their corresponding input
 prompts if the value passed as a parameter is valid.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> – The <code class="docutils literal notranslate"><span class="pre">Namespace</span></code> object returned by <code class="docutils literal notranslate"><span class="pre">parser.parse_args()</span></code>.
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> – The <code class="docutils literal notranslate"><span class="pre">Namespace</span></code> object returned by <code class="docutils literal notranslate"><span class="pre">parser.parse_args()</span></code>.
 It is assumed that the <code class="docutils literal notranslate"><span class="pre">init</span></code> subparser was added to the
-<code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code> that returned this <code class="docutils literal notranslate"><span class="pre">Namespace</span></code></td>
-</tr>
-</tbody>
-</table>
+<code class="docutils literal notranslate"><span class="pre">ArgumentParser</span></code> that returned this <code class="docutils literal notranslate"><span class="pre">Namespace</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.cmd.init.add_init_subparser">
-<code class="descclassname">webdriver_test_tools.cmd.init.</code><code class="descname">add_init_subparser</code><span class="sig-paren">(</span><em>subparsers</em>, <em>parents=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/init.html#add_init_subparser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.init.add_init_subparser" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.cmd.init.</code><code class="sig-name descname">add_init_subparser</code><span class="sig-paren">(</span><em class="sig-param">subparsers</em>, <em class="sig-param">parents=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/init.html#add_init_subparser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.init.add_init_subparser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add subparser for the <code class="docutils literal notranslate"><span class="pre">wtt</span> <span class="pre">init</span></code> command</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the <code class="docutils literal notranslate"><span class="pre">wtt</span></code> ArgumentParser (i.e. the object
-returned by the <code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</li>
-<li><strong>parents</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">[]</span></code>) Parent parsers for the init subparser</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subparsers</strong> – <code class="docutils literal notranslate"><span class="pre">argparse._SubParsersAction</span></code> object for the <code class="docutils literal notranslate"><span class="pre">wtt</span></code> ArgumentParser (i.e. the object
+returned by the <code class="docutils literal notranslate"><span class="pre">add_subparsers()</span></code> method)</p></li>
+<li><p><strong>parents</strong> – (Default: <code class="docutils literal notranslate"><span class="pre">[]</span></code>) Parent parsers for the init subparser</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code> object for the newly added <code class="docutils literal notranslate"><span class="pre">init</span></code> subparser</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code> object for the newly added <code class="docutils literal notranslate"><span class="pre">init</span></code> subparser</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.cmd.init.validate_project_title">
-<code class="descclassname">webdriver_test_tools.cmd.init.</code><code class="descname">validate_project_title</code><span class="sig-paren">(</span><em>project_title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/init.html#validate_project_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.init.validate_project_title" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.cmd.init.</code><code class="sig-name descname">validate_project_title</code><span class="sig-paren">(</span><em class="sig-param">project_title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/cmd/init.html#validate_project_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.cmd.init.validate_project_title" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sanitizes string to avoid syntax errors when inserting the title into template
 files</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>project_title</strong> – The desired project title</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modifed project_title with only alphanumeric characters, spaces,
-underscores, and hyphens</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>project_title</strong> – The desired project title</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Modifed project_title with only alphanumeric characters, spaces,
+underscores, and hyphens</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -261,7 +253,7 @@ underscores, and hyphens</td>
         <a href="webdriver_test_tools.cmd.version.html" class="btn btn-neutral float-right" title="webdriver_test_tools.cmd.version module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.cmd.html" class="btn btn-neutral" title="webdriver_test_tools.cmd package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.cmd.html" class="btn btn-neutral float-left" title="webdriver_test_tools.cmd package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -270,7 +262,7 @@ underscores, and hyphens</td>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -287,38 +279,16 @@ underscores, and hyphens</td>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
