@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.__main__ module" href="webdriver_test_tools.__main__.html" />
     <link rel="prev" title="webdriver_test_tools.webdriver.support.expected_conditions module" href="webdriver_test_tools.webdriver.support.expected_conditions.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -185,182 +186,154 @@
 <p>Functions for commonly repeated test procedures</p>
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.support.test.expected_condition_test">
-<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">expected_condition_test</code><span class="sig-paren">(</span><em>driver</em>, <em>ec_object</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#expected_condition_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.expected_condition_test" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="sig-name descname">expected_condition_test</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">ec_object</em>, <em class="sig-param">wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#expected_condition_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.expected_condition_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test for an expected condition until wait timeout is reached</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>ec_object</strong> – Expected condition object</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
-conditions to occur before timing out</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>ec_object</strong> – Expected condition object</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if expected condition occurred, otherwise False</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if expected condition occurred, otherwise False</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.support.test.in_view_change_test">
-<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">in_view_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>target_locator</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#in_view_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.in_view_change_test" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="sig-name descname">in_view_change_test</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">target_locator</em>, <em class="sig-param">wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#in_view_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.in_view_change_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>Expected condition test for an element to scroll into view (e.g.
 same-page link with scroll animation)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate
-target</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
-conditions to occur before timing out</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate
+target</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if target is scrolled into view before timeout, False
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if target is scrolled into view before timeout, False
 otherwise</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.support.test.visibility_change_test">
-<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">visibility_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>target_locator</em>, <em>test_visible=True</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#visibility_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.visibility_change_test" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="sig-name descname">visibility_change_test</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">target_locator</em>, <em class="sig-param">test_visible=True</em>, <em class="sig-param">wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#visibility_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.visibility_change_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>Expected condition test for visibility changes (e.g. modals)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate
-target</li>
-<li><strong>test_visible</strong> – (Default=True) An optional variable describing what the
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate
+target</p></li>
+<li><p><strong>test_visible</strong> – (Default=True) An optional variable describing what the
 visibility change is supposed to be. If True, test if the target becomes
-visible. If False, test if the target becomes invisible</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
-conditions to occur before timing out</li>
+visible. If False, test if the target becomes invisible</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the target’s visibily changes as expected, False otherwise</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the target’s visibily changes as expected, False otherwise</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.support.test.url_change_test">
-<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">url_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>expected_url</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#url_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.url_change_test" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="sig-name descname">url_change_test</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">expected_url</em>, <em class="sig-param">wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#url_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.url_change_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>Expected condition test for URL change</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>expected_url</strong> – The expected URL</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
-conditions to occur before timing out</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>expected_url</strong> – The expected URL</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the current URL matches the expected URL before timeout,
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the current URL matches the expected URL before timeout,
 False otherwise</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.support.test.base_url_change_test">
-<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">base_url_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>expected_url</em>, <em>ignore_trailing_slash=True</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#base_url_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.base_url_change_test" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="sig-name descname">base_url_change_test</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">expected_url</em>, <em class="sig-param">ignore_trailing_slash=True</em>, <em class="sig-param">wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#base_url_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.base_url_change_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>Expected condition test for URL change. Ignores query strings in current
 url</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>expected_url</strong> – The expected base URL</li>
-<li><strong>ignore_trailing_slash</strong> – (Default = True) If True, ignore trailing ‘/’
-in the expected url and current base URL when comparing</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
-conditions to occur before timing out</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>expected_url</strong> – The expected base URL</p></li>
+<li><p><strong>ignore_trailing_slash</strong> – (Default = True) If True, ignore trailing ‘/’
+in the expected url and current base URL when comparing</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the current URL (ignoring query strings) matches the
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the current URL (ignoring query strings) matches the
 expected URL before timeout, False otherwise</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.support.test.existence_change_test">
-<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">existence_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>target_locator</em>, <em>test_exists=True</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#existence_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.existence_change_test" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="sig-name descname">existence_change_test</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">target_locator</em>, <em class="sig-param">test_exists=True</em>, <em class="sig-param">wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#existence_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.existence_change_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>Expected condition test for element existence changes (e.g. element that
 gets added/removed dynamically)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate
-target</li>
-<li><strong>test_exists</strong> – (Default = True) An optional variable describing what
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate
+target</p></li>
+<li><p><strong>test_exists</strong> – (Default = True) An optional variable describing what
 the existence change is supposed to be. If True, test if the target does
-exist. If False, test if the target no longer exists</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
-conditions to occur before timing out</li>
+exist. If False, test if the target no longer exists</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the existence of the target changes as expected, False
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the existence of the target changes as expected, False
 otherwise</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.webdriver.support.test.enabled_state_change_test">
-<code class="descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="descname">enabled_state_change_test</code><span class="sig-paren">(</span><em>driver</em>, <em>target_locator</em>, <em>test_enabled=True</em>, <em>wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#enabled_state_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.enabled_state_change_test" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.webdriver.support.test.</code><code class="sig-name descname">enabled_state_change_test</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">target_locator</em>, <em class="sig-param">test_enabled=True</em>, <em class="sig-param">wait_timeout=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/webdriver/support/test.html#enabled_state_change_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.webdriver.support.test.enabled_state_change_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>Expected condition test for element enabled/disabled state changes</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>driver</strong> – Selenium WebDriver object</li>
-<li><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate
-target</li>
-<li><strong>test_enabled</strong> – (Default = True) An optional variable describing what
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>driver</strong> – Selenium WebDriver object</p></li>
+<li><p><strong>target_locator</strong> – Tuple in the format (by,selector) used to locate
+target</p></li>
+<li><p><strong>test_enabled</strong> – (Default = True) An optional variable describing what
 the enabled/disabled state change is supposed to be. If True, test if
-the target is enabled. If False, test if the target is disabled</li>
-<li><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
-conditions to occur before timing out</li>
+the target is enabled. If False, test if the target is disabled</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = 10) Number of seconds to wait for expected
+conditions to occur before timing out</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -376,7 +349,7 @@ conditions to occur before timing out</li>
         <a href="webdriver_test_tools.__main__.html" class="btn btn-neutral float-right" title="webdriver_test_tools.__main__ module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.webdriver.support.expected_conditions.html" class="btn btn-neutral" title="webdriver_test_tools.webdriver.support.expected_conditions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.webdriver.support.expected_conditions.html" class="btn btn-neutral float-left" title="webdriver_test_tools.webdriver.support.expected_conditions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -385,7 +358,7 @@ conditions to occur before timing out</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -402,38 +375,16 @@ conditions to occur before timing out</li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -19,33 +19,34 @@
   
 
   
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
-
-  
-  <script src="../../../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -476,6 +477,7 @@
 
 <span class="c1"># Argument parsing functions</span>
 
+<span class="c1"># TODO: DOC exceptions that may be raised</span>
 <div class="viewcode-block" id="parse_new_args"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.new.html#webdriver_test_tools.project.cmd.new.parse_new_args">[docs]</a><span class="k">def</span> <span class="nf">parse_new_args</span><span class="p">(</span><span class="n">package_name</span><span class="p">,</span> <span class="n">tests_module</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parse arguments and run the &#39;new&#39; command</span>
 
@@ -483,14 +485,20 @@
 <span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``. Used</span>
 <span class="sd">        to determine the filepath of the package</span>
 <span class="sd">    :param args: The namespace returned by parser.parse_args()</span>
+
+<span class="sd">    :return: Exit code, 0 if files were created without exceptions, 1 otherwise.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            Technically, this will always return 0, as all fail states cause an</span>
+<span class="sd">            exception to be raised. This is just to keep it consistent with</span>
+<span class="sd">            other project cmd parse arg functions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">exit_code</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="c1"># Get package path based on tests_module path</span>
     <span class="n">test_package_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">tests_module</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">main</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="n">cmd</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></div>
+    <span class="n">main</span><span class="p">(</span><span class="n">test_package_path</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">exit_code</span></div>
 
 
 <span class="c1"># User Input Prompts</span>
@@ -526,7 +534,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -543,38 +551,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../../',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Page Object Prototype Syntax" href="yaml.html" />
     <link rel="prev" title="Testing Utilities Overview" href="utilities.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -190,26 +191,31 @@
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#page-object-prototypes-overview" id="id7">Page Object Prototypes Overview</a><ul>
-<li><a class="reference internal" href="#overview" id="id8">Overview</a></li>
-<li><a class="reference internal" href="#formobject" id="id9">FormObject</a><ul>
-<li><a class="reference internal" href="#attributes" id="id10">Attributes</a></li>
-<li><a class="reference internal" href="#methods" id="id11">Methods</a></li>
+<li><p><a class="reference internal" href="#page-object-prototypes-overview" id="id7">Page Object Prototypes Overview</a></p>
+<ul>
+<li><p><a class="reference internal" href="#overview" id="id8">Overview</a></p></li>
+<li><p><a class="reference internal" href="#formobject" id="id9">FormObject</a></p>
+<ul>
+<li><p><a class="reference internal" href="#attributes" id="id10">Attributes</a></p></li>
+<li><p><a class="reference internal" href="#methods" id="id11">Methods</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#modalobject" id="id12">ModalObject</a><ul>
-<li><a class="reference internal" href="#id1" id="id13">Attributes</a></li>
-<li><a class="reference internal" href="#id2" id="id14">Methods</a></li>
+<li><p><a class="reference internal" href="#modalobject" id="id12">ModalObject</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id13">Attributes</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id14">Methods</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#navobject" id="id15">NavObject</a><ul>
-<li><a class="reference internal" href="#id3" id="id16">Attributes</a></li>
-<li><a class="reference internal" href="#id4" id="id17">Methods</a></li>
+<li><p><a class="reference internal" href="#navobject" id="id15">NavObject</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id16">Attributes</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id17">Methods</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#webpageobject" id="id18">WebPageObject</a><ul>
-<li><a class="reference internal" href="#id5" id="id19">Attributes</a></li>
-<li><a class="reference internal" href="#id6" id="id20">Methods</a></li>
+<li><p><a class="reference internal" href="#webpageobject" id="id18">WebPageObject</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id19">Attributes</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id20">Methods</a></p></li>
 </ul>
 </li>
 </ul>
@@ -236,38 +242,38 @@ prototype is used to represent forms, their inputs, and their submit button.</p>
 <p><code class="docutils literal notranslate"><span class="pre">FormObject</span></code> subclasses define the following attributes:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">FORM_LOCATOR</span></code>: WebDriver locator tuple for the form element</li>
-<li><code class="docutils literal notranslate"><span class="pre">SUBMIT_LOCATOR</span></code>: WebDriver locator tuple for the submit button</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FORM_LOCATOR</span></code>: WebDriver locator tuple for the form element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUBMIT_LOCATOR</span></code>: WebDriver locator tuple for the submit button</p></li>
 </ul>
 </div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">FormObject</span></code> subclasses may also have the following optional attribute:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">SUBMIT_SUCCESS_CLASS</span></code>: Page object class representing the page/modal/etc
-that is expected to appear on successful submission</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUBMIT_SUCCESS_CLASS</span></code>: Page object class representing the page/modal/etc
+that is expected to appear on successful submission</p></li>
 </ul>
 </div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">FormObject</span></code> subclasses will have the following attributes at runtime. These
 are populated based on the contents of <code class="docutils literal notranslate"><span class="pre">YAML_FILE</span></code> or <code class="docutils literal notranslate"><span class="pre">INPUT_DICT</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">inputs</span></code>: A dictionary mapping input names to the corresponding
+<li><p><code class="docutils literal notranslate"><span class="pre">inputs</span></code>: A dictionary mapping input names to the corresponding
 <a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.InputObject" title="webdriver_test_tools.pageobject.form.InputObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">InputObject</span></code></a>
-instances</li>
+instances</p></li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="methods">
 <h3><a class="toc-backref" href="#id11">Methods</a><a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_inputs" title="webdriver_test_tools.pageobject.form.FormObject.fill_inputs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FormObject.fill_inputs</span></code></a>: Fill form
-inputs</li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.get_input_values" title="webdriver_test_tools.pageobject.form.FormObject.get_input_values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FormObject.get_input_values</span></code></a>: Get the
-current values of form inputs</li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled" title="webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FormObject.submit_is_enabled</span></code></a>: Checks
-if the submit button is enabled</li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="webdriver_test_tools.pageobject.form.FormObject.click_submit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FormObject.click_submit</span></code></a>: Click the
-submit button</li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.fill_inputs" title="webdriver_test_tools.pageobject.form.FormObject.fill_inputs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FormObject.fill_inputs</span></code></a>: Fill form
+inputs</p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.get_input_values" title="webdriver_test_tools.pageobject.form.FormObject.get_input_values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FormObject.get_input_values</span></code></a>: Get the
+current values of form inputs</p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled" title="webdriver_test_tools.pageobject.form.FormObject.submit_is_enabled"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FormObject.submit_is_enabled</span></code></a>: Checks
+if the submit button is enabled</p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.form.html#webdriver_test_tools.pageobject.form.FormObject.click_submit" title="webdriver_test_tools.pageobject.form.FormObject.click_submit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FormObject.click_submit</span></code></a>: Click the
+submit button</p></li>
 </ul>
 </div>
 </div>
@@ -281,28 +287,28 @@ button.</p>
 <p><code class="docutils literal notranslate"><span class="pre">ModalObject</span></code> subclasses define the following attributes:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">MODAL_LOCATOR</span></code>: WebDriver locator tuple for the modal element</li>
-<li><code class="docutils literal notranslate"><span class="pre">CLOSE_LOCATOR</span></code>: WebDriver locator tuple for the modal close button</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MODAL_LOCATOR</span></code>: WebDriver locator tuple for the modal element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CLOSE_LOCATOR</span></code>: WebDriver locator tuple for the modal close button</p></li>
 </ul>
 </div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">ModalObject</span></code> subclasses may also have the following optional attribute:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">MODAL_BODY_CLASS</span></code>: Page object class representing the contents of the
-modal body</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MODAL_BODY_CLASS</span></code>: Page object class representing the contents of the
+modal body</p></li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="id2">
 <h3><a class="toc-backref" href="#id14">Methods</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.is_displayed" title="webdriver_test_tools.pageobject.modal.ModalObject.is_displayed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModalObject.is_displayed</span></code></a>: Checks if
-the modal is currently visible</li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.click_close_button" title="webdriver_test_tools.pageobject.modal.ModalObject.click_close_button"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModalObject.click_close_button</span></code></a>: Click
-the modal’s close button</li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body" title="webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModalObject.get_modal_body</span></code></a>: Returns
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.is_displayed" title="webdriver_test_tools.pageobject.modal.ModalObject.is_displayed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModalObject.is_displayed</span></code></a>: Checks if
+the modal is currently visible</p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.click_close_button" title="webdriver_test_tools.pageobject.modal.ModalObject.click_close_button"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModalObject.click_close_button</span></code></a>: Click
+the modal’s close button</p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.modal.html#webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body" title="webdriver_test_tools.pageobject.modal.ModalObject.get_modal_body"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModalObject.get_modal_body</span></code></a>: Returns
 an instance of the class defined in <code class="docutils literal notranslate"><span class="pre">MODAL_BODY_CLASS</span></code> (or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not
-set)</li>
+set)</p></li>
 </ul>
 </div>
 </div>
@@ -315,29 +321,29 @@ is used to represent navbars.</p>
 <p><code class="docutils literal notranslate"><span class="pre">NavObject</span></code> subclasses may define the following optional attributes:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">FIXED</span></code>: (Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) True if the navbar is fixed to the window</li>
-<li><code class="docutils literal notranslate"><span class="pre">COLLAPSIBLE</span></code>: (Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>) True if the navbar is collapsible
-(e.g. uses a hamburger menu)</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FIXED</span></code>: (Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>) True if the navbar is fixed to the window</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COLLAPSIBLE</span></code>: (Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>) True if the navbar is collapsible
+(e.g. uses a hamburger menu)</p></li>
 </ul>
 </div></blockquote>
 <p>If <code class="docutils literal notranslate"><span class="pre">COLLAPSIBLE</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, subclasses should define the following
 attributes:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">MENU_LOCATOR</span></code>: Locator for the collapsible menu element</li>
-<li><code class="docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code>: Locator for the button that expands the nav menu</li>
-<li><code class="docutils literal notranslate"><span class="pre">COLLAPSE_BUTTON_LOCATOR</span></code>: (Optional) Locator for the button that
+<li><p><code class="docutils literal notranslate"><span class="pre">MENU_LOCATOR</span></code>: Locator for the collapsible menu element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code>: Locator for the button that expands the nav menu</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COLLAPSE_BUTTON_LOCATOR</span></code>: (Optional) Locator for the button that
 collapses the nav menu. Leave unset if this is the same as
-<code class="docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code></li>
+<code class="docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code></p></li>
 </ul>
 </div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">NavObject</span></code> subclasses will have the following attributes at runtime. These
 are populated based on the contents of <code class="docutils literal notranslate"><span class="pre">YAML_FILE</span></code> or <code class="docutils literal notranslate"><span class="pre">LINK_DICTS</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">links</span></code>: A dictionary mapping link names to the corresponding
+<li><p><code class="docutils literal notranslate"><span class="pre">links</span></code>: A dictionary mapping link names to the corresponding
 <a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavLinkObject" title="webdriver_test_tools.pageobject.nav.NavLinkObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavLinkObject</span></code></a>
-instances</li>
+instances</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -346,21 +352,21 @@ instances</li>
 <p>All <code class="docutils literal notranslate"><span class="pre">NavObject</span></code> subclasses have the following methods:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.click_link" title="webdriver_test_tools.pageobject.nav.NavObject.click_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavObject.click_link</span></code></a>: Click a link
-in the navbar</li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.hover_over_link" title="webdriver_test_tools.pageobject.nav.NavObject.hover_over_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavObject.hover_over_link</span></code></a>: Hover
-over a link in the navbar</li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.click_link" title="webdriver_test_tools.pageobject.nav.NavObject.click_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavObject.click_link</span></code></a>: Click a link
+in the navbar</p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.hover_over_link" title="webdriver_test_tools.pageobject.nav.NavObject.hover_over_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavObject.hover_over_link</span></code></a>: Hover
+over a link in the navbar</p></li>
 </ul>
 </div></blockquote>
 <p>Collapsible <code class="docutils literal notranslate"><span class="pre">NavObject</span></code> subclasses have additional methods:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.click_expand_button" title="webdriver_test_tools.pageobject.nav.NavObject.click_expand_button"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavObject.click_expand_button</span></code></a>: Click
-the button to expand the nav menu</li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.click_collapse_button" title="webdriver_test_tools.pageobject.nav.NavObject.click_collapse_button"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavObject.click_collapse_button</span></code></a>:
-Click the button to collapse the nav menu</li>
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.is_expanded" title="webdriver_test_tools.pageobject.nav.NavObject.is_expanded"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavObject.is_expanded</span></code></a>: Check if the
-nav menu is expanded</li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.click_expand_button" title="webdriver_test_tools.pageobject.nav.NavObject.click_expand_button"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavObject.click_expand_button</span></code></a>: Click
+the button to expand the nav menu</p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.click_collapse_button" title="webdriver_test_tools.pageobject.nav.NavObject.click_collapse_button"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavObject.click_collapse_button</span></code></a>:
+Click the button to collapse the nav menu</p></li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.nav.html#webdriver_test_tools.pageobject.nav.NavObject.is_expanded" title="webdriver_test_tools.pageobject.nav.NavObject.is_expanded"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavObject.is_expanded</span></code></a>: Check if the
+nav menu is expanded</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -374,22 +380,22 @@ represent entire pages.</p>
 <p><code class="docutils literal notranslate"><span class="pre">WebPageObject</span></code> subclasses define the following attribute:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">PAGE_URL</span></code>: Full URL to the page</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PAGE_URL</span></code>: Full URL to the page</p></li>
 </ul>
 </div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">WebPageObject</span></code> subclasses may also have the following optional attribute:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">PAGE_FILENAME</span></code>: Filename of the page (or path relative to a base URL
-configured in a project’s <a class="reference internal" href="webdriver_test_tools.config.site.html#webdriver_test_tools.config.site.SiteConfig" title="webdriver_test_tools.config.site.SiteConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">SiteConfig</span></code></a>)</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PAGE_FILENAME</span></code>: Filename of the page (or path relative to a base URL
+configured in a project’s <a class="reference internal" href="webdriver_test_tools.config.site.html#webdriver_test_tools.config.site.SiteConfig" title="webdriver_test_tools.config.site.SiteConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">SiteConfig</span></code></a>)</p></li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="id6">
 <h3><a class="toc-backref" href="#id20">Methods</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title" title="webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title"><code class="xref py py-meth docutils literal notranslate"><span class="pre">WebPageObject.get_page_title</span></code></a>:
-Returns the title of the current page</li>
+<li><p><a class="reference internal" href="webdriver_test_tools.pageobject.webpage.html#webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title" title="webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title"><code class="xref py py-meth docutils literal notranslate"><span class="pre">WebPageObject.get_page_title</span></code></a>:
+Returns the title of the current page</p></li>
 </ul>
 </div>
 </div>
@@ -406,7 +412,7 @@ Returns the title of the current page</li>
         <a href="yaml.html" class="btn btn-neutral float-right" title="Page Object Prototype Syntax" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="utilities.html" class="btn btn-neutral" title="Testing Utilities Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="utilities.html" class="btn btn-neutral float-left" title="Testing Utilities Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -415,7 +421,7 @@ Returns the title of the current page</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -432,38 +438,16 @@ Returns the title of the current page</li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

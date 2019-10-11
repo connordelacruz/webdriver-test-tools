@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.pageobject package" href="webdriver_test_tools.pageobject.html" />
     <link rel="prev" title="webdriver_test_tools.config.test module" href="webdriver_test_tools.config.test.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -183,38 +184,38 @@
 <span id="webdriver-test-tools-config-webdriver-module"></span><h1>webdriver_test_tools.config.webdriver module<a class="headerlink" href="#module-webdriver_test_tools.config.webdriver" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.config.webdriver.</code><code class="descname">WebDriverConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.config.webdriver.</code><code class="sig-name descname">WebDriverConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Configurations for webdriver</p>
 <dl class="attribute">
 <dt>
-<code class="descname">LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(webdriver_test_tools.__file__)), 'log')</code></dt>
+<code class="sig-name descname">LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(webdriver_test_tools.__file__)), 'log')</code></dt>
 <dd><p>Path to the log directory. Defaults to the log subdirectory in the
 <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code> package root directory</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt>
-<code class="descname">SCREENSHOT_PATH = os.path.join(os.path.dirname(os.path.abspath(webdriver_test_tools.__file__)), 'screenshot')</code></dt>
+<code class="sig-name descname">SCREENSHOT_PATH = os.path.join(os.path.dirname(os.path.abspath(webdriver_test_tools.__file__)), 'screenshot')</code></dt>
 <dd><p>Path to the screenshot directory. Defaults to the screenshot
 subdirectory in the <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code> package root directory</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT">
-<code class="descname">SCREENSHOT_FILENAME_FORMAT</code><em class="property"> = '{date}/{time}-{test}-{browser}.png'</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SCREENSHOT_FILENAME_FORMAT</code><em class="property"> = '{date}/{time}-{test}-{browser}.png'</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format string used to determine filenames for screenshots (relative to
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_PATH</span></code>). The format string can include the
 following parameters:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">{date}</span></code>: Replaced with the date the screenshot was taken
-(YYYY-MM-DD)</li>
-<li><code class="docutils literal notranslate"><span class="pre">{time}</span></code>: Replaced with the time the screenshot was taken
-(HHMMSS)</li>
-<li><code class="docutils literal notranslate"><span class="pre">{test}</span></code>: Replaced with the test method running when screenshot
-was taken</li>
-<li><code class="docutils literal notranslate"><span class="pre">{browser}</span></code>: Replaced with the browser used when screenshot was
-taken</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{date}</span></code>: Replaced with the date the screenshot was taken
+(YYYY-MM-DD)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{time}</span></code>: Replaced with the time the screenshot was taken
+(HHMMSS)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{test}</span></code>: Replaced with the test method running when screenshot
+was taken</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{browser}</span></code>: Replaced with the browser used when screenshot was
+taken</p></li>
 </ul>
 </div></blockquote>
 <p>The format string can include ‘/’ directory separators to save screenshots
@@ -223,150 +224,137 @@ in subdirectories of <code class="xref py py-attr docutils literal notranslate">
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT">
-<code class="descname">DEFAULT_ASSERTION_TIMEOUT</code><em class="property"> = 10</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">DEFAULT_ASSERTION_TIMEOUT</code><em class="property"> = 10</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.DEFAULT_ASSERTION_TIMEOUT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default number of seconds for <a class="reference internal" href="utilities.html#assertion-methods"><span class="std std-ref">WebDriverTestCase assertion methods</span></a> to wait for expected conditions to occur before test
 fails</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS">
-<code class="descname">FIREFOX_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">FIREFOX_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Keyword args for <code class="docutils literal notranslate"><span class="pre">webdriver.Firefox()</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS">
-<code class="descname">CHROME_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CHROME_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Keyword args for <code class="docutils literal notranslate"><span class="pre">webdriver.Chrome()</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS">
-<code class="descname">SAFARI_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SAFARI_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Keyword args for <code class="docutils literal notranslate"><span class="pre">webdriver.Safari()</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS">
-<code class="descname">IE_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">IE_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Keyword args for <code class="docutils literal notranslate"><span class="pre">webdriver.Ie()</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS">
-<code class="descname">EDGE_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">EDGE_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Keyword args for <code class="docutils literal notranslate"><span class="pre">webdriver.Edge()</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION">
-<code class="descname">CHROME_MOBILE_EMULATION</code><em class="property"> = {'deviceName': 'Pixel 2'}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CHROME_MOBILE_EMULATION</code><em class="property"> = {'deviceName': 'Pixel 2'}</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dictionary with ‘mobileEmulation’ options for Chrome</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS">
-<code class="descname">CHROME_HEADLESS_ARGS</code><em class="property"> = ['--window-size=1920x1080']</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CHROME_HEADLESS_ARGS</code><em class="property"> = ['--window-size=1920x1080']</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_HEADLESS_ARGS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Command line arguments to use in addition to the <code class="docutils literal notranslate"><span class="pre">--headless</span></code> flag</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS">
-<code class="descname">FIREFOX_HEADLESS_ARGS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">FIREFOX_HEADLESS_ARGS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_HEADLESS_ARGS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Command line arguments to use in addition to the <code class="docutils literal notranslate"><span class="pre">-headless</span></code> flag</p>
 </dd></dl>
 
-<dl class="classmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver">
-<em class="property">classmethod </em><code class="descname">get_firefox_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_firefox_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">get_firefox_driver</code><span class="sig-paren">(</span><em class="sig-param">headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_firefox_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_firefox_driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Firefox</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.FIREFOX_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">FIREFOX_KWARGS</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">LOG_PATH</span></code> to
 initialize</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>headless</strong> – (Default = False) If True, configure driver to run a
-headless browser</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>headless</strong> – (Default = False) If True, configure driver to run a
+headless browser</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="classmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver">
-<em class="property">classmethod </em><code class="descname">get_chrome_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">get_chrome_driver</code><span class="sig-paren">(</span><em class="sig-param">headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Chrome</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CHROME_KWARGS</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">LOG_PATH</span></code> to
 initialize</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>headless</strong> – (Default = False) If True, configure driver to run a
-headless browser</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>headless</strong> – (Default = False) If True, configure driver to run a
+headless browser</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="classmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_safari_driver">
-<em class="property">classmethod </em><code class="descname">get_safari_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_safari_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_safari_driver" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">get_safari_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_safari_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_safari_driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Safari</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.SAFARI_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SAFARI_KWARGS</span></code></a> to initialize</p>
 </dd></dl>
 
-<dl class="classmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_ie_driver">
-<em class="property">classmethod </em><code class="descname">get_ie_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_ie_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_ie_driver" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">get_ie_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_ie_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_ie_driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Ie</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.IE_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">IE_KWARGS</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">LOG_PATH</span></code> to initialize</p>
 </dd></dl>
 
-<dl class="classmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_edge_driver">
-<em class="property">classmethod </em><code class="descname">get_edge_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_edge_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_edge_driver" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">get_edge_driver</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_edge_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_edge_driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Edge</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.EDGE_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">EDGE_KWARGS</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">LOG_PATH</span></code> to initialize</p>
 </dd></dl>
 
-<dl class="classmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_mobile_driver">
-<em class="property">classmethod </em><code class="descname">get_chrome_mobile_driver</code><span class="sig-paren">(</span><em>headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_mobile_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_mobile_driver" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">get_chrome_mobile_driver</code><span class="sig-paren">(</span><em class="sig-param">headless=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.get_chrome_mobile_driver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.get_chrome_mobile_driver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <code class="docutils literal notranslate"><span class="pre">webdriver.Chrome</span></code> object using <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CHROME_KWARGS</span></code></a>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">LOG_PATH</span></code>, and
 <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION" title="webdriver_test_tools.config.webdriver.WebDriverConfig.CHROME_MOBILE_EMULATION"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CHROME_MOBILE_EMULATION</span></code></a> to initialize</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>headless</strong> – (Default = False) If True, configure driver to run a
-headless browser</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>headless</strong> – (Default = False) If True, configure driver to run a
+headless browser</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="classmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file">
-<em class="property">classmethod </em><code class="descname">new_screenshot_file</code><span class="sig-paren">(</span><em>browser_name</em>, <em>test_name</em>, <em>makedirs=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.new_screenshot_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">new_screenshot_file</code><span class="sig-paren">(</span><em class="sig-param">browser_name</em>, <em class="sig-param">test_name</em>, <em class="sig-param">makedirs=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/webdriver.html#WebDriverConfig.new_screenshot_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the full path and filename for the screenshot</p>
 <p>The filename is determined by the format set in
 <a class="reference internal" href="#webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT" title="webdriver_test_tools.config.webdriver.WebDriverConfig.SCREENSHOT_FILENAME_FORMAT"><code class="xref py py-attr docutils literal notranslate"><span class="pre">WebDriverConfig.SCREENSHOT_FILENAME_FORMAT</span></code></a>. If the format doesn’t
 end with ‘.png’, the extension will be appended to the resulting
 filename</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>browser_name</strong> – Name of the browser (for screenshot filename)</li>
-<li><strong>test_name</strong> – Name of the current test (for screenshot filename)</li>
-<li><strong>makedirs</strong> – (Default = True) If True, create any subdirectories of
-screenshot/ if they don’t already exist</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>browser_name</strong> – Name of the browser (for screenshot filename)</p></li>
+<li><p><strong>test_name</strong> – Name of the current test (for screenshot filename)</p></li>
+<li><p><strong>makedirs</strong> – (Default = True) If True, create any subdirectories of
+screenshot/ if they don’t already exist</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Filename for the screenshot</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Filename for the screenshot</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -384,7 +372,7 @@ screenshot/ if they don’t already exist</li>
         <a href="webdriver_test_tools.pageobject.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.config.test.html" class="btn btn-neutral" title="webdriver_test_tools.config.test module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.config.test.html" class="btn btn-neutral float-left" title="webdriver_test_tools.config.test module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -393,7 +381,7 @@ screenshot/ if they don’t already exist</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -410,38 +398,16 @@ screenshot/ if they don’t already exist</li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

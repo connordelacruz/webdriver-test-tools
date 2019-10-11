@@ -5,7 +5,8 @@ from argparse import RawTextHelpFormatter
 from webdriver_test_tools import config
 from webdriver_test_tools.common import cmd
 from webdriver_test_tools.project import test_factory
-from webdriver_test_tools.project.cmd.common import parse_test_args, load_tests
+from webdriver_test_tools.project.test_loader import load_project_tests
+from webdriver_test_tools.project.cmd.common import parse_test_args
 from webdriver_test_tools.testcase import Browsers
 
 
@@ -193,6 +194,8 @@ def parse_run_args(tests_module, config_module, args):
     :param tests_module: The module object for ``<test_project>.tests``
     :param config_module: The module object for ``<test_project>.config``
     :param args: The namespace returned by parser.parse_args()
+
+    :return: Exit code, 0 if tests were successful, 1 otherwise
     """
     kwargs = parse_test_args(args)
     # Get browser config classes
@@ -212,7 +215,8 @@ def parse_run_args(tests_module, config_module, args):
     browser_config_class = browserstack_config if 'browserstack' in kwargs and kwargs['browserstack'] else browser_config
     kwargs['browser_classes'] = browser_config_class.get_browser_classes(args.browser)
     # Run tests using parsed args
-    run_tests(tests_module, config_module, **kwargs)
+    exit_code = run_tests(tests_module, config_module, **kwargs)
+    return exit_code
 
 
 def run_tests(tests_module, config_module,
@@ -238,11 +242,13 @@ def run_tests(tests_module, config_module,
         in a headless browser. Tests will only be generated for drivers that
         support running headless browsers
     :param verbosity: (Optional) Output verbosity level for the test runner.
+
+    :return: Exit code, 0 if tests were successful, 1 otherwise
     """
     # Enable graceful Ctrl+C handling
     unittest.installHandler()
     # Load WebDriverTestCase subclasses from project tests
-    tests = load_tests(tests_module, test_module_names, test_class_map, skip_class_map)
+    tests = load_project_tests(tests_module, test_module_names, test_class_map, skip_class_map)
     # Generate browser test cases from the loaded WebDriverTestCase classes
     browser_test_suite = test_factory.generate_browser_test_suite(
         tests, browser_classes, test_class_map, skip_class_map,
@@ -250,8 +256,13 @@ def run_tests(tests_module, config_module,
     )
     # Get configured test runner and run suite
     test_runner = config_module.TestSuiteConfig.get_runner(verbosity=verbosity)
-    test_runner.run(browser_test_suite)
+    # Capture result for exit code
+    # TODO see if there's anything else useful you can do with the result?
+    result = test_runner.run(browser_test_suite)
     # Link to BrowserStack automation dashboard if applicable
     if browserstack:
         print('', 'See BrowserStack Automation Dashboard for Detailed Results:',
               'https://automate.browserstack.com', sep='\n')
+    # Propagate exit code
+    return 0 if result.wasSuccessful() else 1
+

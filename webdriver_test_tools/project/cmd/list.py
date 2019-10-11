@@ -3,7 +3,8 @@ import unittest
 from argparse import RawTextHelpFormatter
 
 from webdriver_test_tools.common import cmd
-from webdriver_test_tools.project.cmd.common import parse_test_args, load_tests
+from webdriver_test_tools.project.test_loader import load_project_tests
+from webdriver_test_tools.project.cmd.common import parse_test_args
 
 
 # Tree characters (for verbose output)
@@ -50,10 +51,20 @@ def parse_list_args(tests_module, args):
 
     :param tests_module: The module object for ``<test_project>.tests``
     :param args: The namespace returned by parser.parse_args()
+
+    :return: Exit code, 0 if no exceptions were encountered, 1 otherwise
+
+        .. note::
+
+            Technically, this will always return 0, as all fail states cause an
+            exception to be raised. This is just to keep it consistent with
+            other project cmd parse arg functions.
     """
+    exit_code = 0
     kwargs = parse_test_args(args)
     kwargs['verbose'] = args.verbose
     list_tests(tests_module, **kwargs)
+    return exit_code
 
 
 def list_tests(tests_module,
@@ -71,7 +82,7 @@ def list_tests(tests_module,
     :param verbose: (Default = False) If True, print class and test method
         docstrings
     """
-    tests = load_tests(tests_module, test_module_names, test_class_map, skip_class_map)
+    tests = load_project_tests(tests_module, test_module_names, test_class_map, skip_class_map)
     module_map = _module_map(tests, tests_module)
     for module, test_list in module_map.items():
         _print_module(module, test_list, verbose=verbose)

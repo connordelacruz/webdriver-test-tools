@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Testing Utilities Overview" href="utilities.html" />
     <link rel="prev" title="Example Project" href="example_project.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -194,32 +195,38 @@
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#testing-with-additional-browsers" id="id7">Testing with Additional Browsers</a><ul>
-<li><a class="reference internal" href="#enabling-additional-browsers" id="id8">Enabling additional browsers</a></li>
-<li><a class="reference internal" href="#skipping-tests-for-certain-browsers" id="id9">Skipping tests for certain browsers</a><ul>
-<li><a class="reference internal" href="#skipping-browsers-for-test-methods" id="id10">Skipping browsers for test methods</a></li>
-<li><a class="reference internal" href="#skipping-browsers-for-test-case-classes" id="id11">Skipping browsers for test case classes</a></li>
+<li><p><a class="reference internal" href="#testing-with-additional-browsers" id="id7">Testing with Additional Browsers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enabling-additional-browsers" id="id8">Enabling additional browsers</a></p></li>
+<li><p><a class="reference internal" href="#skipping-tests-for-certain-browsers" id="id9">Skipping tests for certain browsers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#skipping-browsers-for-test-methods" id="id10">Skipping browsers for test methods</a></p></li>
+<li><p><a class="reference internal" href="#skipping-browsers-for-test-case-classes" id="id11">Skipping browsers for test case classes</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#enabling-mobile-browsers" id="id12">Enabling mobile browsers</a></li>
-<li><a class="reference internal" href="#skipping-tests-for-mobile-browsers" id="id13">Skipping tests for mobile browsers</a><ul>
-<li><a class="reference internal" href="#skipping-mobile-browsers" id="id14">Skipping mobile browsers</a><ul>
-<li><a class="reference internal" href="#test-methods" id="id15">Test methods</a></li>
-<li><a class="reference internal" href="#test-case-classes" id="id16">Test case classes</a></li>
+<li><p><a class="reference internal" href="#enabling-mobile-browsers" id="id12">Enabling mobile browsers</a></p></li>
+<li><p><a class="reference internal" href="#skipping-tests-for-mobile-browsers" id="id13">Skipping tests for mobile browsers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#skipping-mobile-browsers" id="id14">Skipping mobile browsers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#test-methods" id="id15">Test methods</a></p></li>
+<li><p><a class="reference internal" href="#test-case-classes" id="id16">Test case classes</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#skipping-non-mobile-browsers" id="id17">Skipping non-mobile browsers</a><ul>
-<li><a class="reference internal" href="#id1" id="id18">Test methods</a></li>
-<li><a class="reference internal" href="#id2" id="id19">Test case classes</a></li>
+<li><p><a class="reference internal" href="#skipping-non-mobile-browsers" id="id17">Skipping non-mobile browsers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id18">Test methods</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id19">Test case classes</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#modify-test-steps-for-mobile-browsers" id="id20">Modify test steps for mobile browsers</a><ul>
-<li><a class="reference internal" href="#example" id="id21">Example</a></li>
+<li><p><a class="reference internal" href="#modify-test-steps-for-mobile-browsers" id="id20">Modify test steps for mobile browsers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#example" id="id21">Example</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-headless-browsers" id="id22">Using headless browsers</a></li>
+<li><p><a class="reference internal" href="#using-headless-browsers" id="id22">Using headless browsers</a></p></li>
 </ul>
 </li>
 </ul>
@@ -408,14 +415,14 @@ can be resource-intensive and slows down performance during test execution.</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>When using the <code class="docutils literal notranslate"><span class="pre">--headless</span></code> argument, tests will only be run with
 the following web drivers that support running in a headless environment:</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li><a class="reference external" href="https://developers.google.com/web/updates/2017/04/headless-chrome">Chrome</a></li>
-<li>Chrome Mobile [Emulated]</li>
-<li><a class="reference external" href="https://developer.mozilla.org/en-US/Firefox/Headless_mode">Firefox</a></li>
+<li><p><a class="reference external" href="https://developers.google.com/web/updates/2017/04/headless-chrome">Chrome</a></p></li>
+<li><p>Chrome Mobile [Emulated]</p></li>
+<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/Firefox/Headless_mode">Firefox</a></p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -433,7 +440,7 @@ the following web drivers that support running in a headless environment:</p>
         <a href="utilities.html" class="btn btn-neutral float-right" title="Testing Utilities Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="example_project.html" class="btn btn-neutral" title="Example Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="example_project.html" class="btn btn-neutral float-left" title="Example Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -442,7 +449,7 @@ the following web drivers that support running in a headless environment:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -459,38 +466,16 @@ the following web drivers that support running in a headless environment:</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

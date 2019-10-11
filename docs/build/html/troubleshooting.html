@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools API" href="webdriver_test_tools.html" />
     <link rel="prev" title="BrowserStack Support" href="browserstack.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -186,24 +187,28 @@
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#troubleshooting-tests" id="id2">Troubleshooting Tests</a><ul>
-<li><a class="reference internal" href="#common-issues" id="id3">Common Issues</a><ul>
-<li><a class="reference internal" href="#element-is-not-clickable-at-point-x-y-other-element-would-receive-the-click" id="id4">“Element is not clickable at point (x,y). Other element would receive the click”</a></li>
-<li><a class="reference internal" href="#accounting-for-timeouts-on-slow-sites-or-pages" id="id5">Accounting for timeouts on slow sites or pages</a><ul>
-<li><a class="reference internal" href="#set-timeout-for-a-single-assertion" id="id6">Set timeout for a single assertion</a></li>
-<li><a class="reference internal" href="#set-default-timeout-for-a-test-case" id="id7">Set default timeout for a test case</a></li>
-<li><a class="reference internal" href="#set-default-timeout-for-entire-test-project" id="id8">Set default timeout for entire test project</a></li>
+<li><p><a class="reference internal" href="#troubleshooting-tests" id="id2">Troubleshooting Tests</a></p>
+<ul>
+<li><p><a class="reference internal" href="#common-issues" id="id3">Common Issues</a></p>
+<ul>
+<li><p><a class="reference internal" href="#element-is-not-clickable-at-point-x-y-other-element-would-receive-the-click" id="id4">“Element is not clickable at point (x,y). Other element would receive the click”</a></p></li>
+<li><p><a class="reference internal" href="#accounting-for-timeouts-on-slow-sites-or-pages" id="id5">Accounting for timeouts on slow sites or pages</a></p>
+<ul>
+<li><p><a class="reference internal" href="#set-timeout-for-a-single-assertion" id="id6">Set timeout for a single assertion</a></p></li>
+<li><p><a class="reference internal" href="#set-default-timeout-for-a-test-case" id="id7">Set default timeout for a test case</a></p></li>
+<li><p><a class="reference internal" href="#set-default-timeout-for-entire-test-project" id="id8">Set default timeout for entire test project</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#issues-with-specific-browser-drivers" id="id9">Issues with specific browser drivers</a></li>
+<li><p><a class="reference internal" href="#issues-with-specific-browser-drivers" id="id9">Issues with specific browser drivers</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#tools-for-debugging-tests" id="id10">Tools for Debugging Tests</a><ul>
-<li><a class="reference internal" href="#screenshots" id="id11">Screenshots</a></li>
-<li><a class="reference internal" href="#pausing-test-execution" id="id12">Pausing test execution</a></li>
+<li><p><a class="reference internal" href="#tools-for-debugging-tests" id="id10">Tools for Debugging Tests</a></p>
+<ul>
+<li><p><a class="reference internal" href="#screenshots" id="id11">Screenshots</a></p></li>
+<li><p><a class="reference internal" href="#pausing-test-execution" id="id12">Pausing test execution</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#reporting-an-issue-with-webdriver-test-tools" id="id13">Reporting an Issue with webdriver_test_tools</a></li>
+<li><p><a class="reference internal" href="#reporting-an-issue-with-webdriver-test-tools" id="id13">Reporting an Issue with webdriver_test_tools</a></p></li>
 </ul>
 </li>
 </ul>
@@ -358,14 +363,14 @@ specifically (rather than with Selenium or a specific browser driver), you can
 report the issue on GitHub. <strong>Before creating the issue:</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>Make sure you’re using the most up-to-date version of the
+<li><p>Make sure you’re using the most up-to-date version of the
 <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code> package (e.g. run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span>
-<span class="pre">webdriver_test_tools</span></code>)</li>
-<li>Check the open <a class="reference external" href="https://github.com/connordelacruz/webdriver-test-tools/issues">GitHub Issues</a> to see if the issue has already been
-reported</li>
-<li>If the issue hasn’t been reported yet but appears to be related to
+<span class="pre">webdriver_test_tools</span></code>)</p></li>
+<li><p>Check the open <a class="reference external" href="https://github.com/connordelacruz/webdriver-test-tools/issues">GitHub Issues</a> to see if the issue has already been
+reported</p></li>
+<li><p>If the issue hasn’t been reported yet but appears to be related to
 Selenium, check <a class="reference external" href="https://github.com/SeleniumHQ/selenium/issues">Selenium’s GitHub Issues</a> to see if the issue has already
-been reported</li>
+been reported</p></li>
 </ul>
 </div></blockquote>
 <p>If the issue isn’t reported there and appears to be specific to WebDriver Test
@@ -385,7 +390,7 @@ as possible.</p>
         <a href="webdriver_test_tools.html" class="btn btn-neutral float-right" title="webdriver_test_tools API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="browserstack.html" class="btn btn-neutral" title="BrowserStack Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="browserstack.html" class="btn btn-neutral float-left" title="BrowserStack Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -394,7 +399,7 @@ as possible.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -411,38 +416,16 @@ as possible.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -315,6 +315,7 @@ def get_new_parent_parser(parents=[], class_name_metavar='<ClassName>',
 
 # Argument parsing functions
 
+# TODO: DOC exceptions that may be raised
 def parse_new_args(package_name, tests_module, args):
     """Parse arguments and run the 'new' command
 
@@ -322,14 +323,20 @@ def parse_new_args(package_name, tests_module, args):
     :param tests_module: The module object for ``<test_project>.tests``. Used
         to determine the filepath of the package
     :param args: The namespace returned by parser.parse_args()
+
+    :return: Exit code, 0 if files were created without exceptions, 1 otherwise.
+
+        .. note::
+
+            Technically, this will always return 0, as all fail states cause an
+            exception to be raised. This is just to keep it consistent with
+            other project cmd parse arg functions.
     """
+    exit_code = 0
     # Get package path based on tests_module path
     test_package_path = os.path.dirname(os.path.dirname(tests_module.__file__))
-    try:
-        main(test_package_path, package_name, args)
-    except Exception as e:
-        print('')
-        cmd.print_exception(e)
+    main(test_package_path, package_name, args)
+    return exit_code
 
 
 # User Input Prompts
