@@ -87,6 +87,7 @@ def parse_test_args(args):
 
 # Test Loading Functions
 
+# TODO: Now that test_module.main() handles exception printing, this isn't really necessary as it just wraps test_loader.load_project_tests() with the same method signature
 def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_class_map=None):
     """Return a list of test classes from a project based on the --module,
     --test, and --skip arguments
@@ -106,14 +107,8 @@ def load_tests(tests_module, test_module_names=None, test_class_map=None, skip_c
 
     :return: List of test classes
     """
-    # TODO RETURN/RAISE EXIT CODE instead of handling it here
-    try:
-        return test_loader.load_project_tests(
-            tests_module, test_module_names, test_class_map, skip_class_map
-        )
-    except test_loader.TestCasesNotFoundException as e:
-        print('')
-        cmd.print_exception(e)
-        sys.exit(1)
+    return test_loader.load_project_tests(
+        tests_module, test_module_names, test_class_map, skip_class_map
+    )
 
 

@@ -264,3 +264,4 @@ def run_tests(tests_module, config_module,
               'https://automate.browserstack.com', sep='\n')
     # Propagate exit code
     return 0 if result.wasSuccessful() else 1
+

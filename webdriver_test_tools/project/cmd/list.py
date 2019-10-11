@@ -52,8 +52,13 @@ def parse_list_args(tests_module, args):
     :param args: The namespace returned by parser.parse_args()
 
     :return: Exit code, 0 if no exceptions were encountered, 1 otherwise
+
+        .. note::
+
+            Technically, this will always return 0, as all fail states cause an
+            exception to be raised. This is just to keep it consistent with
+            other project cmd parse arg functions.
     """
-    # TODO is there ever an event where exit_code would not be 0? Update doc either way
     exit_code = 0
     kwargs = parse_test_args(args)
     kwargs['verbose'] = args.verbose
