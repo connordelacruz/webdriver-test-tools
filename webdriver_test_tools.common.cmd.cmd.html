@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.common.cmd.argparse module" href="webdriver_test_tools.common.cmd.argparse.html" />
     <link rel="prev" title="webdriver_test_tools.common.cmd package" href="webdriver_test_tools.common.cmd.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -187,67 +188,58 @@
 <p>Functions for common command line formatting and procedures.</p>
 <dl class="data">
 <dt id="webdriver_test_tools.common.cmd.cmd.PROMPT_PREFIX">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">PROMPT_PREFIX</code><em class="property"> = '&gt; '</em><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.PROMPT_PREFIX" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">PROMPT_PREFIX</code><em class="property"> = '&gt; '</em><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.PROMPT_PREFIX" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constant for string prepended to input prompts</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="webdriver_test_tools.common.cmd.cmd.INDENT">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">INDENT</code><em class="property"> = '   '</em><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.INDENT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">INDENT</code><em class="property"> = '   '</em><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.INDENT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constant for string used for terminal indentation</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="webdriver_test_tools.common.cmd.cmd.COLORS">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">COLORS</code><em class="property"> = {None: &lt;class 'str'&gt;, 'error': '\x1b[1m\x1b[31m', 'warning': '\x1b[33m', 'success': '\x1b[32m', 'info': '\x1b[36m', 'prompt': '\x1b[35m', 'title': '\x1b[34m', 'emphasize': '\x1b[1m'}</em><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.COLORS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">COLORS</code><em class="property"> = {None: &lt;class 'str'&gt;, 'error': '\x1b[1m\x1b[31m', 'warning': '\x1b[33m', 'success': '\x1b[32m', 'info': '\x1b[36m', 'prompt': '\x1b[35m', 'title': '\x1b[34m', 'emphasize': '\x1b[1m'}</em><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.COLORS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Color/formatting functions for different types of output</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.print_exception">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">print_exception</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_exception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_exception" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">print_exception</code><span class="sig-paren">(</span><em class="sig-param">e</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_exception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_exception" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format and print the string representation of an exception</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>e</strong> – The exception to print</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>e</strong> – The exception to print</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.print_warning">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">print_warning</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_warning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_warning" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">print_warning</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_warning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_warning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format and print a warning message</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> – Warning message to print</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> – Warning message to print</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.print_info">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">print_info</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">print_info</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format and print info message</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> – Info message to print</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> – Info message to print</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.print_shortened">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">print_shortened</code><span class="sig-paren">(</span><em>text</em>, <em>placeholder='...'</em>, <em>indent=''</em>, <em>fmt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_shortened"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_shortened" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">print_shortened</code><span class="sig-paren">(</span><em class="sig-param">text</em>, <em class="sig-param">placeholder='...'</em>, <em class="sig-param">indent=''</em>, <em class="sig-param">fmt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_shortened"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_shortened" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print a string, shorten if it’s longer than the current terminal width</p>
 <p>Essentially a wrapper around <code class="xref py py-meth docutils literal notranslate"><span class="pre">textwrap.shorten()</span></code> (and optionally
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">textwrap.indent()</span></code>) that truncates based on the terminal width</p>
@@ -255,84 +247,73 @@
 <code class="docutils literal notranslate"><span class="pre">fmt</span></code> parameter instead of passing in a formatted string. If a formatted
 string is truncated, then the colors aren’t reset, causing subsequent
 terminal output to be formatted as well</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>text</strong> – Text to print</li>
-<li><strong>placeholder</strong> – (Default = ‘…’) Placeholder to use when truncating
-the string</li>
-<li><strong>indent</strong> – (Optional) If set, indent using this string</li>
-<li><strong>fmt</strong> – (Optional) A key in <a class="reference internal" href="#webdriver_test_tools.common.cmd.cmd.COLORS" title="webdriver_test_tools.common.cmd.cmd.COLORS"><code class="xref py py-const docutils literal notranslate"><span class="pre">COLORS</span></code></a> to use for formatting when
-printing the text</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Text to print</p></li>
+<li><p><strong>placeholder</strong> – (Default = ‘…’) Placeholder to use when truncating
+the string</p></li>
+<li><p><strong>indent</strong> – (Optional) If set, indent using this string</p></li>
+<li><p><strong>fmt</strong> – (Optional) A key in <a class="reference internal" href="#webdriver_test_tools.common.cmd.cmd.COLORS" title="webdriver_test_tools.common.cmd.cmd.COLORS"><code class="xref py py-const docutils literal notranslate"><span class="pre">COLORS</span></code></a> to use for formatting when
+printing the text</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="exception">
 <dt id="webdriver_test_tools.common.cmd.cmd.ValidationError">
-<em class="property">exception </em><code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">ValidationError</code><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#ValidationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.ValidationError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">ValidationError</code><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#ValidationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.ValidationError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 <p>Exception raised if input validation fails</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.print_validation_change">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">print_validation_change</code><span class="sig-paren">(</span><em>message_format</em>, <em>original</em>, <em>changed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_validation_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_validation_change" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">print_validation_change</code><span class="sig-paren">(</span><em class="sig-param">message_format</em>, <em class="sig-param">original</em>, <em class="sig-param">changed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#print_validation_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.print_validation_change" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inform the user of changes to their input during validation.
 Used to keep output format consistent</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>message_format</strong> – <p>A format string with 2 positional fields, one for
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message_format</strong> – <p>A format string with 2 positional fields, one for
 the original value and one for the altered value. These fields should
 be surrounded with double quotes for better readability.</p>
 <p>example:</p>
 <blockquote>
-<div>’”{0}” changed to “{1}” for compatibility’</div></blockquote>
-</li>
-<li><strong>original</strong> – The original user input</li>
-<li><strong>changed</strong> – The input after being altered</li>
+<div><p>’”{0}” changed to “{1}” for compatibility’</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>original</strong> – The original user input</p></li>
+<li><p><strong>changed</strong> – The input after being altered</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.validate_nonempty">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">validate_nonempty</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_nonempty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_nonempty" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">validate_nonempty</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_nonempty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_nonempty" title="Permalink to this definition">¶</a></dt>
 <dd><p>Input validation function. Raises ValidationError if text is empty</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> – Text to validate</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Validated text</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> – Text to validate</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Validated text</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.validate_choice">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">validate_choice</code><span class="sig-paren">(</span><em>choices</em>, <em>shorthand_choices={}</em>, <em>error_msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_choice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_choice" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">validate_choice</code><span class="sig-paren">(</span><em class="sig-param">choices</em>, <em class="sig-param">shorthand_choices={}</em>, <em class="sig-param">error_msg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_choice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_choice" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a validation function for input with specific choice options</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>choices</strong> – A list of <strong>lowercase</strong> strings the user can choose from</li>
-<li><strong>shorthand_choices</strong> – <p>(Optional) A dictionary mapping short hand
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>choices</strong> – A list of <strong>lowercase</strong> strings the user can choose from</p></li>
+<li><p><strong>shorthand_choices</strong> – <p>(Optional) A dictionary mapping short hand
 answers to options in <code class="docutils literal notranslate"><span class="pre">choices</span></code>. If user answers prompt with one of
 the keys in <code class="docutils literal notranslate"><span class="pre">shorthand_choices</span></code>, the validation function will treat
 their answer as <code class="docutils literal notranslate"><span class="pre">shorthand_choices[answer]</span></code>.</p>
@@ -351,155 +332,138 @@ their answer as <code class="docutils literal notranslate"><span class="pre">sho
 </pre></div>
 </div>
 </div></blockquote>
-</li>
-<li><strong>error_msg</strong> – <p>(Optional) Custom validation error message. By default,
+</p></li>
+<li><p><strong>error_msg</strong> – <p>(Optional) Custom validation error message. By default,
 validation errors will have the message:</p>
 <blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">'Please</span> <span class="pre">select</span> <span class="pre">a</span> <span class="pre">valid</span> <span class="pre">choice:</span> <span class="pre">[&lt;choices&gt;]'</span></code></div></blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">'Please</span> <span class="pre">select</span> <span class="pre">a</span> <span class="pre">valid</span> <span class="pre">choice:</span> <span class="pre">[&lt;choices&gt;]'</span></code></p>
+</div></blockquote>
 <p>where <code class="docutils literal notranslate"><span class="pre">&lt;choices&gt;</span></code> is a comma separated representation of the values
 in <code class="docutils literal notranslate"><span class="pre">choices</span></code>.</p>
-</li>
+</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A validation function that accepts a string and returns the
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A validation function that accepts a string and returns the
 corresponding item from <code class="docutils literal notranslate"><span class="pre">choices</span></code> if the string is valid</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.validate_yn">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">validate_yn</code><span class="sig-paren">(</span><em>answer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_yn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_yn" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">validate_yn</code><span class="sig-paren">(</span><em class="sig-param">answer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_yn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_yn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validate y/n prompts</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>answer</strong> – User response to y/n prompt. If a boolean value is passed
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>answer</strong> – User response to y/n prompt. If a boolean value is passed
 (e.g. if a prompt received parsed_input=True), it is treated as a y/n
-answer and considered valid input</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if user answered yes, False if user answered no</td>
-</tr>
-</tbody>
-</table>
+answer and considered valid input</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if user answered yes, False if user answered no</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.validate_package_name">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">validate_package_name</code><span class="sig-paren">(</span><em>package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_package_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_package_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">validate_package_name</code><span class="sig-paren">(</span><em class="sig-param">package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_package_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_package_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes and replaces characters to ensure a string is a valid python package name</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package_name</strong> – The desired package name</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified package_name with whitespaces and hyphens replaced with
-underscores and all invalid characters removed</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>package_name</strong> – The desired package name</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Modified package_name with whitespaces and hyphens replaced with
+underscores and all invalid characters removed</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.validate_module_name">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">validate_module_name</code><span class="sig-paren">(</span><em>module_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_module_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_module_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">validate_module_name</code><span class="sig-paren">(</span><em class="sig-param">module_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_module_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_module_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes and replaces characters to ensure a string is a valid python
 module file name</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>module_name</strong> – The desired module name. If the name ends in .py, the
-extension will be removed</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified module_name with whitespaces and hyphens replaced with
-underscores and all invalid characters removed</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>module_name</strong> – The desired module name. If the name ends in .py, the
+extension will be removed</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Modified module_name with whitespaces and hyphens replaced with
+underscores and all invalid characters removed</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.validate_module_filename">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">validate_module_filename</code><span class="sig-paren">(</span><em>module_filename</em>, <em>suppress_ext_change=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_module_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_module_filename" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">validate_module_filename</code><span class="sig-paren">(</span><em class="sig-param">module_filename</em>, <em class="sig-param">suppress_ext_change=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_module_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_module_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes and replaces characters to ensure a string is a valid python
 module file name</p>
 <p>Essentially a wrapper around <a class="reference internal" href="#webdriver_test_tools.common.cmd.cmd.validate_module_name" title="webdriver_test_tools.common.cmd.cmd.validate_module_name"><code class="xref py py-func docutils literal notranslate"><span class="pre">validate_module_name()</span></code></a> that makes sure a
 .py extension is added to the end if needed</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>module_filename</strong> – The desired module file name. If the .py extension
-is excluded, it will be appended after validation</li>
-<li><strong>suppress_ext_change</strong> – (Default: True) If False, print message when
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module_filename</strong> – The desired module file name. If the .py extension
+is excluded, it will be appended after validation</p></li>
+<li><p><strong>suppress_ext_change</strong> – (Default: True) If False, print message when
 appending .py extension to file name. Suppressed by default, as the
-user shouldn’t typically be required to append .py themselves</li>
+user shouldn’t typically be required to append .py themselves</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Modified module_filename with whitespaces and hyphens replaced with
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Modified module_filename with whitespaces and hyphens replaced with
 underscores, all invalid characters removed, and a ‘.py’ extension
 appended (if necessary)</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.validate_class_name">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">validate_class_name</code><span class="sig-paren">(</span><em>class_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_class_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_class_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">validate_class_name</code><span class="sig-paren">(</span><em class="sig-param">class_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#validate_class_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.validate_class_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes and replaces characters to ensure a string is a valid python
 class name</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_name</strong> – The desired class name</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified class_name with invalid characters removed/replaced</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>class_name</strong> – The desired class name</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Modified class_name with invalid characters removed/replaced</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="webdriver_test_tools.common.cmd.cmd.prompt">
-<code class="descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="descname">prompt</code><span class="sig-paren">(</span><em>text</em>, <em>*description</em>, <em>default=None</em>, <em>validate=&lt;function validate_nonempty&gt;</em>, <em>parsed_input=None</em>, <em>trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.common.cmd.cmd.</code><code class="sig-name descname">prompt</code><span class="sig-paren">(</span><em class="sig-param">text</em>, <em class="sig-param">*description</em>, <em class="sig-param">default=None</em>, <em class="sig-param">validate=&lt;function validate_nonempty&gt;</em>, <em class="sig-param">parsed_input=None</em>, <em class="sig-param">trailing_newline=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/common/cmd/cmd.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.common.cmd.cmd.prompt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prompt the user for input and validate it</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>text</strong> – Text to display in prompt</li>
-<li><strong>description</strong> – (Optional) Positional arguments after text will be printed once before user is prompted for
-input. Each argument will be printed on a new line</li>
-<li><strong>default</strong> – (Optional) default value</li>
-<li><strong>validate</strong> – (Default = validate_nonempty) Validation function for input</li>
-<li><strong>parsed_input</strong> – (Default = None) If <code class="docutils literal notranslate"><span class="pre">parsed_input</span></code> is set to
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Text to display in prompt</p></li>
+<li><p><strong>description</strong> – (Optional) Positional arguments after text will be printed once before user is prompted for
+input. Each argument will be printed on a new line</p></li>
+<li><p><strong>default</strong> – (Optional) default value</p></li>
+<li><p><strong>validate</strong> – (Default = validate_nonempty) Validation function for input</p></li>
+<li><p><strong>parsed_input</strong> – (Default = None) If <code class="docutils literal notranslate"><span class="pre">parsed_input</span></code> is set to
 something other than <code class="docutils literal notranslate"><span class="pre">None</span></code>, parser will attempt to validate it. If
 validation is successful, the input prompt will be skipped and the
 validated value of <code class="docutils literal notranslate"><span class="pre">parsed_input</span></code> will be returned. This allows for
 input to be passed through command line arguments, but still prompt the
-user in the event that it can’t be validated</li>
-<li><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user
-input and successfully validating</li>
+user in the event that it can’t be validated</p></li>
+<li><p><strong>trailing_newline</strong> – (Default = True) Print a blank line after receiving user
+input and successfully validating</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Validated input</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Validated input</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -515,7 +479,7 @@ input and successfully validating</li>
         <a href="webdriver_test_tools.common.cmd.argparse.html" class="btn btn-neutral float-right" title="webdriver_test_tools.common.cmd.argparse module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.common.cmd.html" class="btn btn-neutral" title="webdriver_test_tools.common.cmd package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.common.cmd.html" class="btn btn-neutral float-left" title="webdriver_test_tools.common.cmd package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -524,7 +488,7 @@ input and successfully validating</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -541,38 +505,16 @@ input and successfully validating</li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.pageobject.webpage module" href="webdriver_test_tools.pageobject.webpage.html" />
     <link rel="prev" title="webdriver_test_tools.pageobject.modal module" href="webdriver_test_tools.pageobject.modal.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -183,249 +184,223 @@
 <span id="webdriver-test-tools-pageobject-nav-module"></span><h1>webdriver_test_tools.pageobject.nav module<a class="headerlink" href="#module-webdriver_test_tools.pageobject.nav" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.nav.</code><code class="descname">NavLinkObject</code><span class="sig-paren">(</span><em>driver</em>, <em>link_dict</em>, <em>site_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.pageobject.nav.</code><code class="sig-name descname">NavLinkObject</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">link_dict</em>, <em class="sig-param">site_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.base.BasePage</span></code></a></p>
 <p>Page object prototype for nav links</p>
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes">
-<em class="property">class </em><code class="descname">ActionTypes</code><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.ActionTypes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-name descname">ActionTypes</code><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.ActionTypes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Link click/hover action types</p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.PAGE">
-<code class="descname">PAGE</code><em class="property"> = 'page'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.PAGE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">PAGE</code><em class="property"> = 'page'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.PAGE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.SECTION">
-<code class="descname">SECTION</code><em class="property"> = 'section'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.SECTION" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SECTION</code><em class="property"> = 'section'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.SECTION" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.MENU">
-<code class="descname">MENU</code><em class="property"> = 'menu'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.MENU" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">MENU</code><em class="property"> = 'menu'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.MENU" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.NONE">
-<code class="descname">NONE</code><em class="property"> = 'none'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.NONE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NONE</code><em class="property"> = 'none'</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.NONE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.CLICK_ACTIONS">
-<code class="descname">CLICK_ACTIONS</code><em class="property"> = ['page', 'section', 'menu', 'none', None]</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.CLICK_ACTIONS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CLICK_ACTIONS</code><em class="property"> = ['page', 'section', 'menu', 'none', None]</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.CLICK_ACTIONS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.HOVER_ACTIONS">
-<code class="descname">HOVER_ACTIONS</code><em class="property"> = ['menu', 'none', None]</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.HOVER_ACTIONS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">HOVER_ACTIONS</code><em class="property"> = ['menu', 'none', None]</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.HOVER_ACTIONS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.REQUIRES_TARGET">
-<code class="descname">REQUIRES_TARGET</code><em class="property"> = ['page', 'section']</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.REQUIRES_TARGET" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">REQUIRES_TARGET</code><em class="property"> = ['page', 'section']</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.ActionTypes.REQUIRES_TARGET" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.find_link_element">
-<code class="descname">find_link_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.find_link_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.find_link_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">find_link_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.find_link_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.find_link_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">WebElement</span></code> object located by <code class="docutils literal notranslate"><span class="pre">self.locator</span></code></p>
 <p>Shorthand for <code class="docutils literal notranslate"><span class="pre">self.find_element(self.locator)</span></code></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">WebElement</span></code> object for the link</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">WebElement</span></code> object for the link</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.click_link">
-<code class="descname">click_link</code><span class="sig-paren">(</span><em>scroll_to=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.click_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.click_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">click_link</code><span class="sig-paren">(</span><em class="sig-param">scroll_to=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.click_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.click_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Click the link</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scroll_to</strong> – (Default: False) If True, scroll to the link first
-before clicking (used for non-fixed navs)</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Return value depends on <code class="docutils literal notranslate"><span class="pre">self.click_action</span></code>:<ul class="simple">
-<li>’page’: Returns the URL to the link target</li>
-<li>’section’: Returns the target section ID (prefixed with ‘#’)</li>
-<li>’menu’: Returns a <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavMenuObject" title="webdriver_test_tools.pageobject.nav.NavMenuObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavMenuObject</span></code></a> instance</li>
-<li>None: Returns <code class="docutils literal notranslate"><span class="pre">None</span></code></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>scroll_to</strong> – (Default: False) If True, scroll to the link first
+before clicking (used for non-fixed navs)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>Return value depends on <code class="docutils literal notranslate"><span class="pre">self.click_action</span></code>:</p>
+<ul class="simple">
+<li><p>’page’: Returns the URL to the link target</p></li>
+<li><p>’section’: Returns the target section ID (prefixed with ‘#’)</p></li>
+<li><p>’menu’: Returns a <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavMenuObject" title="webdriver_test_tools.pageobject.nav.NavMenuObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavMenuObject</span></code></a> instance</p></li>
+<li><p>None: Returns <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link">
-<code class="descname">hover_over_link</code><span class="sig-paren">(</span><em>scroll_to=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.hover_over_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">hover_over_link</code><span class="sig-paren">(</span><em class="sig-param">scroll_to=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavLinkObject.hover_over_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hover over the link element</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scroll_to</strong> – (Default: False) If True, scroll to the link first
-before hovering (used for non-fixed navs)</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavMenuObject" title="webdriver_test_tools.pageobject.nav.NavMenuObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavMenuObject</span></code></a> instance (or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no hover
-action is defined)</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>scroll_to</strong> – (Default: False) If True, scroll to the link first
+before hovering (used for non-fixed navs)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavMenuObject" title="webdriver_test_tools.pageobject.nav.NavMenuObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavMenuObject</span></code></a> instance (or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no hover
+action is defined)</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.nav.NavMenuObject">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.nav.</code><code class="descname">NavMenuObject</code><span class="sig-paren">(</span><em>driver</em>, <em>menu_dict</em>, <em>site_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavMenuObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavMenuObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.pageobject.nav.</code><code class="sig-name descname">NavMenuObject</code><span class="sig-paren">(</span><em class="sig-param">driver</em>, <em class="sig-param">menu_dict</em>, <em class="sig-param">site_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavMenuObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavMenuObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.base.BasePage</span></code></a></p>
 <p>Page object prototype for dropdown/collapsible nav menus</p>
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavMenuObject.find_menu_element">
-<code class="descname">find_menu_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavMenuObject.find_menu_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavMenuObject.find_menu_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">find_menu_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavMenuObject.find_menu_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavMenuObject.find_menu_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">WebElement</span></code> object located by <code class="docutils literal notranslate"><span class="pre">self.locator</span></code></p>
 <p>Shorthand for <code class="docutils literal notranslate"><span class="pre">self.find_element(self.locator)</span></code></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">WebElement</span></code> object for the menu</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">WebElement</span></code> object for the menu</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavMenuObject.click_link">
-<code class="descname">click_link</code><span class="sig-paren">(</span><em>link_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavMenuObject.click_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavMenuObject.click_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">click_link</code><span class="sig-paren">(</span><em class="sig-param">link_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavMenuObject.click_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavMenuObject.click_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Click a link in the menu</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_name</strong> – Name of the link (specified in YAML or link
-dictionary) i.e. a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The returned value of clicking the link. See
-<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.click_link" title="webdriver_test_tools.pageobject.nav.NavLinkObject.click_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavLinkObject.click_link()</span></code></a> for possible values</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><strong>KeyError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">link_name</span></code> is not a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>link_name</strong> – Name of the link (specified in YAML or link
+dictionary) i.e. a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The returned value of clicking the link. See
+<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.click_link" title="webdriver_test_tools.pageobject.nav.NavLinkObject.click_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavLinkObject.click_link()</span></code></a> for possible values</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><strong>KeyError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">link_name</span></code> is not a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavMenuObject.hover_over_link">
-<code class="descname">hover_over_link</code><span class="sig-paren">(</span><em>link_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavMenuObject.hover_over_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavMenuObject.hover_over_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">hover_over_link</code><span class="sig-paren">(</span><em class="sig-param">link_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavMenuObject.hover_over_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavMenuObject.hover_over_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hover over a link in the menu</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_name</strong> – Name of the link (specified in YAML or link
-dictionary) i.e. a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The returned value of hovering over the link. See
-<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link" title="webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavLinkObject.hover_over_link()</span></code></a> for possible values</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><strong>KeyError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">link_name</span></code> is not a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>link_name</strong> – Name of the link (specified in YAML or link
+dictionary) i.e. a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The returned value of hovering over the link. See
+<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link" title="webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavLinkObject.hover_over_link()</span></code></a> for possible values</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><strong>KeyError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">link_name</span></code> is not a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavMenuObject.is_visible">
-<code class="descname">is_visible</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavMenuObject.is_visible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavMenuObject.is_visible" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_visible</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavMenuObject.is_visible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavMenuObject.is_visible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the menu element is visible</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if the element is displayed, False if not</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the element is displayed, False if not</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.nav.</code><code class="descname">NavObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.pageobject.nav.</code><code class="sig-name descname">NavObject</code><span class="sig-paren">(</span><em class="sig-param">driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject</span></code></a></p>
 <p>Page object prototype for navbars</p>
 <p>Subclasses should set the following attributes:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>NavObject.YAML_FILE</strong> – Path to a YAML file representing the navbar</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.SITE_CONFIG" title="webdriver_test_tools.pageobject.nav.NavObject.SITE_CONFIG"><strong>NavObject.SITE_CONFIG</strong></a> – Test project’s <code class="xref py py-class docutils literal notranslate"><span class="pre">SiteConfig</span></code> class.
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NavObject.YAML_FILE</strong> – Path to a YAML file representing the navbar</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.SITE_CONFIG" title="webdriver_test_tools.pageobject.nav.NavObject.SITE_CONFIG"><strong>NavObject.SITE_CONFIG</strong></a> – Test project’s <code class="xref py py-class docutils literal notranslate"><span class="pre">SiteConfig</span></code> class.
 Used for <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject" title="webdriver_test_tools.pageobject.nav.NavLinkObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavLinkObject</span></code></a> instances to determine any relative
-URLs specified for link targets</li>
+URLs specified for link targets</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p>The following attributes are determined based on the contents of
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> (or should be set in subclasses if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is
 <code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.FIXED" title="webdriver_test_tools.pageobject.nav.NavObject.FIXED"><strong>NavObject.FIXED</strong></a> – (Default: True) True if element is a fixed navbar,
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.FIXED" title="webdriver_test_tools.pageobject.nav.NavObject.FIXED"><strong>NavObject.FIXED</strong></a> – (Default: True) True if element is a fixed navbar,
 False otherwise. If set to False in a subclass,
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">click_page_link()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">hover_over_page_link()</span></code> will
-scroll the target link into view before interacting with it</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE"><strong>NavObject.COLLAPSIBLE</strong></a> – (Default: False) True if the navbar is
+scroll the target link into view before interacting with it</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE"><strong>NavObject.COLLAPSIBLE</strong></a> – (Default: False) True if the navbar is
 collapsible (e.g. for hamburger menus). If set to True,
 <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MENU_LOCATOR</span></code></a>, <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code></a>, and (optionally)
-<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">COLLAPSE_BUTTON_LOCATOR</span></code></a> should also be set</li>
+<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">COLLAPSE_BUTTON_LOCATOR</span></code></a> should also be set</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p>For collapsible navs, these additional attributes should also be specified
 in <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> (or should be set in subclasses if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code>
 is <code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR"><strong>NavObject.MENU_LOCATOR</strong></a> – (Required for collapsible) Locator for the
-collapsible menu element</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR"><strong>NavObject.EXPAND_BUTTON_LOCATOR</strong></a> – (Required for collapsible) Locator
-for the button that expands the nav menu</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR"><strong>NavObject.COLLAPSE_BUTTON_LOCATOR</strong></a> – (Optional) Locator for the button
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR"><strong>NavObject.MENU_LOCATOR</strong></a> – (Required for collapsible) Locator for the
+collapsible menu element</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR"><strong>NavObject.EXPAND_BUTTON_LOCATOR</strong></a> – (Required for collapsible) Locator
+for the button that expands the nav menu</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR"><strong>NavObject.COLLAPSE_BUTTON_LOCATOR</strong></a> – (Optional) Locator for the button
 that collapses the nav menu. If unspecified, this will be set to the
-same value as <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code></a></li>
+same value as <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code></a></p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><code class="docutils literal notranslate"><span class="pre">MENU_LOCATOR</span></code>, <code class="docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code>, and
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">MENU_LOCATOR</span></code>, <code class="docutils literal notranslate"><span class="pre">EXPAND_BUTTON_LOCATOR</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">COLLAPSE_BUTTON_LOCATOR</span></code> will only be parsed from YAML if not
 already set in the subclass. This allows for a non-collapsible nav that
 parses YAML to be extended in a subclass with <code class="docutils literal notranslate"><span class="pre">COLLAPSIBLE</span> <span class="pre">=</span> <span class="pre">True</span></code>
@@ -436,175 +411,161 @@ without re-writing the YAML file. The subclass would only need to set
 <p>The following attribute is set based on the ‘links’ key parsed from
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> (or parsed from <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LINK_DICTS</span></code></a>, which should be set
 in subclasses if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.links" title="webdriver_test_tools.pageobject.nav.NavObject.links"><strong>NavObject.links</strong></a> – A dictionary mapping link names to the corresponding
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.links" title="webdriver_test_tools.pageobject.nav.NavObject.links"><strong>NavObject.links</strong></a> – A dictionary mapping link names to the corresponding
 <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject" title="webdriver_test_tools.pageobject.nav.NavLinkObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavLinkObject</span></code></a> instances. The keys correspond with the <code class="docutils literal notranslate"><span class="pre">name</span></code>
 keys in the YAML representation of the navbar (or the ‘name’ keys in
-<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LINK_DICTS</span></code></a> if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>)</td>
-</tr>
-</tbody>
-</table>
+<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LINK_DICTS</span></code></a> if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p>
+</dd>
+</dl>
 <p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, subclasses must set the following
 attribute:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS"><strong>NavObject.LINK_DICTS</strong></a> – List of link dictionaries. These are used to
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS"><strong>NavObject.LINK_DICTS</strong></a> – List of link dictionaries. These are used to
 initialize the <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject" title="webdriver_test_tools.pageobject.nav.NavLinkObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NavLinkObject</span></code></a> instances in <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.links" title="webdriver_test_tools.pageobject.nav.NavObject.links"><code class="xref py py-attr docutils literal notranslate"><span class="pre">links</span></code></a> at
-runtime. These dictionaries use the same syntax as <a class="reference internal" href="yaml.html#yaml-links"><span class="std std-ref">YAML links</span></a></td>
-</tr>
-</tbody>
-</table>
+runtime. These dictionaries use the same syntax as <a class="reference internal" href="yaml.html#yaml-links"><span class="std std-ref">YAML links</span></a></p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.SITE_CONFIG">
-<code class="descname">SITE_CONFIG</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.SITE_CONFIG" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SITE_CONFIG</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.SITE_CONFIG" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.FIXED">
-<code class="descname">FIXED</code><em class="property"> = True</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.FIXED" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">FIXED</code><em class="property"> = True</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.FIXED" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE">
-<code class="descname">COLLAPSIBLE</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">COLLAPSIBLE</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR">
-<code class="descname">MENU_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">MENU_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR">
-<code class="descname">COLLAPSE_BUTTON_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">COLLAPSE_BUTTON_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSE_BUTTON_LOCATOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR">
-<code class="descname">EXPAND_BUTTON_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">EXPAND_BUTTON_LOCATOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.EXPAND_BUTTON_LOCATOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS">
-<code class="descname">LINK_DICTS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LINK_DICTS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.links">
-<code class="descname">links</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.links" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">links</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.links" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.parse_yaml">
-<code class="descname">parse_yaml</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.parse_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.parse_yaml" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_yaml</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.parse_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.parse_yaml" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a YAML representation of the nav object and set attributes
 accordingly</p>
 <p>See <a class="reference internal" href="yaml.html#yaml-nav-objects"><span class="std std-ref">YAML NavObjects doc</span></a> for details on
 syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> – Full path to the YAML file</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – Full path to the YAML file</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.no_yaml_init">
-<code class="descname">no_yaml_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.no_yaml_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.no_yaml_init" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">no_yaml_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.no_yaml_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.no_yaml_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize <code class="docutils literal notranslate"><span class="pre">self.links</span></code> using values in <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS" title="webdriver_test_tools.pageobject.nav.NavObject.LINK_DICTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">LINK_DICTS</span></code></a></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.click_link">
-<code class="descname">click_link</code><span class="sig-paren">(</span><em>link_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.click_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.click_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">click_link</code><span class="sig-paren">(</span><em class="sig-param">link_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.click_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.click_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Click a link on the navbar</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_name</strong> – Name of the link (specified in YAML or link
-dictionary) i.e. a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The returned value of clicking the link. See
-<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.click_link" title="webdriver_test_tools.pageobject.nav.NavLinkObject.click_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavLinkObject.click_link()</span></code></a> for possible values</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><strong>KeyError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">link_name</span></code> is not a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>link_name</strong> – Name of the link (specified in YAML or link
+dictionary) i.e. a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The returned value of clicking the link. See
+<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.click_link" title="webdriver_test_tools.pageobject.nav.NavLinkObject.click_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavLinkObject.click_link()</span></code></a> for possible values</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><strong>KeyError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">link_name</span></code> is not a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.hover_over_link">
-<code class="descname">hover_over_link</code><span class="sig-paren">(</span><em>link_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.hover_over_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.hover_over_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">hover_over_link</code><span class="sig-paren">(</span><em class="sig-param">link_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.hover_over_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.hover_over_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hover over a link in the navbar</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link_name</strong> – Name of the link (specified in YAML or link
-dictionary) i.e. a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The returned value of hovering over the link. See
-<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link" title="webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavLinkObject.hover_over_link()</span></code></a> for possible values</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><strong>KeyError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">link_name</span></code> is not a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>link_name</strong> – Name of the link (specified in YAML or link
+dictionary) i.e. a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The returned value of hovering over the link. See
+<a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link" title="webdriver_test_tools.pageobject.nav.NavLinkObject.hover_over_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">NavLinkObject.hover_over_link()</span></code></a> for possible values</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><strong>KeyError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">link_name</span></code> is not a valid key in <code class="docutils literal notranslate"><span class="pre">self.links</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.click_expand_button">
-<code class="descname">click_expand_button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.click_expand_button"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.click_expand_button" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">click_expand_button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.click_expand_button"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.click_expand_button" title="Permalink to this definition">¶</a></dt>
 <dd><p>Click the button to expand the nav menu</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">For collapsible navs only. If <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">COLLAPSIBLE</span></code></a> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, a
+<p class="admonition-title">Note</p>
+<p>For collapsible navs only. If <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">COLLAPSIBLE</span></code></a> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, a
 warning will be raised and the method will return</p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.click_collapse_button">
-<code class="descname">click_collapse_button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.click_collapse_button"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.click_collapse_button" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">click_collapse_button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.click_collapse_button"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.click_collapse_button" title="Permalink to this definition">¶</a></dt>
 <dd><p>Click the button to collapse the nav menu</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">For collapsible navs only. If <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">COLLAPSIBLE</span></code></a> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, a
+<p class="admonition-title">Note</p>
+<p>For collapsible navs only. If <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">COLLAPSIBLE</span></code></a> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, a
 warning will be raised and the method will return</p>
 </div>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.nav.NavObject.is_expanded">
-<code class="descname">is_expanded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.is_expanded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.is_expanded" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_expanded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/nav.html#NavObject.is_expanded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.nav.NavObject.is_expanded" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the nav menu is expanded</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">For collapsible navs only. If <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">COLLAPSIBLE</span></code></a> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, a
+<p class="admonition-title">Note</p>
+<p>For collapsible navs only. If <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE" title="webdriver_test_tools.pageobject.nav.NavObject.COLLAPSIBLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">COLLAPSIBLE</span></code></a> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, a
 warning will be raised and the method will return</p>
 </div>
 <p>This method checks if the element located by <a class="reference internal" href="#webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR" title="webdriver_test_tools.pageobject.nav.NavObject.MENU_LOCATOR"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MENU_LOCATOR</span></code></a>
 exists and is visible. This should be sufficient for many common
 implementations of collapsible navs, but can be overridden if this
 isn’t a reliable detection method for an implementation</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if the nav menu is expanded, False if it’s collapsed</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the nav menu is expanded, False if it’s collapsed</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -622,7 +583,7 @@ isn’t a reliable detection method for an implementation</p>
         <a href="webdriver_test_tools.pageobject.webpage.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.webpage module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.pageobject.modal.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.modal module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.pageobject.modal.html" class="btn btn-neutral float-left" title="webdriver_test_tools.pageobject.modal module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -631,7 +592,7 @@ isn’t a reliable detection method for an implementation</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -648,38 +609,16 @@ isn’t a reliable detection method for an implementation</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

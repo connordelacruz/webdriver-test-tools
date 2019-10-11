@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.testcase.browsers module" href="webdriver_test_tools.testcase.browsers.html" />
     <link rel="prev" title="webdriver_test_tools.testcase package" href="webdriver_test_tools.testcase.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -184,7 +185,7 @@
 <p>Base test case classes.</p>
 <dl class="class">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="descname">WebDriverTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="sig-name descname">WebDriverTestCase</code><span class="sig-paren">(</span><em class="sig-param">methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for web driver test cases.</p>
 <p>This defines the common <code class="docutils literal notranslate"><span class="pre">setUp()</span></code> and <code class="docutils literal notranslate"><span class="pre">tearDown()</span></code> tasks as well as WebDriver-related
 assertion methods and <code class="docutils literal notranslate"><span class="pre">webdriver_test_tools</span></code> framework-related decorator methods.
@@ -192,175 +193,152 @@ It does not initialize <code class="docutils literal notranslate"><span class="p
 written with this as their parent class. Browser-specific implementations of test cases
 will be generated when running tests.</p>
 <p><strong>Instances of this class will have the following variables:</strong></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver"><strong>WebDriverTestCase.driver</strong></a> – Selenium WebDriver object</li>
-<li><strong>WebDriverTestCase.WebDriverConfig</strong> – <a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig" title="webdriver_test_tools.config.webdriver.WebDriverConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverConfig</span></code></a> class object</li>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver"><strong>WebDriverTestCase.driver</strong></a> – Selenium WebDriver object</p></li>
+<li><p><strong>WebDriverTestCase.WebDriverConfig</strong> – <a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig" title="webdriver_test_tools.config.webdriver.WebDriverConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverConfig</span></code></a> class object</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p><strong>Tests that implement this class override the following variables:</strong></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL"><strong>WebDriverTestCase.SITE_URL</strong></a> – Go to this URL during <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setUp()</span></code></a>. Tests that implement
-WebDriverTestCase must set this accordingly.</li>
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS"><strong>WebDriverTestCase.SKIP_BROWSERS</strong></a> – (Optional) List of browser names to skip test
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL"><strong>WebDriverTestCase.SITE_URL</strong></a> – Go to this URL during <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setUp()</span></code></a>. Tests that implement
+WebDriverTestCase must set this accordingly.</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS"><strong>WebDriverTestCase.SKIP_BROWSERS</strong></a> – (Optional) List of browser names to skip test
 generation for. This can be useful if a test case class requires functionality
 that is not implemented in a certain driver, or if its tests are meant for
-specific browsers. Valid browser names are declared in the <a class="reference internal" href="webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.browsers.Browsers" title="webdriver_test_tools.testcase.browsers.Browsers"><code class="xref py py-class docutils literal notranslate"><span class="pre">Browsers</span></code></a> class.</li>
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE"><strong>WebDriverTestCase.SKIP_MOBILE</strong></a> – (Optional) By default, tests will be
+specific browsers. Valid browser names are declared in the <a class="reference internal" href="webdriver_test_tools.testcase.browsers.html#webdriver_test_tools.testcase.browsers.Browsers" title="webdriver_test_tools.testcase.browsers.Browsers"><code class="xref py py-class docutils literal notranslate"><span class="pre">Browsers</span></code></a> class.</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE"><strong>WebDriverTestCase.SKIP_MOBILE</strong></a> – (Optional) By default, tests will be
 generated for all enabled browsers, including mobile. If <code class="docutils literal notranslate"><span class="pre">SKIP_MOBILE</span></code> is set to
 <code class="docutils literal notranslate"><span class="pre">True</span></code>, don’t generate tests for mobile browsers. This can be helpful if the
 layout changes between desktop and mobile viewports would alter the test
-procedures.</li>
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT"><strong>WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT</strong></a> – (Optional) Default number
+procedures.</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT"><strong>WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT</strong></a> – (Optional) Default number
 of seconds for <a class="reference internal" href="utilities.html#assertion-methods"><span class="std std-ref">WebDriverTestCase assertion methods</span></a> to wait for expected conditions to occur before
 test fails. Defaults to the value of <code class="docutils literal notranslate"><span class="pre">DEFAULT_ASSERTION_TIMEOUT</span></code> set
-in the test project’s <a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig" title="webdriver_test_tools.config.webdriver.WebDriverConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverConfig</span></code></a> class</li>
+in the test project’s <a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig" title="webdriver_test_tools.config.webdriver.WebDriverConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverConfig</span></code></a> class</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p><strong>Browser-specific implementations of this class need to override the following:</strong></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">Function WebDriverTestCase.driver_init:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first">Function that returns a Selenium WebDriver
+<dl class="field-list simple">
+<dt class="field-odd">Function WebDriverTestCase.driver_init</dt>
+<dd class="field-odd"><p>Function that returns a Selenium WebDriver
 object for the browser</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME"><strong>WebDriverTestCase.DRIVER_NAME</strong></a> – Name of the browser. This is mostly used in the
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME"><strong>WebDriverTestCase.DRIVER_NAME</strong></a> – Name of the browser. This is mostly used in the
 docstrings of generated test classes to indicate what browser the tests are
-being run in</li>
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME"><strong>WebDriverTestCase.SHORT_NAME</strong></a> – Short name for the driver used for command line
-args, skipping, etc. Should be all lowercase with no spaces</li>
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES"><strong>WebDriverTestCase.CAPABILITIES</strong></a> – The <code class="docutils literal notranslate"><span class="pre">DesiredCapabilities</span></code> dictionary for the
-browser. Used for initializing BrowserStack remote driver</li>
+being run in</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME"><strong>WebDriverTestCase.SHORT_NAME</strong></a> – Short name for the driver used for command line
+args, skipping, etc. Should be all lowercase with no spaces</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES"><strong>WebDriverTestCase.CAPABILITIES</strong></a> – The <code class="docutils literal notranslate"><span class="pre">DesiredCapabilities</span></code> dictionary for the
+browser. Used for initializing BrowserStack remote driver</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p><strong>The following attributes are used for running tests on BrowserStack:</strong></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS"><strong>WebDriverTestCase.ENABLE_BS</strong></a> – (Default = False) If set to True, <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setUp()</span></code></a> will
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS"><strong>WebDriverTestCase.ENABLE_BS</strong></a> – (Default = False) If set to True, <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setUp()</span></code></a> will
 initialize a Remote webdriver instead of a local one and run tests on
-BrowserStack</li>
-<li><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR"><strong>WebDriverTestCase.COMMAND_EXECUTOR</strong></a> – Command executor URL. Test generator
-needs to set this with the configured access key and username</li>
+BrowserStack</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR"><strong>WebDriverTestCase.COMMAND_EXECUTOR</strong></a> – Command executor URL. Test generator
+needs to set this with the configured access key and username</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p><strong>The following attributes are used for running tests in a headless browser:</strong></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS"><strong>WebDriverTestCase.ENABLE_HEADLESS</strong></a> – (Default = False) If set to True, browser
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS"><strong>WebDriverTestCase.ENABLE_HEADLESS</strong></a> – (Default = False) If set to True, browser
 implementations with headless browser support will configure their drivers to
-run tests in a headless browser</td>
-</tr>
-</tbody>
-</table>
+run tests in a headless browser</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver">
-<code class="descname">driver</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">driver</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL">
-<code class="descname">SITE_URL</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SITE_URL</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SITE_URL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS">
-<code class="descname">SKIP_BROWSERS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SKIP_BROWSERS</code><em class="property"> = []</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_BROWSERS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE">
-<code class="descname">SKIP_MOBILE</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SKIP_MOBILE</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SKIP_MOBILE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT">
-<code class="descname">DEFAULT_ASSERTION_TIMEOUT</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">DEFAULT_ASSERTION_TIMEOUT</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DEFAULT_ASSERTION_TIMEOUT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME">
-<code class="descname">DRIVER_NAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">DRIVER_NAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.DRIVER_NAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME">
-<code class="descname">SHORT_NAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SHORT_NAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.SHORT_NAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS">
-<code class="descname">ENABLE_BS</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ENABLE_BS</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_BS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR">
-<code class="descname">COMMAND_EXECUTOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">COMMAND_EXECUTOR</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.COMMAND_EXECUTOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES">
-<code class="descname">CAPABILITIES</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">CAPABILITIES</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.CAPABILITIES" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS">
-<code class="descname">ENABLE_HEADLESS</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ENABLE_HEADLESS</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.ENABLE_HEADLESS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init">
-<code class="descname">bs_driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.bs_driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">bs_driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.bs_driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.bs_driver_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize driver for BrowserStack</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">webdriver.Remote</span></code> object with the <code class="docutils literal notranslate"><span class="pre">command_executor</span></code> and
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">webdriver.Remote</span></code> object with the <code class="docutils literal notranslate"><span class="pre">command_executor</span></code> and
 <code class="docutils literal notranslate"><span class="pre">desired_capabilities</span></code> parameters set to <code class="docutils literal notranslate"><span class="pre">self.COMMAND_EXECUTOR</span></code>
-and <code class="docutils literal notranslate"><span class="pre">self.CAPABILITIES</span></code> respectively.</td>
-</tr>
-</tbody>
-</table>
+and <code class="docutils literal notranslate"><span class="pre">self.CAPABILITIES</span></code> respectively.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init">
-<code class="descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">driver_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.driver_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an initialized WebDriver object. Browser test case classes must
 implement this.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp">
-<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.setUp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize driver and call <code class="docutils literal notranslate"><span class="pre">self.driver.get(self.SITE_URL)</span></code></p>
 <p>If <code class="docutils literal notranslate"><span class="pre">self.ENABLE_BS</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">self.driver</span></code> gets the returned
 results of <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.driver_init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">self.driver_init()</span></code></a>.
@@ -373,277 +351,237 @@ unspecified</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.tearDown">
-<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls <code class="docutils literal notranslate"><span class="pre">self.driver.quit()</span></code></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists">
-<code class="descname">assertExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">assertExists</code><span class="sig-paren">(</span><em class="sig-param">element_locator</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertExists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element doesn’t exist</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – webdriver locator tuple in the format
-<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) if specified, used as the error message on
-failure</li>
-<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></p></li>
+<li><p><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
 Number of seconds to wait for expected conditions to occur before
-test fails</li>
+test fails</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists">
-<code class="descname">assertNotExists</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">assertNotExists</code><span class="sig-paren">(</span><em class="sig-param">element_locator</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotExists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotExists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element exists</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – webdriver locator tuple in the format
-<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) if specified, used as the error message on
-failure</li>
-<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></p></li>
+<li><p><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
 Number of seconds to wait for expected conditions to occur before
-test fails</li>
+test fails</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView">
-<code class="descname">assertInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">assertInView</code><span class="sig-paren">(</span><em class="sig-param">element_locator</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInView" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element isn’t scrolled into view</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – webdriver locator tuple in the format
-<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) if specified, used as the error message on
-failure</li>
-<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></p></li>
+<li><p><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
 Number of seconds to wait for expected conditions to occur before
-test fails</li>
+test fails</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView">
-<code class="descname">assertNotInView</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">assertNotInView</code><span class="sig-paren">(</span><em class="sig-param">element_locator</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertNotInView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertNotInView" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is scrolled into view</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – webdriver locator tuple in the format
-<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) if specified, used as the error message on
-failure</li>
-<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></p></li>
+<li><p><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
 Number of seconds to wait for expected conditions to occur before
-test fails</li>
+test fails</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible">
-<code class="descname">assertVisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertVisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">assertVisible</code><span class="sig-paren">(</span><em class="sig-param">element_locator</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertVisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertVisible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element isn’t visible</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – webdriver locator tuple in the format
-<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) if specified, used as the error message on
-failure</li>
-<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></p></li>
+<li><p><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
 Number of seconds to wait for expected conditions to occur before
-test fails</li>
+test fails</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible">
-<code class="descname">assertInvisible</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInvisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">assertInvisible</code><span class="sig-paren">(</span><em class="sig-param">element_locator</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertInvisible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertInvisible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is visible</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – webdriver locator tuple in the format
-<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) if specified, used as the error message on
-failure</li>
-<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></p></li>
+<li><p><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
 Number of seconds to wait for expected conditions to occur before
-test fails</li>
+test fails</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled">
-<code class="descname">assertEnabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertEnabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">assertEnabled</code><span class="sig-paren">(</span><em class="sig-param">element_locator</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertEnabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertEnabled" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is disabled</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – webdriver locator tuple in the format
-<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) if specified, used as the error message on
-failure</li>
-<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></p></li>
+<li><p><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
 Number of seconds to wait for expected conditions to occur before
-test fails</li>
+test fails</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled">
-<code class="descname">assertDisabled</code><span class="sig-paren">(</span><em>element_locator</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertDisabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">assertDisabled</code><span class="sig-paren">(</span><em class="sig-param">element_locator</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertDisabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertDisabled" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if element is enabled</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element_locator</strong> – webdriver locator tuple in the format
-<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></li>
-<li><strong>msg</strong> – (Optional) if specified, used as the error message on
-failure</li>
-<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_locator</strong> – webdriver locator tuple in the format
+<code class="docutils literal notranslate"><span class="pre">(by.&lt;attr&gt;,</span> <span class="pre">&lt;locator</span> <span class="pre">string&gt;)</span></code></p></li>
+<li><p><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
 Number of seconds to wait for expected conditions to occur before
-test fails</li>
+test fails</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange">
-<code class="descname">assertUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">assertUrlChange</code><span class="sig-paren">(</span><em class="sig-param">expected_url</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertUrlChange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if the URL doesn’t match the expected URL.</p>
 <p>Assertion uses webdriver_test_tools.test.url_change_test() using the
 specified <code class="docutils literal notranslate"><span class="pre">wait_timeout</span></code> before determining that expected_url does
 not match the current URL.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>expected_url</strong> – The expected URL</li>
-<li><strong>msg</strong> – (Optional) if specified, used as the error message on
-failure</li>
-<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expected_url</strong> – The expected URL</p></li>
+<li><p><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
 Number of seconds to wait for expected conditions to occur before
-test fails</li>
+test fails</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange">
-<code class="descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em>expected_url</em>, <em>ignore_trailing_slash=True</em>, <em>msg=None</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">assertBaseUrlChange</code><span class="sig-paren">(</span><em class="sig-param">expected_url</em>, <em class="sig-param">ignore_trailing_slash=True</em>, <em class="sig-param">msg=None</em>, <em class="sig-param">wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.assertBaseUrlChange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.assertBaseUrlChange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fail if the URL (ignoring query strings) doesn’t match the expected
 URL.</p>
 <p>Assertion uses webdriver_test_tools.test.url_change_test() using the
 specified <code class="docutils literal notranslate"><span class="pre">wait_timeout</span></code> before determining that expected_url does
 not match the current URL.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>expected_url</strong> – The expected URL</li>
-<li><strong>ignore_trailing_slash</strong> – (Default = True) If True, ignore trailing
-‘/’ in the expected url and current base URL when comparing</li>
-<li><strong>msg</strong> – (Optional) if specified, used as the error message on
-failure</li>
-<li><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expected_url</strong> – The expected URL</p></li>
+<li><p><strong>ignore_trailing_slash</strong> – (Default = True) If True, ignore trailing
+‘/’ in the expected url and current base URL when comparing</p></li>
+<li><p><strong>msg</strong> – (Optional) if specified, used as the error message on
+failure</p></li>
+<li><p><strong>wait_timeout</strong> – (Default = <code class="docutils literal notranslate"><span class="pre">self.DEFAULT_ASSERTION_TIMEOUT</span></code>)
 Number of seconds to wait for expected conditions to occur before
-test fails</li>
+test fails</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="staticmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.skipBrowsers">
-<em class="property">static </em><code class="descname">skipBrowsers</code><span class="sig-paren">(</span><em>*browsers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.skipBrowsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.skipBrowsers" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">skipBrowsers</code><span class="sig-paren">(</span><em class="sig-param">*browsers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.skipBrowsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.skipBrowsers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Conditionally skip a test method for certain browsers</p>
 <p>Usage Example:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase</span><span class="o">.</span><span class="n">skipBrowsers</span><span class="p">(</span><span class="n">Browsers</span><span class="o">.</span><span class="n">SAFARI</span><span class="p">,</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">IE</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase.skipBrowsers</span><span class="p">(</span><span class="n">Browsers</span><span class="o">.</span><span class="n">SAFARI</span><span class="p">,</span> <span class="n">Browsers</span><span class="o">.</span><span class="n">IE</span><span class="p">)</span>
 <span class="n">test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="o">...</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="staticmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.skipMobile">
-<em class="property">static </em><code class="descname">skipMobile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.skipMobile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.skipMobile" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">skipMobile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.skipMobile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.skipMobile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Conditionally skip a test method for mobile browsers</p>
 <p>Usage Example:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase</span><span class="o">.</span><span class="n">skipMobile</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase.skipMobile</span><span class="p">()</span>
 <span class="n">test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="o">...</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="staticmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.mobileOnly">
-<em class="property">static </em><code class="descname">mobileOnly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.mobileOnly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.mobileOnly" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">mobileOnly</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.mobileOnly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.mobileOnly" title="Permalink to this definition">¶</a></dt>
 <dd><p>Conditionally skip a test method for non-mobile browsers</p>
 <p>Usage Example:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase</span><span class="o">.</span><span class="n">mobileOnly</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase.mobileOnly</span><span class="p">()</span>
 <span class="n">test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="o">...</span>
 </pre></div>
@@ -652,30 +590,28 @@ test fails</li>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.takeScreenshot">
-<code class="descname">takeScreenshot</code><span class="sig-paren">(</span><em>print_filename=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.takeScreenshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.takeScreenshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">takeScreenshot</code><span class="sig-paren">(</span><em class="sig-param">print_filename=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.takeScreenshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.takeScreenshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save a screenshot using
 <a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file" title="webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">self.WebDriverConfig.new_screenshot_file</span></code></a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>print_filename</strong> – (Default = False) If True, print the path to the
-new file to standard out</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Path to the new screenshot file</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>print_filename</strong> – (Default = False) If True, print the path to the
+new file to standard out</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Path to the new screenshot file</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="staticmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail">
-<em class="property">static </em><code class="descname">screenshotOnFail</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.screenshotOnFail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">screenshotOnFail</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.screenshotOnFail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.screenshotOnFail" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator for test methods that takes a screenshot if an assertion
 fails. See <a class="reference internal" href="webdriver_test_tools.config.webdriver.html#webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file" title="webdriver_test_tools.config.webdriver.WebDriverConfig.new_screenshot_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">WebDriverConfig.new_screenshot_file</span></code></a>
 for details on filename and output directory</p>
 <p>Usage Example:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase</span><span class="o">.</span><span class="n">screenshotOnFail</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@WebDriverTestCase.screenshotOnFail</span><span class="p">()</span>
 <span class="n">test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">condition</span><span class="p">)</span>
@@ -683,8 +619,8 @@ for details on filename and output directory</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Currently, this method does not take a screenshot for assertions
+<p class="admonition-title">Note</p>
+<p>Currently, this method does not take a screenshot for assertions
 that fail within a subTest. Since subTests are designed to
 continue test execution if an assertion fails, they don’t raise
 exceptions outside of their context.</p>
@@ -693,46 +629,40 @@ exceptions outside of their context.</p>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverTestCase.is_mobile">
-<code class="descname">is_mobile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.is_mobile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.is_mobile" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_mobile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverTestCase.is_mobile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase.is_mobile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check whether the test case is running in a mobile browser</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if running in a mobile browser (or emulated one), False
-if running in a desktop</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if running in a mobile browser (or emulated one), False
+if running in a desktop</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="descname">WebDriverMobileTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverMobileTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.testcase.webdriver.</code><code class="sig-name descname">WebDriverMobileTestCase</code><span class="sig-paren">(</span><em class="sig-param">methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverMobileTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.testcase.webdriver.WebDriverTestCase</span></code></a></p>
 <p>Base class for mobile web driver test cases</p>
 <p>If a test subclasses <code class="docutils literal notranslate"><span class="pre">WebDriverMobileTestCase</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code>, tests will only be generated for mobile browsers</p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.SKIP_MOBILE">
-<code class="descname">SKIP_MOBILE</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.SKIP_MOBILE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SKIP_MOBILE</code><em class="property"> = False</em><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.SKIP_MOBILE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.is_mobile">
-<code class="descname">is_mobile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverMobileTestCase.is_mobile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.is_mobile" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_mobile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/testcase/webdriver.html#WebDriverMobileTestCase.is_mobile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.testcase.webdriver.WebDriverMobileTestCase.is_mobile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check whether the test case is running in a mobile browser</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if running in a mobile browser (or emulated one), False
-if running in a desktop</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if running in a mobile browser (or emulated one), False
+if running in a desktop</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -750,7 +680,7 @@ if running in a desktop</td>
         <a href="webdriver_test_tools.testcase.browsers.html" class="btn btn-neutral float-right" title="webdriver_test_tools.testcase.browsers module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.testcase.html" class="btn btn-neutral" title="webdriver_test_tools.testcase package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.testcase.html" class="btn btn-neutral float-left" title="webdriver_test_tools.testcase package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -759,7 +689,7 @@ if running in a desktop</td>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -776,38 +706,16 @@ if running in a desktop</td>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

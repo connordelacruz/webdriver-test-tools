@@ -19,33 +19,34 @@
   
 
   
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
-
-  
-  <script src="../../../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -246,36 +247,6 @@
     <span class="p">}</span></div>
 
 
-<span class="c1"># Test Loading Functions</span>
-
-<div class="viewcode-block" id="load_tests"><a class="viewcode-back" href="../../../../webdriver_test_tools.project.cmd.common.html#webdriver_test_tools.project.cmd.common.load_tests">[docs]</a><span class="k">def</span> <span class="nf">load_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a list of test classes from a project based on the --module,</span>
-<span class="sd">    --test, and --skip arguments</span>
-
-<span class="sd">    If a :exc:`TestCasesNotFoundException</span>
-<span class="sd">    &lt;webdriver_test_tools.projects.test_loader.TestCasesNotFoundException&gt;` is</span>
-<span class="sd">    raised when trying to load tests, the error message will be printed and</span>
-<span class="sd">    :func:`sys.exit` will be called, ending execution</span>
-
-<span class="sd">    :param tests_module: The module object for &lt;test_project&gt;.tests</span>
-<span class="sd">    :param test_module_names: (Optional) Parsed arg for --module command line</span>
-<span class="sd">        argument</span>
-<span class="sd">    :param test_class_map: (Optional) Result of passing parsed arg for --test</span>
-<span class="sd">        command line argument to parse_test_names()</span>
-<span class="sd">    :param skip_class_map: (Optional) Result of passing parsed arg for --skip</span>
-<span class="sd">        command line argument to parse_test_names()</span>
-
-<span class="sd">    :return: List of test classes</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">load_project_tests</span><span class="p">(</span>
-            <span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span>
-        <span class="p">)</span>
-    <span class="k">except</span> <span class="n">test_loader</span><span class="o">.</span><span class="n">TestCasesNotFoundException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="n">cmd</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
-
 
 </pre></div>
 
@@ -289,7 +260,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -306,38 +277,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../../',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

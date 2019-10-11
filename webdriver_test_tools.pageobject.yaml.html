@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.pageobject.utils package" href="webdriver_test_tools.pageobject.utils.html" />
     <link rel="prev" title="webdriver_test_tools.pageobject.webpage module" href="webdriver_test_tools.pageobject.webpage.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -183,7 +184,7 @@
 <span id="webdriver-test-tools-pageobject-yaml-module"></span><h1>webdriver_test_tools.pageobject.yaml module<a class="headerlink" href="#module-webdriver_test_tools.pageobject.yaml" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.yaml.</code><code class="descname">YAMLParsingPageObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/yaml.html#YAMLParsingPageObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.pageobject.yaml.</code><code class="sig-name descname">YAMLParsingPageObject</code><span class="sig-paren">(</span><em class="sig-param">driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/yaml.html#YAMLParsingPageObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.base.BasePage</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
 <p>Abstract subclass of <a class="reference internal" href="webdriver_test_tools.pageobject.base.html#webdriver_test_tools.pageobject.base.BasePage" title="webdriver_test_tools.pageobject.base.BasePage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePage</span></code></a> with the basic attributes
 and abstract method for parsing YAML representations of page objects.</p>
@@ -191,15 +192,12 @@ and abstract method for parsing YAML representations of page objects.</p>
 this only need to subclass <code class="docutils literal notranslate"><span class="pre">YAMLParsingPageObject</span></code>.</p>
 <p>Page object prototypes that implement this will need to set the following
 attribute:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY"><strong>YAMLParsingPageObject._YAML_ROOT_KEY</strong></a> – String for the expected root key
-in the parsed YAML. Usually a descriptor of the prototype (e.g. ‘form’)</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY"><strong>YAMLParsingPageObject._YAML_ROOT_KEY</strong></a> – String for the expected root key
+in the parsed YAML. Usually a descriptor of the prototype (e.g. ‘form’)</p>
+</dd>
+</dl>
 <p>The abstract method <a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> is partially implemented and returns
 the results of parsing the YAML file and retrieving the value at
 <code class="docutils literal notranslate"><span class="pre">_YAML_ROOT_KEY</span></code>. Implementations of <code class="docutils literal notranslate"><span class="pre">parse_yaml()</span></code> can call
@@ -213,48 +211,43 @@ the results of parsing the YAML file and retrieving the value at
 </div></blockquote>
 <p>This class also includes the following attribute, which should be set in
 subclasses of the prototype classes that implement this:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE"><strong>YAMLParsingPageObject.YAML_FILE</strong></a> – Path to a YAML file representing the
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE"><strong>YAMLParsingPageObject.YAML_FILE</strong></a> – Path to a YAML file representing the
 page object. This file is parsed during initialization using
-<a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> (if it’s set)</td>
-</tr>
-</tbody>
-</table>
+<a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> (if it’s set)</p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY">
-<code class="descname">_YAML_ROOT_KEY</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_YAML_ROOT_KEY</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE">
-<code class="descname">YAML_FILE</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">YAML_FILE</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml">
-<code class="descname">parse_yaml</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/yaml.html#YAMLParsingPageObject.parse_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">parse_yaml</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/yaml.html#YAMLParsingPageObject.parse_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.parse_yaml" title="Permalink to this definition">¶</a></dt>
 <dd><p>Partially implemented abstract method for parsing YAML
 representation of the page object. Implementations of this can call
 <code class="docutils literal notranslate"><span class="pre">super().parse_yaml(file_path)</span></code> to get the value of the parsed file
 at <a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">_YAML_ROOT_KEY</span></code></a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> – Full path to the YAML file</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Dictionary of parsed YAML at <a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">_YAML_ROOT_KEY</span></code></a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – Full path to the YAML file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary of parsed YAML at <a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._YAML_ROOT_KEY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">_YAML_ROOT_KEY</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.no_yaml_init">
-<code class="descname">no_yaml_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/yaml.html#YAMLParsingPageObject.no_yaml_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.no_yaml_init" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">no_yaml_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/yaml.html#YAMLParsingPageObject.no_yaml_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.no_yaml_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fallback method to call during <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> if <a class="reference internal" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject.YAML_FILE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code></a>
 is not set.</p>
 <p>Subclasses should implement this method if any part of the
@@ -263,23 +256,8 @@ initialization process needs to be handled differently when
 </dd></dl>
 
 <dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._abc_cache">
-<code class="descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._abc_cache" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._abc_negative_cache">
-<code class="descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._abc_negative_cache_version">
-<code class="descname">_abc_negative_cache_version</code><em class="property"> = 42</em><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._abc_registry">
-<code class="descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dt id="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._abc_impl">
+<code class="sig-name descname">_abc_impl</code><em class="property"> = &lt;_abc_data object&gt;</em><a class="headerlink" href="#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject._abc_impl" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -297,7 +275,7 @@ initialization process needs to be handled differently when
         <a href="webdriver_test_tools.pageobject.utils.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.utils package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.pageobject.webpage.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.webpage module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.pageobject.webpage.html" class="btn btn-neutral float-left" title="webdriver_test_tools.pageobject.webpage module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -306,7 +284,7 @@ initialization process needs to be handled differently when
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -323,38 +301,16 @@ initialization process needs to be handled differently when
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.pageobject.yaml module" href="webdriver_test_tools.pageobject.yaml.html" />
     <link rel="prev" title="webdriver_test_tools.pageobject.nav module" href="webdriver_test_tools.pageobject.nav.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -183,94 +184,80 @@
 <span id="webdriver-test-tools-pageobject-webpage-module"></span><h1>webdriver_test_tools.pageobject.webpage module<a class="headerlink" href="#module-webdriver_test_tools.pageobject.webpage" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="webdriver_test_tools.pageobject.webpage.WebPageObject">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.pageobject.webpage.</code><code class="descname">WebPageObject</code><span class="sig-paren">(</span><em>driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/webpage.html#WebPageObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.pageobject.webpage.</code><code class="sig-name descname">WebPageObject</code><span class="sig-paren">(</span><em class="sig-param">driver</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/webpage.html#WebPageObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="webdriver_test_tools.pageobject.yaml.html#webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject" title="webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">webdriver_test_tools.pageobject.yaml.YAMLParsingPageObject</span></code></a></p>
 <p>Page object prototype for web pages</p>
 <p>Subclasses should set the following attributes:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>WebPageObject.YAML_FILE</strong> – Path to a YAML file representing the web
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>WebPageObject.YAML_FILE</strong> – Path to a YAML file representing the web
 page. This file is parsed during initialization using
 <a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml" title="webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> and is used to determine <a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PAGE_FILENAME</span></code></a> and
-<a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PAGE_URL</span></code></a></li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG" title="webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG"><strong>WebPageObject.SITE_CONFIG</strong></a> – Test project’s <code class="xref py py-class docutils literal notranslate"><span class="pre">SiteConfig</span></code> class.
+<a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PAGE_URL</span></code></a></p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG" title="webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG"><strong>WebPageObject.SITE_CONFIG</strong></a> – Test project’s <code class="xref py py-class docutils literal notranslate"><span class="pre">SiteConfig</span></code> class.
 Used in <a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml" title="webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_yaml()</span></code></a> to determine page url attributes if the YAML
-‘url’ value is a dictionary with a path relative to a configured URL</li>
+‘url’ value is a dictionary with a path relative to a configured URL</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p>The following attributes are determined based on the contents of
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> (or parsed from <code class="xref py py-attr docutils literal notranslate"><span class="pre">INPUT_DICTS</span></code>, which should be set
 in subclasses if <code class="xref py py-attr docutils literal notranslate"><span class="pre">YAML_FILE</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>):</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME"><strong>WebPageObject.PAGE_FILENAME</strong></a> – <p>File name of the page relative to a base
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME"><strong>WebPageObject.PAGE_FILENAME</strong></a> – <p>File name of the page relative to a base
 URL declared in <code class="docutils literal notranslate"><span class="pre">SITE_CONFIG</span></code> class.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If the ‘url’ key in the YAML file is set to a full URL,
+<p class="admonition-title">Note</p>
+<p>If the ‘url’ key in the YAML file is set to a full URL,
 <a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PAGE_FILENAME</span></code></a> will be set to <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </div>
-</li>
-<li><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL"><strong>WebPageObject.PAGE_URL</strong></a> – Full URL of the page (e.g.
-<code class="docutils literal notranslate"><span class="pre">SITE_CONFIG.BASE_URL</span> <span class="pre">+</span> <span class="pre">PAGE_FILENAME</span></code>)</li>
+</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL" title="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL"><strong>WebPageObject.PAGE_URL</strong></a> – Full URL of the page (e.g.
+<code class="docutils literal notranslate"><span class="pre">SITE_CONFIG.BASE_URL</span> <span class="pre">+</span> <span class="pre">PAGE_FILENAME</span></code>)</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG">
-<code class="descname">SITE_CONFIG</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SITE_CONFIG</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.SITE_CONFIG" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME">
-<code class="descname">PAGE_FILENAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">PAGE_FILENAME</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_FILENAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL">
-<code class="descname">PAGE_URL</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">PAGE_URL</code><em class="property"> = None</em><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.PAGE_URL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml">
-<code class="descname">parse_yaml</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/webpage.html#WebPageObject.parse_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_yaml</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/webpage.html#WebPageObject.parse_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.parse_yaml" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a YAML representation of the web page object and set
 attributes accordingly</p>
 <p>See <a class="reference internal" href="yaml.html#yaml-web-page-objects"><span class="std std-ref">YAML WebPageObjects doc</span></a> for details
 on syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> – Full path to the YAML file</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – Full path to the YAML file</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title">
-<code class="descname">get_page_title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/webpage.html#WebPageObject.get_page_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_page_title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/pageobject/webpage.html#WebPageObject.get_page_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.pageobject.webpage.WebPageObject.get_page_title" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the title of the current page</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Title of the current page</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Title of the current page</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -288,7 +275,7 @@ on syntax.</p>
         <a href="webdriver_test_tools.pageobject.yaml.html" class="btn btn-neutral float-right" title="webdriver_test_tools.pageobject.yaml module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.pageobject.nav.html" class="btn btn-neutral" title="webdriver_test_tools.pageobject.nav module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.pageobject.nav.html" class="btn btn-neutral float-left" title="webdriver_test_tools.pageobject.nav module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -297,7 +284,7 @@ on syntax.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -314,38 +301,16 @@ on syntax.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

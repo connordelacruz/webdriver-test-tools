@@ -19,35 +19,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="webdriver_test_tools.config.webdriver module" href="webdriver_test_tools.config.webdriver.html" />
     <link rel="prev" title="webdriver_test_tools.config.site module" href="webdriver_test_tools.config.site.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -183,59 +184,57 @@
 <span id="webdriver-test-tools-config-test-module"></span><h1>webdriver_test_tools.config.test module<a class="headerlink" href="#module-webdriver_test_tools.config.test" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="webdriver_test_tools.config.test.TestSuiteConfig">
-<em class="property">class </em><code class="descclassname">webdriver_test_tools.config.test.</code><code class="descname">TestSuiteConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/test.html#TestSuiteConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webdriver_test_tools.config.test.</code><code class="sig-name descname">TestSuiteConfig</code><a class="reference internal" href="_modules/webdriver_test_tools/config/test.html#TestSuiteConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Configurations for test suite</p>
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS">
-<code class="descname">RUNNER_CLASS</code><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">RUNNER_CLASS</code><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">colour_runner.runner.ColourTextTestRunner</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS">
-<code class="descname">RUNNER_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">RUNNER_KWARGS</code><em class="property"> = {}</em><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dictionary mapping parameter names to desired values used to initialize
 the <code class="docutils literal notranslate"><span class="pre">TestRunner</span></code> configured in <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_CLASS</span></code></a></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY">
-<code class="descname">DEFAULT_VERBOSITY</code><em class="property"> = 2</em><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">DEFAULT_VERBOSITY</code><em class="property"> = 2</em><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="Permalink to this definition">¶</a></dt>
 <dd><p>Value used if the <code class="docutils literal notranslate"><span class="pre">verbosity</span></code> parameter is unspecified when calling
 <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="webdriver_test_tools.config.test.TestSuiteConfig.get_runner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_runner()</span></code></a>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<ul class="last simple">
-<li>Conflict may occur if <code class="docutils literal notranslate"><span class="pre">'verbosity'</span></code> is set in <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_KWARGS</span></code></a>.
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Conflict may occur if <code class="docutils literal notranslate"><span class="pre">'verbosity'</span></code> is set in <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_KWARGS</span></code></a>.
 Be sure to use <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DEFAULT_VERBOSITY</span></code></a> instead for setting this
-value.</li>
-<li><a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="webdriver_test_tools.config.test.TestSuiteConfig.get_runner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_runner()</span></code></a> assumes the <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_CLASS</span></code></a> constructor
+value.</p></li>
+<li><p><a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="webdriver_test_tools.config.test.TestSuiteConfig.get_runner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_runner()</span></code></a> assumes the <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_CLASS</span></code></a> constructor
 takes a <code class="docutils literal notranslate"><span class="pre">verbosity</span></code> parameter in its constructor. If using a custom
 test runner class that doesn’t support this, you should override the
 <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="webdriver_test_tools.config.test.TestSuiteConfig.get_runner"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_runner()</span></code></a> method in your project’s <code class="docutils literal notranslate"><span class="pre">TestSuiteConfig</span></code>
-class.</li>
+class.</p></li>
 </ul>
 </div>
 </dd></dl>
 
-<dl class="classmethod">
+<dl class="method">
 <dt id="webdriver_test_tools.config.test.TestSuiteConfig.get_runner">
-<em class="property">classmethod </em><code class="descname">get_runner</code><span class="sig-paren">(</span><em>verbosity=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/test.html#TestSuiteConfig.get_runner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">get_runner</code><span class="sig-paren">(</span><em class="sig-param">verbosity=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/config/test.html#TestSuiteConfig.get_runner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.config.test.TestSuiteConfig.get_runner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_CLASS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_CLASS</span></code></a> object using <a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS" title="webdriver_test_tools.config.test.TestSuiteConfig.RUNNER_KWARGS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RUNNER_KWARGS</span></code></a> to
 initialize</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbosity</strong> – (Optional) value to use for the <code class="docutils literal notranslate"><span class="pre">verbosity</span></code>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>verbosity</strong> – (Optional) value to use for the <code class="docutils literal notranslate"><span class="pre">verbosity</span></code>
 parameter when initializing the test runner. Uses
-<a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DEFAULT_VERBOSITY</span></code></a> if unspecified.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The initialized <code class="docutils literal notranslate"><span class="pre">TestRunner</span></code> object</td>
-</tr>
-</tbody>
-</table>
+<a class="reference internal" href="#webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY" title="webdriver_test_tools.config.test.TestSuiteConfig.DEFAULT_VERBOSITY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DEFAULT_VERBOSITY</span></code></a> if unspecified.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The initialized <code class="docutils literal notranslate"><span class="pre">TestRunner</span></code> object</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -253,7 +252,7 @@ parameter when initializing the test runner. Uses
         <a href="webdriver_test_tools.config.webdriver.html" class="btn btn-neutral float-right" title="webdriver_test_tools.config.webdriver module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="webdriver_test_tools.config.site.html" class="btn btn-neutral" title="webdriver_test_tools.config.site module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="webdriver_test_tools.config.site.html" class="btn btn-neutral float-left" title="webdriver_test_tools.config.site module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -262,7 +261,7 @@ parameter when initializing the test runner. Uses
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Connor de la Cruz.
+        &copy; Copyright 2019, Connor de la Cruz
 
     </p>
   </div>
@@ -279,38 +278,16 @@ parameter when initializing the test runner. Uses
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'3.0.0-beta',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
