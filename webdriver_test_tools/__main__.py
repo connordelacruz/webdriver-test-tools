@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """webdriver_test_tools command line interface"""
+import sys
 from webdriver_test_tools.cmd import init, version
 from webdriver_test_tools.common import cmd
 
