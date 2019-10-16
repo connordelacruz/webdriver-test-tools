@@ -221,8 +221,8 @@ def parse_run_args(tests_module, config_module, args):
 
 def run_tests(tests_module, config_module,
               browser_classes=None, test_class_map=None, skip_class_map=None,
-              test_module_names=None, browserstack=False, headless=False,
-              verbosity=None):
+              test_module_names=None, skip_module_names=None,
+              browserstack=False, headless=False, verbosity=None):
     """Run tests using parsed args and project modules
 
     :param tests_module: The module object for ``<test_project>.tests``
@@ -236,6 +236,8 @@ def run_tests(tests_module, config_module,
         ``--skip`` command line argument to :func:`parse_test_names()`
     :param test_module_names: (Optional) Parsed arg for ``--module`` command
         line argument
+    :param skip_module_names: (Optional) Parsed arg for ``--skip-module``
+        command line argument
     :param browserstack: (Default = False) If True, generated test cases should
         run on BrowserStack
     :param headless: (Default = False) If True, configure driver to run tests
@@ -248,7 +250,7 @@ def run_tests(tests_module, config_module,
     # Enable graceful Ctrl+C handling
     unittest.installHandler()
     # Load WebDriverTestCase subclasses from project tests
-    tests = load_project_tests(tests_module, test_module_names, test_class_map, skip_class_map)
+    tests = load_project_tests(tests_module, test_module_names, skip_module_names, test_class_map, skip_class_map)
     # Generate browser test cases from the loaded WebDriverTestCase classes
     browser_test_suite = test_factory.generate_browser_test_suite(
         tests, browser_classes, test_class_map, skip_class_map,

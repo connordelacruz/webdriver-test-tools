@@ -2,7 +2,6 @@ import sys
 import textwrap
 
 from webdriver_test_tools.common import cmd
-from webdriver_test_tools.project import test_loader
 
 
 # Parent Parsers
@@ -10,14 +9,14 @@ from webdriver_test_tools.project import test_loader
 def get_test_parent_parser(parents=[]):
     """Returns an :class:`ArgumentParser
     <webdriver_test_tools.cmd.argparse.ArgumentParser>` with ``--test``,
-    ``--skip``, and ``--module`` arguments
+    ``--skip``, ``--module``, and ``--skip-module`` arguments
 
     :param parents: (Optional) List of ``ArgumentParser`` objects to use as
         parents for the test argument parser
 
     :return: :class:`ArgumentParser
         <webdriver_test_tools.cmd.argparse.ArgumentParser>` with ``--test``,
-        ``--skip``, and ``--module`` arguments
+        ``--skip``, ``--module``, and ``--skip-module`` arguments
     """
     # Adds --module, --test, and --skip arguments
     test_parent_parser = cmd.argparse.ArgumentParser(add_help=False,
@@ -27,6 +26,9 @@ def get_test_parent_parser(parents=[]):
     module_help = 'Run only tests in specific test modules'
     group.add_argument('-m', '--module', nargs='+', metavar='<module>',
                        help=module_help)
+    skip_module_help = 'Skip all tests in specific test modules'
+    group.add_argument('-S', '--skip-module', nargs='+', metavar='<module>',
+                       help=skip_module_help)
     test_help = textwrap.dedent('''\
                 Run specific test case classes or test methods.
                 Arguments should be in the format <TestCase>[.<method>]
@@ -74,14 +76,16 @@ def parse_test_args(args):
 
     :param args: The namespace returned by parser.parse_args()
 
-    :return: A dictionary mapping 'test_class_map', 'skip_class_map', and
-        'test_module_names' to the arguments passed via the command line
+    :return: A dictionary mapping 'test_class_map', 'skip_class_map',
+        'test_module_names', and 'skip_module_names' to the arguments passed
+        via the command line
     """
-    # get --test, --skip, and --module args
+    # get --test, --skip, --module, and --skip-module args
     return {
         'test_class_map': parse_test_names(args.test),
         'skip_class_map': parse_test_names(args.skip),
         'test_module_names': args.module,
+        'skip_module_names': args.skip_module,
     }
 
 

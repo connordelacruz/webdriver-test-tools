@@ -31,7 +31,8 @@ class TestCasesNotFoundException(TestLoaderException):
 # Loader Methods
 
 def load_project_tests(tests_module,
-                       test_module_names=None, test_class_map=None, skip_class_map=None):
+                       test_module_names=None, skip_module_names=None,
+                       test_class_map=None, skip_class_map=None):
     """Returns a list of :class:`WebDriverTestCase
     <webdriver_test_tools.testcase.webdriver.WebDriverTestCase>` subclasses
     from all submodules in a test project's tests/ directory
@@ -43,6 +44,8 @@ def load_project_tests(tests_module,
     :param tests_module: The module object for ``<test_project>.tests``
     :param test_module_names: (Optional) List of test module names. Only load
         test cases from a submodule of ``tests_module`` with the given names
+    :param skip_module_names: (Optional) List of test module names. Do not load
+        test cases from a submodule of ``tests_module`` if present in this list
     :param test_class_map: (Optional) Dictionary mapping test class names (or
         wildcard strings) to a list of method names or an empty list if the
         whole class should be run. Only load test cases that match the keys in
@@ -56,7 +59,7 @@ def load_project_tests(tests_module,
 
     :return: A list of test classes from all test modules
     """
-    test_module_list = get_test_modules(tests_module, test_module_names)
+    test_module_list = get_test_modules(tests_module, test_module_names, skip_module_names)
     test_case_list = get_test_cases(test_module_list)
     # Expand any wildcard keys in class maps prior to filtering
     test_class_map, skip_class_map = expand_wildcard_class_names(
@@ -66,12 +69,14 @@ def load_project_tests(tests_module,
     return filter_test_cases(test_case_list, test_class_map, skip_class_map)
 
 
-def get_test_modules(tests_module, test_module_names=None):
+def get_test_modules(tests_module, test_module_names=None, skip_module_names=None):
     """Returns a list of submodules in a test project's tests/ directory
 
     :param tests_module: The module object for ``<test_project>.tests``
     :param test_module_names: (Optional) List of test module names. Only load
         test cases from a submodule of ``tests_module`` with the given names
+    :param skip_module_names: (Optional) List of test module names. Do not load
+        test cases from a submodule of ``tests_module`` if present in this list
 
     :return: A list of test modules
     """
@@ -79,6 +84,11 @@ def get_test_modules(tests_module, test_module_names=None):
     tests_module_attributes = [
         attr for attr in dir(tests_module) if attr != 'pkgutil'
     ]
+    # If skip_module_names is provided, remove any matches
+    if skip_module_names is not None:
+        tests_module_attributes = [
+            name for name in tests_module_attributes if name not in skip_module_names
+        ]
     # Filter attributes based on test_module_names (if provided)
     if test_module_names is not None:
         tests_module_attributes = [
