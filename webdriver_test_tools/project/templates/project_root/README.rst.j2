@@ -216,6 +216,13 @@ argument:
 
     {{test_package}} --module <test_module> [<test_module> ...]
 
+To skip all test cases in one or more modules, use the ``--skip-module`` (or
+``-S``) argument:
+
+::
+
+    {{test_package}} --skip-module <test_module> [<test_module> ...]
+
 To run specific test case classes or methods, use the ``--test`` (or ``-t``)
 argument:
 
@@ -236,9 +243,10 @@ and method names.
 These arguments can be used together. When combined, they are processed in the
 following order:
 
-    1. ``--module`` reduces the set of tests to those in the specified modules
-    2. ``--test`` reduces the set of tests to the specified classes and methods
-    3. ``--skip`` removes the specified classes and methods from the set of tests
+    #. ``--skip-module`` removes the specified modules from the set of tests
+    #. ``--module`` reduces the set of tests to those in the specified modules
+    #. ``--test`` reduces the set of tests to the specified classes and methods
+    #. ``--skip`` removes the specified classes and methods from the set of tests
 
 
 Using Specific Browsers
@@ -320,6 +328,9 @@ attribute of the ``TestSuiteConfig`` class.
 List Available Tests
 --------------------
 
+Basic Usage
+~~~~~~~~~~~
+
 To print a list of available test classes and methods:
 
 ::
@@ -332,11 +343,21 @@ To include docstrings for each test class and method in output:
 
     {{test_package}} list --verbose
 
+
+Listing Specific Tests
+~~~~~~~~~~~~~~~~~~~~~~
+
 To only list test classes from specific modules:
 
 ::
 
     {{test_package}} list --module <test_module> [<test_module> ...]
+
+To omit specific modules:
+
+::
+
+    {{test_package}} list --skip-module <test_module> [<test_module> ...]
 
 To only list specific test classes:
 
@@ -349,6 +370,8 @@ To skip certain test classes in output:
 ::
 
     {{test_package}} --skip <TestClass> [<TestClass> ...]
+
+See `Running Specific Tests`_ for more info on these arguments.
 
 
 Project Structure
