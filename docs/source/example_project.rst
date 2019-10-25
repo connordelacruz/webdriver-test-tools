@@ -423,8 +423,8 @@ Firefox test cases:
 Running specific test modules
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If we only want to run a specific test module, we can use the ``--module``
-command line argument. For example, if we just wanted to run
+If we only want to run tests in one or more test modules, we can use the
+``--module`` command line argument. For example, if we just wanted to run
 ``tests/home.py``:
 
 .. code-block:: none
@@ -434,6 +434,21 @@ command line argument. For example, if we just wanted to run
 Since we only have one test module in this example, this doesn’t do anything
 different than normal, but this can be useful in test projects with multiple
 test modules.
+
+Skipping test modules
+^^^^^^^^^^^^^^^^^^^^^
+
+If we wanted to skip all tests in one or more test modules, we can use the
+``--skip-module`` command line argument, which uses the same syntax as
+``--module``. For example, if we wanted to skip all tests in ``tests/home.py``:
+
+.. code-block:: none
+
+    example_package --skip-module home
+
+Since we only have one test module in this example, this won't run any tests,
+and so isn't particularly helpful here, but this can be useful in test projects
+with multiple test modules.
 
 Running specific test cases or functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
