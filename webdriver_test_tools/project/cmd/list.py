@@ -68,13 +68,15 @@ def parse_list_args(tests_module, args):
 
 
 def list_tests(tests_module,
-               test_module_names=None, test_class_map=None, skip_class_map=None,
-               verbose=False):
+               test_module_names=None, skip_module_names=None,
+               test_class_map=None, skip_class_map=None, verbose=False):
     """Print a list of available tests
 
     :param tests_module: The module object for ``<test_project>.tests``
     :param test_module_names: (Optional) Parsed arg for ``--module`` command
         line argument
+    :param skip_module_names: (Optional) Parsed arg for ``--skip-module``
+        command line argument
     :param test_class_map: (Optional) Result of passing parsed arg for
         ``--test`` command line argument to :func:`parse_test_names()`
     :param skip_class_map: (Optional) Result of passing parsed arg for
@@ -82,7 +84,7 @@ def list_tests(tests_module,
     :param verbose: (Default = False) If True, print class and test method
         docstrings
     """
-    tests = load_project_tests(tests_module, test_module_names, test_class_map, skip_class_map)
+    tests = load_project_tests(tests_module, test_module_names, skip_module_names, test_class_map, skip_class_map)
     module_map = _module_map(tests, tests_module)
     for module, test_list in module_map.items():
         _print_module(module, test_list, verbose=verbose)
