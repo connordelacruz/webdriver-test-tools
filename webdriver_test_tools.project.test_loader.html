@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_loader module &mdash; WebDriver Test Tools 3.1.0-beta documentation</title>
+  <title>webdriver_test_tools.project.test_loader module &mdash; WebDriver Test Tools 3.2.0-beta documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                3.1
+                3.2
               </div>
             
           
@@ -209,7 +209,7 @@ found</p>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.load_project_tests">
-<code class="sig-prename descclassname">webdriver_test_tools.project.test_loader.</code><code class="sig-name descname">load_project_tests</code><span class="sig-paren">(</span><em class="sig-param">tests_module</em>, <em class="sig-param">test_module_names=None</em>, <em class="sig-param">test_class_map=None</em>, <em class="sig-param">skip_class_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.test_loader.</code><code class="sig-name descname">load_project_tests</code><span class="sig-paren">(</span><em class="sig-param">tests_module</em>, <em class="sig-param">test_module_names=None</em>, <em class="sig-param">skip_module_names=None</em>, <em class="sig-param">test_class_map=None</em>, <em class="sig-param">skip_class_map=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#load_project_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.load_project_tests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of <a class="reference internal" href="webdriver_test_tools.testcase.webdriver.html#webdriver_test_tools.testcase.webdriver.WebDriverTestCase" title="webdriver_test_tools.testcase.webdriver.WebDriverTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriverTestCase</span></code></a> subclasses
 from all submodules in a test project’s tests/ directory</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">test_class_map</span></code> or <code class="docutils literal notranslate"><span class="pre">skip_class_map</span></code> contain wildcards in any of
@@ -221,6 +221,8 @@ matches, altering the original dictionaries as a side effect.</p>
 <li><p><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></p></li>
 <li><p><strong>test_module_names</strong> – (Optional) List of test module names. Only load
 test cases from a submodule of <code class="docutils literal notranslate"><span class="pre">tests_module</span></code> with the given names</p></li>
+<li><p><strong>skip_module_names</strong> – (Optional) List of test module names. Do not load
+test cases from a submodule of <code class="docutils literal notranslate"><span class="pre">tests_module</span></code> if present in this list</p></li>
 <li><p><strong>test_class_map</strong> – (Optional) Dictionary mapping test class names (or
 wildcard strings) to a list of method names or an empty list if the
 whole class should be run. Only load test cases that match the keys in
@@ -241,7 +243,7 @@ methods in the class that should be run</p></li>
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.test_loader.get_test_modules">
-<code class="sig-prename descclassname">webdriver_test_tools.project.test_loader.</code><code class="sig-name descname">get_test_modules</code><span class="sig-paren">(</span><em class="sig-param">tests_module</em>, <em class="sig-param">test_module_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#get_test_modules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.get_test_modules" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.test_loader.</code><code class="sig-name descname">get_test_modules</code><span class="sig-paren">(</span><em class="sig-param">tests_module</em>, <em class="sig-param">test_module_names=None</em>, <em class="sig-param">skip_module_names=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/test_loader.html#get_test_modules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.test_loader.get_test_modules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of submodules in a test project’s tests/ directory</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -249,6 +251,8 @@ methods in the class that should be run</p></li>
 <li><p><strong>tests_module</strong> – The module object for <code class="docutils literal notranslate"><span class="pre">&lt;test_project&gt;.tests</span></code></p></li>
 <li><p><strong>test_module_names</strong> – (Optional) List of test module names. Only load
 test cases from a submodule of <code class="docutils literal notranslate"><span class="pre">tests_module</span></code> with the given names</p></li>
+<li><p><strong>skip_module_names</strong> – (Optional) List of test module names. Do not load
+test cases from a submodule of <code class="docutils literal notranslate"><span class="pre">tests_module</span></code> if present in this list</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

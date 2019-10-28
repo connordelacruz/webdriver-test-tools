@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Example Project &mdash; WebDriver Test Tools 3.1.0-beta documentation</title>
+  <title>Example Project &mdash; WebDriver Test Tools 3.2.0-beta documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                3.1
+                3.2
               </div>
             
           
@@ -115,6 +115,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#optional-command-line-arguments">Optional command line arguments</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#running-in-a-specific-browser">Running in a specific browser</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#running-specific-test-modules">Running specific test modules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#skipping-test-modules">Skipping test modules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#running-specific-test-cases-or-functions">Running specific test cases or functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#skipping-test-cases-or-functions">Skipping test cases or functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#running-tests-in-headless-browsers">Running tests in headless browsers</a></li>
@@ -231,10 +232,11 @@
 <ul>
 <li><p><a class="reference internal" href="#running-in-a-specific-browser" id="id27">Running in a specific browser</a></p></li>
 <li><p><a class="reference internal" href="#running-specific-test-modules" id="id28">Running specific test modules</a></p></li>
-<li><p><a class="reference internal" href="#running-specific-test-cases-or-functions" id="id29">Running specific test cases or functions</a></p></li>
-<li><p><a class="reference internal" href="#skipping-test-cases-or-functions" id="id30">Skipping test cases or functions</a></p></li>
-<li><p><a class="reference internal" href="#running-tests-in-headless-browsers" id="id31">Running tests in headless browsers</a></p></li>
-<li><p><a class="reference internal" href="#running-tests-silently" id="id32">Running tests silently</a></p></li>
+<li><p><a class="reference internal" href="#skipping-test-modules" id="id29">Skipping test modules</a></p></li>
+<li><p><a class="reference internal" href="#running-specific-test-cases-or-functions" id="id30">Running specific test cases or functions</a></p></li>
+<li><p><a class="reference internal" href="#skipping-test-cases-or-functions" id="id31">Skipping test cases or functions</a></p></li>
+<li><p><a class="reference internal" href="#running-tests-in-headless-browsers" id="id32">Running tests in headless browsers</a></p></li>
+<li><p><a class="reference internal" href="#running-tests-silently" id="id33">Running tests silently</a></p></li>
 </ul>
 </li>
 </ul>
@@ -675,8 +677,8 @@ Firefox test cases:</p>
 </div>
 <div class="section" id="running-specific-test-modules">
 <h4><a class="toc-backref" href="#id28">Running specific test modules</a><a class="headerlink" href="#running-specific-test-modules" title="Permalink to this headline">¶</a></h4>
-<p>If we only want to run a specific test module, we can use the <code class="docutils literal notranslate"><span class="pre">--module</span></code>
-command line argument. For example, if we just wanted to run
+<p>If we only want to run tests in one or more test modules, we can use the
+<code class="docutils literal notranslate"><span class="pre">--module</span></code> command line argument. For example, if we just wanted to run
 <code class="docutils literal notranslate"><span class="pre">tests/home.py</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>example_package --module home
 </pre></div>
@@ -685,8 +687,20 @@ command line argument. For example, if we just wanted to run
 different than normal, but this can be useful in test projects with multiple
 test modules.</p>
 </div>
+<div class="section" id="skipping-test-modules">
+<h4><a class="toc-backref" href="#id29">Skipping test modules</a><a class="headerlink" href="#skipping-test-modules" title="Permalink to this headline">¶</a></h4>
+<p>If we wanted to skip all tests in one or more test modules, we can use the
+<code class="docutils literal notranslate"><span class="pre">--skip-module</span></code> command line argument, which uses the same syntax as
+<code class="docutils literal notranslate"><span class="pre">--module</span></code>. For example, if we wanted to skip all tests in <code class="docutils literal notranslate"><span class="pre">tests/home.py</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>example_package --skip-module home
+</pre></div>
+</div>
+<p>Since we only have one test module in this example, this won’t run any tests,
+and so isn’t particularly helpful here, but this can be useful in test projects
+with multiple test modules.</p>
+</div>
 <div class="section" id="running-specific-test-cases-or-functions">
-<h4><a class="toc-backref" href="#id29">Running specific test cases or functions</a><a class="headerlink" href="#running-specific-test-cases-or-functions" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id30">Running specific test cases or functions</a><a class="headerlink" href="#running-specific-test-cases-or-functions" title="Permalink to this headline">¶</a></h4>
 <p>If we only want to run a specific test case or function within a test case, we
 can use the <code class="docutils literal notranslate"><span class="pre">--test</span></code> command line argument. For example, if we just wanted to
 run HomePageTestCase:</p>
@@ -720,7 +734,7 @@ for a lot more control in larger test projects without needing to type out long
 lists of test cases and methods.</p>
 </div>
 <div class="section" id="skipping-test-cases-or-functions">
-<h4><a class="toc-backref" href="#id30">Skipping test cases or functions</a><a class="headerlink" href="#skipping-test-cases-or-functions" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id31">Skipping test cases or functions</a><a class="headerlink" href="#skipping-test-cases-or-functions" title="Permalink to this headline">¶</a></h4>
 <p>If we wanted to skip a test case or function within a test case, we can use the
 <code class="docutils literal notranslate"><span class="pre">--skip</span></code> command line argument, which uses the same syntax as <code class="docutils literal notranslate"><span class="pre">--test</span></code>. For
 example, if we wanted to run all tests except for the
@@ -738,7 +752,7 @@ contain the word <code class="docutils literal notranslate"><span class="pre">pa
 but can be useful in larger test projects.</p>
 </div>
 <div class="section" id="running-tests-in-headless-browsers">
-<h4><a class="toc-backref" href="#id31">Running tests in headless browsers</a><a class="headerlink" href="#running-tests-in-headless-browsers" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id32">Running tests in headless browsers</a><a class="headerlink" href="#running-tests-in-headless-browsers" title="Permalink to this headline">¶</a></h4>
 <p>Some browsers support headless execution. This allows tests to be run without
 the browser GUI, which improves performance. To run the example test suite in
 headless browsers:</p>
@@ -749,7 +763,7 @@ headless browsers:</p>
 <a class="reference internal" href="additional_browsers.html#headless-browsers"><span class="std std-ref">headless browsers documentation</span></a>.</p>
 </div>
 <div class="section" id="running-tests-silently">
-<h4><a class="toc-backref" href="#id32">Running tests silently</a><a class="headerlink" href="#running-tests-silently" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id33">Running tests silently</a><a class="headerlink" href="#running-tests-silently" title="Permalink to this headline">¶</a></h4>
 <p>By default, detailed output is displayed when running tests. If we wanted to
 reduce the output to just a progress bar and the final results while running
 tests:</p>

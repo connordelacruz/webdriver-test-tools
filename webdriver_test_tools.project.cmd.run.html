@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.cmd.run module &mdash; WebDriver Test Tools 3.1.0-beta documentation</title>
+  <title>webdriver_test_tools.project.cmd.run module &mdash; WebDriver Test Tools 3.2.0-beta documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                3.1
+                3.2
               </div>
             
           
@@ -254,7 +254,7 @@ present in <code class="docutils literal notranslate"><span class="pre">config_m
 
 <dl class="function">
 <dt id="webdriver_test_tools.project.cmd.run.run_tests">
-<code class="sig-prename descclassname">webdriver_test_tools.project.cmd.run.</code><code class="sig-name descname">run_tests</code><span class="sig-paren">(</span><em class="sig-param">tests_module</em>, <em class="sig-param">config_module</em>, <em class="sig-param">browser_classes=None</em>, <em class="sig-param">test_class_map=None</em>, <em class="sig-param">skip_class_map=None</em>, <em class="sig-param">test_module_names=None</em>, <em class="sig-param">browserstack=False</em>, <em class="sig-param">headless=False</em>, <em class="sig-param">verbosity=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/run.html#run_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.run.run_tests" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">webdriver_test_tools.project.cmd.run.</code><code class="sig-name descname">run_tests</code><span class="sig-paren">(</span><em class="sig-param">tests_module</em>, <em class="sig-param">config_module</em>, <em class="sig-param">browser_classes=None</em>, <em class="sig-param">test_class_map=None</em>, <em class="sig-param">skip_class_map=None</em>, <em class="sig-param">test_module_names=None</em>, <em class="sig-param">skip_module_names=None</em>, <em class="sig-param">browserstack=False</em>, <em class="sig-param">headless=False</em>, <em class="sig-param">verbosity=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/webdriver_test_tools/project/cmd/run.html#run_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webdriver_test_tools.project.cmd.run.run_tests" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run tests using parsed args and project modules</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -270,6 +270,8 @@ arg for <code class="docutils literal notranslate"><span class="pre">--browser</
 <code class="docutils literal notranslate"><span class="pre">--skip</span></code> command line argument to <code class="xref py py-func docutils literal notranslate"><span class="pre">parse_test_names()</span></code></p></li>
 <li><p><strong>test_module_names</strong> – (Optional) Parsed arg for <code class="docutils literal notranslate"><span class="pre">--module</span></code> command
 line argument</p></li>
+<li><p><strong>skip_module_names</strong> – (Optional) Parsed arg for <code class="docutils literal notranslate"><span class="pre">--skip-module</span></code>
+command line argument</p></li>
 <li><p><strong>browserstack</strong> – (Default = False) If True, generated test cases should
 run on BrowserStack</p></li>
 <li><p><strong>headless</strong> – (Default = False) If True, configure driver to run tests
