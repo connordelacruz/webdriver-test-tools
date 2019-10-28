@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>webdriver_test_tools.project.test_loader &mdash; WebDriver Test Tools 3.1.0-beta documentation</title>
+  <title>webdriver_test_tools.project.test_loader &mdash; WebDriver Test Tools 3.2.0-beta documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                3.1
+                3.2
               </div>
             
           
@@ -193,7 +193,8 @@
 <span class="c1"># Loader Methods</span>
 
 <div class="viewcode-block" id="load_project_tests"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.load_project_tests">[docs]</a><span class="k">def</span> <span class="nf">load_project_tests</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span>
-                       <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                       <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">test_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a list of :class:`WebDriverTestCase</span>
 <span class="sd">    &lt;webdriver_test_tools.testcase.webdriver.WebDriverTestCase&gt;` subclasses</span>
 <span class="sd">    from all submodules in a test project&#39;s tests/ directory</span>
@@ -205,6 +206,8 @@
 <span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
 <span class="sd">    :param test_module_names: (Optional) List of test module names. Only load</span>
 <span class="sd">        test cases from a submodule of ``tests_module`` with the given names</span>
+<span class="sd">    :param skip_module_names: (Optional) List of test module names. Do not load</span>
+<span class="sd">        test cases from a submodule of ``tests_module`` if present in this list</span>
 <span class="sd">    :param test_class_map: (Optional) Dictionary mapping test class names (or</span>
 <span class="sd">        wildcard strings) to a list of method names or an empty list if the</span>
 <span class="sd">        whole class should be run. Only load test cases that match the keys in</span>
@@ -218,7 +221,7 @@
 
 <span class="sd">    :return: A list of test classes from all test modules</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">test_module_list</span> <span class="o">=</span> <span class="n">get_test_modules</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">)</span>
+    <span class="n">test_module_list</span> <span class="o">=</span> <span class="n">get_test_modules</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="p">,</span> <span class="n">skip_module_names</span><span class="p">)</span>
     <span class="n">test_case_list</span> <span class="o">=</span> <span class="n">get_test_cases</span><span class="p">(</span><span class="n">test_module_list</span><span class="p">)</span>
     <span class="c1"># Expand any wildcard keys in class maps prior to filtering</span>
     <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span> <span class="o">=</span> <span class="n">expand_wildcard_class_names</span><span class="p">(</span>
@@ -228,12 +231,14 @@
     <span class="k">return</span> <span class="n">filter_test_cases</span><span class="p">(</span><span class="n">test_case_list</span><span class="p">,</span> <span class="n">test_class_map</span><span class="p">,</span> <span class="n">skip_class_map</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_test_modules"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.get_test_modules">[docs]</a><span class="k">def</span> <span class="nf">get_test_modules</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_test_modules"><a class="viewcode-back" href="../../../webdriver_test_tools.project.test_loader.html#webdriver_test_tools.project.test_loader.get_test_modules">[docs]</a><span class="k">def</span> <span class="nf">get_test_modules</span><span class="p">(</span><span class="n">tests_module</span><span class="p">,</span> <span class="n">test_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_module_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a list of submodules in a test project&#39;s tests/ directory</span>
 
 <span class="sd">    :param tests_module: The module object for ``&lt;test_project&gt;.tests``</span>
 <span class="sd">    :param test_module_names: (Optional) List of test module names. Only load</span>
 <span class="sd">        test cases from a submodule of ``tests_module`` with the given names</span>
+<span class="sd">    :param skip_module_names: (Optional) List of test module names. Do not load</span>
+<span class="sd">        test cases from a submodule of ``tests_module`` if present in this list</span>
 
 <span class="sd">    :return: A list of test modules</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -241,6 +246,11 @@
     <span class="n">tests_module_attributes</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">tests_module</span><span class="p">)</span> <span class="k">if</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s1">&#39;pkgutil&#39;</span>
     <span class="p">]</span>
+    <span class="c1"># If skip_module_names is provided, remove any matches</span>
+    <span class="k">if</span> <span class="n">skip_module_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tests_module_attributes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tests_module_attributes</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_module_names</span>
+        <span class="p">]</span>
     <span class="c1"># Filter attributes based on test_module_names (if provided)</span>
     <span class="k">if</span> <span class="n">test_module_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">tests_module_attributes</span> <span class="o">=</span> <span class="p">[</span>
